@@ -1,0 +1,45 @@
+<div class="pull-out-less-content-container pull-left">
+  {{#if isLoading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    <header class="pull-out-header">
+      <div class=header-content>
+        <div class="info pull-left">
+          <div class="title">
+            {{title}}
+          </div>
+          <div class="description">
+            {{description}}
+          </div>
+        </div>
+        <div class="action pull-right">
+          {{#if showMore}}
+            <div class="more-info pull-left" {{action 'showMoreInfo'}}>
+              {{gru-icon name='ic_info_outline'}}
+              <div>More</div>
+            </div>
+          {{/if}}
+          {{#if showLess}}
+            <div class="less-info pull-left" {{action 'showLessInfo'}}>
+              {{gru-icon name='ic_arrow_forward'}}
+              <div>Less</div>
+            </div>
+          {{/if}}
+          <div class="close-info pull-right" {{action 'onPullOutClose'}}>
+            {{gru-icon name='ic_close'}}
+            <div>Close</div>
+          </div>
+        </div>
+      </div>
+    </header>
+  {{/if}}
+  <div class="pull-out-content">
+    {{yield lessContent}}
+  </div>
+  <footer class="pull-out-footer">
+    <!-- TO-DO -->
+  </footer>
+</div>
+<div class="pull-out-more-content-container pull-left">
+  {{yield moreContent}}
+</div>

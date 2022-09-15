@@ -1,0 +1,120 @@
+<div class="panel-layout-section">
+  <div class="layout-title">
+    {{t 'class-activities.assign.activity'}}
+    {{gru-icon name="arrow_drop_down"}}
+  </div>
+  <div class="gru-class-activities-adding-layout-container">
+      <div class="search-section">
+          {{class/activities/gru-content-search-filter
+             activeComponentKey=activeComponentKey
+             primaryClass=primaryClass
+             onChangeContentType=(action "onChangeContentType")
+             applyFilter="applyFilter"
+             onSearch = (action "onSearch")
+             onRefreshData = (action "onRefreshData")
+            onAddActivity="onAddActivity"
+            tabindex=tabindex
+          }}
+      </div>
+      <div class="switching-section ">
+        {{#if primaryClass.gradeCurrent}}
+          <div class="scope-and-sequence-section">
+            {{#unless (eq componentKeys.defaultView activeComponentKey) }}
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle  panel-header {{unless activeScopeAndSequence 'hidden'}}" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             {{#if activeScopeAndSequence.scopeName}}{{activeScopeAndSequence.scopeName}}  - {{activeScopeAndSequence.grade}} {{else}} {{activeScopeAndSequence.title}} {{/if}} {{gru-icon name="arrow_drop_down"}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {{#each scopeAndSequences as |scope|}}
+                  <span class="{{if (eq scope.id activeScopeAndSequence.id) 'active'}} dropdown-item" onclick={{action "onSelectScope" scope}} onkeypress={{action "onSelectScope" scope}} tabindex={{tabindex}}> {{#if scope.scopeName}}{{scope.scopeName}}  - {{scope.grade}} {{else}} {{scope.title}} {{/if}} </span>
+                {{/each}}
+              </div>
+            </div>
+            {{/unless}}
+          </div>
+          {{#if isPremiumClass}}
+          <span class="change-component"  tabindex={{tabindex}}
+          onclick={{action "onChangeComponent"  (if (eq activeComponentKey componentKeys.defaultView) (if isDefaultScopeSequence componentKeys.defaultScopeAndSequence componentKeys.scopeAndSequence) componentKeys.defaultView)}}
+          onkeypress={{action "onChangeComponent"  (if (eq activeComponentKey componentKeys.defaultView) (if isDefaultScopeSequence componentKeys.defaultScopeAndSequence componentKeys.scopeAndSequence) componentKeys.defaultView)}}>
+              {{t (if (eq activeComponentKey componentKeys.defaultView) 'class-activities.show-scope-and-sequence' 'class-activities.show-global-results')}}
+          </span>
+          {{/if}}
+          {{/if}}
+      </div>
+      <div class="gru-class-activities-content-section">
+        {{#unless isLoading}}
+        {{component activeComponent
+          onAddActivityPop="onAddActivityPop"
+          onAddActivity="onAddActivity"
+          isFetchingContents=isFetchingContents
+          onShowContentPreview = "onShowContentPreview"
+          primaryClass=primaryClass
+          scopeAndSequence=scopeAndSequence
+          todayActivities=activitiesContentWithIndex
+          onDefaultShowMore="onDefaultShowMore"
+          onSelectCompetency="onSelectCompetency"
+          activeContentType=activeContentType
+          activeScopeAndSequence=activeScopeAndSequence
+          activityStatus=activityStatus
+          activeSequenceIndex=activeSequenceIndex
+          activeSequence=activeSequence
+          activeComponentKey=activeComponentKey
+          activitiesList =activitiesList
+          tabindex=tabindex
+          isDefaultShowFW = isDefaultShowFW
+         }}
+         {{/unless}}
+         {{#if isLoading}}
+              {{three-bounce-spinner}}
+         {{/if}}
+      </div>
+  </div>
+
+</div>
+
+{{#if isShowDateRangePicker}}
+  <div class="ca-datepicker-schedule-container ca-datepicker-popover-container">
+    {{ca-daterange-datepicker
+        closeDatePicker='onCloseDateRangePicker'
+        onScheduleForDate='scheduleContentForDate'
+        onScheduleForMonth='scheduleContentForMonth'
+        endDate=endDate
+        enableVideoConference=enableVideoConference
+        allowTwoDateRangePicker=isShowStartEndDatePicker
+        tabindex=tabindex
+        }}
+  </div>
+{{/if}}
+
+<!-- Preview -->
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    previewContentId=previewContent.id
+    previewContentType=previewContent.format
+    primaryClass=primaryClass
+    tabindex=tabindex
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isShowOfflineActivityPreview}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityPreview
+    oaId=previewContent.id
+    isReportView=false
+    primaryClass=primaryClass
+    tabindex=tabindex
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isAddActivity}}
+    {{new-cards/activities/gru-add-content-popup-card
+      isAddActivity=isAddActivity
+      onAddActivity="onAddActivity"
+      activeActivityContent=activeActivityContent
+      primaryClass=primaryClass
+      tabindex=tabindex
+      }}
+{{/if}}

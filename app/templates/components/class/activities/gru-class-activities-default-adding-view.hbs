@@ -1,0 +1,29 @@
+<div class="default-adding-view-container">
+  {{#if todayActivities}}
+  {{#each-in todayActivities as |sourceIndex content|}}
+  <div class="source-header">
+      {{get (array-index activeSequence sourceIndex) 'name'}}
+  </div>
+  {{#if content.contentList.length}}
+  {{#each content.contentList as |filteredContent index|}}
+    {{new-cards/activities/gru-add-content-card
+      content=filteredContent
+      onAddActivityPop="onAddActivityPop"
+      onAddActivity="onAddActivity"
+      onShowContentPreview = "onShowContentPreview"
+      isShowTaxonomyTag = true
+      activitiesList = activitiesList
+      primaryClass = primaryClass
+      tabindex=17
+    }}
+  {{/each}}
+
+  <div class="load-more-btn">
+      <span onkeypress={{action "onClickShowMore" content}} onclick={{action "onClickShowMore" content}} tabindex='17'>{{t 'notifications.show-more'}}</span>
+  </div>
+  {{else}}
+  <span class="no-result">{{t 'common.no-results'}}</span>
+  {{/if}}
+  {{/each-in}}
+  {{/if}}
+</div>

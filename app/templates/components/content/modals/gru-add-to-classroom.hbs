@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <span class="modal-title">
+      {{t 'gru-add-to.add-to-existing-classroom'}}
+  </span>
+</div>
+<div class="modal-body">
+  <div class="lead">
+    <span>
+        {{t 'gru-add-to.add-to-existing-classroom-lead'}}
+    </span>
+  </div>
+  <div class="list">
+    {{#each model.classroomList as |classroom|}}
+      <div class="panel panel-default {{if (eq classroom selectedClassroom) 'active'}}"
+      onclick={{action "selectClassroom" classroom}} onkeypress={{action "selectClassroom" classroom}} tabindex="55">
+        <div class="panel-heading">{{classroom.title}}</div>
+        <div class="panel-body">
+          <div class="class-code-container">
+            <span class="class-code-label">
+              {{t 'student-landing.class-code'}}:
+            </span>
+            <span class="class-code-value">
+              {{classroom.code}}
+            </span>
+          </div>
+          <div class="student-count-container out-of-scope">
+            {{gru-icon name="group"}} <span>{{t "cards.gru-class-card.student"
+              count=classroom.studentCount}}</span>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+<div class="modal-footer">
+  {{#if (and selectedClassroom isNotAllow)}}
+   <span class="warning-text">*{{t 'common.unmapped-course-class-assigned'}}</span>
+  {{/if}}
+  <div>
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal"
+    aria-label="{{t 'common.close'}}" tabindex="55">
+      <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    <button disabled={{if (and selectedClassroom (not isNotAllow)) false true}} type="button"
+    class="btn btn-primary add-to" onclick={{action "addTo"}} onkeypress={{action "addTo"}} tabindex="55">{{t 'common.add'}}</button>
+  </div>
+</div>

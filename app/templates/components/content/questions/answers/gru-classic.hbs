@@ -1,0 +1,48 @@
+<div class="classic-question-container">
+    <div class="classic-answer-list">
+      <div class="classic-answer-panel">
+        {{#each answers as |answer index|}}
+          <div class="answer-section" data-answer-index="{{index}}">
+              <div class="answer-input-section">
+                <h3>{{answer-letter index}}</h3>
+                  {{validation/gru-input autofocus=true content=answer.text disabled=(not editMode) model=answer valuePath='text' }}
+                  {{#if (or editMode answer.textImage)}}
+                    {{content/gru-image enabledPreview=true isEditing=editMode srcImage=answer.textImage editImage=answer.textImage showAltText=true}}
+                  {{/if}}
+              </div>
+              <div class="answer-actions">
+                <div class="answer-text answer-edit-{{index}}"
+                 data-answer-index="{{index}}">{{answer.text}}</div>
+                 {{#if editMode}}
+                  <span {{action "onDeleteAnswer" answer}} class="material-icons close-icon">delete</span>
+                 {{/if}}
+              </div>
+              {{#if (and answer.text answer.isShowErrorMsg)}}
+                <div class="errorMsg">{{t 'common.answer-chice-text'}}</div>
+              {{/if}}
+              <div class="answer-extra-letters">
+                <span class="letter-head">{{t 'common.optional-letters'}}</span>
+                  <ul class="answer-extra-blk">
+                      {{#each answer.additionalLetters as | letter letterindex|}}
+                        <li>
+                          {{validation/gru-input autofocus=true content=letter.text disabled=(not editMode) model=letter valuePath='text' }}
+                          {{#if editMode}}
+                            <i class="material-icons" {{action "removeLetter" answer letter}}>clear</i>
+                          {{/if}}
+                         </li>
+                      {{/each}}
+                    {{#if editMode}}
+                      <li class="add-letter"><span class="material-icons" {{action "addExtraLetters" answer}}>add</span> </li>
+                    {{/if}}
+                  </ul>
+              </div>
+            </div>
+          {{/each}}
+      </div>
+      <div class="gru-add-excercise {{unless editMode 'disabled-btn'}}">
+        <span {{action (optional (if editMode (action "onAddExcercise") null))}}>
+          {{t 'content.questions.edit.builder.add-vowel-teams'}}
+        </span>
+      </div>
+    </div>
+</div>

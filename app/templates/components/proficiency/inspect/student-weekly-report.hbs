@@ -1,0 +1,482 @@
+<div class="weekly-report-container {{if isShowStudentCompetencies 'individual-student-report'}}">
+  <div class="report-period-selector title-container {{if isShowStudentCompetencies 'hide'}}">
+    <a class="go-back-to-peformance" {{action "goBacktoPerformance"}} href="javascript:void(0)" tabindex={{tabindex}} aria-label="back to performance page">
+      {{gru-icon name="arrow_back"}}
+    </a>
+    <div class="search-student-container">
+      <div class="search-input-container">
+        {{input type="text"
+        placeholder=(t "common.search-placeholder-text")
+        spellcheck="true"
+        class='student-search-box'
+        title="search students"
+        key-up=(action "onSearchStudent")
+        tabindex=tabindex
+        id="search-student"
+        }}
+        <label for="search-student" class="search-icon">{{gru-icon name="search"}}</label>
+      </div>
+    </div>
+    <div class="center-gap"></div>
+    <div class="active-period">
+      <a class="prev-cal-arrow {{if isPrevious 'disable'}}" tabindex={{tabindex}} href="javascript:void(0)" {{action 'showPrevious' }}>{{gru-icon
+        name="keyboard_arrow_left"}}</a>
+      <a class="datepicker" href="javascript:void(0)" tabindex={{tabindex}} {{action "onToggleReportPeriod" }}>
+        <span>{{gru-icon name='date_range'}}</span>
+        {{#if (and rangeStartDate (not isMonthly))}}
+        <span class="report-period-text">{{format-date rangeStartDate 'DD MMMM YYYY'}}</span>
+        <span> to </span>
+        {{/if}}
+        <span class="report-period-text"> {{format-date rangeEndDate (if isMonthly 'MMM YYYY' 'DD MMMM YYYY')}}</span>
+      </a>
+      <a class="next-cal-arrow {{if isNext 'disable'}}"  tabindex={{tabindex}} href="javascript:void(0)" {{action 'showNext' }}>{{gru-icon
+        name="keyboard_arrow_right"}}</a>
+    </div>
+    <div class="date-range-picker-container">
+      <a class="date-range-selector">
+        <span class="{{if isDaily 'active'}}" {{action "onSelectRangeType" 'isDaily' }}>{{t 'common.daily'}}</span>
+        <span class="{{if isWeekly 'active'}}" {{action "onSelectRangeType" 'isWeekly' }}>{{t 'common.weekly'}}</span>
+        <span class="{{if isMonthly 'active'}}" {{action "onSelectRangeType" 'isMonthly' }}>{{t
+          'common.monthly'}}</span>
+        <span class="{{if isDateRange 'active'}}" {{action "onRangePickerReport" }}>{{t 'common.date-range'}}</span>
+        <span class="{{if isAllTime 'active'}}" {{action "getTillnowData" }}>{{t 'common.all-time'}}</span>
+      </a>
+      {{#if isDaily}}
+      {{ca-date-picker
+      forMonth=forMonth
+      forYear=forYear
+      onSelectDate="onSelectDate"
+      onSelectToday="onSelectToday"
+      showToday=true
+      selectedDate=selectedDate
+      closeDatePicker="closeDatePicker"
+      pickerStartDate=classStartDate
+      tabindex=tabindex
+      isActivity=true
+      }}
+      {{else if isWeekly}}
+      {{ca-week-picker
+      forMonth=forMonth
+      forYear=forYear
+      onSelectWeek="onSelectWeek"
+      selectedWeekDate=selectedWeekDate
+      closeDatePicker = "closeDatePicker"
+      disableFutureDate= true
+      pickerStartDate=classStartDate
+      tabindex=tabindex
+      isActivity=true
+      }}
+      {{else if isMonthly}}
+      {{ca-month-picker
+      forMonth=forMonth
+      forYear=forYear
+      showCalendarView=true
+      onSelectMonth="onSelectMonth"
+      selectedMonth=selectedMonth
+      closeDatePicker="closeDatePicker"
+      disableFutureDate=true
+      tabindex=tabindex
+      }}
+      {{else if isDateRange}}
+      {{ca-daterange-datepicker
+      closeDatePicker='closeDatePicker'
+      onScheduleForDate='onChangeDateForStudent'
+      userStartDateAsToday=false
+      disableFutureDate=false
+      enableScheduleMonth=false
+      courseStartDate=classStartDate
+      startDate=startDate
+      endDate = endDate
+      forChangeStartDateNavMonth=true
+      allowTwoDateRangePicker=true
+      tabindex=tabindex}}
+      {{else}}
+      <div class="all-time">
+        <div class="backdrop" onclick={{action "closeDatePicker" }} onkeypress={{action "closeDatePicker" }} tabindex={{tabindex}}></div>
+        <div class="date-range"> <span>{{rangeStartDate}}</span> - <span>{{rangeEndDate}}</span></div>
+      </div>
+      {{/if}}
+    </div>
+    <div class="report-download individual-report-section" data-placement="bottom" data-toggle="tooltip" title="" data-trigger="hover">
+      <div class="report-download-icon">
+        {{#if (and studentsSummaryReportData (not isShowStudentCompetencies))}}
+        {{proficiency/inspect/gru-class-progress-report
+        class=class
+        teacher=teacherInfo
+        studentsSummaryReportData=studentsSummaryReportData
+        reportStartDate=reportStartDate
+        reportEndDate=reportEndDate
+        tenantLogoUrl=tenantLogoUrl
+        tenantName=tenantName
+        studentsDomainPerformance=studentsDomainPerformance
+        maxNumberOfCompetencies=maxNumberOfCompetencies
+        domainBoundariesContainer=domainBoundariesContainer
+        tabindex=tabindex
+        }}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="header-container {{if isShowStudentCompetencies 'student-competencies-activate'}}">
+    <div class="header-left">
+      <a class="go-back-to-peformance" tabindex="{{tabindex}}" href="javascript:void(0)" aria-label="back to performance page">
+        {{gru-icon name="arrow_back"}}
+      </a>
+      {{t 'common.name'}}
+    </div>
+    <div class="header-right">
+      <div class="competencies-label">
+        <div class="label-text" title="{{t 'competency-gains-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'student-dashboard.competency-gains'}}</div>
+        <div class="sub-header-section">
+             <div class="header-data gained-header" title="{{t 'diagnostic-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'diagnostic.title'}}</div>
+          <div class="header-data gained-header" title="{{t 'new-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'gru-welcome-message.text-four.subtitle'}}</div>
+          <div class="header-data inprogress-header" title="{{t 'reinforced-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'common.reinferred'}}</div>
+          <div class="header-data inprogress-header" title="{{t 'inferred-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'common.inferred'}}</div>
+          <div class="header-data inprogress-header" title="{{t 'in-progress-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'profile.proficiency.in-progress'}}</div>
+        </div>
+      </div>
+      <div class="timespent-label">
+        <div class="label-text" title="{{t 'time-spent-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'gru-data-picker.time-spent'}}</div>
+        <div class="sub-header-section">
+          <div class="header-data collection-header" title="{{t 'collections-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'common.collections'}}</div>
+          <div class="header-data assessment-header" title="{{t 'assessments-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'common.assessments'}}</div>
+          <div class="header-data total-header" title="{{t 'total-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{t 'reports.gru-table-view.totals'}}</div>
+        </div>
+      </div>
+      <div class="header-data average-score-label label-text" title="{{t 'average-score-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">
+        {{t 'common.averageScore'}}
+      </div>
+      <div class="header-data badge-earned-label label-text" title="{{t 'badges-earned-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">
+        {{t 'badges-earned'}}
+      </div>
+      <div class="header-data suggestion-taken-label label-text" title="{{t 'suggestions-taken-hover'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">
+        {{t 'suggestion-taken'}}
+      </div>
+    </div>
+    {{#if isShowStudentCompetencies}}
+    <div class="student-info-container">
+      <div class="student-thumbnail" style="background-image: url({{currentUserDetails.thumbnailUrl}});">
+      </div>
+      <div class="student-name">
+        <span class="ellipsis">{{currentUserDetails.lastName}}</span>
+        <span class="ellipsis">{{currentUserDetails.firstName}}</span>
+      </div>
+    </div>
+    <div class="report-period-selector title-container">
+      <div class="search-student-container">
+        <div class="search-input-container">
+          {{input type="text"
+          placeholder=(t "common.search-placeholder-text")
+          spellcheck="true"
+          class='student-search-box'
+          title="search students"
+          key-up=(action "onSearchStudent")
+          tabindex=tabindex
+          }}
+          <span class="search-icon">{{gru-icon name="search"}}</span>
+        </div>
+      </div>
+      <div class="active-period">
+        <a class="prev-cal-arrow {{if isPrevious 'disable'}}" href="javascript:void(0)" onclick={{action 'showPrevious' }} tabindex={{tabindex}}>{{gru-icon
+          name="keyboard_arrow_left"}}</a>
+        <a class="datepicker" onclick={{action "onToggleReportPeriod" }} href="javascript:void(0)" tabindex={{tabindex}}>
+          <span>{{gru-icon name='date_range'}}</span>
+          {{#if (and rangeStartDate (not isMonthly))}}
+          <span class="report-period-text ellipsis">{{format-date rangeStartDate 'DD MMMM YYYY'}}</span>
+          <span> to </span>
+          {{/if}}
+          <span class="report-period-text ellipsis"> {{format-date rangeEndDate (if isMonthly 'MMM YYYY' 'DD MMMM
+            YYYY')}}</span>
+        </a>
+        <a class="next-cal-arrow {{if isNext 'disable'}}" onclick={{action 'showNext' }} href="javascript:void(0)" tabindex={{tabindex}}>{{gru-icon
+          name="keyboard_arrow_right"}}</a>
+      </div>
+      <div class="date-range-picker-container">
+        <div class="date-range-selector">
+          <span class="{{if isDaily 'active'}}" onclick={{action "onSelectRangeType" 'isDaily' }} onkeypress={{action "onSelectRangeType" 'isDaily' }} tabindex={{tabindex}}>{{t 'common.daily'}}</span>
+          <span class="{{if isWeekly 'active'}}" onclick={{action "onSelectRangeType" 'isWeekly' }} onkeypress={{action "onSelectRangeType" 'isWeekly' }} tabindex={{tabindex}}>{{t 'common.weekly'}}</span>
+          <span class="{{if isMonthly 'active'}}" onclick={{action "onSelectRangeType" 'isMonthly' }} onkeypress={{action "onSelectRangeType" 'isMonthly' }} tabindex={{tabindex}}>{{t
+            'common.monthly'}}</span>
+          <span class="{{if isDateRange 'active'}}" onclick={{action "onRangePickerReport" }} onkeypress={{action "onRangePickerReport" }} tabindex={{tabindex}}>{{t 'common.date-range'}}</span>
+          <span class="{{if isAllTime 'active'}}" onclick={{action "getTillnowData" }} onkeypress={{action "getTillnowData" }} tabindex={{tabindex}}>{{t 'common.all-time'}}</span>
+        </div>
+        {{#if isDaily}}
+        {{ca-date-picker
+        forMonth=forMonth
+        forYear=forYear
+        onSelectDate="onSelectDate"
+        onSelectToday="onSelectToday"
+        showToday=true
+        selectedDate=selectedDate
+        closeDatePicker="closeDatePicker"
+        pickerStartDate=classStartDate
+        tabindex=tabindex
+        isActivity=true
+        }}
+        {{else if isWeekly}}
+        {{ca-week-picker
+        forMonth=forMonth
+        forYear=forYear
+        onSelectWeek="onSelectWeek"
+        selectedWeekDate=selectedWeekDate
+        closeDatePicker = "closeDatePicker"
+        disableFutureDate= true
+        pickerStartDate=classStartDate
+        tabindex=tabindex
+         isActivity=true
+        }}
+        {{else if isMonthly}}
+        {{ca-month-picker
+        forMonth=forMonth
+        forYear=forYear
+        showCalendarView=true
+        onSelectMonth="onSelectMonth"
+        selectedMonth=selectedMonth
+        closeDatePicker="closeDatePicker"
+        disableFutureDate=true
+        tabindex=tabindex
+        }}
+        {{else if isDateRange}}
+        {{ca-daterange-datepicker
+        closeDatePicker='closeDatePicker'
+        onScheduleForDate='onChangeDateForStudent'
+        userStartDateAsToday=false
+        disableFutureDate=false
+        enableScheduleMonth=false
+        courseStartDate=classStartDate
+        startDate=startDate
+        endDate = endDate
+        forChangeStartDateNavMonth=true
+        allowTwoDateRangePicker=true
+        tabindex=tabindex}}
+        {{else}}
+        <div class="all-time">
+          <div class="backdrop" onclick={{action "closeDatePicker" }} onkeypress={{action "closeDatePicker" }} tabindex={{tabindex}}></div>
+          <div class="date-range"> <span>{{rangeStartDate}}</span> - <span>{{rangeEndDate}}</span></div>
+        </div>
+        {{/if}}
+      </div>
+      <div class="report-download">
+        <div class="report-download-icon">
+          {{#if isShowStudentCompetencies}}
+          {{proficiency/inspect/student-class-progress-report
+          reportData=individualStudentReport
+          class=class
+          teacher=teacherInfo
+          reportStartDate=reportStartDate
+          reportEndDate=reportEndDate
+          tenantLogoUrl=tenantLogoUrl
+          tenantName=tenantName
+          studentDestination=studentDestination
+          course=course
+          studentProfile=studentProfile
+          fwCompetencies=fwCompetencies
+          fwDomains=fwDomains
+          taxonomyCategories=taxonomyCategories
+          subjectBucket=subjectBucket
+          timeLine=timeLine
+          userId=userId
+          subject=activeSubject
+          competencyMatrixDomains=competencyMatrixDomains
+          competencyMatrixCoordinates=competencyMatrixCoordinates
+          isSelectBaseLine=isSelectBaseLine
+          userProficiencyBaseLine=userProficiencyBaseLine
+          isShowMatrixChart=isShowMatrixChart
+          selectedDomain=selectedDomain
+          taxonomyGrades=taxonomyGrades
+          showGutCompetency=showGutCompetency
+          hideGutCompetencyButton=hideGutCompetencyButton
+          classGrade=classGrade
+          subjectCode=subjectCode
+          selectedCompetency=selectedCompetency
+          isPlayerProficiency = isPlayerProficiency
+          proficiencyChartData=proficiencyChartData
+          skylinePoints=skylinePoints
+          onSelectTopic="onSelectTopic"
+          selectedCompetency=selectedCompetency
+          totalTopics=totalTopics
+          studentCompetenciesReport = studentCompetenciesReport
+          tabindex=tabindex
+          }}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+  {{#if isLoading}}
+  {{three-bounce-spinner}}
+  {{else}}
+  <div class="body-container {{if isShowStudentCompetencies 'student-competencies-activate'}}">
+    <div class="body-scroll">
+      <div class="body-left">
+        {{#each studentsSummaryReportData as |reportData|}}
+        <a
+          class="student-info-container {{if (or reportData.weeklyReportData.masteredCompetenciesCount reportData.weeklyReportData.inferredCompetenciesCount reportData.weeklyReportData.reInforcedCompetenciesCount reportData.weeklyReportData.inprogressCompetenciesCount reportData.weeklyReportData.collectionTimespent reportData.weeklyReportData.assessmentTimespent reportData.weeklyReportData.totalTimespent reportData.weeklyReportData.badgeEarned reportData.weeklyReportData.suggestionTaken) 'data-available'}} {{if reportData.active 'active-student'}}"
+          {{action "onSelectStudent" reportData}} tabindex="{{tabindex}}" href="javascript:void(0)">
+          <div class="student-thumbnail" style="background-image: url({{reportData.student.thumbnailUrl}});">
+            <a class="active-student-data" tabindex="{{tabindex}}" href="javascript:void(0)">
+              {{gru-icon name="clear"}}
+            </a>
+          </div>
+          <div class="student-name">
+            <span class="ellipsis">{{reportData.student.lastName}}, {{reportData.student.firstName}} {{if (not
+              reportData.student.isShowLearnerData) '*'}}</span>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+      <div class="body-right">
+        {{#each studentsSummaryReportData as |reportData|}}
+        <div class="student-summary-container">
+          <div
+            class="summary-container {{if (or reportData.parseStudentsWeeklySummaryReportData.masteredCompetenciesCount reportData.weeklyReportData.inferredCompetenciesCount reportData.weeklyReportData.reInforcedCompetenciesCount reportData.weeklyReportData.inprogressCompetenciesCount reportData.weeklyReportData.collectionTimespent reportData.weeklyReportData.assessmentTimespent reportData.weeklyReportData.totalTimespent reportData.weeklyReportData.badgeEarned reportData.weeklyReportData.suggestionTaken) 'data-available'}}"
+            onclick={{action "onSelectStudent" reportData}} onkeypress={{action "onSelectStudent" reportData}} tabindex={{tabindex}}>
+            <div class="column-data gained-competencies {{if reportData.active 'active-student'}}">
+              {{#if reportData.weeklyReportData.diagnosticGainedStatus}}
+              <span class="competency-status-5 competency-status"></span> <span
+                class="competency-count">{{reportData.weeklyReportData.diagnosticGainedStatus}}</span>
+              {{else}}
+              --
+              {{/if}}
+            </div>
+            <div class="column-data gained-competencies {{if reportData.active 'active-student'}}">
+              {{#if reportData.weeklyReportData.masteredCompetenciesCount}}
+              <span class="competency-status-5 competency-status"></span> <span
+                class="competency-count">{{reportData.weeklyReportData.masteredCompetenciesCount}}</span>
+              {{else}}
+              --
+              {{/if}}
+            </div>
+            <div class="column-data reinferred-competencies {{if reportData.active 'active-student'}}">
+              {{#if reportData.weeklyReportData.reInforcedCompetenciesCount}}
+              <span class="competency-status-5 competency-status"></span> <span
+                class="competency-count">{{reportData.weeklyReportData.reInforcedCompetenciesCount}}</span>
+              {{else}}
+              --
+              {{/if}}
+            </div>
+            <div class="column-data inferred-competencies {{if reportData.active 'active-student'}}">
+              {{#if reportData.weeklyReportData.inferredCompetenciesCount}}
+              <span class="competency-status-5 competency-status"></span> <span
+                class="competency-count">{{reportData.weeklyReportData.inferredCompetenciesCount}}</span>
+              {{else}}
+              --
+              {{/if}}
+            </div>
+            <div class="column-data inprogress-competencies {{if reportData.active 'active-student'}}">
+              {{#if reportData.weeklyReportData.inprogressCompetenciesCount}}
+              <span class="competency-status-1 competency-status"></span> <span
+                class="competency-count">{{reportData.weeklyReportData.inprogressCompetenciesCount}}</span>
+              {{else}}
+              --
+              {{/if}}
+            </div>
+            <div class="column-data collection-timespent">
+              <span class="time-spent">
+                {{#if reportData.weeklyReportData.collectionTimespent}}
+                {{format-time reportData.weeklyReportData.collectionTimespent}}
+                {{else}}
+                --
+                {{/if}}
+              </span>
+            </div>
+            <div class="column-data assessment-timespent">
+              <span class="time-spent">
+                {{#if reportData.weeklyReportData.assessmentTimespent}}
+                {{format-time reportData.weeklyReportData.assessmentTimespent}}
+                {{else}}
+                --
+                {{/if}}
+              </span>
+            </div>
+            <div class="column-data total-timespent">
+              <span class="time-spent">
+                {{#if reportData.weeklyReportData.totalTimespent}}
+                {{format-time reportData.weeklyReportData.totalTimespent}}
+                {{else}}
+                --
+                {{/if}}
+              </span>
+            </div>
+            <div class="column-data average-score">
+              {{#unless reportData.weeklyReportData.isNotStarted}}
+              <span
+                class="score score-range-{{grade-range reportData.weeklyReportData.averageScore}}">{{reportData.weeklyReportData.averageScore}}</span>
+              {{else}}
+              --
+              {{/unless}}
+            </div>
+            <div class="column-data badge-earned">
+              {{#if reportData.weeklyReportData.badgeEarned}}
+              <span class="badge"><span class="badge-count">{{reportData.weeklyReportData.badgeEarned}}</span></span>
+              {{else}}
+              --
+              {{/if}}
+            </div>
+            <div class="column-data suggestion-taken">
+              {{#if reportData.weeklyReportData.suggestionTaken}}
+              <span class="suggestion-count">{{reportData.weeklyReportData.suggestionTaken}}</span>
+              {{else}}
+              --
+              {{/if}}
+            </div>
+          </div>
+          {{#if reportData.active}}
+          <a class="active-student-data hidden-xs" href="javascript:void(0)" {{action "onRemoveActiveStudentData" }}>
+            {{gru-icon name="clear"}}
+          </a>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{#if isShowStudentCompetencies}}
+          {{#if studentProfile}}
+            {{proficiency/inspect/students-progress-report
+              reportData=individualStudentReport
+              studentProfile=studentProfile
+              startDate=rangeStartDate
+              endDate=rangeEndDate
+              class=class
+              studentCompetenciesReport=studentCompetenciesReport
+              onShowReport="onShowActivityReport"
+              competenciesBucket=competenciesBucket
+              studentCompetencyData=studentCompetencyData
+            }}
+          {{else}}
+            {{three-bounce-spinner}}
+          {{/if}}
+    {{/if}}
+  </div>
+  {{/if}}
+</div>
+
+{{#if isShowPortfolioActivityReport}}
+{{reports/pull-up/gru-collection-preview
+showPullUp=isShowPortfolioActivityReport
+previewContentId=reportActivityId
+previewContentType=reportActivityType
+isReportView=true
+userId=userId
+repostReadContent=repostReadContent
+isCompetencyReport=isCompetencyReport
+isClassProgressReport=true
+startDate=rangeStartDate
+endDate=rangeEndDate
+classFramework = classFramework
+isDefaultShowFW = isDefaultShowFW
+}}
+{{/if}}
+
+{{#if isShowOfflineActivityReport}}
+{{reports/pull-up/oa-preview
+showPullUp=isShowOfflineActivityReport
+oaId=reportActivityId
+isReportView=true
+isPortfolioReport = true
+userId = userId
+classFramework = classFramework
+isDefaultShowFW = isDefaultShowFW
+}}
+{{/if}}

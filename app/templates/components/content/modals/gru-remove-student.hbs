@@ -1,0 +1,39 @@
+<div class="modal-header delete">
+    <h4 class="modal-title">{{t "content.modals.remove-student.title"}}</h4>
+</div>
+<div class="modal-body">
+    <form {{action "removeStudent" model on="submit"}}>
+        <p class="legend">{{t "content.modals.remove-student.legend" studentName=model.content.fullName}}</p>
+        <div class="delete-info">
+            <ul>
+                <li>
+                    <label>
+                      {{input type="checkbox" checked=validator.check1 aria-checked="false"}}
+                        <span>{{t "content.modals.remove-student.data-inaccessible"}}</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                      {{input type="checkbox" checked=validator.check2 aria-checked="false"}}
+                        <span>{{t "content.modals.remove-student.classroom-access"}}</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                      {{input type="checkbox" checked=validator.check3 aria-checked="false"}}
+                        <span>{{t "content.modals.remove-student.data-lost"}}</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <p class="confirmation">{{t "content.modals.remove-student.confirmation"}}</p>
+      {{input type="text" class="delete-input" value=validator.confirm}}
+        <div class="actions delete">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+                <span aria-hidden="true">{{t 'common.cancel'}}</span>
+            </button>
+            <button type="submit" class="btn btn-danger delete" disabled={{isDisabled}}>{{t 'common.delete'}}</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,124 @@
+{{player/gru-study-header
+  classId=classId
+  class=class
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  sourceType= source
+  showConfirmation=(if isOfflineActivity false true)
+  isStudyPlayer=true
+  isIframeMode=isIframeMode
+}}
+{{#if isEnableFullScreen}}
+  <div class="toggle-screen" {{action 'onToggleScreen'}}>
+    {{#if isFullScreen}}
+      {{gru-icon name="fullscreen_exit"}}
+    {{else}}
+      {{gru-icon name="fullscreen"}}
+    {{/if}}
+  </div>
+{{/if}}
+<div class="player-container {{type}} {{if isIframeMode 'iframe-player-container' ''}}" style={{bgUrl}}>
+  <div class="player">
+    {{#if isLoading}}
+      {{three-bounce-spinner}}
+    {{else}}
+      {{#if (and isContentPlayed (not-eq collection.subFormat 'scorm'))}}
+        <div class="iframe-contaier">
+          <iframe id="external-player" src="{{collection.url}}"></iframe>
+        </div>
+      {{else}}
+        {{#if (eq collection.subFormat 'scorm')}}
+          {{player/scorm-player
+           collection=collection
+           mapLocation=mapLocation
+           source=source
+           isIframeMode=isIframeMode
+           onClosePlayer = "onClosePlayer"
+           isShowFooter=false
+           onStartContentPlayed = "onStartContentPlayed"
+           toolDetails = toolDetails
+           onVisibilityChange = "onVisibilityChange"
+           onStopPlayContentEvent = "onStopPlayContentEvent"
+         }}
+        {{else}}
+          {{#if isOfflineActivity}}
+            {{player/gru-offline-activity-page
+            offlineActivity = collection
+            source = source
+            mapLocation = mapLocation
+            isStudyPlayer = true
+            isIframeMode=isIframeMode
+            playerEvents=playerEvents
+            isShowFullView=isShowFullView
+          }}
+          {{else if isAsssessment}}
+            {{player/gru-external-assessment-page
+          assessment=collection
+          mapLocation=mapLocation
+          source=source
+          isNewPlayer=isNewPlayer
+          dataParams=dataParams
+          onStartContentPlayed="onStartContentPlayed"
+          toolDetails=toolDetails
+          isShowFullView=isShowFullView
+        }}
+          {{else}}
+            {{player/gru-external-collection-page
+          collection=collection
+          mapLocation=mapLocation
+          source=source
+          isNewPlayer=isNewPlayer
+          onStartContentPlayed="onStartContentPlayed"
+          toolDetails=toolDetails
+          isShowFullView=isShowFullView
+        }}
+          {{/if}}
+        {{/if}}
+      {{/if}}
+      <div class="resource-content {{if (or isShowStudyTimerWidget isShowFeedbackContainer) 'resource-back-drop'}}">
+        {{#if (and isShowActivityFeedback isShowFeedbackContainer (not isLUContent))}}
+          {{player/gru-activity-feedback
+               feedbackContent=collection
+               feedbackCategoryLists=feedbackCategory
+               categoryLists = userCategoryFeedback
+               isShowFeedback = isShowFeedback
+               format = format
+               showFeedbackContainer = "showFeedbackContainer"
+            }}
+        {{/if}}
+        <div class="timer {{if isShowTimeSpent 'show' 'hide'}}">
+          {{#if (and (not isTeacher) (not isPublicClass) isShowStudyTimerWidget (not isLUContent))}}
+            {{gru-study-timer
+              studentTimespentData = studentTimespentData
+              isPlayer = true
+              collection=collection
+              intervalObject = intervalObject
+              isShowPullup = true
+              showTimer = "showTimer"
+             }}
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>
+<div class="footer">
+  {{player/gru-external-assessment-footer
+    assessment=collection
+    playNext="onFeedbackCapture"
+    isFullScreen=isFullScreen
+    onToggleScreen="onToggleScreen"
+    isDone=isDone
+    classId=classId
+    courseId=courseId
+    onExit="onExit"
+    isShowFeedback = isShowFeedback
+    isLUContent=isLUContent
+    showTimer="showTimer"
+    hideContinue=hideContinue
+    onPlayerAction="onPlayerAction"
+    toggleDetailPullup="toggleDetailPullup"
+    showFeedbackContainer = "showFeedbackContainer"
+  }}
+</div>

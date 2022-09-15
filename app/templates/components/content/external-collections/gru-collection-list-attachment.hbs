@@ -1,0 +1,47 @@
+
+<section class="upload-section ">
+
+{{#if (eq editType 'upload')}}
+   <div class='upload-list-container'>
+      <div class="text-center">
+        <div class="uploaded-item">
+          {{#file-picker
+             preview=false
+             dropzone=false
+             fileLoaded=(action 'selectFile')
+             readAs="readAsFile"
+             errors=filePickerErrors
+             onRemoveFile=(action 'resetFileSelection')
+          }}
+          <div class="btn add-file">{{gru-icon name="add"}}</div>
+          {{/file-picker}}
+
+        </div>
+      </div>
+  </div>
+{{/if}}
+</section>
+<section class="existing-upload-section">
+  <div class='upload-list-container'>
+
+{{#each references as | refItem|}}
+{{#if (eq refItem.type 'uploaded')}}
+              <div class="upload-item-container">
+                <span class="uploaded-item">
+                <button class="remove-uploaded btn no-bgd remove-item" {{action 'deleteReference' refItem }}>{{gru-icon name="remove_circle"}}</button>
+                   <a href='{{refItem.filePath}}' target="_blank">
+                    <span class="image">
+                      <i class="{{refItem.subType}}-icon"></i>
+                    </span>
+                  </a>
+                </span>
+                <span class="text-capitalize">
+                  {{refItem.fileName}}
+                </span>
+              </div>
+
+            {{/if}}
+{{/each}}
+            </div>
+
+</section>

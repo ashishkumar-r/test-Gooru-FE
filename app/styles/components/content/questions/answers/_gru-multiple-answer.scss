@@ -1,0 +1,179 @@
+.questions.answers.gru-multiple-answer {
+  padding: 10px 0;
+  margin-top: -15px;
+  position: relative;
+  .answer-legend {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    font-size: $font-size-large;
+    text-align: center;
+    span {
+      display: inline-block;
+      width: 2.7rem;
+      @media (min-width: $screen-xs) {
+        width: 3.5rem;
+      }
+      @media (min-width: $screen-sm) {
+        width: 4.4rem;
+      }
+    }
+  }
+  .panel {
+    margin-bottom: 15px !important;
+    .answer-content {
+      @include flexbox();
+      @include justify-content(space-between);
+      @include align-items(center);
+      > div,
+      button {
+        display: inline-block;
+      }
+      .letter-container {
+        margin: 0 20px 0 0;
+        min-width: 4em;
+        text-align: center;
+        @include align-self(center);
+        border-right: 1px solid $gray-light;
+
+        h3 {
+          padding: 0;
+        }
+      }
+
+      .text-area-container {
+        @include flex();
+        width: auto;
+        margin-top: 5px;
+        .btn-toolbar {
+          max-width: 40em;
+          @media (min-width: $screen-sm-min) {
+            max-width: 43em;
+          }
+          @media (min-width: $screen-lg-min) {
+            max-width: 59em;
+          }
+        }
+        .gru-rich-text-editor {
+          .rich-editor {
+            min-height: 3.2em;
+            max-height: 6.9em;
+            margin: 10px 20px 10px 0;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            max-width: 24em;
+            @media (min-width: $screen-sm-min) {
+              max-width: 26em;
+            }
+            @media (min-width: $screen-lg-min) {
+              max-width: 43em;
+            }
+            &.editable {
+              max-width: 40em;
+              @media (min-width: $screen-sm-min) {
+                max-width: 43em;
+              }
+              @media (min-width: $screen-lg-min) {
+                max-width: 59em;
+              }
+            }
+          }
+        }
+        p {
+          margin: 10px 0 10px 10px;
+        }
+      }
+      .delete {
+        outline: none;
+        padding: 10px;
+        cursor: pointer;
+        border: 0;
+        background: $white;
+      }
+      .check {
+        @include align-self(stretch);
+        outline: none;
+        border: 0;
+        width: 4.8rem;
+        background-color: $light-200;
+        color: $light-400;
+        @include border-right-radius(6px);
+        text-align: center;
+        cursor: pointer;
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        @include transition(all .2s ease-out);
+        &.yes {
+          margin-right: 4px;
+          width: 5rem;
+          @include border-right-radius(0);
+        }
+        &.correct {
+          background-color: $green-300;
+          color: $dark-200;
+        }
+      }
+      &.view-mode {
+        @include justify-content(flex-start);
+        .answer-text {
+          overflow: auto;
+          word-wrap: break-word;
+          .gru-math-text {
+            padding: 10px 0;
+            display: block;
+          }
+        }
+        .choice-answers {
+          @include align-self(stretch);
+          @include flexbox();
+          @include justify-content(center);
+          @include align-items(stretch);
+          margin-left: auto;
+          margin-bottom: 10px;
+          margin-top: 10px;
+          color: $green-300;
+          span {
+            @include flexbox();
+            @include justify-content(center);
+            @include align-items(center);
+            width: 2.7rem;
+            @media (min-width: $screen-xs) {
+              width: 3.5rem;
+            }
+            @media (min-width: $screen-sm) {
+              width: 4rem;
+            }
+            &:after {
+              content: "";
+              display: inline-block;
+            }
+            &:first-of-type {
+              border-right: 1px solid $light-300;
+            }
+          }
+        }
+      }
+    }
+  }
+  .max-length-error {
+    * {
+      color: $orange-400;
+    }
+  }
+  .add-answer {
+    margin-bottom: 10px;
+    a {
+      cursor: pointer;
+      border: 2px dashed $gray-light;
+      border-radius: 6px;
+      margin-top: 10px;
+      color: $gray;
+      display: block;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,166 @@
+.competency-content-info {
+  .competency-content-container {
+    .title {
+      font-size: 15px;
+      font-weight: bold;
+      color: $dark-800;
+      padding-left: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed $dark-800;
+    }
+
+    .content-count-container {
+      display: flex;
+      margin-bottom: 30px;
+
+      .content-count {
+        width: calc(100% / 8);
+        height: 98px;
+        text-align: center;
+        border: 1px solid $nobel-gray;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding-top: 10px;
+
+        &:nth-child(1n + 1) {
+          border-right: none;
+        }
+
+        &:last-child {
+          border-right: 1px solid $nobel-gray;
+        }
+
+        .icon {
+          i {
+            background-size: 32px 32px;
+            width: 32px;
+            height: 32px;
+            display: block;
+
+            &.course {
+              background-image: url("../assets/gooru/images/course.svg");
+            }
+
+            &.unit {
+              background-image: url("../assets/gooru/images/unit-gray.svg");
+              background-size: 23px 23px;
+              width: 23px;
+              height: 23px;
+            }
+
+            &.lesson {
+              background-image: url("../assets/gooru/images/lesson-dark.svg");
+            }
+
+            &.rubric {
+              background-image: url("../assets/gooru/images/add_rubric.svg");
+            }
+
+            &.assessment {
+              background-image: url("../assets/gooru/images/assessment-gray.svg");
+            }
+
+            &.collection {
+              background-image: url("../assets/gooru/images/collection_gray.svg");
+            }
+
+            &.resource {
+              background-image: url("../assets/gooru/images/resource-gray.svg");
+            }
+
+            &.question {
+              background-image: url("../assets/gooru/images/question-gray.svg");
+            }
+          }
+        }
+
+        .count {
+          font-size: 20px;
+          color: $dark-800;
+        }
+
+        &.default-click {
+          cursor: default;
+        }
+      }
+
+      .tooltip {
+        .tooltip-inner {
+          text-transform: capitalize;
+        }
+      }
+      &.disable {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+
+    .prerequisites-cotainer {
+      margin-bottom: 30px;
+
+      .title {
+        text-transform: uppercase;
+      }
+
+      .prerequisites-info-container {
+        display: grid;
+        grid-template-columns: 100px auto;
+        margin-top: 30px;
+
+        .prerequisite-code {
+          border-right: 1px solid $nobel-gray;
+          padding-right: 15px;
+          padding-bottom: 15px;
+
+          span.code {
+            width: max-content;
+            padding: 0 8px;
+            border: 1px solid #e1e1e1;
+            height: 18px;
+            border-radius: 9px;
+            font-size: 10px;
+            font-weight: bold;
+            color: $dark-800;
+            margin-bottom: 15px;
+          }
+        }
+
+        .prerequisite-title {
+          font-size: 12px;
+          color: $dark-800;
+          margin-bottom: 15px;
+          margin-left: 15px;
+        }
+      }
+    }
+
+    .signature-content-container {
+      margin-bottom: 30px;
+
+      .title {
+        text-transform: uppercase;
+      }
+
+      .signature-item {
+        display: flex;
+        border-bottom: 1px solid $nobel-gray;
+
+        .thumbnail-container {
+          width: 87px;
+          height: 54px;
+          display: block;
+          background-size: 87px 54px;
+          background-repeat: no-repeat;
+        }
+
+        .title-container {
+          height: 54px;
+          line-height: 54px;
+          margin-left: 22px;
+        }
+      }
+    }
+  }
+}

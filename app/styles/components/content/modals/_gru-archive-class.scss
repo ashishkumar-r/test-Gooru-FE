@@ -1,0 +1,20 @@
+.content.modals.gru-archive-class {
+  .modal-header {
+    background-color: $yellow-400;
+  }
+  .modal-body form div {
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
+  p span,
+  span {
+    display: inline-block;
+    text-transform: lowercase;
+  }
+  p span:first-letter,
+  span:first-letter {
+    text-transform: capitalize;
+  }
+}

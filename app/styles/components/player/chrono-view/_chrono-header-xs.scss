@@ -1,0 +1,212 @@
+.chrono-header-xs {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 70px;
+
+  .timeline-container {
+    display: grid;
+    grid-template-rows: 59px 1fr 59px;
+
+    .start-date {
+      flex-direction: row-reverse;
+    }
+
+    .end-date,
+    .start-date {
+      font-size: 12px;
+      font-weight: bold;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      color: #211238;
+
+      .loader {
+        width: 20px;
+        height: 20px;
+
+        i {
+          background-image: url("gooru/images/loader.svg");
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 20px 20px;
+        }
+      }
+    }
+
+    .student-activities {
+      display: grid;
+      overflow: auto;
+      grid-template-rows: 1fr 50px 35%;
+      height: calc(100vh - 250px);
+
+      .left-timeline-activities {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        .suggestion-curve,
+        .suggestion-line {
+          stroke-width: 2;
+          fill: none;
+          stroke: #f9944b;
+        }
+
+        .curve,
+        .line {
+          stroke-width: 2;
+          stroke: #0094dc;
+          fill: none;
+        }
+      }
+
+      .right-timeline-activities {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+
+        .suggestion-curve,
+        .suggestion-line {
+          stroke-width: 2;
+          fill: none;
+          stroke: #f9944b;
+        }
+
+        .curve,
+        .line {
+          stroke-width: 2;
+          stroke: #0094dc;
+          fill: none;
+        }
+      }
+
+      .active-timeline-resource {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .center-activities {
+          height: 100%;
+          width: 100%;
+
+          .suggestion-curve,
+          .suggestion-line {
+            stroke-width: 2;
+            fill: none;
+            stroke: #f9944b;
+          }
+
+          .curve,
+          .line {
+            stroke-width: 2;
+            stroke: #0094dc;
+            fill: none;
+          }
+        }
+      }
+
+      #activities {
+        display: flex;
+        justify-content: center;
+
+        .suggestion-curve,
+        .suggestion-line {
+          stroke-width: 2;
+          fill: none;
+          stroke: #f9944b;
+        }
+
+        .curve,
+        .line {
+          stroke-width: 2;
+          stroke: #0094dc;
+          fill: none;
+        }
+      }
+
+      %bg-container {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 11px 12px;
+        background-position: center;
+        cursor: pointer;
+      }
+
+      .suggestion-activity {
+        r: 10;
+        fill: #f9944b;
+      }
+
+      .activity {
+        r: 10;
+        fill: #0094dc;
+      }
+
+      circle.active-resource {
+        display: none;
+      }
+
+      foreignObject.active-resource {
+        height: 40px;
+        width: 40px;
+
+        .resource-icon {
+          &.assessment-img {
+            background-image: url("gooru/images/assessment-blue.svg");
+            @extend %bg-container;
+            background-size: contain;
+          }
+
+          &.collection-img {
+            background-image: url("gooru/images/collection-blue.svg");
+            @extend %bg-container;
+            background-size: contain;
+          }
+        }
+      }
+
+      .assessment-img {
+        background-image: url("gooru/images/assessment-white.svg");
+        @extend %bg-container;
+      }
+
+      .collection-img {
+        background-image: url("gooru/images/navigation_collection_selected.svg");
+        @extend %bg-container;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      height: 6px;
+      width: 5px;
+      opacity: 0.5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $gray-light;
+      border: 1px solid $gray-light;
+      border-radius: 8px;
+    }
+  }
+
+  .performance {
+    display: flex;
+    cursor: pointer;
+    height: 70px;
+
+    .score {
+      height: 30px;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: normal;
+      margin: auto;
+      color: $white;
+    }
+  }
+}

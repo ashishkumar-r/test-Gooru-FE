@@ -1,0 +1,35 @@
+{{#if isShowPlay}}
+<p class="instructions">
+  {{t "gru-multiple-choice.instructions" action=(t instructionsActionTextKey)}}
+</p>
+<div class="answer-choices">
+    <div id="serp-say-out-loud-answer-container"></div>
+</div>
+{{else}}
+
+<ul>
+    {{#each answers as |answer index|}}
+    <li>
+     {{#if showCorrect}}
+     <div class="answer-container">
+            <div class="answer-sayout">
+               <p class="answer-edit-{{index}}"> {{answer.text}} </p>
+            </div>
+            <div class="audio-player crct-ans-player-{{index}}">
+                <span class="audio-progress">
+                    <span class="progress-filling">
+                        <span class="progress-pointer"></span>
+                    </span>
+                </span>
+                <span class="audio-play" data-audio-url="{{answer.audioUrl}}"
+                    {{action "onPlayAudio" (concat 'crct-ans-player-' index) answer.audioUrl}}>
+                    {{gru-icon name="play_arrow"}}
+                </span>
+            </div>
+        </div>         
+    {{/if}}
+    </li>
+    {{/each}}
+</ul>
+
+{{/if}}

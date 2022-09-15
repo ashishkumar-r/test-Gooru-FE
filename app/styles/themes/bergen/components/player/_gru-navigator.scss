@@ -1,0 +1,103 @@
+.player .gru-navigator {
+  background-color: $light-300;
+  .navigator-header {
+    background-color: $light-300;
+    span {
+      color: $dark-100;
+    }
+    p {
+      color: $dark-100;
+    }
+    .hamburger-icon {
+      color: $dark-100;
+    }
+  }
+
+  .navigator-subheader {
+    color: $dark-100;
+  }
+
+  .resources {
+    .bgd-line {
+      background-color: $white;
+    }
+    li {
+      background: $light-100;
+      border: 1px solid $light-300;
+      border-bottom: 0;
+      margin: 0;
+      .resources-info {
+        span.number,
+        .bubble-type,
+        .title {
+          color: $dark-100;
+        }
+        .video {
+          background: url("../../themes/bergen/video-resource.svg");
+          -webkit-background-size: 30px 30px;
+          background-size: 30px 30px;
+          height: 30px;
+          width: 30px;
+        }
+        .webpage {
+          background: url("../../themes/bergen/website-resource.svg");
+          -webkit-background-size: 29px 29px;
+          background-size: 29px 29px;
+          height: 29px;
+          width: 29px;
+        }
+        .interactive {
+          background: url("../../themes/bergen/interactive-resource.svg");
+          -webkit-background-size: 34px 30px;
+          background-size: 34px 30px;
+          height: 30px;
+          width: 34px;
+        }
+        .question {
+          background: url("../../themes/bergen/question-resource.svg");
+          -webkit-background-size: 30px 30px;
+          background-size: 30px 30px;
+          height: 30px;
+          width: 30px;
+        }
+        .image {
+          background: url("../../themes/bergen/image-resource.svg");
+          -webkit-background-size: 30px 30px;
+          background-size: 30px 30px;
+          height: 30px;
+          width: 30px;
+        }
+        .text {
+          background: url("../../themes/bergen/text-resource.svg");
+          -webkit-background-size: 30px 30px;
+          background-size: 30px 30px;
+          height: 30px;
+          width: 30px;
+        }
+        .audio {
+          background: url("../../themes/bergen/audio-resource.svg");
+          -webkit-background-size: 34px 30px;
+          background-size: 34px 30px;
+          height: 30px;
+          width: 34px;
+        }
+      }
+      &.completed,
+      &.started {
+        background: $light-200;
+      }
+      &.selected,
+      &:hover {
+        background: $white;
+        .resources-info {
+          span.number,
+          .bubble-type,
+          .title {
+            color: $dark-200;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

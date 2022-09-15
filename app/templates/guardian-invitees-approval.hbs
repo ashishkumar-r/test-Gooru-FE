@@ -1,0 +1,48 @@
+<div class="controller guardian-invite row" xmlns="http://www.w3.org/1999/html">
+  <div class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        {{#unless isApproved}}
+            <div class="modal-header">
+                <h3>{{if invalidToken (t 'guardian-invitees.token-expired-title') (t 'guardian-invitees.already-verify-title')}}</h3>
+            </div>
+            <div class="modal-body">
+              <div class="wrapper">
+                <div class="main">
+                  <div class="guardian-invite-form">
+                    <div class="form-group text-color">
+                      <label for="message">
+                        <span>{{if invalidToken (t 'guardian-invitees.token-expired-message') (t 'guardian-invitees.already-verify-message' )}}</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {{else}}
+          <div class="modal-header">
+              <h3>{{t "email-verification.title"}}</h3>
+          </div>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="main">
+                <div class="invitees-approved">
+                  <div class="form-group">
+                    <label for="message">
+                      <span>{{t 'guardian-invitees.granted-access-message' guardianName=guardianName}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/unless}}
+        <div class="modal-footer">
+          <div class="submit-button form-group text-center">
+            <button type="text" class="btn btn-success submit" {{action "onClose"}}>Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

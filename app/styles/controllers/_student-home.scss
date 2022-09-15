@@ -1,0 +1,312 @@
+.app-container > .controller {
+  padding: 0;
+  width: 100%;
+  margin: 0;
+}
+.student-landing {
+  background-color: $dark-400;
+
+  a {
+    color: $dark-200;
+  }
+  .tour-student-home {
+    z-index: 9999;
+    position: absolute;
+    margin-top: 20px;
+    display: none;
+  }
+
+  .student-content-panel {
+    &.show-full-course {
+      margin: 0 auto;
+    }
+    @media screen and (max-width: 600px) {
+      margin: auto;
+    }
+    @media screen and (max-width: 320px) {
+      width: 95%;
+    }
+
+    .student-navigator {
+      height: 50px;
+      .nav-tabs {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        background-color: $white;
+        width: 100%;
+        left: 0;
+        z-index: 100;
+        padding-top: 10px;
+        li {
+          a {
+            font-size: 14px;
+            text-transform: uppercase;
+          }
+          &.active {
+            border-bottom: 2px solid $blue-400;
+
+            a {
+              color: $blue-400;
+              font-weight: bold;
+              pointer-events: none;
+            }
+          }
+        }
+        &.disable-inactive {
+          pointer-events: none;
+          li {
+            pointer-events: none;
+            &:not(.active) {
+              pointer-events: none;
+              a {
+                pointer-events: none;
+                border-bottom: none;
+                color: $light-200;
+              }
+            }
+          }
+        }
+        @media screen and (max-width: 1370px) and (min-width: 1300px) {
+          &.introjs-fixParent {
+            position: fixed !important;
+          }
+        }
+      }
+    }
+
+    .student-class-active-list {
+      display: flex;
+      grid-template-columns: auto auto;
+      grid-column-gap: 10px;
+      width: 100%;
+      @media screen and (max-width: 320px) {
+        width: calc(100vw - 20px);
+      }
+
+      @media screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        #firstorder {
+          order: 1;
+          margin: 0px auto 15px;
+        }
+        #secondorder {
+          order: 2;
+          max-width: fit-content;
+          justify-content: center;
+          align-items: center;
+          margin: auto;
+        }
+      }
+
+      .message-connect-instructor {
+        color: $white;
+        font-size: 16px;
+      }
+    }
+    .recently-launched-popup-card {
+      cursor: pointer;
+      height: 200px;
+      display: grid;
+      grid-template-columns: 70% 30%;
+      align-items: center;
+      width: 100%;
+      margin: 0 auto;
+      max-width: 1400px;
+
+      .recently-launched-card {
+        background-image: url("/assets/gooru/program-start.png");
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+      }
+      .start-program {
+        font-size: 30px;
+        background-color: $blue-400;
+        display: grid;
+        align-items: center;
+        height: 100%;
+        color: $white;
+        padding: 10px;
+        text-align: center;
+      }
+    }
+    .student-current-class-container {
+      margin: 10px 0;
+      width: 90%;
+      max-width: inherit;
+      margin: 0;
+      margin-left: auto;
+      @extend %base-card;
+      .hide-div {
+        display: none;
+      }
+      @media screen and (max-width: 374px) {
+        width: 100%;
+      }
+    }
+
+    .student-independent-study {
+      .student-independent-panel-list {
+        width: 90%;
+        max-width: inherit;
+        margin: 0;
+        margin-left: auto;
+        margin-top: 10px;
+        @extend %base-card;
+      }
+
+      .featured-course-container-panel {
+        margin: 50px 0;
+        width: 90%;
+        max-width: inherit;
+        margin: 0;
+        margin-left: auto;
+        @extend %base-card;
+      }
+
+      .divider-line {
+        border-bottom: 1px dashed $white;
+        width: 300px;
+        margin: 10px auto;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          border: 1px solid $white;
+          border-radius: 50%;
+          position: absolute;
+          top: -4px;
+          left: -10px;
+        }
+        &::after {
+          content: "";
+          width: 10px;
+          height: 10px;
+          border: 1px solid $white;
+          border-radius: 50%;
+          position: absolute;
+          top: -4px;
+          right: -10px;
+        }
+      }
+      width: 100%;
+    }
+
+    .jump-start-cards {
+      width: 90%;
+      max-width: inherit;
+      margin: 0;
+      margin-left: auto;
+      @extend %base-card;
+      .currently-studying {
+        display: flex;
+        align-items: center;
+        padding: 20px 0 20px 15px;
+        justify-content: space-between;
+        span {
+          color: $white;
+          font-size: 16px;
+          font-weight: 200;
+          line-height: 1.2;
+        }
+      }
+      .recently-launched-jump-start-header {
+        color: $white;
+        padding: 0 0 10px 10px;
+        .recently-launched-title {
+          display: flex;
+          align-items: center;
+          padding: 20px 0;
+          font-size: 20px;
+          font-weight: 200;
+          line-height: 1.2;
+        }
+        .launch-message {
+          display: flex;
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 1.14;
+        }
+      }
+      .recent-card-list {
+        display: flex;
+        flex-wrap: wrap;
+        // justify-content: center;
+      }
+      @media screen and (max-width: 600px) {
+        margin: auto;
+      }
+    }
+  }
+
+  %base-card {
+    .current-class-header {
+      color: $white;
+      line-height: 1.4;
+      padding-bottom: 20px;
+
+      .class-room-title {
+        font-size: 30px;
+        padding: 10px 0;
+        display: flex;
+        font-weight: 100;
+        align-items: center;
+      }
+      .class-current-status {
+        .currently-studying-message {
+          padding: 10px 0;
+        }
+        .currently-studying {
+          display: flex;
+          align-items: center;
+          padding: 10px 0;
+          justify-content: normal;
+          i {
+            margin-right: 10px;
+          }
+
+          .title {
+            font-size: 20px;
+            margin-right: 10px;
+            display: block;
+            font-weight: 100;
+          }
+          .show-all-btn {
+            background-color: $green-700;
+            color: $white;
+            padding: 5px 10px;
+            border-radius: 20px;
+          }
+          .disable-show-all-btn {
+            background-color: $green-700;
+            opacity: 0.5;
+            color: $white;
+            pointer-events: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+          }
+        }
+      }
+    }
+    .current-class-list-panel {
+      display: flex;
+      flex-wrap: wrap;
+      @media screen and (max-width: 600px) {
+        overflow: auto;
+        display: grid;
+        justify-content: center;
+        grid-row-gap: 20px;
+      }
+    }
+  }
+}

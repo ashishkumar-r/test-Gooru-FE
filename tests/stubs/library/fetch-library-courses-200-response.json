@@ -1,0 +1,40 @@
+{
+  "library": {
+    "id": 1,
+    "name": "default library",
+    "description": "This is default library",
+    "thumbnail": null
+  },
+  "library_contents": {
+    "courses": [
+      {
+        "id": "2a121dd9-2acd-4db7-8d15-a8e694a95c5a",
+        "title": "Test Course - 1",
+        "description": null,
+        "publish_status": "unpublished",
+        "thumbnail": null,
+        "owner_id": "416922ac-7404-400b-883a-4993e23d1c8f",
+        "original_creator_id": null,
+        "collaborator": null,
+        "original_course_id": null,
+        "taxonomy": null,
+        "sequence_id": null,
+        "visible_on_profile": null,
+        "unit_count": 7
+      }
+    ],
+    "owner_details": [
+      {
+        "id": "416922ac-7404-400b-883a-4993e23d1c8f",
+        "username": "szgooru",
+        "first_name": "TestUpdaetd",
+        "last_name": "Zope",
+        "thumbnail": null,
+        "school_district_id": null,
+        "school_district": null,
+        "country_id": "48a0e88d-32c8-11e6-adef-f8a963065976",
+        "country": null
+      }
+    ]
+  }
+}

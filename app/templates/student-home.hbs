@@ -1,0 +1,181 @@
+<div class="controller student-landing container-fluid">
+  <div class="tour-student-home">
+    {{gru-tour steps=studentHomeSettingSteps containerClass='assessment-settings-tour' sendFeedbackToParent='feedback'}}
+  </div>
+  <div class="student-content-panel {{if isShowAllCourses 'show-full-course'}}">
+
+    <div class="student-navigator">
+      <ul class="nav nav-tabs {{if isShowAllCourses 'disable-inactive'}}" id="myTab" role="tablist">
+        <li class="nav-item {{if (eq activeTab 'classroom') 'active'}}" {{action "onChangeTab" 'classroom'}}>
+         <a class="nav-link"  id="nav-classroom-tab" data-toggle="tab" href="#nav-classroom" role="tab" aria-controls="nav-classroom" aria-selected="true">{{t 'user.classrooms'}}</a>
+        </li>
+        {{#if courses.length}}
+        <li class="nav-item {{if (or (eq activeTab 'independent') (eq activeTab 'navigator'))  'active'}}" {{action "onChangeTab" (if isShowJumpStartInfo 'navigator' 'independent')}}>
+          <a class="nav-link" id="{{if isShowJumpStartInfo 'nav-navigator-tab' 'nav-independent-tab'}}" data-toggle="tab" href="#nav-independent" role="tab" aria-controls="nav-independent" aria-selected="true">{{if isShowJumpStartInfo (t 'user.navigator') (t 'user.independent-study')}}</a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+    {{#if isLoaded}}
+      <div class="{{if isShowAllCourses 'show' 'hide'}}">
+        {{student/class/gru-student-show-all-class
+          isShowAllCourses=isShowAllCourses
+          activeClassList=activeClassList
+          archivedClassList=archivedClassList
+          independedCourses=independedCourses
+          contentItem=contentItem
+          activeBucket=activeBucket
+          subjectBucket=subjectBucket
+          timeDuration=timeDuration
+          coursePercentage=coursePercentage
+        }};
+      </div>
+      <div class="tab-content {{if isShowAllCourses 'hide' 'show'}}" id="nav-tabContent">
+        <div class="tab-pane fade {{if (eq activeTab 'classroom') 'active in'}}" id="nav-classroom" role="tabpanel" aria-labelledby="nav-classroom-tab">
+            {{#if (and isShowJumpStartInfo isShowRecentlyLaunchedPopup)}}
+              <div class="recently-launched-popup-card {{if (not isShowRecentlyLaunchedPopup) 'hide-div'}}">
+                <div class="recently-launched-card">
+                </div>
+                 <div class="start-program" {{action "onChangeTab" 'independent'}}>
+                   <span>{{t 'common.jump-start-click'}}</span>
+                 </div>
+              </div>
+            {{/if}}
+          <div class="student-current-class-container">
+            <div class="current-class-header">
+                <span class="class-room-title">{{t 'user.classrooms'}}</span>
+                {{#if (gt activeClassList.length 1)}}
+                <div class="class-current-status">
+                    <div class="currently-studying">
+                        <span class="title">{{t 'common.currently-studying'}}</span>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            <div class="student-class-active-list">
+              <div class="current-class-list-panel" id="secondorder">
+                {{#each activeClassList as | class |}}
+                  {{cards/gru-student-class-current-card
+                    classData=class
+                    onItemSelected='selectMenuItem'
+                    tabIndex=52
+                    onPlayCollection='studyPlayer'
+                  }}
+                {{/each}}
+              </div>
+              {{#if isShowJoinClassCard}}
+                  {{cards/gru-student-class-join-card
+                    id="firstorder"
+                    onJoinClass="joinClass"
+                    validCode=validCode
+                    notMember=notMember
+                    allowedCode=allowedCode
+                    isLoading=isLoading
+                  }}
+                {{else}}
+                  {{#if (eq activeClassList.length 0)}}
+                    <div class="message-connect-instructor">{{t 'common.tenant-setting-no-Join-card'}}</div>
+                  {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        {{#if courses.length}}
+          <div class="tab-pane fade {{if (or (eq activeTab 'independent') (eq activeTab 'navigator')) 'active in'}}" id="{{if isShowJumpStartInfo 'nav-navigator' 'nav-independent'}}" role="tabpanel" aria-labelledby=" {{if isShowJumpStartInfo 'nav-navigator-tab' 'nav-independent-tab'}}">
+            {{#if (not isShowJumpStartCourse)}}
+              {{#if (not isShowJumpStartInfo)}}
+                <div class="student-independent-study">
+                    <div class="student-independent-panel-list">
+                      <div class="current-class-header">
+                          <span class="class-room-title">{{t 'student-home.recommend-study'}}</span>
+                          {{#if (gt independedCoursesList.length 0)}}
+                          <div class="class-current-status">
+                              <div class="currently-studying">
+                                  <span class="title">{{t 'common.currently-studying'}}</span>
+                                  <a class="{{if (gt independedCoursesList.length 4) 'show-all-btn' 'disable-show-all-btn'}} " {{action "onShowAll" 'independedCourses'}} href="javascript:void(0)" aria-label="show all course">{{t 'student-home.all-independent-courses'}}</a>
+                              </div>
+                          </div>
+                          {{/if}}
+                      </div>
+                      <div class="current-class-list-panel">
+                        {{#each independedCoursesList as |course|}}
+                          {{cards/gru-student-independent-study-card
+                            course=course
+                            updateUserClasses="updateUserClasses"
+                            percentage = coursePercentageList
+                          }}
+                        {{/each}}
+                      </div>
+                    </div>
+                    {{#each subjectBucket as | subject |}}
+                    <div class="featured-course-container-panel">
+                      <div class="current-class-header">
+                        {{#if (gt subject.courseList.length 0)}}
+                          <div class="class-current-status">
+                              <div class="currently-studying">
+                                  <span class="title">{{subject.title}}</span>
+                                  <a class="{{if (gt subject.courseList.length 5) 'show-all-btn' 'disable-show-all-btn'}} " href="javascript:void(0)" {{action "showAllFeatured" subject}} aria-label="show all course">{{t 'student-home.all-independent-courses'}}</a>
+                              </div>
+                          </div>
+                          {{/if}}
+                      </div>
+                      <div class="current-class-list-panel">
+                        {{#each subject.courseList as |course|}}
+                          {{cards/gru-student-featured-card
+                            course=course
+                          }}
+                        {{/each}}
+                      </div>
+                    </div>
+                  <div class="divider-line"></div>
+                  {{/each}}
+                </div>
+                {{else}}
+                <div class="jump-start-cards">
+                  {{#if startedProgramCourse.length}}
+                    <div class="currently-studying">
+                      <span>{{t 'common.currently-studying'}}</span>
+                    </div>
+                    <div class="current-class-list-panel">
+                      {{#each startedProgramCourse as |course|}}
+                        {{cards/gru-navigator-card
+                          course=course
+                        }}
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                  {{#if notStartedProgramCourse.length}}
+                    <div class="recently-launched-jump-start-header">
+                      <span class="recently-launched-title">{{t 'jump-start-recently-launched'}}</span>
+                      <span class="launch-message">{{t 'jump-start-recently-launched-message'}}</span>
+                    </div>
+                    <div class="recent-card-list">
+                      {{#each navigatorProgramList as |program|}}
+                        {{cards/gru-recently-launched-card program=program onClickExplore='onSelectProgram'}}
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                </div>
+              {{/if}}
+            {{else}}
+            <div class="student-navigator-study">
+              {{student/gru-jump-start-courses program=selectedProgram courses=notStartedProgramCourse goBack='goBack'}}
+            </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    classId=playerContent.classId
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

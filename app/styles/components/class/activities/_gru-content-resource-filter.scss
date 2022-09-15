@@ -1,0 +1,149 @@
+.gru-content-resource-filter {
+  .resource-content-filter-container {
+    padding: 10px;
+    border-bottom: 1px solid;
+    .resource-content-filter-panel {
+      position: relative;
+
+      .content-resource-panel {
+        display: grid;
+        grid-template-columns: 102px 1fr;
+        grid-column-gap: 5px;
+        margin: 10px auto;
+        align-items: center;
+        .panel-header {
+          font-weight: bold;
+        }
+        .content-resource-body {
+          position: relative;
+          .content-title {
+            display: grid;
+            grid-template-columns: 1fr 30px;
+            align-items: center;
+            cursor: pointer;
+            background-color: $light-100;
+            padding: 5px;
+
+            .selected-items {
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+
+              .item-title {
+                display: flex;
+                align-items: center;
+                padding: 2px;
+                width: fit-content;
+                background-color: $light-200;
+                border-radius: 2px;
+                border: 1px solid $light-200;
+                margin: 2px;
+                max-width: 200px;
+                span {
+                  margin: 2px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+                i {
+                  font-size: 15px;
+                }
+              }
+            }
+            i {
+              height: 100%;
+              display: flex;
+              align-items: center;
+            }
+          }
+          .dropdown-blk {
+            position: absolute;
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: $white;
+            padding: 10px;
+            box-shadow: 0 0 10px $light-100;
+            display: none;
+            z-index: 100;
+            min-height: auto;
+            max-height: 300px;
+            overflow-y: auto;
+            li {
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              padding: 5px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+
+              span {
+                display: block;
+              }
+            }
+          }
+
+          .domain-competency-blk {
+            position: fixed;
+            width: 100%;
+            padding: 10px;
+            box-shadow: 0 0 10px $light-100;
+            display: none;
+            z-index: 110;
+            height: 100%;
+            overflow-y: auto;
+            left: 0;
+            top: 0;
+            .backdrop {
+              position: fixed;
+              width: 100%;
+              height: 100%;
+              background-color: $navbar-box-shadow;
+              left: 0;
+              top: 0;
+              z-index: 0;
+            }
+
+            .taxonomy-filter-container-section {
+              width: 80%;
+              margin: 50px auto;
+              display: grid;
+              align-items: center;
+              @media screen and (max-width: 600px) {
+                width: 100%;
+                margin: 100px auto;
+              }
+              .close-filter {
+                display: flex;
+                background-color: $white;
+                width: 100%;
+                text-align: right;
+                justify-content: space-between;
+                font-size: 15px;
+                background-color: $blue-400;
+                color: $white;
+                font-weight: bold;
+                padding: 10px;
+                position: relative;
+                i {
+                  cursor: pointer;
+                }
+              }
+              .search-by-filter .search-panel .search-content {
+                height: 100%;
+              }
+            }
+          }
+        }
+        &.diagnostic-resource-panel {
+          grid-template-columns: 155px 1fr;
+        }
+      }
+      .disabled-class {
+        pointer-events: none;
+      }
+    }
+  }
+}

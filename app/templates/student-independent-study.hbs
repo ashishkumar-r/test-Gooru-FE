@@ -1,0 +1,122 @@
+<div class="header-navbar">
+  {{student/class/gru-student-navbar
+    onItemSelected="selectMenuItem"
+    selectedMenuItem=menuItem
+    hasClassInfo=true
+    course = course
+    isDisableNavbar = isDisableNavbar
+  }}
+</div>
+<div class="independent-study-container">
+  <div class="destination-chart-container">
+    {{#if taxonomyGrades}}
+      {{proficiency/learner-proficiency-domain-matrix
+        subjectBucket=subjectBucket
+        timeLine=timeLine
+        userId=studentProfile.id
+        subject=activeSubject
+        competencyMatrixDomains=competencyMatrixDomains
+        competencyMatrixCoordinates=competencyMatrixCoordinates
+        isShowMatrixChart=isShowMatrixChart
+        onDomainSelect="onDomainSelect"
+        selectedDomain=selectedDomain
+        taxonomyGrades=taxonomyGrades
+        showGutCompetency=true
+        hideGutCompetencyButton=hideGutCompetencyButton
+        subjectCode=subjectCode
+        onSelectCompetency="onSelectCompetency"
+        fwCompetencies=fwCompetencies
+        proficiencyChartData=proficiencyChartData
+        skylinePoints=skylinePoints
+        onSelectTopic="onSelectTopic"
+        selectedCompetency=selectedCompetency
+        totalTopics=totalTopics
+        isDefaultSkyline=isDefaultSkyline
+        isInitialSkyline = isInitialSkyline
+        classGrade= activeGrade
+        studentProfile=studentProfile
+        isShowLoaderSet="isShowLoaderSet"
+      }}
+    {{/if}}
+  </div>
+  <div class="header-top {{if (eq type "route") 'hide'}}">
+    <div class="facet common-class">
+      <div class="header-title">
+        <span class="title">{{t 'common.facet'}}</span>
+        <span>{{activeSubject.id}} / {{if class.preference.framework class.preference.framework course.settings.framework}}</span>
+      </div>
+    </div>
+    <div class="my-location common-class">
+      <div class="header-div">
+        <div class="header-title">
+          <span class="title">{{t 'common.myProfile'}}</span>
+          <span>{{if studentMathGrade.level_label studentMathGrade.level_label (if studentMathGrade.grade studentMathGrade.grade studentMathGrade.label)}}</span>
+        </div>
+        <a href="javascript:void(0)" class="info-item location-info">
+          <span class="material-icons-outlined">info</span>
+        </a>
+      </div>
+    </div>
+    <div class="destination common-class">
+      <div class="header-title">
+        <span class="title">{{t 'common.destination'}}</span>
+        <span>{{activeGrade.grade}}</span>
+      </div>
+      <a href="javascript:void(0)" class="info-item destination-info">
+        <span class="material-icons-outlined">info</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="student-inspect-destination-carousel-sm">
+    {{student/class/student-inspect-destination-carousel-xs
+      userDisplayName=userDisplayName
+      onMoveNext="onMoveNext"
+      activeGrade=activeGrade
+      course=course
+      isIndipendent=true
+      isMobileView=isMobileView
+      }}
+  </div>
+  <div class="competency-level-container desktop-view">
+    <div class="scroll-div margin-left-30px">
+      <div class="proficiency-info active">
+        <div class="grade-title">
+          {{t "student-first-experience.competency-level.title-with-name" userName=userDisplayName}}
+        </div>
+        <div class="grade-description margin-top-10px">
+          {{t 'student-first-experience.competency-level.welcome-message' selectedClass=course.title}}
+        </div>
+      </div>
+      {{safe-html getStartedDescription}}
+    </div>
+    <div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6 audio active">
+      <div class="destination-grid">
+        <audio id="descAudio" src="{{descAudioURL}}" preload="auto"></audio>
+        <div class="show-route-div next-route margin-auto audio {{if isAudioPlaying 'playing'}} {{unless descAudioURL 'hide'}}" onclick={{action 'playAudio'}} onkeypress={{action 'playAudio'}} tabindex="9">
+          {{t (if isAudioPlaying 'common.skip' 'common.play')}} {{t 'common.audio'}}
+        </div>
+      </div>
+    </div>
+    <div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6 active">
+      <div class="destination-grid">
+        <div class="show-route-div next-route margin-auto btn-primary" onclick={{action 'onClickNext' 'destination'}} onkeypress={{action 'onClickNext' 'destination'}} tabindex="9">
+          {{t "common.next"}}
+        </div>
+      </div>
+    </div>
+    <div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6 active skip-all">
+      <div class="destination-grid">
+        <div class="show-route-div next-route margin-auto btn-primary" onclick={{action 'skipAll'}} onkeypress={{action 'skipAll'}} tabindex="9">
+          {{t "skip-all"}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="margin-auto text-align-center line-hight text-1 show-lo-description hide">
+  {{t 'my-location-hover-msg' gradeText=(if studentMathGrade.level_label studentMathGrade.level_label (if studentMathGrade.grade studentMathGrade.grade studentMathGrade.label))}}
+</div>
+<div class="margin-auto text-align-center line-hight text-1 show-destination-description hide">
+  {{t 'destination-msg'}}
+</div>

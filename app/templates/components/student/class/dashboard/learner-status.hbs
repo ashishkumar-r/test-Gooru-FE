@@ -1,0 +1,30 @@
+<div class="learner-status-container">
+  <div class="learner-status-panel">
+    <div class="learner-status-panel-header">
+      {{gru-icon name="bar_chart"}}
+      <div class="status-panel-head">
+        <div class="status-panel-section" onclick={{action "onGoProficiency"}} onkeypress={{action "onGoProficiency"}} href="javascript:void(0)" tabindex={{tabindex}}>
+          <span class="sub-title">{{t 'student-dashboard.competency-gains'}}</span>
+          <span class="student-name">{{t 'student-dashboard.skyline-inspect'}}</span>
+        </div>
+      </div>
+      <a class="action-buton" onclick={{action "onGoProficiency"}} onkeypress={{action "onGoProficiency"}} href="javascript:void(0)" aria-label="show proficiency" tabindex={{tabindex}}>
+        {{gru-icon name="arrow_forward"}}
+      </a>
+    </div>
+    <div class="learner-status-panel-body" onclick={{action "onGoProficiency"}} onkeypress={{action "onGoProficiency"}} tabindex={{tabindex}}>
+      {{#if (not isLoading)}}
+        {{charts/proficiency-view
+                     domainDataSet=domainData
+                     studentSeq=0
+                     cellWidth =20
+                     chartHeight = 200
+                     maxNumberOfCompetencies=maxNumberOfCompetencies
+                     subjectPreference=currentClass.preference
+                     gradeBoundaryPoints=gradeBoundaryPoints
+                     showHighline=true
+                     studentId= userId}}
+      {{/if}}
+    </div>
+  </div>
+</div>

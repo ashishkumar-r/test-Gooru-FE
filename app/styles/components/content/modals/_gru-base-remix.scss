@@ -1,0 +1,21 @@
+.content.modals.gru-base-remix {
+  .lead {
+    border-bottom: 2px solid $gray-lighter;
+    padding-bottom: $padding-large-vertical;
+  }
+  .warning {
+    display: flex;
+    .warning-icon {
+      width: 23px;
+      height: 23px;
+      background: url('gooru/warning-icon.svg') no-repeat;
+    }
+    p {
+      width: 93%;
+      margin-left: 5px;
+    }
+  }
+}
+.content.modals.gru-base-remix.gru-course-remix {
+  max-width: 505px;
+}

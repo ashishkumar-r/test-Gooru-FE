@@ -1,0 +1,20 @@
+<div class="header-tab-panel">
+  <div role="tablist" class="nav-tabs {{unless userId 'col-2'}}">
+    {{#unless isClassActivity}}
+      {{#if userId}}
+        <div role="tab" aria-label="portfolio" class="tab {{if (eq selectedItem 'journey') 'active'}}" onclick={{action 'selectItem' 'journey'}} onkeypress={{action 'selectItem' 'journey'}} tabindex={{tabindex}}>{{t 'competency-info-content.portfolio'}}</div>
+      {{/if}}
+    {{/unless}}
+    <div  role="tab" aria-label="metadata" class="tab {{if (eq selectedItem 'metadata') 'active'}}" onclick={{action 'selectItem' 'metadata'}} onkeypress={{action 'selectItem' 'metadata'}} tabindex={{tabindex}}>{{t 'competency-info-content.metadata'}}</div>
+    <div  role="tab" aria-label="learning map" class="tab {{if (eq selectedItem 'learning') 'active'}}" onclick={{action 'selectItem' 'learning'}} onkeypress={{action 'selectItem' 'learning'}} tabindex={{tabindex}}>{{t 'competency-info-content.learning-map'}}</div>
+  </div>
+</div>
+<div class="panel-content">
+  {{#if (eq selectedItem 'journey')}}
+      {{reports/pull-up/student-journey competency=competency isStudent=isStudent collectionPerformances=collectionPerformances userId=userId class=class tabindex=tabindex classFrameworkCode = classFrameworkCode isDefaultShowFW = isDefaultShowFW}}
+  {{else if (eq selectedItem 'metadata')}}
+    {{reports/pull-up/competency-meta-data microCompetencies=microCompetencies prequisiteCompetencies=prequisiteCompetencies tabindex=tabindex}}
+  {{else}}
+    {{reports/pull-up/learning-map-content competencyGutCode=competencyGutCode onSuggestContent="onSuggestContent" learningMapData=learningMapData onSelectActivityContent="onSelectActivityContent" isStudent=isStudent class=class tabindex=tabindex}}
+  {{/if}}
+</div>

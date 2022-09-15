@@ -1,0 +1,34 @@
+<div class="gru-comprehension-container">
+  <div class="sort-actions-btn">
+    {{#unless model.isSorting}}
+      <button class="btn btn-primary sort-items" {{action 'sortItems'}}>{{gru-icon name="swap_vert"}}</button>
+    {{/unless}}
+    {{#if model.isSorting}}
+      <div class="drag-options">
+        <button class="cancel btn btn-info" {{action 'cancelSort'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" {{action 'saveCollectionItemsOrder'}}>{{t "common.save"}}</button>
+      </div>
+    {{/if}}
+  </div>
+  <div class="gru-comprehension-panel-section sortable">
+    {{#each questionList as | question index |}}
+    <div class="comprehension-component" data-id="{{question.id}}">
+      {{content/collections/gru-collection-list-item
+          model=question
+          index=index
+          baseQuestion=tempQuestion
+          isSorting=model.isSorting
+          isCollection=isCollection
+          editingContent=editingContent
+          isComprehension=true
+          onRemoveCollectionItem=(action "onRemoveCollectionItem")
+          isPreviewReferrer=isPreviewReferrer
+          editingSubContent=editingSubContent
+        }}
+    </div>
+    {{/each}}
+    <div class="add-questions">
+        <span {{action "onAddNew"}}>Add Question</span>
+    </div>
+  </div>
+</div>

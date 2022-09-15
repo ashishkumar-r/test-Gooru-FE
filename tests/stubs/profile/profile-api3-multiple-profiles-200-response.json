@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "id-for-pochita",
+      "first_name": "Russell",
+      "last_name": "Collaborator1",
+      "username": "russell",
+      "thumbnail": ""
+    },
+    {
+      "id": "id-for-pochita",
+      "first_name": "Shawn",
+      "last_name": "Collaborator2",
+      "username": "shawn",
+      "thumbnail": ""
+    },
+    {
+      "id": "profile-id-1",
+      "first_name": "Profile",
+      "last_name": "Number 1",
+      "username": "Prof1",
+      "thumbnail": ""
+    },
+    {
+      "id": "profile-id-2",
+      "first_name": "Profile",
+      "last_name": "Number 2",
+      "username": "Prof2",
+      "thumbnail": ""
+    },
+    {
+      "id": "other-student-id",
+      "firstName": "Profile",
+      "last_name": "",
+      "username": "Prof",
+      "thumbnail": ""
+    }
+  ]
+}

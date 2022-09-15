@@ -1,0 +1,31 @@
+
+{{#unless showPreviousAndNext}}
+  <div aria-hidden="true" class="backdrop" {{action "onCloseDatePicker"}} tabindex={{tabindex}}></div>
+  <div class="ca-date-nav-container">
+    <div class="prev-cal-arrow {{if isShowPicker 'disable'}}" aria-label="previous" onclick={{action 'showPreviousMonth'}} onkeypress={{action 'showPreviousMonth'}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_left"}}</div>
+    <div class="cal-mm-yyyy" {{action 'onToggleDatePicker'}}>{{format-date forFirstDateOfMonth 'MMMM YYYY'}} {{gru-icon name="arrow_drop_down"}}{{gru-icon name="arrow_drop_up"}}</div>
+    <div class="next-cal-arrow {{if isShowPicker 'disable'}}" aria-label="next" onclick={{action 'showNextMonth'}} onkeypress={{action 'showNextMonth'}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_right"}}</div>
+  </div>
+{{/unless}}
+<div class="ca-datepicker-container">
+  {{#if showToday}}
+    <div class="ca-datepicker-today" onclick={{action 'onSelectToday'}} onkeypress={{action 'onSelectToday'}} tabindex={{plus-one tabindex}}>{{t "student-landing.class.class-activities-tab.today"}}</div>
+  {{/if}}
+  {{#unless showAtcView}}
+  <div id="ca-datepicker"></div>
+  {{/unless}}
+  {{#if showMonths}}
+    <hr />
+    {{ca-month-picker onSelectMonth='onSelectMonth' currentMonth=forFirstDateOfMonth tabindex=tabindex }}
+  {{/if}}
+  {{#if (and showAtcView isShowPicker)}}
+    {{ca-month-picker
+          forMonth=forMonth
+          forYear=forYear
+          showAtcView=true
+          class=class
+          showCalendarView=true
+          onSelectMonth="onSelectMonth"
+          tabindex=tabindex}}
+{{/if}}
+</div>

@@ -1,0 +1,181 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>{{t "common.description"}}</h3>
+    <div class="detail">
+      <div class="actions">
+        {{partial 'content/partials/information-actions'}}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-body">
+    <div class="panelBodyContainer">
+      <div class="textContainer">
+        {{#if isEditing}}
+          <div class='referenceText'>
+            {{gru-rich-text-editor content=model.reference model=model valuePath='reference' uuid=referenceUUID}}
+          </div>
+        {{else}}
+          <div class='referenceTextLabel'>
+            {{{model.reference}}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>{{t 'oa.student.artifacts'}}</h3>
+  </div>
+  <div class="panel panel-body">
+    <div class="panelBodyContainer">
+      <section class="existing-upload-section col-md-12">
+        <div class='upload-list-container'>
+          {{#each studentReferences as | refItem|}}
+            {{#if (eq refItem.type 'uploaded')}}
+              <div class="upload-item-container">
+                <span class="uploaded-item">
+
+                  <button class="remove-uploaded btn no-bgd remove-item" {{action 'deleteUrlReference' refItem }}>{{gru-icon name="remove_circle"}}</button>
+                  <a href='{{refItem.location}}' target="_blank">
+                    <span class="image">
+                      <i class="{{refItem.subType}}-icon"></i>
+                    </span>
+                  </a>
+                </span>
+                {{#if (and isEditReference (eq refItem.id refOaId))}}
+                  <span class="text-capitalize">
+                    {{validation/gru-input model=refItem valuePath='fileName' maxLength=50}}
+                    <button class="edit btn btn-success" {{action 'updateReference' refItem}}>{{t "common.save"}}</button>
+                  </span>
+                  {{#if isValid}}
+                    <div class="validation reference">
+                      <span class="error">{{t "common.referene.name"}}</span>
+                    </div>
+                  {{/if}}
+                {{else}}
+                  <span class="text-capitalize">
+                    {{refItem.fileName}}
+                    <button class="remove-uploaded btn no-bgd remove-item edit-uploaded" {{action 'editReference' refItem}}>{{gru-icon name="mode_edit"}}</button>
+                  </span>
+                {{/if}}
+              </div>
+
+            {{/if}}
+          {{/each}}
+        </div>
+        {{!-- upload listing --}}
+      </section>
+      <section class="upload-section col-md-6">
+        {{content/activity/reference/gru-reference-line-item parsedReference=parsedReference editType='upload' references=studentReferences userType=studentTitle oaId=activityModel.id deleteReference=(action 'deleteReference') isEditing=isEditing}}
+      </section>
+      <section class='url-section col-md-6'>
+        <div class="border-bottom">
+          <h3>{{t "oa.references.urls"}}</h3>
+        </div>
+        {{#each studentReferences as | refItem|}}
+
+          {{#if (eq refItem.type 'remote')}}
+            <div class='add-url-line'>
+              <a href="{{refItem.location}}" target="_blank">{{refItem.fileName}}</a>
+              <button class="remove-uploaded btn no-bgd remove-item" {{action 'deleteUrlReference' refItem}}>{{gru-icon name="remove_circle"}}</button>
+            </div>
+          {{/if}}
+        {{/each}}
+        {{content/activity/reference/gru-reference-line-item editType='url' oaId=activityModel.id  userType=studentTitle references=studentReferences  isEditing=isEditing}}
+      </section>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>{{t 'oa.teacher.artifacts'}}</h3>
+  </div>
+  <div class="panel panel-body">
+    <div class="panelBodyContainer">
+      <section class="existing-upload-section col-md-12">
+        <div class='upload-list-container'>
+          {{#each teacherReferences as | refItem|}}
+            {{#if (eq refItem.type 'uploaded')}}
+              <div class="upload-item-container">
+                <span class="uploaded-item">
+                  <button class="remove-uploaded btn no-bgd remove-item" {{action 'deleteUrlReference' refItem }}>{{gru-icon name="remove_circle"}}</button>
+                  <a href='{{refItem.location}}' target="_blank">
+                    <span class="image">
+                      <i class="{{refItem.subType}}-icon"></i>
+                    </span>
+                  </a>
+                </span>
+                {{#if (and isEditReference (eq refItem.id refOaId))}}
+                  <span class="text-capitalize">
+                    {{validation/gru-input model=refItem valuePath='fileName' maxLength=50}}
+                    <button class="edit btn btn-success" {{action 'updateReference' refItem}}>{{t "common.save"}}</button>
+                  </span>
+                  {{#if isValid}}
+                    <div class="validation reference">
+                      <span class="error">{{t "common.referene.name"}}</span>
+                    </div>
+                  {{/if}}
+                {{else}}
+                  <span class="text-capitalize">
+                    {{refItem.fileName}}
+                    <button class="remove-uploaded btn no-bgd remove-item edit-uploaded" {{action 'editReference' refItem}}>{{gru-icon name="mode_edit"}}</button>
+                  </span>
+                {{/if}}
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
+        {{!-- upload listing --}}
+      </section>
+      <section class="upload-section col-md-6">
+        {{content/activity/reference/gru-reference-line-item parsedReference=parsedReference editType='upload' references=teacherReferences userType=teacherTitle oaId=activityModel.id deleteReference=(action 'deleteReference') isEditing=isEditing}}
+      </section>
+      <section class='url-section col-md-6'>
+        <div class="border-bottom">
+          <h3>{{t "oa.references.urls"}}</h3>
+        </div>
+        {{#each teacherReferences as | refItem|}}
+
+          {{#if (eq refItem.type 'remote')}}
+            <div class='add-url-line'>
+              <a href="{{refItem.location}}" target="_blank">{{refItem.fileName}}</a>
+              <button class="remove-uploaded btn no-bgd remove-item" {{action 'deleteUrlReference' refItem}}>{{gru-icon name="remove_circle"}}</button>
+            </div>
+          {{/if}}
+        {{/each}}
+        {{content/activity/reference/gru-reference-line-item editType='url' oaId=activityModel.id  userType=teacherTitle references=teacherReferences  isEditing=isEditing}}
+      </section>
+    </div>
+  </div>
+</div>
+<div class="panel-default">
+  <div class="panel-heading">
+    <h3>{{t "oa.references.exemplar"}}</h3>
+    <div class="detail">
+      <div class="actions">
+        {{#if isExemplarEditing}}
+          <button class="cancel btn btn-info" {{action 'cancelExemplarEdit'}}>{{t "common.cancel"}}</button>
+          <button class="save btn btn-success" {{action 'updateExemplarContent'}}>{{t "common.save"}}</button>
+        {{else}}
+          <button class="edit btn btn-primary" {{action 'editExemplarContent'}}>{{t "common.edit"}}</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-body">
+    <div class="panelBodyContainer">
+      <div class="textContainer">
+        {{#if isExemplarEditing}}
+          <div class='referenceText exemplarText'>
+            {{gru-rich-text-editor content=model.exemplar model=model valuePath='exemplar' uuid=exemplarUUID }}
+          </div>
+        {{else}}
+          <div class='referenceTextLabel'>
+            {{{model.exemplar}}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

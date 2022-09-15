@@ -1,0 +1,157 @@
+<div class="scope-sequence-panel-section">
+{{#if activeScopeAndSequence.domainList}}
+  {{#each activeScopeAndSequence.domainList as |domain domainIndex|}}
+    <div class="module-panel">
+        <div class="panel-header-section module-panel-header" tabindex={{plus-any domainIndex 200}}
+        onclick={{action "onSelectLevel" levelAndActionKeys.topicsList domain (get-object 'pathParams' domainId=domain.id)}}
+        onkeypress={{action "onSelectLevel" levelAndActionKeys.topicsList domain (get-object 'pathParams' domainId=domain.id)}}>
+            <div class="header-title">
+                <span class="title-name">{{domain.title}}</span>
+            </div>
+            {{#if isBaselineRegularKey}}
+              {{#if domain.getDomainStatus.status}}
+              {{#if (eq domain.getDomainStatus.status completed)}}
+                <span><img src="/assets/gooru/completed.png" class="compentency-status"></span>
+              {{else}}
+                <span><img src="/assets/gooru/started.png" class="compentency-status"></span>
+              {{/if}}
+              {{else}}
+              <span><img src="/assets/gooru/not-started.png" class="compentency-status"></span>
+              {{/if}}
+            {{/if}}
+
+        </div>
+        <div class="module-panel-body {{if domain.isActive 'level-open'}}">
+          {{#if domain.topicsList}}
+          {{#each domain.topicsList as |topic topicIndex|}}
+            <div class="topic-panel">
+                <div class="topic-panel-header"  tabindex={{plus-any domainIndex 200}} onclick={{action "onSelectLevel" levelAndActionKeys.competenciesList topic (get-object 'pathParams' domainId=domain.id topicId=topic.id)}} onkeypress={{action "onSelectLevel" levelAndActionKeys.competenciesList topic (get-object 'pathParams' domainId=domain.id topicId=topic.id)}}>
+                  <div class="header-title">
+                      <span class="title-name">{{topic.title}}</span>
+                  </div>
+                  {{#if isBaselineRegularKey}}
+                    {{#if topic.getTopicStatus.status}}
+                      {{#if (eq topic.getTopicStatus.status completed)}}
+                      <span><img src="/assets/gooru/completed.png" class="compentency-status"></span>
+                      {{else}}
+                      <span><img src="/assets/gooru/started.png" class="compentency-status"></span>
+                      {{/if}}
+                    {{else}}
+                    <span><img src="/assets/gooru/not-started.png" class="compentency-status"></span>
+                    {{/if}}
+                  {{/if}}
+                </div>
+                <div class="topic-panel-body {{if topic.isActive 'level-open'}}">
+                  {{#if topic.competenciesList}}
+                  {{#each topic.competenciesList as |competency competencyIndex|}}
+                    <div class="competency-panel {{if competency.isZoomed 'zoom-in'}}">
+                      {{#if competency.isZoomed }}
+                      <div class="zoom-in-title">
+                      {{activeScopeAndSequence.grade}}  > {{domain.name}} > {{topic.title}}
+                      </div>
+                      {{/if}}
+                        <div class="competency-panel-header" id="dm-{{domainIndex}}-tp-{{topicIndex}}-cc-{{competencyIndex}}">
+                          <div class="header-title" tabindex={{plus-any domainIndex 200}} onclick={{action "onToggleCompetency" competency (get-object 'ids' domainIndex=domainIndex topicIndex=topicIndex compIndex=competencyIndex)}} onkeypress={{action "onToggleCompetency" competency (get-object 'ids' domainIndex=domainIndex topicIndex=topicIndex compIndex=competencyIndex)}}>
+                              <span class="title-code compentency-panel">{{competency.code}}
+                                <div class="competency-metadata {{unless competency.competencyMetadata 'hidden'}}">({{competency.competencyMetadata.competency_type}} )</div>
+                                  {{#if (and competency.loCode competency.loName) }}
+                                    <span> | {{competency.loCode}} |</span>
+                                    <span class="lo-name" data-toggle="tooltip" title="{{competency.loName}}">{{competency.loName}}</span>
+                                  {{/if}}
+                              </span>
+
+                              <span class="title-name"  title="{{competency.title}}" data-toggle="tooltip" data-placement="bottom">{{competency.title}}</span>
+                          </div>
+                          {{#if competency.isActive}}
+                          <div class="zoom-section" tabindex={{plus-any domainIndex 200}} onclick={{action "maximizePageSize" competency}} onkeypress={{action "maximizePageSize" competency}}>
+                            {{gru-icon name=(if competency.isZoomed 'switch_left' 'switch_right')}}
+                          </div>
+                          {{/if}}
+                          {{#if isBaselineRegularKey}}
+                            {{#if competency.getCompetencyStatus.status}}
+                              {{#if (eq competency.getCompetencyStatus.status completed)}}
+                              <span><img src="/assets/gooru/completed.png" class="compentency-status"></span>
+                              {{else}}
+                              <span><img src="/assets/gooru/started.png" class="compentency-status"></span>
+                              {{/if}}
+                            {{else}}
+                            <span><img src="/assets/gooru/not-started.png" class="compentency-status"></span>
+                            {{/if}}
+                          {{/if}}
+                        </div>
+                        <div class="competency-panel-body {{if competency.isActive 'level-open'}}">
+                            <div class="competency-panel-description {{unless competency.description 'hidden'}}">
+                                {{competency.description}}
+                            </div>
+                            <div class="competency-panel-resource-content">
+                              <div class="student-resource-content">
+                                  {{#if competency.studentsContent}}
+                                  <span class="resource-header">{{t 'common.student-resource'}}</span>
+                                  <div class="resource-container student-resource-container">
+
+                                    {{#each-in competency.studentsContent as |key source|}}
+                                       <span class="source-divider">{{get (array-index activeSequence key) 'name'}}</span>
+                                        {{#if source.length}}
+                                         {{#each source as |student|}}
+                                             {{new-cards/activities/gru-add-content-card
+                                               content=student
+                                               onAddActivityPop="onAddActivityPop"
+                                               onAddActivity="onAddActivity"
+                                               onShowContentPreview = "onShowContentPreview"
+                                               activitiesList =activitiesList
+                                               primaryClass=primaryClass
+                                               tabindex=(plus-any domainIndex 200)
+                                             }}
+                                          {{/each}}
+                                          {{else}}
+                                        <span class="no-result">{{t 'common.no-results'}}</span>
+                                          {{/if}}
+                                    {{/each-in}}
+
+                                  </div>
+                                  <div class="load-more-content">
+                                      <button type="button" name="button" tabindex={{plus-any domainIndex 200}} onclick={{action "onLoadMore" competency 'STUDENTS'}} onkeypress={{action "onLoadMore" competency 'STUDENTS'}}>{{t 'notifications.show-more'}}</button>
+                                  </div>
+                                    {{/if}}
+                              </div>
+                              <div class="teacher-resource-content">
+                              {{#if competency.teachersContent}}
+                                 <span class="resource-header">{{t 'common.teacher-resource'}}</span>
+                                 <div class="resource-container teacher-resource-container">
+                                   {{#each-in competency.teachersContent as |key source|}}
+                                        <span class="source-divider">{{get (array-index activeSequence key) 'name'}}</span>
+                                        {{#if source.length}}
+                                            {{#each source as |teacher|}}
+                                            {{new-cards/activities/gru-add-content-card
+                                              content=teacher
+                                              onAddActivityPop="onAddActivityPop"
+                                              onAddActivity="onAddActivity"
+                                              onShowContentPreview = "onShowContentPreview"
+                                              tabindex=(plus-any domainIndex 200)
+                                              primaryClass=primaryClass
+                                            }}
+                                          {{/each}}
+                                        {{else}}
+                                        <span class="no-result">{{t 'common.no-results'}}</span>
+                                        {{/if}}
+                                        {{/each-in}}
+                                 </div>
+                                 <div class="load-more-content">
+                                     <button type="button" name="button" tabindex={{plus-any domainIndex 200}} onclick={{action "onLoadMore" competency 'TEACHERS'}} onkeypress={{action "onLoadMore" competency 'TEACHERS'}}>{{t 'notifications.show-more'}}</button>
+                                 </div>
+                                  {{/if}}
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+                </div>
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</div>

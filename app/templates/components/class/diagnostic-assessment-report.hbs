@@ -1,0 +1,135 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="diagnostic-assessment-report-container">
+  <div class="report-header">
+    <div class="header-title">
+      <i class="icon {{collection.collectionType}}"></i>
+      <span class="title ellipsis">{{safe-html collection.title}}</span>
+      <i class="icon {{collection.collectionType}}-icon"></i>
+    </div>
+    <div class="update-data">
+      <span class="student-performance-update" onclick={{action "onOpenPerformanceEntry"}} onkeypress={{action "onOpenPerformanceEntry"}}>update data</span>
+    </div>
+    <div class="close" tabindex={{tabindex}} onclick={{action "onPullUpClose" true }} onkeypress={{action "onPullUpClose" true}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="performance-view">
+    <div class="milestone-student-list">
+    <table class="table table-bordered">
+      <div class="table-container">
+        <thead>
+            <tr class="header">
+              <div class="student-row">
+                <th class="student-name" scope="col" rowspan="2">{{t 'common.students'}}</th>
+              </div>
+
+              <div>
+                <div>
+                  <tr>
+                  {{#each reportData.questions as |question index|}}
+                  <th class="domain-competency" scope="col" onclick={{action "onOpenCompetencyReport" question}} onkeypress={{action "onOpenCompetencyReport" question}}>
+                      <div data-toggle="popover" data-content={{question.taxonomy.domain_name}} data-placement="bottom">
+                          {{question.taxonomy.domain_code}}</div>
+                      <div>
+                         <span data-toggle="popover" data-content={{question.taxonomy.title}} data-placement="bottom">{{question.taxonomy.code}}</span>
+                         {{#if question.taxonomy.loCode}}
+                            <span data-toggle="popover" data-content={{question.taxonomy.loName}} data-placement="bottom"> | {{question.taxonomy.loCode}}</span>
+                         {{/if}}
+                      </div>
+                  </th>
+                  {{/each}}
+                </tr>
+                </div>
+                <div>
+                  <tr>
+                      {{#each reportData.questions as |question index|}}
+                         <th class="domain-competency" scope="col">
+                             <span data-toggle="popover" data-content={{question.question_title}}>Q {{plus-one index}}</span>
+                         </th>
+                      {{/each}}
+                  </tr>
+
+                </div>
+              </div>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each reportData.students  as |student|}}
+            <tr>
+              <div class="student-container">
+                <th class="student-row">
+                  <img src="{{student.avatarUrl}}" alt="student avatar">
+                  <span data-toggle="tooltip" data-placement="right" title={{concat student.lastName ','student.firstName}}>{{student.lastName}}, {{student.firstName}}</span>
+                </th>
+              </div>
+              <div class="body-container">
+                {{#each student.questions as |question index|}}
+                <td class="com-code">
+                  {{#if (eq question.answerObject null)}}
+                    <div lass="com-cell">
+                      <span class="{{concat 'grade-range-text-' (grade-range question.score)}}">{{question.score}}%</span>
+                    </div>
+                  {{else}}
+                  <div class="com-cell">
+                      <div class="ans-option {{if (eq question.content_subformat 'fill_in_the_blank_question') 'fib'}}">
+                        {{#if  (eq question.content_subformat 'fill_in_the_blank_question')}}
+                          {{#if question.status}}
+                            <span class="option fib {{question.status}}" data-toggle="popover" data-content={{question.userAns}} data-placement="bottom">{{question.userAns}}</span>
+                            {{else}}
+                              {{#each question.answers as |option index|}}
+                                   {{#unless question.status}}
+                                      <span class="option {{option.isShowAnswer}}">{{answer-letter index}}</span>
+                                   {{/unless}}
+                              {{/each}}
+                          {{/if}}
+                          {{else}}
+                            {{#each question.answers as |option index|}}
+                                <span class="option {{option.isShowAnswer}}">{{answer-letter index}}</span>
+                            {{/each}}
+                        {{/if}}
+                      </div>
+                      {{#if question.status}}
+                      <div class="ans-icon {{question.status}}" data-toggle="tooltip"
+                          title={{question.status}}>
+                          {{#if (eq question.status 'partially-correct')}}
+                              <img class="img-responsive" src="/assets/gooru/images/tick-green.svg" alt="partially correct">
+                              {{else}}
+                                  {{#if (eq question.status 'correct')}}
+                                      <img class="img-responsive" src="/assets/gooru/images/correct-answer.svg" alt="correct">
+                                      {{else}}
+                                      <img class="img-responsive" src="/assets/gooru/images/wrong-answer.svg" alt="wrong">
+                                  {{/if}}
+                          {{/if}}
+                      </div>
+                      {{else}}
+                      <div class="not-answer-icon">
+                          {{gru-icon name="not_interested"}}
+                      </div>
+                      {{/if}}
+                  </div>
+                  {{/if}}
+                </td>
+                {{/each }}
+              </div>
+            </tr>
+            {{/each}}
+        </tbody>
+      </div>
+      </table>
+    </div>
+  </div>
+</div>
+{{#if isCompetencyReport}}
+  {{class/diagnostic-competency-report
+    competencyData = competencyData
+    context=context
+    classActivities=classActivities
+    classId=classId
+    members = members
+    showPullUp=isCompetencyReport
+    newlyAddedActivity = newlyAddedActivity
+    primaryClass = primaryClass
+    classFramework = classFramework
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}

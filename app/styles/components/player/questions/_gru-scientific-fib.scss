@@ -1,0 +1,53 @@
+.gru-scientific-fib {
+  .fib-answers {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    align-items: center;
+    .answer-details {
+      label {
+        text-transform: capitalize;
+        color: #131415;
+        opacity: 0.7;
+        letter-spacing: normal;
+      }
+      .answer-text {
+        outline: none;
+        letter-spacing: normal;
+        color: #131415;
+        display: flex;
+        font-size: 15px;
+        input {
+          border-bottom: 1px solid #131415;
+          margin: 0px 10px;
+        }
+      }
+      .hint-details {
+        display: grid;
+        span {
+          font-style: italic;
+        }
+      }
+    }
+    .info-icon {
+      width: 24px;
+      height: 24px;
+      background-size: 24px 24px;
+      background-image: url("./gooru/images/question-icon.png");
+      display: block;
+      justify-self: center;
+      object-fit: contain;
+      margin-top: 40px;
+      cursor: pointer;
+    }
+    .close-icon {
+      width: 24px;
+      height: 24px;
+      background-size: 24px 24px;
+      background-image: url("./gooru/images/close-btn.png");
+      display: block;
+      justify-self: center;
+      object-fit: contain;
+      cursor: pointer;
+    }
+  }
+}

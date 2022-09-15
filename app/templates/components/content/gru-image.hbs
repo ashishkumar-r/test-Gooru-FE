@@ -1,0 +1,67 @@
+{{#if isEditing}}
+
+  {{#if editImage}}
+    {{#if isFileInputEmpty}}
+      <img class="img-responsive" {{action (optional (if enabledPreview (action "onShowPreviewpop") null))}} src="{{editImage}}" alt="preview image"//>
+    {{/if}}
+  {{else}}
+    {{gru-icon name="library_add"}}
+  {{/if}}
+
+
+{{#if showAltText}}
+<input type="text" name="altText" value="{{model.metadata.thumbnailAltText}}" onkeyup={{action 'onAltText'}} placeholder="Alt text" class="{{ if (and editImage isFileInputEmpty) 'alt-text-empty' 'alt-text' }}">
+  {{/if}}
+
+  {{#file-picker
+  accept=".jpg,.jpeg,.gif,.png,.svg"
+  dropzone=false
+  fileLoaded=(action 'prepareForSubmission')
+  readAs="readAsFile"
+  errors=filePickerErrors
+  onRemoveFile=(action 'resetImage')
+  removePreview=isFileInputEmpty 
+  id=inputId
+  }}
+
+    <button class="btn btn-info">
+      {{#if editImage}}
+        {{t 'common.update-thumbnail'}}
+      {{else}}
+        {{t 'common.upload-thumbnail'}}
+      {{/if}}
+    </button>
+  {{/file-picker}}
+
+  {{#if editImage}}
+    <button class="delete btn" {{action 'resetImage'}}>{{gru-icon name="delete"}}</button>
+  {{/if}}
+
+  <div class="validation">
+    {{#each filePickerErrors as |error|}}
+      <span class="error">{{error}}</span>
+    {{/each}}
+  </div>
+
+{{else}}
+
+  {{#if srcImage}}
+    <img class="img-responsive" {{action (optional (if enabledPreview (action "onShowPreviewpop") null))}} src="{{srcImage}}" alt="preview image logo"/>
+  {{else}}
+    {{gru-icon name="library_add"}}
+  {{/if}}
+
+{{#if showAltText}}
+<input type="text" class="disable" value="{{model.metadata.thumbnailAltText}}" class="{{ if (and editImage isFileInputEmpty) 'alt-text-empty' 'alt-text' }}">
+{{/if}}
+{{/if}}
+
+{{#if (and isShowImagePreview enabledPreview)}}
+  <div class="cl-image-preivew-popup">
+      <div class="backdrops" {{action "onShowPreviewpop"}}></div>
+      <div class="image-content-box">
+          <span class="material-icons close-icon-btn" {{action "onShowPreviewpop"}}>clear</span>
+          <img src="{{srcImage}}" alt="image">
+      </div>
+  </div>
+{{/if}}

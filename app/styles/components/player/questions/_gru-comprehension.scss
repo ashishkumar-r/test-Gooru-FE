@@ -1,0 +1,69 @@
+.gru-comprehension {
+  .gru-comprehension-player {
+    .gru-comprehension-container {
+      .gru-comprehension-panel {
+        background-color: $white;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        box-shadow: 0 0 10px $light-300;
+        padding-bottom: 5px;
+        .gru-question-viewer {
+          display: grid;
+
+          .answers-panel {
+            margin: auto;
+            width: 100%;
+            .panel {
+              margin: 0;
+              box-shadow: none;
+              background-color: $table-bg;
+              .panel-body {
+                padding: 0 20px;
+
+                .font-size-loader {
+                  display: none;
+                  input {
+                    width: 150px;
+                    margin-left: 10px;
+                  }
+                }
+              }
+
+              .SERP_WPM,
+              .SERP_SR,
+              .SERP_PCR {
+                .panel-body {
+                  padding-bottom: 5px;
+                  h2 {
+                    display: flex;
+                    align-items: center;
+                  }
+                  .font-size-loader {
+                    display: block;
+                    font-size: 12px;
+                    margin-left: 10px;
+                    display: flex;
+                    align-items: center;
+                  }
+                }
+              }
+            }
+            .actions {
+              display: none;
+            }
+          }
+          .question-panel {
+            .panel {
+              margin: 0;
+              box-shadow: none;
+              background-color: $table-bg;
+              .panel-body {
+                padding: 0 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

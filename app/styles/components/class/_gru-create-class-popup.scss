@@ -1,0 +1,181 @@
+.gru-create-class-popup {
+  width: 220px;
+  margin: 10px 10px 10px;
+  float: left;
+
+  .gru-create-class-container {
+    background-color: $sky-300;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    position: relative;
+    /* width */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: $gray-sharper;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: $light-300;
+      border-radius: 5px;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: $list-group-link-color;
+    }
+
+    .gru-create-class-panel {
+      min-height: 300px;
+      .gru-create-class-panel-header {
+        display: grid;
+        grid-template-columns: 1fr 30px;
+        align-items: center;
+        padding: 10px;
+        background-color: $sky-400;
+
+        .panel-title {
+          font-weight: bold;
+          font-size: 14px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        .close-panel {
+          display: grid;
+          cursor: pointer;
+          align-items: center;
+
+          i {
+            font-size: 25px;
+            color: $white;
+          }
+        }
+      }
+
+      .gru-create-class-panel-body {
+        .panel-list-heading {
+          padding: 5px 10px;
+          background-color: $sky-400;
+          display: grid;
+          grid-template-columns: 30px 1fr;
+          align-items: center;
+          border-top: 1px solid $panel-border;
+          border-bottom: 1px solid $panel-border;
+          font-weight: bold;
+
+          span {
+            display: grid;
+            align-items: center;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+
+          .back-btn {
+            cursor: pointer;
+
+            i {
+              font-size: 20px;
+            }
+          }
+        }
+
+        .second-header {
+          height: 180px !important;
+        }
+
+        .list-blk {
+          margin: 0;
+          padding: 10px;
+          list-style: none;
+          scrollbar-width: thin;
+          height: 210px;
+          overflow-y: scroll;
+
+          li {
+            cursor: pointer;
+            padding: 2px 0;
+          }
+        }
+      }
+    }
+
+    .comfirmation-panel {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      z-index: 10;
+      bottom: 0;
+      background-color: $white;
+      padding: 10px;
+
+      .title {
+        display: block;
+        color: $dark-500;
+        line-height: normal;
+
+        span {
+          font-weight: bold;
+          display: unset;
+        }
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          margin: 5px;
+          padding: 5px;
+          background-color: $sky-300;
+          width: fit-content;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .help-text {
+      position: absolute;
+      width: 100%;
+      height: 45px;
+      z-index: 10;
+      bottom: 0;
+      background-color: $white;
+      padding: 10px;
+
+      .title {
+        display: block;
+        color: $dark-500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: bold;
+        font-style: italic;
+      }
+    }
+  }
+
+  &.class-card-only {
+    width: 300px;
+    height: 300px;
+    margin: 0 10px 10px;
+    .gru-create-class-container {
+      height: 96%;
+      .gru-create-class-panel {
+        .gru-create-class-panel-body {
+          .second-header {
+            height: 170px !important;
+          }
+          .list-blk {
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+}

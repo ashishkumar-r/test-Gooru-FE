@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <div class="img-container">
+    <span class="brand-image" />
+  </div>
+  <div class="header-content">
+    <span class="modal-title lead">
+      {{t 'gru-login-prompt.title'}}
+    </span>
+    <p>
+      {{t 'gru-login-prompt.instructions'}}
+    </p>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="existing-user">
+    <div>
+      <p>
+        {{t 'gru-login-prompt.existing-user'}}
+      </p>
+    </div>
+    <div class="action-container">
+      <button type="button" class="btn btn-default sign-in-button" {{action 'signIn'}} data-dismiss="modal" aria-label="{{t 'gru-login-prompt.sign-in'}}">
+          <span aria-hidden="true">{{t 'gru-login-prompt.sign-in'}}</span>
+      </button>
+    </div>
+  </div>
+  <div class="new-user">
+    <div class="">
+      <p>
+        {{t 'gru-login-prompt.new-user'}}
+      </p>
+    </div>    
+    <div class="action-container">
+      <button type="button" class="btn btn-default sign-up-button" {{action 'signUp'}} data-dismiss="modal" aria-label="{{t 'gru-login-prompt.sign-up'}}">
+          <span aria-hidden="true">{{t 'common.signUp'}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default btn-block not-now" data-dismiss="modal" aria-label="{{t 'gru-login-prompt.not-now'}}">
+        <span aria-hidden="true">{{t 'gru-login-prompt.not-now'}}</span>
+    </button>
+</div>

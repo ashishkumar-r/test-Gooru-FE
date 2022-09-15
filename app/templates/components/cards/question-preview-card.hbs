@@ -1,0 +1,205 @@
+<div class="question-preview-container {{question.type}} {{if (and isReportView (eq question.type 'SERP_AFC')) 'preview-answer'}} {{if isShowCorrectAnswer 'answer-visible'}} {{if question.isFade 'fade-content'}}">
+  <div class="question-header-container">
+    <div class="question-title-container">
+      <div class="question-order">{{contentSeq}}.</div>
+      <div class="question-icon"></div>
+      <div class="title ellipsis">{{safe-html question.title}}</div>
+    </div>
+    {{#if isReportView}}
+      <div class="question-performance-container">
+        <div class="question-reaction">
+          {{reaction-icon question.reaction }}
+        </div>
+        {{#if (eq question.answerStatus 'skipped')}}
+          <div class="question-status" data-toggle="tooltip" title="Skipped">
+            {{gru-icon name="block"}}
+          </div>
+        {{else}}
+          <div class="question-score">
+            {{#if (eq question.maxScore 1)}}
+              {{#if (gte question.score)}}
+                {{gru-icon name=(if (eq question.score 0) 'clear' 'done')}}
+              {{/if}}
+            {{else}}
+              {{question.score}}/{{question.maxScore}}
+            {{/if}}
+          </div>
+        {{/if}}
+        <div class="question-timespent">
+          {{format-time question.timespent}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  <div class="taxonomies-conatiner">
+    {{#if taxonomyTags.length}}
+      {{taxonomy/gru-taxonomy-tag-list tags=taxonomyTags tagsVisible=2 isInCard=true}}
+    {{/if}}
+  </div>
+  <div class="question-description">
+    {{#unless (eq question.type 'SE_FIB')}}
+      {{{gru-math-text text=question.text}}}
+    {{/unless}}
+  </div>
+  {{#if (eq question.type 'SERP_CO')}}
+    <div class="question-description">
+      {{{gru-math-text text=question.questionText}}}
+    </div>
+  {{/if}}
+  {{#if question.thumbnail}}
+    <div class="question-thumbnail">
+      <img src="{{question.thumbnail}}" alt="thumbnail-{{question.id}}" />
+    </div>
+  {{/if}}
+  <div class="answer-container {{unless isReportView 'single-container'}}">
+    {{#if isReportView}}
+      <div class="user-answer answer-section">
+        <div class="answer-type-label type-label">
+          {{#if (not question.userAnswer)}}
+            {{t 'common.answer'}}
+          {{else}}
+            {{#if isStudent}}
+              {{t 'common.answer'}}
+            {{else}}
+              {{t 'common.student'}} {{t 'gru-question-viewer.answer'}}
+            {{/if}}
+          {{/if}}
+        </div>
+        <div class="answer-value-container">
+          {{#if (or question.userAnswer (eq question.type 'SERP_AFC'))}}
+            {{{component (question-config question.type 'component.answer') question=question collection=collection classData=classData subQuestions=question.subQuestions userAnswer = question.userAnswer answerObj = question.answerObject}}}
+          {{else}}
+            {{{component (question-config question.type 'component.player') question=question collection=collection classData=classData readOnly=true answerObj = question.answerObject}}}
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+    {{#unless (or (eq question.type 'SE_FIB') (eq question.type 'SE_FRQ') (and (eq question.type 'SERP_AFC') isReportView))}}
+      <div class="correct-answer answer-section {{if (and isReportView (not isShowReportCorrectAnswer)) 'hidden'}}">
+        {{#if isReportView}}
+          <div class="answer-type-label type-label">{{t 'common.correct-answer'}}</div>
+        {{/if}}
+        <div class="answer-value-container">
+          {{#if (and isShowReportCorrectAnswer isShowCorrectAnswer)}}
+            {{{component (question-config question.type 'component.answer') collection=collection classData=classData baseQuestion=question subQuestions=question.subQuestions isShowReportCorrectAnswer=isShowCorrectAnswer question=question isPreviewCard= true showCorrect = true}}}
+          {{else}}
+            {{{component (question-config question.type 'component.player') collection=collection classData=classData baseQuestion=question isPreviewCard=true question=question  readOnly=true answerObj = question.answerObject}}}
+          {{/if}}
+        </div>
+      </div>
+    {{/unless}}
+    {{#if (not isStudent)}}
+      {{#if attachments }}
+        <section class="existing-upload-section">
+          <div class="title ellipsis">{{t "references.exemplar_attachment"}} </div>
+          <div class='upload-list-container'>
+            {{#each attachments as | refItem index|}}
+              {{#if (eq question.type 'SERP_DA')}}
+                <div class="answer-container">
+                  <div class="">
+                    {{refItem.audio_text}}
+                  </div>
+                  <div class="audio-player crct-ans-player-{{index}}">
+                    <span class="audio-progress">
+                      <span class="progress-filling">
+                        <span class="progress-pointer"></span>
+                      </span>
+                    </span>
+                    {{#if (and (eq answerIndex index) isPause)}}
+                      <span class="audio-play" onclick={{action 'onPauseAudio'}} onkeypress={{action 'onPauseAudio'}} tabindex={{tabindex}}>
+                        {{gru-icon name="pause_arrow"}}
+                      </span>
+                    {{else}}
+                      <span class="audio-play" data-audio-url="{{refItem.audio_url}}" onclick={{action "onPlayAudio" (concat 'crct-ans-player-' index) refItem.audio_url index}}
+                        onkeypress={{action "onPlayAudio" (concat 'crct-ans-player-' index) refItem.audio_url index}} tabindex={{tabindex}}>
+                        {{gru-icon name="play_arrow"}}
+                      </span>
+                    {{/if}}
+                  </div>
+                </div>
+              {{/if}}
+              {{#if (eq question.type 'SERP_SOL')}}
+                <div class="answer-container sayout-loud">
+                  <div class="audio_text">
+                    {{safe-html refItem.audio_text}}
+                  </div>
+                  <div class="audio-player crct-sayout-player-{{index}}">
+                    <span class="audio-progress">
+                      <span class="progress-filling">
+                        <span class="progress-pointer"></span>
+                      </span>
+                    </span>
+                    {{#if (and (eq answerIndex index) isPause)}}
+                      <span class="audio-play" onclick={{action 'onPauseAudio'}} onkeypress={{action 'onPauseAudio'}} tabindex={{tabindex}}>
+                        {{gru-icon name="pause_arrow"}}
+                      </span>
+                    {{else}}
+                      <span class="audio-play" data-audio-url="{{refItem.audio_url}}" onclick={{action "onPlayAudio" (concat 'crct-sayout-player-' index) refItem.audio_url index}}
+                        onkeypress={{action "onPlayAudio" (concat 'crct-sayout-player-' index) refItem.audio_url index}} tabindex={{tabindex}}>
+                        {{gru-icon name="play_arrow"}}
+                      </span>
+                    {{/if}}
+                  </div>
+                </div>
+              {{/if}}
+
+              {{#if (eq question.type 'SERP_ID')}}
+                <div class="answer-container answer-section identify-digraph">
+                  <div class="">
+                    <p class="answer-edit-{{index}}">
+                      {{safe-html refItem.answer_text}}
+                    </p>
+                  </div>
+                  <div class="identify-digraph-exemplar">
+                    {{#each refItem.correct_answer as | correctList correctItem|}}
+                      <div class="audio_text">
+                        {{correctList.text}}
+                      </div>
+                      <div class="audio-player crct-ans-player-{{index}}-{{correctItem}}">
+                        <span class="audio-progress">
+                          <span class="progress-filling">
+                            <span class="progress-pointer"></span>
+                          </span>
+                        </span>
+                        {{#if (and (eq answerIndex index) (eq playerIndex correctItem)  isPause)}}
+                          <span class="audio-play" {{action 'onPauseAudio'}}>
+                            {{gru-icon name="pause_arrow"}}
+                          </span>
+                        {{else}}
+                          <span class="audio-play" data-audio-url="{{correctList.audio_file_url}}" {{action "onPlayAudio" (concat 'crct-ans-player-'index '-' correctItem) correctList.audio_file_url index correctItem }}>
+                            {{gru-icon name="play_arrow"}}
+                          </span>
+                        {{/if}}
+                      </div>
+                    {{/each}}
+                  </div>
+                </div>
+              {{/if}}
+
+              {{#if (eq refItem.type 'uploaded')}}
+                <div class="upload-item-container">
+                  <span class="uploaded-item">
+                    <a href='{{refItem.filePath}}' target="_blank">
+                      <span class="image">
+                        <i class="{{refItem.subType}}-icon"></i>
+                      </span>
+                      <span class="text-capitalize">
+                        {{refItem.fileName}}
+                      </span>
+                    </a>
+                  </span>
+
+                </div>
+              {{/if}}
+            {{/each}}
+          </div>
+        </section>
+      {{/if}}
+      {{#if isShowFeedback}}
+      <div class="feedback-title">
+        {{input type=type value=question.feedbackComment placeholder=(t 'general-comments') maxlength=1000}}
+      </div>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{{#if followers.length}}
+
+  <div class="controller network-followers">
+    <div class="followers col-md-12 col-sm-12 col-xs-9 clearfix">
+      {{#each followers as |follower|}}
+        <div class="card">
+          {{cards/gru-user-network-card user=follower onUnFollowUser='unFollowUser' myFollowings=myFollowings onFollowUser='followUser'}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+{{else}}
+
+  <div class="panel add-content panel-default">
+    <div class="panel-body">
+      {{gru-icon name='explore'}}
+
+      {{#if isMyProfile}}
+        <p>{{t "common.no-followers"}}</p>
+      {{else}}
+        <p>{{t "common.nothing-to-display"}}</p>
+      {{/if}}
+    </div>
+  </div>
+
+{{/if}}

@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <span class="suggestion-title">
+      {{t 'reroute.suggestion'}}
+  </span>
+</div>
+<div class="modal-body">
+  <div class="suggestion-details">
+    <div class="title">{{t 'reroute.suggestion.title'}}</div>
+  </div>
+  <div class="lesson-info-container">
+    <i class="lesson-icon"></i>
+    {{#if dependentLesson}}
+       <p>{{t 'reroute.lesson.suggestion'}} "{{dependentLesson.lesson_title}}"</p>
+    {{/if}}
+  </div>
+  <div class="action">
+    <div class="accept" {{action "onContinueLessonSuggestion"}}>
+      {{t 'gru-assessment-confirmation.continue'}}
+    </div>
+  </div>
+</div>

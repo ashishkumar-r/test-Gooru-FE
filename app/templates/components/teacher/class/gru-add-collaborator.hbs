@@ -1,0 +1,33 @@
+<div class="add-collaborator-container">
+  <div class="collaborator-list-conatiner">
+    {{#each users as |user userIndex|}}
+      <div class="selected-user">
+        <div class="user-thumbnail" style="background-image: url({{user.avatarUrl}})"></div>
+        <div class="user-name ellipsis">{{user.fullName}}</div>
+        <div class="user-email">({{user.email}})</div>
+        <div class="remove-user" onclick={{action "onRemoveUser" user}} onkeypress={{action "onRemoveUser" user}} tabindex={{tabindex}}>{{gru-icon name="clear"}}</div>
+      </div>
+    {{/each}}
+    <div class="email-value-container">
+        {{input
+          type="text"
+          value=userEmail
+          class=(concat 'email-value' (if inValidEmail ' in-valid'))
+          placeholder = (t 'class.add-teachers')
+          title='teacherEmail'
+          tabindex=tabindex
+        }}
+        <span class="validate-icon {{if isEnableValidateIcon 'enabled'}}" onclick={{action "onValidateEmail"}} onkeypress={{action "onValidateEmail"}} tabindex={{tabindex}}>{{gru-icon name="add_circle"}}</span>
+        {{#if inValidEmail}}
+          <span class="error-msg">{{t 'no-teacher-found'}}</span>
+        {{/if}}
+        {{#if isDuplicateEmail}}
+          <span class="error-msg">{{t 'common.email.error'}}</span>
+        {{/if}}
+    </div>
+  </div>
+  <div class="collaborator-action-container">
+    <div class="action-btn cancel-btn" onclick={{action "onToggleAddCollaborator"}} onkeypress={{action "onToggleAddCollaborator"}} tabindex={{tabindex}}>{{t 'common.cancel'}}</div>
+    <div class="action-btn done-btn {{unless isEnableDone 'disable-event'}}" onclick={{action "onAddCollaborators"}} onkeypress={{action "onAddCollaborators"}} tabindex={{tabindex}}>{{t 'common.done'}}</div>
+  </div>
+</div>

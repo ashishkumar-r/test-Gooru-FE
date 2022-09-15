@@ -1,0 +1,64 @@
+.dashboard-content-panel {
+  background-color: $dark-400;
+  min-height: 100vh;
+
+  .hide-content {
+    display: none !important;
+  }
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: 33% repeat(2, 1fr);
+    grid-column-gap: 20px;
+    padding: 30px;
+    width: 90%;
+    margin: 0 auto;
+    grid-row-gap: 10px;
+    max-width: 1300px;
+
+    &.disable-reminder-card {
+      grid-template-columns: repeat(2, 50%);
+
+      @media screen and (max-width: 750px) {
+        width: 100%;
+        grid-template-columns: 100%;
+        padding: 10px;
+        padding-top: 70px;
+      }
+    }
+
+    @media screen and (max-width: 1025px) {
+      grid-template-columns: repeat(2, 50%);
+      width: 98%;
+    }
+    @media screen and (max-width: 750px) {
+      width: 100%;
+      grid-template-columns: 100%;
+      padding: 10px;
+    }
+    @media screen and (max-width: 799px) {
+      padding-top: 80px;
+    }
+  }
+}
+
+.player-pull-up {
+  top: 0;
+}
+
+.student_class_dashboard {
+  .app-container {
+    padding-top: 50px;
+    .student.class {
+      width: 100%;
+      .header .panel.classroom-information .panel-body {
+        @media screen and (max-width: 799px) {
+          margin-top: 42px;
+        }
+      }
+    }
+  }
+
+  .gru-student-class-progress-report-popup {
+    position: static;
+  }
+}

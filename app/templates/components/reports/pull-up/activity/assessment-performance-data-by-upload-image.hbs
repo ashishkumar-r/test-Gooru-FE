@@ -1,0 +1,145 @@
+<!-- Desktop View -->
+<div class="panels">
+  <div class="left-panel">
+    <div class="collection-image-container" style="background-image: url({{assessment.thumbnailUrl}})">
+      <div class="collection-standards">
+        {{#if taxonomyTags.length}}
+          {{taxonomy.gru-taxonomy-tag-list
+              tags=taxonomyTags
+              tagsVisible=1
+              isInCard=true}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="hidden visible-xs">
+      {{#if showError}}
+        <div class="error-message">
+          <span class="error-icon">{{gru-icon name="info"}}</span>
+          <span class="text">{{ t 'i2d.mobile-upload-failed'}}</span></div>
+      {{/if}}
+    </div>
+    {{#if selectedFiles}}
+      <div class="selected-image-container">
+        {{#each selectedFiles as |selectedFile index|}}
+          <div class="selected-image-panel {{if (eq activePreviewIndex index) 'active'}}">
+            <div class="image-preview">
+              <img src="{{selectedFile.url}}" alt="selectedFile"/>
+            </div>
+            <div class="image-name ellipsis">
+              <span class="ellipsis">{{selectedFile.name}}</span>
+              {{#if selectedFile.isUploadFailed}}
+                <div class="error-bar"></div>
+              {{/if}}
+            </div>
+            <div class="status-icon">
+              {{#if selectedFile.isUploadSuccess}}
+                <i class="sucess"></i>
+              {{else if selectedFile.isUploadFailed}}
+                {{gru-icon name="info"}}
+              {{/if}}
+            </div>
+          </div>
+          {{#if selectedFile.isUploadFailed}}
+            <div class="error-panel">
+              <div class="message">{{t 'i2d.upload-failed'}}</div>
+              <div class="actions">
+                {{#file-picker
+                  accept=mimeType
+                  preview=false
+                  dropzone=false
+                  errors=filePickerErrors
+                  fileLoaded=(action 'prepareForReUpload')
+                  readAs="readAsFile"
+                  onRemoveFile=(action 'resetFileSelection')
+                }}
+                  <button type="button" class="submit-btn" {{action 'onReUpload' selectedFile}}>
+                    {{t 're-upload'}}
+                  </button>
+                {{/file-picker}}
+                <button type="button" class="ignore-btn" {{action 'onIgnore' selectedFile}}>
+                  {{t 'common.ignore'}} & {{t 'gru-assessment-confirmation.continue'}}
+                </button>
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+      <div class="btn-container">
+        <button type="button" class="submit-btn hidden visible-xs" {{action 'onConfirmUpload'}}>
+          {{t 'common.confirm'}} & {{t 'gru-assessment-confirmation.continue'}}
+        </button>
+      </div>
+    {{/if}}
+    {{#unless showScoreReview}}
+      <div class="file-picker-container">
+        {{#file-picker
+            accept=mimeType
+            preview=false
+            dropzone=false
+            fileLoaded=(action 'prepareForSubmission')
+            readAs="readAsFile"
+            errors=filePickerErrors
+            onRemoveFile=(action 'resetFileSelection')
+          }}
+          <div class="file-picker-panel">
+            <i class="icon"></i>
+            <span class="title">{{t 'file-picker-placeholder'}}</span>
+          </div>
+        {{/file-picker}}
+      </div>
+    {{/unless}}
+  </div>
+  <div class="right-panel {{if selectedFiles 'show-toggle'}}">
+    {{#if selectedFiles}}
+      <div class="toggle-btns">
+        <button type="button" class="btn-primary {{unless showScoreReview 'active'}}" {{action 'showImagePreview'}}>
+          {{t 'resource.image'}} {{t 'common.preview'}}
+        </button>
+        <button type="button" class="btn-primary {{if showScoreReview 'active'}}" {{action 'showStudentScores'}}>
+          {{t 'gru-performance-summary.scores'}}
+        </button>
+      </div>
+    {{/if}}
+    <div class="preview-panel">
+      {{#if selectedFiles}}
+        {{gru-i2d-preview
+          previewContents=selectedFiles
+          activePreviewIndex=activePreviewIndex
+          activeContent=activeContent
+          showConfirm=showConfirm
+          studentList=studentList
+          questions=questions
+          showToggle=showToggle
+          showScoreReview=showScoreReview
+          selectedFile=selectedFile
+          isDisableButton=isDisableButton
+          onPrepareForReUpload="prepareForReUpload"
+          onConfirmUpload="onConfirmUpload"
+          onConfirmScore="onConfirmScore"
+        }}
+      {{else}}
+        <div class="prev-message">{{t 'no-preview-available'}}</div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+<!-- Mobile View Section-->
+{{#unless (or isUpload showScoreReview)}}
+  <div class="container-xs hidden visible-xs">
+    <div class="footer-panel">
+      {{#file-picker
+        accept=mimeType
+        preview=false
+        dropzone=false
+        fileLoaded=(action 'prepareForSubmission')
+        readAs="readAsFile"
+        errors=filePickerErrors
+        onRemoveFile=(action 'resetFileSelection')
+      }}
+        <div class="tap-section"></div>
+      {{/file-picker}}
+      <span class="info-msg">{{t 'mobile-camera-placeholder'}}</span>
+    </div>
+  </div>
+{{/unless}}

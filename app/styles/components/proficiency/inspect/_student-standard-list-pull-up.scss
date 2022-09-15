@@ -1,0 +1,281 @@
+.student-standard-list-pull-up {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  background-color: $white;
+  z-index: 100;
+  height: 100%;
+
+  .ca-datepicker-schedule-container {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+  }
+
+  @media screen and (max-width: 800px) {
+    top: 60%;
+  }
+
+  a {
+    color: $dark-200;
+    text-decoration: none;
+  }
+
+  .student-standard-list-container {
+    @media screen and (max-width: 800px) {
+      &.pullUp {
+        position: absolute;
+        width: 100%;
+        background-color: $white;
+      }
+    }
+
+    .student-standard-list-panel {
+      .student-list-panel-head {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        box-shadow: 0 3px 5px $light-200;
+        grid-column-gap: 10px;
+
+        .title {
+          span {
+            display: block;
+            line-height: 1.4;
+          }
+        }
+
+        .close-icon {
+          display: flex;
+          align-items: center;
+          padding: 0;
+
+          i {
+            font-size: 25px;
+          }
+        }
+      }
+
+      .student-list-panel-body {
+        .select-competency-details {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          padding: 10px;
+          height: 150px;
+          overflow-y: auto;
+
+          .competency-description-section {
+            .competency-title-head {
+              font-weight: bold;
+            }
+
+            .description {
+              display: block;
+            }
+          }
+
+          .action-button {
+            display: grid;
+
+            .suggestion-icon {
+              color: $font-orange-49-dark-400;
+              position: relative;
+
+              .sugg-count {
+                position: absolute;
+                border: 1px solid $light-200;
+                background-color: $white;
+                width: 22px;
+                height: 22px;
+                display: grid;
+                align-items: center;
+                justify-content: center;
+                top: -10px;
+                right: 10px;
+                border-radius: 50%;
+              }
+            }
+
+            .print-icon {
+              color: $font-blue-8e7-blue-dark;
+            }
+          }
+        }
+
+        .student-list-content-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px 9px;
+
+          .label-student {
+            margin-left: 20px;
+            font-weight: bold;
+          }
+
+          .class-container-proficiency {
+            .search-input-container {
+              display: flex;
+              position: relative;
+              border: none;
+
+              @media screen and (max-width: $screen-xs) {
+                width: 100%;
+                padding-left: 5px;
+                padding-right: 5px;
+              }
+
+              #studentDomainLocal {
+                -webkit-appearance: none;
+                outline: none;
+                width: 219px;
+                height: 38px;
+                text-indent: 10px;
+                margin-top: 4px;
+                margin-bottom: 3px;
+                font-size: inherit;
+                margin-left: 5px;
+                cursor: text;
+
+                @media screen and (max-width: $screen-xs) {
+                  width: 100%;
+                }
+              }
+
+              .custom-search-icon {
+                width: 16px;
+                height: 17px;
+                color: $gray;
+                cursor: pointer;
+                position: absolute;
+                right: 0;
+                margin-top: -6px;
+                margin-right: 15px;
+
+                .search {
+                  font-size: 24px;
+                  margin-top: 16px;
+                }
+              }
+            }
+          }
+        }
+
+        .student-list-content-section {
+          overflow: hidden;
+          height: calc(100vh - 400px);
+          overflow-y: auto;
+
+          .no-content-message {
+            padding: 10px;
+            text-align: center;
+            color: $font-green-35-dark-400;
+            display: block;
+          }
+
+          .student-detail-card {
+            display: grid;
+            grid-template-columns: 40px 1fr 40px 50px;
+            align-items: center;
+            height: 50px;
+
+            @media print {
+              .grade-range-0-59 {
+                background: $red-400 !important;
+              }
+
+              .grade-range-60-69 {
+                background: $orange-400 !important;
+              }
+
+              .grade-range-70-79 {
+                background: $grade-range-70-79-bg !important;
+              }
+
+              .grade-range-80-89 {
+                background: $grade-range-80-89-bg !important;
+              }
+
+              .grade-range-90-100 {
+                background: $bg-green-700-green-dark !important;
+              }
+            }
+
+            .profile-icons {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              margin: 0 auto;
+              display: grid;
+              align-items: center;
+
+              img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+              }
+            }
+
+            .student-name {
+              @include ellipsis(
+                $font-size: 14px,
+                $line-height: 1.2,
+                $lines-to-show: 1
+              );
+            }
+
+            .suggestion-icon {
+              color: $font-orange-49-dark-400;
+              position: relative;
+
+              .sugg-count {
+                position: absolute;
+                border: 1px solid $light-200;
+                background-color: $white;
+                width: 22px;
+                height: 22px;
+                display: grid;
+                align-items: center;
+                justify-content: center;
+                top: -10px;
+                right: 10px;
+                border-radius: 50%;
+              }
+            }
+
+            .performance {
+              width: 100%;
+              height: 100%;
+              display: grid;
+              align-items: center;
+              justify-content: center;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media print {
+    .print-preview {
+      display: none !important;
+    }
+
+    .gru-standard-domain-panel-container {
+      display: none !important;
+    }
+  }
+}
+
+.gru-standard-domain-panel-container {
+  &.pullUp {
+    .student-standard-list-pull-up {
+      @media screen and (max-width: 800px) {
+        top: 0;
+      }
+    }
+  }
+}

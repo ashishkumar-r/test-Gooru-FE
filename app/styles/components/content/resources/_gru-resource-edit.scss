@@ -1,0 +1,283 @@
+.content.resources.edit {
+  .panel-body {
+    .external-https {
+      @include flexbox;
+      @include flex-direction(column);
+      @include align-items(center);
+      @include justify-content(center);
+      padding: 2em;
+
+      .gru-resource-card .header {
+        border-bottom: none;
+        padding: 0;
+      }
+    }
+
+    .form-field {
+      &.title {
+        padding-left: 0;
+      }
+    }
+
+    .not-iframe {
+      padding: 25px;
+
+      .panel-header {
+        text-align: center;
+      }
+
+      p.description {
+        line-height: $font-size-base;
+      }
+
+      p.title {
+        font-size: $font-size-large;
+        font-weight: 300;
+        margin: 0 0 7px;
+      }
+
+      .panel-footer {
+        text-align: center;
+        background-color: $white;
+      }
+
+      .panel-body {
+        display: flex;
+        justify-content: center;
+        $line-height: 1.2;
+        text-decoration: none;
+        color: $text-color;
+
+        .cards.gru-resource-card {
+          margin: 0 auto;
+
+          .panel-heading {
+            padding: 12px 15px 0;
+
+            .header {
+              padding: 0;
+              margin: 0;
+              border: 0;
+
+              i {
+                &.webpage-icon {
+                  width: 29px;
+                }
+
+                &.video-icon {
+                  width: 35px;
+                }
+
+                &.video-icon {
+                  width: 37px;
+                }
+
+                &.image-icon {
+                  width: 36px;
+                }
+
+                &.text-icon {
+                  width: 36px;
+                }
+
+                &.interactive-icon {
+                  width: 40px;
+                }
+              }
+            }
+          }
+
+          .panel-body {
+            padding: 12px 15px 0;
+            display: block;
+
+            .publisher {
+              a {
+                color: $blue-400;
+              }
+            }
+          }
+
+          .panel-footer {
+            margin: 0;
+            text-align: $tab-float-dir;
+
+            .buttons {
+              padding: 10px;
+              width: 40px;
+            }
+
+            .resource-icon-btn {
+              width: 40px;
+            }
+          }
+        }
+      }
+    }
+
+    .gru-taxonomy-selector {
+      > div {
+        display: table;
+      }
+
+      .gru-subject-picker {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .tag-section {
+    display: grid;
+    grid-gap: 15px;
+
+    .input-tag-box {
+      .input-tags {
+        width: 100%;
+      }
+    }
+
+    .word-suggestion {
+      list-style: none;
+      position: absolute;
+      background-color: $white;
+      width: 35%;
+      padding: 0;
+      border: 1px solid $gray-light;
+      z-index: 1;
+      border-radius: 5px;
+      max-height: 250px;
+      overflow: auto;
+
+      li {
+        padding: 10px;
+        cursor: pointer;
+
+        &.label {
+          text-transform: uppercase;
+          color: $dark-100;
+          cursor: inherit;
+        }
+      }
+
+      li:hover {
+        background-color: $gray-ultra-light;
+
+        &.label {
+          background-color: unset;
+        }
+      }
+    }
+
+    .tag-list {
+      display: flex;
+      column-gap: 10px;
+
+      .list {
+        color: $gray;
+        display: inline-block;
+        border: 1px solid $gray-light;
+        padding: 0 3px 2px;
+        border-radius: 4px;
+        background-color: $white;
+        margin-bottom: 3px;
+        vertical-align: top;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 15px;
+        align-items: center;
+
+        &.disable-events {
+          grid-template-columns: 1fr 2px;
+        }
+
+        span {
+          padding: 3px 10px 0 10px;
+        }
+
+        i {
+          cursor: pointer;
+          font-size: 13px;
+          text-align: end;
+          height: 17px;
+        }
+      }
+    }
+  }
+
+  .tags {
+    margin: 10px 0;
+  }
+
+  .century-skills {
+    > label {
+      width: 100%;
+
+      .choose {
+        float: $tab-float-dir;
+        padding: 4px 16px;
+      }
+
+      .skills-buttons {
+        width: inherit;
+        margin: 5px 0 0;
+        float: $tab-float-dir;
+      }
+    }
+  }
+}
+
+#resource {
+  > .header {
+    .actions {
+      float: $menu-float-dir;
+    }
+  }
+
+  > .content {
+    iframe {
+      height: 100vh;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    > small {
+      display: block;
+      line-height: 1.3;
+      font-style: italic;
+    }
+
+    .gru-file-picker {
+      > div {
+        @include flexbox();
+
+        input {
+          width: 80%;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .file-picker {
+          @include flex();
+
+          .upload.btn {
+            margin-left: 5px;
+
+            .fa-upload {
+              font-size: $font-size-large;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+
+      & + .validation {
+        .error {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

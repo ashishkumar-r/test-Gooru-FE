@@ -1,0 +1,75 @@
+<div class="nav-player-container">
+  <div class="title-container">
+      <div class="title-info">
+        <div class="icon {{if isCollection 'collection' 'assessment'}} "></div>
+        <div class="title">
+          {{#if isPlayerProficiency}}
+            <span> {{courseTitle}} </span>
+          {{else}}
+            <span> {{collection.title}} </span>
+          {{/if}}
+        </div>
+      </div>
+  </div>
+  <div class="information-container">
+    <ul>
+      {{#if (and (not isPublicClass) isShowStudyTimerWidget)}}
+        <li {{action 'showTimer'}} class="{{if isShowStudyTimer 'active'}} hide-div">
+          <span>{{t 'common.timeSpent'}}</span><span class="active-icon {{unless showConfirmation 'blink'}}"></span>
+        </li>
+        <li {{action 'showTimer'}} class="{{if isShowStudyTimer 'active'}} show-div">
+          <span class="material-icons-two-tone">av_timer</span>
+        </li>
+      {{/if}}
+      {{#if isShowActivityFeedback}}
+        <li {{action 'showFeedbackContainer'}} class="{{if isShowFeedbackContainer 'active'}} hide-div" >{{t 'common.give-feedback'}}</li>
+        <li {{action 'showFeedbackContainer'}} class="{{if isShowFeedbackContainer 'active'}} show-div">
+          <span class="material-icons-outlined">thumbs_up_down</span>
+        </li>
+      {{/if}}
+    </ul>
+    <div class="button-container">
+      {{#if isStandalonePlayer}}
+        {{#if isIframeMode}}
+          <div aria-label="close" {{action "onClosePlayer" }}  class="next" >
+            <span class="exit">{{t 'common.close'}}</span>
+          </div>
+        {{else}}
+        <div aria-label="back" {{action 'goBack'}} class="next">
+           <span class="exit">
+             {{#if lesson}}
+               {{#if isStudent}}
+                {{t "common.back-to-data"}}
+               {{else}}
+                {{t (if backUrl "common.back-to-data" "common.back-to-course-map")}}
+              {{/if}}
+            {{else}}
+              {{t 'common.close'}}
+            {{/if}}
+          </span>
+        </div>
+        {{/if}}
+      {{else}}
+        <div role="button" aria-label="previous" class="prev disabled">
+          {{gru-icon name="arrow_back"}}
+          <span>{{t "qz-question-viewer.previous"}}</span>
+        </div>
+        {{#if isDone}}
+          {{#if classId}}
+            <div aria-label="exit" {{action "onExit" 'student.class.course-map' classId }}  class="next {{unless isNextEnabled 'disabled'}}" >
+              <span class="exit">{{t 'common.exit'}}</span>
+            </div>
+          {{else}}
+            <div {{action "onExit" 'student.independent.course-map' courseId }}  class="next {{unless isNextEnabled 'disabled'}}" aria-label="exit">
+              <span class="exit">{{t 'common.exit'}}</span>
+            </div>
+          {{/if}}
+        {{else}}
+          <div aria-label="next" {{action 'parentNext'}} class="next {{unless isNextEnabled 'disabled'}}">
+            <span class="next-text">{{t 'common.next'}}</span> {{gru-icon name="arrow_forward"}}
+          </div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>

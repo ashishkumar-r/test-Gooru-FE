@@ -1,0 +1,18 @@
+<div class="backdrop" {{action "onCloseDatePicker"}}></div>
+{{#if showCalendarView}}
+  <div class="ca-year-nav-container">
+    <div class="prev-cal-arrow" onclick={{action 'showPreviousYear'}} onkeypress={{action 'showPreviousYear'}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_left"}}</div>
+    <div class="cal-yyyy">{{selectedYear}} {{gru-icon name="arrow_drop_down"}}{{gru-icon name="arrow_drop_up"}}</div>
+    <div class="next-cal-arrow" onclick={{action 'showNextYear'}} onkeypress={{action 'showNextYear'}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_right"}}</div>
+  </div>
+  <div class="ca-monthpicker-container">
+    <div id="ca-monthpicker"></div>
+  </div>
+{{else}}
+  <span class="ca-month-picker-title">{{t 'common.add-to-unschedule'}}</span>
+  <div class="ca-months">
+    {{#each months as |month|}}
+      <span class="{{if month.isPast 'past-month'}}" onclick={{action 'onSelectMonth' month }} onkeypress={{action 'onSelectMonth' month }} tabindex={{tabindex}}>{{month.monthName}}</span>
+    {{/each}}
+  </div>
+{{/if}}

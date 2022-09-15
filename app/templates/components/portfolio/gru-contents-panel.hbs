@@ -1,0 +1,108 @@
+<div class="portfolio-contents-container {{if isShowContentFilters 'filters-active'}}">
+  <div class="header-container">
+    <div class="panel-info-container" onclick={{action "onToggleContainer"}} onkeypress={{action "onToggleContainer"}} tabindex={{tabindex}}>
+      <div class="icon {{contentType}}"></div>
+      <div class="title">{{activeContentLabel}} ({{totalStudiedActivities}})</div>
+      <i class="{{contentType}}-icons"></i>
+    </div>
+    <div class="search-items-container">
+      {{#unless isDisableFilter}}
+        <div class="filter-search" onclick={{action "onOpenFilter"}} onkeypress={{action "onOpenFilter"}} tabindex={{tabindex}}>
+          {{gru-icon name="filter_list"}}
+        </div>
+      {{else}}
+        <div class="toggle-panel {{if (lt totalStudiedActivities 1) 'hidden'}}" onclick={{action "onToggleContainer"}} onkeypress={{action "onToggleContainer"}} tabindex={{tabindex}}>
+          {{gru-icon name=(if isExpanded 'keyboard_arrow_up' 'keyboard_arrow_down')}}
+        </div>
+      {{/unless}}
+    </div>
+  </div>
+  <div class="body-container {{if (or (eq contentType 'diagnostic') (eq contentType 'domain-diagnostic')) 'disable-event'}}">
+    {{#if (gt totalStudiedActivities 0)}}
+    {{#if (eq contentType 'offline-activity')}}
+      {{#each studiedPortfolioActivities as | groupedActivities |}}
+        <div class="type-level-container">
+          <div class="sub-type-label">
+            {{t groupedActivities.label}}
+          </div>
+          <div class="offline-activities">
+            {{#each groupedActivities.offlineActivities as |offlineActivity|}}
+              {{portfolio/gru-portfolio-content-card
+                content = offlineActivity
+                tabindex= tabindex
+                competency = competency
+                onShowActivityReport = "onShowActivityReport"
+                contentType=contentType
+                isStudent=isStudent
+              }}
+            {{/each}}
+          </div>
+        </div>
+      {{/each}}
+    {{else}}
+      <div class="activities">
+        {{#each studiedPortfolioActivities as | activity |}}
+          {{portfolio/gru-portfolio-content-card
+            content = activity
+            tabindex= tabindex
+            competency = competency
+            onShowActivityReport = "onShowActivityReport"
+            contentType=contentType
+            isStudent=isStudent
+          }}
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if (and (or isLazyLoadEnabled (not isFetchedAllContent)) (not isAllowAutoPagination) (gte totalStudiedActivities 2))}}
+      <div class="show-more-container" onclick={{action "onShowMoreItems"}} onkeypress={{action "onShowMoreItems"}} tabindex={{tabindex}}>
+        Show More
+      </div>
+    {{/if}}
+
+    {{#if isLoading}}
+      <div class="loading-spinner">
+        {{three-bounce-spinner}}
+      </div>
+    {{/if}}
+    {{else}}
+    <span class="no-record">{{t 'common.no-record-found'}}</span>
+    {{/if}}
+  </div>
+  {{#if isShowContentFilters}}
+    {{portfolio/gru-content-filters
+      refreshFilters = "refreshFilters"
+      pickerStartDate = userCreatedAt
+      userPreference = userPreference
+      appliedFilters = appliedFilters
+      subject = subject
+      tabindex= tabindex
+      domain = domain}}
+  {{/if}}
+</div>
+
+{{#if isShowPortfolioActivityReport}}
+  {{reports/pull-up/gru-collection-preview
+      showPullUp=isShowPortfolioActivityReport
+      previewContentId=reportActivityId
+      previewContentType=reportActivityType
+      isReportView=true
+      userId=userId
+      tabindex= tabindex
+      classFramework = classFrameworkCode
+      isDefaultShowFW = isDefaultShowFW
+    }}
+{{/if}}
+
+{{#if isShowOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityReport
+    oaId=reportActivityId
+    isReportView=true
+    isPortfolioReport = true
+    userId = userId
+    tabindex= tabindex
+    classFramework = classFrameworkCode
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}

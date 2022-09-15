@@ -1,0 +1,79 @@
+.activity-list-pull-up {
+  position: absolute;
+  z-index: 1031;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 100%;
+  color: $suggestion-panel-color;
+  display: block;
+  background-color: $white;
+
+  .activity-list {
+    background-color: $white;
+
+    .activity-list-header {
+      height: 60px;
+      padding: 8px 15px;
+      display: flex;
+      box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+      .header-info {
+        width: 96%;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: $dark-400;
+      }
+      .close-pullup {
+        padding-top: 10px;
+        opacity: 0.5;
+
+        i {
+          font-size: 28px;
+        }
+      }
+    }
+
+    .activity-list-body {
+      height: 80vh;
+      min-height: 135px;
+      max-width: 760px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 8px;
+      margin-top: 5px;
+
+      .activity-contents {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-columns: auto auto;
+        justify-content: space-around;
+        &.cards-2 {
+          grid-template-columns: auto auto;
+        }
+        &.cards-1 {
+          grid-template-columns: auto;
+        }
+      }
+      .show-more-results {
+        color: $gray;
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    width: 100vw;
+    .activity-list {
+      .activity-list-body {
+        .activity-contents {
+          @media screen and (max-width: 729px) {
+            grid-template-columns: auto auto;
+          }
+          @media screen and (max-width: 480px) {
+            grid-template-columns: auto;
+          }
+        }
+      }
+    }
+  }
+}

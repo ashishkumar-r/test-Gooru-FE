@@ -1,0 +1,39 @@
+.self-grading.gru-self-grading-items {
+  .self-grading-items-container {
+    background-color: $white;
+    box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+
+    .grade-item-container {
+      height: 36px;
+      background-color: $white;
+      display: grid;
+      grid-template-columns: 36px auto;
+      align-items: center;
+      justify-content: left;
+      column-gap: 5px;
+      cursor: pointer;
+      border-bottom: 1px solid $gray;
+
+      &:last-child {
+        border: none;
+      }
+
+      .item-thumbnail {
+        &.offline-activity {
+          background-image: url("gooru/images/offline.svg");
+          width: 36px;
+          height: 36px;
+          display: block;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+
+      .item-title {
+        font-size: 13px;
+        text-transform: capitalize;
+        color: $gray;
+      }
+    }
+  }
+}

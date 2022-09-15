@@ -1,0 +1,45 @@
+<div class="panel-container">
+  {{ library/library-search-header
+     selectedFilters=selectedFilters
+     activeContentType=activeContentType
+     library=library
+     isMyProfile=isMyProfile
+     useBackUrl=isBack
+     searchTerm=searchTerm
+     profile=profile
+     type=type
+     selectedResourceTypes=selectedResourceTypes
+     selectedQuestionTypes=selectedQuestionTypes
+     onShowModal="showModal"
+     isAnonymousUser=session.isAnonymous
+     onSearch="doSearch"
+     selectedCount=selectedCount
+     onSelectBox="onSelectBox"
+     onSubmit="onSubmit"
+     isDeepLink=isDeepLink
+     tabindex=51
+   }}
+  {{#if isLoading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    {{library/library-content-result-grid-view
+       paginateNext="doPaginate"
+       isTeacher=isTeacher
+       activeClasses=activeClasses
+       myClasses=myClasses
+       type=type
+       isSearch=isSearch
+       isMyProfile=isMyProfile
+       onRemixQuestion="remixQuestion"
+       onRemixCourse="remixCourse"
+       onShowCreateModal="onShowModal"
+       updateUserClasses=updateClass
+       searchResults=searchResults
+       profile=profile
+       activeContentType=activeContentType
+       isDeepLink=isDeepLink
+       selectSingleBox="onSelectSingleBox"
+       tabindex=55
+     }}
+  {{/if}}
+</div>

@@ -1,0 +1,222 @@
+.activity.gru-new-offline-activity {
+  position: fixed;
+  top: 100%;
+  z-index: 1031;
+  width: 360px;
+  @media (min-width: $screen-phone) {
+    width: 70vw;
+    max-width: 768px;
+  }
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+  background-color: $white;
+  box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+
+  .overlay {
+    cursor: default;
+  }
+
+  ::-webkit-scrollbar {
+    height: 6px;
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $gray-light;
+    border: 1px solid $gray-light;
+    border-radius: 5px;
+  }
+
+  .create-activity-container {
+    background-color: $white;
+    .header-container {
+      padding: 8px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: $gray-e67;
+      box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+      position: relative;
+      .back-icon {
+        position: absolute;
+        line-height: 44px;
+        left: 8px;
+        cursor: pointer;
+      }
+    }
+
+    .body-container {
+      padding: 16px 8px;
+      max-height: calc(100vh - 200px);
+      overflow-y: auto;
+      min-height: 45vh;
+
+      .label-container {
+        opacity: 0.6;
+        font-size: 12px;
+        color: $black-4d;
+
+        .required {
+          color: $red-400;
+        }
+      }
+
+      .title-container {
+        margin-bottom: 16px;
+        .input-container {
+          .activity-title {
+            width: 100%;
+            outline: none;
+            background: $table-bg;
+          }
+        }
+      }
+
+      .description-container {
+        margin-bottom: 16px;
+        .input-container {
+          .gru-rich-text-editor {
+            .wysihtml5-editor {
+              min-height: 100px;
+            }
+            .error-messages {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .competency-container {
+        margin-bottom: 16px;
+        .active-taxonomies-container {
+          display: grid;
+          grid-template-columns: auto auto;
+          row-gap: 5px;
+          column-gap: 5px;
+          .gru-taxonomy-tag-list {
+            .taxonomy.gru-taxonomy-tag {
+              background-color: $dark-300;
+              color: $white;
+              .toggle {
+                .tag-label {
+                  color: $white;
+                }
+              }
+            }
+          }
+          .add-competency {
+            cursor: pointer;
+            width: 50px;
+            height: 40px;
+            background-color: $gray-67;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            i.add {
+              width: 100%;
+              text-align: center;
+              line-height: 40px;
+              color: $white;
+            }
+          }
+        }
+      }
+
+      .scheduler-container {
+        margin-bottom: 16px;
+        .date-picker-container {
+          .backdrop {
+            display: none;
+          }
+          .ca-date-picker-container {
+            @media (min-width: $screen-phone) {
+              padding-right: 20%;
+              padding-left: 20%;
+            }
+
+            .ca-datepicker {
+              .table-condensed {
+                .today {
+                  background-color: $blue-400 !important;
+                }
+              }
+            }
+          }
+          &.month-selected {
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .audience-list-container {
+        .audience-container {
+          margin-bottom: 16px;
+          display: grid;
+          grid-template-columns: auto auto;
+          row-gap: 5px;
+          align-items: center;
+          justify-content: space-around;
+          .audience-card {
+            font-size: 12px;
+            border: 1px solid $dark-300;
+            border-radius: 3px;
+            padding: 0 5px;
+            cursor: pointer;
+            &.active-card {
+              background-color: $dark-300;
+              color: $white;
+            }
+          }
+        }
+      }
+
+      .unschedule-list-container {
+        .unschedule-months-container {
+          padding-top: 5px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          .month-card {
+            border: 1px solid $breadcrumb-color;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            &.active-card,
+            &:hover {
+              background-color: $dark-300;
+              color: $white;
+            }
+          }
+        }
+      }
+
+      .error-message {
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 14px;
+        width: 76%;
+        margin: auto;
+      }
+    }
+
+    .footer-container {
+      .create-activity {
+        height: 50px;
+        background-color: $sky-400;
+        font-size: 15px;
+        font-weight: bold;
+        color: $white;
+        text-align: center;
+        line-height: 50px;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

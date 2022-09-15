@@ -1,0 +1,284 @@
+<div class="unit-progress-container">
+  {{#unless isShowDetailView}}
+    <div class="class-progress-section">
+      <div class="back-container">
+        <i class="back material-icons" {{action 'onGoBack'}}>arrow_back</i>
+        <span class="title">{{t 'learning-status'}}</span>
+      </div>
+      <div class="list-container">
+        {{#if isLoading}}
+          {{three-bounce-spinner}}
+        {{/if}}
+        <div id="sel_data_report" class="{{if isLoading 'hide'}}"></div>
+      </div>
+      <div class="instructions">
+        <div class="list">
+          <span class="box-started"></span>
+          <span class="title">{{t 'students-started-list'}}</span>
+        </div>
+        <div class="list">
+          <span class="box-completed"></span>
+          <span class="title">{{t 'students-completed-list'}}</span>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class="header-container">
+      <div class="back-container">
+        <i class="back material-icons" {{action 'onGoBackToDetailView'}}>arrow_back</i>
+        <span class="title">{{t 'common.knowing-yourself'}}</span>
+        <div>
+          <div class="active-period">
+            <span class="prev-cal-arrow {{if isPrevious 'disable'}}" onclick={{action 'showPrevious'}} onkeypress={{action 'showPrevious'}} tabIndex={{tabIndex}}>{{gru-icon name="keyboard_arrow_left"}}</span>
+            <span class="datepicker" onclick={{action "onToggleReportPeriod"}} onkeypress={{action "onToggleReportPeriod"}} tabIndex={{tabIndex}}>
+              <span>{{gru-icon name='date_range'}}</span>
+              {{#if (and rangeStartDate (not isMonthly))}}
+                <span class="report-period-text">{{format-date rangeStartDate 'DD MMMM YYYY'}}</span>
+                <span> to </span>
+              {{/if}}
+              <span class="report-period-text"> {{format-date rangeEndDate (if isMonthly 'MMM YYYY' 'DD MMMM YYYY')}}</span>
+            </span>
+            <span class="next-cal-arrow {{if isNext 'disable'}}" onclick={{action 'showNext'}} onkeypress={{action 'showNext'}} tabIndex={{tabIndex}}>{{gru-icon name="keyboard_arrow_right"}}</span>
+          </div>
+          {{#if isCalendarEnable}}
+            <div class="backdrop" {{action "closeDatePicker"}}></div>
+          {{/if}}
+          <div class="date-range-picker-container">
+            <div class="date-range-selector">
+              <span class="{{if isDaily 'active'}}" onclick={{action "onSelectRangeType" 'isDaily'}} onkeypress={{action "onSelectRangeType" 'isDaily'}} tabIndex={{tabIndex}}>{{t 'common.daily'}}</span>
+              <span class="{{if isWeekly 'active'}}" onclick={{action "onSelectRangeType" 'isWeekly'}} onkeypress={{action "onSelectRangeType" 'isWeekly'}} tabIndex={{tabIndex}}>{{t 'common.weekly'}}</span>
+              <span class="{{if isMonthly 'active'}}" onclick={{action "onSelectRangeType" 'isMonthly'}} onkeypress={{action "onSelectRangeType" 'isMonthly'}} tabIndex={{tabIndex}}>{{t 'common.monthly'}}</span>
+              <span class="{{if isDateRange 'active'}}" onclick={{action "onRangePickerReport" }} onkeypress={{action "onRangePickerReport" }} tabIndex={{tabIndex}}>{{t 'common.date-range'}}</span>
+              <span class="{{if isAllTime 'active'}}" onclick={{action "getTillnowData" }} onkeypress={{action "getTillnowData" }} tabIndex={{tabIndex}}>{{t 'common.all-time'}}</span>
+            </div>
+            {{#if isDaily}}
+              {{ca-date-picker
+              forMonth=forMonth
+              forYear=forYear
+              onSelectDate="onSelectDate"
+              onSelectToday="onSelectToday"
+              showToday=true
+              selectedDate=selectedDate
+              closeDatePicker="closeDatePicker"
+              pickerStartDate=classStartDate
+              tabindex=tabIndex
+            }}
+            {{else if isWeekly}}
+              {{ca-week-picker
+              forMonth=forMonth
+              forYear=forYear
+              onSelectWeek="onSelectWeek"
+              selectedWeekDate=selectedWeekDate
+              closeDatePicker = "closeDatePicker"
+              disableFutureDate= true
+              pickerStartDate=classStartDate
+              tabindex=tabIndex
+              }}
+            {{else if isMonthly}}
+              {{ca-month-picker
+              forMonth=forMonth
+              forYear=forYear
+              showCalendarView=true
+              onSelectMonth="onSelectMonth"
+              selectedMonth=selectedMonth
+              closeDatePicker="closeDatePicker"
+              disableFutureDate=true
+              tabindex=tabIndex
+            }}
+            {{else if isDateRange}}
+              {{ca-daterange-datepicker
+              closeDatePicker='closeDatePicker'
+              onScheduleForDate='onChangeDateForStudent'
+              userStartDateAsToday=false
+              disableFutureDate=false
+              enableScheduleMonth=false
+              courseStartDate=classStartDate
+              startDate= startDate
+              endDate = endDate
+              forChangeStartDateNavMonth=true
+              allowTwoDateRangePicker=true
+              tabindex=tabIndex
+              isShowBackDrop=true}}
+            {{else}}
+              <div class="all-time">
+                <div class="backdrop" {{action "closeDatePicker"}}></div>
+                <div class="date-range"> <span>{{rangeStartDate}}</span> - <span>{{rangeEndDate}}</span></div>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      <div class="header-section">
+        <div class="box blue-clr" {{action 'onClickActivityType' 'energizer'}}> <span>{{ t 'common.energizer'}}</span> </div>
+        <div class="box blue-clr" {{action 'onClickActivityType' 'recharge'}}> <span>{{ t 'common.recharge'}}</span> </div>
+        <div class="box blue-clr" {{action 'onClickActivityType' 'sparker'}}> <span>{{ t 'common.sparker'}}</span> </div>
+        <div class="box blue-clr" {{action 'onClickActivityType' 'illuminate'}}> <span>{{ t 'common.illuminate'}}</span> </div>
+        <div class="box orange-clr" {{action 'onClickActivityType' 'peer-connection'}}> <span>{{ t 'common.peer-connection'}}</span> </div>
+        <div class="box orange-clr" {{action 'onClickActivityType' 'family-connection'}}> <span>{{ t 'common.family-connection'}}</span> </div>
+        <div class="box orange-clr" {{action 'onClickActivityType' 'community-connection'}}> <span>{{ t 'common.community-connection'}}</span> </div>
+      </div>
+    </div>
+    <div class="detail-view-section {{if isShowFRQ 'hide' 'show'}}">
+      <div class="common-container">
+        <div class="graph-bar-section">
+          <div class="back-container">
+            <span class="title">{{t 'learning-status'}}</span>
+          </div>
+          <div class="list-container">
+            {{#if isLoading}}
+              {{three-bounce-spinner}}
+            {{/if}}
+            <div id="sel_detail_report" class="{{if isLoading 'hide'}} border-right"></div>
+            <span class="textlbl"></span>
+          </div>
+          <div class="activity">
+            <span>{{t 'common.activity-name'}}</span>
+          </div>
+          <div class="instructions">
+            <div class="list">
+              <span class="box-started"></span>
+              <span class="title">{{t 'common.started'}}</span>
+            </div>
+            <div class="list">
+              <span class="box-completed"></span>
+              <span class="title">{{t 'common.completed'}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="line-bar-chart">
+          <div class="title-section">
+            <span class="title">{{t 'common.activity-status'}}</span>
+          </div>
+          <div class="line-graft">
+            {{#if isLoadingLessonSummary}}
+              {{three-bounce-spinner}}
+            {{/if}}
+            {{#unless lessonSummaryReport}}
+              <div class="no-data-section">
+                <span class="no-data">{{t 'no-data-available'}}</span>
+              </div>
+            {{/unless}}
+            <div id="line_chart"></div>
+          </div>
+          <div class="activity">
+            <span>{{t 'common.activity-activity'}}</span>
+          </div>
+          <div class="instructions">
+            <div class="list">
+              <span class="started-activity"></span>
+              <span class="title">{{t 'students-started-activity'}}</span>
+            </div>
+            <div class="list">
+              <span class="completed-activity"></span>
+              <span class="title">{{t 'students-completed-activity'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="report-container">
+      <div class="reflection-container {{if isShowFRQ 'hide' 'show'}}">
+        <div class="title-section">
+          <span class="title">{{t 'common.reflections'}}</span>
+        </div>
+        <div class="chart-container">
+          {{#if isLoadingActivitySummary}}
+            {{three-bounce-spinner}}
+          {{/if}}
+          {{#unless activitySummaryReport}}
+            <div class="no-data-section">
+              <span class="no-data">{{t 'no-data-available'}}</span>
+            </div>
+          {{/unless}}
+          <div id="reflection_chart">
+            <div class="left-title {{unless activitySummaryReport 'hide' 'show'}}">{{t 'common.activity-activity'}}</div>
+          </div>
+        </div>
+        <div class="instruction">
+          <span class="title">{{t 'common.no-of-students'}}</span>
+        </div>
+      </div>
+      <div class="reflection-quiz-container {{if isShowFRQ 'hide' 'show'}}">
+        <div class="title-section">
+          <span class="title">{{t 'common.reflections-quiz'}}</span>
+        </div>
+        <div class="chart-container">
+          {{#if isLoadingQuizSummary}}
+            {{three-bounce-spinner}}
+          {{/if}}
+          {{#unless quizSummaryReport}}
+            <div class="no-data-section">
+              <span class="no-data">{{t 'no-data-available'}}</span>
+            </div>
+          {{/unless}}
+          <div id="reflection_quiz_chart">
+            <div class="left-title {{unless quizSummaryReport 'hide' 'show'}}">{{t 'common.answers'}}</div>
+          </div>
+        </div>
+        <div class="instruction">
+          <span class="title">{{t 'common.no-of-students'}}</span>
+        </div>
+      </div>
+      <div class="feelings-summary-container {{if isShowFRQ 'hide' 'show'}}">
+        <div class="title-section">
+          <span class="title">{{t 'common.feelings-summary'}}</span>
+        </div>
+        <div class="chart-container">
+          {{#if isLoadingFeelingSummary}}
+            {{three-bounce-spinner}}
+          {{/if}}
+          {{#unless feelingSummaryReport}}
+            <div class="no-data-section">
+              <span class="no-data">{{t 'no-data-available'}}</span>
+            </div>
+          {{/unless}}
+          <div id="feelings_chart">
+            <div class="left-title {{unless feelingSummaryReport 'hide' 'show'}}">{{t 'common.no-of-students'}}</div>
+          </div>
+        </div>
+        <div class="instruction">
+          <span class="title">{{t 'common.answers'}}</span>
+        </div>
+      </div>
+      <div class="recharge-container {{if isShowFRQ 'show' 'hide'}}">
+        {{#if isLoadingRechargeSummary}}
+          {{three-bounce-spinner}}
+        {{else}}
+          <div class="common-section">
+            <div class="back-container" {{action 'goBack'}}>
+              <i class="back material-icons">arrow_back</i>
+              <span class="title-back">{{t 'common.back'}}</span>
+            </div>
+            {{#if (and rechargeSummaryReport rechargeSummaryReport.data)}}
+              <div class="recharge-title">
+                {{t 'average-rating' activityType=activityType}}: {{rechargeSummaryReport.overall_ratings}}
+              </div>
+              {{#each rechargeSummaryReport.data as | report|}}
+                <span class="title">{{report.title}}</span>
+                <span class="question"> {{t 'common.question'}}: {{safe-html report.question}}</span>
+                <table>
+                  <tr>
+                    <th>{{t 'common.sr-no'}}</th>
+                    <th>{{t 'common.user-id'}}</th>
+                    <th>{{t 'common.answer-answer'}}</th>
+                  </tr>
+                  {{#each report.responses as |response index|}}
+                    <tr>
+                      <td>{{plus-one index}}</td>
+                      <td>{{response.user_id}}</td>
+                      <td>{{response.answerText}}</td>
+                    </tr>
+                  {{/each}}
+                </table>
+              {{/each}}
+            {{else}}
+              <div class="no-data-section">
+                <span class="no-data">{{t 'no-data-available'}}</span>
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  {{/unless}}
+</div>

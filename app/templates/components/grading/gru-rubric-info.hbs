@@ -1,0 +1,21 @@
+{{#if rubric.categories.length}}
+  <div class="categories">
+    <ul>
+      {{#if rubric.totalPoints}}
+        <li class="total">
+          <span>{{t 'grading-player.rubric-panel.total-score'}} {{t 'grading-player.rubric-panel.points' total=rubric.totalPoints}}</span>
+        </li>
+      {{/if}}
+      {{#each rubric.categories as |category|}}
+        <li class="category">
+          <span>{{truncate-text text=category.title maxLength=25}} {{#if category.totalPoints}}{{t 'grading-player.rubric-panel.points' total=category.totalPoints}}{{/if}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+{{#if rubric.url}}
+  <div class="rubric-preview">
+    {{content/rubric/gru-preview-url resource=rubric isRubric=true}}
+  </div>
+{{/if}}

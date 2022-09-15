@@ -1,0 +1,43 @@
+{
+  "content":[
+    {
+      "userUid": "id-for-pochita",
+      "usageData":[
+        {
+          "completedCount": 10,
+          "collectionId": "all-question-types-assessment-id",
+          "scoreInPercentage": 90,
+          "timeSpent": 130339,
+          "views": 18,
+          "totalCount": 20
+        },
+        {
+          "completedCount": 10,
+          "collectionId": "second-assessment-id",
+          "scoreInPercentage": 90,
+          "timeSpent": 130339,
+          "views": 18,
+          "totalCount": 20
+        },
+        {
+          "completedCount": 0,
+          "collectionId": "third-assessment-id",
+          "scoreInPercentage": 0,
+          "timeSpent": 0,
+          "views": 12,
+          "totalCount": 0
+        },
+        {
+          "completedCount": 0,
+          "collectionId": "fourth-assessment-id",
+          "scoreInPercentage": 0,
+          "timeSpent": 0,
+          "views": 12,
+          "totalCount": 0
+        }
+      ]
+    }
+  ],
+  "message": null,
+  "paginate": null
+}

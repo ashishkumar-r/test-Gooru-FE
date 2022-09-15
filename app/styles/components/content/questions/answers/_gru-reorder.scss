@@ -1,0 +1,33 @@
+.questions.answers.gru-reorder {
+  @extend .questions.answers.gru-multiple-choice;
+
+  .panel div.answer-content {
+    min-height: 78px;
+    .answer-text {
+      overflow: auto;
+      word-wrap: break-word;
+    }
+    .text-area-container {
+      .answer-text {
+        @include align-self(center);
+      }
+      .gru-rich-text-editor {
+        .btn-toolbar {
+          max-width: 59em;
+        }
+        .rich-editor {
+          min-height: 3.2em;
+          max-height: 6.9em;
+          margin: 10px 20px 10px 0;
+          border-left: 0;
+          border-right: 0;
+          border-top: 0;
+          max-width: 53em;
+          &.editable {
+            max-width: 59em;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div class="learner-competency">
+  <div class="competency-text">
+    <span class="text">{{competency.competencyStatus}}</span>
+    <span class="mastered-status">{{competency.statusMastered}}</span>
+
+    {{#if (eq competency.competencyStatus 'mastered') }}
+    {{else}}
+      <span class="date">{{competency.date}}</span>
+    {{/if}}
+  </div>
+  <div class="icons">
+    <span class="{{competency.competencyStatus}}"> <i> </i></span>
+  </div>
+</div>
+<div class="competency-description">
+  <div class="text">
+    <span> {{competency.competencyName}}</span>
+  </div>
+</div>
+{{#if competency}}
+<div class="signature-content">
+  {{reports/pull-up/signature-content-report domainCompetencyList=domainCompetencyList collectionPerformances=collection showSignatureAssessment=showSignatureAssessment competency=competency isStudent=true}}
+</div>
+{{/if}}

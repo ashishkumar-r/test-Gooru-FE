@@ -1,0 +1,80 @@
+.charts.report-bar-chart {
+  .report-bar-chart-container {
+    display: flex;
+    width: 395px;
+    overflow: hidden;
+
+    .carousel-inner {
+      .item {
+        .bars-container {
+          display: flex;
+          width: 395px;
+        }
+
+        .bar-chart-container {
+          width: 30px;
+          height: 140px;
+          margin-left: 2px;
+          cursor: pointer;
+
+          &.not-started {
+            .bar-chart {
+              cursor: default;
+            }
+          }
+
+          .bar-chart {
+            width: 30px;
+            margin-left: 7px;
+          }
+
+          .user-profile-img {
+            width: 30px;
+
+            img {
+              width: 25px;
+              border-radius: 50%;
+              border: 2px solid $white;
+              height: 25px;
+            }
+          }
+        }
+      }
+    }
+
+    .carousel-control {
+      opacity: 1;
+      background: none;
+
+      &.left {
+        z-index: 2;
+        width: 23px;
+
+        .small-arrow-left {
+          width: 23px;
+          height: 23px;
+          display: block;
+          background-image: url("../assets/gooru/images/small-arrow-left.svg");
+          background-repeat: no-repeat;
+          position: relative;
+          top: 45%;
+        }
+      }
+
+      &.right {
+        z-index: 2;
+        width: 23px;
+
+        .small-arrow-right {
+          width: 23px;
+          height: 23px;
+          display: block;
+          background-image: url("../assets/gooru/images/small-arrow-right.svg");
+          background-repeat: no-repeat;
+          position: relative;
+          top: 45%;
+        }
+      }
+    }
+  }
+}

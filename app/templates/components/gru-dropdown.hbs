@@ -1,0 +1,46 @@
+<div class="gru-dropdown">
+  {{#if allowEdit}}
+    <div class="btn-group {{btn-group-size}} keep-open-no">
+      {{#if split}}
+        <button type="button" class="btn {{btn-type}} ellipsis selected-text" data-toggle="dropdown" tabindex={{tabindex}}>
+        {{selectedText}}
+      </button>
+        <button type="button" class="btn {{btn-type}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" tabindex={{tabindex}}>
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      {{else}}
+        <button type="button" class="btn {{btn-type}} selected-text dropdown-toggle ellipsis" data-toggle="dropdown" title="{{selectedText}}" tabindex={{tabindex}}>
+        <span class="ellipsis">{{selectedText}}</span> <span class="caret"></span>
+      </button>
+      {{/if}}
+      {{#if hasBlock}}
+        {{yield (action "onItemSelected")}}
+      {{else}}
+        <ul class="dropdown-menu">
+          {{#if prompt}}
+            <li class="dropdown-header">{{prompt}}</li>
+          {{/if}}
+          {{#each displayItems as |item|}}
+            {{#if item.disabled}}
+              <li class="disabled"><a class="item">{{get item displayLabelFieldKey}}</a></li>
+            {{else}}
+              {{#if (eq selectedItem item)}}
+                <li class="selected"><a class="item" href="javascript:void(0)" onclick={{action 'onItemSelected' item }} onkeypress={{action 'onItemSelected' item }} tabindex={{tabindex}}>{{ get item displayLabelFieldKey }}</a></li>
+              {{else}}
+                <li><a class="item" href="javascript:void(0)" onclick={{action 'onItemSelected' item }} onkeypress={{action 'onItemSelected' item }} tabindex={{tabindex}}>{{ get item displayLabelFieldKey }}</a></li>
+              {{/if}}
+            {{/if}}
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  {{else}}
+    <span class="selected-item-label">{{get-value
+      source=items
+      searchProp=itemKey
+      searchVal=selectedItemId
+      destProp=displayLabelFieldKey
+    }}</span>
+  {{/if}}
+</div>

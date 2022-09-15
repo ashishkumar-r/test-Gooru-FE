@@ -1,0 +1,70 @@
+.dca-teacher-external-assessment-list-view {
+  @media only screen and (max-width: $screen-568) {
+    .list-view-container {
+      .external-assessment-link {
+        width: 100%;
+        text-align: center;
+      }
+      .table-fixed-left {
+        table {
+          th {
+            font-weight: normal;
+            border-right: 1px dashed $gray-80;
+            border-left: 1px solid $gray-80;
+            height: 40px;
+            border-bottom: 1px solid $gray-80;
+            overflow: hidden;
+            .header-filters {
+              .score {
+                justify-self: center;
+              }
+            }
+            .user-profile-summary {
+              background-color: unset;
+            }
+            .header-filters {
+              .name-filter {
+                width: 219px;
+              }
+            }
+          }
+          .user-profile-summary {
+            .user-profile-details {
+              width: max-content;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: $screen-568) and (max-width: $screen-814 - 1) {
+    .external-assessment-link {
+      margin: 0 auto;
+      float: none;
+      text-align: center;
+    }
+    .list-view-container {
+      .table-fixed-left {
+        width: 100%;
+        table {
+          th {
+            font-weight: normal;
+            border-right: 1px dashed $gray-80;
+            border-left: 1px solid $gray-80;
+            height: 40px;
+            border-bottom: 1px solid $gray-80;
+            overflow: hidden;
+            .header-filters {
+              .score {
+                justify-self: center;
+              }
+            }
+            .user-profile-summary {
+              background-color: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}

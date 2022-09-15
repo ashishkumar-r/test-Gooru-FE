@@ -1,0 +1,30 @@
+<div class="serp-exemplar serp-examplar-accordion-{{seq}} {{unless isEdit 'view-only'}}">
+    {{#each exemplars as |exemplar index|}}
+    {{#if exemplar}}
+        <h3 class="excercise-seq">
+            {{t 'common.excercise'}} {{plus-one index}}
+        </h3>
+        <div class="exmplar-input-container loading-{{index}}">
+            <div class="say-out-loud-{{index}}">
+            </div>
+            <div class="remove-exemplar" {{action "onRemoveExemplar" index}}>
+                {{gru-icon name="remove_circle"}}
+            </div>
+              <div class="loading-spinner">
+                {{three-bounce-spinner}}
+            </div>
+        </div>
+
+        {{/if}}
+    {{else}}
+        {{#unless isEdit}}
+            --
+        {{/unless}}
+    {{/each}}
+</div>
+{{#if isEdit}}
+    <div class="add-excercise-exemplar {{if (eq answers.length exemplars.length) 'disable-event'}}"
+        {{action "onAddExemplar"}}>
+        {{t 'content-builder.exemplar.add'}}
+    </div>
+{{/if}}

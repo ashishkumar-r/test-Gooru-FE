@@ -1,0 +1,28 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title step-title">{{t 'content.classes.join.title'}}</h3>
+      <p class="lead">{{t 'content.classes.join.content'}}</p>
+    </div>
+    <div class="modal-body">
+      <div class="form-group class-code-input-container">
+        <label class="control-label" for="code">{{t 'content.classes.join.class-code-input'}}</label>
+        {{validation/gru-input model=this valuePath='code' maxlength=50
+          onTyping="onCodeTyping"
+          didValidate=didValidate
+          onFocusOut="onCodeFocusOut"}}
+      </div>
+      <div class="join-terms-and-conditions">
+        <p>
+          {{t 'content.classes.join.terms-and-conditions'}}
+        </p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      {{#link-to 'index' class="not-now-button back-cta"}}{{t 'content.classes.join.not-now'}}{{/link-to}}
+      {{#gru-spinner-button classes='btn btn-success join-class-btn' text=(t 'common.loading') isLoading=isLoading}}
+          <button class="btn btn-success join-class-btn" {{action "joinClass"}}>{{t 'content.classes.join.join-class'}} {{gru-icon name= "keyboard_arrow_right"}}</button>
+      {{/gru-spinner-button}}
+    </div>
+  </div>
+</div>

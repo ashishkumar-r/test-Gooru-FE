@@ -1,0 +1,59 @@
+<div class="panel {{if course 'has-course' 'no-course'}} {{if (is-teacher class profile.id) 'teacher' 'student' }} {{if class.isArchived 'archive'}}">
+  {{#if class.isArchived}}
+    <div class="panel-heading">
+      <div class="title ellipsis">
+        {{truncate text=class.title maxLength=25}}
+      </div>
+    </div>
+  {{/if}}
+  <div class="panel-body">
+    <div class="information" style="background-image: url({{course.thumbnailUrl}})">
+      {{#if course}}
+        <div class="current-activity">{{t "student-landing.class.assigned-course"}}</div>
+      {{else}}
+        <div class="current-activity">{{t "student-landing.class.no-course-assigned"}}</div>
+      {{/if}}
+
+      <div class="title-section">
+        {{#if course.title}}
+          <div class="title pointer" alt="{{course.title}}">
+            {{truncate text=course.title maxLength=90}}
+          </div>
+        {{else}}
+          <span>{{t "student-landing.not-available"}}</span>
+        {{/if}}
+      </div>
+    </div>
+    <div class="links">
+      <ul>
+        <li class="performance {{unless hasStarted 'not-started'}}">
+          <a {{action "onShowArchivedClassReport"}}>
+            <div class="icon-performance">
+              <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/performance-report/report.svg#{{grade-range class.performanceSummary.score}}"></use>
+              </svg>
+            </div>
+            <span class="report-text" style="color:{{grade-color class.performanceSummary.score}}">{{t 'teacher-landing.class.report'}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="performance-percentage {{unless hasStarted 'not-started'}}" {{action "onShowArchivedClassReport"}}>
+      <div class="code">
+        <div class="title">{{t 'student-landing.class-code'}}</div>
+        <div class="class-code">{{class.code}}</div>
+      </div>
+      {{#if hasStarted}}
+        <div style="color:{{grade-color class.performanceSummary.score}}">
+          <div class="pointer percentage">
+            {{scorePercentage}}
+          </div>
+        </div>
+      {{else}}
+        <div class="percentage no-percentage">
+          <i class="icon"> </i>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

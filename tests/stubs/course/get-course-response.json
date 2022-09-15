@@ -1,0 +1,31 @@
+{
+  "summary": {
+    "lessonCount": 6,
+    "collectionCount": 4,
+    "unitCount": 3,
+    "assessmentCount": 5
+  },
+  "collectionType": "course",
+  "collectionId": 24246146,
+  "parentGooruOid": "159e6a92-9f08-4ccd-8912-7be70927237e",
+  "itemSequence": 110,
+  "type": "course",
+  "lastModifiedUserUid": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "title": "The Best Course Ever Made",
+  "sharing": "private",
+  "collectionItemId": "b53530be-b104-4526-95fc-57b553f5ccce",
+  "lastModified": 1437399770000,
+  "gooruOid": "d0b56322-d3ca-40f5-85b3-2f38ef910ac1",
+  "taxonomyCourse": [
+    {
+      "id": 3,
+      "name": "Grade 2 English Language Arts",
+      "subjectId": 1
+    }
+  ],
+  "user": {
+    "username": "amara",
+    "gooruUId": "d76575bc-8892-40b4-94dc-f5782a276194",
+    "profileImageUrl": "http://profile-qa.s3.amazonaws.com/d76575bc-8892-40b4-94dc-f5782a276194.png"
+  }
+}

@@ -1,0 +1,29 @@
+<div class="panel {{if isGuestAccount 'guest-account' ''}}" data-before="{{t 'common.disabled-create-class'}}" tabindex={{tabindex}}>
+  <div class="panel-body">
+  <label for="nameOfClass" style="margin-bottom: 0;">
+    <div class="image">
+        <div class="text-heading">{{t 'content.classes.create.title'}}</div>
+    </div>
+      {{validation/gru-input
+                  model=newClass
+                  valuePath='title'
+                  maxLength=25
+                  disabled = (if isGuestAccount true false)
+                  autofocus=false
+                  didValidate=didValidate
+                  class="form-group"
+                  placeholder=(t 'content.classes.create.class-name-input')
+                  tabindex=tabindex
+                }}
+    </label>
+    <div class="info-form">
+    </div>
+    <div class="panel-footer">
+      {{#gru-spinner-button classes='join-class-btn' text=(t 'common.loading') isLoading=isLoading}}
+        <div class="join-class-btn" onclick={{action "createClass"}} onkeypress={{action "createClass"}} tabindex={{tabindex}}>{{t 'common.createClass'}}</div>
+      {{/gru-spinner-button}}
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,39 @@
+.profile {
+  .user-proficiency {
+    @media screen and (max-width: $screen-sm - 1) {
+      .left-panel {
+        width: 100%;
+
+        .panel-body {
+          .inspect-competency {
+            .competency-info-pull-up {
+              left: 0;
+
+              &.open {
+                height: 385px;
+              }
+
+              &.expand {
+                height: calc(100% - -15px);
+              }
+
+              .body {
+                .competency-content-report {
+                  .competency-performance {
+                    .competency-name {
+                      align-items: center;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .right-panel {
+        display: none;
+      }
+    }
+  }
+}

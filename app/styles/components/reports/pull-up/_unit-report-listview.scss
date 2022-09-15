@@ -1,0 +1,301 @@
+.reports.pull-up-unit-report-listview {
+  position: relative;
+
+  .table-fixed-left {
+    border-collapse: collapse;
+    width: 300px;
+    float: left;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: left;
+    z-index: 2;
+
+    table {
+      width: 100%;
+      table-layout: fixed;
+      word-break: break-all;
+
+      th {
+        font-weight: normal;
+        border-right: 1px dashed $gray-80;
+        border-left: 1px solid $gray-80;
+        height: 40px;
+        border-bottom: 1px solid $gray-80;
+        overflow: hidden;
+
+        &.tabular-header {
+          position: relative;
+          background-color: $white;
+          border-bottom: 0;
+        }
+
+        .header-filters {
+          height: 40px;
+          display: flex;
+          border-bottom: 1px solid $gray-80;
+
+          .name-filter {
+            height: 40px;
+            width: 225px;
+            padding-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .first-header,
+            .last-header,
+            .name-header {
+              margin-right: 10px;
+            }
+
+            .first-header,
+            .last-header {
+              display: flex;
+              opacity: 0.5;
+              cursor: pointer;
+
+              &.active {
+                opacity: 1;
+              }
+            }
+          }
+
+          .score-timespent {
+            width: 70px;
+            height: 40px;
+            padding-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.5;
+
+            &.active {
+              opacity: 1;
+            }
+
+            i {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+
+      .user-profile-summary {
+        display: flex;
+        height: 40px;
+
+        .user-profile-details {
+          width: 225px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          &.not-started {
+            pointer-events: none;
+          }
+
+          .user-profile-img {
+            width: 43px;
+
+            img {
+              width: 29px;
+              border-radius: 50%;
+              margin-left: 7px;
+              border-color: $table-bg;
+              height: 29px;
+
+              &.selected {
+                visibility: hidden;
+              }
+            }
+          }
+
+          .username {
+            width: 200px;
+            @include ellipsis(
+              $font-size: 13px,
+              $line-height: 1.2,
+              $lines-to-show: 1
+            );
+          }
+        }
+
+        .score-details {
+          width: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .table-fixed-right {
+    width: calc(100% - 300px);
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+
+    table {
+      table-layout: fixed;
+      word-break: break-all;
+      width: 100px;
+
+      td,
+      th {
+        border-right: 1px dashed $gray-80;
+        border-left: 1px dashed $gray-80;
+        height: 40px;
+        border-bottom: 1px solid $gray-80;
+        overflow: hidden;
+        width: 200px;
+        font-weight: normal;
+      }
+
+      th {
+        &.tabular-header {
+          position: relative;
+          background-color: $white;
+          border-bottom: 0;
+        }
+
+        .content-header {
+          width: 200px;
+          height: 40px;
+          display: flex;
+          border-bottom: 1px solid $gray-80;
+          cursor: pointer;
+
+          &.not-started {
+            pointer-events: none;
+          }
+
+          .content-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            span {
+              font-size: 12px;
+              font-weight: bold;
+              line-height: 30px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+
+          &.not-started {
+            .content-icon {
+              pointer-events: none;
+            }
+          }
+
+          .content-title {
+            width: calc(100% - 40px);
+            display: flex;
+            align-items: center;
+            height: 40px;
+            margin-bottom: 0;
+
+            p {
+              white-space: normal;
+              margin-bottom: 0;
+              padding-right: 8px;
+              @include ellipsis(
+                $font-size: 13px,
+                $line-height: 1.2,
+                $lines-to-show: 2
+              );
+            }
+          }
+        }
+      }
+
+      tr {
+        td:nth-child(1),
+        th:nth-child(1) {
+          border-left: none;
+        }
+      }
+
+      td {
+        .perf-time-container {
+          width: 200px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.rescope-content {
+            span {
+              .material-icons {
+                color: $danube;
+                display: block;
+                align-items: center;
+              }
+            }
+          }
+
+          .content-score-value {
+            width: calc(200px / 2);
+            text-align: center;
+            line-height: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  .scroll-left-arrow {
+    position: absolute;
+    top: 0;
+    background: $white;
+    height: 39px;
+    box-shadow: 1px 1px 1px 1px $left-arrow-box-shadow;
+    left: 300px;
+    cursor: pointer;
+
+    i {
+      margin-top: 8px;
+      margin-left: -2px;
+    }
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  .scroll-right-arrow {
+    position: absolute;
+    height: 39px;
+    right: 0;
+    top: 0;
+    background: $white;
+    box-shadow: 1px 1px 3px 1px $left-arrow-box-shadow;
+    cursor: pointer;
+
+    i {
+      margin-top: 8px;
+      margin-left: -2px;
+    }
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  &:hover {
+    .scroll-left-arrow,
+    .scroll-right-arrow {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+  }
+}

@@ -1,0 +1,119 @@
+.player .gru-viewer {
+  .narration {
+    margin-top: 0;
+    margin-bottom: 15px;
+    max-width: 904px;
+    @media (max-width: $screen-sm-max) {
+      margin-top: 30px;
+    }
+    @media (max-width: $screen-xs-max) {
+      margin-top: 0;
+    }
+    .panel-body {
+      padding: 10px 15px;
+    }
+    span {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  .not-iframe {
+    padding: 25px;
+    height: auto;
+    @media (min-width: $screen-sm) {
+      height: 600px;
+    }
+    .panel-header {
+      text-align: center;
+    }
+    p.description {
+      line-height: $font-size-base;
+    }
+    p.title {
+      font-size: $font-size-large;
+      font-weight: 300;
+      margin: 0 0 7px 0;
+    }
+    .panel-footer {
+      text-align: center;
+      background-color: $white;
+      @media (min-width: $screen-sm) {
+        margin: 15px 0 0 0;
+      }
+    }
+    .panel-body {
+      display: flex;
+      justify-content: center;
+      $line-height: 1.2;
+      text-decoration: none;
+      color: $text-color;
+
+      .cards.gru-resource-card {
+        margin: 0 auto;
+
+        .panel-heading {
+          padding: 12px 15px 0 15px;
+          .header {
+            padding: 0;
+            margin: 0;
+            border: 0;
+          }
+        }
+        .panel-body {
+          padding: 12px 15px 0 15px;
+          display: block;
+
+          .publisher {
+            a {
+              color: $blue-400;
+            }
+          }
+        }
+        .panel-footer {
+          margin: 0;
+          text-align: $tab-float-dir;
+        }
+      }
+    }
+  }
+  .content {
+    margin-top: -10px;
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+    float: $menu-float-dir;
+    padding-bottom: 100px;
+    padding-left: 310px;
+    padding-right: 45px;
+    @media (min-width: $screen-sm) {
+      height: 100%;
+      padding-bottom: 20px;
+    }
+    @media (min-width: $screen-lg) {
+      height: 100vh;
+    }
+    @media (max-width: $screen-sm-max) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .avatar {
+      text-align: center;
+      padding-right: 15px;
+      img {
+        width: $narration-avatar-width;
+        height: $narration-avatar-height;
+        border-radius: $narration-avatar-height;
+        margin: 0 auto;
+        display: block;
+      }
+      .user {
+        font-size: $font-size-small;
+        display: block;
+      }
+    }
+    .message {
+      font-size: $font-size-large;
+      line-height: 1.5;
+    }
+  }
+}

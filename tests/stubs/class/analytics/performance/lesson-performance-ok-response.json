@@ -1,0 +1,100 @@
+{
+  "content": [
+    {
+    "title": "Buddisum",
+    "thumbnail": null,
+    "gooruOId": "2cd0cb03-91f6-4a8f-b799-2f04039e02c5",
+    "scoreStatus": "NotAttempted",
+    "views": 0,
+    "sequence": 1,
+    "item": [{
+      "title": "General Knowledge Indian History",
+      "thumbnail": "http:////qacdn.gooru.org/qalive//f000/2429/2304//",
+      "gooruOId": "0c5cd8aa-d023-4672-9598-f4f527df4760",
+      "views": 0,
+      "sequence": 2,
+      "scoreInPercentage": 0,
+      "questionType": null,
+      "timeSpent": 0,
+      "type": "collection",
+      "url": null
+    }, {
+      "title": "Quiz 2 : GK",
+      "thumbnail": "http:////qacdn.gooru.org/qalive//f000/2429/7049//",
+      "gooruOId": "792c05b3-2214-4627-acef-22f8d5ed394a",
+      "views": 0,
+      "sequence": 3,
+      "scoreInPercentage": 0,
+      "questionType": null,
+      "timeSpent": 0,
+      "type": "assessment",
+      "url": null
+    }, {
+      "title": "Quiz : GK",
+      "thumbnail": "http:////qacdn.gooru.org/qalive//f000/2429/2561//",
+      "gooruOId": "bc116a9b-7252-45e0-96df-2f786d6a5da3",
+      "views": 0,
+      "sequence": 1,
+      "scoreInPercentage": 0,
+      "questionType": null,
+      "timeSpent": 0,
+      "type": "assessment",
+      "url": null
+    }],
+    "scoreInPercentage": 0,
+    "questionType": null,
+    "timeSpent": 0,
+    "type": "lesson",
+    "url": null
+  },
+  {
+    "title": "Buddisum 2",
+    "thumbnail": null,
+    "gooruOId": "3cd0cb03-91f6-4a8f-b799-2f04039e02c5",
+    "scoreStatus": "NotAttempted",
+    "views": 0,
+    "sequence": 1,
+    "item": [{
+      "title": "General Knowledge Indian History",
+      "thumbnail": "http:////qacdn.gooru.org/qalive//f000/2429/2304//",
+      "gooruOId": "0c5cd8aa-d023-4672-9598-f4f527df4760",
+      "views": 0,
+      "sequence": 2,
+      "scoreInPercentage": 0,
+      "questionType": null,
+      "timeSpent": 0,
+      "type": "collection",
+      "url": null
+    }, {
+      "title": "Quiz 2 : GK",
+      "thumbnail": "http:////qacdn.gooru.org/qalive//f000/2429/7049//",
+      "gooruOId": "792c05b3-2214-4627-acef-22f8d5ed394a",
+      "views": 0,
+      "sequence": 3,
+      "scoreInPercentage": 0,
+      "questionType": null,
+      "timeSpent": 0,
+      "type": "assessment",
+      "url": null
+    }, {
+      "title": "Quiz : GK",
+      "thumbnail": "http:////qacdn.gooru.org/qalive//f000/2429/2561//",
+      "gooruOId": "bc116a9b-7252-45e0-96df-2f786d6a5da3",
+      "views": 0,
+      "sequence": 1,
+      "scoreInPercentage": 0,
+      "questionType": null,
+      "timeSpent": 0,
+      "type": "assessment",
+      "url": null
+    }],
+    "scoreInPercentage": 0,
+    "questionType": null,
+    "timeSpent": 0,
+    "type": "lesson",
+    "url": null
+  }
+  ],
+  "message": null,
+  "paginate": null
+}

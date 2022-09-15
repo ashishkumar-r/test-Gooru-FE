@@ -1,0 +1,198 @@
+.student-independent-container {
+  padding: 0 2em 2em;
+
+  .header {
+    .go-back-container {
+      margin: 0 0 15px;
+
+      .back-to {
+        font-size: 19px;
+
+        i {
+          font-size: 20px;
+          height: 24px;
+          vertical-align: middle;
+          width: 25px;
+        }
+      }
+    }
+
+    h1 {
+      font-size: $font-size-h5;
+      display: block;
+      color: $dark-500;
+      margin: 0 0 5px;
+    }
+
+    .panel.course-information {
+      float: $tab-float-dir;
+      margin: 10px 0 0;
+      width: 100%;
+
+      .panel-body {
+        padding: 0;
+        height: 60px;
+        display: grid;
+        grid-template-columns: 90px 1fr max-content 250px 200px 75px;
+
+        &.no-taxomony {
+          grid-template-columns: 90px 1fr max-content 250px 75px;
+
+          .taxonomy-standards {
+            display: none;
+          }
+        }
+
+        &::before,
+        ::after {
+          content: none;
+        }
+
+        .course-image {
+          border-right: $border-right-side $light-300;
+          border-left: $border-left-side $light-300;
+          height: 60px;
+
+          img {
+            height: 100%;
+            width: 89px;
+          }
+
+          .no-course-image {
+            background: url("gooru/course-default-medium.png");
+            background-size: 90px 60px;
+            width: 89px;
+            height: 60px;
+          }
+        }
+
+        .course-name {
+          line-height: 1.4;
+          margin-top: 18px;
+          text-overflow: ellipsis;
+          text-align: center;
+          overflow: hidden;
+          white-space: nowrap;
+          display: block;
+        }
+
+        .counts-container {
+          align-items: center;
+          display: grid;
+          margin-right: 5px;
+
+          .count {
+            height: 20px;
+            margin: 2px 0 0;
+            width: 100%;
+
+            i {
+              font-size: $font-size-units-icon;
+              line-height: 1.1;
+            }
+
+            span {
+              vertical-align: top;
+              margin-left: 4px;
+            }
+          }
+        }
+
+        .teacher-profile {
+          grid-template-columns: auto auto;
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          grid-gap: 5px;
+
+          img {
+            border-radius: 50px;
+            display: inline-block;
+            height: 40px;
+            width: 43px;
+          }
+
+          .profile-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+          }
+        }
+
+        .taxonomy-standards {
+          min-width: 100px;
+          margin: 0 0 0 20px;
+          padding: 12px 0 0;
+
+          .taxonomy.gru-taxonomy-tag {
+            background-color: $light-300;
+            border: none;
+            max-width: 135px;
+
+            .content {
+              b,
+              span {
+                color: $white;
+              }
+            }
+          }
+        }
+
+        .class-code {
+          border-left: $border-right-side;
+          border-right: $border-left-side;
+          margin-left: 10px;
+          height: 60px;
+          padding: 14px 0 6px;
+          text-align: center;
+
+          div {
+            line-height: 1;
+            text-transform: uppercase;
+            color: $dark-400;
+            width: 100%;
+
+            &.title {
+              opacity: 0.5;
+              font-size: $font-size-xxxsmall;
+              font-weight: normal;
+            }
+
+            &.code {
+              font-size: $font-size-small;
+              font-weight: bold;
+              margin: 3px 0 0;
+            }
+          }
+        }
+
+        .performance-container {
+          cursor: pointer;
+
+          &.not-started {
+            pointer-events: none;
+          }
+
+          .percentage {
+            cursor: pointer;
+            margin: 12px 0;
+            font-size: $font-size-h3;
+          }
+
+          .completion-bar {
+            cursor: pointer;
+            width: 80%;
+          }
+        }
+      }
+    }
+  }
+}
+
+body {
+  &.fullscreen-exit {
+    header.gru-header {
+      display: none;
+    }
+  }
+}

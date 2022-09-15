@@ -1,0 +1,27 @@
+<div class="gru-class-join-card-container  {{if isGuestAccount 'guest-account' ''}}">
+    <div class="class-join-card-panel"  data-before="{{t 'common.disabled-join-class'}}" tabindex={{tabindex}}>
+      <div class="class-join-card-head">
+          <div class="class-join-text">
+            <span class="class-head-title">{{t 'student-home.join-class'}}</span>
+            <span class="class-code class-hidden">{{t 'student-home.enter-your-classroomcode'}}</span>
+          </div>
+      </div>
+      <div class="class-input-section">
+        <span class="sign-in-title class-hidden">Sign In</span>
+        {{validation/gru-input model=this valuePath='code' maxlength=50
+          onTyping="onCodeTyping"
+          didValidate=didValidate
+          onFocusOut="onCodeFocusOut"
+          disabled = (if isGuestAccount true false)
+          onChange="onCodeChange"
+          onEnter=(action 'joinClass')
+          placeholder=(t 'content.classes.join.class-code-input')
+          tabindex=tabIndex
+          }}
+        <span class="instruction-title class-hidden">{{t 'student-home.ask-teacher-class-code'}}</span>
+      </div>
+      <div class="join-class-action">
+            <a href="javascript:void(0)" aria-label="join class" {{action "joinClass"}}  class="join-class-btn">{{t 'user.join-class'}}</a>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,574 @@
+{
+  "content": [
+    {
+      "userUId": "13ab43f7-c568-47d1-85f1-49361bd2b6c9",
+      "usageData": [
+        {
+          "gooruOId": "46d4a6d4-991b-4c51-a656-f694e037dd68",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "0a255924-b887-4200-9e82-fb1e73cd45a9",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "62da7af6-90c4-49d6-9b5a-d7ac8117b571",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "58db5003-9a1e-423d-8fcc-de3506034173",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "60a20e19-e122-4e49-8da7-9556b2ad8bd3",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "dd82de53-a258-43bf-987d-09adf06f1518",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "c2694b45-205f-4fad-9abf-ffc342aff205",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "19ffe6fb-d184-4e4e-a159-7844f11ee44a",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "524c3970-db05-4eec-8a82-013f27f1a1a6",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        }
+      ]
+    },
+    {
+      "userUId": "1a3a8b82-be6e-4b78-8302-e2cc08856ecc",
+      "usageData": [
+        {
+          "gooruOId": "46d4a6d4-991b-4c51-a656-f694e037dd68",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "0a255924-b887-4200-9e82-fb1e73cd45a9",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "62da7af6-90c4-49d6-9b5a-d7ac8117b571",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "58db5003-9a1e-423d-8fcc-de3506034173",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "60a20e19-e122-4e49-8da7-9556b2ad8bd3",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "dd82de53-a258-43bf-987d-09adf06f1518",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "c2694b45-205f-4fad-9abf-ffc342aff205",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "19ffe6fb-d184-4e4e-a159-7844f11ee44a",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "524c3970-db05-4eec-8a82-013f27f1a1a6",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        }
+      ]
+    },
+    {
+      "userUId": "1aac0e1c-9b13-4b99-9541-fe0cde7c55e4",
+      "usageData": [
+        {
+          "gooruOId": "46d4a6d4-991b-4c51-a656-f694e037dd68",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "0a255924-b887-4200-9e82-fb1e73cd45a9",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "62da7af6-90c4-49d6-9b5a-d7ac8117b571",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "58db5003-9a1e-423d-8fcc-de3506034173",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "60a20e19-e122-4e49-8da7-9556b2ad8bd3",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "dd82de53-a258-43bf-987d-09adf06f1518",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "c2694b45-205f-4fad-9abf-ffc342aff205",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "19ffe6fb-d184-4e4e-a159-7844f11ee44a",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "524c3970-db05-4eec-8a82-013f27f1a1a6",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        }
+      ]
+    },
+    {
+      "userUId": "1e0fc0b2-ed63-46b4-a1e3-c9f0aeb72915",
+      "usageData": [
+        {
+          "gooruOId": "46d4a6d4-991b-4c51-a656-f694e037dd68",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "0a255924-b887-4200-9e82-fb1e73cd45a9",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "62da7af6-90c4-49d6-9b5a-d7ac8117b571",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "58db5003-9a1e-423d-8fcc-de3506034173",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "60a20e19-e122-4e49-8da7-9556b2ad8bd3",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "dd82de53-a258-43bf-987d-09adf06f1518",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "c2694b45-205f-4fad-9abf-ffc342aff205",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "19ffe6fb-d184-4e4e-a159-7844f11ee44a",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "524c3970-db05-4eec-8a82-013f27f1a1a6",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        }
+      ]
+    },
+    {
+      "userUId": "1f3c32cc-0ab9-4269-8442-4f40ee72558e",
+      "usageData": [
+        {
+          "gooruOId": "46d4a6d4-991b-4c51-a656-f694e037dd68",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "0a255924-b887-4200-9e82-fb1e73cd45a9",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "62da7af6-90c4-49d6-9b5a-d7ac8117b571",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "58db5003-9a1e-423d-8fcc-de3506034173",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "60a20e19-e122-4e49-8da7-9556b2ad8bd3",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "dd82de53-a258-43bf-987d-09adf06f1518",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "c2694b45-205f-4fad-9abf-ffc342aff205",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "19ffe6fb-d184-4e4e-a159-7844f11ee44a",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "524c3970-db05-4eec-8a82-013f27f1a1a6",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        }
+      ]
+    },
+    {
+      "userUId": "25295d9d-2cba-43c0-9b7c-ad253db93fea",
+      "usageData": [
+        {
+          "gooruOId": "46d4a6d4-991b-4c51-a656-f694e037dd68",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "0a255924-b887-4200-9e82-fb1e73cd45a9",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "62da7af6-90c4-49d6-9b5a-d7ac8117b571",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "58db5003-9a1e-423d-8fcc-de3506034173",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "60a20e19-e122-4e49-8da7-9556b2ad8bd3",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "dd82de53-a258-43bf-987d-09adf06f1518",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "c2694b45-205f-4fad-9abf-ffc342aff205",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "19ffe6fb-d184-4e4e-a159-7844f11ee44a",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        },
+        {
+          "gooruOId": "524c3970-db05-4eec-8a82-013f27f1a1a6",
+          "views": 1,
+          "score": 1,
+          "reaction": 5,
+          "timeSpent": 3600000,
+          "resourceType": "question",
+          "questionType": "MC",
+          "answerObject": []
+        }
+      ]
+    }
+  ]
+}

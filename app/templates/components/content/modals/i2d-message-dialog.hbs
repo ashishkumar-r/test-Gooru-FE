@@ -1,0 +1,16 @@
+<div class="modal-container">
+  <div class="modal-body">
+    <div class="success-container">
+      {{gru-icon name="check_circle" class="success-icon"}}
+      <span class="success-text">{{t 'common.success'}}</span>
+    </div>
+    <p class="message">
+      {{t 'i2d-successfully-image-upload'}}
+    </p>
+    <p class="question">{{t 'common.dialog-close'}}</p>
+  </div>
+  <div class="actions">
+    <div class="cancel-btn" {{action 'cancel'}}>{{t 'common.cancel'}}</div>
+    <div class="proceed-btn" {{action 'confirm'}}>{{t 'proceed'}}</div>
+  </div>
+</div>

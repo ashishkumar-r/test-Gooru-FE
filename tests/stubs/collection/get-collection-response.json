@@ -1,0 +1,71 @@
+{
+  "id": "4f060fdc-59bb-4629-809d-bbaa1e602c7e",
+  "title": "OOP introduction",
+  "owner_id": "de006fed-b5c3-4968-a582-2f606d36d128",
+  "creator_id": "de006fed-b5c3-4968-a582-2f606d36d128",
+  "original_creator_id": null,
+  "original_collection_id": null,
+  "publish_date": null,
+  "thumbnail": "109159af-acfc-4cc5-9b4b-ab234c93608b.jpg",
+  "learning_objective": "This is objective",
+  "audience": [
+    198,
+    199
+  ],
+  "metadata": {
+    "depth_of_knowledge": [
+      166,
+      168
+    ]
+  },
+  "taxonomy": null,
+  "orientation": "student",
+  "setting": null,
+  "grading": null,
+  "visible_on_profile": true,
+  "content": [
+    {
+      "id": "5b7c7c9d-f2fd-41e4-b56d-3cb2635fa27e",
+      "title": "7 seven dwarfs' name",
+      "url": "http://images.fan-de-cinema.com/affiches/large/6d/151531.jpg",
+      "creator_id": "cc543d19-d269-450c-a317-cddf1bb13194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "short_title": null,
+      "content_format": "resource",
+      "content_subformat": "image_resource",
+      "answer": null,
+      "metadata": null,
+      "taxonomy": null,
+      "depth_of_knowledge": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 5,
+      "is_copyright_owner": null,
+      "visible_on_profile": true,
+      "display_guide": null
+    },
+    {
+      "id": "7d34e699-348d-46f7-8219-65ea4fc54017",
+      "title": "question new",
+      "url": null,
+      "creator_id": "d716f9ce-71bc-4d3e-bee3-52f6090a8d78",
+      "original_creator_id": null,
+      "publish_date": null,
+      "short_title": "question new",
+      "content_format": "question",
+      "content_subformat": "multiple_choice_question",
+      "answer": null,
+      "metadata": null,
+      "taxonomy": null,
+      "depth_of_knowledge": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": null,
+      "is_copyright_owner": null,
+      "visible_on_profile": true,
+      "display_guide": null
+    }
+  ],
+  "collaborator": []
+}

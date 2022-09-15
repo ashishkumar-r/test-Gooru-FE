@@ -1,0 +1,44 @@
+<div class="panel panel-default" onclick={{action 'selectLibrary'}} onkeypress={{action 'selectLibrary'}} aria-label={{content.name}} tabindex={{tabindex}}>
+  <div class="panel-heading">
+    <div class="title-section">
+      {{truncate text=content.name maxLength=40}}
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="image">
+      <img class="img-responsive" src="{{content.image}}" alt="{{content.name}}">
+    </div>
+    <div class="description">
+      {{#if content.description}}
+        <p title="{{content.description}}">
+          {{content.description}}
+        </p>
+      {{/if}}
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="library-info">
+      {{#if hasCourses}}
+        <span class="item total-courses"><i data-placement="auto" data-toggle="tooltip" title="{{t "common.course"}}" class="icon"></i><span>{{content.courseCount}}</span></span>
+      {{/if}}
+      {{#if hasCollections}}
+        <span class="item total-collections"><i data-placement="auto" data-toggle="tooltip" title="{{t "common.collection"}}" class="icon"></i><span>{{content.collectionCount}}</span></span>
+      {{/if}}
+      {{#if hasAssessments}}
+        <span class="item total-assessments"><i data-placement="auto" data-toggle="tooltip" title="{{t "common.assessment"}}" class="icon"></i><span>{{content.assessmentCount}}</span></span>
+      {{/if}}
+      {{#if hasResources}}
+        <span class="item total-resources"><i data-placement="auto" data-toggle="tooltip" title="{{t "common.resource"}}" class="icon"></i><span>{{content.resourceCount}}</span></span>
+      {{/if}}
+      {{#if hasQuestions}}
+        <span class="item total-questions"><i data-placement="auto" data-toggle="tooltip" title="{{t "common.question"}}" class="icon"></i><span>{{content.questionCount}}</span></span>
+      {{/if}}
+      {{#if hasRubrics}}
+        <span class="item total-rubrics"><i data-placement="auto" data-toggle="tooltip" title="{{t "common.rubric"}}" class="icon"></i><span>{{content.rubricCount}}</span></span>
+      {{/if}}
+      {{#if hasOfflineActivity}}
+        <span class="item total-oa"><i data-placement="auto" data-toggle="tooltip" title="{{t "common.offline-activity"}}" class="icon"></i><span>{{content.offlineActivityCount}}</span></span>
+      {{/if}}
+    </div>
+  </div>
+</div>

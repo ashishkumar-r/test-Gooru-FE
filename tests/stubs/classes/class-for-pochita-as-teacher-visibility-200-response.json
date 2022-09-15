@@ -1,0 +1,71 @@
+{
+  "content_visibility": "visible_all",
+  "course": {
+    "id": "course-123",
+    "units": [
+      {
+        "id": "first-unit-id",
+        "lessons": [
+          {
+            "id": "c902330f-530b-4cfb-bf27-f23329f3be16",
+            "assessments": [
+              {
+                "id": "df484938-3210-4472-b957-25cae0804d10",
+                "visible": "on"
+              }
+            ],
+            "collections": null
+          },
+          {
+            "id": "first-lesson-id",
+            "assessments": [
+              {
+                "id": "first-assessment-id",
+                "visible": "on"
+              }
+            ],
+            "collections": null
+          },
+          {
+            "id": "3740fc5a-7eeb-45bf-8d8b-e33b0f4ff747",
+            "assessments": [
+              {
+                "id": "433e250d-ef70-466a-bd62-bf3eea4a8735",
+                "visible": "on"
+              },
+              {
+                "id": "8ada6a33-315b-4608-96b0-099200aa14fb",
+                "visible": "on"
+              }
+            ],
+            "collections": [
+              {
+                "id": "c0dc80a2-60ce-40f1-9702-813c1b6ed896",
+                "visible": "on"
+              },
+              {
+                "id": "0f7f8152-fa25-4baf-864f-445f15ee831f",
+                "visible": "on"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d76ecba0-e1e0-4048-8174-96684c2240c7",
+        "lessons": [
+          {
+            "id": "2e9b4b62-68c0-4320-ad9e-782d6dd462ab",
+            "assessments": [
+              {
+                "id": "dc361df2-839b-435f-b1ed-07280eebeb9d",
+                "visible": "on"
+              }
+            ],
+            "collections": null
+          }
+        ]
+      }
+    ]
+  }
+}

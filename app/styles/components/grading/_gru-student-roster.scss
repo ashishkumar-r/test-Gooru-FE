@@ -1,0 +1,65 @@
+.grading.gru-student-roster {
+  background-color: $dark-400;
+  height: 100%;
+  width: 100%;
+  .header {
+    padding: 10px;
+    color: $white;
+    @include justify-content(space-between);
+    i {
+      font-size: $font-unBookmark;
+      &.clear {
+        margin: -10px -10px 0;
+        cursor: pointer;
+      }
+    }
+    .title {
+      font-size: $font-size-large;
+    }
+    .lead {
+      line-height: 0;
+      margin-top: 5px;
+    }
+    div {
+      @include flexbox();
+      @include flex-direction(column);
+      .lead {
+        font-size: $font-size-xsmall;
+      }
+    }
+  }
+  .header,
+  .student {
+    @include flexbox();
+  }
+  .student-roster {
+    height: 84%;
+    overflow-y: auto;
+    .student {
+      @include align-items(center);
+      @include justify-content(space-around);
+      padding: 10px;
+      cursor: pointer;
+      &.checked {
+        .student-answer {
+          color: $white;
+        }
+      }
+      &.selected {
+        background-color: $blue-400;
+        .student-answer {
+          i {
+            opacity: 0.5;
+          }
+        }
+      }
+      .name {
+        width: 50%;
+        color: $white;
+      }
+      .student-answer {
+        color: $gray-light;
+      }
+    }
+  }
+}

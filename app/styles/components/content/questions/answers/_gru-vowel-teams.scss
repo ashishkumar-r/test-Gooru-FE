@@ -1,0 +1,155 @@
+.gru-vowel-teams {
+  .gru-vowel-teams-container {
+    .gru-vowel-teams-answer-item {
+      display: grid;
+      grid-template-columns: 50px 1fr 1fr 40px;
+      align-items: center;
+      column-gap: 10px;
+      margin: 10px 0;
+      box-shadow: 0 0 10px $light-200;
+      height: 90px;
+      padding: 0 10px;
+
+      h3 {
+        margin: 0;
+        border-right: 1px solid $light-200;
+        padding: 10px;
+      }
+
+      .close-icon {
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+    .vowel-teams-container {
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 3px;
+      .serp-hl-text-span {
+        border-bottom: 2px solid $blue-400;
+        padding: 3px;
+        position: relative;
+        user-select: none;
+        color: $blue-400;
+
+        b {
+          font-weight: normal;
+          position: relative;
+          cursor: pointer;
+
+          &.selected {
+            font-weight: bold;
+            color: $blue-400;
+            cursor: pointer;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 2px;
+              background-color: $blue-400;
+              top: 0;
+            }
+          }
+          &.crossed {
+            font-weight: normal;
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 16px;
+              height: 2px;
+              background-color: $blue-300;
+              transform: rotate(-48deg);
+              bottom: 8px;
+              left: -3px;
+              top: auto;
+            }
+          }
+          &.short {
+            font-weight: normal;
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              right: 3px;
+              top: -12px;
+              border-radius: 20px;
+              border-bottom: 2px solid $blue-400;
+            }
+          }
+        }
+
+        i {
+          border: 1px solid $light-100;
+          background-color: $blue-400;
+          position: absolute;
+          bottom: -6px;
+          right: 0;
+          font-size: 10px;
+          border-radius: 20px;
+          color: $white;
+          cursor: pointer;
+        }
+      }
+      &.readonly {
+        b {
+          pointer-events: none;
+        }
+      }
+    }
+    .gru-vowel-teams-section {
+      .pop-selection-item {
+        box-shadow: 0 0 10px $light-200;
+        font-style: italic;
+        width: fit-content;
+        display: none;
+        position: absolute;
+        background-color: $white;
+        z-index: 10;
+
+        .backdrops {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+        }
+
+        span {
+          display: block;
+          padding: 5px 10px;
+          font-size: 14px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $light-100;
+          }
+        }
+      }
+    }
+    .gru-add-excercise {
+      margin-top: 20px;
+      span {
+        background-image: linear-gradient(to right, $blue-300, $blue-500);
+        padding: 10px;
+        color: $white;
+        font-weight: bold;
+        box-shadow: 0 0 10px $light-200;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      &.disabled-btn {
+        span {
+          background: $light-200;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}

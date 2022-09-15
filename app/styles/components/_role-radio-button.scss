@@ -1,0 +1,68 @@
+.roleOption {
+  text-align: center;
+  width: 25%;
+  float: $tab-float-dir;
+}
+
+.roleLabel {
+  color: $modal-content-fallback-border-color;
+  font-size: $font-size-small;
+}
+
+.roleRadioButton {
+  margin: 4px 0 0;
+  line-height: normal;
+  margin-right: 0.5ex !important;
+}
+
+.teacherRoleImage {
+  background: url("gooru/teacher.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .teacherRoleImage {
+  background: url("gooru/teacher_selected.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+}
+
+.studentRoleImage {
+  background: url("gooru/student.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .studentRoleImage {
+  background: url("gooru/student_selected.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+}
+
+.parentRoleImage {
+  background: url("gooru/parent.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .parentRoleImage {
+  background: url("gooru/parent_selected.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+}
+
+.otherRoleImage {
+  background: url("gooru/other.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .otherRoleImage {
+  background: url("gooru/other_selected.png") no-repeat scroll center bottom
+    $bg-box-shadow;
+}

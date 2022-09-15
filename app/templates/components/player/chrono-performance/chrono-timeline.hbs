@@ -1,0 +1,72 @@
+<div class="container">
+  {{#if isShowProficiencyProgressBar}}
+    <div class="competency-container">
+      <div class="chart-icon" {{action "showStudentProficiency"}}>
+        {{gru-icon name='equalizer'}}
+      </div>
+      <div class="competency-progress-bar">
+        {{charts/competency-progress-bar competency=competency}}
+      </div>
+    </div>
+  {{/if}}
+  <div class="header">
+    {{#if isMobileView}}
+      {{player/chrono-view/chrono-header-xs performanceSummary=performanceSummary positionToCenter=positionToCenter onOpenCourseReport="onOpenCourseReport" onPaginateNext="onPaginateNext" startDate=startDate activities=activities onSelectCard="onSelectCard"}}
+    {{else}}
+      {{player/chrono-view/chrono-header performanceSummary=performanceSummary positionToCenter=positionToCenter onOpenCourseReport="onOpenCourseReport" onPaginateNext="onPaginateNext" startDate=startDate activities=activities onSelectCard="onSelectCard"}}
+    {{/if}}
+  </div>
+  <div class="body class-activities" id="carousel">
+    {{#each activities as |activity index|}}
+      {{player/chrono-view/student-card  activity=activity onOpenCollectionReport="onOpenCollectionReport" cardIndex=index onSelectCard="onSelectCard"}}
+    {{/each}}
+  </div>
+</div>
+
+{{#if showCourseReport}}
+  {{reports/pull-up/student-course-report onClosePullUp="onClosePullUp" context=studentCourseReportContext showPullUp=showCourseReport}}
+{{/if}}
+
+{{#if showCollectionReport}}
+  {{class/gru-report-panel showPullUp=showCollectionReport reportData=studentReportContextData  model=studentReportContextData.lesson isStudent=studentReportContextData.isStudent onClosePullUp="onClosePullUp"}}
+{{/if}}
+{{#if showExternalAssessmentReport}}
+  {{
+    reports/pull-up/student-external-assessment-report
+    showPullUp=showExternalAssessmentReport
+    reportData=studentReportContextData
+    isStudent=true
+    onClosePullUp="onClosePullUp"
+  }}
+{{/if}}
+
+
+{{#if showStudentDcaReport}}
+  {{reports/pull-up/dca-student-collection-report  useSession=true showPullUp=showStudentDcaReport reportData=studentReportContextData isStudent=true onClosePullUp="onClosePullUp"}}
+{{/if}}
+
+{{#if isShowStudentExternalCollectionReport}}
+  {{reports/pull-up/dca-student-external-collection-report showPullUp=isShowStudentExternalCollectionReport reportData=studentReportContextData isStudent=true onClosePullUp="onClosePullUp"}}
+{{/if}}
+
+{{#if isShowStudentExternalAssessmentReport}}
+  {{
+    reports/pull-up/dca-student-external-assessment-report
+    reportData=studentReportContextData
+    showPullUp=isShowStudentExternalAssessmentReport
+    isStudent=true
+    onClosePullUp="onClosePullUp"
+  }}
+{{/if}}
+
+
+{{#if isShowOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityReport
+    oaId=studentReportContextData.collection.id
+    isReportView=true
+    classId=studentReportContextData.classId
+    isCmReport = true
+    reportContext = studentReportContextData
+  }}
+{{/if}}

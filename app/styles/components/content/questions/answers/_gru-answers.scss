@@ -1,0 +1,30 @@
+.questions.answers {
+  .gru-rich-text-editor {
+    .btn-toolbar .expressions-panel .equation-editor .tab-content {
+      .tab-pane {
+        div {
+          min-height: 30px;
+          margin: 0;
+          padding: 0;
+        }
+        .toolbar-1 a {
+          width: 35px !important;
+          height: 43px !important;
+          background-position: -10px -5px;
+        }
+        .toolbar-2 a {
+          width: 23px !important;
+          height: 33px !important;
+          vertical-align: top;
+          background-position: -8px -5px;
+        }
+        .toolbar-3 a {
+          width: 29px !important;
+          height: 33px !important;
+          vertical-align: top;
+          background-position: -8px -5px;
+        }
+      }
+    }
+  }
+}

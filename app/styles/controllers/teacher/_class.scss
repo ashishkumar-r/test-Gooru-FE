@@ -1,0 +1,38 @@
+.teacher.class {
+  margin: 0 auto;
+
+  .gru-take-tour {
+    right: 80px;
+    top: 125px;
+  }
+
+  .content {
+    .no-content {
+      margin-top: 15px;
+    }
+  }
+
+  .header {
+    .go-back-container {
+      .back-to {
+        font-size: $font-size-lead;
+        font-weight: 300;
+
+        i {
+          font-size: $font-size-arrow-icon;
+          height: 30px;
+          vertical-align: middle;
+          width: 25px;
+        }
+      }
+    }
+
+    h1 {
+      color: $dark-500;
+      font-size: $font-size-lead;
+      font-weight: 300;
+      display: inline-block;
+      margin: 0 200px;
+    }
+  }
+}

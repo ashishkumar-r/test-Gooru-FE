@@ -1,0 +1,20 @@
+<div class="gru-counting-syllables-container">
+    <div class="gru-counting-syllables-section">
+          {{#each answers as |answer index|}}
+              <div class="gru-counting-syllables-answer-item">
+                    <h3>{{answer-letter index}}</h3>
+                    {{validation/gru-input content=answer.text disabled=(not editMode) model=answer valuePath='text' }}
+                    <div class="counting-syllables-container text-edit counting-syllables-edit-{{index}}"
+                     data-answer-index="{{index}}">{{answer.text}}</div>
+                  {{#if (and (gt index 0) editMode)}}
+                    <span {{action "onDeleteAnswer" answer}} class="material-icons close-icon">delete</span>
+                  {{/if}}
+              </div>
+          {{/each}}
+    </div>
+  <div class="gru-add-excercise {{unless editMode 'disabled-btn'}}">
+    <span {{action (optional (if editMode (action "onAddExcercise") null))}}>
+      {{t 'content.questions.edit.builder.add-vowel-teams'}}
+    </span>
+  </div>
+</div>

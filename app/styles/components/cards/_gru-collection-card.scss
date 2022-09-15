@@ -1,0 +1,169 @@
+.cards.gru-collection-card {
+  .panel {
+    border-radius: 6px;
+    width: 300px;
+
+    .panel-heading {
+      background-color: $white;
+      border-bottom: 1px solid $gray-lighter;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      padding: 10px 15px 0;
+
+      .image {
+        display: inline-block;
+        img {
+          border-radius: 4px;
+          height: 74px;
+          width: 74px;
+        }
+      }
+
+      .collection-info {
+        color: $text-color;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 15px;
+        width: 65%;
+        .title-section {
+          h6.title {
+            display: inline-block;
+            width: 88%;
+            color: $blue-400;
+          }
+          $line-height: 1.5;
+          $lines-to-show: 2;
+          .truncate {
+            @include ellipsis(
+              $font-size: $font-size-base,
+              $line-height: $line-height,
+              $lines-to-show: $lines-to-show,
+              $excerpt-bg: $white
+            );
+            display: block;
+            white-space: nowrap;
+            margin-top: 10px;
+          }
+          .publish-icon {
+            display: inline-block;
+            float: $menu-float-dir;
+            vertical-align: top;
+            margin-top: 5px;
+            background: url("gooru/badge-01.png");
+            -webkit-background-size: 17px 17px;
+            background-size: 17px 17px;
+            height: 17px;
+            width: 17px;
+          }
+        }
+        .question-resources {
+          display: block;
+          height: 16px;
+        }
+        .bar {
+          font-weight: bold;
+          color: $gray-dark;
+        }
+        h6 {
+          margin: 5px 0 5px 0;
+        }
+        p {
+          display: inline;
+        }
+        .external {
+          display: inline-flex;
+          justify-content: space-between;
+          width: 100%;
+
+          .icons {
+            background-image: url("/assets/gooru/share.png");
+            width: 17px;
+            height: 14px;
+            background-size: cover;
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+    .panel-body {
+      display: table;
+      padding: 15px 15px 5px 15px;
+      position: relative;
+      width: 100%;
+      height: 180px;
+      .collection-details {
+        height: inherit;
+        .gru-taxonomy-tag-list {
+          .gru-taxonomy-tag {
+            max-width: 225px;
+          }
+        }
+        .author,
+        .remixed-by {
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            cursor: pointer;
+          }
+          div > * {
+            display: inline-block;
+          }
+          span {
+            cursor: pointer;
+          }
+          span.title {
+            margin: 2px 5px 10px 0;
+            cursor: auto;
+          }
+          .owner {
+            color: $blue-400;
+            max-width: 160px;
+            @include text-overflow;
+            vertical-align: middle;
+          }
+        }
+        .course {
+          height: 36px;
+          i {
+            color: $gray-light;
+            vertical-align: middle;
+          }
+          p,
+          a {
+            margin-left: 4px;
+            vertical-align: bottom;
+          }
+          p {
+            display: inline;
+          }
+        }
+        .description {
+          height: 51px;
+          $line-height: 1.3;
+          $lines-to-show: 3;
+          p.truncate {
+            @include ellipsis(
+              $font-size: $font-size-base,
+              $line-height: $line-height,
+              $lines-to-show: $lines-to-show,
+              $excerpt-bg: $white
+            );
+          }
+        }
+      }
+    }
+    .panel-footer {
+      background-color: $white;
+      padding: 10px 15px 10px 15px;
+      .buttons {
+        display: inline-block;
+      }
+      .visibility {
+        display: inline-block;
+        float: $menu-float-dir;
+        height: 24px;
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<button title="{{t 'common.delete'}}" class="btn no-bgd delete-item" {{action 'deleteItem' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="delete"}}</button>
+{{#if (or isCollectionOrAssessment (eq model.collectionType 'offline-activity') )}}
+  <button title="{{t 'common.remove'}}" class="btn no-bgd remove-item" {{action 'removeItem' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="remove_circle"}}</button>
+{{/if}}
+<button title="{{t 'common.move'}}" class="btn no-bgd move-item out-of-scope" {{action 'move' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="subdirectory_arrow_right"}}</button>
+<button title="{{t 'common.copy'}}" class="btn no-bgd copy-item" {{action 'copy' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="content_copy"}}</button>

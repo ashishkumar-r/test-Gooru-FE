@@ -1,0 +1,58 @@
+<div class="gru-video-conference-card-container">
+{{#if (not-eq activeActivityContent.contentType 'meeting')}}
+  <div>
+  {{#if isShowVideoConference}}
+  <div class="conference-header disable" title="{{t 'common.add-student' action=" enable"}}" data-toggle="tooltip"
+    data-placement="bottom auto">
+    <span>{{gru-icon name="videocam"}}</span>
+    <span>{{t 'conferenc.include'}}</span>
+    <span class="conference_icon  {{if isGuestAccount 'disabled-btn'}}">{{gru-switch
+      switchOptions=switchOptions tabindex=tabindex}}</span>
+  </div>
+  {{else}}
+  <div class="conference-header {{if activeActivityContent.meeting_url 'no-switch'}}">
+    <span>{{gru-icon name="videocam"}}</span>
+    <span>{{t 'conferenc.include'}}</span>
+    <span class="conference_icon {{if isGuestAccount 'disabled-btn'}}">{{gru-switch switchOptions=switchOptions
+      onOptionSwitch='onToggleCheckbox' isChecked=hasVideoConference tabindex=tabindex}}</span>
+  </div>
+  {{/if}}
+  </div>
+  {{/if}}
+  <div class="conferenc-time-input {{if (not hasVideoConference) 'hide' }}">
+    <div class="start-time">
+      <span id="start-time" class="time-label">{{t 'conference.start-time'}}</span>
+      {{input type="text" value=startTime class="startTime" tabindex=tabindex aria-labelledBy="start-time"}}
+    </div>
+    <div class="end-time">
+      <span id="end-time" class="time-label">{{t 'conference.end-time'}}</span>
+      {{input type="text" value=endTime class="endTime" tabindex=tabindex aria-labelledBy='end-time'}}
+    </div>
+
+  </div>
+  <div class="meeting-url {{if (not hasVideoConference) 'hide' }}">
+    <label for="meet-url" class="marginBottom0">
+      <span id="conference-meeting-link" class="time-label">{{t 'conference.meeting-url'}}</span>
+      {{input type="text" id='meet-url' value=meetUrl class="meet-link" tabindex=tabindex 
+      aria-labelledBy='conference-meeting-link'}}
+    </label>
+  </div>
+  {{#if activeActivityContent.meeting_url}}
+  <div class="update-activity">
+    <span onclick={{action "updateMeeting" }} onkeypress={{action "updateMeeting" }} tabindex={{tabindex}}
+      aria-label='update meeting' class="{{if isChangedTime 'on-update' 'off-update'}}" data-toggle="tooltip"
+      title="{{t 'vc.update-tooltip'}}">{{t 'oa.update-meeting'}}</span>
+    <span {{action "launchMeeting" activeActivityContent.meeting_url}} tabindex={{tabindex}} aria-label='launch meeting'
+      class="{{if isFutureActivity 'off-update'}}" data-toggle="tooltip" title="{{t 'vc.launch-tooltip'}}">{{t
+      'oa.launch-meeting'}}</span>
+  </div>
+  {{else}}
+
+  <div
+    class="add-activity {{if (or (and (not hasVideoConference) isUpdateCard) todayActivityList isGuestAccount) 'disabled-btn'}}"
+    onclick={{action "onAddActivity" }} onkeypress={{action "onAddActivity" }} tabindex={{tabindex}}
+    aria-label='start activity'>
+    {{if isUpdateCard (t 'oa.enable-conference') (t 'oa.add_activity')}}
+  </div>
+  {{/if}}
+</div>

@@ -1,0 +1,105 @@
+<div class="monthly-summary-report-container">
+  <div class="monthly-performance-chart-container">
+    <div class="carousel-months">
+      <div class="previous-month month-slider {{unless isPrevEnabled 'disable-event'}}" onclick={{action "onCarouselMonth" 'prev'}} onkeypress={{action "onCarouselMonth" 'prev'}} tabindex={{tabindex}}>
+        {{gru-icon name="keyboard_arrow_left"}}
+      </div>
+      <div class="next-month month-slider {{unless isNextEnabled 'disable-event'}}" onclick={{action "onCarouselMonth" 'next'}} onkeypress={{action "onCarouselMonth" 'next'}} tabindex={{tabindex}}>
+        {{gru-icon name="keyboard_arrow_right"}}
+      </div>
+    </div>
+    {{charts/score-fill-gauge-chart
+      scoreInPercentage = reportContext.scoreInPercentage
+      timeSpent = reportContext.timeSpent}}
+  </div>
+  <div class="activity-list-filter-container">
+    <div class="sort-action">
+      <div class="date-sort sort-item" onclick={{action "onSortByDate"}} onkeypress={{action "onSortByDate"}} tabindex={{tabindex}}>
+        <span class="sort-label">
+          <span class="text">{{t 'common.date'}}</span>
+        </span>
+        <span class="icon">
+          {{#if isSortedByDate}}
+            {{gru-icon name="keyboard_arrow_down"}}
+          {{else}}
+            {{gru-icon name="keyboard_arrow_up"}}
+          {{/if}}
+        </span>
+      </div>
+      <div class="title-sort sort-item" onclick={{action "onSortByTitle"}} onkeypress={{action "onSortByTitle"}} tabindex={{tabindex}}>
+        <span class="sort-label">
+          <span class="text">{{t 'gru-performance-summary.title'}}</span>
+        </span>
+        <span class="icon">
+          {{#if isSortedByTitle}}
+            {{gru-icon name="keyboard_arrow_down"}}
+          {{else}}
+            {{gru-icon name="keyboard_arrow_up"}}
+          {{/if}}
+        </span>
+      </div>
+    </div>
+    <div class="filter-action">
+      <div class="assessment-filter filter-item {{unless isCollectionFilterActive 'disable-event'}} {{if isAssessmentFilterActive 'active'}}" onclick={{action "onFilterByAssessment"}} onkeypress={{action "onFilterByAssessment"}} tabindex={{tabindex}}>
+        <i class="icon"/>
+        <span class="text">{{t 'common.assessment'}}</span>
+      </div>
+      <div class="collection-filter filter-item {{unless isAssessmentFilterActive 'disable-event'}} {{if isCollectionFilterActive 'active'}}" onclick={{action "onFilterByCollection"}} onkeypress={{action "onFilterByCollection"}} tabindex={{tabindex}}>
+        <i class="icon"/>
+        <span class="text">{{t 'common.collection'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="activity-list-container">
+    {{#if isLoading}}
+      <div class="loading-spinner">
+        {{three-bounce-spinner}}
+      </div>
+    {{/if}}
+    {{#each activitySummaryList as |activitySummary|}}
+      <div class="activity-container {{unless activitySummary.performanceSummary 'disable-event'}}" onclick={{action "onOpenContentReport" activitySummary}} onkeypress={{action "onOpenContentReport" activitySummary}} tabindex={{tabindex}}>
+        <div class="icon-container {{activitySummary.contentType}}">
+          <i class="icon" />
+        </div>
+        <div class="activity-info-container">
+          <div class="activity-title">
+            {{activitySummary.title}}
+          </div>
+          <div class="activity-date">
+            {{format-date activitySummary.date 'MMMM DD, YYYY'}}
+          </div>
+        </div>
+        <i class="{{activitySummary.contentType}}-icons"></i>
+        <div class="activity-performance-container {{unless activitySummary.performanceSummary 'not-started' (if (gte activitySummary.performanceSummary.score 0) (concat 'grade-range-' (grade-range activitySummary.performanceSummary.score)) 'timespent')}}">
+          {{#if activitySummary.performanceSummary}}
+            {{if (gte activitySummary.performanceSummary.score 0)
+              (concat activitySummary.performanceSummary.score '%')
+              (if (gte activitySummary.performanceSummary.timeSpent 0) (format-time  activitySummary.performanceSummary.timeSpent) '--')
+            }}
+          {{else}}
+            {{t 'teacher-landing.class.students-tab.not-started'}}
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+{{#if showStudentDcaReport}}
+  {{reports/pull-up/dca-student-collection-report showPullUp=showStudentDcaReport reportData=studentReportContextData isStudent=true onClosePullUp="onClosePullUp" tabindex=tabindex}}
+{{/if}}
+
+{{#if isShowStudentExternalCollectionReport}}
+  {{reports/pull-up/dca-student-external-collection-report showPullUp=isShowStudentExternalCollectionReport reportData=studentReportContextData isStudent=true onClosePullUp="onClosePullUp" tabindex=tabindex}}
+{{/if}}
+
+{{#if isShowStudentExternalAssessmentReport}}
+  {{
+    reports/pull-up/dca-student-external-assessment-report
+    reportData=studentReportContextData
+    showPullUp=isShowStudentExternalAssessmentReport
+    isStudent=true
+    onClosePullUp="onClosePullUp"
+    tabindex=tabindex
+  }}
+{{/if}}

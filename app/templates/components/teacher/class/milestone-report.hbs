@@ -1,0 +1,94 @@
+<div class="milestone-report-container">
+    <div class="milestone-report-panel">
+        <div class="milestone-by-data">
+              <a href="javascript:void(0)" {{action "onGoBack"}} class="back-btn" aria-label="back to performance">{{gru-icon name="arrow_back"}}</a>
+              <span>{{t 'milestone-report:data-by-milestone'}}</span>
+        </div>
+        <div class="milestone-details-list-panel">
+            <div class="milestone-list-panel">
+              <div class="milestone-list-head">{{t 'milestones'}}</div>
+              <div class="milstone-list-body">
+                <div class="milestone-list-body-panel">
+                  {{#each milestoneList as |milestone milestoneIndex|}}
+                    <a class="milestone-card-items {{if (eq activeMilestone.milestoneId milestone.milestoneId) 'active'}}" {{action "onSelectMilestone" milestone}} aria-label="select milestone" href="javascript:void(0)">
+                         <span class="flag-icon">{{gru-icon name="flag"}}</span>
+                         <div class="milestone-item">
+                            <span class="milestone-name">{{t 'common.milestone'}} {{plus-one milestoneIndex}} - {{milestone.gradeName}}</span>
+                            <div class="student-list">
+                                {{#if milestone.students.length}}
+                                <div class="active-student-name">
+                                  {{#each milestone.students as |student studentIndex|}}
+                                      {{#if (lt studentIndex 2)}}
+                                        <span>{{student.lastName}} {{student.firstName}}</span>
+                                      {{/if}}
+                                  {{/each}}
+                                </div>
+                                  {{#if (gt milestone.students.length 2)}}
+                                    <span class="student-count"> & {{minus-any milestone.students.length 2}} {{t 'oa.others'}}</span>
+                                  {{/if}}
+                                {{else}}
+                                  --
+                                {{/if}}
+                            </div>
+                         </div>
+                    </a>
+                    {{/each}}
+                </div>
+                <div class="navigator-milestone-list">
+                  <a class="milestone-card-items {{if isShowNavigatorMilestone 'active'}}" {{action "onNavigatorMilestone"}} aria-label="select milestone" href="javascript:void(0)">
+                       <span class="flag-icon navigator-icon"></span>
+                       <div class="milestone-item">
+                          <span class="milestone-name">{{t 'milestone-report:class-journery-report'}}</span>
+                          <span>{{t 'common.all'}} {{t 'milestones'}}</span>
+                       </div>
+                  </a>
+                  {{#if isShowNavigatorMilestone}}
+                    <a href="javascript:void(0)" {{action "onCloseNavMilestone"}} class="milestone-close" aria-label="close icon">
+                      {{gru-icon name="clear"}}
+                    </a>
+                  {{/if}}
+                </div>
+
+              </div>
+            </div>
+            <div class="milestone-report-detail-panel">
+                <div class="milestone-report-head">
+                   <span class="flag-icon">{{gru-icon name="flag"}}</span>
+                    <div class="milstone-report-head-title">
+                        <span class="milestone-title">{{activeMilestone.title}}</span>
+                        <div class="milestone-count-title">
+                          <span>{{activeMilestone.domainCount}} {{t 'common.domains'}}</span>
+                          <span>{{activeMilestone.topicCount}} {{t 'common.topics'}}</span>
+                          <span>{{activeMilestone.competencyCount}} {{t 'common.competencies'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-student-list">
+                  {{input type="text" placeholder=(t 'common.search-placeholder') name="search-student" title="search student" key-up=(action "onSearchStudent")}}
+                </div>
+                <div class="milestone-student-list">
+                    <div class="student-table-head">
+                        <span class="profile-head">{{t 'common.student'}}</span>
+                        <span>{{t 'milestone-report.highest-competency-mastered'}}</span>
+                        <span>{{t 'class-progress-report-competencies-mastered'}}</span>
+                        <span>{{t 'student-data-stand.score'}}</span>
+                    </div>
+                    <div class="student-table-body">
+                      {{#each studentList as | student |}}
+                          <div class="student-table-content-card">
+                              <div class="student-profile">
+                                  <span class="profile-image" style="background-image: url({{student.thumbnailUrl}})"></span>
+                                  <span class="profile-name">{{student.lastName}} {{student.firstName}}</span>
+                                  <a href="javascript:void(0)" {{action "onSelectStudent" student}}>{{gru-icon name="sort"}}</a>
+                              </div>
+                              <span class="competency-code" data-toggle="tooltip" title="{{student.competencyTitle}}">{{student.highestCompetency}}</span>
+                              <span>{{if student.completedCompetencies student.completedCompetencies '--'}}/{{student.totalCompetencies}}</span>
+                              <span class="avg-count avg-count-{{grade-range student.averageScore}}">{{if student.averageScore (concat student.averageScore '%') '--'}}</span>
+                          </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

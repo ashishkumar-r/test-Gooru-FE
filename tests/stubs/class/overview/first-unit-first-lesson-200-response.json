@@ -1,0 +1,30 @@
+[
+  {
+    "collectionType": "collection",
+    "title": "Cadron Creek Literature Guides",
+    "gooruOid": "5673982f92377228ec43287b",
+    "collectionId": 303691238,
+    "visibility": true
+  },
+  {
+    "collectionType": "assessment",
+    "title": "TCM Literature Units",
+    "gooruOid": "5673982f9cfca1521ea5b8f9",
+    "collectionId": 301989512,
+    "visibility": true
+  },
+  {
+    "collectionType": "collection",
+    "title": "Memoria Press Literature & Poetry",
+    "gooruOid": "5673982fc5619d74aea87ec4",
+    "collectionId": 584230529,
+    "visibility": true
+  },
+  {
+    "collectionType": "assessment",
+    "title": "Essentials in Literature",
+    "gooruOid": "5673982fcf381597c956a53f",
+    "collectionId": 295513359,
+    "visibility": true
+  }
+]

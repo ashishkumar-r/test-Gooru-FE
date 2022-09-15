@@ -1,0 +1,68 @@
+{{#if showCategories}}
+  <div class="category">
+    <label>
+      <span>{{t "common.category"}}</span>
+      {{#if isEditing}}
+        <div class="btn-group categories">
+          {{#each categories as |category|}}
+            {{#if (eq category.code selectedCategory)}}
+              <button type="button" class="btn btn-sm btn-primary" {{action 'setCategory' category.code}} tabindex={{tabindex}}>
+                {{category.title}}
+              </button>
+            {{else}}
+              <button type="button" class="btn btn-sm btn-info" {{action 'setCategory' category.code}} tabindex={{tabindex}}>
+                {{ category.title}}
+              </button>
+            {{/if}}
+          {{/each}}
+        </div>
+      {{else}}
+        <div class="categories">
+          {{#each categories as |category|}}
+            {{#if (eq category.code selectedCategory)}}
+              <div class="btn-empty btn btn-sm category"> {{ category.title }}</div>
+            {{/if}}
+          {{/each}}
+        </div>
+      {{/if}}
+    </label>
+  </div>
+{{/if}}
+<div class="subject clearfix">
+  <label>
+    <span class="{{unless subjects 'no-subject'}}">{{t subjectLabelKey}}</span>
+  </label>
+  {{#if isEditing}}
+    {{#if subjects.length}}
+      {{taxonomy/gru-subject-picker
+        subjects=subjects
+        onlySubjectsWithStandards=onlySubjectsWithStandards
+        selectedSubject=selectedSubject
+        onSubjectSelected='setSubject'
+        tabindex=tabindex
+      }}
+    {{/if}}
+    {{#if (and showCourses selectedSubject subjectCourses)}}
+      {{taxonomy/gru-subject-course-picker
+        selectedSubject=selectedSubject
+        courses=subjectCourses
+        selectedTaxonomy=selectedTaxonomy
+        onTaxonomySelected='selectTaxonomy'
+        tabindex=tabindex
+      }}
+      {{#if editableTags}}
+        <div class="tags">
+          {{taxonomy/gru-taxonomy-tag-list tags=editableTags onRemove=(action 'removeTag')}}
+        </div>
+      {{/if}}
+    {{/if}}
+  {{else}}
+    {{#if showCourses}}
+      {{#if tags}}
+        <div class="tags">
+          {{taxonomy/gru-taxonomy-tag-list tags=tags}}
+        </div>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+</div>

@@ -1,0 +1,59 @@
+[
+  {
+    "description": "RealTime API: Endpoint to return all the events registered in the RealTime server for a specific collection and class",
+    "request": {
+      "url": "^/nucleus/realtime/class/(.+)/collection/(.+)/events",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "collection-events-200-response.json"
+    }
+  },
+  {
+    "description": "RealTime API: Endpoint to register a new user event for a specific collection and class.",
+    "request": {
+      "url": "^/nucleus/realtime/class/(.+)/collection/(.+)/user/(.+)/event",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  },
+  {
+    "description": "RealTime API: Endpoint to register an assessment|collection as completed.",
+    "request": {
+      "url": "^/nucleus/realtime/class/(.+)/collection/(.+)/user/(.+)/complete",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  },
+  {
+    "description": "RealTime API: Endpoint to reset an assessment|collection and initiate a new attempt.",
+    "request": {
+      "url": "^/nucleus/realtime/class/(.+)/collection/(.+)/user/(.+)/reset",
+      "method": "DELETE"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  }
+]

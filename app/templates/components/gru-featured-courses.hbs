@@ -1,0 +1,30 @@
+  <nav id='subject-navbar' class="navbar navbar-default">
+    <ul class="nav navbar-nav subject-filters">
+      {{#each formattedContent as |content index|}}
+        {{#if content.subject}}
+          {{#gru-scroll id=(concat "subject-link-" index) to=(concat "#featured-subject-" index) class=(if (eq index 0) "selected subject-menu-option" "subject-menu-option") offset='175' tagName="li"}}
+            <a>
+              <span class="category">{{content.category}}</span><br>
+              <span class="subject">{{content.subject}}</span>
+            </a>
+          {{/gru-scroll}}
+        {{/if}}
+      {{/each}}
+     </ul>
+  </nav>
+  <div class="content-container">
+    {{#each formattedContent as |content index|}}
+      <div id="featured-subject-{{index}}" class="subject-container">
+
+        {{#if content.subject}}
+          <p class="subject-title">{{content.subject}}</p>
+        {{/if}}
+
+        <div class="course-container">
+          {{#each content.courses as |course index|}}
+            {{cards/gru-course-card course=course isEyeVisible=false onRemixCourse="onRemixCourse"}}
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+  </div>

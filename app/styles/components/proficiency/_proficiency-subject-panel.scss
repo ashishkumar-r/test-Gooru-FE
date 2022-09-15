@@ -1,0 +1,163 @@
+.proficiency-subject-panel {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+  background-color: $white-bold;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  position: relative;
+  @media screen and (max-width: 768px) {
+    min-width: 380px;
+  }
+
+  .domain-list {
+    padding-left: 16px;
+    overflow: hidden;
+    height: calc(90vh - 100px);
+    overflow-y: auto;
+
+    .title {
+      font-weight: bold;
+    }
+
+    .desc {
+      font-style: italic;
+    }
+
+    ol {
+      cursor: pointer;
+      padding: 10px 0 10px 16px;
+
+      li {
+        cursor: default;
+        padding-bottom: 10px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid $breadcrumb-color;
+
+        .competency-container {
+          ol {
+            list-style: none;
+            li {
+              .topic-title {
+                display: block;
+                color: $dark-200;
+                cursor: pointer;
+              }
+              .competency-sec {
+                padding-left: 20px;
+              }
+
+              &:last-child {
+                border-bottom: none;
+              }
+            }
+          }
+        }
+
+        .domain-title {
+          display: block;
+          color: $font-sky-400-dark-400;
+          cursor: pointer;
+        }
+
+        .competency-sec {
+          display: flex;
+          padding: 10px 0;
+
+          &.disable-student-performance {
+            .competency-status {
+              display: none;
+            }
+            .competency-count {
+              span {
+                display: none;
+              }
+            }
+          }
+
+          .competency-status {
+            display: grid;
+            grid-template-columns: repeat(3, max-content);
+            grid-gap: 10px;
+            margin-right: 10px;
+
+            .mastered {
+              display: grid;
+              grid-template-columns: 20px auto;
+              justify-content: center;
+
+              .status-label {
+                width: 24px;
+                height: 24px;
+                background-color: $blue-mastery;
+              }
+            }
+
+            .in-progress {
+              display: grid;
+              grid-template-columns: 20px auto;
+              justify-content: center;
+
+              .status-label {
+                width: 24px;
+                height: 24px;
+                background-color: $blue-in-progress;
+              }
+            }
+
+            .not-started {
+              display: grid;
+              grid-template-columns: 20px auto;
+              justify-content: center;
+
+              .status-label {
+                width: 24px;
+                height: 24px;
+                background-color: $not-started;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .panel-header {
+    padding: 16px;
+    border-bottom: solid 1px $nobel-gray;
+    display: grid;
+    grid-template-columns: auto auto;
+    .data-model-selector {
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      justify-content: center;
+      align-items: center;
+      column-gap: 4px;
+      opacity: 0.8;
+      .active {
+        color: $gray-base;
+        opacity: 1;
+      }
+    }
+    .proficiency-selector {
+      .subject-name {
+        font-size: 25px;
+        color: $sky-400;
+        line-height: 1;
+      }
+
+      .framework-title {
+        font-weight: bold;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .three-bounce-spinner {
+    position: absolute;
+    left: 39.5%;
+    z-index: 9;
+    bottom: 50%;
+  }
+}

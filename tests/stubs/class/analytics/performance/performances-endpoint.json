@@ -1,0 +1,717 @@
+[
+  {
+    "description": "Student session - details",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/assessment/(.+)/user/(.+)",
+      "method": "GET",
+      "query": {
+        "sessionId": "(.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-session-details-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the collection performance data by student, unit, class, lesson, etc",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/collection/(.+)/user/(.+)",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-collection-performance-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the assessment performance data by student, unit, class, lesson, etc",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/assessment/(.+)/user/(.+)",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-assessment-performance-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the collection performance data for any student, course, unit, lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/study/collection/performance",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-collection-performance-summary-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the assessment performance data for any student, course, unit, lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/study/assessment/performance",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-assessment-performance-summary-200-response.json"
+    }
+  },
+
+  {
+    "description": "Gets the collection performance summary by ids, any ids",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/collection/performance$",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-collection-performance-summary-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the assessment performance summary by ids, any ids",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/assessment/performance$",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-assessment-performance-summary-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the class activity performance summary by ids, any class any ids",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/activity$",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-activity-performance-summary-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the lesson performance data by student and unit",
+    "request": {
+      "url": "^/mocked-api/insights/api/v1/class/(.+)/course/(.+)/unit/0619777a-45fa-4bfe-b800-40b2ab158c7a/progress$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "lesson-performance-ok-response.json"
+    }
+  },
+  {
+    "description": "Gets the lesson performance data by student and unit",
+    "request": {
+      "url": "^/mocked-api/insights/api/v1/class/(.+)/course/(.+)/unit/1619777a-45fa-4bfe-b800-40b2ab158c7b/progress$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "lesson-performance-second-ok-response.json"
+    }
+  },
+  {
+    "description": "Gets the student performance data by student",
+    "request": {
+      "url": "^/mocked-api/insights/api/v1/class/(.+)/course/(.+)/progress$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-ok-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/class-for-pochita-as-student/course/75366215-f9d5-424c-8a90-2cabdfeb3ffa/unit/(.+)/lesson/third-lesson-id/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-overview-first-lesson-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/first-unit-id/lesson/first-lesson-id/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/conventions-1.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/first-unit-id/lesson/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/no-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/class-for-pochita-as-student/course/(.+)/unit/second-unit-id/lesson/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-overview-lesson-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/second-unit-id/lesson/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/no-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/third-unit-id/lesson/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/no-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/dfc99db4-d331-4733-ac06-35358cee5c64/lesson/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/system-testing.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/c1f810a2-c87f-48f5-a899-0d9753383042/lesson/27f0bc24-c2b5-40d8-bb8f-e6ec939ad553/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/functional-1.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/c1f810a2-c87f-48f5-a899-0d9753383042/lesson/40fe7ec4-261f-43aa-882b-e678fc754256/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/functional-2.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/c1f810a2-c87f-48f5-a899-0d9753383042/lesson/5c9e8048-493a-489c-89e1-80be13c4bed0/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/functional-3.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/c1f810a2-c87f-48f5-a899-0d9753383042/lesson/7cf4a8ec-adec-4b27-815b-6fa4bea9fd97/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "assessment-collections/functional-4.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the lessons in a class, course, unit and lesson",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/(.+)/lesson/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-lesson-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/first-unit-id/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "qa-student-performance/student-performance-unit-200-response-conventions.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/class-for-pochita-as-student/course/(.+)/unit/dfc99db4-d331-4733-ac06-35358cee5c64/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-overview-last-unit-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/class-for-pochita-as-student/course/(.+)/unit/second-unit-id/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-overview-unit-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/second-unit-id/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "qa-student-performance/student-performance-unit-200-response-unit-testing.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/third-unit-id/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "qa-student-performance/student-performance-unit-200-response-design.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/c1f810a2-c87f-48f5-a899-0d9753383042/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "qa-student-performance/student-performance-unit-200-response-functional.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/dfc99db4-d331-4733-ac06-35358cee5c64/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "qa-student-performance/student-performance-unit-200-response-system-testing.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for a specific unit in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/unit/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-unit-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the Units in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/class-for-pochita-as-student/course/75366215-f9d5-424c-8a90-2cabdfeb3ffa/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-performance-overview-course-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0: Returns student's performance data for all the Units in a class and course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/performance",
+      "query": {
+        "userUid": "(.+)",
+        "collectionType": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-course-performance-200-response.json"
+    }
+  },
+
+  {
+    "description": "Student sessions - completed",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/(.+)/(.+)/sessions",
+      "method": "GET",
+      "query": {
+        "openSession": false
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-sessions-completed-200-response.json"
+    }
+  },
+
+  {
+    "description": "Student sessions - open",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/(.+)/(.+)/sessions",
+      "method": "GET",
+      "query": {
+        "openSession": true
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-sessions-open-200-response.json"
+    }
+  },
+
+  {
+    "description": "Student sessions - taxonomy usage",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/session/(.+)/taxonomy/usage",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "student-session-taxonomy-usage-200-response.json"
+    }
+  },
+  {
+    "description": "Class Performance Summary for Pochita",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/classes/performance",
+      "method": "POST",
+      "query": {
+        "userId": "id-for-pochita"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "pochita-class-performance-summary-200-response.json"
+    }
+  },
+  {
+    "description": "Class Performance Summary for Param",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/classes/performance",
+      "method": "POST",
+      "query": {
+        "userId": "param-123"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "param-class-performance-summary-200-response.json"
+    }
+  },
+  {
+    "description": "Class Performance Summary for any teacher",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/classes/performance",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "teacher-class-performance-summary-200-response.json"
+    }
+  }
+
+]

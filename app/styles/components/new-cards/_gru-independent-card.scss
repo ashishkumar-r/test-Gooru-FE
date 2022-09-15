@@ -1,0 +1,277 @@
+.new-gru-independent-card {
+  .panel {
+    width: 220px;
+    height: 250px;
+    .panel-heading {
+      padding: 0;
+      .title {
+        padding: 6px 8px;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        color: $white;
+        height: 40px;
+        $lines-to-show: 2;
+        $font-size: 13px;
+        $line-height: 1.3;
+        font-weight: bold;
+        @include ellipsis(
+          $font-size: $font-size,
+          $line-height: $line-height,
+          $lines-to-show: $lines-to-show
+        );
+        max-height: 40px;
+        &.collection {
+          background-color: $dark-600 !important;
+        }
+      }
+      .card-heading {
+        background-color: $table-bg;
+        height: 131px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        &::after {
+          display: block;
+          position: absolute;
+          z-index: 9;
+          background-image: linear-gradient(
+            to bottom,
+            $bg-left-box-shadow 0,
+            $gray-base 100%
+          );
+          margin-top: 52px;
+          height: 60%;
+          width: 100%;
+          content: "";
+        }
+        .current-activity {
+          position: absolute;
+          bottom: 0;
+          z-index: 99;
+          .resume {
+            font-size: 10px;
+            font-weight: bold;
+            color: $white;
+            margin-left: 8px;
+          }
+          .title {
+            border-bottom: none;
+            padding-top: 0;
+            a {
+              color: $white;
+              $font-size: 13px;
+              $line-height: 1.3;
+              $lines-to-show: 2;
+              font-weight: bold;
+              @include ellipsis(
+                $font-size: $font-size,
+                $line-height: $line-height,
+                $lines-to-show: $lines-to-show
+              );
+            }
+          }
+          .usage-summary {
+            a {
+              color: $white;
+              font-size: 13px;
+              margin-left: 8px;
+              font-weight: bold;
+            }
+          }
+          .not-applicable {
+            color: $white;
+            font-size: 13px;
+            margin-left: 8px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .panel-body {
+      height: 22px;
+      padding: 0;
+      vertical-align: middle;
+      display: flex;
+      .items-icon {
+        width: 42%;
+        display: flex;
+        span {
+          display: flex;
+          font-size: 12px;
+        }
+      }
+
+      i.resources,
+      i.questions,
+      i.units {
+        background-size: 13px 12px;
+        display: block;
+        width: 13px;
+        height: 12px;
+        margin: 5px 3px 5px 8px;
+      }
+      i.resources {
+        background-image: url("gooru/images/collections_resource_icon.svg");
+      }
+      i.questions {
+        background-image: url("gooru/images/collection-question-gray.svg");
+      }
+      i.units {
+        background-image: url("gooru/images/units-gray.svg");
+      }
+      .bookmark-icon > i {
+        height: 10px;
+        width: 8px;
+        font-size: 14px;
+      }
+      .timestamp {
+        width: 58%;
+        font-size: 11px;
+        margin-right: 4px;
+        font-weight: bold;
+      }
+    }
+    .panel-footer {
+      background-color: $white;
+      display: flex;
+      height: 59px;
+      padding: 0;
+      .first-half {
+        width: 162px;
+        height: 59px;
+        display: flex;
+        box-shadow: 1px 1px 6px 0 $navbar-default-toggle-icon-bar-bg;
+        border-bottom-left-radius: 4px;
+        span {
+          width: 59px;
+          i.assessment {
+            background: url("gooru/images/navigation_assessment.svg") no-repeat;
+            background-size: 52px 36px;
+          }
+          i.collection {
+            background: url("gooru/images/collection-gray.svg") no-repeat;
+            background-size: 52px 36px;
+          }
+          i.course {
+            background: url("gooru/images/navigation_course.svg") no-repeat;
+            background-size: 52px 36px;
+          }
+          i {
+            margin: 12px 0 0 8px;
+            width: 51px;
+            height: 39px;
+            object-fit: contain;
+            display: block;
+          }
+        }
+        .performance {
+          width: calc(100% - 59px);
+          text-align: center;
+          .percentage {
+            font-size: 25px;
+            font-weight: bold;
+            color: $white;
+            &.course {
+              margin-left: 58px;
+            }
+          }
+          .performance-text {
+            color: $white;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: -9px;
+          }
+          .completion-bar {
+            .gru-x-bar-chart {
+              margin-left: 9px;
+              height: 7px;
+              width: 141px;
+            }
+          }
+        }
+        .time-spent {
+          width: calc(100% - 59px);
+          border-bottom-right-radius: 4px;
+          background-color: $dark-600;
+          color: $white;
+          text-align: center;
+          .total-time {
+            font-size: 25px;
+            font-weight: bold;
+          }
+          .time-spent-text {
+            font-size: 10px;
+            font-weight: bold;
+            margin-top: -9px;
+            text-transform: uppercase;
+          }
+        }
+        .completion-chart {
+          height: 27px;
+          padding: 0 11px;
+          .charts.gru-x-bar-chart {
+            border-radius: 4px;
+            height: 7px;
+          }
+          label {
+            display: block;
+            font-size: $font-size-small;
+            margin: 0;
+            padding: 0 10px;
+          }
+        }
+        &.collection {
+          background-color: $dark-600 !important;
+          color: $white;
+        }
+      }
+      .second-half {
+        width: calc(100% - 162px);
+        border-bottom-right-radius: 4px;
+        box-shadow: 1px 1px 6px 0 $navbar-default-toggle-icon-bar-bg;
+        .report {
+          margin-top: 12px;
+          cursor: pointer;
+          &.not-started {
+            pointer-events: none;
+          }
+          .usage-report {
+            margin-left: 16px;
+            border-radius: 3px;
+            display: block;
+            width: 25px;
+            height: 25px;
+            i {
+              color: $white;
+            }
+          }
+          .report-text {
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 9px;
+            text-transform: uppercase;
+          }
+          &.collection-report {
+            .usage-report {
+              i {
+                background-color: $dark-600;
+                border-radius: 3px;
+              }
+            }
+            .report-text {
+              color: $dark-600 !important;
+            }
+          }
+        }
+        .not-applicable {
+          color: $dark-600;
+          font-size: 13px;
+          font-weight: bold;
+          margin-top: 18px;
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}

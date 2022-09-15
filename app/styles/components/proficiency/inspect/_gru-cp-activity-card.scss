@@ -1,0 +1,119 @@
+.gru-cp-activity-card {
+  border-bottom: 1px solid $light-100;
+  page-break-inside: avoid;
+
+  &:last-child {
+    border: none;
+  }
+  .cp-activity-container {
+    .cp-card-panel {
+      display: grid;
+      grid-template-columns: 40px 1fr 25px auto 50px;
+      align-items: center;
+      grid-column-gap: 4px;
+      height: 50px;
+      &.cp-collection-card {
+        grid-template-columns: 40px 1fr 25px 50px;
+      }
+
+      &.hide-score {
+        grid-template-columns: 40px 1fr 25px;
+      }
+
+      &.signature-content {
+        .competency-title {
+          color: $orange-400;
+        }
+      }
+
+      .date-section {
+        text-align: center;
+        span {
+          display: block;
+          line-height: 1.2;
+          font-weight: bold;
+          text-shadow: 3px 2px 5px $light-200;
+        }
+      }
+      .competency-title {
+        span {
+          display: block;
+          line-height: 1.2;
+          @include ellipsis(
+            $font-size: 14px,
+            $line-height: 1.2,
+            $lines-to-show: 1
+          );
+
+          &.attempts-title {
+            font-size: 11px;
+            font-weight: normal;
+          }
+
+          &.title {
+            font-weight: bold;
+          }
+          &.code {
+            display: grid;
+            grid-template-columns: auto auto auto;
+          }
+        }
+      }
+      .attempts-count {
+        text-align: center;
+        span {
+          display: block;
+          line-height: 1.2;
+          font-weight: bold;
+          text-shadow: 3px 2px 5px $light-200;
+        }
+      }
+      .performance-score {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .type {
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        display: block;
+        margin: auto;
+
+        &.assessment,
+        &.assessment-external {
+          background-image: url("gooru/images/add_assessment.svg");
+        }
+
+        &.collection,
+        &.collection-external {
+          background-image: url("gooru/images/add_collection.svg");
+        }
+
+        &.offline-activity {
+          background-image: url("gooru/images/offline.svg");
+        }
+      }
+
+      .assessment-external-icons,
+      .collection-external-icons {
+        width: 18px;
+        height: 18px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+        display: block;
+        background-image: url("/assets/gooru/share.png");
+      }
+    }
+  }
+}

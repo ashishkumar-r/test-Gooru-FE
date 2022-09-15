@@ -1,0 +1,158 @@
+.gru-navigator-card {
+  .navigator-class-cards {
+    width: 90%;
+    max-width: inherit;
+    margin: 0;
+    margin-left: auto;
+    margin-top: 10px;
+    .subject-title {
+      color: $white;
+      padding: 10px 0;
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      align-items: center;
+      .subject-name {
+        font-size: 15px;
+      }
+    }
+    .cards-section {
+      margin: 10px 10px 10px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      .card-layout {
+        width: 252px;
+        height: inherit;
+        background: $white;
+        border-radius: 5px;
+        margin: 10px;
+        .card-content {
+          cursor: pointer;
+          .card-header {
+            height: 40px;
+            line-height: 1.3;
+            padding-left: 10px;
+            display: block;
+            text-align: left;
+            margin-top: 5px;
+            .creator-name {
+              color: $blue-light;
+              font-weight: bold;
+            }
+            .grade-title {
+              display: block;
+              font-size: 12px;
+              color: $blue-400;
+            }
+            .header-title {
+              display: block;
+              font-size: 15px;
+              align-self: center;
+              @include ellipsis(
+                $font-size: 15px,
+                $line-height: 1.2,
+                $lines-to-show: 1
+              );
+            }
+          }
+          .class-thumbnail {
+            height: 150px;
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background-color: $dark-400;
+              opacity: 0.5;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .card-description {
+            padding: 10px;
+            .description {
+              display: block;
+              font-size: 14px;
+              line-height: 1.2;
+              &.show-less {
+                @include ellipsis(
+                  $font-size: 14px,
+                  $line-height: 1.2,
+                  $lines-to-show: 4
+                );
+              }
+            }
+          }
+          .start-button {
+            margin: 10px auto;
+            display: flex;
+            .start-btn {
+              margin: 10px auto;
+              padding: 5px 20px;
+              background-color: $green-light;
+              color: $white;
+              border-radius: 20px;
+              font-weight: bold;
+              width: max-content;
+              border: none;
+            }
+          }
+          .independent-study-footer-section {
+            box-shadow: 0 -3px 5px $light-200;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            padding: 10px;
+            font-weight: bold;
+            grid-column-gap: 10px;
+
+            .flag-icons {
+              border-radius: 50%;
+              background-color: $green-light;
+              width: 40px;
+              height: 40px;
+              display: flex;
+              align-items: center;
+              box-shadow: 0 0 10px $light-400;
+
+              i {
+                width: 30px;
+                height: 30px;
+                margin: 0 auto;
+                border-radius: 50%;
+                border: 1px solid $white;
+                padding: 5px;
+                color: $white;
+                font-size: 20px;
+              }
+            }
+            .percentage-card {
+              align-items: center;
+              padding: 1px 0;
+
+              span {
+                &.time-spent {
+                  text-align: right;
+                }
+                &.percentage-score {
+                  color: $green-light;
+                }
+              }
+            }
+            .progress {
+              height: 10px;
+              margin: 0;
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

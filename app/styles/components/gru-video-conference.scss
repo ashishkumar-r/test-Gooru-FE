@@ -1,0 +1,268 @@
+.add-activity {
+  .input-card {
+    background-color: $input-card-bg-color;
+    height: 93px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .input-section {
+      width: 100%;
+      background: $white;
+      margin: 0px 6px 2px 6px;
+      height: 86%;
+      padding: 10px;
+
+      label {
+        font-weight: 600;
+        color: $font-input-label-dark-400;
+        position: relative;
+        top: 0px;
+        z-index: 100;
+      }
+    }
+
+    .input-box {
+      background: $white;
+      width: 87%;
+
+      .errorMsg {
+        color: $red-400;
+        display: inline-block;
+        font-size: 12px;
+        position: relative;
+        bottom: 18px;
+      }
+
+      &.input-container {
+        position: relative;
+        bottom: 17px;
+        height: inherit;
+      }
+    }
+  }
+
+  .edit-section {
+    background-color: $white;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+
+    .edit-header {
+      padding: 15px;
+      border-bottom: 1px solid $gray-cf;
+
+      .invite-people {
+        display: flex;
+
+        .add-people {
+          position: absolute;
+          right: 0;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+      }
+
+      .invite-text {
+        margin-left: 15px;
+
+        p {
+          margin: 0;
+        }
+
+        .stud-name:after {
+          content: ",";
+        }
+
+        .stud-name:last-of-type:after {
+          content: "";
+        }
+
+        .ca-invite-participant {
+          margin: 0 0 1em;
+        }
+      }
+
+      .add-stud-text {
+        padding-left: 39px;
+        position: relative;
+        bottom: 10px;
+      }
+    }
+
+    .datePicker {
+      margin: 38px;
+
+      .ca-date-picker-container {
+        .ca-datepicker-container {
+          #ca-datepicker {
+            .datepicker {
+              .datepicker-days {
+                .table-condensed {
+                  thead {
+                    tr {
+                      th {
+                        width: auto;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .ca-daterange-picker {
+        background: none;
+        width: 100%;
+        height: 100%;
+        right: auto;
+        bottom: auto;
+        cursor: pointer;
+        overflow: initial;
+        left: auto;
+        position: absolute;
+        top: 25%;
+
+        .ca-datepicker-body {
+          top: 36%;
+        }
+      }
+    }
+  }
+
+  .inviting-participant {
+    display: none;
+    grid-template-columns: 2fr 2fr;
+    padding: 10px 10px 10px 0px;
+    z-index: 1032;
+    position: relative;
+    background: $white;
+    max-height: 194px;
+    overflow: hidden;
+    overflow-y: auto;
+
+    .student-info-container {
+      display: grid;
+      grid-template-columns: 50px 1fr 50px;
+      align-items: center;
+      margin-bottom: 17px;
+
+      .student-icon {
+        background-size: contain;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        margin: auto;
+      }
+
+      .confirm-participant {
+        cursor: pointer;
+
+        .select-student {
+          background: url(/assets/gooru/images/check-circle-light-blue.svg)
+            no-repeat center !important;
+          background-size: contain;
+          border: none;
+          display: block;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+
+  .footer-section {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to top, $bule-8c, $gray-c3 7%);
+    height: 229px;
+    padding: 15px;
+
+    .conferenc-time-input {
+      display: grid;
+      grid-template-columns: 2fr 2fr;
+
+      @media screen and (max-width: $screen-568) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .end-time {
+        @media screen and (max-width: $screen-568) {
+          margin-top: 10px !important;
+        }
+      }
+
+      .start-time,
+      .end-time {
+        display: grid;
+        width: 98%;
+        background: $white;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 0;
+        @media screen and (max-width: $screen-568) {
+          margin: auto;
+        }
+        .time-label {
+          color: $font-input-label-dark-400;
+          font-weight: bold;
+        }
+        input {
+          outline: none;
+          width: 75%;
+        }
+      }
+    }
+    .meeting-url {
+      background: $white;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      width: 45em;
+      @media screen and (max-width: $screen-568) {
+        margin: auto;
+      }
+      .time-label {
+        color: $font-input-label-dark-400;
+        font-weight: bold;
+      }
+      #conference-meet-url {
+        outline: none;
+        width: 30em;
+      }
+      .errorMsg {
+        color: $red-400;
+        display: inline-block;
+        font-size: 12px;
+        position: relative;
+      }
+    }
+
+    .createBtn {
+      @media screen and (max-width: $screen-568) {
+        display: flex;
+        float: none;
+        justify-content: center;
+      }
+
+      &.disable-event {
+        opacity: 0.5;
+      }
+
+      float: right;
+      margin: 12px 39px;
+
+      button {
+        width: 205px;
+        background: $white;
+        border: none;
+        border-radius: 25px;
+        height: 45px;
+        outline: none;
+      }
+    }
+  }
+}

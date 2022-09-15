@@ -1,0 +1,111 @@
+.controller.teacher.class.class-settings {
+  .sec-col-layout {
+    display: block;
+  }
+  @media screen and (max-width: $screen-in-680) {
+    padding-bottom: 55px;
+    .sec-col-layout {
+      .sec-rows-layout {
+        &.left-panel,
+        &.right-panel {
+          margin: 0;
+        }
+
+        .class-sec-cont {
+          .class-settings-sec {
+            padding-left: 0;
+
+            .class-head-row-wrap {
+              grid-template-columns: 1fr;
+
+              .sec-head-class-name {
+                order: 2;
+                padding-left: 10px;
+                height: unset;
+                padding-right: 20px;
+              }
+
+              .class-code {
+                width: unset;
+                height: 60px;
+
+                .class-code-wrap {
+                  width: 100%;
+                  flex-direction: row;
+                  justify-content: space-between;
+                }
+              }
+            }
+
+            .language-row,
+            .sub-sec-coteach {
+              padding-left: 10px;
+            }
+            .default-ca-tab {
+              padding-left: 10px;
+              height: 25px;
+            }
+            .sub-sec-teach {
+              padding: 0px 10px;
+            }
+          }
+        }
+
+        .class-layout-btn {
+          .btn-panel {
+            display: block;
+
+            .class-btn {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+
+      .student-sec-cont {
+        .student-settings-sec {
+          table {
+            .student-info-container {
+              display: block;
+            }
+
+            .student-info-container {
+              padding-left: 10px;
+              .student-name {
+                padding-right: 5px;
+
+                span {
+                  word-break: break-word;
+                }
+                @include ellipsis(
+                  $font-size: 13px,
+                  $line-height: 1.2,
+                  $lines-to-show: 2
+                );
+              }
+            }
+
+            .actions-container {
+              span.menu-icon {
+                display: none;
+                color: $gray-dove;
+                height: 22px;
+                i {
+                  pointer-events: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.teacher_class_class-management {
+  @media only screen and (max-width: $screen-in-680) {
+    .app-container {
+      padding-top: 102px;
+    }
+  }
+}

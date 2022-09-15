@@ -1,0 +1,158 @@
+{{#if isExpanded}}
+  <div class="backdrop" {{action 'onClosePullUp'}}></div>
+{{/if}}
+<div class="pull-up-container">
+  <div class="pull-up-header" {{action 'onOpenPullUp'}}>
+    {{#if (and (and isPublic isPremiumClass) (eq type "destination"))}}
+      {{#unless showTimeoutMessage}}
+        <div class="selecte-destination-container">
+          <div>{{t 'proficiency.your-destination'}}</div>
+          <div class="grade-title">
+            {{grade.grade}}
+          </div>
+        </div>
+      {{else}}
+        <div class="grade-title">{{grade.grade}}</div>
+      {{/unless}}
+    {{else}}
+      <div class="grade-title">{{grade.grade}}</div>
+    {{/if}}
+    <div class="counts">{{t 'student-first-experience.units.other' count=courseData.unitCount}}
+    </div>
+  </div>
+  <div class="button-content">
+    <div class="button-container button-container-box relative-inline-block">
+      <div class="show-route-div">
+        <div class="margin-auto text-align-center line-hight show-route-description">
+          {{t "student-first-experience.competency-level.info-show-my-route-text"}}
+        </div>
+        <div class="show-route-btn">
+          <div class="next-route margin-auto" onclick={{action "onMoveNext" 'route'}} onkeypress={{action "onMoveNext" 'route'}} tabindex="9">
+            {{t "student-first-experience.show-route"}}
+          </div>
+          <a href="javascript:void(0)" class="info-item route-item">
+            <span class="material-icons-outlined">
+              info
+            </span>
+          </a>
+        </div>
+        {{#if (and isPublic isPremiumClass (or isDiagnosticApplicable (gt mathLevelGrades.length 1)) (not defaultGradeLevel))}}
+          {{#unless isJoinedPublicClass}}
+            <div class="margin-auto text-align-center line-hight show-location-description">
+              {{t "student-first-experience.competency-level.info-update-location-text"}}
+            </div>
+            <div class="change-level-btn {{if isPublic 'hide'}}">
+              <div class="change-level margin-auto" onclick={{action "updateLocation" true}} onkeypress={{action "updateLocation" true}} tabindex="9">
+                {{t "public-class.update-my-location"}}
+              </div>
+              <a href="javascript:void(0)" class="info-item location-item">
+                <span class="material-icons-outlined">
+                  info
+                </span>
+              </a>
+            </div>
+          {{/unless}}
+        {{else}}
+          <div class="margin-auto text-1"></div>
+          <div class="margin-auto text-1"></div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="pull-up-content">
+    {{#if (eq type "destination")}}
+      {{#if showTimeoutMessage}}
+        <div class="student-milestone-not-ready">{{t "studen-baseline-generation-timeout"}}</div>
+      {{else}}
+        <div class="destination-container">
+          <div class="grade-description">
+            {{safe-html grade.description}}
+          </div>
+        </div>
+        <div class="grade-title">
+          {{activeGrade.grade}}
+        </div>
+        <div class="grade-description margin-left-30px relative-inline-block">
+          {{safe-html activeGrade.description}}
+        </div>
+        {{#if isLocationUpdate }}
+          <div class="location-update-container button-container-box relative-inline-block">
+            <div class="buttons grid-buttons {{if isNextEnable 'grid-buttons-level-select'}}">
+              <div><span>{{t "public-class.update-location-title"}}</span></div>
+              <div class="diagnostic-btn-container">
+                {{#if isDiagnosticApplicable}}
+                  <div class="diagnostic-button margin-auto" onclick={{action "takeDiagnostic"}} onkeypress={{action "takeDiagnostic"}} tabindex="9">
+                    {{t "public-class.take-the-diagnostic"}}
+                  </div>
+                {{/if}}
+                {{#if (gt mathLevelGrades.length  1)}}
+                  <div class="math-grade-button {{if isNextEnable 'level-selected'}}">
+                    {{#if isNextEnable}}
+                      <span class="margin-auto">{{studentMathGrade.grade}}</span>
+                    {{/if}}
+                    <div class="grade-button  margin-auto" onclick={{action "changesMyLevel"}} onkeypress={{action "changesMyLevel"}} tabindex="9">
+                      {{t "public-class.set-my-level"}}
+                    </div>
+                    {{#if isMathGradeChange}}
+                      <div class="grade-list">
+                        <div class="my-location">
+                          <div class="disable-div">{{t 'student-landing.class.my-location'}}</div>
+                        </div>
+                        {{#each mathLevelGrades as |grade|}}
+                          <div class="grade-div" onclick={{action "updateMathLevel" grade}} onkeypress={{action "updateMathLevel" grade}} tabindex="9">{{grade.grade}}</div>
+                        {{/each}}
+                      </div>
+                    {{/if}}
+                  </div>
+                {{/if}}
+                <div class="next-button margin-auto {{unless isNextEnable 'hide'}}" onclick={{action "updateLocation" false}} onkeypress={{action "updateLocation" false}} tabindex="9">{{t 'common.next'}}</div>
+              </div>
+            </div>
+          </div>
+          {{#if isShowLoader}}
+            <div class="baseline-loader custom-loader">
+              {{three-bounce-spinner}}
+            </div>
+          {{/if}}
+        {{else}}
+        {{/if}}
+      {{/if}}
+    {{else}}
+      {{#if isNoStudyMaterial}}
+        <div class="student-milestone-not-ready">{{t "studen-grade-not-covered"}}</div>
+      {{/if}}
+      {{#unless class.milestoneViewApplicable}}
+        <div class="course-map-accordion-container {{unless isRoute0 'no-route0'}}">
+          {{student/class/destination/student-destination-course-accordion
+          courseData=courseData
+          classId=classId
+          courseId=courseId
+          isRoute0=isRoute0
+          }}
+        </div>
+      {{else}}
+        {{#if (and isMilestoneFetch (gt milestones.length 0))}}
+          {{student/class/milestone-course-map
+        class=class
+        gradeSubject=subject
+        locateLastPlayedItem=false
+        showToggleButtonToViewFullCourse=true
+        milestones=milestones
+        route0Milestones=route0Milestones
+        checkAllContentsAreRescoped = "checkAllContentsAreRescoped"
+        isAllContentsAreRescoped = isAllContentsAreRescoped
+      }}
+        {{else if isMilestoneFetch}}
+          <div class="student-milestone-not-ready">{{t (if (and isPublic isPremiumClass) 'studen-grade-not-covered' 'student-milestone-not-ready')}}</div>
+        {{/if}}
+      {{/unless}}
+      <div class="study-course-container study-grid button-container-box relative-inline-block">
+        <span>{{t "public-class.start-study-text"}}</span>
+        <div class="study-course {{if (and class.milestoneViewApplicable isMilestoneViewEnabledForTenant isMilestoneFetch (eq milestones.length 0)) 'no-milestone'}} {{if isNoStudyMaterial 'no-milestone'}}" onclick={{action onMoveNext 'playNext'}}
+          onkeypress={{action onMoveNext 'playNext'}} tabindex="9">
+          {{gru-icon name="near_me"}} {{t "student-first-experience.start-studying"}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>

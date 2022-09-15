@@ -1,0 +1,75 @@
+.charts.competencies-progress-graph {
+  max-height: 650px;
+  width: 77px;
+  background-color: $white;
+  padding: 15px 0;
+  .progress-icon-container {
+    width: 42px;
+    height: 42px;
+    box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+    background-color: $white;
+    text-align: center;
+    border-radius: 50%;
+    margin: auto;
+    cursor: pointer;
+    i {
+      line-height: 42px;
+      color: $blue-5d7;
+    }
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: $font-blue-50-black-500;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .progress-container {
+    height: 550px;
+    .progress-graph {
+      width: 12px;
+      position: relative;
+      margin: auto;
+      cursor: grab;
+      height: 0;
+      span {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        border: none;
+        left: -14px;
+        bottom: 0;
+        color: $font-black-bold-white;
+        font-size: 15px;
+        font-weight: bold;
+        transition: 1s;
+        display: none;
+      }
+      &:hover,
+      &:hover span {
+        z-index: 5;
+      }
+      &.no-value {
+        display: none;
+      }
+      &.show-count {
+        span {
+          display: block;
+        }
+      }
+    }
+    .mastered-progress span {
+      z-index: 2;
+    }
+    .inprogress-progress span {
+      z-index: 3;
+    }
+    .notstarted-progress span {
+      z-index: 4;
+    }
+  }
+}

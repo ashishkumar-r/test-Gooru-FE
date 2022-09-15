@@ -1,0 +1,25 @@
+<ul>
+    {{#if showCorrect}}
+    {{#each baseAnswers as |baseanswer index|}}
+    <li>
+        <div class="silent-answer-container">
+            <div class="text-container">
+                {{{baseanswer.text}}}
+            </div>
+            <span class="total-time-spent-section">{{input type="checkbox" aria-checked="false" checked="true"}} {{t 'common.completed'}}</span>
+        </div>
+    </li>
+    {{/each}}
+    {{else}}
+    {{#each answers as |answer index|}}
+    <li>
+        <div class="silentanswer-container">
+            <div class="text-content-sec player-{{index}}">
+                {{{get (array-index baseAnswers index) 'text'}}}
+            </div>
+            <span class="total-time-spent-section">{{input type="checkbox" aria-checked="false" checked="true"}} {{t 'common.completed'}}</span>
+        </div>
+    </li>
+    {{/each}}
+    {{/if}}
+</ul>

@@ -1,0 +1,165 @@
+.gru-partner-library-card {
+  margin: 10px auto;
+  width: max-content;
+  height: 351px;
+
+  .panel-body,
+  .panel-footer {
+    @include flexbox;
+  }
+
+  .panel {
+    width: 300px;
+    max-height: 351px;
+    border-radius: 4px;
+    min-height: 200px;
+    box-shadow: 0 0 6px 1px $table-box-shadow-07;
+
+    .panel-heading {
+      .title-section {
+        height: 47px;
+        text-align: center;
+        margin: auto;
+        cursor: pointer;
+
+        .title {
+          color: $picton-blue;
+          font-weight: 300;
+          width: 270px;
+          padding-bottom: 3px;
+          @include ellipsis(
+            $font-size: 16px,
+            $line-height: 0.94,
+            $lines-to-show: 2,
+            $excerpt-bg: $white
+          );
+        }
+      }
+      @include flexbox;
+      @include align-items(center);
+      background-color: $white;
+      padding: 10px 8px 0 15px;
+    }
+
+    .panel-body {
+      @include flex-direction(column);
+      @include justify-content(space-between);
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      padding: 5px 15px 1px;
+      height: 260px;
+
+      .description {
+        height: 60px;
+        text-align: $tab-float-dir;
+        width: 270px;
+        object-fit: contain;
+        color: $gray-dove;
+        margin-bottom: 10px;
+
+        p {
+          @include ellipsis(
+            $font-size: 13px,
+            $line-height: 1.16,
+            $lines-to-show: 4,
+            $excerpt-bg: $white
+          );
+        }
+      }
+
+      .image {
+        width: 163px;
+        height: 163px;
+        object-fit: contain;
+        margin-left: 54px;
+        cursor: pointer;
+        margin-bottom: 15px;
+      }
+    }
+
+    .panel-footer {
+      background-color: $white;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-top: 1px solid $gray-lighter;
+      height: auto;
+      padding: 6px 12px;
+
+      .library-info {
+        @include flexbox;
+        @include flex-wrap(wrap);
+        width: 100%;
+
+        .item {
+          display: flex;
+
+          i {
+            width: 20px;
+            height: 15px;
+            margin-top: 4px;
+            margin-right: 8px;
+          }
+
+          span {
+            color: $gray-dove;
+            font-size: 13px;
+          }
+          margin-right: 8px;
+        }
+
+        .total-courses {
+          i {
+            background: url("gooru/images/add_course.svg") no-repeat;
+          }
+        }
+
+        .total-oa {
+          i {
+            background-size: contain;
+            background: url("gooru/images/offline.svg") no-repeat;
+          }
+        }
+
+        .total-collections {
+          i {
+            background: url("gooru/images/add_collection.svg") no-repeat;
+          }
+        }
+
+        .total-assessments {
+          i {
+            background: url("gooru/images/add_assessment.svg") no-repeat;
+          }
+        }
+
+        .total-resources {
+          i {
+            height: 22px;
+            margin-top: 0;
+            background: url("gooru/images/add_resource_icon.svg") no-repeat;
+          }
+        }
+
+        .total-questions {
+          margin-right: 0;
+
+          i {
+            transform: scale(0.6);
+            width: 30px;
+            height: 30px;
+            margin-top: -4px;
+            margin-right: 3px;
+            margin-left: -6px;
+            background: url("gooru/images/add_question.svg") no-repeat;
+          }
+        }
+
+        .total-rubrics {
+          i {
+            background: url("gooru/images/add_rubric.svg") no-repeat;
+          }
+        }
+      }
+    }
+  }
+}

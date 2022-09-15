@@ -1,0 +1,111 @@
+.portfolio.gru-content-filters {
+  position: absolute;
+  width: 100%;
+  background-color: $white;
+  z-index: 99;
+  transition: 1s;
+  .content-filters-container {
+    border: 1px solid;
+    .filters-header-label {
+      font-size: 15px;
+      color: $dark-400;
+      padding-left: 12px;
+      border-bottom: 1px solid $header-label;
+      display: grid;
+      grid-template-columns: auto auto;
+      background-color: $headr-content-label;
+      height: 30px;
+      .clear-filters {
+        justify-self: right;
+        cursor: pointer;
+        padding-right: 15px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        i.clear {
+          height: 30px;
+          line-height: 30px;
+          font-size: 14px;
+        }
+      }
+    }
+    .filters-container {
+      padding: 0 15px 15px 15px;
+      max-height: 400px;
+      overflow: auto;
+      min-height: 165px;
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+      .date-range-filter-container {
+        .date-range-selector {
+          .date-range-label {
+            color: $dark-400;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            .info-icon {
+              i.info {
+                font-size: 13px;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .date-range-value {
+            cursor: pointer;
+          }
+        }
+        .date-range-filter {
+          .ca-daterange-picker {
+            position: unset;
+            .ca-datepicker-body {
+              left: 12px;
+              top: unset;
+              transform: unset;
+              box-shadow: 0px 1px 11px 3px $date-picker-box-shadow;
+            }
+          }
+        }
+      }
+
+      .gut-selector {
+        .gut-header-container {
+          color: $dark-400;
+          font-size: 15px;
+          font-weight: 700;
+          text-transform: uppercase;
+          .info-icon {
+            i.info {
+              font-size: 13px;
+              cursor: pointer;
+            }
+          }
+        }
+        .gut-body-container {
+        }
+      }
+    }
+
+    .apply-filters {
+      width: 100%;
+      box-shadow: 0 0 4px 0 $container-box-shadow;
+      background-color: $dark-400;
+      color: $white;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 48px;
+      cursor: pointer;
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+<form>
+  <div class="content">
+    {{#if cognitiveSkillsGroup.length}}
+      <div class="column cognitive-skills">
+        <div class="header">{{t "gru-century-skills.content.groups.cognitive"}}</div>
+        <ul class="skills">
+          {{#each cognitiveSkillsGroup as |cognitiveSkill|}}
+            <li>
+              <div class="categories">
+                {{#if cognitiveSkill.hewlettDeepLearningModel}}
+                  <span class="circle hewlett"></span>
+                {{/if}}
+                {{#if cognitiveSkill.conleyFourKeysModel}}
+                  <span class="circle conley"></span>
+                {{/if}}
+                {{#if cognitiveSkill.p21FrameworkModel}}
+                  <span class="circle framework"></span>
+                {{/if}}
+                {{#if cognitiveSkill.nationalResearchCenterModel}}
+                  <span class="circle national"></span>
+                {{/if}}
+              </div>
+              <div class="title {{if cognitiveSkill.isSelected 'selected'}}" {{action 'selectSkillItem' cognitiveSkill}}>
+                {{cognitiveSkill.label}}
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+    {{#if contentSkillsGroup.length}}
+      <div class="column between content-skills">
+        <div class="header">{{t "gru-century-skills.content.groups.content"}}</div>
+        <ul class="skills">
+          {{#each contentSkillsGroup as |contentSkill|}}
+            <li>
+              <div class="categories">
+                {{#if contentSkill.hewlettDeepLearningModel}}
+                  <span class="circle hewlett"></span>
+                {{/if}}
+                {{#if contentSkill.conleyFourKeysModel}}
+                  <span class="circle conley"></span>
+                {{/if}}
+                {{#if contentSkill.p21FrameworkModel}}
+                  <span class="circle framework"></span>
+                {{/if}}
+                {{#if contentSkill.nationalResearchCenterModel}}
+                  <span class="circle national"></span>
+                {{/if}}
+              </div>
+              <div class="title {{if contentSkill.isSelected 'selected'}}" {{action 'selectSkillItem' contentSkill}}>
+                {{contentSkill.label}}
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+    {{#if learningSkillsGroup.length}}
+      <div class="column learning-skills">
+        <div class="header">{{t "gru-century-skills.content.groups.learning"}}</div>
+        <ul class="skills">
+          {{#each learningSkillsGroup as |learningSkill|}}
+            <li>
+              <div class="categories">
+                {{#if learningSkill.hewlettDeepLearningModel}}
+                  <span class="circle hewlett"></span>
+                {{/if}}
+                {{#if learningSkill.conleyFourKeysModel}}
+                  <span class="circle conley"></span>
+                {{/if}}
+                {{#if learningSkill.p21FrameworkModel}}
+                  <span class="circle framework"></span>
+                {{/if}}
+                {{#if learningSkill.nationalResearchCenterModel}}
+                  <span class="circle national"></span>
+                {{/if}}
+              </div>
+              <div class="title {{if learningSkill.isSelected 'selected'}}" {{action 'selectSkillItem' learningSkill}}>
+                {{learningSkill.label}}
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="actions">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+      <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    <button {{action "saveSelectedSkills"}} class="btn btn-primary select" disabled="{{if tempSelectedCenturySkills.length null true}}">{{t 'common.select'}}</button>
+  </div>
+
+</form>

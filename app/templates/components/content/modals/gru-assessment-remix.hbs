@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{t "common.remix-assessment" type=(if isCollectionType 'External Assessment' 'Assessment')}}
+  </h4>
+</div>
+<div class="modal-body">
+    <p class="lead">
+      {{t 'common.remix-assessment-lead' type=(if isCollectionType 'external assessment' 'assessment')}}
+    </p>
+  <form {{action "remix" on="submit"}}>
+
+    <label>
+      <span class="required">
+        {{t 'common.remix-title' type=(if isCollectionType 'External Assessment' 'Assessment')}}
+      </span>
+      {{validation/gru-input model=contentModel valuePath='title' maxLength=50}}
+    </label>
+
+    <div class="actions">
+      <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+      </button>
+      {{#if isLoading}}
+        {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+        {{/gru-spinner-button}}
+      {{else}}
+        <button type="submit" class="btn btn-primary">{{t 'common.remix'}}</button>
+      {{/if}}
+
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,95 @@
+.introjs-tooltip {
+  max-width: 650px;
+  min-width: 500px;
+  padding: 10px 25px;
+}
+
+.introjs-tooltipbuttons {
+  @include flexbox;
+  @include justify-content(flex-end);
+
+  .introjs-prevbutton {
+    @extend .btn-default;
+    @include order(1);
+  }
+
+  .introjs-nextbutton {
+    @extend .btn-primary;
+    @include order(2);
+    margin-left: 10px;
+  }
+
+  .introjs-skipbutton {
+    @extend .btn-primary;
+    @include order(3);
+    margin-left: 10px;
+  }
+
+  .introjs-button {
+    @extend .btn;
+    text-shadow: none;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.introjs-tooltiptext {
+  .tour-header {
+    h2 {
+      display: inline-block;
+      font-size: $font-size-h4;
+    }
+
+    i {
+      cursor: pointer;
+      font-size: $font-size-h2;
+      position: absolute;
+      right: 15px;
+    }
+  }
+  .tour-description-real-time-tour {
+    @include flexbox;
+    p {
+      min-width: 185px;
+    }
+    .real-time-tour-image {
+      @include flex-shrink(0);
+      background-image: url('gooru/real-time-tour-image.png');
+      height: 300px;
+      margin-right: 20px;
+      width: 380px;
+    }
+  }
+  .tour-description-overview {
+    @include flexbox;
+
+    p {
+      min-width: 185px;
+
+      .real-time-icon {
+        background-image: url('gooru/images/on-air-icon.svg');
+        display: block;
+        height: 42px;
+        margin: 0 auto;
+        width: 42px;
+      }
+    }
+
+    .overview-tour-image {
+      @include flex-shrink(0);
+      background-image: url('gooru/go-live-tooltip.png');
+      height: 300px;
+      margin-right: 20px;
+      width: 380px;
+    }
+  }
+}
+
+.gru-tour {
+  @include align-self(flex-end);
+  button {
+    vertical-align: 5px;
+  }
+}

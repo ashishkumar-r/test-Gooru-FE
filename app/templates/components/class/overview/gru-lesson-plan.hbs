@@ -1,0 +1,126 @@
+<div class="lp-container">
+  <div class="lp-header-container">
+    <div class="icon"></div>
+    <div class="lp-label">
+      Lesson Plan
+    </div>
+    {{#if sessionsCount}}
+      <div class="lp-sessions-count">
+        {{sessionsCount}} sessions
+      </div>
+    {{/if}}
+  </div>
+  <div class="lp-body-container">
+
+    {{#if priorKnowledge.length}}
+      <div class="prior-knowledge-container">
+        <div class="pk-header-container" {{action "onToggleContainer" 'pk-body-container'}}>
+          <div class="pk-label">
+            Prior Knowledge
+          </div>
+          <div class="pk-toggle">
+            {{gru-icon name="arrow_drop_down"}}
+          </div>
+        </div>
+        <div class="pk-body-container">
+          <div class="pk-competencies-container">
+            {{#each priorKnowledge as |competency|}}
+              <div class="pk-competency-container">
+                <div class="comptency-code">{{competency.code}}</div>
+                <div class="comptency-title">{{competency.title}}</div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if guidingQuestions}}
+      <div class="guiding-questions-container items-container">
+        <div class="gq-header-container items-header-container" {{action "onToggleContainer" 'gq-body-container'}}>
+          <div class="gq-label item-label">
+            Guiding Questions
+          </div>
+          <div class="gq-toggle">
+            {{gru-icon name="arrow_drop_down"}}
+          </div>
+        </div>
+        <div class="gq-body-container items-body-container">
+          <div class="gq-items items">{{safe-html guidingQuestions}}</div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if anticipatedStruggles}}
+      <div class="anticipated-struggles-container items-container">
+        <div class="as-header-container items-header-container" {{action "onToggleContainer" 'as-body-container'}}>
+          <div class="as-label item-label">
+            Anticipated Struggles
+          </div>
+          <div class="as-toggle">
+            {{gru-icon name="arrow_drop_down"}}
+          </div>
+        </div>
+        <div class="as-body-container items-body-container">
+          <div class="as-items items">{{safe-html anticipatedStruggles}}</div>
+        </div>
+      </div>
+    {{/if}}
+    <div class="lp-sessions-container">
+      {{#each sessions as |session index|}}
+        <div class="lp-session-container">
+          <div class="session-header-container" {{action "onToggleContainer" (concat 'session-body-container-' index)}}>
+            <div class="session-label">Session {{plus-one index}}</div>
+            <div class="session-toggle">
+              {{gru-icon name="arrow_drop_down"}}
+            </div>
+          </div>
+          <div class="session-body-container session-body-container-{{index}}">
+            <div class="session-info-container">
+              <div class="session-title">{{session.title}}
+              </div>
+              <div class="session-description">
+                {{session.description}}
+              </div>
+            </div>
+            {{#if session.teacher_contents}}
+              <div class="teacher-contents-container contents-container">
+                <div class="teacher-label content-label">
+                  {{t 'teacher-resource'}}
+                </div>
+                <div class="teacher-contents contents-list">
+                  {{#each session.teacher_contents as |teacherContent|}}
+                    <div class="teacher-content content-container">
+                      <div class="content-icon {{teacherContent.format}}"></div>
+                      <div class="content-title">{{teacherContent.title}}</div>
+                      <div class="add-activity" {{action "onAddActivity" teacherContent}}>{{gru-icon name="add"}}</div>
+                      <div class="schedule-activity" {{action "onScheduleActivity" teacherContent}}>{{gru-icon name="update"}}</div>
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            {{/if}}
+
+            {{#if session.student_contents}}
+              <div class="student-contents-container contents-container">
+                <div class="students-label content-label">
+                  {{t 'student-resource'}}
+                </div>
+                <div class="students-contents contents-list">
+                  {{#each session.student_contents as |studentContent|}}
+                    <div class="student-content content-container">
+                      <div class="content-icon {{studentContent.format}}"></div>
+                      <div class="content-title">{{studentContent.title}}</div>
+                      <div class="add-activity" {{action "onAddActivity" studentContent}}>{{gru-icon name="add"}}</div>
+                      <div class="schedule-activity" {{action "onScheduleActivity" studentContent}}>{{gru-icon name="update"}}</div>
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

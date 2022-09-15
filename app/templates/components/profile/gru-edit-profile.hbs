@@ -1,0 +1,113 @@
+<div class="controller about edit edit-profile">
+    <h4 class="edit-view">
+        <div class="action-buttons pull-right">
+          {{#link-to "profile.about" tagName="button" class='btn btn-basic cancel'}}{{t "common.cancel"}}{{/link-to}}
+            <button type="submit" class='btn btn-primary save' {{action "updateProfile"}}>{{t "common.save"}}</button>
+        </div>
+    </h4>
+    <div class="about-container row edit">
+      <div class="personal-info col-md-6 col-sm-12">
+        <div class="sub-title">
+          {{t 'common.personal-information'}}
+        </div>
+      <div class="info">
+          <div class="panel panel-default">
+              <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <h6><label for="firstName">{{t "common.first-name"}}</label></h6>
+
+              {{#if (and profile.isStudent isLockStudentProfileInfoUpdate)}}
+              {{validation/gru-input  model=tempProfile class="text-hide" disabled = true valuePath='firstName' inputId="firstName"}}
+              {{else }}
+              {{validation/gru-input  model=tempProfile valuePath='firstName' inputId="firstName"}}
+              {{/if}}
+
+           </div>
+            <div class="col-xs-12 col-sm-6">
+              <h6><label for="lastName">{{t "common.last-name"}}</label></h6>
+
+              {{#if (and profile.isStudent isLockStudentProfileInfoUpdate)}}
+              {{validation/gru-input model=tempProfile class="text-hide" disabled = true valuePath='lastName' inputId="lastName"}}
+              {{else}}
+              {{validation/gru-input model=tempProfile valuePath='lastName' inputId="lastName"}}
+              {{/if}}
+
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <h6><span class="required"><label for="username">{{t "sign-up.username"}}</label></span></h6>
+
+            {{#if (and profile.isStudent isLockStudentProfileInfoUpdate)}}
+            {{validation/gru-input model=tempProfile class="text-hide" disabled = true valuePath='username' maxLength=254 inputId="username"}}
+            {{else}}
+            {{validation/gru-input model=tempProfile  valuePath='username' maxLength=254 inputId="username"}}
+            {{/if}}
+
+            {{#if usernameError}}
+                <span class="validation error existing-user-error">{{usernameError}}</span>
+            {{/if}}
+          </div>
+          <div class="avatar col-xs-12 col-sm-6">
+              {{content/gru-image-edit isEditing=true srcImage=profile.avatarUrl editImage=tempProfile.avatarUrl showAltText=true}}
+          </div>
+        </div>
+
+                <h6><label for="bio">{{t "common.biography"}}</label></h6>
+                <div class="bio">
+                    <textarea id="bio" class="form-control" rows="4" onchange={{action (mut tempProfile.aboutMe) value="target.value"}}>{{{tempProfile.aboutMe}}}</textarea>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="school-info col-md-6 col-sm-12">
+      <div class="sub-title">
+        {{t "common.school-info"}}
+        <span class="verification pull-right hidden-xs"><i class="gru-icon verified"></i> {{t "common.verified"}}</span>
+      </div>
+    <div class="panel panel-default">
+        <div class="panel-body {{if profile.isStudent 'student-profile'}}">
+            <div class="row role">
+              <div class="col-xs-12">
+                <h6><span>{{t "common.role"}}</span></h6>
+                <div class="roles">
+                  {{currentRole}}
+                </div>
+                <div class="error-messages">
+                  {{#if showRoleErrorMessage}}
+                      <span class="error">
+                        {{t "sign-up.error-role-message"}}
+                      </span>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+            <div class="row country">
+                <div class="col-xs-12">
+                  <h6><span class="required">{{t "common.country"}}</span></h6>
+                  {{validation/gru-select options=countries optionSelected=tempProfile.countryId title=(t "common.select") search="true" onOptionSelect="countrySelect" showMessage=showCountryErrorMessage errorMessage=(t "sign-up.error-country-message")}}
+                </div>
+           </div>
+           <div class="row">
+              {{#if showStates}}
+                <div class="col-xs-12">
+                    <h6><span class="required">{{t "common.state-territory"}}</span></h6>
+                    {{validation/gru-select options=states optionSelected=tempProfile.stateId title=(t "common.select") search="true" onOptionSelect="stateSelect" showMessage=showStateErrorMessage errorMessage=(t "sign-up.error-state-message")}}
+                </div>
+              {{/if}}
+            </div>
+            {{#if profile.isStudent}}
+              <div class="row student-id">
+                  <div class="col-xs-12">
+                      <h6><span><label>{{t "common.studen-id-display"}}</label></span></h6>
+                    {{validation/gru-input model=tempProfile valuePath='studentId' maxLength=25}}
+                  </div>
+              </div>
+            {{/if}}
+        </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,140 @@
+.new-cards.gru-add-content-card {
+  .add-content-card-container {
+    .content-info-container {
+      display: grid;
+      grid-template-columns: 60px auto 50px 50px 50px;
+      @media only screen and (max-width: 600px) {
+        grid-template-columns: 50px auto 0px 0px 25px;
+      }
+      @media only screen and (max-width: 320px) {
+        grid-template-columns: 50px 170px 0px 0px 25px;
+      }
+      align-items: center;
+      box-shadow: 0 0 6px 1px $table-box-shadow-07;
+      background-color: $white;
+      margin-bottom: 3px;
+
+      &.has-competency-code {
+        grid-template-columns: 60px auto 50px 140px 50px;
+
+        @media only screen and (max-width: 600px) {
+          grid-template-columns: 60px 1fr 3px 50px;
+
+          .taxonomy-container {
+            display: none;
+          }
+          .schedule-activity {
+            grid-column-start: 4;
+          }
+        }
+      }
+
+      .content-title {
+        display: grid;
+        grid-template-rows: auto auto;
+        padding: 0 8px;
+        grid-column-start: 2;
+
+        .title {
+          margin-top: 5px;
+          line-height: 1.3;
+          cursor: pointer;
+        }
+
+        .content-counts {
+          display: flex;
+          column-gap: 4px;
+          align-items: center;
+          padding-right: 10px;
+          font-size: 12px;
+
+          .content-count {
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+            span {
+              margin-right: 2px;
+            }
+          }
+        }
+      }
+
+      .assessment-external-icons,
+      .collection-external-icons {
+        background-image: url("/assets/gooru/share.png");
+        width: 22px;
+        height: 16px;
+        display: block;
+        background-size: cover;
+        grid-column-start: 3;
+        margin-left: auto;
+      }
+
+      .taxonomy-container {
+        padding-right: 5px;
+        justify-content: right;
+        display: grid;
+        grid-column-start: 4;
+        .all-tags {
+          right: 0;
+        }
+      }
+
+      .add-activity,
+      .schedule-activity {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-left: 1px solid $light-100;
+        height: 100%;
+        grid-column-start: 5;
+        i.add,
+        i.update {
+          font-size: 24px;
+        }
+
+        .done {
+          display: none;
+          color: $schedule-updated;
+          font-size: 22px;
+          margin-left: 9px;
+        }
+
+        &.added {
+          pointer-events: none;
+          .add {
+            display: none;
+          }
+          .done {
+            display: block;
+          }
+        }
+
+        &.scheduled i.update {
+          color: $schedule-updated;
+        }
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+      }
+
+      .content-thumbnail {
+        width: 56px;
+        height: 56px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        grid-column-start: 1;
+      }
+      &.archived-class {
+        .schedule-activity {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

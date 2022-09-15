@@ -1,0 +1,654 @@
+<div class="content_outlet">
+  <div class='profile-preference'>
+    <div class="category-wrapper">
+      {{#if isEditMode}}
+      <div class='category-head edit-head'>
+        <button class='add-category btn btn-basic cancel' aria-label="cancel" {{action 'cancel' false}} tabindex='101'> {{t "common.cancel"}}</button>
+        <button class='add-category btn btn-primary save' aria-label="save preferences" {{action 'savePreferences' }} tabindex='101'> {{t "common.save"}}</button>
+      </div>
+      <div class="category-container-layout">
+        <div class='category-container' style="">
+          <div class='edit-mode'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'profile.preference.language-preference'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwk-language">
+                  <div class='subject'> {{t 'profile.preference.choose-preferred-language'}} </div>
+                  <div class="fwk">
+                    <div class="dropdown language-dropdown pull-left">
+                      <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true" aria-label="prepare language list" {{action 'prepareLanguageList' }} tabindex='101'>
+                        <span class="button-text">
+                          {{#if selectedLanguage}}
+                          {{selectedLanguage.display_name}}
+                          {{else}}
+                          {{t 'profile.preference.choose-language'}}
+                          {{/if}}
+                        </span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu pull-right">
+                        {{#each languageList as |language|}}
+                        <li> <a data-item={{language}} aria-label={{language.display_name}} onclick={{ action 'updateLanguage' language}} onkeypress={{ action 'updateLanguage' language}} tabindex='101'>{{language.display_name}}
+                          </a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}} </li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                  <div></div>
+                </div>
+                <div class="subject-fwk-language">
+                  <div class='subject'> {{t 'profile.preference.choose-preferred-other-languages'}} </div>
+                  <div class="fwk">
+                    <div class="dropdown language-dropdown pull-left">
+                      <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true" aria-label={{selectedSecLanguage.display_name}} {{action 'prepareLanguageList' }} tabindex='101'>
+                        {{#if selectedSecLanguage}}
+                        {{selectedSecLanguage.display_name}}
+                        {{else}}
+                        {{t 'profile.preference.choose-sec-language'}}
+                        {{/if}}
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu pull-right">
+                        {{#each languageList as |language|}}
+                        <li> <a data-item={{language}}  onclick={{ action 'updateSecLanguage'
+                            language}} aria-label={{language.display_name}} onkeypress={{ action 'updateSecLanguage' language}} tabindex='101'>{{language.display_name}} </a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}} </li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="addSubjectFWK hideMe" aria-label="Update language" onclick={{ action 'updateSecLanguage' selectedSecLanguage}} onkeypress={{ action 'updateSecLanguage' selectedSecLanguage}}
+                      title="{{t 'profile.preference.add-sec-language'}} " tabindex='101'>
+                      {{gru-icon name='add'}}
+                    </div>
+                  </div>
+                  <div class="taxonomy  gru-taxonomy-tag-list">
+                    {{log 'otherLanguages' otherLanguages}}
+                    {{#if otherLanguages}}
+                    {{#each otherLanguages as |otherLanguage|}}
+                    <div class="taxonomy gru-taxonomy-tag active read-only remove">
+                      <div class="content standard-tag" data-html="true" data-original-title="" title="">
+                        <b class="tag-label"><span
+                            class="tag-caption ellipsis">{{otherLanguage.display_name}}</span></b>
+                        <button class="remove"  aria-label="Remove language" {{action 'removeSecLanguage' otherLanguage}} tabindex='101'>{{gru-icon
+                          name="clear"}}</button>
+                      </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    {{!-- {{t 'profile.preference.no-data'}} --}}
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{#if (not isStudent)}}
+          <div class="edit-mode">
+            <div class="panel panel-defaults">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'class.sort-by-time-preference'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwks">
+                  <div class="subject"> {{t 'common.select-preference'}} </div>
+                  <div class="fwk">
+                    <div class="dropdown pull-left ">
+                      <button class="btn dropdown-toggle btn-success" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        <span class="button-text">
+                          {{#if sortedByPreference}}
+                          {{sortedByPreference.name}}
+                          {{else}}
+                          {{t 'common.choose-preference'}}
+                          {{/if}}
+                        </span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu pull-right">
+                        {{#each sortPreferenceFilterList as | sort|}}
+                        <li> <a data-item={{sort}} aria-label="sort preference" onclick={{ action 'sortPreference' sort}} onkeypress={{ action 'sortPreference' sort}}  tabindex='101'>{{sort.name}}</a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}}</li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="subject-fwks">
+                  <div class="subject"> {{t 'common.class-report-default-route'}} </div>
+                  <div class="fwk">
+                    <div class="dropdown pull-left ">
+                      <button class="btn dropdown-toggle btn-success" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        <span class="button-text">
+                          {{#if classReport}}
+                          {{classReport.name}}
+                          {{else}}
+                          {{t 'common.choose-preference'}}
+                          {{/if}}
+                        </span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu pull-right">
+                        {{#each classReportList as | report|}}
+                        <li> <a data-item={{report}} aria-label="select report" onclick={{ action 'selectReport' report}} onkeypress={{ action 'selectReport' report}} tabindex='101'>{{report.name}}</a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}}</li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+          <div class='display-mode {{if isGuestAccount 'disable-event'}}'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'learner-data-visibility-preference'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwk display-language-pref-row1">
+                  <div class="subject display-language-pref-label learner-data">{{t 'share-learner-data'}}</div>
+                  <div class="fwk">
+                    <div class='row-value'>
+                      {{gru-switch
+                      switchOptions=switchOptions
+                      onOptionSwitch='onToggleCheckbox'
+                      isChecked=(if learnerDataVisibilty true false)
+                      tabindex='101'
+                      }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{#if isEditMode}}
+          <div class='edit-mode'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'profile.preference.category-preference'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwk-language">
+                  <div class="subject"> {{t 'profile.preference.select-category-label'}} </div>
+                  <!-- <div></div> -->
+                  <div class="fwk">
+                    <div class="dropdown pull-left">
+                      <button class="btn btn-success dropdown-toggle pre-btn" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true" aria-label="filter category" {{ action 'categoriesDropDownFilter' }} tabindex='101'>
+                        <span class="button-text">
+                          {{#if currentSelectedCategory}}
+                          {{currentSelectedCategory.title}}
+                          {{else}}
+                          {{t 'profile.preference.choose-category'}}
+                          {{/if}}
+                        </span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu pull-right">
+                        {{#each categoriesDropDownFilter as |category|}}
+                        <li> <a data-item={{category}} aria-label="add category" onclick={{ action 'addCategory' category}} onkeypress={{ action 'addCategory' category}} tabindex='101'>{{category.title}} </a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}}</li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+          {{#each addedCategories as |category|}}
+          {{#if (eq category.edit true)}}
+          <div style='display:block;' class="edit-mode">
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <div class='category-title'>
+                  {{category.title}}
+                </div>
+                <div class="hideMe">
+                  <div class="removeCategory" aria-label="remove category" onclick={{action 'removeCategory' category}} onkeypress={{action 'removeCategory' category}} tabindex='101'>{{gru-icon
+                    name='remove_circle_outline'}}</div>
+                </div>
+                <div class='subject-add'>
+                  {{log 'currentCategorySubjectFwks' currentCategorySubjectFwks}}
+                  <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="true" aria-label="prepare Subject List" onclick={{action 'prepareSubjectList' category }} onkeypress={{action 'prepareSubjectList' category }} tabindex='101'>
+                      {{#if category.currentSelectedSubject}}
+                      <div class="button-text sub">
+                        {{ category.currentSelectedSubject.title}}
+                      </div>
+                      {{else}}
+                      {{t 'profile.preference.choose-subject'}}
+                      {{/if}}
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                      {{#each currentCategorySubjectFwks as |subject |}}
+                      <li> <a data-item={{subject}} aria-label={{subject.title}} onclick={{ action 'markSelectedSubject' subject category }} onkeypress={{ action 'markSelectedSubject' subject category }} tabindex='101'>
+                          {{subject.title}}
+                        </a> </li>
+                      {{else}}
+                      <li> {{t 'profile.preference.no-data'}} </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                </div>
+                <div class="addSubjectFWK hideMe" aria-label="add select subject"  onclick={{action 'addSelectedSubject' category }} onkeypress={{action 'addSelectedSubject' category }} tabindex='101'
+                  title="{{t 'profile.preference.add-subject'}}">
+                  {{gru-icon name='add'}}
+                </div>
+              </div>
+              <div class='panel-body'>
+                {{#if (eq category.showAddSub true)}}
+                <div class="subject-fwk hideMe">
+                  <div class='sub'>
+                    <div class="dropdown">
+                      <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        {{#if category.currentSelectedSubject}}
+                        <div class="button-text sub">
+                          {{ category.currentSelectedSubject.title}}
+                        </div>
+                        {{else}}
+                        {{t 'teacher-landing.class.class-settings.class-settings-sec.option-choose-one'}}
+                        {{/if}}
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu pull-left">
+                        {{#each category.subjectFwks as |subject |}}
+                        <li> <a data-item={{subject}} aria-label={{subject.title}} onclick={{ action 'markSelectedSubject' subject category }} onkeypress={{ action 'markSelectedSubject' subject category
+                            }}  tabindex='101'>{{subject.title}}</a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}} </li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                  <div class='fwk'>
+                    <div class="dropdown pull-left">
+                      <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        {{#if category.currentSelectedSubject.currentSelectedFwk}}
+                        {{ category.currentSelectedSubject.currentSelectedFwk.frameworkId}}
+                        {{else}}
+                        {{t 'teacher-landing.class.class-settings.class-settings-sec.option-choose-one'}}
+                        {{/if}}
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu  pull-right">
+                        {{#each category.currentSelectedSubject.frameworks as |fwk |}}
+                        <li> <a data-item={{fwk}} tabindex='101' aria-label="select subject" onclick={{ action 'markSelectedFrameworks' fwk subjects category
+                            }} onkeypress={{ action 'markSelectedFrameworks' fwk subjects category }}>{{fwk.frameworkId}}</a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}} </li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                {{else}}
+                <div class="subject-fwk">
+                </div>
+                {{/if}}
+                {{#each category.subjects as |subjectFwk |}}
+                <div class="subject-fwk">
+                  {{#each-in subjectFwk as |sub fwk|}}
+                  <div class='subject'>
+                    {{get-value 'source' source=category.subjectFwks searchProp='code' searchVal=sub destProp='title' }}
+                  </div>
+                  <div>
+                    <div class="actionClass" aria-label="remove subject" onclick={{action 'removeSubject' category sub}} onkeypress={{action 'removeSubject' category sub}} tabindex='101'> {{gru-icon
+                      name='remove_circle_outline'}}</div>
+                  </div>
+                  <div class='fwk'>
+                    <div class="dropdown pull-left">
+                      {{#if (not fwk)}}
+                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        {{t 'profile.preference.choose-fwk'}}
+                        <span class="caret"></span>
+                      </button>
+                      {{else}}
+                      <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        {{fwk}}
+                        <span class="caret"></span>
+                      </button>
+                      {{/if}}
+                      <ul class="dropdown-menu pull-right">
+                        {{#each (get-value 'source' source=category.subjectFwks searchProp='code' searchVal=sub
+                        destProp='frameworks') as |fwks |}}
+                        <li> <a data-item={{fwks}} tabindex='101' aria-label="update subject" onclick={{ action 'updateFrameworkForSubjectCategory' fwks sub category}} onkeypress={{ action 'updateFrameworkForSubjectCategory' fwks sub category
+                            }}>{{fwks.frameworkId}} </a> </li>
+                        {{else}}
+                        <li> {{t 'profile.preference.no-data'}} </li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                  {{/each-in}}
+                </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          {{else}}
+          <div class="display-mode">
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{category.title}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                {{#each category.subjects as |subjectFwk |}}
+                <div class="subject-fwk">
+                  {{#each-in subjectFwk as |sub fwk|}}
+                  <div class='subject'>
+                    {{get-value 'source' source=category.subjectFwks searchProp='code' searchVal=sub destProp='title' }}
+                  </div>
+                  <div class='fwk'>
+                    {{fwk}}
+                  </div>
+                  {{/each-in}}
+                </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          {{/if}}
+          {{/each}}
+          <div class='display-mode {{if isGuestAccount 'disable-event'}}'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'accessibility'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwk display-language-pref-row1  margin-bottom-25px">
+                  <div class="subject display-language-pref-label learner-data"> {{t 'accessibility-font-size'}}
+                  </div>
+                  <div class="fwk">
+                    <div class="show-completed-course-btn {{if isShowImpersonate 'impersonate-font-btn'}}">
+                       <span onclick={{action 'updateFont' 'size-up' }} aria-label="increase font" onkeypress={{action 'updateFont' 'size-up' }} role="button" aria-label="increase font size" tabindex='101'>
+                        {{gru-icon name="add" style='material-icons-outlined icon-custom' class="curser-pointer"}}
+                      </span>
+                      <span onkeypress={{action 'updateFont' 'size-down'}} aria-label="decrease font" onclick={{action 'updateFont' 'size-down'}} role="button" aria-label="decrease font size" tabindex='101'>
+                        {{gru-icon name="remove" style='material-icons-outlined icon-custom' class="curser-pointer"}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="subject-fwk display-language-pref-row1">
+                  <div class="subject display-language-pref-label learner-data"> {{t 'accessibility-contrast-text'}}
+                  </div>
+                  <div class="fwk">
+                    <div class="show-completed-course-btn padding-top-5px">
+                      {{gru-toggle-button
+                      title="high-contrast-toggle"
+                      isChecked=highContrastVisibility
+                      tabindex='101'
+                      onToggleButton="onToggleHighContrastCheckbox" }}
+                    </div>
+                  </div>
+                </div>
+
+                 <div class='category-head edit-head'>
+                <button class='add-category btn btn-primary save {{if hideReset 'disable-div '}}' aria-label="reset preferences" {{action 'resetPreferences' }} tabindex='101'> {{t "common.reset"}}</button>
+
+                <button class='add-category btn btn-primary save {{if hideSave  'disable-div '}}' aria-label="save preferences" {{action 'savePreferences' }} tabindex='101'> {{t "common.save"}}</button>
+                </div>
+
+              </div>
+              <ul class="nav justify-content-center" id="accessibilty">
+                <li class="nav-item accessibility-tab" aria-label="accessibility Text Size Preference Tab">
+                  <a class="nav-link tab-text-color" aria-current="page" href="#" title="accessibility Text Size Preference Tab">{{t 'qz-player.resource-format.text_resource'}}</a>
+                </li>
+              </ul>
+              <div class='panel-body tab-text-color display-demo'>
+                <div class="vertically-center">
+                  <div id='display-block' style='zoom:{{parsedScaleSize}}' >{{t 'accessibility-display-text'}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{else}}
+      <div class="category-head edit-head {{if isGuestAccount 'guest-account'}}">
+        <div class='edit-preference {{if isShowImpersonate 'impersonate-edit'}}' aria-label="edit category" onclick={{action (optional (unless isGuestAccount (action 'editCategory' ) null))}} onkeypress={{action (optional (unless isGuestAccount (action 'editCategory' ) null))}} tabindex="101"
+          title="{{if isGuestAccount (t 'common.not-editable-for-demo') ''}}"> {{gru-icon name='mode_edit'}}</div>
+      </div>
+      <div class="category-container-layout">
+        <div class='category-container' style="">
+          <div class='display-mode'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'profile.preference.language-preference'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                {{!-- <div class='category-head'> --}}
+                  <div class="subject-fwk display-language-pref-row1">
+                    <div class="subject display-language-pref-label"> {{t 'profile.preference.language'}}: </div>
+                    <div class="fwk">
+                      {{selectedLanguage.display_name}}
+                    </div>
+                  </div>
+                  <div class="subject-fwk display-language-pref-row1">
+                    <div class="subject display-language-pref-label"> {{t
+                      'profile.preference.other-preferred-languages'}}: </div>
+                    <div class="fwk sec-lang">
+                      {{#each otherLanguages as |secLanguage|}}
+                      <span class='secLangDisplay'>
+                        {{secLanguage.display_name}}
+                      </span>
+                      {{/each}}
+                    </div>
+                  </div>
+                  {{!--
+                </div> --}}
+              </div>
+            </div>
+          </div>
+          {{#if addedCategories}}
+          {{else}}
+          {{!-- Empty category selection box --}}
+          <div class="panel panel-default">
+            <div class='panel-heading'>
+              <span class='category-title'>
+                {{t 'profile.preference.category-preference'}}
+              </span>
+            </div>
+            <div class='panel-body'>
+              <div class='category-head'>
+                <div class="display-language-pref-row">
+                  <div class="display-language-pref-label"> No category data :{{t 'profile.preference.no-data'}} </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{!-- Empty category selection box --}}
+          {{/if}}
+          {{#if (not isStudent)}}
+          <div class='display-mode'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'class.sort-by-time-preference'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwk display-language-pref-row1">
+                  <div class="subject display-language-pref-label"> {{t 'common.title-preference'}} </div>
+                  <div class="fwk">
+                    <div class='row-value'>
+                      {{#if viewPreference}}
+                      {{viewPreference.name}}
+                      {{else}}
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+                <div class="subject-fwk display-language-pref-row1 class-report">
+                  <div class="subject display-language-pref-label"> {{t 'common.class-report-default-route'}} </div>
+                  <div class="fwk">
+                    <div class='row-value'>
+                      {{#if classReport}}
+                      {{classReport.name}}
+                      {{else}}
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class='display-mode'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'learner-data-visibility-preference'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwk display-language-pref-row1">
+                  <div class="subject display-language-pref-label learner-data">{{t 'share-learner-data'}}</div>
+                  <div class="fwk">
+                    <div class='row-value disable-toogle'>
+                      {{gru-switch
+                      switchOptions=switchOptions
+                      onOptionSwitch='onToggleCheckbox'
+                      isChecked=(if learnerDataVisibilty true false)
+                      tabindex = tabindex
+                      }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {{/if}}
+          {{#if (and isStudent enableLearnersData)}}
+          {{!-- <div class="category-container-layout">
+            <div class='category-container'> --}}
+              <div class='display-mode'>
+                <div class="panel panel-default">
+                  <div class='panel-heading'>
+                    <span class='category-title'>
+                      {{t 'learner-data-visibility-preference'}}
+                    </span>
+                  </div>
+                  <div class='panel-body'>
+                    <div class="subject-fwk display-language-pref-row1">
+                      <div class="subject display-language-pref-label learner-data">{{t 'share-learner-data'}}</div>
+                      <div class="fwk">
+                        <div class='row-value disable-toogle'>
+                          {{gru-switch
+                          switchOptions=switchOptions
+                          onOptionSwitch='onToggleCheckbox'
+                          isChecked=(if learnerDataVisibilty true false)
+                          tabindex = tabindex
+                          }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{!--
+            </div>
+          </div> --}}
+          {{/if}}
+          <div class='display-mode {{if isGuestAccount 'disable-event'}}'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
+                <span class='category-title'>
+                  {{t 'accessibility'}}
+                </span>
+              </div>
+              <div class='panel-body'>
+                <div class="subject-fwk display-language-pref-row1  margin-bottom-25px">
+                  <div class="subject display-language-pref-label learner-data"> {{t 'accessibility-font-size'}}
+                  </div>
+                  <div class="fwk">
+                    <div class="show-completed-course-btn {{if isShowImpersonate 'impersonate-font-btn'}}">
+                      <span onclick={{action 'updateFont' 'size-up' }} onkeypress={{action 'updateFont' 'size-up' }} role="button" aria-label="increase font size">
+                        {{gru-icon name="add" style='material-icons-outlined icon-custom' class="curser-pointer"}}
+                      </span>
+                      <span onclick={{action 'updateFont' 'size-down'}} onkeypress={{action 'updateFont' 'size-down'}} role="button" aria-label="decrease font size">
+                        {{gru-icon name="remove" style='material-icons-outlined icon-custom' class="curser-pointer"}}
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="subject-fwk display-language-pref-row1">
+                  <div class="subject display-language-pref-label learner-data"> {{t 'accessibility-contrast-text'}}
+                  </div>
+                  <div class="fwk">
+                    <div class="show-completed-course-btn padding-top-5px {{if isShowImpersonate 'impersonate-high-contrast'}}" role="radio"  aria-label="enable high contrast">
+                      {{gru-toggle-button
+                      title="high-contrast-toggle"
+                      isChecked=highContrastVisibility
+                      onToggleButton="onToggleHighContrastCheckbox" }}
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class='category-head edit-head {{if isShowImpersonate 'impersonate-category-btn'}}'>
+
+                <button class='add-category btn btn-primary save {{if hideReset 'disable-div '}}' aria-label="reset preferences" {{action 'resetPreferences' }} tabindex='101'> {{t "common.reset"}}</button>
+
+                <button class='add-category btn btn-primary save {{if hideSave 'disable-div '}}' aria-label="save preferences" {{action 'savePreferences' }} tabindex='101'> {{t "common.save"}}</button>
+                </div>
+
+              </div>
+              <ul class="nav justify-content-center" id="accessibilty">
+                <li class="nav-item accessibility-tab" aria-label="accessibility Text Size Preference Tab">
+                  <a class="nav-link tab-text-color" aria-current="page" href="#" title="accessibility Text Size Preference Tab">{{t 'qz-player.resource-format.text_resource'}}</a>
+                </li>
+              </ul>
+              <div class='panel-body tab-text-color display-demo'>
+                <div class="vertically-center">
+                  <div id='display-block' style='zoom:{{parsedScaleSize}}'>{{t 'accessibility-display-text'}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

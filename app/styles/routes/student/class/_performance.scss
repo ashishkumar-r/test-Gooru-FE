@@ -1,0 +1,152 @@
+.student.class.performance {
+  margin: 20px 0;
+
+  .performance-table-wrapper {
+    box-shadow: 0 2px 5px 0 $table-box-shadow-07,
+      0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+  }
+
+  .navigation {
+    @include flex-shrink(0);
+    background-color: $dark-400;
+    height: auto;
+    max-height: 890px;
+    color: $dark-100;
+    padding: 0;
+    font-size: 19px;
+    width: 20%;
+    box-shadow: 0 2px 5px 0 $table-box-shadow-07,
+      0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+    @media (min-width: $screen-sm) {
+      width: 20%;
+      float: $tab-float-dir;
+    }
+  }
+  .fullcontent {
+    padding: 0;
+    width: 100% !important;
+  }
+  .menucontent {
+    padding: 0;
+    width: 80% !important;
+  }
+  .content {
+    padding: 0;
+    width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: $tab-float-dir;
+    .panel-header {
+      height: 45px;
+      h1 {
+        float: $tab-float-dir;
+        font-size: $font-size-h4;
+        margin: 2px 0 0 0;
+        width: auto;
+      }
+      button {
+        float: $menu-float-dir;
+        padding: 6px 10px 6px 8px;
+        &.download {
+          @media (max-width: $screen-xs) {
+            float: $tab-float-dir;
+            display: block;
+            margin: 10px 0;
+          }
+        }
+      }
+      p {
+        float: $tab-float-dir;
+        font-size: 18px;
+        margin: 15px 0 0 0;
+        line-height: 20px;
+        width: 100%;
+      }
+    }
+    .filters {
+      @include flexbox;
+      @include justify-content(space-between);
+      height: auto;
+      width: 100%;
+      padding: 6px 0 0 0;
+      margin: 0 0 10px;
+      .radios-container {
+        @include flexbox;
+        @include align-items(end);
+        input[type="radio"] {
+          height: 25px;
+          margin-left: 20px;
+        }
+        label {
+          padding-left: 0;
+        }
+        & > :last-child {
+          margin-right: 0;
+        }
+      }
+      .performance-scale {
+        float: $menu-float-dir;
+        margin: 5px 0 0 0;
+        right: 15px;
+      }
+    }
+  }
+  .classrooms-reports {
+    width: 189.2px;
+    height: 22px;
+    border-radius: 12px;
+    background-color: $light-400;
+  }
+  .widthradiobtns {
+    width: 58%;
+    float: $tab-float-dir;
+  }
+  .widthscale {
+    width: 42%;
+  }
+  .topPadding {
+    padding-top: 20px;
+  }
+  .scaleBackgroundPadding {
+    width: 50.2px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 19px;
+    background-color: $red-400;
+  }
+  .selectedButton {
+    width: 95px;
+    height: 20px;
+    border-radius: 12px;
+    background-color: $white-bold;
+    margin-top: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .radioNormalButton {
+    width: 92px;
+    height: 20px;
+    border-radius: 12px;
+    background-color: $light-400;
+  }
+  .normalButtonType {
+    width: 92px;
+    height: 10px;
+    font-family: Lato;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+    color: $white-bold;
+    margin-top: 4px;
+  }
+  .selectedButtonType {
+    width: 92px;
+    height: 10px;
+    font-family: Lato;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+    color: $blue-2be;
+    margin-top: 4px;
+  }
+}

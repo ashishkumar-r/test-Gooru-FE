@@ -1,0 +1,66 @@
+.gru-toggle-button {
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  margin-left: 25px;
+  .switch {
+    position: relative;
+    width: 35px;
+    height: 14px;
+    margin-right: 10px;
+    .disable {
+      display: none;
+    }
+    input {
+      display: none;
+    }
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $light-400;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: -7px;
+    bottom: -3px;
+    background-color: $light-100;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    box-shadow: 0 1px 1px 0 $slider-box-shadow 0 0 1px 0 $slider-left-box-shadow;
+  }
+
+  input:checked + .slider {
+    background-color: $blue-400;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px $blue-f3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    background-color: $sky-400;
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+}

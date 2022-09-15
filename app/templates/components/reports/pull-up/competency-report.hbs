@@ -1,0 +1,55 @@
+{{#if showPullUp}}
+<div class="overlay" {{action 'onClosePullUp' true}}></div>
+{{/if}}
+<div class="competency-report">
+  <div class="competency-report-header">
+    <div class="competency-status status-{{competency.status}}"></div>
+    <div class="report-info">
+      <div class="title-section {{if competency 'content'}}">
+        <div class="domain-name">
+          {{domain-gut-to-fw-transform fwDomains competency.domainCode competency.domainName 'fwDomainName' true}}
+        </div>
+        <div class="domain-name">
+          {{competency.topicName}}
+        </div>
+        <div class="title-content">
+          <div class="competency-code">
+            {{competency-gut-to-fw-transform
+            fwCompetencies
+            competency.competencyCode
+            competency.competencyCode
+            'frameworkCompetencyCode'
+            showGutCompetency
+            true
+            }}
+          </div>
+        </div>
+        {{#unless competency}}
+        <div class="title">
+          {{title}}
+        </div>
+        {{/unless}}
+      </div>
+      <div class="title-section content">
+        <img alt="student avatar" src="{{studentCompetencyPerformance.avatarUrl}}" class="thumbnail-student-img"
+          tabindex={{tabindex}} />
+        <span>{{studentCompetencyPerformance.fullName}}</span>
+      </div>
+      {{#if competency}}
+      <div class="competency-status">
+        {{competencyStatus}}
+        {{#if isBadgedCompetency}}
+        <div class="badge">
+        </div>
+        {{/if}}
+      </div>
+      {{/if}}
+    </div>
+    <div class="close-pullup" {{action "onClosePullUp"}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="body">
+    {{yield}}
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.content.modals.gru-remove-student {
+  @extend .content.modals.gru-delete-class;
+
+  @media (max-width: $screen-xs-max) {
+    input[type="checkbox"] {
+      @include scale(2);
+      float: $tab-float-dir;
+    }
+    label {
+      margin-bottom: 30px;
+      span {
+        line-height: 1;
+        display: block;
+        margin-left: 30px;
+        text-align: $tab-float-dir;
+      }
+    }
+  }
+}

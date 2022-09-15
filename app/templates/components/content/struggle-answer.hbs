@@ -1,0 +1,240 @@
+<div class='struggle-headers'>
+  <div class='backdrop' {{action 'onClosePullUp'}}>
+  </div>
+  <div class='struggle-content {{unless (or (and tempModel.standards.length (not isQuestion)) (and isQuestion standards.length)) 'struggle-main'}}'>
+    {{#if (or (and tempModel.standards.length (not isQuestion)) (and isQuestion standards.length)) }}
+    <div class="struggle-panel-head">    
+       <div>
+         {{#unless showCompetency}}
+        <span>Identify struggle for {{standarsCode}}</span>
+        {{/unless}}
+        </div>
+      <i class="material-icons" {{action 'onClosePullUp'}}>clear</i>
+    </div>
+    <div class="search-header">
+     <div class="search-text">
+      <i class="material-icons" {{action 'goBack'}}>arrow_back</i>
+      <input type="text" class="search-text-box" onkeyup={{action "onSearch"}} placeholder="Search for struggles">
+      <i class="material-icons" onclick={{action "onClearSearch"}}>clear</i>
+      <i class="material-icons">search</i>
+     </div>
+     <div class="select-all-struggle">
+       <input type="checkbox" name="select-box" onclick={{action "onClickAllStruggle"}} aria-checked="false">
+       <span>Search all struggle</span>
+     </div>
+    </div>
+    {{!-- <div class="browse-btn" {{action 'onBrowseStruggle'}}>
+       <span class="browse-txt">{{if showTriller 'Show Default' 'Browse Struggle'}}</span>
+     </div> --}}
+    <div class='struggle-contains'>
+      {{#if showTriller}}
+      <div class="struggle-panel-head">
+        <div class="struggle-head-title">{{t 'common.topics'}}</div>
+        <div class="struggle-head-title">{{t 'common.compentency'}}</div>
+        <div class="struggle-head-title">{{t 'common.struggle'}}</div>
+      </div>
+      <div class="struggle-panel-body">
+        <div class="struggle-section">
+          {{#each topics as | topic |}}
+          <div class="struggle-panel-card" {{action "onClickTopics" topic}}>
+            <div class="card-title">
+              <span class="struggle-code">{{topic.topicCode}}</span>
+              <span class="material-icons">arrow_forward</span>
+              <span>{{topic.title}}</span>
+            </div>
+            <div class="card-body">
+              <span class="card-text">{{topic.describtion}}</span>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        <div class="struggle-section">
+          {{#if selectedTopic}}
+          {{#each selectedTopic.compentency as | compentency |}}
+          <div class="struggle-panel-card" {{action "onClickCompentency" compentency}}>
+            <div class="card-title">
+              <span class="struggle-code">{{compentency.originCompCode}}</span>
+              <span class="material-icons">arrow_forward</span>
+              <span>{{compentency.compTitle}}</span>
+            </div>
+            <div class="card-body">
+              <span class="card-text">{{compentency.compDesc}}</span>
+            </div>
+          </div>
+          {{/each}}
+          {{/if}}
+        </div>
+        <div class="struggle-section">
+          {{#if seletedCompetency}}
+          {{#each seletedCompetency.struggle as | struggle |}}
+          <div class="struggle-panel-card">
+            <div class="card-title">
+              <span class="struggle-code">{{struggle.subjectCode}}</span>
+              <input type="checkbox" name="box" onclick={{action "onClickStruggle"}} onkeypress={{action "onClickStruggle"}} aria-checked="false">
+              <span>{{struggle.struggleTitle}}</span>
+            </div>
+            <div class="card-body">
+              <span class="card-text">{{struggle.struggleDesc}}</span>
+            </div>
+          </div>
+          {{/each}}
+          {{/if}}
+        </div>
+      </div>
+      {{else}}
+      {{#if filterContent.length}}
+      <div class="struggle-comps">
+        <span>{{t 'common.struggles'}}</span>
+      </div>
+      <div class="struggle-panel-body1">
+        <div class="struggle-section1">
+          {{#each filterContent as |struggle|}}
+          <div class="struggle-panel-card1" {{action "onSelectItem" struggle}}>
+            <div class="card-title1">
+              <span class="struggle-code1">{{struggle.struggleCode}}</span>
+              <i class="material-icons" >{{if struggle.isChecked  'task_alt' 'radio_button_unchecked' }}</i>
+              {{!-- <span class="struggle-check-icons"></span> --}}
+              {{!-- <input type="radio" name="box" > --}}
+              <span class="struggle-display" title={{struggle.struggleDisplayText}} data-toggle="tooltip">{{struggle.struggleDisplayText}}</span>
+            </div>
+            <div class="card-body1">
+              <span class="card-text1" title={{struggle.struggleDesc}} data-toggle="tooltip">{{struggle.struggleDesc}}</span>
+            </div>
+            <div class="card-title1">
+              <span class="struggle-code1">
+                {{#if struggle.manifestDisplayCode.length}}
+                <span>{{t 'common.compentency'}}</span>
+                {{/if}}
+                {{struggle.manifestDisplayCode}}
+              </span>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      {{else}}
+      <div class="result-txt">
+        <div><span>{{t 'common.no-result-found'}}</span></div>
+        <div><span>{{t 'common.search-list'}}</span></div>
+      </div>
+      {{/if}}
+      {{/if}}
+      <div class='comp-popup'>
+        {{#if selectedStruggle}}
+        <table id="dtBasicExample" class="table table-bordered table-responsive" width="100%">
+          <thead>
+            <tr>
+              <th class="th-sm">{{t 'common.struggle-code'}}
+              </th>
+              <th class="th-sm">{{t 'common.struggle'}}
+              </th>
+              <th class="th-sm">{{t 'common.question-competency'}}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="tab-head">
+            {{#each selectedStruggle as | struggle index|}}
+            <tr>
+              <td>{{struggle.struggleCode}}</td>
+              <td>{{struggle.struggleDisplayText}}</td>
+              <td>
+                <div class="dropdown">
+                  <div class="dropdown-toggle comp-dropdown" data-toggle="dropdown">
+                    <span>
+                      {{#if struggle.selected}}
+                      {{struggle.manifestDisplayCode}}
+                      {{else}}
+                      {{t 'select.compentency'}}
+                      {{/if}}
+                    </span>
+                    {{gru-icon name="arrow_drop_down"}}
+                  </div>
+                  <ul class="dropdown-menu">
+                    {{#each tempModel.standards as | std |}}
+                    <li {{action "onSelectCompetency" struggle std}}>{{std.code}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <div class="struggle-btns">
+          <div class="add-btn-cancel" {{action 'onClosePullUp'}}>
+            <span class="add-content">{{t 'common.cancel'}}</span>
+          </div>
+          <div></div>
+          <div class="add-btn" {{action 'updateStuggle'}}>
+            <span class="add-content">{{t 'common.confirm'}}</span>
+          </div>
+        </div>
+        {{/if}}
+      </div>
+      <div>
+      </div>
+    </div>
+    {{else if (and  (not tempModel.standards.length) collection.standards.length )}}
+    <div class='warning-popups'>
+      <div class='backdrop' {{action 'onClosePullUp'}}>
+      </div>
+      <div class='warning-contents'>
+        <div class="struggle-title">
+          <span class="header-text">{{t 'merge.compentency'}}</span>
+        </div>
+        <div class='warning-contains'>
+          {{#if isCollection}}
+          {{t 'collection-compentency'}}
+          {{else}}
+          {{t 'assessment-compentency'}}
+          {{/if}}
+          <div>
+            <span class="ok-buttons" {{action 'onStruggleConfirm'}}>{{t 'common.yes'}}</span>
+            <span class="ok-buttons" {{action 'onClosePullUp'}}>{{t 'common.no'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    {{#if (and isQuestion (not standards.length))}}
+    <div class='warning-popups'>
+      <div class='backdrop' {{action 'onClosePullUp'}}>
+      </div>
+      <div class='warning-contents'>
+        <div class="struggle-title">
+          <span class="header-text">{{t 'select.compentency'}}</span>
+        </div>
+        <div class='warning-panel'>
+          <span class="war-text">{{t 'question-compentency'}}</span>
+          <div class="ok-question-button" {{action 'onClosePullUp'}}>
+            <span>{{t 'sign-in.conformation-text'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    {{#unless (and  tempModel.standards.length collection.standards.length )}}
+    <div class='warning-popups'>
+      <div class='backdrop' {{action 'onClosePullUp'}}>
+      </div>
+      <div class='warning-contents'>
+        <div class="struggle-title">
+          <span class="header-text">{{t 'select.compentency'}}</span>
+        </div>
+        <div class='warning-panel'>
+          {{#if isCollection}}
+          {{t 'warning-collection'}}
+          {{else}}
+          {{t 'warning-assessment'}}
+          {{/if}}
+          <div class="ok-button" {{action 'onClosePullUp'}}>
+            <span>{{t 'sign-in.conformation-text'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/unless}}
+    {{/if}}
+    {{/if}}
+  </div>
+</div>

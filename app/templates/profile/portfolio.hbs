@@ -1,0 +1,49 @@
+<div class="profile-portfolio-container">
+  {{#each userProfiles as | userProfileData index |}}
+    <div class="profile-header {{if (not (eq index 0)) 'collapsed'}}  {{if (eq userProfiles.length 1) 'hide'}}" id="profile-header-{{index}}" data-toggle="collapse" data-target="#profile-{{index}}" data-parent="#profile-header" onclick={{action 'openPortfolioContainer' index}} onkeypress={{action 'openPortfolioContainer' index}} tabindex={{plus-any index 101}}>
+      <img class="img-responsive"  src="{{userProfileData.thumbnail}}" alt="user profile-{{index}}">
+      <div class="name">{{userProfileData.firstName}} {{userProfileData.lastName}}</div>
+      <div class="toggle-panel" tabindex={{plus-any index 101}}>
+        {{gru-icon name='keyboard_arrow_down'}}
+        {{gru-icon name='keyboard_arrow_up'}}
+      </div>
+    </div>
+    <div id="profile-{{index}}" class="body-container collapse {{if (eq index 0) 'in'}}" tabindex={{plus-any index 101}}>
+      <div class="panel-container">
+        <div class="offline-activities-container learning-activities-container">
+          {{portfolio/gru-contents-panel
+        contentType = 'offline-activity'
+        userProfile = userProfile
+        userId = userProfileData.id
+        userPreference = userPreference
+        isStudent=isStudent
+        tabindex=(plus-any index 101)
+        userProfiles=userProfileData}}
+        </div>
+        <div class="collections-container learning-activities-container">
+          {{portfolio/gru-contents-panel
+          contentType = 'collection'
+          userProfile = userProfile
+          userId = userProfileData.id
+          userPreference = userPreference
+          isStudent=isStudent
+          tabindex=(plus-any index 102)
+          userProfiles=userProfileData}}
+        </div>
+        <div class="assessments-container learning-activities-container">
+          {{portfolio/gru-contents-panel
+          contentType = 'assessment'
+          userProfile = userProfile
+          userId = userProfileData.id
+          userPreference = userPreference
+          isStudent=isStudent
+          tabindex=(plus-any index 103)
+          userProfiles=userProfileData}}
+        </div>
+      </div>
+      {{#unless userProfileData.hasContent}}
+        <div class="no-data">{{t 'common.no-record-found'}}</div>
+      {{/unless}}
+    </div>
+  {{/each}}
+</div>

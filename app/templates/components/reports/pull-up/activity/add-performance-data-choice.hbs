@@ -1,0 +1,37 @@
+<div class="panels">
+  <div class="left-panel">
+    <div class="collection-image-container" style="background-image: url({{assessment.thumbnailUrl}})">
+      <div class="collection-standards">
+        {{#if taxonomyTags.length}}
+          {{taxonomy.gru-taxonomy-tag-list
+              tags=taxonomyTags
+              tagsVisible=1
+              tabindex=tabindex
+              isInCard=true}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="right-panel">
+    <div class="choice-title">{{t 'common.add-data-choice-title'}}</div>
+    <div class="choice-list">
+      {{#each choiceList as |choice|}}
+        <div class="row-option {{choice.name}}" {{action 'selectChoiceOption' choice}}>
+          <div class="icon">{{gru-icon name=choice.icon}}</div>
+          <div class="title">
+            {{t (concat 'add-data-by-' choice.name)}}
+            {{#if (and (eq choice.name 'upload-image') errorOnConversion)}}
+              ( {{t 'i2d.conversion-error'}} )
+            {{/if}}
+          </div>
+        </div>
+        {{#if choice.showMessage}}
+          <div class="message">
+            <div class="text">{{t 'i2d-message-1'}}</div>
+            <div class="text">{{t 'i2d-message-2'}}</div>
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+</div>

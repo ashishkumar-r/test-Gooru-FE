@@ -1,0 +1,111 @@
+.student.course-map {
+  .routesuggestion-preview {
+    .suggest-desc {
+      line-height: 15pt;
+    }
+
+    .suggest-sep {
+      height: auto;
+    }
+
+    .route-suggestions-container {
+      width: 100%;
+      margin: auto;
+
+      .route0-banner {
+        display: flex;
+      }
+
+      .preview-content {
+        display: block;
+
+        .proficiency-chart {
+          .route-suggestion-proficiency-matrix {
+            .matrix-chart {
+              zoom: 0.9;
+              margin: auto;
+
+              .domain-sequence-container {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .suggestion-accordion {
+          zoom: 0.6;
+
+          .gru-accordion-course.course-suggestions {
+            .panel-heading {
+              .panel-title > a {
+                max-width: none;
+              }
+            }
+            margin: auto auto 15px;
+
+            .gru-accordion-unit {
+              .panel-heading {
+                .panel-title {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .course-suggestion {
+        .created-by-kangoorus {
+          height: auto;
+          width: auto;
+        }
+      }
+    }
+
+    .action {
+      width: max-content;
+      margin: auto;
+    }
+  }
+  @media screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+    .routesuggestion-preview {
+      .route-suggestions-container {
+        .preview-content {
+          display: flex;
+
+          .proficiency-chart {
+            .route-suggestion-proficiency-matrix {
+              .matrix-chart {
+                zoom: 0.6;
+              }
+            }
+          }
+
+          .suggestion-accordion {
+            zoom: 0.9;
+          }
+        }
+      }
+
+      .action {
+        margin: auto 15px auto auto;
+      }
+    }
+  }
+  // Custom media screen
+  @media screen and (max-width: $screen-376) {
+    .routesuggestion-preview {
+      .route-suggestions-container {
+        .preview-content {
+          .proficiency-chart {
+            .route-suggestion-proficiency-matrix {
+              .matrix-chart {
+                zoom: 0.7;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

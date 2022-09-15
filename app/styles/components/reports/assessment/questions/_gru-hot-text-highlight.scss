@@ -1,0 +1,38 @@
+.gru-hot-text-highlight p {
+  line-height: 1.4;
+  font-size: 16px;
+
+  span {
+    word-wrap: break-word;
+    overflow: auto;
+    max-width: 10em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    white-space: pre-line;
+
+    @media (min-width: $screen-sm-min) {
+      max-width: 19em;
+    }
+
+    p {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+    }
+    &.correct,
+    &.incorrect,
+    &.anonymous {
+      color: $white;
+    }
+    &.correct {
+      background-color: $brand-success;
+    }
+    &.incorrect {
+      background-color: $brand-incorrect;
+    }
+    &.anonymous,
+    &.anonymous {
+      background-color: $brand-anonymous;
+    }
+  }
+}

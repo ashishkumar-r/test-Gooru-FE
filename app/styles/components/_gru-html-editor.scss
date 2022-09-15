@@ -1,0 +1,19 @@
+.gru-html-editor {
+  #html-editor {
+    border: 1px solid $light-200;
+    min-height: 500px;
+    height: 500px;
+    background-color: $white;
+    .ck-editor {
+      label {
+        display: none !important;
+      }
+      .ck-editor__main {
+        .ck-content {
+          min-height: 500px;
+          height: 500px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.grade.free-response-question-grade {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .free-response-question-grade-container {
+      width: 100%;
+
+      .frq-grade-header {
+        height: auto;
+      }
+
+      .frq-grade-body {
+        grid-template-rows: auto auto;
+        grid-template-columns: none;
+      }
+    }
+  }
+}

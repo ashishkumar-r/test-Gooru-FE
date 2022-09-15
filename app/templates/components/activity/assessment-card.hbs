@@ -1,0 +1,51 @@
+<div class="card-panel-container">
+  <div class="card-panel-header" style="background-image: url({{assessment.thumbnailUrl}})">
+    <div class="info">
+      <div class="title">{{assessment.title}}</div>
+    </div>
+  </div>
+  <div class="question-count-container">
+    <i class="icon"></i>
+    <span>{{assessment.questionCount}}</span>
+  </div>
+  <div class="assessment-info-container">
+    <div class="assessment-user-info">
+      <div class="created-by">{{t (if assessment.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}</div>
+      <div class="img-container pull-left">
+        <img class="img-responsive" src="{{assessment.owner.avatarUrl}}" alt="owner avatar">
+      </div>
+      <div class="username">{{assessment.owner.displayName}}</div>
+    </div>
+    <div class="assessment-description">
+      {{safe-html assessment.description}}
+    </div>
+    <div class="assessment-standards ">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+      {{/if}}
+    </div>
+
+  </div>
+  <div class="card-panel-footer {{if class.isArchived 'disable-footer'}}">
+    <div class="buttons-container">
+      <div class="play-btn" title="Play" data-toggle="tooltip" data-placement="right" {{action "onPlayAssessment" assessment.id}}>{{gru-icon name="play_arrow"}}</div>
+      <div class="suggest-btn" title="Suggest" data-toggle="tooltip" data-placement="left" {{action "onSuggestContent" assessment}}>{{gru-icon name="explore"}}</div>
+    </div>
+    <div class="assessment-prefs-container">
+      <span class="left-arc"></span>
+      <span class="right-arc"></span>
+      <div class="assessment-prefs relevance pull-left" style="background-color:rgba(0, 114, 188, {{assessment.relevance}})">
+        <div class="count">{{assessment.relevance}}</div>
+        <div class="title">{{t 'common.relevance'}}</div>
+      </div>
+      <div class="assessment-prefs engagement pull-left" style="background-color:rgba(0, 114, 188, {{assessment.engagement}})">
+        <div class="count">{{assessment.engagement}}</div>
+        <div class="title">{{t 'common.engagement'}}</div>
+      </div>
+      <div class="assessment-prefs efficacy pull-left" style="background-color:rgba(0, 114, 188, {{assessment.efficacy}})">
+        <div class="count">{{assessment.efficacy}}</div>
+        <div class="title">{{t 'common.efficacy'}}</div>
+      </div>
+    </div>
+  </div>
+</div>

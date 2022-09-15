@@ -1,0 +1,13 @@
+[
+  {
+    "id": "resource-1",
+    "title": "resource1",
+    "format": "video"
+  },
+  {
+
+    "id": "resource-2",
+    "title": "resource2",
+    "format": "image"
+  }
+]

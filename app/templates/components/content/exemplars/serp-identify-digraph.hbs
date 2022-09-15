@@ -1,0 +1,32 @@
+<div class="serp-exemplar {{unless isEdit 'view-only'}}">
+    {{#each exemplars as |exemplar index|}}
+        <h3 class="excercise-seq">
+            {{t 'common.excercise'}} {{plus-one index}}
+        </h3>
+        <div class="exmplar-input-container">
+      <div class="text-area-container second-text-edit">
+         <p data-answer-index={{index}} class="text-edit answer-edit-{{index}}" id="add-underline">
+            {{safe-html exemplar.answer_text}} 
+          </p>
+        </div>
+    <div class="digraph-sounds">
+        {{#each exemplar.correct_answer as |correctAnswer|}}   
+          <div class="digraph-sound">
+            <span>{{correctAnswer.text}}</span>
+            <span>{{player/gru-audio-player isRecord=true audioUrl=correctAnswer}}</span>
+          </div>
+        {{/each}}
+      </div>
+        </div>
+    {{else}}
+        {{#unless isEdit}}
+            --
+        {{/unless}}
+    {{/each}}
+</div>
+{{#if isEdit}}
+    <div class="add-excercise-exemplar {{if (eq answers.length exemplars.length) 'disable-event'}}"
+        {{action "onAddExemplar"}}>
+        {{t 'content-builder.exemplar.add'}}
+    </div>
+{{/if}}

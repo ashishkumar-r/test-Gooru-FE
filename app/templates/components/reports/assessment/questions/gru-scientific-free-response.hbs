@@ -1,0 +1,6 @@
+{{#each answer  as |item|}}
+  <div>
+    <label class="answer-category">{{item.category}}</label>
+    <span>{{{gru-math-text text=item.value}}}</span>
+  </div>
+{{/each}}

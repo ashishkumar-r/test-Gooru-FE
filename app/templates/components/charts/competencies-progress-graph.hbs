@@ -1,0 +1,17 @@
+<div class="progress-graph-container">
+  <div class="progress-icon-container" onclick={{action "onClickProgressChart"}} onkeypress={{action "onClickProgressChart"}} tabIndex={{tabIndex}}>
+    {{gru-icon name="equalizer"}}
+  </div>
+  <div class="progress-label">{{t 'locateme.view'}}</div>
+  <div class="progress-container">
+    <div class="progress-graph mastered-progress competency-status-5 {{if (eq masteredCount 0) 'no-value'}}">
+      <span class="competency-status-5">{{masteredCount}}</span>
+    </div>
+    <div class="progress-graph inprogress-progress competency-status-1 {{if (eq inProgressCount 0) 'no-value'}}">
+      <span class="competency-status-1">{{inProgressCount}}</span>
+    </div>
+    <div class="progress-graph notstarted-progress competency-status-0 {{if (eq notStartedCount 0) 'no-value'}}">
+      <span class="competency-status-0">{{notStartedCount}}</span>
+    </div>
+  </div>
+</div>

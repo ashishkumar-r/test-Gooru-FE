@@ -1,0 +1,21 @@
+<p class="instructions">
+  {{t "gru-multiple-choice.instructions" action=(t instructionsActionTextKey)}}
+</p>
+
+<div class="answer-choices">
+    {{#each question.answers as |answer index|}}
+      <div class="radio {{if readOnly 'disabled'}}">
+        {{#radio-button
+            value=answer.id
+            disabled=readOnly
+            groupValue=userAnswer
+            changed="selectAnswerChoice"
+            name="answer-choice-radio"}}
+            {{#unless isChooseOne}}
+            <span class="letter">({{answer-letter index}})</span>
+            {{/unless}}
+            <span class="text">{{{gru-math-text text=answer.text}}}</span>
+        {{/radio-button}}
+      </div>
+    {{/each}}
+</div>

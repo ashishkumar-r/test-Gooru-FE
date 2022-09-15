@@ -1,0 +1,35 @@
+.open-ended-report-pull-up {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .student-open-ended-summary-pull-up {
+      .free-response-report-container {
+        width: 100%;
+
+        .report-content {
+          .report-carousel {
+            display: grid;
+
+            .response-panel {
+              width: 100%;
+
+              .header {
+                .summary-container {
+                  width: 100%;
+                }
+
+                .gru-task-header {
+                  width: 100%;
+                }
+              }
+            }
+
+            .gru-rubric-panel {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

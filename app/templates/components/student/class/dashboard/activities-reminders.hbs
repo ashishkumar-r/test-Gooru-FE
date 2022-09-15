@@ -1,0 +1,47 @@
+<div class="activities-reminders-container">
+  <div class="reminder-panel">
+    <div class="reminder-panel-header">
+      {{gru-icon name="push_pin"}}
+      <div class="reminder-title">
+        <div class="reminder-title-session" onclick={{action "onClassActivity"}} onkeypress={{action "onClassActivity"}} href="javascript:void(0)" tabindex={{tabindex}}>
+          <span class="reminder-count">
+            {{#unless isLoading}}
+              {{#if pendingCaCount}}
+                {{pendingCaCount}} {{t 'student-dashboard.reminders'}}
+              {{else}}
+                {{t 'student-dashboard-no-reminder'}}
+              {{/if}}
+            {{/unless}}
+          </span>
+          <span class="reminder-assignment">{{t 'student-dashboard.assignment'}}</span>
+        </div>
+      </div>
+      <a class="action-buton" onclick={{action "onClassActivity"}} onkeypress={{action "onClassActivity"}} href="javascript:void(0)" aria-label="class activity" tabindex={{tabindex}}>
+        {{gru-icon name="arrow_forward"}}
+      </a>
+    </div>
+    <div class="reminder-panel-body">
+      <div class="reminder-card-panel">
+        {{#unless isLoading}}
+          {{#if activityContent.length}}
+            {{#each activityContent as | activity |}}
+              <div class="card-content-section {{if isShowImpersonate 'impersonate-card-section'}}">
+                <span class="content-icon {{activity.contentType}}"></span>
+                <div class="activities-details {{if activity.isActivityFuture 'future-activity'}}" href="javascript:void(0)" onclick={{action "onPlayContent" activity}} onkeypress={{action "onPlayContent" activity}} aria-label="play" tabindex={{tabindex}}>
+                  <span class="recommender">{{t 'student-dashboard.due-on'}} {{format-date activity.end_date 'MM/YY'}}</span>
+                  <span class="competency-name">{{activity.title}}</span>
+                </div>
+                <span class="{{activity.contentType}}-icons"></span>
+                <a href="javascript:void(0)" onclick={{action "onPlayContent" activity}} onkeypress={{action "onPlayContent" activity}} class="play-btn {{if activity.isActivityFuture 'future-activity'}}" aria-label="play" tabindex={{tabindex}}>
+                  {{gru-icon name="play_arrow"}}
+                </a>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="no-reminder-msg">{{t 'student-dashboard-reminder-pending-msg'}}</div>
+          {{/if}}
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+</div>

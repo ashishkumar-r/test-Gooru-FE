@@ -1,0 +1,14 @@
+.gru-copy-value {
+  margin: 0 0 0 5px;
+  .copy-btn {
+    background-color: $table-bg;
+    border: none;
+    color: $gray;
+    height: 18px;
+    padding: 0;
+    i {
+      font-size: 15px;
+      margin: 3px 0 0 0;
+    }
+  }
+}

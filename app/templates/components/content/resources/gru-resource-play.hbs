@@ -1,0 +1,78 @@
+<header>
+  <div class="header-content">
+    {{#if (not isRGOsource)}}
+      <button type="button" class="btn-back" {{action "goBack"}}>
+        {{gru-icon name="keyboard_arrow_left"}} {{t 'common.back'}}
+      </button>
+    {{/if}}
+    <div class="heading">
+      {{#if isRGOsource}}
+        <div class="close-icon" {{action "onCloseWindow"}} title="Close" data-toggle="tooltip">
+          {{gru-icon name="clear"}}
+        </div>
+      {{/if}}
+      <div class="information">
+        <h1 title="{{{resource.title}}}">{{resource.title}}</h1>
+        <div class="details">
+          <div class="format">
+            <i class="{{resource.format}}-icon"></i>
+            <span>{{if isH5PContent (t (concat "common.resource-format." resource.type)) (t (concat "common.resource-format." resource.format))}}</span>
+          </div>
+          <div class="tags">
+            {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=3}}
+          </div>
+        </div>
+      </div>
+      <div class="publisher">
+        {{#if showPublisher}}
+          <span>
+            {{t "common.published-by"}}
+          </span>
+          <span class="publisher-name">
+            {{resource.publisher}}
+          </span>
+        {{else}}
+          <span>
+            {{t "common.contributed-by"}}
+          </span>
+          <img class="img-responsive" src="{{resource.owner.avatarUrl}}" alt="owner avatar">
+          {{#link-to 'library-search'  (query-params type="my-content" profileId=resource.owner.id) class="pointer" tagName="div"}}
+            <span class="owner">{{resource.owner.displayName}}</span>
+          {{/link-to}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  {{#if isH5PContent}}
+    <iframe src="{{contentURL}}" width="100%" frameborder="0" allowfullscreen></iframe>
+  {{else}}
+    {{#if (or isNotIframeUrl isLinkOut)}}
+      <div class="panel panel-default not-iframe">
+        <div class="panel-header">
+          <p class="title">
+            {{t 'player.gru-viewer.not-iframe-url.header_1'}}<br>
+            {{t 'player.gru-viewer.not-iframe-url.header_2'}}
+          </p>
+        </div>
+        <div class="panel-body">
+          {{new-cards/gru-resource-card resource=resource editEnabled=false isLinkOut=true}}
+        </div>
+        <div class="panel-footer">
+          <p class="title">
+            {{t 'player.gru-viewer.not-iframe-url.footer_1'}}
+          </p>
+          <p class="description">
+            {{t 'player.gru-viewer.not-iframe-url.footer_2'}}<br>
+            {{t 'player.gru-viewer.not-iframe-url.footer_3'}}<br>
+            {{t 'player.gru-viewer.not-iframe-url.footer_4'}}
+          </p>
+        </div>
+      </div>
+    {{else}}
+      {{component resourceComponent resource=playerResource calculatedResourceContentHeight=calculatedResourceContentHeight}}
+    {{/if}}
+  {{/if}}
+</section>

@@ -1,0 +1,53 @@
+<div class="card-panel-container">
+  <div class="card-panel-header {{lesson.contentSubFormat}}">
+    <div class="info">
+      <div class="title">{{lesson.title}}</div>
+    </div>
+  </div>
+  <div class="lesson-format-container">
+    <div class="assessment pull-left">
+      <i class="icon"></i>
+      <span>{{lesson.assessmentCount}}</span>
+    </div>
+    <div class="collection pull-left">
+      <i class="icon"></i>
+      <span>{{lesson.collectionCount}}</span>
+    </div>
+  </div>
+  <div class="lesson-info-container">
+    <div class="lesson-user-info">
+      <div class="created-by">{{t (if lesson.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}</div>
+      <div class="img-container pull-left">
+        <img class="img-responsive" src="{{lesson.owner.avatarUrl}}" alt="owner avatar">
+      </div>
+      <div class="username">{{lesson.owner.displayName}}</div>
+    </div>
+    <div class="lesson-description">
+      {{safe-html lesson.description}}
+    </div>
+    <div class="lesson-standards ">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+      {{/if}}
+    </div>
+
+  </div>
+  <div class="card-panel-footer  {{if class.isArchived 'disable-footer'}}">
+    <div class="lesson-prefs-container">
+      <span class="left-arc"></span>
+      <span class="right-arc"></span>
+      <div class="lesson-prefs relevance pull-left" style="background-color:rgba(0, 114, 188, {{lesson.relevance}})">
+        <div class="count">{{lesson.relevance}}</div>
+        <div class="title">{{t 'common.relevance'}}</div>
+      </div>
+      <div class="lesson-prefs engagement pull-left" style="background-color:rgba(0, 114, 188, {{lesson.engagement}})">
+        <div class="count">{{lesson.engagement}}</div>
+        <div class="title">{{t 'common.engagement'}}</div>
+      </div>
+      <div class="lesson-prefs efficacy pull-left" style="background-color:rgba(0, 114, 188, {{lesson.efficacy}})">
+        <div class="count">{{lesson.efficacy}}</div>
+        <div class="title">{{t 'common.efficacy'}}</div>
+      </div>
+    </div>
+  </div>
+</div>

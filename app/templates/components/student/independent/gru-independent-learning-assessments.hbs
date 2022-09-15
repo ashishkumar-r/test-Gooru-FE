@@ -1,0 +1,33 @@
+<div class="assessment-content">
+  <div class="title">
+    <span class="section-header">{{t 'common.assessments'}}</span>
+    <span class="show-more" {{action 'togglePanel'}}>
+      {{#if showMoreToggle}}
+        {{#if isExpanded}}
+          {{t 'student-independent-learning.show-less'}}
+        {{else}}
+          {{t 'student-independent-learning.show-more'}}
+        {{/if}}
+      {{/if}}
+    </span>
+  </div>
+  <div class="content-results {{if isExpanded 'expanded' 'not-expanded'}}">
+    {{#if isLoading}}
+      {{three-bounce-spinner}}
+    {{else}}
+      {{#if assessmentItems}}
+        {{#each assessmentItems as |item|}}
+          {{new-cards/gru-independent-card
+            location=item.location
+            performance=item.performance
+          }}
+        {{/each}}
+      {{else}}
+        <div class="no-content">{{t 'student-independent-learning.no-assessments'}}</div>
+      {{/if}}
+    {{/if}}
+    {{#if isShowMoreVisible}}
+      <div class="col-md-12 col-lg-12 col-sm-6 col-xs-3 show-more-results" {{action 'showMoreResults'}}>{{t 'common.show-more-results'}}</div>
+    {{/if}}
+  </div>
+</div>

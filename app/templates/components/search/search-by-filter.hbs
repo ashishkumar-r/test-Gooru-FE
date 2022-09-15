@@ -1,0 +1,94 @@
+<div class="search-panel">
+  <div class="info-text {{if isClassActivity 'hidden'}}"><span>{{t 'search-help-message'}}</span></div>
+  <div class="search-content" aria-hidden={{ isClassActivity}}>
+    {{#unless (eq activeContentType 'course')}}
+      <div class="top-panel-container">
+        <div class="label-container" data-toggle="collapse" data-target="#standard">
+          <div class="title">{{t 'common.competency'}}</div>
+          <div class="icons" tabindex={{tabindex}}>
+            <span>{{gru-icon name="arrow_drop_up"}}</span>
+            <span>{{gru-icon name="arrow_drop_down"}}</span>
+          </div>
+        </div>
+        <div class="standard-container collapse in" id="standard">
+          <span class="sub-title">{{t 'common.category'}}</span>
+          <div class="category-standards">
+            {{taxonomy/gru-taxonomy-selector
+                isEditing=true
+                onSubjectSelected="selectSubject"
+                onCategorySelected="selectCategory"
+                selectedCategory=selectedCategory
+                selectedSubject=selectedSubject
+                subjectLabelKey='common.subject-and-framework'
+                onlySubjectsWithStandards=true
+                tabindex=tabindex
+              }}
+            {{#if selectedCourse}}
+              {{taxonomy/gru-taxonomy-picker
+                  browseSelectorText=browseSelectorText
+                  onSave=(action 'updateSelectedTags')
+                  onSearchPath=(action 'loadTaxonomyData')
+                  panelHeaders=panelHeaders
+                  selected=taxonomyPickerData.selected
+                  selectedTextKey=selectedTextKey
+                  isCompatiableMode=isCompatiableMode
+                  shortcuts=taxonomyPickerData.shortcuts
+                  shortcutText=(t "taxonomy.modals.gru-standard-picker.shortcutText")
+                  subject=taxonomyPickerData.subject
+                  unCheckedItem=unCheckedItem
+                  publishSelectedItems=true
+                  course=course
+                  domain=domain
+                  selectedGrade="selectedGrade"
+                  tabindex=tabindex
+                }}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    {{/unless}}
+    <div class="bottom-panel-container {{if isClassActivity 'hidden'}}">
+      <div class="filter-container">
+        <div class="audience-list-container">
+          <div class="label-container" data-toggle="collapse" data-target="#audience" tabindex={{tabindex}}>
+            <span>{{t 'common.audience'}}</span>
+            <div class="icons" tabindex={{tabindex}} onkeypress={{action 'listToggleItem' "audience-list-container" "audience-container" }}>
+              <span tabindex={{tabindex}}>{{gru-icon name="arrow_drop_up"}}</span>
+              <span tabindex={{tabindex}}>{{gru-icon name="arrow_drop_down"}}</span>
+            </div>
+          </div>
+          <div class="audience-container collapse in" id="audience">
+            {{gru-button-list items=audiences selectedFilters=selectedFilters onSelectItem="onSelectItem" tabindex=tabindex}}
+          </div>
+        </div>
+        <div class="language-list-container">
+          <div class="label-container" data-toggle="collapse" data-target="#language" tabindex={{tabindex}}>
+            <span>{{t 'profile.preference.language'}}</span>
+            <div class="icons" tabindex={{tabindex}} onkeypress={{action 'listToggleItem' "language-list-container" "language-container"}}>
+              <span tabindex={{tabindex}}>{{gru-icon name="arrow_drop_up"}}</span>
+              <span tabindex={{tabindex}}>{{gru-icon name="arrow_drop_down"}}</span>
+            </div>
+          </div>
+          <div class="language-container collapse in" id="language">
+            {{gru-button-list items=languages selectedFilters=selectedFilters onSelectItem="onSelectItem" tabindex=tabindex}}
+          </div>
+        </div>
+      </div>
+      <div class="filter-container">
+        <div class="educational-list-container">
+          <div class="label-container" data-toggle="collapse" data-target="#educational" tabindex={{tabindex}}>
+            <span>{{t 'common.educational-use'}}</span>
+            <div class="icons" tabindex={{tabindex}} onkeypress={{action 'listToggleItem' "educational-list-container" "educational-container"}}>
+              <span tabindex={{tabindex}}>{{gru-icon name="arrow_drop_up"}}</span>
+              <span tabindex={{tabindex}}>{{gru-icon name="arrow_drop_down"}}</span>
+            </div>
+          </div>
+          <div class="educational-container collapse in" id="educational">
+            {{gru-button-list items=educationalUses selectedFilters=selectedFilters onSelectItem="onSelectItem" tabindex=tabindex}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="apply-filter" onclick={{action 'applyFilter'}} onkeypress={{action 'applyFilter'}} tabindex={{tabindex}}>{{t (if isClassActivity 'common.done' 'common.apply-filter')}}</div>
+</div>

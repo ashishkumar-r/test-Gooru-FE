@@ -1,0 +1,63 @@
+<header>
+  {{#if isRGOsource}}
+    <div class="close-icon" {{action "onCloseWindow"}} title="Close" data-toggle="tooltip" data-placement="bottom">
+      {{gru-icon name="clear"}}
+    </div>
+  {{/if}}
+  <a onclick={{action "coursePlayBackButton"}} onkeypress={{action "coursePlayBackButton"}} class="back-to" tabindex={{tabindex}}>
+    <div>
+      {{gru-icon name="keyboard_arrow_left"}} {{t 'common.back'}}
+    </div>
+  </a>
+  <h1>{{course.title}}</h1>
+  <div class="actions">
+    {{#gru-share-pop-over tagName="button" type="course"}}
+      {{gru-icon name="insert_link"}}
+    {{/gru-share-pop-over}}
+    <button class="btn btn-default remix" {{action 'remix'}}>{{t "common.remix"}}</button>
+    {{#if isOwner}}
+      {{#link-to 'content.courses.edit' course.id class="btn btn-default edit" tagName="button"}}{{t "common.edit"}}{{/link-to}}
+    {{/if}}
+    <button class="btn btn-default play btn-success out-of-scope">{{t "common.play"}}</button>
+  </div>
+  <nav class="hidden-md hidden-lg">
+    <a href="#" {{action 'view' 'content-view'}} class="{{if (eq view 'content-view') 'selected' ''}}">{{t "common.content"}}</a>
+    <a href="#" {{action 'view' 'information-view'}} class="{{if (eq view 'information-view') 'selected' ''}}">{{t "common.information"}}</a>
+  </nav>
+</header>
+<section id="information">
+  <div class="content">
+    {{content/gru-image isEditing=isEditing srcImage=course.thumbnailUrl editImage=tempCourse.thumbnailUrl showAltText=true}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="tags">
+          {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=2}}
+        </div>
+        <div class="description">
+          {{#if course.description}}
+            <p>{{safe-html course.description}}</p>
+          {{/if}}
+        </div>
+        <div class="description summary">
+          {{#if course.summary}}
+            <p>{{course.summary}}</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="hidden-sm hidden-xs">
+  <div class="panel panel-default aside hidden-md hidden-lg">
+    <div class="panel-body">
+      {{partial 'content/partials/course-information'}}
+    </div>
+  </div>
+</section>
+<section id="content">
+  {{content/courses/play/gru-accordion-course
+    model=course
+    items=course.children
+    selectedLessonId=selectedLessonId
+    onLocationChange='setLocation'
+  }}
+</section>

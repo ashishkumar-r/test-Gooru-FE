@@ -1,0 +1,55 @@
+.content.modals.gru-submit-confirmation {
+  max-width: 455px;
+
+  .modal-header {
+    background-color: $green-400;
+    display: block;
+    text-align: $tab-float-dir;
+  }
+
+  .modal-title {
+    color: $white;
+    font-size: $font-size-h6;
+  }
+
+  .modal-body {
+    padding: 15px 40px;
+
+    div {
+      display: block;
+      width: 100%;
+    }
+
+    .info {
+      @include flexbox;
+      @include align-items(center);
+      margin-top: 35px;
+
+      > * {
+        float: $tab-float-dir;
+      }
+
+      p {
+        line-height: 22px;
+        margin: 0;
+      }
+
+      i {
+        font-size: $font-size-h2;
+        margin-right: 10px;
+      }
+    }
+
+    .gru-spinner-button {
+      display: inline;
+      .has-spinner {
+        width: auto;
+      }
+    }
+
+    .actions {
+      margin-top: 70px;
+      text-align: $menu-float-dir;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+<div class="gru-likert-scale-container {{if isEditing 'read-only'}}">
+    <div class="gru-likert-scale-panel">
+        <div class="likert-scale-definition">
+            <h5>{{t 'likert-scale-definition'}}</h5>
+            <div class="likert-scale-definition-panel">
+                <label>{{t 'likert-no-of-points'}}</label>
+                <select class="form-select" onchange={{action "onSelectPointScale"}} value="{{answer.scalePoint}}" aria-label="{{t 'likert.aria-label'}}">
+                    {{#each totalPoints as |option index| }}
+                        <option value="{{plus-one index}}" disabled={{unless index true false}} selected>{{plus-one index}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="likert-scale-point-label">
+            <h5>{{t 'likert-scale-point-label'}}</h5>
+                <div class="point-label-panel">
+                    {{#each answer.scalePointLabels as |scalePoint scaleIndex|}}
+                    <div class="point-label-panel-body">
+                        <div class="select-point-dropdown">
+                            <select class="form-select" onchange={{action "onSelectLevelPoint" scalePoint}} value="{{scalePoint.levelPoint}}" aria-label="{{t 'likert.aria-label'}}">
+                                {{#each answer.scalePointLabels as |option index| }}
+                                    <option value="{{plus-one index}}" selected={{if (eq (plus-one index) scalePoint.levelPoint) true false}}>{{plus-one index}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="point-label-title">
+                            {{validation/gru-input model=scalePoint valuePath='levelName' placeholder=(t "likert-scale-placeholder") }}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+        </div>
+        <div class="likert-scale-items">
+            <h5>{{t 'likert-scale-items'}}</h5>
+            <div class="scale-items-panel">
+                {{#each answer.items as | scale index|}}
+                <div class="scale-item-body">
+                    <span class="scale-item-label">item {{plus-one index}}</span>
+                    {{validation/gru-input model=scale valuePath='label' placeholder=(t "likert-item-placeholder") }}
+                    {{#if isEditing}}
+                    <span class="material-icons action-btn" {{action "onCloseItem" scale}}>close</span>
+                    {{/if}}
+                </div>
+                {{/each}}
+                <div class="scale-item-body">
+                    <span class="scale-item-label">item {{plus-one answer.items.length}}</span>
+                    <input type="text" placeholder="{{t 'likert-item-placeholder'}}">
+                   {{#if isEditing}}
+                    <span class="material-icons action-btn" {{action "onAddItem"}}>add</span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="likert-scale-presentation">
+            <h5>{{t 'likert-scale-presentation'}}</h5>
+            <div class="likert-presentation-modes">
+                <div onclick={{action "onSelectPresentation" 'one_item'}}><input type="radio" name="mode"  value="one_item" tabindex="0">
+                <span>{{t 'likert-one-item'}}</span></div>
+                <div onclick={{action "onSelectPresentation" 'all_item'}}><input type="radio" name="mode" value="all_item" tabindex="0">
+                <span>{{t 'likert-all-item'}}</span></div>
+            </div>
+        </div>
+        <div class="likert-scale-ui-templates">
+            <h5>{{t 'likert-ui-templates'}}</h5>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{t activeUiTemplate.name}}
+                    <span class="material-icons">arrow_drop_down</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {{#each uiTemplateList as |activeTemplate|}}
+                        <div class="dropdown-item" {{action "onSelectTemplate" activeTemplate}}>{{t activeTemplate.name}}</div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="likert-ui-heading">
+            <h5>{{t 'likert-ui-template'}} {{t activeUiTemplate.name}}</h5>
+        </div>
+        {{component activeComponent readOnly=true scaleItems=answer.items likertScalePoints=scalePointLabels}}
+    </div>
+</div>

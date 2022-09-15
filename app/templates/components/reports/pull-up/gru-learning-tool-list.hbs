@@ -1,0 +1,32 @@
+<div class="back-drops" {{action "onClose"}}></div>
+<div class="gru-learning-tool-list-container">
+    <div class="gru-learning-panel-head">
+        <span>{{t 'common.available-tools'}}</span>
+        <span class="material-icons" onkeypress={{action "onClose"}} tabindex="14" onclick={{action "onClose"}}>clear</span>
+    </div>
+    <div class="gru-learning-panel-container">
+        {{#each learningTools  as | tool |}}
+            <div class="tool-panel" onclick={{action tool.callFunction}} onkeypress={{action tool.callFunction}}>
+                {{#if tool.code 'NTL'}}
+                 <a target="_blank" tabindex={{tabindex}} class="link">
+                        <div class="tool-image">
+                            <img src="{{tool.thumbnail}}" alt="tool-image">
+                        </div>
+                        <div class="tool-head">
+                            <span class="tool-title">{{tool.name}}</span>
+                        </div>
+                    </a>
+                {{else}}
+                    <a target="_blank" href="{{tool.toolConfig.tool_url}}"  tabindex={{tabindex}} class="link">
+                        <div class="tool-image">
+                            <img src="{{tool.thumbnail}}" alt="tool-image">
+                        </div>
+                        <div class="tool-head">
+                            <span class="tool-title">{{tool.name}}</span>
+                        </div>
+                    </a>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+</div>

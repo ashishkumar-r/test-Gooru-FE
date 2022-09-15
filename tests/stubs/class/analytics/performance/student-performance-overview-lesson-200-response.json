@@ -1,0 +1,35 @@
+{
+  "content":[
+    {
+      "userUid": "id-for-pochita",
+      "usageData":[
+        {
+          "completedCount": 10,
+          "collectionId": "567399f3ea4ecd0a5d43cf25",
+          "scoreInPercentage": 90,
+          "timeSpent": 130339,
+          "views": 18,
+          "totalCount": 20
+        },
+        {
+          "completedCount": 0,
+          "collectionId": "567399f336d4a8e75eb10661",
+          "scoreInPercentage": 0,
+          "timeSpent": 0,
+          "views": 12,
+          "totalCount": 0
+        },
+        {
+          "completedCount": 0,
+          "collectionId": "567399f3b83f587219da9fa2",
+          "scoreInPercentage": 0,
+          "timeSpent": 0,
+          "views": 12,
+          "totalCount": 0
+        }
+      ]
+    }
+  ],
+  "message": null,
+  "paginate": null
+}

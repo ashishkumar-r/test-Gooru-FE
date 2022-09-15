@@ -1,0 +1,65 @@
+{
+  "id":"question-id",
+  "title":"OE",
+  "publish_date":null,
+  "description":"Enter question text here",
+  "answers": [],
+  "metadata":null,
+  "taxonomy":null,
+  "hint_explanation_detail":null,
+  "thumbnail":null,
+  "license":261,
+  "creator_id":"1f1114e0-2daa-4034-995a-8b3c1db029d7",
+  "content_subformat":"open_ended_question",
+  "visible_on_profile":true,
+  "rubric": {
+    "id": "123",
+    "title": "Rubric - 1",
+    "description": "This is the example question for the rubrics association",
+    "type": "1xN",
+    "thumbnail": "2c185398-d0e6-42d8-9926-572939fc0784.png",
+    "metadata": {
+      "audience": [12, 45]
+    },
+    "taxonomy": {},
+    "url": "https://en.wikipedia.org/wiki/Rubric_(academic)",
+    "is_remote": true,
+    "is_rubric":true,
+    "owner_id": "8c2551be-48c3-41e9-89fe-97a59b703e84",
+    "creator_id": "8c2551be-48c3-41e9-89fe-97a59b703e84",
+    "modifier_id": "8c2551be-48c3-41e9-89fe-97a59b703e84",
+    "original_creator_id": null,
+    "original_rubric_id": null,
+    "parent_rubric_id": null,
+    "publish_date": null,
+    "publish_status": "unpublished",
+    "feedback_guidance": "Summarize your feedback on the essay as a whole",
+    "total_points": 4,
+    "overall_feedback_required": true,
+    "categories": [{
+      "category_title": "Thesis and Sub-claims",
+      "feedback_guidance": "pay careful attention to the author's response",
+      "required_feedback": true,
+      "level": true,
+      "scoring": true,
+      "levels": [{
+        "level_name": "Exemplary",
+        "level_score": 4
+      }, {
+        "level_name": "Proficient",
+        "level_score": 3
+      }, {
+        "level_name": "Basic",
+        "level_score": 2
+      }, {
+        "level_name": "Below Basic",
+        "level_score": 1
+      }]
+    }],
+    "created_at": "2017-02-24T05:55:42Z",
+    "updated_at": "2017-02-24T05:55:42Z",
+    "tenant": "ba956a97-ae15-11e5-a302-f8a963065976",
+    "tenant_root": null,
+    "is_deleted": false
+  }
+}

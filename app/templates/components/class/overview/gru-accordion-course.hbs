@@ -1,0 +1,97 @@
+<ol class="accordion-course">
+  {{#if loading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    {{#each items as |item index|}}
+
+      {{class/overview/gru-accordion-unit
+        currentClass=currentClass
+        currentCourse=currentCourse
+        classMembers=classMembers
+        model=item
+        units=items
+        index=index
+        onStudyNow=(action 'studyNow')
+        onSelectResource=(action 'selectResource')
+        onLocationUpdate=(action 'updateLocation')
+        onLaunchOnAir=(action 'launchOnAir')
+        currentResource=currentResource
+        parsedLocation=parsedLocation
+        showLocation=showLocation
+        contentVisibility=contentVisibility
+        onUpdateContentVisibility="updateContentVisibility"
+        isTeacher=isTeacher
+        isFromDCA=isFromDCA
+        toggleLocation=toggleLocation
+        onSelectItem="onSelectItem"
+        isPremiumClass=isPremiumClass
+        teacherCollectionReport="teacherCollectionReport"
+        studentReport="onOpenStudentReport"
+        onOpenUnitLevelReport="onOpenUnitLevelReport"
+        onOpenLessonReport="onOpenLessonReport"
+        onOpenStudentUnitLevelReport="onOpenStudentUnitLevelReport"
+        onOpenStudentLessonReport="onOpenStudentLessonReport"
+        showLocationReport=showLocationReport
+        resetPerformance=resetPerformance
+        tabindex=(plus-any index tabindex)
+        isStudentDashboard=isStudentDashboard
+        dashboardLocation=dashboardLocation
+        isStudyPlayer=isStudyPlayer
+        isTagGoogleClassroom=isTagGoogleClassroom
+        googleClassroomName=googleClassroomName
+        selectedUserId=selectedUserId
+        selectedQuestionId=selectedQuestionId
+        selectedCollectionId=selectedCollectionId
+      }}
+
+    {{else}}
+      <li role="listitem">{{t "common.contentUnavailable"}}</li>
+    {{/each}}
+
+  {{/if}}
+</ol>
+
+{{#if showStudentUnitReport}}
+  {{reports/pull-up/student-unit-report onClosePullUp="onClosePullUp" context=studentUnitReportContext showPullUp=showStudentUnitReport tabindex=tabindex}}
+{{/if}}
+
+{{#if showStudentLessonReport}}
+  {{reports/pull-up/student-lesson-report onClosePullUp="onClosePullUp" context=studentLessonReportContext showPullUp=showStudentLessonReport tabIndex=tabindex}}
+{{/if}}
+
+{{#if isShowStudentReport}}
+  {{class/gru-report-panel showPullUp=isShowStudentReport onClosePullUp="onClosePullUp" reportData=studentReportData model=studentReportData.lesson isStudent=studentReportData.isStudent onClosePullUp="onClosePullUp" tabindex=tabindex}}
+{{/if}}
+
+{{#if isShowStudentExternalAssessmentReport}}
+  {{
+    reports/pull-up/student-external-assessment-report
+    showPullUp=isShowStudentExternalAssessmentReport
+    reportData=studentReportData
+    showPullUp=isShowStudentExternalAssessmentReport
+    isStudent=studentReportData.isStudent
+    onClosePullUp="onClosePullUp"
+    tabindex=tabindex
+  }}
+{{/if}}
+{{#if isShowStudentExternalCollectionReport}}
+  {{reports/pull-up/gru-collection-preview
+      showPullUp=isShowStudentExternalCollectionReport
+      previewContentId=studentReportData.collectionId
+      previewContentType=studentReportData.type
+      isReportView=true
+      userId=studentReportData.userId
+      tabindex= tabindex
+    }}
+{{/if}}
+{{#if isShowStudentOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowStudentOfflineActivityReport
+    oaId=studentReportData.collection.id
+    isReportView=true
+    classId=studentReportData.classId
+    isCmReport = true
+    reportContext = studentReportData
+    tabindex=tabindex
+  }}
+{{/if}}

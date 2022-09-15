@@ -1,0 +1,13 @@
+{
+  "content": [{
+    "eventTime": "2017-02-12 07:35:10.986",
+    "sessionId": "15d60ea3-2b24-4215-9e6a-319e89ba3c2b",
+    "sequence": "1"
+  }, {
+    "eventTime": "2017-03-03 11:05:33.095",
+    "sessionId": "a77ec46e-b129-45ed-bee3-739864968e4c",
+    "sequence": "2"
+  }],
+  "message": null,
+  "paginate": null
+}

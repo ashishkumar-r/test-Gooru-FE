@@ -1,0 +1,74 @@
+<div class="external-collection-landing-page {{if isShowFullView 'full-page-view'}}">
+    <div class="external-collection-card">
+      <div class="card-container">
+        <div class="header-panel" style="background-image: url({{collection.thumbnailUrl}})">
+          <div class="header-content">
+            <div class="title">{{safe-html collection.title}}</div>
+            <div class="author-name">{{collection.owner.fullName}}</div>
+          </div>
+        </div>
+        <div class="body-panel">
+          <div class="body-content">
+            <div class="description-panel">
+              <div class="description {{if collection.learningObjectives 'show' 'hidden'}}"><p>{{safe-html collection.learningObjectives}}</p></div>
+              <div class="details">
+                <div class="taxonomy">
+                  {{#if tags.length}}
+                    {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+                  {{else}}
+                    <div class="no-competency"  data-toggle="tooltip" data-html="true" data-placement="bottom" title="{{t 'common.no-competency'}}" > -- </div>
+                  {{/if}}
+                </div>
+                <div class="start-button">
+                  {{#if (not isTimeEntered)}}
+                    {{#if isDisableTimeEditor}}
+                      <div class="start" {{action "onStart"}}>
+                        {{t 'gru-assessment-confirmation.start'}}
+                      </div>
+                    {{else}}
+                      <div class="start {{unless isValidtime 'disabled'}}" {{action "onSubmit"}}>
+                        {{t 'gru-assessment-confirmation.submit'}}
+                      </div>
+                    {{/if}}
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+            <div class="content-panel">
+              {{#if isTimeEntered}}
+                {{#if time}}
+                  <div class="entered-time">
+                    <div class="time">
+                      {{time}}
+                    </div>
+                    <div class="time-label">
+                      {{t 'self-report.time_spent'}}
+                    </div>
+                  </div>
+                {{else}}
+                  {{three-bounce-spinner}}
+                {{/if}}
+              {{else}}
+                {{#if isDisableTimeEditor}}
+                  <div class="message">
+                    {{t 'common.external-collection.index-message'}}
+                  </div>
+                {{else}}
+                  <div class="time-spent {{if isDisableTimeEditor 'disabled'}}">
+                    {{input type="text"class="time" id="hours" maxlength="2" value=hours}}<span>h</span> {{input type="text" class="time" id="mins" maxlength="2" value=mins}}
+                    <span>m</span>
+                  </div>
+                  {{#if (and isTyping (not isValidtime))}}
+                    <div class="error">{{t 'self-report.validation-error-time'}}</div>
+                  {{/if}}
+                  <div class="time-label">
+                    {{t 'self-report.enter-timeSpent'}}
+                  </div>
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+.domain-competency-chart {
+
+  width: 20px;
+  margin: auto;
+  svg {
+    transform: rotateX(180deg);
+    -webkit-transition: -webkit-transform 0.6s ease-in;
+    transition: transform 0.6s ease-in;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  #competency-cell {
+    stroke: $snow-gray;
+    stroke-width: 1;
+    shape-rendering: crispedges;
+    stroke-opacity: 0.4;
+  }
+}

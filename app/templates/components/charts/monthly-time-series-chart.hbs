@@ -1,0 +1,12 @@
+<!-- Chart will be rendered by JS -->
+{{#if isMobileView}}
+  <div class="dropdown dates">
+    <button class="dropbtn btn-dropdown" type="button" data-toggle="dropdown">{{format-date activeDate 'MMM-YY'}}
+      <span class="caret"></span></button>
+    <ul class="dropdown-menu date-list">
+      {{#each dateSeries as |date|}}
+        <li class="list-item date {{if (eq activeDate date) 'active'}}" {{action "onDateSelect" date}}>{{format-date date 'MMM-YY'}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}

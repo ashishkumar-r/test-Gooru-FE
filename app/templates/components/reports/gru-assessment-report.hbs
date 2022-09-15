@@ -1,0 +1,77 @@
+<div class="gru-assessment-summary">
+  {{#if (not isPathway)}}
+    <div class="reports-owner">
+      <span> {{profile.lastName}}, {{profile.firstName}}</span>
+    </div>
+    {{reports/assessment/gru-summary
+    assessmentResult=assessmentResult
+    areQuestionLinksHidden=areAnswersHidden
+    onSelectAttempt='selectAttempt'
+    onBubbleSelect='bubbleSelect'
+    isRealTime=isRealTime
+    showAttempts=showAttempts
+    showReactionBar=showReactionBar
+    profile=profile
+    questionCount=orderedQuestions.length
+    resourceCount=orderedResources.length
+    oeQuestionCount=orderedOpenEndedQuestions.length
+    }}
+  {{/if}}
+
+  {{#if tags.length}}
+    <div class="standard-tags">
+      {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=4  showDescription=true }}
+    </div>
+  {{/if}}
+
+  {{#if (and (not isTeacher) areAnswersHidden)}}
+    <div class="hidden-report">
+      <span>{{t "gru-assessment-report.hidden-report"}}</span>
+    </div>
+  {{else}}
+    {{#each orderedResourceResults as |content seq|}}
+      {{#if (eq content.resourceType 'resource')}}
+        {{reports/assessment/gru-resources
+        results=orderedResources
+        content=content
+        contentSeq=(plus-one seq)
+        showReactionBar=showReactionBar}}
+      {{else}}
+        {{#if (or (eq content.questionType 'OE') (eq content.questionType 'SE_FIB') (eq content.questionType 'SE_FRQ')) }}
+          <div class="{{content.questionType }}">
+            {{reports/assessment/gru-questions
+              isAnswerKeyHidden=isAnswerKeyHidden
+              showPerformance=showPerformance
+              viewMode='open-ended'
+              showReactionBar=showReactionBar
+              onViewOEReport='viewOEReport'
+              isTeacher=isTeacher
+              content=content
+              contentSeq=(plus-one seq)
+              isShowExemplarText=isShowExemplarText
+              tabindex=tabindex
+            }}
+          </div>
+        {{else}}
+          {{reports/assessment/gru-questions
+            isAnswerKeyHidden = isAnswerKeyHidden
+            showPerformance=showPerformance
+            showReactionBar=showReactionBar
+            isTeacher=isTeacher
+            onUpdateQuestionScore='onUpdateQuestionScore'
+            isChangeScoreEnabled=isChangeScoreEnabled
+            hasAnsweredQuestions=hasAnsweredQuestions
+            showChangeScore=showChangeScore
+            isAssessment=isAssessment
+            content=content
+            contentSeq=(plus-one seq)
+            listOfQuestions=listOfQuestions
+            isShowExemplarText=isShowExemplarText
+            tabindex=tabindex
+            class=class
+          }}
+        {{/if}}
+      {{/if}}
+    {{/each}}
+  {{/if}}
+</div>

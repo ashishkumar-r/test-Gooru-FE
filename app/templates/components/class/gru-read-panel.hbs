@@ -1,0 +1,104 @@
+<div class="read-body-container">
+    <div class="left-panel">
+        <div class="font-changer">
+            <div class="font-title">{{t 'qz-question-viewer.exercise'}}
+                <div role="timer" class="font-size-loader"><label class="font-label">{{t 'qz-player-adjust-font-size'}} : </label>
+                    <label for="font_changer">
+                        <input value="14" type="range" id="font_changer" min="14" max="35" class="font-changer">
+                    </label>
+                </div>
+                <span id="wpm-timer-clk">00:00:00</span>
+            </div>
+        </div>
+        <div class="questionText">
+            {{question.text}}
+        </div>
+    </div>
+    <div class="right-panel">
+       <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="name">
+                            <span>{{t 'common.name'}}</span>
+                             <span class="first-header {{if sortByFirstnameEnabled 'active'}}" onclick={{action 'sortByFirstName'}} onkeypress={{action 'sortByFirstName'}}>
+                                <span>{{t 'common.first'}}</span>
+                                {{#if sortByFirstnameEnabled}}
+                                    {{gru-icon name="keyboard_arrow_up"}}
+                                {{else}}
+                                    {{gru-icon name="keyboard_arrow_down"}}
+                                {{/if}}
+                            </span>
+                            <span class="last-header {{if sortByLastnameEnabled 'active'}}" onclick={{action 'sortByLastName'}} onkeypress={{action 'sortByLastName'}}>
+                                <span>{{t 'common.last'}}</span>
+                                {{#if sortByLastnameEnabled}}
+                                    {{gru-icon name="keyboard_arrow_up"}}
+                                {{else}}
+                                    {{gru-icon name="keyboard_arrow_down"}}
+                                {{/if}}
+                            </span>
+                        </th>
+                        {{#if isCheckLinkedContent}}
+                            <th class="read-count">{{t 'common.first-read'}}</th>
+                            <th>{{t 'common.second-read'}}</th>
+                        {{else}}
+                            <th class="wpm-count">{{t 'common.wpm-count'}}</th>
+                        {{/if}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each reportDatas as |item index|}}
+                        {{#if item.is_active}}
+                            <tr class="{{if (eq item.id selectedUserId) 'active-student'}}">
+                                <td>
+                                    <div class="student-info-container">
+                                        <div class='student-icon-col'>
+                                            <div class='student-icon' style="background-image: url({{item.avatarUrl}})"></div>
+                                        </div>
+
+                                        <div class="student-name">
+                                            <span>{{item.first_name}},{{item.last_name}}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                {{#if isCheckLinkedContent}}
+                                    <td>
+                                        {{#if item.first_read_wpm_count}}
+                                            {{item.first_read_wpm_count}}
+                                            {{#unless (eq item.firstReadCount 'Medium') }}
+                                                 {{gru-icon name = (if (eq item.firstReadCount 'High') 'arrow_upward' 'arrow_downward')}}
+                                            {{/unless}}
+                                        {{else}}
+                                            --
+                                        {{/if}}
+                                    </td>
+                                    <td>
+                                        {{#if item.second_read_wpm_count}}
+                                            {{item.second_read_wpm_count}}
+                                            {{#unless (eq item.secondReadCount 'Medium') }}
+                                                {{gru-icon name = (if (eq item.secondReadCount 'High') 'arrow_upward' 'arrow_downward')}}
+                                            {{/unless}}
+                                        {{else}}
+                                            --
+                                        {{/if}}
+                                    </td>
+                                {{else}}
+                                    <td>
+                                        {{#if item.wpm_count}}
+                                            {{item.wpm_count}}
+                                               {{#unless (eq item.wpmReadCount 'Medium')}}
+                                                     {{gru-icon name = (if (eq item.wpmReadCount 'High') 'north' 'south')}}
+                                               {{/unless}}
+                                        {{else}}
+                                            --
+                                        {{/if}}
+                                    </td>
+                                {{/if}}
+                            </tr>
+                        {{/if}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

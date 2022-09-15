@@ -1,0 +1,43 @@
+.reports.assessment.questions.gru-true-false {
+  ul {
+    display: inline-block;
+    padding-left: 0px;
+    li {
+      list-style: none;
+      position: relative;
+
+      &.correct_answer {
+        border: 1px solid $green-700;
+      }
+
+      &.incorrect_answer {
+        border: 1px solid $incorrect-color;
+      }
+
+      span.correct {
+        color: $brand-success;
+      }
+      span.incorrect {
+        color: $brand-incorrect;
+      }
+      span.anonymous {
+        color: $brand-anonymous;
+      }
+    }
+    li span.answer-text {
+      display: inline-block;
+      margin-left: 2.5em;
+      margin-top: 0.4em;
+      p {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  li span i {
+    position: relative;
+    top: 0.2em;
+    left: 0;
+  }
+}

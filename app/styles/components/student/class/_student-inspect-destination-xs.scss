@@ -1,0 +1,565 @@
+.student-inspect-destination-xs {
+  position: fixed;
+  top: calc(100% - 140px);
+  z-index: 1031;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+
+  &.public-class {
+    top: calc(100% - 160px);
+    .pull-up-container {
+      .pull-up-header {
+        height: 90px;
+        .selecte-destination-container {
+          .grade-info {
+            .gru-dropdown {
+              .btn-group {
+                button {
+                  font-size: 16px;
+                  font-weight: bold;
+                  color: #4990e2;
+                  .caret {
+                    width: 11px;
+                    height: 7px;
+                    border-top: 6px dashed;
+                    border-right: 5px solid $table-bg;
+                    border-left: 5px solid $table-bg;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.6;
+    background-color: $gray-base;
+  }
+
+  .pull-up-container {
+    background: $white;
+    max-height: 90vh;
+    height: 90vh;
+    width: 100%;
+
+    .student-class-milestone-course-map {
+      padding-top: 10px;
+      @media screen and (max-width: 992px) {
+        max-height: calc(100% - 160px);
+        overflow-y: auto;
+      }
+    }
+
+    .student-milestone-not-ready {
+      padding: 10px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .btn-container {
+      color: $white;
+      align-items: center;
+      cursor: pointer;
+      justify-content: center;
+      box-shadow: 0 0 3px 3px $navbar-box-shadow;
+      display: grid;
+      right: 20px;
+      top: -30px;
+      position: absolute;
+      background-color: #4a8cdb;
+      width: 57px;
+      height: 57px;
+      border-radius: 45px;
+
+      &.no-milestone {
+        pointer-events: none;
+        opacity: 0.8;
+      }
+    }
+
+    .pull-up-header {
+      box-shadow: 0 0 3px 3px $navbar-box-shadow;
+      padding: 10px;
+      height: 70px;
+      width: 100%;
+
+      .grade-title {
+        width: 200px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #4990e2;
+      }
+
+      .counts {
+        width: 62px;
+        height: 16px;
+        object-fit: contain;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: left;
+        color: $text-shadow;
+      }
+    }
+
+    .button-content {
+      display: flex;
+      align-items: center;
+      .change-level,
+      .next-route {
+        height: 32px;
+        background-color: $blue-800;
+        border-radius: 20px;
+        font-size: 13px;
+        padding-top: 4px;
+        padding-left: 15px;
+        padding-right: 15px;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        color: $white;
+        width: 173px;
+        text-align: center;
+        @media screen and (max-width: 400px) {
+          width: fit-content;
+        }
+      }
+
+      .change-level {
+        display: flex;
+      }
+      .button-container {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        box-shadow: 10px 10px 15px #bbb;
+        border: 1px solid #bbb;
+        background: $white;
+        .show-route-div {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          .show-route-description,
+          .show-location-description {
+            display: none;
+          }
+          .show-route-btn,
+          .change-level-btn {
+            display: flex;
+            align-items: center;
+            a {
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+
+    .pull-up-content {
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      .study-course-container {
+        bottom: 0;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px;
+        width: 50%;
+        position: fixed;
+        justify-content: center;
+        display: block;
+        background-color: #fff;
+        box-shadow: 10px 10px 15px #bbb;
+        border: 1px solid #bbb;
+      }
+
+      .study-grid {
+        display: grid;
+        grid-template-columns: 49% 35%;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        z-index: 2;
+      }
+
+      .study-course {
+        color: $white;
+        align-items: center;
+        cursor: pointer;
+        justify-content: space-evenly;
+        height: 32px;
+        display: grid;
+        grid-template-columns: 30px auto;
+        background-color: $blue-800;
+        border-radius: 20px;
+        font-size: 13px;
+        padding-left: 15px;
+        padding-right: 15px;
+        z-index: 10;
+        width: fit-content;
+        margin: 0 auto;
+        @media screen and (max-width: 430px) {
+          line-height: 1.2;
+          height: auto;
+          padding: 5px;
+        }
+
+        &.no-milestone {
+          pointer-events: none;
+          opacity: 0.8;
+        }
+      }
+
+      .button-container {
+        bottom: 0;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+        position: absolute;
+        justify-content: center;
+        display: block;
+        background-color: $white;
+        box-shadow: 10px 10px 15px $gray-light;
+        border: 1px solid $gray-light;
+
+        .text-align-center {
+          text-align: center;
+        }
+
+        .show-route-div {
+          display: grid;
+          grid-template-columns: 29% 19% 30% 22%;
+          justify-content: center;
+          align-items: center;
+          .show-route {
+            width: 45%;
+          }
+          .line-hight {
+            line-height: 1.3;
+          }
+        }
+
+        .change-level,
+        .next-route {
+          height: 32px;
+          background-color: $blue-800;
+          border-radius: 20px;
+          font-size: 13px;
+          padding-left: 15px;
+          padding-right: 15px;
+          align-items: center;
+          justify-content: center;
+          margin: 10px;
+          color: $white;
+          width: fit-content;
+        }
+
+        .next-route {
+          width: 100px;
+          padding-top: 4px;
+          text-align: center;
+        }
+
+        .change-level {
+          display: flex;
+        }
+      }
+
+      .location-update-container {
+        bottom: 0;
+        padding: 10px;
+        width: 100%;
+        background-color: $white;
+        display: grid;
+        box-shadow: 10px 10px 15px $gray-light;
+        border: 1px solid $gray-light;
+        position: absolute;
+
+        .text-align-center {
+          text-align: center;
+        }
+
+        .icon-container {
+          position: absolute;
+          padding: 10px;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: flex-start;
+          text-align: center;
+
+          &.grid-buttons {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 40% 60%;
+            text-align: center;
+            align-items: center;
+            @media screen and (max-width: 720px) {
+              grid-template-columns: 1fr;
+            }
+            .diagnostic-btn-container {
+              display: flex;
+              justify-content: center;
+            }
+          }
+          &.grid-buttons-level-select {
+            display: grid;
+            justify-content: space-evenly;
+            align-items: center;
+          }
+
+          .show-route {
+            width: 40%;
+          }
+
+          .diagnostic-button,
+          .grade-button,
+          .next-button {
+            height: 32px;
+            background-color: $blue-800;
+            border-radius: 20px;
+            font-size: 13px;
+            padding: 4px 15px;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            color: $white;
+            cursor: pointer;
+            width: fit-content !important;
+            margin: 0 auto;
+            @media screen and (max-width: 350px) {
+              padding: 4px 10px;
+            }
+          }
+
+          .diagnostic-button {
+            width: 200px;
+            @media screen and (max-width: 430px) {
+              line-height: 1.2;
+              height: auto;
+            }
+          }
+          .grade-button {
+            width: 150px;
+            @media screen and (max-width: 430px) {
+              line-height: 1.2;
+              height: auto;
+            }
+          }
+
+          .next-button {
+            width: 100px;
+            background-color: $green-400;
+
+            &.disabled {
+              pointer-events: none;
+              opacity: 0.5;
+            }
+          }
+
+          .math-grade-button {
+            position: relative;
+            &.level-selected {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+            }
+            .grade-list {
+              position: absolute;
+              background: $white;
+              width: 90%;
+              bottom: 67px;
+              box-shadow: 0 2px 4px 0 $navbar-box-shadow;
+              border: 1px solid $gray-light;
+              text-align: left;
+              left: 12px;
+
+              .my-location {
+                padding: 10px;
+                border-bottom: 2px solid $gray-light;
+                cursor: default;
+              }
+              .grade-div {
+                padding: 10px;
+              }
+
+              .grade-div:hover {
+                background-color: $hover-light;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      .destination-container {
+        overflow-y: auto;
+        padding: 10px;
+        max-height: calc(100% - 200px);
+
+        .grade-description {
+          margin-top: 10px;
+          color: $dark-400;
+        }
+      }
+
+      .assigned-course-title {
+        text-align: center;
+        color: #535e67;
+        font-size: 20px;
+      }
+
+      .route0-container {
+        margin: 20px 5px 5px;
+        box-shadow: 0 0 6px 6px $sun-color;
+        background-color: $white;
+        margin-left: 4px;
+
+        .route0-comment {
+          display: grid;
+          grid-template-columns: 85px auto;
+          align-items: center;
+          padding-bottom: 8px;
+          padding-top: 8px;
+          cursor: pointer;
+
+          .suggestion-icon {
+            align-items: center;
+
+            i {
+              font-size: 50px;
+              margin-left: 15px;
+            }
+            color: $orange-400;
+          }
+
+          .suggestion-note {
+            margin: 0 15px;
+            font-size: 16px;
+            color: $dark-400;
+            line-height: 19px;
+          }
+        }
+
+        .route0-accordion-container {
+          border-top: 1px solid $sep-border-color;
+
+          .gru-accordion-course {
+            padding-top: 0;
+            border-bottom: 1px solid $sep-border-color;
+
+            .gru-accordion-unit {
+              .unit {
+                padding-left: 7px !important;
+
+                .panel-title {
+                  width: 100%;
+
+                  .title {
+                    max-width: 100%;
+                  }
+                }
+              }
+            }
+
+            .gru-accordion-lesson {
+              .panel-title {
+                width: 100%;
+
+                .title {
+                  max-width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .route0-action {
+        height: 65px;
+        grid-gap: 15px;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        padding-bottom: 8px;
+        padding-top: 8px;
+        justify-content: end;
+
+        .accept {
+          background-color: $orange-400;
+          width: 100px;
+          height: 30px;
+          border-radius: 45px;
+          display: grid;
+          box-shadow: 0 0 5px 1px $navbar-box-shadow;
+          color: $white;
+          grid-template-columns: 30px auto;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          i {
+            background-image: url("gooru/images/baseline-add.svg");
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            background-size: 20px 20px;
+            display: block;
+            margin-top: 2px;
+          }
+        }
+
+        .ignore {
+          width: 86px;
+          height: 30px;
+          display: grid;
+          grid-template-columns: 20px auto;
+          align-items: center;
+          justify-content: space-evenly;
+          border-radius: 45px;
+          background-color: $light-400;
+          box-shadow: 0 0 5px 1px $navbar-box-shadow;
+          color: $white;
+          line-height: 30px;
+          text-align: center;
+          cursor: pointer;
+
+          i {
+            background-image: url("gooru/images/baseline-close.svg");
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            background-size: 20px 20px;
+            display: block;
+            margin-top: 2px;
+          }
+        }
+      }
+
+      .course-map-accordion-container {
+        max-height: calc(100% - 100px);
+        overflow-y: auto;
+        height: 100%;
+        margin: 10px auto auto;
+      }
+    }
+  }
+}

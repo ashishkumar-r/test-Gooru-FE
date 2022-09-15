@@ -1,0 +1,196 @@
+.gru-student-featured-card {
+  .gru-student-featured-card-container {
+    .featured-card-panel {
+      background-color: $white;
+      width: 250px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-left: 10px;
+      .featured-panel-head {
+        display: block;
+        font-size: 15px;
+        padding: 10px;
+        line-height: 1.4;
+        text-overflow: ellipsis;
+        width: 240px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .featured-rating-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        padding: 10px;
+        grid-column-gap: 10px;
+
+        .featured-star {
+          display: grid;
+          align-items: center;
+          i {
+            border: 2px solid $dark-200;
+            color: $blue-400;
+            text-align: center;
+            border-radius: 50%;
+            box-shadow: 0 0 5px $dark-200;
+            padding: 3px;
+            font-size: 20px;
+          }
+        }
+        .rating-content {
+          span {
+            line-height: 1.4;
+            display: block;
+            &.rating {
+              font-weight: bold;
+              font-size: 12px;
+            }
+            &.count-rate {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .publisher-name {
+        border: 1px solid $light-200;
+        box-shadow: 0 3px 5px $light-200;
+        font-weight: bold;
+        padding: 10px;
+      }
+
+      .publisher-name.no-name {
+        height: 45px;
+      }
+      .class-card-image {
+        padding: 10px;
+        position: relative;
+
+        .card-image-blk {
+          background-image: url("gooru/class-default.png");
+          background-position: center;
+          background-size: cover;
+          width: 100%;
+          height: 200px;
+          display: block;
+          position: relative;
+
+          &::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 200px;
+            top: 0;
+            left: 0;
+            background-color: $disabled-color;
+          }
+        }
+        .preview-content {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: grid;
+          align-items: center;
+          justify-content: center;
+
+          .preview-btn {
+            padding: 5px 20px;
+            background-color: $green-50;
+            color: $white;
+            border-radius: 20px;
+            font-weight: bold;
+          }
+
+          .preview-btn-close-left {
+            padding: 5px 20px;
+            background-color: $green-50;
+            color: $white;
+            border-radius: 20px;
+            font-weight: bold;
+            border-bottom-right-radius: 0px;
+            border-top-right-radius: 0px;
+            width: 102%;
+          }
+
+          .preview-btn-close-right {
+            padding: 6px 16px 6px 0px;
+            background-color: $green-50;
+            color: $white;
+            border-radius: 20px;
+            font-weight: bold;
+            border-bottom-left-radius: 0px;
+            border-top-left-radius: 0px;
+            height: 37px;
+            opacity: 1;
+          }
+          .preview-open {
+            display: inline-block;
+          }
+
+          .preview-close {
+            display: initial;
+          }
+        }
+      }
+      .card-footer {
+        padding: 10px;
+        box-shadow: 0 -3px 10px $light-200;
+        font-weight: bold;
+      }
+      .description {
+        padding: 6px;
+        box-shadow: 1px 0 4px 0 $navbar-default-toggle-icon-bar-bg;
+        line-height: 1.6;
+        min-height: 50px;
+
+        &.content-collapse {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .expand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        cursor: pointer;
+        .expand-icon {
+          width: 40px;
+          height: 8px;
+          border-radius: 4px;
+          background-color: $light-400;
+        }
+      }
+
+      .close {
+        font-weight: bold;
+        color: white;
+        font-size: x-large;
+      }
+
+      .study-btn {
+        padding: 8px 15px;
+        background-color: $blue-9d2;
+        font-size: 14px;
+        text-transform: uppercase;
+        float: right;
+        cursor: pointer;
+        box-shadow: 1px 0 4px 0 $navbar-default-toggle-icon-bar-bg;
+        margin-bottom: 8px;
+        background-image: linear-gradient(
+          to right,
+          $blue-bdf 21%,
+          $blue-400 75%
+        );
+
+        &.studying {
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

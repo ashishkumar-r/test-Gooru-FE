@@ -1,0 +1,206 @@
+<div class="backdrop" {{action 'onPullUpClose' true}} tabindex={{tabindex}}></div>
+<div class="suggestion-container">
+  <div class="competency-report-header" onclick={{action "onPullUpClose" true}} onkeypress={{action "onPullUpClose" true}} tabindex={{tabindex}}>
+    {{gru-icon name="arrow_back"}}
+    <div class="competency-report-header-panel">
+      {{#if isDiagnosticContent}}
+        <div class="competency-report-title" data-content="{{selectedCompetency.title}}" data-toggle="popover" data-placement="bottom">
+          <span>{{competency-gut-to-fw-transform
+            fwCompetencies
+            selectedCompetency.code
+            selectedCompetency.title
+            'frameworkCompetencyName'
+            showGutCompetency
+            true
+           }}</span>
+        </div>
+        <ul class="competency-report-sub-titles">
+          <li>{{selectedCompetency.code}}</li>
+        </ul>
+      {{else}}
+        <div class="header-title">
+          <i class="icon {{collection.collectionType}}"></i>
+          <span class="title ellipsis">{{safe-html collection.title}}</span>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="suggestion-container-student-list-panel">
+    <div class="suggestion-report-student-list-panel" onclick={{action "showStudentList"}} onkeypress={{action "showStudentList"}} tabindex={{tabindex}}>
+      <div class="sc-report-student-list">
+        <ul class="sc-report-student-profile">
+          {{#each students as |student studentIndex|}}
+            {{#if (lt studentIndex profileCount)}}
+              <li data-content="{{student.lastName}}, {{student.firstName}}" data-toggle="popover" data-placement="bottom">
+                <img src="{{student.avatarUrl}}" alt="student avatar">
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+      <div class="sc-report-student-count">
+        {{# if (gt students.length profileCount)}}
+          {{studentsCount}}+
+        {{/if}}
+      </div>
+      <div class="sc-report-student-list-icon">
+        {{gru-icon name="arrow_drop_down"}}
+      </div>
+    </div>
+    <div class="sc-student-dropdown-list-container">
+      {{#each students as |student|}}
+        <div class="sc-student-dropdown-list">
+          <div class="sc-student-profile-thumbnail-container">
+            <div class="sc-student-thumbnail">
+              <img src="{{student.avatarUrl}}" alt="student avatar">
+            </div>
+          </div>
+          <div class="sc-student-name">
+            {{student.lastName}}, {{student.firstName}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class="suggestion-header">
+      {{#if isFromSearch}}
+        <div class="suggestion-back" onclick={{action 'backToSuggestion'}} onkeypress={{action 'backToSuggestion'}} tabindex={{tabindex}}>
+          {{gru-icon name="arrow_back"}}
+        </div>
+      {{/if}}
+      <div class="search-filter-container">
+        <span class="ellipsis" onclick={{action 'toggleMenuList'}} onkeypress={{action 'toggleMenuList'}} tabindex={{tabindex}}>{{t selectedMenuItem.label }}</span>
+        <span onclick={{action 'toggleMenuList'}} onkeypress={{action 'toggleMenuList'}} tabindex={{tabindex}}>{{gru-icon name="arrow_drop_down"}}</span>
+        {{#if isEnableCaBaseline}}
+          <div class="search-filter-container-list {{if isMenuEnabled 'active'}}">
+            {{#each menuItems as |item|}}
+              <p onclick={{action 'onChooseMenuItem' item}} onkeypress={{action 'onChooseMenuItem' item}} tabindex={{tabindex}} class="{{if item.selected 'selected'}}">{{t item.label}}</p>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+      {{#if (or (eq selectedMenuName 'catalog') (and (not showTenantLibraries) (eq selectedMenuName 'tenantLibrary')) (eq selectedMenuName 'myContent') (eq selectedMenuName 'courseMap') (eq selectedMenuName 'signatureContent'))}}
+        <div class="suggestion-right-menu">
+          <div class="search-input-container">
+            {{input type="text"
+              placeholder=(t "common.search-placeholder")
+              spellcheck="true"
+              id="suggestion-search"
+              tabindex=tabindex
+            }}
+            <div class="filter-items">
+              {{#each filters as |selectedFilter index|}}
+                <div class="filter-item">
+                  <span class="name ellipsis" data-toggle="tooltip" title={{selectedFilter.name}}>{{selectedFilter.name}}</span>
+                  <span class="clear" onclick={{action 'clearFilter' selectedFilter}} onkeypress={{action 'clearFilter' selectedFilter}} tabindex={{tabindex}}> {{gru-icon name="close"}}</span>
+                </div>
+              {{/each}}
+              {{#if moreFilters}}
+                <span class="more-pointer">+{{moreFilters.length}}</span>
+              {{/if}}
+              <div class="more-filters hidden">
+                {{#each moreFilters as |moreFilter|}}
+                  <div class="filter-item">
+                    <span class="name ellipsis" data-toggle="tooltip" title={{moreFilter.name}}>{{moreFilter.name}}</span>
+                    <span class="clear" onclick={{action 'clearFilter' moreFilter}} onkeypress={{action 'clearFilter' moreFilter}} tabindex={{tabindex}}> {{gru-icon name="close"}}</span>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+            <label for="suggestion-search" id="suggest-search" class="search-icon">
+              {{gru-icon name="search"}}
+            </label>
+          </div>
+          {{#if isEnableCaBaseline}}
+            <div class="search-filter-icon" onclick={{action 'toggleSearchFilter'}} onkeypress={{action 'toggleSearchFilter'}} tabindex={{tabindex}}>
+              {{gru-icon name="filter_list"}}
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+    {{#unless showTenantLibraries}}
+      <div class="suggestion-content-type-filter">
+        <div class="filter-content-types ">
+          {{#each filterContentType as |contentType|}}
+            <div class="filter-item {{contentType.format}} {{if (and isHideContentType (not isDiagnosticContent) (not isEnableCaBaseline) (not (eq contentType.format activeContentType)))  'disable-event' }} {{if (eq contentType.format activeContentType) 'active' }} {{if (and isHideContentType (not (eq contentType.format activeContentType))) 'disable-event'}}" onclick={{action 'onSelectFilterBy' contentType.format}} onkeypress={{action 'onSelectFilterBy' contentType.format}} tabindex={{tabindex}}>
+              <i></i>
+              <span>{{t contentType.label}}</span>
+            </div>
+          {{/each}}
+        </div>
+        {{search/search-by-filter
+          isShow=isShow
+          onFilterApply="doSearch"
+          hideAppScroll=false
+          unCheckedItem=unCheckedItem
+          preference=class.preference
+          selectedFilters=selectedFilters
+          tabindex=tabindex
+        }}
+      </div>
+      {{#if selectedTenantLibrary}}
+        <div class="selected-tenant-library">
+          <div class="back" onclick={{action 'goBackToTenantLibraries'}} onkeypress={{action 'goBackToTenantLibraries'}} tabindex={{tabindex}}>
+            {{gru-icon name="arrow_back"}}
+          </div>
+          <img class="image" src="{{selectedTenantLibrary.image}}" alt="selectedTenantLibrary"/>
+          <div class="library-name">{{selectedTenantLibrary.name}}</div>
+        </div>
+      {{/if}}
+      <div class="search-list-container {{if selectedTenantLibrary 'tenant-library'}}">
+        <div class="search-list {{if selectedTenantLibrary 'show-tenant-library'}}">
+          {{#if (gt searchResults.length 0)}}
+            <div class=" search-list">
+              {{#each searchResults as |result|}}
+                {{cards/suggest-collection-card class=class collection=result contentType=activeContentType onSuggestCollection="onSuggestCollection" onAddCollectionToDCA="onAddCollectionToDCA" onScheduleContentToDCA='onScheduleContentToDCA' tabindex=tabindex}}
+              {{/each}}
+            </div>
+          {{else}}
+            {{#unless isLoading}}
+              {{cards/no-suggest-result-found isFromSearch=isFromSearch}}
+            {{/unless}}
+          {{/if}}
+        </div>
+      </div>
+    {{else}}
+      <div class="tenant-libraries">
+        <div class="libraries-container">
+          {{#each libraries as |library|}}
+            {{library/gru-partner-library-card onSelectLibrary='onSelectLibrary' content=library tabindex=tabindex}}
+          {{else}}
+            <div class="loading-spinner">
+              {{three-bounce-spinner}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/unless}}
+  </div>
+</div>
+
+{{#if showSuggestConfirmation}}
+  {{cards/suggest-confirmation
+   collection=suggestSelectedCollection
+   students=students
+   contentType=activeContentType
+   onCancelSuggest="onCancelSuggest"
+   onConfirmSuggest="onConfirmSuggest"
+   tabindex=tabindex
+ }}
+{{/if}}
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+
+<div class="ca-datepicker-schedule-container ca-datepicker-popover-container">
+  {{ca-daterange-datepicker
+      closeDatePicker='onCloseDatePicker'
+      onScheduleForDate='onScheduleDate'
+      onScheduleForMonth='onScheduleForMonth'
+      endDate=endDate
+      allowTwoDateRangePicker=false
+      selectedClassActivity = selectedContentForSchedule
+      }}
+</div>

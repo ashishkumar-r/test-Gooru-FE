@@ -1,0 +1,61 @@
+.create-class {
+  .condition-prompt {
+    padding-top: 20px;
+
+    .conditions {
+      @include flexbox;
+
+      & > :last-child {
+        margin-left: 15px;
+      }
+    }
+  }
+}
+
+.class-name-input {
+  label {
+    margin-bottom: 10px;
+    margin-left: 3px;
+  }
+}
+.gru-class-new {
+  .modal-dialog {
+    max-width: 552px;
+    margin: 75px auto auto auto;
+    @media (min-width: $screen-md) {
+      width: 552px;
+    }
+    .step-title {
+      font-size: 38px;
+      font-weight: 700;
+    }
+  }
+  .lead {
+    font-size: 23px;
+    color: $gray-oslo;
+  }
+  .modal-body {
+    width: 70%;
+    margin: auto;
+    .control-label {
+      font-size: 16px;
+      color: $gray-oslo;
+    }
+  }
+  .modal-footer {
+    .get-started-btn {
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 30px;
+      position: relative;
+      padding-left: 0px;
+    }
+    i {
+      right: auto;
+      margin-top: 0px;
+      font-size: 28px;
+      line-height: 32px;
+    }
+  }
+}

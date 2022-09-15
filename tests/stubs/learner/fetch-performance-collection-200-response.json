@@ -1,0 +1,25 @@
+{
+  "usageData":[
+    {
+      "courseId": null,
+      "courseTitle": null,
+      "totalCount": null,
+      "completedCount": null,
+      "collectionId": "collection-id-1",
+      "collectionTitle": "collection-title-1",
+      "attempts": 4,
+      "timeSpent": 23860,
+      "scoreInPercentage": 0
+    }, {
+      "courseId": null,
+      "courseTitle": null,
+      "totalCount": null,
+      "completedCount": null,
+      "collectionId": "collection-id-2",
+      "collectionTitle": "collection-title-2",
+      "attempts": 4,
+      "timeSpent": 23860,
+      "scoreInPercentage": 0
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{{#if userAlert }}
+<div class="ticker-wrap">
+  <i class="gru-icon material-icons ticker-close" {{action "onCloseAlert"}}>close</i>
+      <div class="ticker">
+        <div class="ticker__item">
+          {{userAlert}}
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if isRedirectionDomainDone}}
+  {{#if tenant}}
+    {{tenant/gru-tenant-theme tenant=tenant}}
+  {{/if}}
+  <div class="gooru {{if configuration.embedded 'embedded'}}">
+    {{#if features.header.enabled}}
+      {{gru-header
+      term=term
+      onLogout="logout"
+      onSearch="searchTerm"
+      isInvalidSearchTerm=isInvalidSearchTerm
+      classes=myClasses.classes
+      profile=profile
+      showLibrary=showLibrary}}
+    {{/if}}
+    <div class="container-fluid app-container">
+      {{outlet}}
+    </div>
+    {{gru-footer}}
+  </div>
+
+  {{gru-modal}} {{qz-modal}}
+{{/if}}
+
+<div class="helpPullUp">
+  {{#gru-pull-up-ex showPullUpEx=isShowHelpPullUp title='' description='' hasDocument=hasDocument showMore=false isLoading=false onClosePullUp=(action "closeHelpPullUp")}}
+    <div class="help">
+      {{helper-list/helper-list
+        helpModel = helpInfo
+        helpInfoDescription = helpInfoDescription
+        hasDocument=hasDocument
+      }}
+    </div>
+  {{/gru-pull-up-ex}}
+</div>
+
+<div id="note-tool-div" class="resize-container" class="{{ if isDisplayNoteTool 'show-div' 'hide-div'}}">
+  <div class="resize-drag" draggable="true">
+    {{note-tool/note-tool
+    }}
+  </div>
+</div>

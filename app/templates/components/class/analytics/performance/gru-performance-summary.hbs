@@ -1,0 +1,109 @@
+<li class="title {{if performance.isUnitOrLesson "unit-lesson" "collection-assessment"}}">
+    <span class="{{if isSelected "selected" ""}} ">
+      {{#if noMoreAttempts}}
+        <p class="truncate section-title pointer disabled" data-toggle="tooltip" data-html="true" data-placement="top" title="{{t "common.no-more-attempts"}}">
+          {{performance.title}}
+        </p>
+      {{else}}
+        {{#if performance.isUnitOrLesson}}{{gru-icon name=(if isSelected "keyboard_arrow_down" "keyboard_arrow_right")}}{{/if}}
+        <p class="truncate section-title">
+          {{#if performance.isUnitOrLesson}}
+            {{course-sections-prefix  index=index type=performance.type longName=false}}&colon;
+          {{/if}}
+          {{performance.title}}
+        </p>
+      {{/if}}
+    </span>
+  {{#if performance.isCollectionOrAssessment}}
+      <div>
+        {{#if performance.isCompleted}}
+            <div class="btn-group">
+
+                <button class="btn btn-info collection-view-report-button" {{action "viewReport" performance}}>
+                    <span>{{gru-icon name="equalizer"}}{{t "gru-performance-summary.view-report"}}</span>
+                </button>
+                {{#if isDisabled}}
+                  <button class="btn btn-info collection-redo-button disabled" data-toggle="tooltip" data-html="true" data-placement="top"
+                  title="{{t "common.assessment-disabled"}}">
+                    <span>{{gru-icon name="replay"}}{{t "gru-performance-summary.redo"}}</span>
+                  </button>
+                {{else}}
+                  {{#if noMoreAttempts}}
+                    <button class="btn btn-info collection-redo-button disabled">
+                      <span>{{gru-icon name="replay"}}{{t "gru-performance-summary.redo"}}</span></button>
+                  {{else}}
+                    <button class="btn btn-info collection-redo-button" {{action "selectResource" performance}}>
+                      <span>{{gru-icon name="replay"}}{{t "gru-performance-summary.redo"}}</span></button>
+                  {{/if}}
+                {{/if}}
+            </div>
+        {{else}}
+          {{#if isDisabled}}
+            <button class="btn btn-info collection-study-button disabled" data-toggle="tooltip" data-html="true" data-placement="top"
+            title="{{t "common.assessment-disabled"}}">
+              <span>{{gru-icon name='near_me'}}{{t "gru-performance-summary.study"}}</span>
+            </button>
+          {{else}}
+            {{#if noMoreAttempts}}
+              <button class="btn btn-info collection-study-button disabled">
+                <span>{{gru-icon name='near_me'}}{{t "gru-performance-summary.study"}}</span>
+              </button>
+            {{else}}
+              <button class="btn btn-info collection-study-button" {{action "selectResource" performance}}>
+                <span>{{gru-icon name='near_me'}}{{t "gru-performance-summary.study"}}</span>
+              </button>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      </div>
+  {{/if}}
+</li>
+<li class="score {{if scoreSelected 'selected'}}">
+  {{#if showScore}}
+    {{#if performance.hasStarted}}
+        <span class="score-box" style={{safe-html (concat "background-color:" (grade-color performance.score)) }}>
+          {{#if (eq performance.score null)}}
+            --
+          {{else}}
+            {{concat performance.score '%'}}
+          {{/if}}
+        </span>
+    {{else}}
+        <span class="score-box" style="background-color: #959A9E">--%</span>
+    {{/if}}
+  {{else}}
+    {{#if performance.isCollection}}
+      {{gru-icon name='apps'}}
+    {{/if}}
+  {{/if}}
+</li>
+<li class="completion {{if completionSelected 'selected'}}">
+  {{#if performance.isUnitOrLesson}}
+    {{ charts/gru-completion-chart
+    completed=performance.completionDone
+    total=performance.completionTotal }}
+  {{/if}}
+</li>
+<li class="timeSpent {{if timeSpentSelected 'selected'}}">
+  {{#if performance.hasStarted}}
+      <p>
+        {{performance.displayableTimeSpent}}
+      </p>
+  {{/if}}
+</li>
+<li class="reaction {{if reactionSelected 'selected'}}">
+  {{#if performance.hasStarted}}
+    {{#if performance.reaction}}
+        <span class="reactionSummary"></span>
+    {{/if}}
+  {{/if}}
+</li>
+<li class="attempts {{if attemptsSelected 'selected'}}">
+  {{#if performance.hasStarted}}
+    {{#if performance.attempts}}
+        <p>{{performance.attempts}}</p>
+    {{else}}
+        <p>{{if performance.isUnitOrLesson '–'}}</p>
+    {{/if}}
+  {{/if}}
+</li>

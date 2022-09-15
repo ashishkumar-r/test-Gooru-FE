@@ -1,0 +1,324 @@
+<div class="diagnostic-report-container">
+    <div class="diagnostic-report-panel">
+        <div class="milestone-by-data">
+            <a href="javascript:void(0)" class="back-btn" {{action "onGoBack"}}
+                aria-label="back to performance">{{gru-icon name="arrow_back"}}</a>
+            <span>{{t 'diagnostic-report.data-by-diagnostic'}}</span>
+        </div>
+        <div class="milestone-details-list-panel">
+            <div class="milestone-list-panel">
+                <div class="list-head {{if isShowRegularAssessment 'ass-list-head'}}">
+                    <div class="milestone-list-head {{if (and isShowRegularAssessment isDomainList) 'active'}}"
+                        onclick={{action "selectItem" 'domain'}} onkeypress={{action "selectItem" 'domain'}}>
+                        {{t 'common.domains-by'}}</div>
+                        {{#if isShowRegularAssessment}}
+                            <div class="milestone-list-head {{unless isDomainList 'active'}}"
+                            onclick={{action "selectItem" 'assessment'}} onkeypress={{action "selectItem" 'assessment'}}>
+                            {{t 'common-by-assessment'}}</div>
+                        {{/if}}
+                </div>
+                <div class="milstone-list-body">
+                    {{#if isDomainList}}
+                    {{#each diagnosticList as |diagnostic|}}
+                    <a class="milestone-card-items {{if (eq activeItem.code diagnostic.code) 'active'}}"
+                        {{action "onSelectDiagnostic" diagnostic}} aria-label="select milestone"
+                        href="javascript:void(0)">
+                        <span class="content-icon">
+                            <img src="/assets/gooru/images/assessment-orange.svg" alt="assessment suggestion">
+                        </span>
+                        <div class="milestone-item">
+                            <span>{{diagnostic.code}}</span>
+                            <span>{{diagnostic.title}}</span>
+                        </div>
+                    </a>
+                    {{/each}}
+                    {{else}}
+                    {{#each assessmentList as |diagnosticQsn|}}
+                    <a class="milestone-card-items {{if (eq activeAssessmentItem.title diagnosticQsn.title) 'active'}}" {{action "onSelectAssessment" diagnosticQsn}}
+                        aria-label="select milestone" href="javascript:void(0)">
+                        <span class="content-icon">
+                            <img src="/assets/gooru/images/assessment-orange.svg" alt="assessment suggestion">
+                        </span>
+                        <div class="milestone-item">
+                            <span>{{format-date diagnosticQsn.createdDate 'MMMM DD YYYY'}} {{t "initial-skyline-text"}}</span>
+                        </div>
+                    </a>
+                    {{/each}}
+                    {{/if}}
+                </div>
+            </div>
+
+            {{#if isDomainList}}
+            <div class="milestone-report-detail-panel {{if isDomainList 'milestone-domain-report'}}">
+                <div class="milestone-report-head {{if isViewCompetency 'milestone-student-head' 'milestone-competency-head'}} {{unless competencyList.competencies.length  'disable-competency-head'}}">
+                    <span class="content-icon">
+                        <img src="/assets/gooru/images/assessment-orange.svg" alt="assessment suggestion">
+                    </span>
+                    <div class="milstone-report-head-title">
+                        <span class="milestone-name">{{activeItem.code}}</span>
+                        <span class="milestone-title">{{activeItem.title}}</span>
+                    </div>
+                    <div class="view-competencice {{unless competencyList.competencies.length 'disable-competency'}}">
+                        {{#if isViewCompetency}}
+                            <a onclick={{action "onClickStudent"}} onkeypress={{action "onClickStudent"}}>View by Students</a>
+                        {{else}}
+                            <a onclick={{action "onClickCompetencies"}} onkeypress={{action "onClickCompetencies"}}>View by Competencies</a>
+                        {{/if}}
+                    </div>
+                    <div class="download" onclick={{action "onDownload"}} onkeypress={{action "onDownload"}}>
+                        <div class="dropdown">
+                            <span class="dropdown-toggle"
+                                data-toggle="dropdown">{{gru-icon name='file_download'}}</span>
+                            <div class=" dropdown-menu dropdown-menu-right">
+                                <div class="csv-label" data-toggle="tooltip" onclick={{action "onCsvDownload" 'byDomain'}}
+                                    onkeypress={{action "onCsvDownload" 'byDomain'}}>
+                                    <label>{{t 'common-csv-label'}}</label>
+                                </div>
+                                <div class="pdf-label" onclick={{action "onPdfDownload"}}
+                                    onkeypress={{action "onPdfDownload"}}>
+                                    <label>{{t 'common-pdf-label'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-students-list">
+                    {{input type="text" placeholder=(t 'common.search-placeholder-text') key-up=(action "onSearchStudent") }}
+                    {{gru-icon name="search"}}
+                </div>
+                {{#if isViewCompetency}}
+                <div class="competenct-list">
+                    <table class="table table-bordered default-table">
+                        <thead>
+                            <tr>
+                                <th class="comp">{{t 'common.competencies'}}</th>
+                                <th class="stud-name">{{t 'common.ans-correct'}}</th>
+                                <th class="percentage">{{t 'common.percentage-student'}}</th>
+                            </tr>
+                        </thead>
+                        {{#if isDataNotAvailable}}
+                           <div class="no-content">{{t 'common.no-content'}}</div>
+                        {{else}}
+                            <tbody>
+                                {{#each competencyList.competencies as |competency|}}
+                                <tr>
+                                    <td><span data-toggle="popover" data-content={{competency.name}}>{{competency.code}}</span></td>
+                                    <td>
+                                        {{#each competency.students as |student index|}}
+                                            {{#if (lt index 2)}}
+                                                <span class="studName">{{student.first_name}} {{student.last_name}}</span>
+                                            {{/if}}
+                                        {{/each}}
+                                        {{#if competency.listTotal}}
+                                            <span data-toggle="popover" data-content={{competency.studName}}>+{{competency.listTotal}}</span>
+                                        {{/if}}
+                                    </td>
+                                    <td style="color: {{competency.percentageColor}}">{{competency.percentage}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        {{/if}}
+                    </table>
+                    <table class="table table-bordered pdf-default-table">
+                        <thead>
+                            <tr>
+                                <th class="comp">{{t 'common.competencies'}}</th>
+                                <th class="stud-name">{{t 'common.ans-correct'}}</th>
+                                <th class="percentage">{{t 'common.percentage-student'}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each allCompetency as |competency|}}
+                            <tr>
+                                <td><span data-toggle="popover" data-content={{competency.name}}>{{competency.code}}</span></td>
+                                <td>
+                                    {{#each competency.students as |student index|}}
+                                        {{#if (lt index 2)}}
+                                            <span class="studName">{{student.first_name}} {{student.last_name}}</span>
+                                        {{/if}}
+                                    {{/each}}
+                                    {{#if competency.listTotal}}
+                                        <span>+{{competency.listTotal}}</span>
+                                    {{/if}}
+                                </td>
+                                <td style="color: {{competency.percentageColor}}">{{competency.percentage}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                {{else}}
+                    <div class="milestone-student-list">
+                        <div class="student-table-head">
+                            <span class="profile-head">{{t 'common.student'}}</span>
+                            <span>{{t 'common.result'}}</span>
+                            <span>{{t 'diagnostic-report.student-begin-at'}}</span>
+                        </div>
+                        <div class="student-table-body">
+                            {{#each studentLists as |student|}}
+                            <div class="student-table-content-card">
+                                <div class="student-profile">
+                                    <span class="profile-image"
+                                        style="background-image: url('{{student.thumbnailUrl}}')"></span>
+                                    <span class="profile-name">{{student.lastName}}, {{student.firstName}}</span>
+                                </div>
+                                <span>{{student.level}}</span>
+                                <span>{{student.startingCompetency}}
+                                {{#if student.loCode}}
+                                | <span>{{student.loCode}}</span>
+                                {{/if}}
+                                </span>
+                                <a href="javascript:void(0)" class="response-btn"
+                                    {{action "onSeeResponse" student}}>{{t 'diagnostic-report.see-response'}}</a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <div class="student-pdf-table-body">
+                            {{#each allDiagnosticCompetency as |student|}}
+                            <div class="student-table-content-card">
+                                <div class="student-profile">
+                                    <span class="profile-image"
+                                        style="background-image: url('{{student.thumbnailUrl}}')"></span>
+                                    <span class="profile-name">{{student.lastName}} {{student.firstName}}</span>
+                                </div>
+                                <span>{{student.level}}</span>
+                                <span>{{student.startingCompetency}}</span>
+                                <a href="javascript:void(0)" class="response-btn"
+                                    {{action "onSeeResponse" student}}>{{t 'diagnostic-report.see-response'}}</a>
+                            </div>
+                            {{/each}}
+                        </div>
+
+
+                    </div>
+                {{/if}}
+            </div>
+            {{else}}
+            <div class="milestone-report-detail-panel milestone-ass-header">
+                <div class="milestone-report-head">
+                    <span class="content-icon">
+                        <img src="/assets/gooru/images/assessment-orange.svg" alt="assessment suggestion">
+                    </span>
+                    <div class="milstone-report-head-title">
+                        <span class="milestone-title">{{format-date activeAssessmentItem.createdDate 'MMMM DD YYYY'}}
+                            {{t 'initial-skyline-text'}}</span>
+                    </div>
+                    <div class="download" onclick={{action "onDownload"}} onkeypress={{action "onDownload"}}>
+                        <div class="dropdown">
+                            <span class="dropdown-toggle"
+                                data-toggle="dropdown">{{gru-icon name='file_download'}}</span>
+                            <div class=" dropdown-menu dropdown-menu-right">
+                                <div class="csv-label" data-toggle="tooltip" onclick={{action "onCsvDownload" 'byAssessment'}}
+                                    onkeypress={{action "onCsvDownload" 'byAssessment'}}>
+                                    <label>{{t 'common-csv-label'}}</label>
+                                </div>
+                                <div class="pdf-label" onclick={{action "onPdfDownload"}}
+                                    onkeypress={{action "onPdfDownload"}}>
+                                    <label>{{t 'common-pdf-label'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="expand-icon" onclick={{action "onToggle" 'milestone-student-list'}}
+                        onkeypress={{action "onToggle" 'milestone-student-list'}}>
+                        <i class="fa fa-expand"></i>
+                    </div>
+                </div>
+
+                <div class="milestone-student-list">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="student-name" scope="col"></th>
+                                {{#each activeAssessmentItem.questions as |question index|}}
+                                <th class="domain-competency" scope="col">
+                                    <div data-toggle="popover" data-content={{question.domain.name}}>
+                                        {{question.domain.code}}</div>
+                                    <div>
+                                        <span data-toggle="popover" data-content={{question.competency.name}}>{{question.competency.code}}</span>
+                                        {{#if question.loCode}}
+                                        | <span data-toggle="popover" data-content={{question.loName}}>{{question.loCode}}</span>
+                                        {{/if}}
+                                      </div>
+                                </th>
+                                {{/each}}
+                            </tr>
+                            <tr>
+                                <th class="student-name" scope="col"></th>
+                                {{#each activeAssessmentItem.questions as |question index|}}
+                                   <th class="domain-competency {{unless question.status 'disable'}} {{if question.status 'enable'}}" scope="col" onclick={{action "openQuestionReport" question}} onkeypress={{action "openQuestionReport"  question}} >
+                                       <span data-toggle="popover" data-content={{question.question_title}}>Q {{plus-one index}}</span>
+                                   </th>
+                                {{/each}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each activeAssessmentItem.students  as |student|}}
+                            <tr>
+                                <th class="student-row">{{student.last_name}}, {{student.first_name}}</th>
+                                {{#each student.questions as |question index|}}
+                                <td class="com-code">
+                                    <div class="com-cell">
+                                        <div class="ans-option">
+                                            {{#each question.options as |option index|}}
+                                            {{#if  (eq question.type 'fill_in_the_blank_question')}}
+                                            <span class="option fib {{option.isshowAnswer}}">{{option.answer_text}}
+                                            </span>
+                                            {{else}}
+                                            <span class="option {{option.isshowAnswer}}">{{answer-letter index}}</span>
+                                            {{/if}}
+                                            {{/each}}
+                                        </div>
+                                        {{#if question.status}}
+                                        <div class="ans-icon {{question.status}}" data-toggle="tooltip"
+                                            title={{question.status}}>
+
+                                            {{#if (eq question.status 'correct')}}
+                                                <img class="img-responsive" src="/assets/gooru/images/correct-answer.svg" alt="correct">
+                                                {{else}}
+                                                <img class="img-responsive" src="/assets/gooru/images/wrong-answer.svg" alt="wrong">
+                                            {{/if}}
+                                            {{#if (eq question.status 'partially-correct')}}
+                                                <img class="img-responsive" src="/assets/gooru/images/tick-green.svg" alt="partially correct">
+                                            {{/if}}
+                                        </div>
+                                        {{else}}
+                                        <div class="not-answer-icon">
+                                            {{gru-icon name="not_interested"}}
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                                </td>
+                                {{/each }}
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+{{#if isShowPortfolioActivityReport}}
+{{reports/pull-up/gru-collection-preview
+        showPullUp=isShowPortfolioActivityReport
+        previewContentId = reportActivityId
+        reportActivityIds=reportActivityIds
+        previewContentType = 'assessment'
+        isReportView=true
+        userId=activeStudent.id
+        repostReadContent=summaryData
+        isCompetencyReport=isCompetencyReport
+        isDiagnosticReport = true
+        diagnosticTimespent=diagnosticTimespent
+        domainName = activeItem
+        classFramework = classFramework
+        isDefaultShowFW = isDefaultShowFW
+    }}
+{{/if}}
+{{#if isShowQuestionReport}}
+  {{reports/pull-up/diagnostic-question-report onClosePullUp="onClosePullUp" showPullUp=isShowQuestionReport  context=studentQuestionReportContextData}}
+{{/if}}

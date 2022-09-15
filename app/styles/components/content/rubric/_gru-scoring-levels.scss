@@ -1,0 +1,144 @@
+.content.rubric.gru-scoring-levels {
+  @include flexbox;
+  width: 100%;
+  .level {
+    width: 69%;
+    .levels {
+      @include flexbox;
+      .scale {
+        margin: 10px 0 0 0;
+        .line {
+          border-left: 1px solid $gray-light;
+          min-height: 193px;
+          margin: 0 0 0 15px;
+        }
+        .arrow-down {
+          margin: 0 0 0 10px;
+          width: 0;
+          height: 0;
+          border-left: 5px solid $table-bg;
+          border-right: 5px solid $table-bg;
+          border-top: 5px solid $gray-light;
+        }
+      }
+      .level-list {
+        width: 100%;
+        margin: 0 0 0 16px;
+        .name-input {
+          height: 60px;
+          .form-group {
+            margin-bottom: 0;
+          }
+          span.name-error {
+            color: $red-400;
+            display: none;
+            font-size: $font-size-small;
+            &.visible {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+  .points {
+    margin: 0 0 0 30px;
+    .point-list {
+      padding: 0 0 0 45px;
+      width: 215px;
+      div {
+        @include flexbox;
+        height: 60px;
+        position: relative;
+        .score-error {
+          bottom: -8px;
+          color: $red-400;
+          display: none;
+          font-size: $font-size-small;
+          position: absolute;
+          width: 155px;
+          &.visible {
+            display: block;
+          }
+        }
+      }
+      .btn {
+        display: block;
+        background-color: $table-bg;
+        font-size: 24px;
+        line-height: 1;
+        padding: 7px 5px;
+      }
+      .score-input {
+        width: 135px;
+        height: 52px;
+
+        .gru-input {
+          input {
+            text-align: center;
+          }
+        }
+        .gru-input-number {
+          width: 100%;
+          .form-group {
+            width: 100%;
+            min-height: 60px;
+          }
+        }
+      }
+    }
+  }
+  .btn-new-level {
+    margin: 20px 0 0 65px;
+    font-size: $font-size-base;
+    i {
+      font-size: $font-size-h4;
+      vertical-align: bottom;
+    }
+  }
+  .no-levels-error {
+    color: $red-400;
+    display: inline-block;
+    font-size: $font-size-base;
+    margin: 0 0 0 12px;
+    vertical-align: bottom;
+  }
+  input {
+    font-size: $font-size-base;
+  }
+  .score-section.preview {
+    margin: 0 0 0 45px;
+    width: 40%;
+    .levels {
+      .scale {
+        margin: 5px 0 0 40px;
+        .line {
+          margin: 10px 0 0 10px;
+          min-height: 120px;
+        }
+        .arrow-down {
+          margin: 0 0 0 5px;
+        }
+        .worst {
+          margin: 0 0 0 -10px;
+        }
+      }
+      .level-list {
+        margin: 5px 0 0 28px;
+      }
+    }
+    .scores {
+      @include flexbox;
+      margin: 5px 0 0;
+      .point-list {
+        margin: 0 0 0 30px;
+      }
+    }
+    .legend {
+      color: $gray-base;
+    }
+    .value {
+      height: 55px;
+    }
+  }
+}

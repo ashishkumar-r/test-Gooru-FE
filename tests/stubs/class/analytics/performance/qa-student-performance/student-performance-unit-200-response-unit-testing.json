@@ -1,0 +1,27 @@
+{
+  "content": [
+    {
+      "userUid": "6f337b1c-0b0d-49b3-8314-e279181aeddf",
+      "usageData": [
+        {
+          "lessonId": "07b70c9c-fc53-4399-939d-632ef81613ba",
+          "completedCount": 5,
+          "scoreInPercentage": 65,
+          "timeSpent": 89141,
+          "attempts": 12,
+          "totalCount": 10
+        },
+        {
+          "lessonId": "efb08437-9f6e-448a-9e2f-1644b703394d",
+          "completedCount": 0,
+          "scoreInPercentage": 10,
+          "timeSpent": 32366,
+          "attempts": 4,
+          "totalCount": 0
+        }
+      ]
+    }
+  ],
+  "message": null,
+  "paginate": null
+}

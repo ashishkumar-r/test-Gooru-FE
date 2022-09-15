@@ -1,0 +1,262 @@
+.student,
+.teacher {
+  .course-map {
+    .gru-accordion {
+      .panel-heading {
+        &.expandPanel {
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+.gru-accordion-unit {
+  padding: 10px 0 0;
+  border-bottom: 1px solid $light-100;
+
+  .unit {
+    padding: 0 0 10px 20px;
+
+    > .panel-title {
+      font-size: $font-size-large;
+      color: $gray;
+      height: 43px;
+      padding-top: 11px;
+
+      > a {
+        width: 90%;
+        vertical-align: middle;
+        height: 43px;
+
+        .title {
+          height: inherit;
+
+          .prefix {
+            border-right: $border-right-side $light-300;
+            border-left: $border-left-side $light-300;
+            margin: 0 10px;
+            padding: 5px 10px 0;
+            color: $gray-base;
+            font-weight: bold;
+            height: inherit;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    + .collapse {
+      &.in {
+        background-color: $light-300;
+        padding: 10px;
+      }
+
+      > .panel-body {
+        padding: 0;
+        background-color: $light-100;
+        border-radius: 4px;
+        .panel-group {
+          &.disable {
+            opacity: 0.5;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+
+    .performance-container {
+      cursor: pointer;
+      padding-top: 0;
+      margin-top: -10px;
+      width: 85px;
+
+      .in-progress {
+        padding: 27px;
+        display: grid;
+      }
+
+      .timespend {
+        border-left: 1px solid $light-100;
+        display: inline-block;
+        height: 67px;
+        width: 88px;
+        margin: 0;
+        vertical-align: middle;
+        padding: 5px;
+        text-align: center;
+        font-weight: 900;
+        float: $menu-float-dir;
+        line-height: normal;
+        font-size: larger;
+
+        .total-time-spent {
+          font-size: 10px;
+        }
+      }
+
+      .students-count {
+        display: flex;
+        margin: 0 auto;
+        position: relative;
+
+        .count {
+          font-size: 15px;
+          font-weight: bold;
+          text-align: right;
+          width: calc(100% - 42px);
+        }
+
+        .avatar {
+          width: 24px;
+          position: absolute;
+          right: 15px;
+        }
+      }
+
+      &.not-started {
+        pointer-events: none;
+        .gru-performance-chart {
+          color: $font-white-dark-400;
+        }
+      }
+
+      .charts.gru-performance-chart {
+        .container-box {
+          height: 77px;
+
+          .percentage {
+            cursor: pointer;
+            margin: 19px 0 0;
+          }
+        }
+      }
+
+      .charts.gru-students-performance-chart {
+        .container-box {
+          height: 77px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+      }
+    }
+    &.expandPanel {
+      height: auto;
+    }
+    .visiblity-switch {
+      position: absolute;
+      right: 26%;
+      top: 0;
+      margin-top: 15px;
+      width: 85px;
+    }
+    &.disable {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &:last-child {
+    border: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+
+    .unit {
+      + .collapse {
+        &.in {
+          border-bottom-right-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+      }
+    }
+  }
+  .unitPlan {
+    margin-top: 30px;
+    padding: 0px 93px 19px 93px;
+
+    .essentialQuestions-lable {
+      margin-top: 10px;
+    }
+  }
+  .unit-class-info {
+    position: absolute;
+    right: 11%;
+    top: 0;
+    margin-top: 16px;
+
+    &.disable-tag {
+      pointer-events: none;
+      a {
+        color: $light-400;
+        opacity: 0.5;
+      }
+    }
+    @media screen and (min-width: $screen-md) and (max-width: 1400px) {
+      right: 20%;
+    }
+
+    @media only screen and (max-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  .item-disabled {
+    .content-count,
+    .icon-container,
+    .panel-title,
+    .score,
+    .state {
+      opacity: $opacity-light;
+    }
+
+    .panel-title {
+      .title {
+        cursor: default;
+      }
+    }
+
+    .icon-container {
+      .score {
+        button {
+          cursor: default;
+        }
+      }
+    }
+  }
+  .add-item {
+    a {
+      margin-top: 42px;
+    }
+  }
+}
+
+.big-ideas,
+.essential-questions {
+  .bigIdeasEditor,
+  .essentialQuestionEditor {
+    .rich-editor {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      min-height: 90px;
+      margin-left: 14px;
+      max-height: 180px;
+    }
+    .btn-toolbar {
+      opacity: 0;
+      button.btn-math {
+        color: $gray-base;
+        background: $white;
+        border-right: 1px solid $gray-base;
+      }
+    }
+  }
+}
+.unavailable-content {
+  padding: 0px 0px 0px 90px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}

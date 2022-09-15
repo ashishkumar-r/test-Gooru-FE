@@ -1,0 +1,17 @@
+{
+  "context": {
+    "course_id": "course-123",
+    "class_id": "class-for-pochita-as-student",
+    "unit_id": "first-unit-id",
+    "lesson_id": "first-lesson-id",
+    "collection_id": "first-assessment-id",
+    "collection_type": "assessment",
+    "collection_subtype": null,
+    "current_item_id": null,
+    "current_item_type": null,
+    "state": "content-served",
+    "path_id": 0,
+    "score_percent": 0
+  },
+  "suggestions":[]
+}

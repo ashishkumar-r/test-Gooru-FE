@@ -1,0 +1,194 @@
+{
+  "content": [
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 121688,
+          "reaction": 0,
+          "scoreInPercentage": 0,
+          "totalCount": 4,
+          "completedCount": 1,
+          "attempts": 2
+        }
+      ],
+      "userUid": "66d29979-c91f-47a1-a385-93c0df686d2d"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 479422,
+          "reaction": 0,
+          "scoreInPercentage": 31,
+          "totalCount": 4,
+          "completedCount": 2,
+          "attempts": 4
+        }
+      ],
+      "userUid": "bd398b75-bc86-42a1-b82c-626e35fab600"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 718922,
+          "reaction": 0,
+          "scoreInPercentage": 79,
+          "totalCount": 4,
+          "completedCount": 3,
+          "attempts": 4
+        }
+      ],
+      "userUid": "5ba1ef0d-1102-47dc-8ec5-ced8eec2b7fa"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 255214,
+          "reaction": 0,
+          "scoreInPercentage": 22,
+          "totalCount": 4,
+          "completedCount": 1,
+          "attempts": 1
+        }
+      ],
+      "userUid": "df956d5f-b7b2-43ae-98a1-c90a12eacaf9"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 747863,
+          "reaction": 0,
+          "scoreInPercentage": 87,
+          "totalCount": 4,
+          "completedCount": 2,
+          "attempts": 2
+        }
+      ],
+      "userUid": "74f6b0ae-9822-46d1-9be6-04813117a105"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 780608,
+          "reaction": 0,
+          "scoreInPercentage": 56,
+          "totalCount": 4,
+          "completedCount": 2,
+          "attempts": 2
+        }
+      ],
+      "userUid": "74500978-2b6a-41cf-9acf-77c94301a364"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 163337,
+          "reaction": 0,
+          "scoreInPercentage": 66,
+          "totalCount": 4,
+          "completedCount": 1,
+          "attempts": 1
+        }
+      ],
+      "userUid": "c4176d77-2507-4bd0-b1a1-308ad98526e5"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 565616,
+          "reaction": 0,
+          "scoreInPercentage": 96,
+          "totalCount": 4,
+          "completedCount": 3,
+          "attempts": 4
+        },
+        {
+          "unitId": "d76ecba0-e1e0-4048-8174-96684c2240c7",
+          "attemptStatus": "completed",
+          "timeSpent": 26101,
+          "reaction": 0,
+          "scoreInPercentage": 66,
+          "totalCount": 1,
+          "completedCount": 1,
+          "attempts": 1
+        }
+      ],
+      "userUid": "49c4df8b-e219-4d58-a6e7-8b2dc432707a"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 670240,
+          "reaction": 0,
+          "scoreInPercentage": 69,
+          "totalCount": 4,
+          "completedCount": 2,
+          "attempts": 3
+        }
+      ],
+      "userUid": "005287fb-81fb-4789-878c-d65873cad516"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 108213,
+          "reaction": 0,
+          "scoreInPercentage": 55,
+          "totalCount": 4,
+          "completedCount": 1,
+          "attempts": 1
+        }
+      ],
+      "userUid": "f67a2f33-09a5-4a48-bf20-8f3b1d5bb583"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 87728,
+          "reaction": 0,
+          "scoreInPercentage": 37,
+          "totalCount": 4,
+          "completedCount": 1,
+          "attempts": 1
+        }
+      ],
+      "userUid": "f90278ce-e008-4355-868f-59738699ba52"
+    },
+    {
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "attemptStatus": "completed",
+          "timeSpent": 310964,
+          "reaction": 0,
+          "scoreInPercentage": 94,
+          "totalCount": 4,
+          "completedCount": 2,
+          "attempts": 4
+        }
+      ],
+      "userUid": "a0273f89-95fc-440b-8a0c-47255a6c7272"
+    }
+  ]
+}

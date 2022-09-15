@@ -1,0 +1,54 @@
+.student-learner-proficiency {
+  .student-proficiency-container {
+    .inspect-competency {
+      .competency-info-pull-up {
+        &.open {
+          height: 385px;
+        }
+
+        &.expand {
+          height: 100%;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: $screen-sm - 1) {
+    .student-proficiency-container {
+      grid-template-columns: none;
+      padding: 0;
+
+      .inspect-competency {
+        .competency-info-pull-up {
+          .competency-panel-header {
+            height: auto;
+
+            .close {
+              grid-column-start: 4;
+            }
+
+            .status {
+              justify-self: start;
+              grid-row-start: 2;
+              grid-column-start: 2;
+            }
+          }
+        }
+      }
+
+      .pull-up-container,
+      .taxonomy-grades {
+        display: none;
+      }
+    }
+  }
+  @media only screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+    .student-proficiency-container {
+      grid-template-columns: 1fr;
+      padding: 0;
+
+      .pull-up-container {
+        display: none;
+      }
+    }
+  }
+}

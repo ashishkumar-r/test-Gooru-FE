@@ -1,0 +1,40 @@
+<div>
+  <ul class="hidden-xs performance-headers">
+    <li class="name-header">
+      <h6>{{t "gru-performance-summary.title"}}</h6>
+    </li>
+    <li class="score-header">
+      <h6>{{t "gru-performance-summary.scores"}}</h6>
+    </li>
+    <li class="completion-header">
+      <h6>{{t "gru-performance-summary.completion"}}</h6>
+    </li>
+    <li class="timeSpent-header">
+      <h6>{{t "gru-performance-summary.time-spent"}}</h6>
+    </li>
+    <li class="reactions-header">
+      <h6>{{t "gru-performance-summary.reaction"}}</h6>
+    </li>
+    <li class="attempts-header">
+      <h6>{{t "gru-performance-summary.attempts"}}</h6>
+    </li>
+  </ul>
+</div>
+{{#each performances as | unit index | }}
+  {{class/analytics/performance/student/gru-unit-performance
+    unit=unit
+    selectedOption=selectedOption
+    selectedFilterBy=selectedFilterBy
+    localIndex=index
+    classModel=classModel
+    userId=userId
+    onSelectResource=(action 'selectResource')
+    onViewReport=(action 'viewReport')
+    onLocationUpdate=(action 'updateLocation')
+    selectedUnitId=selectedUnitId
+    selectedLessonId=selectedLessonId
+    contentVisibility=contentVisibility
+  }}
+{{else}}
+  {{three-bounce-spinner}}
+{{/each}}

@@ -1,0 +1,71 @@
+<div class="upload-evidence-report">
+    <div class="uploaded-evidence-report-container">
+        <div class="report-left-panel-body">
+            <div class="student-panel-head">
+                <span>{{t 'common.name'}}</span>
+                <div class="first-name {{if sortByFirstnameEnabled 'active'}}" onclick={{action 'sortByFirstName' }}
+                    onkeypress={{action 'sortByFirstName' }} tabindex={{tabindex}}>
+                    <span>{{t 'common.first'}}</span>
+                    {{#if sortByFirstnameEnabled}}
+                    {{gru-icon name="keyboard_arrow_up"}}
+                    {{else}}
+                    {{gru-icon name="keyboard_arrow_down"}}
+                    {{/if}}
+                </div>
+                <div class="last-name {{if sortByLastnameEnabled 'active'}}" onclick={{action 'sortByLastName' }}
+                    onkeypress={{action 'sortByLastName' }} tabindex={{tabindex}}>
+                    <span>{{t 'common.last'}}</span>
+                    {{#if sortByLastnameEnabled}}
+                    {{gru-icon name="keyboard_arrow_up"}}
+                    {{else}}
+                    {{gru-icon name="keyboard_arrow_down"}}
+                    {{/if}}
+                </div>
+            </div>
+            <div class="student-name-panel">
+                {{#each studentEvidence as |student|}}
+                <div class="student-details" style="height: calc({{student.evidence.length }} * 69.5px)">
+                    <span class="student-img">
+                        <img class="img-responsive" src={{student.user.thumbnail}} alt="profileImage">
+                    </span>
+                    <span class="student-name">{{student.user.fullName}}</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="report-right-panel-body">
+            <table class="table-bordered table table-responsive">
+                <thead>
+                    <tr>
+                        {{#each tableHeaders as |evidence|}}
+                        <th>
+                            <div class="content-score-value" title="{{evidence}}" data-toggle="tooltip" data-placement="top">{{evidence}}</div>
+                        </th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each studentEvidence as |student|}}
+                    {{#each student.evidence as |evidence|}}
+                    <tr>
+                        {{#each tableHeaders as |columnKey|}}
+                        <td>
+                            <div class="content-score-value {{if (eq columnKey 'images') 'image-container'}}">
+                                {{#if (eq columnKey 'images')}}
+                                    {{#each (get evidence columnKey) as |image|}}
+                                        <img src={{image}} alt="image" {{action 'showImageModal' image}}>
+                                    {{/each}}
+                                {{else}}
+                                    <span title="{{get evidence columnKey}}" data-toggle="tooltip" data-placement="top">{{get evidence columnKey}}</span>
+                                {{/if}}
+                            </div>
+                        </td>
+                        {{/each}}
+                    </tr>
+                    {{/each}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

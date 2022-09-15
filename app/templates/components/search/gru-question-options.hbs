@@ -1,0 +1,49 @@
+<section class="options">
+  <ul>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.multiple_choice_question) 'hide-btn'}}">
+      <button class="btn multiple-choice btn-option {{if multipleChoiceSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.multipleChoice this}} onkeypress={{action 'selectOption' questionTypes.multipleChoice this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.MC"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.multiple_answer_question) 'hide-btn'}}">
+      <button class="btn multiple-answer btn-option {{if multipleAnswerSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.multipleAnswer this}} onkeypress={{action 'selectOption' questionTypes.multipleAnswer this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.MA"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.true_false_question) 'hide-btn'}}">
+      <button class="btn true-false btn-option {{if trueFalseSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.trueFalse this}} onkeypress={{action 'selectOption' questionTypes.trueFalse this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.TOF"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.fill_in_the_blank_question) 'hide-btn'}}">
+      <button class="btn fib btn-option {{if fibSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.fib this}} onkeypress={{action 'selectOption' questionTypes.fib this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.FIB"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.hot_text_reorder_question) 'hide-btn'}}">
+      <button class="btn ht-reorder btn-option {{if htReorderSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.hotTextReorder this}} onkeypress={{action 'selectOption' questionTypes.hotTextReorder this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.HT&RO"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.hot_text_highlight_question) 'hide-btn'}}">
+      <button class="btn ht-highlight btn-option {{if htHighlightSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.hotTextHighlight this}} onkeypress={{action 'selectOption' questionTypes.hotTextHighlight this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.H-THL"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.hot_spot_text_question) 'hide-btn'}}">
+      <button class="btn hs-text btn-option {{if hsTextSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.hotSpotText this}} onkeypress={{action 'selectOption' questionTypes.hotSpotText this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.HSTXT"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and questionConfigTypes questionConfigTypes.hot_spot_image_question) 'hide-btn'}}">
+      <button class="btn hs-images btn-option {{if hsImagesSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.hotSpotImage this}} onkeypress={{action 'selectOption' questionTypes.hotSpotImage this}} tabindex={{tabindex}}>
+        <span class="text">{{t "search-filter.question-types.HSIMG"}}</span>
+      </button>
+    </li>
+      <li class="{{unless (and questionConfigTypes questionConfigTypes.open_ended_question) 'hide-btn'}}">
+          <button class="btn free-response btn-option {{if freeResponseSelected 'selected'}}" onclick={{action 'selectOption' questionTypes.openEnded this}} onkeypress={{action 'selectOption' questionTypes.openEnded this}} tabindex={{tabindex}}>
+              <span class="text">{{t "search-filter.question-types.OE"}}</span>
+          </button>
+      </li>
+  </ul>
+</section>

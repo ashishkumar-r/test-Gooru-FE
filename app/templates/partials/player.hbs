@@ -1,0 +1,74 @@
+<div class="main" role="main">
+  {{#if showReport}}
+    {{#if showBackLink}}
+      <div class="report-navigation">
+        <button {{action "closePlayer"}} class="btn btn-info back">
+            <span>
+              {{gru-icon name='keyboard_arrow_left'}}
+              {{t 'common.back'}}
+            </span>
+        </button>
+      </div>
+    {{/if}}
+    {{reports/gru-assessment-report assessmentResult=assessmentResult showReactionBar=showReactionBar}}
+  {{else}}
+    {{#if collection.hasResources }}
+      {{player/gru-navigation
+      collection=collection
+      submitted=assessmentResult.submitted
+      ratingScore=resourceResult.reaction
+      onFinishCollection="finishCollection"
+      onOpenNavigator="openNavigator"
+      onChangeEmotion="changeEmotion"
+      notifyingRealTime=notifyingRealTime
+      isTeacher=isTeacher
+      hasContext=hasContext
+      showReactionBar=showReactionBar
+      collapsedMenu=collapsedMenu}}
+
+      {{#if resource}}
+        {{player/gru-viewer
+        submitted=assessmentResult.submitted
+        resource=resource
+        resourceResult=resourceResult
+        collection=collection
+        onSubmitQuestion="submitQuestion"
+        isNotIframeUrl=isNotIframeUrl
+        hasContext=hasContext
+        role=role
+        showReportLink=showReportLink
+        showCollectionAuthor=showCollectionAuthor
+        showQuestionFeedback=showQuestionFeedback
+        allowProfileNavigation=allowProfileNavigation
+        heightOffset=heightOffset}}
+      {{/if}}
+    {{else}}
+      {{! TODO add the not found component here}}
+    {{/if}}
+  {{/if}}
+</div>
+{{#unless showReport}}
+  <div class="aside">
+    {{player/gru-navigator
+    lessonTitle=lessonTitle
+    resourceResults=resourcesPlayer
+    collection=collection
+    originalCollection=originalCollection
+    isNavigationDisabled=isNavigationDisabled
+    onClosePlayer="closePlayer"
+    selectedResourceId=resourceId
+    onItemSelected="selectNavigatorItem"
+    onCloseNavigator="closeNavigator"
+    onFinishCollection="finishCollection"
+    hasContext=hasContext
+    isTeacher=isTeacher
+    onRemixCollection="remixCollection"
+    submitted=assessmentResult.submitted
+    showReportLink=showReportLink
+    showBackLink=showBackLink
+    showRemix=showRemix
+    showCollectionName=showCollectionName
+    showResourceNumber=showResourceNumber
+    collapsedMenu=collapsedMenu}}
+  </div>
+{{/unless}}

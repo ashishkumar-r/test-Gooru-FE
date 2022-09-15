@@ -1,0 +1,126 @@
+<div class="question-panel {{question.questionType}} {{if (eq question.questionType 'LS') 'likert-question-view'}}">
+  <div class="question-panel-left">
+    {{#if (eq question.questionType 'SERP_AFC')}}
+    <h2 class="slider">
+      <div class="font-size-loader">
+        <span class="font-label-loader">{{t 'common.adjust-font-size'}} : </span>
+        <input class="font-changer" title="fontChanger" value="14" type="range" min="10" max="24">
+      </div>
+    </h2>
+    {{/if}}
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>
+          {{#unless (eq question.questionType 'LS')}}
+          {{#if isComprehension}}
+          {{compIndex}}
+          {{/if}}
+          {{t "gru-question-viewer.question"}}
+          {{/unless}}
+          {{#if (eq question.questionType 'LS')}}
+            {{t 'content.questions.edit.builder.likert.question'}}
+          {{/if}}
+        </h2>
+        <div class="question">
+          <span class="text">{{gru-math-text text=(if question.isFIB question.fibText question.text)
+            isShowVideo=true}}</span>
+          {{#if question.hasMedia}}
+          <img src="{{question.mediaUrl}}" alt="question media" />
+          {{/if}}
+        </div>
+        <div>
+          {{partial 'components/player/gru-question-information'}}
+        </div>
+        {{#if (eq question.questionType 'LS')}}
+          {{component (question-config question.questionType 'component.player')
+          userAnswer=questionResult.userAnswer
+          instructionsActionTextKey=instructionsActionTextKey
+          question=question
+          baseQuestion=baseQuestion
+          readOnly=isInputDisabled
+          onAnswerChanged="changeAnswer"
+          onAnswerCleared="clearAnswer"
+          onAnswerCompleted="completeAnswer"
+          onAnswerLoaded="loadedAnswer"
+          }}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  {{#if hintsToDisplay}}
+  <div class="panel panel-primary hints">
+    <div class="panel-heading">
+      {{t "common.hints"}}
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <ol class="hints">
+          {{#each hintsToDisplay as |hint|}}
+          <li>{{{hint.hintText}}}</li>
+          {{/each}}
+        </ol>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  {{#if isExplanationShown}}
+  <div class="panel panel-primary explanation">
+    <div class="panel-heading">
+      {{t "common.explanation"}}
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        {{#if isExplanationShown}}
+        <p class="explanation">{{{question.explanation}}}</p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</div>
+<div class="answers-panel {{if (eq question.questionType 'LS') 'likert-answer-view'}}">
+  <div class="panel panel-default {{question.questionType}} {{if (eq question.questionType 'SERP_AFC') 'not-comp' '' }}" >
+        <div class="panel-body">
+            {{#if (and (not-eq question.questionType 'SERP_AFC'))}}
+            <h2>{{t "gru-question-viewer.answer"}}
+              <div class="font-size-loader"><span class="font-label">{{t 'common.adjust-font-size'}} : </span><input class="font-changer" title="fontChanger" value="10" type="range" min="10" max="20"></div>
+            </h2>
+          {{/if}}
+      
+      {{component (question-config question.questionType 'component.player')
+      userAnswer=questionResult.userAnswer
+      instructionsActionTextKey=instructionsActionTextKey
+      question=question
+      baseQuestion=baseQuestion
+      readOnly=isInputDisabled
+      onAnswerChanged="changeAnswer"
+      onAnswerCleared="clearAnswer"
+      onAnswerCompleted="completeAnswer"
+      onAnswerLoaded="loadedAnswer"
+      }}
+      {{#if showFeedback}}
+      <div class="feedback">
+        <div class="feedback-content">
+          <div class="feedback-emotion {{if questionResult.correct " correct" "incorrect" }}">
+            <svg>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="{{appRootPath}}assets/emoji-one/emoji.svg#{{feedbackUnicode}}"></use>
+            </svg>
+          </div>
+          <span class="feedback-text">
+            {{t isCorrectMessageKey}}
+          </span>
+        </div>
+      </div>
+      {{/if}}
+      <div class="actions">
+        <button type="button" {{action "submitQuestion" }} tabindex="-1" class="save btn btn-success"
+          disabled="{{if isSubmitDisabled true null}}">{{t buttonTextKey}}</button>
+      </div>
+    </div>
+  
+  </div>
+
+</div>

@@ -1,0 +1,126 @@
+.gru-student-featured-course-card {
+  width: 300px;
+  float: left;
+  margin: 0 10px 30px;
+
+  .panel {
+    @include border-top-radius(4px);
+    @include border-bottom-radius(4px);
+    margin: 0;
+    position: relative;
+
+    .panel-heading {
+      width: 100%;
+      padding: 0;
+      height: 40px;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      border-bottom: 1px solid $dark-600;
+
+      > .title {
+        width: 100%;
+        padding: 6px;
+
+        a {
+          color: $dark-600;
+          margin: 0;
+          font-size: $font-size-h6;
+          font-weight: bold;
+        }
+        $line-height: 1.3;
+        $lines-to-show: 1;
+
+        .truncate {
+          @include ellipsis(
+            $font-size: $font-size-base,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show,
+            $excerpt-bg: $white
+          );
+        }
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+
+      .information {
+        height: 167px;
+        width: 100%;
+        color: $white;
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-weight: bold;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        .study-btn {
+          padding: 8px 15px;
+          background-color: $blue-9d2;
+          font-size: 14px;
+          text-transform: uppercase;
+          float: right;
+          cursor: pointer;
+          box-shadow: 1px 0 4px 0 $navbar-default-toggle-icon-bar-bg;
+          margin-bottom: 8px;
+          background-image: linear-gradient(
+            to right,
+            $blue-bdf 21%,
+            $blue-400 75%
+          );
+
+          &.studying {
+            font-style: italic;
+          }
+        }
+
+        .collaborator-count {
+          margin-bottom: 8px;
+          background-color: $dark-400;
+          display: flex;
+          width: 80px;
+          height: 32px;
+          align-items: center;
+          justify-content: center;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          i {
+            margin-left: 5px;
+          }
+        }
+      }
+      .description {
+        padding: 6px;
+        box-shadow: 1px 0 4px 0 $navbar-default-toggle-icon-bar-bg;
+        line-height: 1.6;
+        min-height: 50px;
+
+        &.content-collapse {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .expand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        cursor: pointer;
+        .expand-icon {
+          width: 40px;
+          height: 8px;
+          border-radius: 4px;
+          background-color: $light-400;
+        }
+      }
+    }
+  }
+}

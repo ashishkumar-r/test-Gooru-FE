@@ -1,0 +1,38 @@
+<div class="profile">
+  <div class="content-panel col-sm-12 col-md-12 col-lg-11">
+    <div class="user-profile-container">
+      <div class="user-profile-box">
+        {{#if (and (not isAnonymousUser) (not isMyProfile))}}
+          <div class="user-profile-back-arrow" {{action 'onClickBackButton'}}>
+            {{gru-icon name="ic_arrow_back"}}
+          </div>
+        {{/if}}
+      </div>
+      <div class="user-profile-info">
+        <div class="profile">
+          <span class="username pull-left">{{profile.firstName}}</span>
+          <div class="img-container pull-left">
+            <img class="img-responsive" src="{{profile.avatarUrl}}" alt="profileAvatar">
+          </div>
+          <span class="username pull-left">{{profile.lastName}}</span>
+        </div>
+      </div>
+    </div>
+
+    {{profile/gru-navigation-tabs
+    profile=profile
+    currentLoginUser=currentLoginUser
+    isMyProfile=isMyProfile
+    steps=steps
+    onFollowChanged="toggleFollowingStatus"
+    onItemSelected="selectMenuItem"
+    selectedMenuItem=menuItem
+    isFromLearnerProfile=isFromLearnerProfile
+    source=profileSource
+    tabindex="3"}}
+
+
+
+    {{outlet}}
+  </div>
+</div>

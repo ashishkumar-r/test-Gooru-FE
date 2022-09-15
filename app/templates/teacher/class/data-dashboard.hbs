@@ -1,0 +1,20 @@
+<div class="data-dashboard-container">
+    <div class="data-dashboard-content">
+      {{#if (eq activeComponent 'milestone')}}
+        {{teacher/class/milestone-report
+          currentClass=currentClass
+          fwCompetencies=fwCompetencies
+          fwDomains=fwDomains
+          studentTimespentData=studentTimespentData
+          isPublicClass=isPublicClass
+          course=courseData
+          onGoBack="onGoBack"
+        }}
+      {{else}}
+        {{teacher/class/diagnostic-report
+          currentClass=currentClass
+          onGoBack="onGoBack"
+        }}
+      {{/if}}
+    </div>
+</div>

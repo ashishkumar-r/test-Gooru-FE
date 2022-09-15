@@ -1,0 +1,55 @@
+.adw-report-preview {
+  .student-evidence {
+    .student-head {
+      background-color: $suggestion-panel-color;
+      color: $white;
+      .student-details {
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        border-bottom: 1px solid $light-200;
+        .student-img {
+          img {
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+          }
+        }
+        .student-name {
+          display: flex;
+          align-items: center;
+          margin-left: 10px;
+          font-weight: bolder;
+        }
+      }
+    }
+    .student-attempt {
+      padding: 10px 15px;
+      font-size: 15px;
+      font-weight: bolder;
+    }
+    .student-data {
+      .evidence-data {
+        display: grid;
+        padding-left: 15px;
+        .image-container {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        img {
+          height: 150px;
+          object-fit: cover;
+          padding: 5px;
+        }
+      }
+      .evidence-header {
+        font-size: 15px;
+        font-weight: bolder;
+        text-transform: capitalize;
+      }
+      .evidence-body {
+        font-size: 14px;
+      }
+    }
+  }
+}

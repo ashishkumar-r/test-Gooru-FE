@@ -1,0 +1,17 @@
+{{#each gradeableItems as |item|}}
+  <div class="item {{if primaryClass.isArchived 'disabled-item'}}" onclick={{action 'openReportGrade' item}} onkeypress={{action 'openReportGrade' item}} tabindex={{tabindex}}>
+    <div class="grade-item ellipsis">
+      <span class="icon"><i class="{{item.contentType}}-icon"></i></span>
+      <span class="question-name ellipsis">{{safe-html (if (eq item.contentType 'offline-activity') item.content.title item.collection.title)}}</span>
+      <span class="icon"><i class="{{item.contentType}}-icons"></i></span>
+    </div>
+  </div>
+  {{#each item.contents as |content|}}
+    <div class="item sub-list {{if primaryClass.isArchived 'disabled-item'}}">
+      <div class="grade-item ellipsis">
+        <span class="question-name ellipsis">{{safe-html content.title}}</span>
+        <span class="icon"><i class="assessment-icon"></i></span>
+      </div>
+    </div>
+  {{/each}}
+{{/each}}

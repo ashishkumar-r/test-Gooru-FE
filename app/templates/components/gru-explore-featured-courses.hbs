@@ -1,0 +1,33 @@
+<div class="panel featured-courses">
+  <div class="panel-heading">{{t 'common.explore'}}</div>
+  <div class="panel-body">
+    <div class="legend">
+      {{t 'student-landing.browse-featured-courses'}}
+    </div>
+    <div class="courses">
+      {{#each courses as |course index|}}
+        {{cards/gru-course-card
+          course=course
+          isFromLandingPage=true
+          isSmall=true
+          showTaxonomy=false
+          profile=profile
+          onPlayCourse='playCourse'
+          onBookmarkCourse='onBookmarkCourse'
+        }}
+      {{/each}}
+    </div>
+    <div class="actions">
+      {{#link-to 'library' class="btn btn-info library" tagName='button'}}
+        {{t 'common.featured-courses'}}
+      {{/link-to}}
+    </div>
+    <div class="pull-right will-disappear">
+      {{#if (eq loginCount 5)}}
+        {{t 'common.disappear-next-login'}}
+      {{else}}
+        {{t 'common.disappear-after-login' loginNumber=(sub 6 loginCount)}}
+      {{/if}}
+    </div>
+  </div>
+</div>

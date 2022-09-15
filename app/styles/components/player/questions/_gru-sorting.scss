@@ -1,0 +1,54 @@
+.gru-sorting {
+  .gru-sorting-container {
+    .sorting-list-panel {
+      .group-panel-title {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 10px;
+        border-bottom: 1px solid $dark-300;
+
+        span {
+          padding: 10px 0;
+          font-size: 18px;
+          text-align: center;
+
+          &:first-child {
+            border-right: 1px dashed $light-200;
+          }
+          &:last-child {
+            border-left: 1px dashed $light-200;
+          }
+        }
+      }
+      .group-panel-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 10px;
+
+        ul {
+          min-height: 200px;
+          padding: 10px;
+
+          &.column-soft-blk {
+            border-right: 1px dashed $light-200;
+          }
+
+          &.column-hard-blk {
+            border-left: 1px dashed $light-200;
+          }
+
+          li {
+            list-style: none;
+            padding: 5px;
+            border: 1px solid $light-200;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 15px;
+            font-style: italic;
+            cursor: move;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.gru-pull-out-xs {
+  .pull-out-ex {
+    top: 52px;
+  }
+  @media screen and (max-width: $screen-568) {
+    right: 0% !important;
+
+    .pull-out-ex {
+      left: 0;
+      top: 52px;
+
+      .notification-list {
+        width: 100vw;
+      }
+    }
+  }
+}
+.notification-list {
+  .notfication-container {
+    .list-item-container {
+      .line-suggestion-title {
+        width: 100%;
+        @include ellipsis(
+          $font-size: 13px,
+          $line-height: 1.2,
+          $lines-to-show: 1
+        );
+        display: block;
+      }
+    }
+  }
+}

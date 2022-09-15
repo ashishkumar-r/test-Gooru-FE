@@ -1,0 +1,167 @@
+<div class="domain-competency-performance-container">
+  <div class="performance-header-container">
+    <div class="domain-details">
+      <div class="domain-info">
+        <div class="back-arrow" onclick={{action "onClickBack"}} onkeypress={{action "onClickBack"}} tabindex={{tabindex}}>
+          {{gru-icon name="arrow_back"}}
+        </div>
+        <div class="center-content">
+          <div class="move-left {{if (lte activeDomainSeq 1) 'disabled'}}" onclick={{action "onChangeDomainSeq" 'left'}} onkeypress={{action "onChangeDomainSeq" 'left'}} tabindex={{tabindex}}>
+            {{gru-icon name="chevron_left"}}
+          </div>
+          <div class="domain-name ellipsis">
+            {{concat activeDomain.domainSeq '. ' (domain-gut-to-fw-transform fwDomains activeDomain.domainCode activeDomain.domainName 'fwDomainName' true)}}
+          </div>
+          <div class="move-right {{if (gte activeDomainSeq numberOfDomains) 'disabled'}}" onclick={{action "onChangeDomainSeq" 'right'}} onkeypress={{action "onChangeDomainSeq" 'right'}} tabindex={{tabindex}}>
+            {{gru-icon name="chevron_right"}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="performance-body-container {{if showCompetencyInfo 'show-competency'}}">
+    <div class="topic-label table-relative-column">
+      {{t 'common.topic'}}
+    </div>
+    <div class="competencies-info table-scroll-column">
+        {{#each activeDomainData.topics as |topic|}}
+          <span class="topic-coverage">
+            <span class="topic-seq" data-toggle="tooltip" data-placement="bottom auto" title="{{topic.topicName}}">
+              {{activeDomainSeq}}.{{topic.topicSeq}}
+            </span>
+            <span class="topic-competencies">
+              {{#each topic.competencies as |competency|}}
+                <div class="competency-info {{if (eq selectedCompetencyForSuggestion.competencyCode competency.competencyCode) 'active'}}" onclick={{action 'onSelectCompetency' competency}} onkeypress={{action 'onSelectCompetency' competency}} tabindex={{tabindex}}>
+                  <i class="info-icon" title="{{competency-gut-to-fw-transform
+                    fwCompetencies
+                    competency.competencyCode
+                    (if competency.competencyStudentDesc competency.competencyStudentDesc competency.competencyCode)
+                    'frameworkCompetencyName'
+                    false
+                    true
+                    }}" data-toggle="tooltip" data-placement="bottom auto">
+                  </i>
+                </div>
+              {{/each}}
+            </span>
+          </span>
+        {{/each}}
+      </div>
+
+    <div class="students-competencies-performance-container {{if showCompetencyInfo 'show-competency'}}">
+
+      <div class="student-competencies-perf-container">
+          <div class="students-list table-relative-column">
+            {{#each activeDomainCompetencyPerformance.studentCompetencies as |studentCompetencyPerformance|}}
+
+              <div class="student-container">
+                <div class="user-profile-img">
+                  {{#if studentCompetencyPerformance.selectedForSuggestion}}
+                    <div class="selected-user-for-suggestion">
+                      {{gru-icon name="done_all"}}
+                      <div class="de-select-user" onclick={{action 'onDeSelectStudentForSuggestion' studentCompetencyPerformance bubbles=false}} onkeypress={{action 'onDeSelectStudentForSuggestion' studentCompetencyPerformance bubbles=false}} tabindex={{tabindex}}>
+                        {{gru-icon name="close"}}
+                      </div>
+                    </div>
+                  {{else}}
+                    <img alt="student avatar" src="{{studentCompetencyPerformance.avatarUrl}}" class="{{if studentCompetencyPerformance.selectedForSuggestion 'selected'}}" onclick={{action 'onSelectStudentForSuggestion' studentCompetencyPerformance bubbles=false}} onkeypress={{action 'onSelectStudentForSuggestion' studentCompetencyPerformance bubbles=false}} tabindex={{tabindex}} />
+                  {{/if}}
+                </div>
+                <div class="student-name">
+                  {{studentCompetencyPerformance.fullName}} {{if (not studentCompetencyPerformance.isShowLearnerData) '*'}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+
+          <div class="competencies-list">
+            {{#each activeDomainCompetencyPerformance.studentCompetencies as |studentCompetencyPerformance|}}
+              <div class="competencies-performance-container ">
+                {{#each studentCompetencyPerformance.competencies as |competencyPerformance|}}
+                  <div class="competency-performance tab-container {{if (eq selectedCompetencyForSuggestion.competencyCode competencyPerformance.competencyCode) 'active'}}"
+                    onclick={{action "onSelectStudentCompetency" competencyPerformance studentCompetencyPerformance.userId studentCompetencyPerformance}} onkeypress={{action "onSelectStudentCompetency" competencyPerformance studentCompetencyPerformance.userId studentCompetencyPerformance}} tabindex={{tabindex}}>
+                    <div class="check-circle status-{{competencyPerformance.competencyStatus}}"></div>
+                  </div>
+                {{/each}}
+              </div>
+            {{/each}}
+          </div>
+        </div>
+    </div>
+  </div>
+  {{#if isMobile}}
+    <div class="inspect-competency">
+      {{proficiency/competency-info-pull-up
+      fwDomains=fwDomains
+      fwCompetencies=fwCompetencies
+      students=studentsSelectedForSuggest
+      isInspectCompetency=showCompetencyInfo
+      class=class
+      onClosePullUp="onClosePullUp"
+      isStudent=false
+      studentListForSuggestion=studentsSelectedForSuggest
+      competency=selectedCompetencyForSuggestion
+      domainCompetencyList=domainCompetencies
+      isTeacherReport=true
+      tabindex=tabindex
+    }}
+    </div>
+  {{/if}}
+</div>
+<div class="domain-right-panel">
+  {{proficiency/domain-info-pull-up
+    fwDomains=fwDomains
+    fwCompetencies=fwCompetencies
+    onSelectCompetency="onSelectCompetency"
+    showPullUp=true
+    competencies=domainCompetencies
+    domain=activeDomain
+    isShowTopicCompetencies = true
+    tabindex=tabindex
+  }}
+  {{#if showCompetencyInfo}}
+    {{proficiency/competency-info-pull-up
+      fwDomains=fwDomains
+      fwCompetencies=fwCompetencies
+      students=studentsSelectedForSuggest
+      isInspectCompetency=showCompetencyInfo
+      class=class
+      onClosePullUp="onClosePullUp"
+      isStudent=false
+      studentListForSuggestion=studentsSelectedForSuggest
+      competency=selectedCompetencyForSuggestion
+      domainCompetencyList=domainCompetencies
+      proficiencyChartData=proficiencyChartData
+      isTeacherReport=true
+      tabindex=tabindex
+    }}
+  {{/if}}
+</div>
+{{#if isShowCompetencyContentReport}}
+  {{#reports/pull-up/competency-report
+    fwDomains=fwDomains
+    studentCompetencyPerformance=studentDetails
+    fwCompetencies=fwCompetencies
+    type=(if selectedCompetency.competencyStudentDesc selectedCompetency.competencyStudentDesc selectedCompetency.competencyCode)
+    title=selectedCompetency.competencyStudentDesc
+    showPullUp=isShowCompetencyContentReport
+    onClosePullUp="onCloseCompetencyReportPullUp"
+    competency=selectedCompetency
+    proficiencyChartData=proficiencyChartData
+    class = class
+  }}
+    {{reports/pull-up/competency-content-report
+     studentCompetencyPerformance=studentDetails
+     fwCompetencies=fwCompetencies
+     domainCompetencyList=domainCompetencyList
+     competency=selectedCompetency
+     class=class
+     userId=selectedStudentUserId
+     learningMapData=learningMapData
+     tabindex=tabindex
+     classFrameworkCode = classFramework
+     isDefaultShowFW = isDefaultShowFW
+     proficiencyChartData=proficiencyChartData
+   }}
+  {{/reports/pull-up/competency-report}}
+{{/if}}

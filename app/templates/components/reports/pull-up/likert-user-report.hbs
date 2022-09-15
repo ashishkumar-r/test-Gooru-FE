@@ -1,0 +1,61 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="question-report-container">
+  <div class="report-header">
+    <div class="report-breadcrumb hidden-xs">
+      <div class="unit-title">
+        <i class="unit-icon"></i>
+        <p>{{t 'common.unit'}} {{unit.sequence}} : {{unit.title}}</p>
+      </div>
+      <div class="lesson-title">
+        {{gru-icon name="keyboard_arrow_right"}}
+        <i class="lesson-icon"></i>
+        <p>{{t 'common.lesson'}} {{lesson.sequence}} : {{lesson.title}}</p>
+      </div>
+      <div class="collection-title">
+        {{gru-icon name="keyboard_arrow_right"}}
+        <i class="collection-icon {{collection.format}}"></i>
+        <p>{{collection.title}}</p>
+      </div>
+    </div>
+    <div class="report-title hidden visible-xs">
+      <div class="title">
+        <p>{{t 'common.unit'}} {{unit.sequence}} / {{t 'common.lesson'}} {{lesson.sequence}} :</p>
+        <i class="collection-icon {{collection.format}}"></i>
+        <p class="ellipsis">{{collection.title}}</p>
+      </div>
+    </div>
+    <div class="report-close-pullup" onclick={{action 'reportClose' }} onkeypress={{action 'reportClose' }}
+      tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="student-details-container">
+      {{#each userScalePoints as |data|}}
+      {{#if data.userInfo}}
+      <div class="student-scale-name">
+        {{data.levelName}}
+      </div>
+      <div class="student-bar-info">
+        <div class="student-percentage" style="width:{{data.userPercentage}}%;"></div>
+        <div class="student-count">
+          {{data.userInfo.length}}</div>
+      </div>
+
+      <div class="student-profile-content">
+        {{#each data.userInfo as |userProfile|}}
+        <div class="student-profile-icon">
+          <span>
+            <img src="{{userProfile.thumbnailImage}}"
+              alt="student avatar" class="student-img-icon">
+          </span>
+          <div class="student-fullname">{{userProfile.firstName}}
+            {{userProfile.lastName}}</div>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+      {{/each}}
+    </div>
+  </div>
+</div>

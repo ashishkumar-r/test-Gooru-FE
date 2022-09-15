@@ -1,0 +1,10 @@
+<div class="pull-up-header-bar">
+  <p>{{contextHeader}}</p>
+  <div class="icons" onclick={{action 'togglePullUp'}} onkeypress={{action 'togglePullUp'}} tabindex="0">
+    {{gru-icon name="arrow_drop_up" class="ca-datepicker-up"}}
+    {{gru-icon name="arrow_drop_down" class="ca-datepicker-bottom"}}
+  </div>
+</div>
+<div class="pull-up-content">
+  {{yield}}
+</div>

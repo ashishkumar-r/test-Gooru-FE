@@ -1,0 +1,52 @@
+.teacher-featured-courses {
+  clear: both;
+  @include flexbox;
+  margin: 0 0 20px 15px;
+
+  .courses {
+    margin: 10px 0 0;
+
+    .gru-standard-card {
+      width: 220px;
+      height: 210px;
+      margin: 0 25px 0 0;
+      @include inline-flex;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      .panel {
+        .cca-description {
+          .remixed-by {
+            float: $tab-float-dir;
+
+            .owner {
+              max-width: 75px;
+            }
+          }
+
+          .publish-icon {
+            width: 20px;
+            float: $menu-float-dir;
+          }
+        }
+
+        .panel-footer {
+          padding: 0;
+
+          .options {
+            width: 132%;
+            padding: 0;
+          }
+          .preview-btn {
+            width: 74px;
+            height: 40px;
+            color: $white;
+            background-color: $blue-400;
+          }
+        }
+      }
+    }
+  }
+}

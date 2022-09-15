@@ -1,0 +1,201 @@
+<div class="summary-report-questions">
+  <div class="questions-header">
+    <div class="title">
+      <h4>{{if isOpenEnded (t "common.questions-OE") (t "common.questions")}}</h4>
+    </div>
+  </div>
+  <div class="question-container">
+    <div class="question-header-container">
+      <div class="question-title-container">
+        <div class="question-order">{{contentSeq}}.</div>
+        <div class="question-icon"></div>
+        <div class="title ellipsis">{{safe-html content.resource.title}}</div>
+      </div>
+      {{#unless isFreeResponse}}
+      <div class="gru-question-container">
+        <div class="question-performance-container">
+          <div class="question-reaction">
+            {{reaction-icon content.reaction }}
+          </div>
+          {{#if hideAnswerStatus}}
+            {{#if (not content.answered content.timeSpent)}}
+              <div class="question-status" data-toggle="tooltip" title="Skipped">
+                {{gru-icon name="block"}}
+              </div>
+            {{else}}
+              {{#unless (eq content.resource.type 'LS')}}
+              <div class="question-score">
+                <span class="{{scoreEvaluate}}" data-toggle="tooltip" title={{t (concat 'common.' scoreEvaluate)}}>
+                  {{#if (or content.answered content.started)}}
+                    {{#if (and isTeacher isChangeScoreEnabled showChangeScore isAssessment showPerformance)}}
+                      {{gru-status-switch onOptionSwitch='changeQuestionScore' isChecked=content.correct item=content}}
+                    {{else}}
+                      <i class="icon"> </i>
+                    {{/if}}
+                  {{else}}
+                    {{gru-icon name='radio_button_checked'}}
+                  {{/if}}
+                </span>
+              </div>
+              {{/unless}}
+            {{/if}}
+          {{/if}}
+          {{#if (or content.resource.isOpenEnded content.resource.isScientificFreeRes content.resource.isScientificFIB)}}
+            <div class="question-report">
+              {{#if content.isGraded}}
+                <a {{action 'viewOEReport' content.resource.id}}>
+                  <span class="report-icon">{{gru-icon name='library_books'}}</span>
+                </a>
+              {{/if}}
+            </div>
+          {{/if}}
+          <div class="question-timespent">
+            {{format-time content.timeSpent}}
+          </div>
+        </div>
+        {{#if (or content.resource.isOpenEnded content.resource.isScientificFreeRes content.resource.isScientificFIB)}}
+          {{#if content.isGraded}}
+            <div class="gru-question-expert-score-container">
+              <div class="gru-question-expert-score grade-range-{{grade-range content.score}}">
+                {{content.studentScore}}/{{content.resource.maxScore}}
+              </div>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+      {{/unless}}
+    </div>
+    <div class="taxonomies-conatiner">
+      {{#if taxonomyTags.length}}
+
+        {{taxonomy/gru-taxonomy-tag-list tags=taxonomyTags tagsVisible=2 isInCard=true}}
+
+      {{/if}}
+    </div>
+    <div class="show-more-container-panel {{if (and (not isExpanded) hasMoreText) 'show-more'}}" >
+      <div class="question-description">
+        {{gru-math-text text=(if content.resource.isFIB content.resource.fibText content.resource.text)}}
+      </div>
+
+      {{#if content.resource.isChooseOne}}
+        <div class="question-description">
+          {{gru-math-text text=content.resource.questionText}}
+        </div>
+      {{/if}}
+      {{#if (or content.resource.hasMedia content.resource.thumbnail)}}
+        <div class="question-thumbnail">
+          {{#if content.resource.hasMedia}}
+            <img class="img-responsive" src="{{content.resource.mediaUrl}}" alt="question-thumbnail" />
+          {{else}}
+            {{#if content.resource.thumbnail}}
+              <img class="img-responsive" src="{{content.resource.thumbnail}}" alt="question-thumbnail" / />
+            {{/if}}
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+    {{#if hasMoreText}}
+      <div class="show-more-desc" {{action 'onShowMore'}}>
+          <span class="show-more-btn">{{t (if isExpanded 'student-independent-learning.show-less' 'student-independent-learning.show-more')}}</span>
+      </div>
+    {{/if}}
+    
+    <div class="answer-container {{content.resource.type}}">
+      {{#if (or content.timeSpent content.answered (eq content.resource.type "SERP_AFC")) }}
+        <div class="user-answer answer-section">
+          <div class="answer-type-label type-label">
+            {{#if (not content.resource.userAnswer)}}
+              {{#if isTeacher}}
+                {{t 'common.report-students'}} {{answerHead}}
+              {{else}}
+                {{t 'common.report-your'}} {{answerHead}}
+              {{/if}}
+            {{else}}
+              {{#if isStudent}}
+                {{t 'common.report-your'}} {{answerHead}}
+              {{else}}
+                {{t 'common.report-students'}} {{answerHead}}
+              {{/if}}
+            {{/if}}
+          </div>
+          <div class="answer-value-container">
+            {{#if (or content.timeSpent content.answered (eq content.resource.type "SERP_AFC"))}}
+              {{{component (question-config content.resource.type 'component.answer')
+                  question=content.resource
+                  showCorrect=(if (eq content.resource.type "SERP_AFC") (not showPerformance) false)
+                  subQuestions=content.subQuestions
+                  userAnswer=content.userAnswer
+                  answerObj=content.answerObject
+                  class=class
+                  gradetype = isTeacher}}}
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+      {{#unless (and (not isTeacher) isAnswerKeyHidden)}}
+        {{#if ( and (not showPerformance) (not-eq content.resource.type 'LS') (not isOpenEnded) (not content.skipped))}}
+          <div class="correct-answer answer-section">
+            <div class="answer-type-label type-label">{{t 'common.correct-answer'}}</div>
+            <div class="answer-value-container">
+              {{{component (question-config content.resource.type 'component.answer') question=content.resource
+          showCorrect=true}}}
+            </div>
+          </div>
+        {{/if}}
+      {{/unless}}
+    </div>
+    {{#unless (and (not isTeacher) isAnswerKeyHidden)}}
+      {{#if ( and (not showPerformance) (not isOpenEnded) (not content.skipped) isShowExemplarText)}}
+        {{#if (or content.resource.hintExplanationDetail content.resource.exemplarDocs.length)}}
+          <div class="solution">{{t 'common.solution'}}</div>
+          {{#if content.resource.hintExplanationDetail}}
+            <div class='exemplar-answer'>
+              <p class='exemplar-readonly'>
+                {{safe-html (if content.resource.hintExplanationDetail content.resource.hintExplanationDetail '--')}}
+              </p>
+            </div>
+          {{/if}}
+          {{#if content.resource.exemplarDocs.length}}
+            <div class="exemplar-file">
+              {{#each content.resource.exemplarDocs as | item index|}}
+                <a href='{{item.filePath}}' target="_blank">{{item.fileName}}</a>
+              {{/each}}
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    {{/unless}}
+    {{#if content.evidence}}
+      <div class="evidence">
+        <div class="title">{{t 'common.evidence'}}</div>
+        {{#each content.evidence as |evidence|}}
+          <div class="evidence-view">
+            <i class="material-icons" {{action 'onShowPullUp' evidence}}>visibility</i>
+            <div class="file-details" {{action 'onShowPullUp' evidence}}>
+              <div class="title-name">{{t 'common.evidence'}}</div>
+              <div class="name">{{evidence.originalFileName}}</div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      {{#if isShowFilePullUp}}
+        <div class="iframe-container">
+          <div class="back-drop" {{action 'onClosePullup' }}></div>
+          <div class="iframe-panel">
+            <div class="close-panel">
+              <div class="fileName">{{activeFile.originalFileName}}</div>
+              <i class="gru-icon material-icons" {{action 'onClosePullup' }}>close</i>
+            </div>
+            <iframe src="{{activeFile.fileName}}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
+    {{#if (and content.isGraded (or content.overallComment content.feedbackComment))}}
+      <div class="feedback-section">
+        <span class="feedback-title">{{t 'common.feedback'}}</span>
+        <span class="feedback-description">{{if content.feedbackComment content.feedbackComment content.overallComment}}</span>
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,270 @@
+{{#if isShowConfirmPullup}}
+  <div class="back-drop" aria-label="close popup" onclick={{action 'closeConfirmPullup'}} onkeypress={{action 'closeConfirmPullup'}} tabindex={{tabindex}}></div>
+  <div class="milestone-pullup-container">
+    <div class="section-container">
+      <div class="title">{{t 'publish-to-google-classroom'}}</div>
+      {{#if isLoading}}
+      <div class="description"> {{t 'publishing-to' activityTitle=activityTitle classroomName=googleClassroomName}}</div>
+        <div class="loading-spinner">
+          {{three-bounce-spinner}}
+        </div>
+      {{else}}
+      <div class="description"> {{t 'successfully-published' classroomName=googleClassroomName}}</div>
+        <div class="close-btn">
+          <button type="button" name="button" aria-label="close popup" {{action 'closeConfirmPullup'}} tabindex="101">{{t 'common.close'}}</button>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+{{/if}}
+<div class="milestone-course-map-container {{if isClassActivity 'class-activity-milestone'}}">
+  {{#each milestones as | milestone milestoneIndex | }}
+    <div class="milestone-course-map {{if milestone.isActive 'active'}} {{if milestone.isClassGrade 'class-grade'}}">
+      <div class="milestone-course-map-panel  {{if milestone.isActive 'active'}}">
+        <div class="milestone-info-container" onclick={{action 'toggleMilestoneItems' milestone }} onkeypress={{action 'toggleMilestoneItems' milestone }} tabindex={{tabindex}}>
+          <div class="milestone-icon-upward-line {{if  (eq milestoneIndex 0) 'hidden'}}">
+            <svg height="40" width="20">
+              <line x1="0" y1="0" x2="0" y2="40" />
+            </svg>
+          </div>
+          <div class="milestone-flag-icon">
+            {{gru-icon name="flag"}}
+          </div>
+          <div class="milestone-title">
+            <p>
+              {{#if milestone.isUnit0}}
+                {{milestone.milestoneTitle}}
+              {{else}}
+                {{gradeSubject.title}} - {{milestone.grade_name}}
+              {{/if}}
+              {{#if (gte milestone.performance.completedInPrecentage 0) }} ({{milestone.performance.completedInPrecentage}}% {{t 'common.completed'}}) {{/if}}
+            </p>
+          </div>
+          <div class="milestone-caret">
+            {{#if milestone.isActive}}
+              {{gru-icon name="arrow_drop_up"}}
+            {{else}}
+              {{gru-icon name="arrow_drop_down"}}
+            {{/if}}
+          </div>
+        </div>
+        {{#if showPerformance}}
+          <div class="milestone-peformance {{unless milestone.performance.hasStarted 'disable-event'}} {{concat 'grade-range-' (grade-range milestone.performance.scoreInPercentage)}}" onclick={{action "onOpenMilestoneReport" milestone}}
+            onkeypress={{action "onOpenMilestoneReport" milestone}} tabindex={{tabindex}}>
+            {{#if milestone.performance.hasStarted}}
+              <span class="score">
+                {{#if (eq milestone.performance.scoreInPercentage null)}}
+                <span class="not-started">{{t 'common.not_started'}}</span>
+                {{else}}
+                  {{concat milestone.performance.scoreInPercentage '%'}}
+                {{/if}}</span>
+              <span class="no-of-submissions">
+                <span class="count">{{milestone.numberOfSubmissions}}</span> {{gru-icon name="account_circle"}}
+              </span>
+            {{else}}
+                <span class="not-started">{{t 'common.not_started'}}</span>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+      <div class="milestone-course-map-lesson-container" id="milestone-{{milestone.milestone_id}}">
+        {{#if milestone.hasLessonFetched}}
+          {{#if milestone.lessons}}
+            {{#each milestone.lessons as | lesson lessonIndex |}}
+              <div class="milestone-course-map-lesson {{if milestoneHasClassGrade 'class-grade-milestone'}}  {{if lesson.isNextActive 'next-active'}} {{if lesson.isPrevActive 'prev-active'}} {{if lesson.isActive 'active'}}">
+                <div class="milestone-course-map-lesson-panel first-path-{{lesson.firstCollHasSuggsType}} prev-col-path-{{lesson.prevLeCollHasSuggsType}}  {{if lesson.has-activity 'has-activity'}} {{if (and isShowContentVisibility  (not class.isArchived)) 'content-visibility'}}">
+                  <div class="lesson-icon-container" onclick={{action 'toggleLessonItems'milestone milestone.lessons lesson lessonIndex }} onkeypress={{action 'toggleLessonItems'milestone milestone.lessons lesson lessonIndex }} tabindex={{tabindex}}>
+                    <div class="lesson-icon-upward-line">
+                      <svg height="35" width="20">
+                        <line x1="0" y1="0" x2="0" y2="35" />
+                        <path class="path-right" d="M 0 0  t 8 17 -5 60" />
+                        <path class="path-left" d="M 15 0  t -8 17 5 60" />
+                      </svg>
+                    </div>
+                    <i class="lesson-icon"></i>
+                  </div>
+                  <div class="domain-lesson-title" onclick={{action 'toggleLessonItems'milestone milestone.lessons lesson lessonIndex }} onkeypress={{action 'toggleLessonItems'milestone milestone.lessons lesson lessonIndex }} tabindex={{tabindex}}>
+                    <p class="domain-name">{{lesson.tx_domain_name}}</p>
+                    <p>{{lesson.lesson_title}}</p>
+                  </div>
+
+                  {{#if (and isTeacher  isShowContentVisibility (not class.isArchived) (not milestone.isRoute0) (not milestone.isUnit0))}}
+                    <span class="visiblity-switch" data-toggle="tooltip" data-html="true" data-placement="top" title="{{t "common.assign"}}">
+                      {{gru-switch
+                        switchOptions=switchOptions
+                        onOptionSwitch='changeVisibility'
+                        isChecked=lesson.visible
+                        item=lesson
+                        tabindex=tabindex }}
+                    </span>
+                  {{/if}}
+
+                  {{#if showPerformance}}
+                    <div class="lesson-peformance {{unless lesson.performance.hasStarted 'disable-event'}} {{concat 'grade-range-' (grade-range lesson.performance.scoreInPercentage)}}" onclick={{action "onOpenLessonReport" milestone lesson}}
+                      onkeypress={{action "onOpenLessonReport" milestone lesson}} tabindex={{tabindex}}>
+                      {{#if lesson.performance.hasStarted}}
+                        <span class="score">
+                          {{#if (eq lesson.performance.scoreInPercentage null)}}
+                          <span class="not-started">{{t 'common.not_started'}}</span>
+                          {{else}}
+                            {{concat lesson.performance.scoreInPercentage '%'}}
+                          {{/if}}
+                        </span>
+                        <span class="no-of-submissions">
+                          <span class="count">{{lesson.numberOfSubmissions}}</span> {{gru-icon name="account_circle"}}
+                        </span>
+                      {{else}}
+                      <span class="not-started">{{t 'common.not_started'}}</span>
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                </div>
+                <div class="milestone-course-map-collection-container  {{if (and isShowContentVisibility (not lesson.visible) (not milestone.isRoute0) (not milestone.isUnit0) (not class.isArchived)) 'disable-container'}}" id="milestone-lesson-{{milestone.milestone_id}}-{{lesson.lesson_id}}-{{lessonIndex}}">
+                  {{#if lesson.hasCollectionFetched}}
+                    {{#if lesson.collections}}
+                      {{#each lesson.collections as | collection |}}
+                        <div class="milestone-course-map-collection {{if milestoneHasClassGrade 'class-grade-milestone'}} {{if (and isShowContentVisibility (not collection.visible) (not isTeacher) (not milestone.isRoute0) (not milestone.isUnit0) (not class.isArchived)) 'disable-events'}}">
+                          <div
+                            class="milestone-course-map-collection-panel prev-coll-path-{{collection.prevCollHasSuggsType}} next-coll-path-{{collection.nextCollHasSuggsType}} path-{{collection.pathType}}  {{if collection.has-activity 'has-activity'}} {{if (and isShowFluency collection.metadata.fluency) 'course-map-panel'}} {{if (and isShowContentVisibility (not class.isArchived)) 'content-visibility'}}">
+                            <div class="collection-icon-container">
+                              <div class="collection-icon-upward-line">
+                                <svg height="35" width="20">
+                                  <line x1="0" y1="0" x2="0" y2="35" />
+                                  <path class="path-right" d="M 0 0  t 8 17 -5 60" />
+                                  <path class="path-left" d="M 15 0  t -8 17 5 60" />
+                                </svg>
+                              </div>
+                              <i class="collection-icon path-{{collection.pathType}}  format-{{collection.format}}"></i>
+                            </div>
+                            <div class="collection-title-container" onclick={{action 'openCollectionPreview' lesson.unit_id lesson.lesson_id collection}} onkeypress={{action 'openCollectionPreview' lesson.unit_id lesson.lesson_id collection}}
+                              tabindex={{tabindex}}>
+                              <p>{{collection.title}}</p>
+                              <i class="{{collection.format}}-icons"></i>
+                            </div>
+
+                            {{#if (and isShowFluency collection.metadata.fluency)}}
+                              <div class="flu-btn">
+                                <span aria-label="fluency code" class="btn btn-xs" data-toggle="popover" data-content={{collection.metadata.fluency.fluency_description}}
+                                  tabindex={{tabindex}}>{{collection.metadata.fluency.fluency_display_code}}</span>
+                              </div>
+                            {{/if}}
+
+                            {{#if isClassActivity}}
+                              <div class="collection-actions-btn">
+                                <div class="add-dca-content {{if collection.isAdded 'added'}}" data-toggle="tooltip" data-html="true" data-placement="bottom" title="{{t 'add.to.todays.class'}}" data-trigger="hover"
+                                  onclick={{action "onAddActivity" collection}} onkeypress={{action "onAddActivity" collection}} tabindex={{tabindex}}>
+                                  {{gru-icon name="add"}} {{gru-icon name="done"}}
+                                </div>
+                                <div class="schedule-dca-content ca-datepicker-popover {{if collection.isScheduled 'has-scheduled'}}" title="{{t 'teacher-landing.schedule-for-later'}}" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                                  data-trigger="hover" {{action "onScheduleActivity" collection}}>
+                                  {{gru-icon name="update"}}
+                                </div>
+                              </div>
+                            {{else}}
+                              <div class="google-classroom-icon" {{action 'onPostAssignment' milestone.milestone_id lesson.unit_id lesson.lesson_id collection}}>
+                                {{#if isTagGoogleClassroom}}
+                                  <i class="classroom-icon"></i>
+                                {{/if}}
+                              </div>
+
+                              {{#if (and isTeacher isShowContentVisibility (not class.isArchived) (not milestone.isRoute0) (not milestone.isUnit0)) }}
+                                <span class="visiblity-switch" data-toggle="tooltip" data-html="true" data-placement="top" title="{{t "common.assign"}}">
+                                  {{gru-switch
+                                    switchOptions=switchOptions
+                                    onOptionSwitch='changeVisibility'
+                                    isChecked=collection.visible
+                                    item=collection
+                                    tabindex=tabindex }}
+                                </span>
+                              {{/if}}
+
+                              <div class="collection-go-live {{if (or isInstructionalCoache class.isArchived) 'disable-event'}}" onclick={{action 'goLive' collection lesson}} onkeypress={{action 'goLive' collection lesson}} tabindex={{tabindex}}>
+                                {{#unless (or collection.isExternalAssessment collection.isExternalCollection collection.isOfflineActivity) }}
+                                  <i class="go-live-icon"></i>
+                                {{/unless}}
+                              </div>
+                            {{/if}}
+                            <div class="collection-content-counts">
+                              <div class="resource-count" title="{{t 'common.resource'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+                                {{#if (gt collection.resourceCount 0)}}
+                                  <i class="resource-icon"></i>
+                                  <span>{{collection.resourceCount}}</span>
+                                {{/if}}
+                              </div>
+                              <div class="question-count" title="{{t 'common.question'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+                                {{#if (gt collection.questionCount 0)}}
+                                  <i class="question-icon"></i>
+                                  <span>{{collection.questionCount}}</span>
+                                {{/if}}
+                              </div>
+                              {{#if (or (eq collection.format 'assessment-external') (eq collection.format 'collection-external'))}}
+                                <i class="external-icon" title="{{t 'common.assessment-external'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"></i>
+                              {{/if}}
+                            </div>
+                            {{#if (and showPerformance collection.performance.hasStarted) }}
+                              <div class="collection-peformance format-{{collection.format}} {{concat 'grade-range-' (grade-range collection.performance.scoreInPercentage)}}" onclick={{action "onOpenCollectionReport" milestone lesson collection}}
+                                onkeypress={{action "onOpenCollectionReport" milestone lesson collection}} tabindex={{tabindex}}>
+                                {{#if (and (or collection.isAssessment collection.isOfflineActivity) (gte collection.performance.scoreInPercentage 0))}}
+                                  <span class="score">
+                                    {{#if (eq collection.performance.scoreInPercentage null)}}
+                                      --
+                                    {{else}}
+                                      {{concat collection.performance.scoreInPercentage '%'}}
+                                    {{/if}}
+                                  </span>
+                                  <span class="no-of-submissions">
+                                    <span class="count">{{collection.numberOfSubmissions}}</span> {{gru-icon name="account_circle"}}
+                                  </span>
+                                {{else if collection.performance.timeSpent}}
+                                  <span class="time-spent">{{format-time collection.performance.timeSpent}}</span>
+                                  <span class="no-of-submissions">
+                                    <span class="count">{{collection.numberOfSubmissions}}</span> {{gru-icon name="account_circle"}}
+                                  </span>
+                                {{else}}
+                                  --
+                                {{/if}}
+                              </div>
+                            {{else}}
+                              <div class="collection-img-container">
+                                <img src="{{collection.thumbnailUrl}}" alt="collection thumbnail" />
+                              </div>
+                            {{/if}}
+                          </div>
+                        </div>
+                      {{/each}}
+                    {{else}}
+                      <div class="no-collection">
+                        <span>{{t 'common.no-collection-info-message'}}</span>
+                      </div>
+                    {{/if}}
+                  {{else}}
+                    <div class="collection-load-spinner">
+                      {{#if lesson.isActive}}
+                        {{three-bounce-spinner}}
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="no-lesson">
+              <span>{{t 'common.no-lesson-info-message'}}</span>
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="lesson-load-spinner">
+            {{#if milestone.isActive}}
+              {{three-bounce-spinner}}
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

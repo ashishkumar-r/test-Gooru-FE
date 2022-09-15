@@ -1,0 +1,246 @@
+//Resource type icon hover and selected
+$bg-icon-size: 20px 18px;
+.video-selected {
+  .icon {
+    background: url("gooru/images/video-resource-dark.svg") no-repeat;
+    width: 25px;
+    background-size: $bg-icon-size;
+  }
+}
+.text-selected {
+  .icon {
+    background: url("gooru/images/text-resource-dark.svg") no-repeat;
+    width: 25px;
+    background-size: $bg-icon-size;
+  }
+}
+.audio-selected {
+  .icon {
+    background: url("gooru/images/audio-resource-dark.svg") no-repeat;
+    width: 25px;
+    background-size: $bg-icon-size;
+  }
+}
+.html-selected {
+  .icon {
+    background: url("gooru/images/audio-resource-dark.svg") no-repeat;
+    width: 25px;
+    background-size: $bg-icon-size;
+  }
+}
+.website-selected {
+  .icon {
+    background: url("gooru/images/website-resource-dark.svg") no-repeat;
+    width: 25px;
+    background-size: $bg-icon-size;
+  }
+}
+.interactive-selected {
+  .icon {
+    background: url("gooru/images/interactive-resource-dark.svg") no-repeat;
+    width: 25px;
+    background-size: $bg-icon-size;
+  }
+}
+.image-selected {
+  .icon {
+    background: url("gooru/images/image-resource-dark.svg") no-repeat;
+    width: 25px;
+    background-size: $bg-icon-size;
+  }
+}
+
+.option-icons-dark {
+  &.video {
+    @extend .video-selected;
+  }
+  &.web-page {
+    @extend .website-selected;
+  }
+  &.interactive {
+    @extend .interactive-selected;
+  }
+  &.image {
+    @extend .image-selected;
+  }
+
+  &.text {
+    @extend .text-selected;
+  }
+  &.audio {
+    @extend .audio-selected;
+  }
+}
+
+.search {
+  .gru-resource-options {
+    $optionsHeightXS: 56px;
+    $optionsHeightSM: 40px;
+    padding: 0;
+    width: 100vw;
+    .options {
+      display: block;
+      height: $optionsHeightXS;
+      background-color: $white;
+      max-width: 960px;
+      margin-top: 10px;
+      box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+      text-align: center;
+      padding: 0 0 0 3%;
+      @media (min-width: $screen-sm) {
+        padding: 0 0 0 15px;
+        height: $optionsHeightSM;
+      }
+      ul {
+        padding: 0;
+        list-style: none;
+        @include flexbox;
+        margin: 0;
+        height: $optionsHeightXS;
+        overflow: hidden;
+        overflow-x: auto;
+        @media (min-width: $screen-sm) {
+          height: $optionsHeightSM;
+        }
+        li {
+          margin: 0 29px 0 0;
+          text-align: $tab-float-dir;
+          width: 118px;
+          @media (max-width: $screen-xs-max) {
+            margin: 0 5px;
+          }
+          .btn-option {
+            color: $gray-light;
+            padding: 0 5px;
+            height: $optionsHeightXS;
+            background-color: $white;
+            display: table-cell;
+            span {
+              vertical-align: middle;
+              display: inline-block;
+              font-size: 13px;
+              i {
+                font-size: 13px;
+                line-height: 26px;
+              }
+              &.icon-container {
+                height: 30px;
+                margin: 3px 2px 0 0;
+                .icon {
+                  background-size: 20px 18px;
+                  height: 20px;
+                }
+              }
+              &.text {
+                line-height: 14px;
+                text-align: $tab-float-dir;
+                @media (max-width: $screen-xs-max) {
+                  display: block;
+                  font-size: 12px;
+                }
+              }
+            }
+            @media (min-width: $screen-sm) {
+              height: $optionsHeightSM;
+            }
+          }
+          .btn-option:hover {
+            color: $gray-shaft;
+            @extend .option-icons-dark;
+          }
+          .btn-option.selected {
+            color: $gray-shaft;
+            @extend .option-icons-dark;
+          }
+          .video {
+            .icon {
+              background: url("gooru/images/video-resource.svg") no-repeat;
+              width: 25px;
+            }
+          }
+          .web-page {
+            .icon {
+              background: url("gooru/images/website-resource.svg") no-repeat;
+              width: 25px;
+            }
+          }
+          .interactive {
+            .icon {
+              background: url("gooru/images/interactive-resource.svg") no-repeat;
+              width: 26px;
+            }
+          }
+          .image {
+            .icon {
+              background: url("gooru/images/image-resource.svg") no-repeat;
+              width: 25px;
+            }
+          }
+
+          .text {
+            .icon {
+              background: url("gooru/images/text-resource.svg") no-repeat;
+              width: 25px;
+            }
+          }
+          .audio {
+            .icon {
+              background: url("gooru/images/audio-resource.svg") no-repeat;
+              width: 26px;
+            }
+          }
+
+          .interactiveVideo {
+            .icon {
+              background: url("gooru/images/interactive-video.png") no-repeat;
+              width: 26px;
+            }
+          }
+
+          .interactiveSlide {
+            .icon {
+              background: url("gooru/images/interactive-slides.png") no-repeat;
+              width: 26px;
+            }
+          }
+
+          .interactivePersonalityQuiz {
+            .icon {
+              background: url("gooru/images/personality-quiz-icon.png")
+                no-repeat;
+              width: 26px;
+            }
+          }
+
+          .dragAndDropResource {
+            .icon {
+              background: url("gooru/images/drag-and-drop-icon.png") no-repeat;
+              width: 26px;
+            }
+          }
+
+          &.web-page {
+            margin-left: 5px;
+          }
+          &.interactive {
+            margin-right: 35px;
+            @media (max-width: $screen-xs-max) {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.gru-resource-options {
+  .options {
+    ul {
+      li {
+        &.hide-btn {
+          display: none;
+        }
+      }
+    }
+  }
+}

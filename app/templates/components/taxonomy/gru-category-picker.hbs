@@ -1,0 +1,20 @@
+<div class="btn-group clearfix">
+  <button type="button" class="btn btn-primary btn-sm selected-category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{#if selectedCategory}}
+      {{selectedCategory.title}}
+    {{else}}
+      {{t placeholderLabelKey}}
+    {{/if}}
+  </button>
+  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">{{t "common.toggle-dropdown"}}</span>
+  </button>
+  <ul class="dropdown-menu {{if (eq alignment 'left' ) 'dropdown-menu-right' 'dropdown-menu-left'}}">
+    {{#each categories as |category|}}
+      <li class="category">
+        <a class="category-action" {{action 'setCategory' category}}>{{category.title}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

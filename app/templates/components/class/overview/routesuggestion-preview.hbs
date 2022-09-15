@@ -1,0 +1,46 @@
+<div class='container-desktop'>
+  <div class="route-suggestions-container">
+    <div class="route0-banner" data-toggle="collapse" data-target=".course-suggestion">
+      <div class="col-xs-1 suggest-icon">
+        {{gru-icon name="explore_outline"}}
+      </div>
+      <div class='suggest-sep'> </div>
+      <div class='col-xs-11 route0-bannerdesc'>
+        <span class='suggest-desc'> {{t 'class.overview.course-map.route0-bannerdesc'}}
+                </span>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="course-suggestion collapse" role="tablist" aria-multiselectable="true">
+      <div class="detail-sep"></div>
+      <div class="suggested-lessons">Suggested Lessons</div>
+      <div class="created-by-kangoorus"> Created by Kangoorus </div>
+      <div class="detail-sep"></div>
+      <div class="compet-container taxonomy gru-taxonomy-tag-list pull-left hidden">
+        {{#each taxonomyList as |taxonomyTag|}}
+          {{taxonomy/gru-taxonomy-tag model=taxonomyTag }}
+        {{/each}}
+      </div>
+      <div class="route0suggestionHero pull-right hidden">
+        <img class="route0suggestionHero" src='/assets/gooru/route0suggestion.jpg' alt="suggestion"/>
+      </div>
+      <div style="clear:both"></div>
+      <div class='route-compgraph pull-left hidden'></div>
+
+      <div class="preview-content">
+        <div class="suggestion-accordion">
+          {{class/overview/course-suggestions model=route0 index=index routeSuggestAction=routeSuggestAction}}
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+    <div class="action col-md-offset-9">
+      <div class="accept " {{ action 'routeAction' 'accepted' }}>
+        {{t 'common.accept'}} {{gru-icon name="done"}}
+      </div>
+      <div class="ignore" {{ action 'routeAction' 'rejected' }}>
+        <span>{{t 'gru-suggest-test.no'}}</span>
+      </div>
+    </div>
+  </div>
+</div>

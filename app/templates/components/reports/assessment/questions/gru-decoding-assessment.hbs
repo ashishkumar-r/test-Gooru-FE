@@ -1,0 +1,31 @@
+<ul>
+    {{#each answers as |answer index|}}
+    <li>
+        {{#if showCorrect}}
+        <div class="answer-container">
+                {{answer.text}}
+        </div>
+        {{else}}
+     <div class="answer-container">
+            <div class="audio-player crct-ans-player-{{index}}">
+                <span class="audio-progress">
+                    <span class="progress-filling">
+                        <span class="progress-pointer"></span>
+                    </span>
+                </span>
+                {{#if (and (eq answerIndex index) isPause)}}
+                <span class="audio-play" {{action 'onPauseAudio'}}>
+                    {{gru-icon name="pause_arrow"}}
+                </span>
+                {{else}}
+                <span class="audio-play" data-audio-url="{{answer.text}}"
+                    {{action "onPlayAudio" (concat 'crct-ans-player-' index) answer.text index}}>
+                    {{gru-icon name="play_arrow"}}
+                </span>
+                {{/if}}
+            </div>
+        </div>
+{{/if}}
+    </li>
+    {{/each}}
+</ul>

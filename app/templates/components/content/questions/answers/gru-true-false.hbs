@@ -1,0 +1,23 @@
+{{#each answers as |answer index|}}
+    <div class="panel panel-default">
+        <div class="answer-content {{unless editMode 'view-mode'}}">
+            <div class="letter-container">
+                <h3>{{answer-letter index}}</h3>
+            </div>
+            <div class="text-area-container read-only">
+              {{textarea value=answer.text readonly=true}}
+            </div>
+          {{#if editMode}}
+              <button class="check {{if answer.isCorrect 'correct'}}" {{action 'setCorrect' answer}}>
+                {{gru-icon name="done"}}
+              </button>
+          {{else}}
+            {{#if answer.isCorrect }}
+                <div class="correct-choice">
+                  {{gru-icon name="done"}}
+                </div>
+            {{/if}}
+          {{/if}}
+        </div>
+    </div>
+{{/each}}

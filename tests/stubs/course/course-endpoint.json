@@ -1,0 +1,124 @@
+[
+  {
+    "description": "Get course assessment detail",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/(.+)/assessments$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "course-assessment-200-response.json"
+    }
+  },
+  {
+    "description": "Get course collection detail",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/course-123/collections$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "course-collection-200-response.json"
+    }
+  },
+  {
+    "description": "Gets course data for a specific ID",
+    "request": {
+      "url": "^/gooruapi/rest/v1/course/(.+)$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "get-course-response.json"
+    }
+  },
+  {
+    "description": "Fetch course 123",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/course-123$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-course-200-response.json"
+    }
+  },
+  {
+    "description": "Fetch any course",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/([^//]+)$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-course-200-response.json"
+    }
+  },
+  {
+    "description": "Update course with a specific ID",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/(.+)$",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "",
+      "file": "fetch-course-200-response.json"
+    }
+  },
+  {
+    "description": "Create course",
+    "request": {
+      "url": "^/api/nucleus/v1/courses",
+      "method": "POST",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json",
+        "Location": "123"
+      }
+    }
+  }
+]

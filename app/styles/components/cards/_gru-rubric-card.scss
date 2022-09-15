@@ -1,0 +1,51 @@
+.cards.gru-rubric-card {
+  margin-top: 5px;
+  .panel {
+    border: 1px solid $gray-lighter;
+    border-radius: 3px;
+    box-shadow: 0 0 3px $gray-light;
+    margin: 0 0 15px 12px;
+    width: 250px;
+    .panel-heading {
+      background-color: $white;
+      padding: 10px 10px 2px 8px;
+      .image {
+        display: inline-block;
+        img {
+          border-radius: 4px;
+          height: 55px;
+          width: 60px;
+        }
+        .rubric-icon {
+          background: url("gooru/images/rubric-green.svg");
+          -webkit-background-size: 31px 30px;
+          background-size: 31px 30px;
+          border-radius: 4px;
+          display: block;
+          height: 30px;
+          margin: 0 0 25px;
+          width: 31px;
+        }
+      }
+      .rubric-info {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 10px;
+        width: 65%;
+        .title-section {
+          h6.title {
+            color: $blue-400;
+            display: inline-block;
+            margin-top: 0;
+            width: 100%;
+          }
+          $line-height: 1.3;
+          $lines-to-show: 2;
+          .truncate {
+            @include ellipsis($font-size: $font-size-h6, $line-height: $line-height, $lines-to-show: $lines-to-show, $excerpt-bg: $white);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<div class="actions">
+  {{#each footerActions as |footerAction|}}
+      <button class="btn btn-default {{footerAction.class}} {{footerAction.name}}" title="{{footerAction.text}}" {{action 'clickAction' footerAction.action}}>{{footerAction.text}}</button>
+  {{/each}}
+</div>

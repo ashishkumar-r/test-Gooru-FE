@@ -1,0 +1,166 @@
+<div class="table-fixed-left">
+  <table>
+    <tbody>
+      <tr>
+        <th class="tabular-header on-scroll-fixed">
+          <div class="header-filters">
+            <div class="name-filter">
+              <span class="name-header">{{t 'common.name'}}</span>
+              <span class="first-header {{if sortByFirstnameEnabled 'active'}}" onclick={{action 'sortByFirstName'}} onkeypress={{action 'sortByFirstName'}} tabindex={{tabindex}}>
+                <span>{{t 'common.first'}}</span>
+                {{#if sortByFirstnameEnabled}}
+                  {{gru-icon name="keyboard_arrow_up"}}
+                {{else}}
+                  {{gru-icon name="keyboard_arrow_down"}}
+                {{/if}}
+              </span>
+              <span class="last-header {{if sortByLastnameEnabled 'active'}}" onclick={{action 'sortByLastName'}} onkeypress={{action 'sortByLastName'}} tabindex={{tabindex}}>
+                <span>{{t 'common.last'}}</span>
+                {{#if sortByLastnameEnabled}}
+                  {{gru-icon name="keyboard_arrow_up"}}
+                {{else}}
+                  {{gru-icon name="keyboard_arrow_down"}}
+                {{/if}}
+              </span>
+            </div>
+            <div class="score-timespent {{if sortByScoreEnabled 'active'}}" onclick={{action 'sortByScore'}} onkeypress={{action 'sortByScore'}} tabindex={{tabindex}}>
+              <span>{{t 'common.avg-score'}}</span>
+              {{#if sortByScoreEnabled}}
+                {{gru-icon name="keyboard_arrow_up"}}
+              {{else}}
+                {{gru-icon name="keyboard_arrow_down"}}
+              {{/if}}
+            </div>
+          </div>
+        </th>
+      </tr>
+      {{#each studentReportData as |student|}}
+        <div class="student-report-container">
+          <tr>
+            <th>
+              <div class="user-profile-summary">
+                <div class="user-profile-details {{unless student.hasStarted 'not-started'}}" onclick={{action 'openStudentUnitReport' student.id}}  onkeypress={{action 'openStudentUnitReport' student.id}} tabindex={{tabindex}}>
+                  <div class="user-profile-img">
+                    <img src="{{student.avatarUrl}}" alt="{{student.id}} student avatar"/>
+                  </div>
+                  <div class="username">
+                    <span>{{student.lastName}},</span>
+                    <span>{{student.firstName}} {{if (not student.isShowLearnerData) '*'}}</span>
+                  </div>
+                </div>
+                <div class="score-details">
+                  {{#if student.hasStarted}}
+                    <span class="{{concat 'grade-range-text-' (grade-range student.score)}}">{{student.score}}%</span>
+                  {{else}}
+                    <span>--</span>
+                  {{/if}}
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr class="hidden visible-xs">
+            <div class="table-fixed-right">
+              <table>
+                <tbody>
+                  <tr>
+                    {{#each contents as | content |}}
+                      <th class="tabular-header on-scroll-fixed">
+                        <div class="content-header {{unless content.performance.hasStarted 'not-started'}}" onclick={{action 'openLessonReport' content contents}} onkeypress={{action 'openLessonReport' content contents}} tabindex={{tabindex}}>
+                          <div class="content-icon {{concat 'grade-range-' (grade-range content.performance.score)}}" >
+                            <span>L{{unless isHideLessonNumber content.sequence ''}}</span>
+                          </div>
+                          <div class="content-title">
+                            <p>{{safe-html (if isShowMilestoneReport content.lesson_title content.title)}}</p>
+                          </div>
+                        </div>
+                      </th>
+                    {{/each}}
+                  </tr>
+                  <tr>
+                    {{#each student.userPerformanceData as |userPerformanceData|}}
+                      <td>
+                        {{#if userPerformanceData.hasStarted}}
+                          <div class="perf-time-container">
+                            <div class="content-score-value">
+                              <span class="{{concat 'grade-range-text-' (grade-range userPerformanceData.score)}}">{{if userPerformanceData.score (concat  userPerformanceData.score '%') '--' }}</span>
+                            </div>
+                          </div>
+
+                        {{else}}
+                          <div class="perf-time-container {{if userPerformanceData.isSkippedLessons 'rescope-content' }}">
+                            <div class="content-score-value">
+                              {{#if userPerformanceData.isSkippedLessons}}
+                                <span>{{gru-icon name="done_all"}}</span>
+                              {{else}}
+                                <span>--</span>
+                              {{/if}}
+                            </div>
+                          </div>
+                        {{/if}}
+                      </td>
+                    {{/each}}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </tr>
+        </div>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div id="table-right-01" class="table-fixed-right hidden-xs">
+  <table>
+    <tbody>
+      <tr>
+        {{#each contents as | content |}}
+          <th class="tabular-header on-scroll-fixed">
+            <div class="content-header {{unless content.performance.hasStarted 'not-started'}}" onclick={{action 'openLessonReport' content contents}} onkeypress={{action 'openLessonReport' content contents}} tabindex={{tabindex}}>
+              <div class="content-icon {{concat 'grade-range-' (grade-range content.performance.score)}}">
+                <span>L{{unless isHideLessonNumber content.sequence ''}}</span>
+              </div>
+              <div class="content-title">
+                <p>{{safe-html (if isShowMilestoneReport content.lesson_title content.title)}}</p>
+              </div>
+            </div>
+          </th>
+        {{/each}}
+      </tr>
+      {{#each studentReportData as |student|}}
+        <tr>
+          {{#each student.userPerformanceData as |userPerformanceData|}}
+            <td>
+              {{#if userPerformanceData.hasStarted}}
+                <div class="perf-time-container">
+                  <div class="content-score-value">
+                    <span class="{{concat 'grade-range-text-' (grade-range userPerformanceData.score)}}">{{if userPerformanceData.score (concat  userPerformanceData.score '%') '--' }}</span>
+                  </div>
+                </div>
+
+              {{else}}
+
+                <div class="perf-time-container {{if userPerformanceData.isSkippedLessons 'rescope-content' }}">
+                  <div class="content-score-value">
+                    {{#if userPerformanceData.isSkippedLessons}}
+                      <span>{{gru-icon name="done_all"}}</span>
+                    {{else}}
+                      <span>--</span>
+                    {{/if}}
+                  </div>
+                </div>
+              {{/if}}
+            </td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{#if (gt contents.length 2)}}
+  <span class="scroll-left-arrow scroll-arrow on-scroll-fixed" onclick={{action 'onClickScrollLeftArrow'}} onkeypress={{action 'onClickScrollLeftArrow'}} tabindex={{tabindex}}>
+    {{gru-icon name="keyboard_arrow_left"}}
+  </span>
+  <span class="scroll-right-arrow scroll-arrow on-scroll-fixed" onclick={{action 'onClickScrollRightArrow'}} onkeypress={{action 'onClickScrollRightArrow'}} tabindex={{tabindex}}>
+    {{gru-icon name="keyboard_arrow_right"}}
+  </span>
+{{/if}}

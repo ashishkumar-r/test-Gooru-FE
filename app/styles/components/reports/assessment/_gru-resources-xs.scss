@@ -1,0 +1,98 @@
+.reports.assessment.gru-resources-xs {
+  display: table;
+  width: 100%;
+
+  .resource-card {
+    display: table-row;
+    width: 100%;
+    .resource-container,
+    .resource {
+      display: block;
+      padding: 8px 0;
+    }
+    .resource-container {
+      border-bottom: 1px solid $gray-lighter;
+      .resource-text {
+        max-height: 100px;
+        margin: 5px 0;
+        .title-content {
+          display: flex;
+          > * {
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+          }
+        }
+        .image {
+          display: inline-block;
+          margin-right: 10px;
+        }
+        i {
+          display: block;
+          height: 36px;
+          width: 28px;
+          vertical-align: top;
+          margin: 5px 0 0 0;
+          &.video-icon {
+            background: url("gooru/images/video-resource-green.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            height: 30px;
+            width: 31px;
+          }
+          &.webpage-icon {
+            background: url("gooru/images/website-resource-green.svg");
+            -webkit-background-size: 29px 30px;
+            background-size: 29px 30px;
+            height: 30px;
+            width: 29px;
+          }
+          &.interactive-icon {
+            background: url("gooru/images/interactive-resource-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+            vertical-align: top;
+            margin: 5px 0 0 0;
+          }
+          &.question-icon {
+            background: url("gooru/images/question-resource-green.svg");
+            -webkit-background-size: 30px 30px;
+            background-size: 30px 30px;
+            height: 30px;
+            width: 30px;
+          }
+          &.image-icon {
+            background: url("gooru/images/image-resource-green.svg");
+            -webkit-background-size: 30px 30px;
+            background-size: 30px 30px;
+            height: 30px;
+            width: 30px;
+          }
+          &.text-icon {
+            background: url("gooru/images/text-resource-green.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            height: 30px;
+            width: 31px;
+          }
+          &.audio-icon {
+            background: url("gooru/images/audio-resource-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+          }
+        }
+      }
+    }
+  }
+  .time-spent {
+    display: inline-block;
+    padding: 8px 0 8px 20%;
+    > * {
+      display: block;
+    }
+  }
+}

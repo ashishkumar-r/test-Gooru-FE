@@ -1,0 +1,45 @@
+<div class="card-panel-container">
+  <div class="card-panel-header" style="background-image: url({{course.thumbnailUrl}})">
+    <div class="info">
+      <div class="title">{{course.title}}</div>
+    </div>
+    <div class="badged-group"></div>
+  </div>
+  <div class="count-container">
+    <div class="unit-count-container" title="Units" data-toggle="tooltip">
+      <i class="icon"></i>
+      <span>{{course.unitCount}}</span>
+    </div>
+  </div>
+  <div class="course-info-container">
+    <div class="course-user-info">
+      <div class="created-by">{{t (if course.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}</div>
+      <div class="img-container pull-left">
+        <img class="img-responsive" src="{{course.owner.avatarUrl}}" alt="owner avatar">
+      </div>
+      <div class="username">{{course.owner.displayName}}</div>
+    </div>
+    <div class="course-description">
+      {{safe-html course.description}}
+    </div>
+    <div class="course-standards ">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true tabindex=tabindex}}
+      {{/if}}
+    </div>
+
+  </div>
+  <div class="card-panel-footer">
+    <div class="buttons-container">
+      <div class="left-aligned">
+        <div class="play-btn action-btn" title="Play" data-toggle="tooltip" data-placement="right" tabindex={{tabindex}} {{action "onPlayCourse" course.id}} {{action "onPlayCourse" course.id}}>{{gru-icon name="play_arrow"}}</div>
+      </div>
+      <div class="right-aligned">
+        {{#unless isPremiumCourse}}
+          <div class="edit-btn action-btn" title="Remix" data-toggle="tooltip" data-placement="right"  tabindex={{tabindex}} {{action "onRemixCourse" course.id course}}>{{gru-icon name="create"}}</div>
+        {{/unless}}
+        <div class="edit-btn action-btn" title="Add" data-toggle="tooltip" data-placement="right" tabindex={{tabindex}} {{action "onAddCourse" course.id course}}>{{gru-icon name="add"}}</div>
+      </div>
+    </div>
+  </div>
+</div>

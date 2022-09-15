@@ -1,0 +1,156 @@
+.cards.resource-preview-card {
+  .resource-preview-container {
+    padding: 8px 24px 8px 24px;
+    border-bottom: 1px solid $border-bottom-shadow;
+
+    &.fade-content {
+      opacity: 0.5;
+    }
+
+    .resource-header-container {
+      display: grid;
+      grid-template-columns: 85% auto;
+      .resource-title-container {
+        display: grid;
+        grid-template-columns: 16px 20px 1fr;
+        align-items: center;
+        column-gap: 8px;
+        padding-bottom: 8px;
+        .resource-order {
+          font-weight: bold;
+          color: $placeholder-color;
+          font-size: 15px;
+        }
+        .resource-type {
+          width: 16px;
+          height: 16px;
+          background-size: 16px 16px;
+          background-repeat: no-repeat;
+          display: block;
+          &.video {
+            background-image: url("gooru/images/video-resource-dark.svg") !important;
+          }
+          &.html {
+            background-image: url("gooru/images/html-icon.png") !important;
+          }
+          &.webpage {
+            background-image: url("gooru/images/website-resource-dark.svg") !important;
+          }
+          &.interactive {
+            background-image: url("gooru/images/interactive-resource-dark.svg") !important;
+          }
+          &.question {
+            background-image: url("gooru/images/question-resource-dark.svg") !important;
+          }
+          &.rubric {
+            background-image: url("gooru/images/rubric-dark.svg") !important;
+          }
+          &.image {
+            background-image: url("gooru/images/image-resource-dark.svg") !important;
+          }
+          &.text {
+            background-image: url("gooru/images/text-resource-dark.svg") !important;
+          }
+          &.audio {
+            background-image: url("gooru/images/audio-resource-dark.svg") !important;
+          }
+          &.h5p_interactive_slide {
+            background-image: url("gooru/images/interactive-slides.png");
+            background-size: contain;
+          }
+          &.h5p_interactive_video {
+            background-image: url("gooru/images/interactive-video.png");
+            background-size: contain;
+          }
+          &.h5p_drag_and_drop_resource {
+            background-image: url("gooru/images/drag-and-drop-icon.png");
+            background-size: contain;
+          }
+          &.h5p_interactive_personality_quiz {
+            background-image: url("gooru/images/personality-quiz-icon.png");
+            background-size: contain;
+          }
+        }
+        .title {
+          font-weight: bold;
+          color: $placeholder-color;
+          font-size: 15px;
+        }
+      }
+      .resource-performance-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        .resource-timespent {
+          font-size: 13px;
+          color: $placeholder-color;
+          justify-self: right;
+        }
+
+        &.skipped-resource {
+          grid-template-columns: auto auto;
+        }
+      }
+    }
+
+    .resource-taxonomies-container {
+      padding-bottom: 8px;
+      .gru-taxonomy-tag-list {
+        .gru-taxonomy-tag {
+          min-width: 90px;
+          max-width: 100px;
+          height: 23px;
+          border-radius: 12px;
+          background-color: $dark-gray;
+          .standard-tag {
+            .tag-label {
+              font-size: 14px;
+              font-weight: bold;
+              color: $white;
+              text-align: center;
+            }
+            .tag-caption {
+              display: none;
+            }
+          }
+        }
+        .non-visible-tags {
+          width: 81px;
+          height: 23px;
+          border-radius: 12px;
+          background-color: $dark-gray;
+          color: $white;
+          padding: 0;
+          span {
+            font-weight: bold;
+            font-size: 14px;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+    .resource-description-container {
+      $font-size: 14px;
+      $line-height: 1.5;
+      $lines-to-show: 4;
+      @include ellipsis(
+        $font-size: $font-size,
+        $line-height: $line-height,
+        $lines-to-show: $lines-to-show
+      );
+      max-height: 92px;
+      color: $gray-dove;
+    }
+    .resource-url-container {
+      .url-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: $placeholder-color;
+      }
+      .url-content {
+        font-size: 14px;
+        font-style: italic;
+        color: $placeholder-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+.competencies-pull-out-body {
+  min-height: 900px;
+
+  .competency-description {
+    border-bottom: dashed 1px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+
+    .text {
+      margin-left: 27px;
+      margin-right: 27px;
+
+      span {
+        font-family: OpenSans;
+        font-size: 15px;
+        line-height: normal;
+        text-align: left;
+        color: $dark-500;
+      }
+    }
+  }
+
+  .learner-competency {
+    width: 100%;
+    display: inline-block;
+    padding: 13px;
+    border-bottom: 1px solid $nobel-gray;
+
+    .competency-text {
+      display: grid;
+      margin-left: 15px;
+      width: 80%;
+      float: left;
+
+      .text {
+        font-size: 16px;
+        text-align: left;
+        color: $dark-500;
+        text-transform: capitalize;
+      }
+
+      .date {
+        font-size: 13px;
+        color: $dark-500;
+      }
+    }
+
+    .icons {
+      padding-left: 55px;
+      font-size: 16px;
+      float: left;
+      margin: 8px 0;
+
+      .in_progress {
+        i {
+          background: url("images/competencies-inProgress.svg");
+          width: 30px;
+          height: 30px;
+          object-fit: contain;
+          display: block;
+        }
+      }
+
+      .completed {
+        i {
+          background: url("images/competencies-mastered.svg");
+          width: 30.3px;
+          height: 30.2px;
+          object-fit: contain;
+          display: block;
+        }
+      }
+    }
+  }
+
+  .competency-accordion {
+    padding-left: 40px;
+  }
+}

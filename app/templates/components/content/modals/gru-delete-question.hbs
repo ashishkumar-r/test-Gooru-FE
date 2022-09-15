@@ -1,0 +1,18 @@
+<div class="modal-header delete">
+    <h4 class="modal-title">{{t "common.delete"}} {{t (concat 'common.' model.type)}}</h4>
+</div>
+<div class="modal-body">
+    <form>
+        <p class="legend">{{t "content.modals.delete-resource.legend" title=model.content.title}}</p>
+        <div class="actions delete">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+                <span aria-hidden="true">{{t 'common.cancel'}}</span>
+            </button>
+          {{#if isLoading}}
+            {{gru-spinner-button classes='btn btn-danger delete' text=(t 'common.loading')}}
+          {{else}}
+              <button class="btn btn-danger delete" {{action "deleteQuestion" model}}>{{t 'content.modals.quick-delete-content.delete'}}</button>
+          {{/if}}
+        </div>
+    </form>
+</div>

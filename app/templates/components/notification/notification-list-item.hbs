@@ -1,0 +1,30 @@
+<div class="panel-heading" onclick={{action "addressNotification"}} onkeypress={{action "addressNotification"}} tabindex={{tabindex}}>
+  <div class="panel-title">
+    <div class="list-item-container">
+      <div class="icon-container">
+        <i class="{{model.currentItemType}}-icons"></i>
+        <span class="suggestion-icon">
+          <i class="{{notificationTypeClass}}"></i>
+        </span>
+      </div>
+      <div class="notification-details">
+        {{#if notificationTypeTitle}}
+          <span class="line-desc">
+            {{notificationTypeTitle}}
+          </span>
+        {{/if}}
+        <div class="line-item-title">
+          <span class="line-suggestion-type">
+            {{gru-icon name=currentItemType }}
+          </span>
+          <span class="line-suggestion-title"> {{model.currentItemTitle}}</span>
+        </div>
+      </div>
+      {{#if (eq model.category 'flag')}}
+        <div class="flag">
+           {{gru-icon name="assistant_photo"}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

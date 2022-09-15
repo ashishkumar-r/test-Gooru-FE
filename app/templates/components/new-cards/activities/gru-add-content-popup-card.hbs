@@ -1,0 +1,40 @@
+<div class="backdrop" {{action "onClose" }}></div>
+<div class="gru-add-content-popup-card-container">
+    <div class="content-popup-body-section">
+          <div class="content-popup-header">
+              <div class="content-popup-title">
+                {{if isUpdateCard (t 'ca.video-conference') (t 'conference.add-to-ca')}}
+               <span onclick={{action "onClose" }} onkeypress={{action "onClose" }} tabindex={{tabindex}}
+          aria-label='close'>{{gru-icon name="clear"}}</span>
+              </div>
+              <div class="description">
+                {{#if activeActivityContent.meeting_url}}
+                    {{t 'oa.update-description'}}
+                {{else}}
+                {{if isUpdateCard (t 'ca.add-video-conference') (t 'ca.add-card-description')}}
+                {{/if}}
+
+              </div>
+          </div>
+          <div class="content-popup-images-section" style="background-image: url('{{if isUpdateCard updateThumbnailUrl activeActivityContent.thumbnailUrl}}')">
+            <div class="image-title">
+            </div>
+              <span class="content-title">{{activeActivityContent.title}}</span>
+          </div>
+          <div class="video-time-card">
+            {{cards/gru-video-conference-card
+              isUpdateCard=isUpdateCard
+               dateRangeType = dateRangeType
+              hasVideoConference=hasVideoConference
+              activeActivityContent=activeActivityContent
+              onToggleCheckbox="onToggleCheckbox"
+              isAddActivity=isAddActivity
+              onAddActivity="onAddActivity"
+              primaryClass=primaryClass}}
+          </div>
+    </div>
+  </div>
+
+{{#if isConferenceAllow}}
+{{cards/gru-video-authorize-card onDeny="onDeny" onAllow="onAllow"}}
+{{/if}}

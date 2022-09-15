@@ -1,0 +1,317 @@
+.confirm-profile-merge,
+.universalKnowMorePanel {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+
+  .gardian-request {
+    height: 450px;
+    width: 455px;
+
+    &.know-more {
+      visibility: hidden;
+      transform: translateX(-250px);
+      transition: 1s ease-in-out;
+      z-index: 100;
+    }
+
+    &.few-more-ques {
+      height: 450px;
+      width: 465px;
+      overflow: initial;
+      // margin-top: 40px;
+      visibility: visible;
+      transform: translateX(-10px);
+      z-index: 100;
+
+      .title {
+        font-weight: 600;
+        font-size: 29px;
+        margin-bottom: 25px;
+      }
+
+      .personal-details {
+        padding: 30px;
+        font-weight: 600;
+        font-size: 16px;
+        color: $dark-100;
+      }
+
+      .know-more-question {
+        padding: 20px 35px;
+        color: $sky-400 !important;
+        font-weight: 600;
+        font-size: 18px;
+
+        .bootstrap-select .dropdown-toggle {
+          color: $gray-base;
+          font-size: 20px;
+        }
+
+        .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+          width: 380px;
+
+          .dropdown-menu {
+            // position: static;
+            max-height: 150px;
+            overflow: auto;
+          }
+        }
+
+        .error-messages {
+          .error {
+            position: fixed;
+          }
+        }
+      }
+
+      .btn.btn-submit-continue {
+        border-radius: 100px;
+        font-size: 24px;
+        background-color: #0070c6;
+      }
+
+      .submit-continue {
+        float: right;
+        margin-right: 15px;
+        font-size: 19px;
+        width: 155px;
+        height: 49px;
+        display: flex;
+        // margin-bottom: 20px;
+        .submit-title {
+          margin-top: 3px;
+          text-align: right;
+          margin-right: 5px;
+          line-height: 1.2;
+        }
+      }
+
+      i {
+        margin-bottom: 10px;
+        margin-right: 10px;
+        color: $white-minimum;
+      }
+    }
+
+    .list-accounts {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      height: 56px;
+
+      .profile {
+        img {
+          width: 35px;
+          height: 35px;
+          overflow: hidden;
+          border-radius: 50px;
+          margin: 13px auto auto;
+        }
+      }
+
+      .details {
+        color: $dark-400;
+        margin-left: 10px;
+
+        .email {
+          height: 15px;
+          font-size: 11px;
+          font-weight: bold;
+        }
+
+        .name {
+          font-size: 11px;
+          padding-top: 13px;
+        }
+      }
+    }
+
+    .para-one {
+      font-size: 19px;
+      text-align: center;
+    }
+
+    .next-btn {
+      .maybe-later {
+        width: 225px;
+        margin-left: auto;
+        line-height: 0;
+        height: 50px;
+        font-size: 17px;
+      }
+
+      .link-accounts {
+        width: 225px;
+        margin-left: auto;
+        line-height: 0;
+        height: 50px;
+        font-size: 17px;
+      }
+    }
+  }
+}
+
+.confirm-request,
+.reject-request {
+  width: 360px;
+  height: 250px;
+  padding: 16px 31px 16px 34px;
+  border-radius: 8px;
+  box-shadow: 0 -2px 4px 2px $box-shadow-bg-color;
+  background-color: $white-bold;
+  z-index: 1031;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+  position: fixed;
+  bottom: 0;
+  top: 10px;
+  overflow: auto;
+
+  .title {
+    font-size: 20px;
+    font-weight: 200;
+    text-align: center;
+    color: $dark-400;
+  }
+
+  .profile {
+    display: flex;
+    min-height: auto;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    img {
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      border-radius: 50px;
+      margin: 15px;
+      opacity: 0.5;
+    }
+
+    .img-1,
+    .img-2 {
+      position: absolute;
+      margin: unset;
+      color: $blue-ebo;
+    }
+
+    .img-1 {
+      left: 93px;
+    }
+
+    .img-2 {
+      left: 194px;
+    }
+
+    .no-image {
+      background: $no-image-color;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+
+      .default-img {
+        margin: auto;
+        padding: 9px;
+      }
+
+      &.image {
+        margin-right: 10px;
+      }
+    }
+
+    span {
+      font-size: 27px;
+      margin-right: 10px;
+    }
+  }
+
+  .para-one {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .next-btn {
+    .dismiss {
+      margin-top: 20px;
+    }
+
+    button {
+      width: 119px;
+      height: 40px;
+      margin: 50px 89px 0 87px;
+      border: solid 1px $nobel-gray;
+      background-color: $white-bold;
+      outline: none;
+    }
+  }
+}
+
+.link-expired {
+  width: 370px;
+  height: 280px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 -2px 4px 2px $box-shadow-bg-color;
+  background-color: $white-bold;
+  z-index: 1031;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+  position: fixed;
+  bottom: 0;
+  top: 10px;
+  overflow: auto;
+
+  .title {
+    font-size: 20px;
+    font-weight: 200;
+    text-align: center;
+    color: $dark-400;
+  }
+
+  .para-one {
+    margin: 22px 40px;
+  }
+
+  .para-two {
+    margin: 22px 20px;
+  }
+
+  .para-one,
+  .para-two {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: $dark-400;
+    line-height: 1.14;
+  }
+
+  .next-btn {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 0;
+
+    .maybe-later {
+      width: 160px;
+      height: 40px;
+      border: solid 1px $nobel-gray;
+      background-color: $white-bold;
+    }
+
+    .link-accounts {
+      width: 160px;
+      height: 40px;
+      border: solid 1px $green-700;
+      color: $white-bold;
+      background: $green-700;
+      margin-left: auto;
+    }
+  }
+}

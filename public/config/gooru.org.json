@@ -1,0 +1,86 @@
+{
+  "endpoint": {
+    "url": "",
+    "secureUrl": "https://gooru.org",
+    "tenantUrl": "https://s3-us-west-1.amazonaws.com/nile-tenants/prod"
+  },
+  "realTime": {
+    "webServiceUrl": "",
+    "webServiceUri": "/nucleus/realtime",
+    "webSocketUrl": "https://rt.gooru.org",
+    "webSocketUri": "/ws/realtime"
+  },
+  "teams": {
+    "url": "http://teams.gooru.org"
+  },
+  "quizzes-addon": {
+    "endpoint": {
+      "url": "",
+      "secureUrl": "",
+      "providerUrl": ""
+    },
+
+    "realTime": {
+      "webServiceUrl": "",
+      "webServiceUri": "/",
+      "webSocketUrl": "https://rt.gooru.org",
+      "webSocketUri": "/ws/quizzes-realtime"
+    }
+  },
+
+  "exploreFeaturedCourses": {
+    "firstCourseId": "1d91657f-694b-43dc-9306-bca17b107c7d",
+    "secondCourseId": "3def51be-bd91-48fd-b747-9c86339b571a",
+    "thirdCourseId": "d9b7c359-adff-486d-a2cf-bbbbc66c2ba5",
+    "fourthCourseId": "781c3e76-a382-4652-86ae-079b92f57a9d"
+  },
+
+  "languageSetting": {
+    "defaultLang": "en",
+    "showDropMenu": true
+  },
+
+  "researcher": {
+    "redirectURL": "http://research.gooru.org",
+    "userIds": []
+  },
+
+  "demoClass": {
+    "code": "DGNTIKN",
+    "id": "71bfbc07-1b87-4e8e-a98a-1839e834cd20"
+  },
+
+  "GRU_FEATURE_FLAG": {
+    "searchFilter": true,
+    "i2dFlow": false,
+    "enableCollectionLiveLearning": false,
+    "isLessonPlanShow": true,
+    "isShowSecondaryClass": true,
+    "isShowFeaturedCourses": false,
+    "isShowGuardianInvite": false,
+    "isShowH5PCreation": false,
+    "isShowAppSwitcher": true,
+    "sendSignupInviteMail": false
+  },
+
+  "marketingSiteUrl": "/about",
+
+  "FILE_UPLOAD": {
+    "MAX_SIZE_IN_MB": 12
+  },
+
+  "DEMO_TENANT_AUTH": {
+    "clientId": "811b024d-57a5-4931-92eb-0d514cbffe34",
+    "clientKey": "XFR/JsGbaYkOqkQ3oSQT4NC6Pc4="
+  },
+
+
+  "GUEST_TEACHER_ACCOUNT": "Ym1ndWVzdDpnb29ydTEyMw==",
+  "GUEST_STUDENT_ACCOUNT": "bWpvaG5zb25AZ29vcnUub3JnOjEyMzQ1",
+  "TENANT_URL": "https://tl.gooru.org/",
+  "TENANT_DOMAIN_NAME": "tl.gooru.org",
+  "OAUTH_LOGIN_LANUCH_URL":
+    "https://staging.gooru.org/api/nucleus-auth-idp/v1/oauth2",
+  "appId": "8fa21656-889c-4e38-a7e6-f863f12fa169",
+  "TENANT_SIGNUP_URL": "https://schools.gooru.org/"
+}

@@ -1,0 +1,61 @@
+.gru-century-skills-content {
+  margin: 20px 0 0 0;
+  .content {
+    height: 530px;
+    .column {
+      float: $tab-float-dir;
+      width: 290px;
+      height: 530px;
+      border-radius: 3px;
+      border: 1px solid $light-300;
+      .header {
+        height: 40px;
+        padding: 9px 0 0 0;
+        border-bottom: 1px solid $light-300;
+        background-color: $gru-century-skills-column-header;
+        text-align: center;
+      }
+      .skills {
+        padding: 15px 10px;
+        height: 488px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        li {
+          cursor: pointer;
+          list-style: none;
+          width: 270px;
+          margin: 0 0 10px 0;
+          line-height: $font-size-h6;
+          @include flexbox;
+          .categories {
+            width: 55px;
+            text-align: $menu-float-dir;
+            padding: 5px;
+            span.circle {
+              margin: 0 -1px;
+            }
+          }
+          .title {
+            width: 205px;
+            float: $tab-float-dir;
+            padding: 5px;
+            border: 1px solid $white;
+            &.selected {
+              border-color: $gru-century-skills-item-selected;
+              border-radius: 3px;
+              background-color: $gru-century-skills-item-selected;
+              color: $white;
+            }
+          }
+        }
+      }
+      &.between {
+        margin: 0 15px;
+      }
+    }
+  }
+  .actions {
+    clear: both;
+    margin: 30px 0 10px 0 !important;
+  }
+}

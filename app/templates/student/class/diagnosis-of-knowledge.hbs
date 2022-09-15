@@ -1,0 +1,30 @@
+<div class="diagnosis-of-knowledge">
+  <div class="diagnosis-of-knowledge-panel">
+    <div class="header-panel">
+      <div class="assessment-info">
+        <div class="icon-container"></div>
+        <div class="title-container">
+          <p class="assessment-title">{{t 'common.diagnostic'}}</p>
+        </div>
+      </div>
+      <div class="assessment-desc">
+        <div class="question">
+          <span>{{assessment.questionCount}}</span>
+          <span class="icon"></span>
+        </div>
+      </div>
+    </div>
+    <h2 class="establish-skyline">{{t 'student-landing.class.establish-skyline'}}</h2>
+    <div class="diagnostic-message">
+      {{t 'diagnostic.message' subjectName=subject.title}}
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="cancel {{if isShowImpersonate 'disabled'}}" onclick={{action 'cancel'}} onkeypress={{action 'cancel'}} tabindex="9">
+    {{t 'common.cancel'}}
+  </div>
+  <div class="start {{if isShowImpersonate 'disabled'}}" onclick={{action 'start'}} onkeypress={{action 'start'}} tabindex="9">
+    {{t 'gru-assessment-confirmation.start'}}!
+  </div>
+</div>

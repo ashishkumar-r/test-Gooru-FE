@@ -1,0 +1,32 @@
+.library-search {
+  overflow: hidden;
+
+  .gru-header {
+    box-shadow: none;
+
+    .navbar {
+      box-shadow: none;
+    }
+  }
+
+  .app-container {
+    padding-top: 63px;
+  }
+
+  .panel-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    .search-result-container {
+      overflow: auto;
+    }
+  }
+
+  .ck-body-wrapper {
+    .ck-rounded-corners .ck.ck-balloon-panel.ck-balloon-panel_visible {
+      z-index: 9998;
+    }
+  }
+}

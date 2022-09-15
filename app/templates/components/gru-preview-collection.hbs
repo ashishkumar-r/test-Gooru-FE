@@ -1,0 +1,84 @@
+<div class="header-action">
+  {{#if isStudent}}
+    <button class="btn bookmark-btn no-bgd" title="{{t 'common.bookmark'}}"
+            data-toggle="tooltip" data-placement="auto" data-trigger="hover"
+      {{action 'bookmarkCollection' content}}  disabled={{model.disabledBookmark}}>
+      {{gru-icon name="turned_in_not"}}
+    </button>
+  {{/if}}
+</div>
+<div class="collection-information">
+  <div class="image">
+    <img class="img-responsive" src="{{collection.thumbnailUrl}}" alt="collection thumbnailUrl"/>
+  </div>
+  <div class="collection-info">
+    <div class="title-section">
+      <i class="{{if collection.isAssessment 'assessment' 'collection'}}"></i>
+      <h3 class="title">{{collection.title}}</h3>
+    </div>
+    <div class="question-resources">
+      {{#if hasResources}}
+        <span class="bar resource-count">| </span><p>{{t "cards.gru-course-card.resource" count=collection.resourceCount}}</p>
+      {{/if}}
+      {{#if hasQuestions}}
+        <span class="bar question-count">| </span><p>{{t "cards.gru-course-card.question" count=collection.questionCount}}</p>
+      {{/if}}
+    </div>
+    <div class="standards">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=2 isInCard=true showDescription=true}}
+      {{/if}}
+    </div>
+    <div class="remixed-by">
+      {{#if collection.owner}}
+        {{#link-to 'profile.content.collections' collection.owner.id class="pointer" tagName="div"}}
+          <span class="title">
+            {{t (if collection.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}
+          </span>
+          <img class="img-responsive" src="{{collection.owner.avatarUrl}}" alt="owner avatarUrl">
+          <span class="owner">{{collection.owner.displayName}}</span> {{#if collection.remixCount}}+{{collection.remixCount}}{{/if}}
+        {{/link-to}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+<div class="description">
+  <p class="content-description">
+    {{truncate text=collection.learningObjectives maxLength=500}}
+  </p>
+</div>
+<div class="resources">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each collection.children as |resource index|}}
+        <div class="resource">
+          <span class="number">{{plus-one index}}</span>
+          <i class="{{resource.format}}-icon"></i>
+          <div class="type">
+            {{#if (eq resource.format 'question')}}
+              <span>{{t (concat 'common.question-type.' resource.type)}}</span>
+            {{else}}
+              <span>{{t (concat 'common.resource-format.' resource.format)}}</span>
+            {{/if}}
+          </div>
+          <div class="resource-title ellipsis">
+            {{gru-math-text text=resource.title}}
+          </div>
+          {{#if resource.standards}}
+            {{taxonomy/gru-preview-taxonomy-tag-list standards=resource.standards tagsVisible=1}}
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+<div class="actions">
+  <button type="button" class="btn btn-default btn-sm cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+    <span aria-hidden="true">{{t 'common.cancel'}}</span>
+  </button>
+  {{#if (or isTeacher session.isAnonymous)}}
+    <button class="remix-btn btn btn-success btn-sm" {{action 'remixCollection' collection}}>{{t 'common.remix'}}</button>
+  {{else}}
+    <button class="study-btn btn btn-success btn-sm" {{action 'playCollection' collection}}>{{t 'common.study'}}</button>
+  {{/if}}
+</div>

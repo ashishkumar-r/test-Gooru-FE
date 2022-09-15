@@ -1,0 +1,20 @@
+<div class="gru-vowel-teams-container">
+    <div class="gru-vowel-teams-section">
+          {{#each answers as |answer index|}}
+              <div class="gru-vowel-teams-answer-item">
+                    <h3>{{answer-letter index}}</h3>
+                    {{validation/gru-input content=answer.text disabled=(not editMode) model=answer valuePath='text' }}
+                    <div class="vowel-teams-container text-edit vowel-team-edit-{{index}} {{unless editMode 'readonly'}}"
+                     data-answer-index="{{index}}">{{answer.text}}</div>
+                  {{#if (and (gt index 0) editMode)}}
+                    <span {{action "onDeleteAnswer" answer}} class="material-icons close-icon">delete</span>
+                  {{/if}}
+              </div>
+          {{/each}}
+    </div>
+  <div class="gru-add-excercise {{unless editMode 'disabled-btn'}}">
+    <span {{action (optional (if editMode (action "onAddExcercise") null))}}>
+      {{t 'content.questions.edit.builder.add-vowel-teams'}}
+    </span>
+  </div>
+</div>

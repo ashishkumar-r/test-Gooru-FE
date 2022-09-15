@@ -1,0 +1,33 @@
+.gru-silent-reading {
+  ul {
+    padding-left: 8px;
+    li {
+      list-style: none;
+      .exercise-seq {
+        color: $placeholder-color;
+        font-size: 15px;
+        &.in-visible {
+          visibility: hidden;
+        }
+      }
+      .silent-answer-container {
+        .text-container {
+          max-height: 250px;
+          overflow-y: auto;
+        }
+      }
+      .silentanswer-container {
+        .text-content-sec {
+          max-height: 250px;
+          overflow-y: auto;
+        }
+      }
+      .total-time-spent-section {
+        display: block;
+        padding: 10px 0;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+}

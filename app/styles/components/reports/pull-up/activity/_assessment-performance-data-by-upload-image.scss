@@ -1,0 +1,278 @@
+.assessment-performance-data-by-upload-image {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  background-color: #f1f3f7;
+  padding: 10px 15px 0;
+
+  .panels {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .right-panel {
+      background-color: $white;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: max-content 1fr;
+
+      .toggle-btns {
+        grid-template-columns: auto auto;
+        display: grid;
+        justify-content: center;
+        grid-gap: 20px;
+        padding: 10px;
+
+        button {
+          border-radius: 5px;
+          width: 130px;
+          height: 35px;
+        }
+      }
+
+      .preview-panel {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-row-start: 2;
+
+        .prev-message {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 15px;
+          font-weight: bold;
+          color: #415d66;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .left-panel {
+      background-color: $white;
+      width: 450px;
+      height: 100%;
+      max-height: calc(100vh - 115px);
+      overflow-y: auto;
+      margin-right: 15px;
+
+      .error-message {
+        height: 200px;
+        width: 100%;
+        color: #30424e;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+
+        .error-icon {
+          display: flex;
+          justify-content: center;
+
+          i {
+            font-size: 70px;
+          }
+        }
+
+        .text {
+          font-size: 25px;
+        }
+      }
+
+      .collection-image-container {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        display: block;
+        position: relative;
+        background-color: $white;
+
+        .collection-standards {
+          position: absolute;
+          bottom: 55px;
+          left: 10px;
+        }
+      }
+
+      .selected-image-container {
+        height: auto;
+        width: 100%;
+        padding: 10px 0;
+        display: grid;
+        grid-gap: 1px;
+
+        .selected-image-panel {
+          display: grid;
+          grid-template-columns: max-content 1fr 48px;
+          width: 100%;
+          height: 48px;
+          cursor: pointer;
+          border-bottom: 1px solid $breadcrumb-color;
+
+          &.active,
+          &:hover {
+            background-color: #b2d6ec;
+          }
+
+          .image-preview {
+            width: 48px;
+            height: 48px;
+
+            img {
+              width: 100%;
+              padding: 10px;
+              height: 100%;
+              background-color: $dark-400;
+            }
+          }
+
+          .status-icon {
+            display: flex;
+            margin: auto;
+
+            .sucess {
+              width: 20px;
+              height: 20px;
+              object-fit: contain;
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center center;
+              display: inline-block;
+              background-image: url("gooru/images/tick-inside-circle-blue.svg");
+            }
+          }
+
+          .image-name {
+            display: flex;
+            flex-direction: column;
+            padding-left: 10px;
+            justify-content: center;
+
+            .error-bar {
+              width: 100%;
+              height: 4px;
+              opacity: 0.4;
+              border-radius: 2px;
+              background-color: #cc0d0d;
+            }
+          }
+        }
+
+        .error-panel {
+          padding: 15px;
+          display: grid;
+          grid-gap: 10px;
+
+          .message {
+            font-size: 12px;
+            color: $dark-400;
+          }
+
+          .actions {
+            width: 100%;
+            height: 100%;
+            display: flex;
+
+            button {
+              margin: auto;
+              border: none;
+              height: 40px;
+
+              &.submit-btn {
+                background-image: linear-gradient(
+                  to right,
+                  $blue-e0,
+                  $blue-400
+                );
+                color: $white;
+                padding: 0 20px;
+              }
+
+              &.ignore-btn {
+                background-color: $white;
+                color: $dark-400;
+                opacity: 0.5;
+                border: solid 1px $nobel-gray;
+                border: 1px solid $breadcrumb-color;
+              }
+            }
+          }
+        }
+      }
+
+      .btn-container {
+        width: 100%;
+        background-color: $white;
+        height: auto;
+        display: flex;
+
+        .submit-btn {
+          margin: auto;
+          background-image: linear-gradient(to right, $blue-e0, $blue-400);
+          border: none;
+          color: $white;
+          height: 40px;
+        }
+      }
+
+      .file-picker-container {
+        width: 100%;
+        height: 250px;
+
+        .file-picker {
+          width: 100%;
+          height: 100%;
+
+          .file-picker-panel {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            border: dashed 2px #32404b;
+            cursor: pointer;
+
+            .icon {
+              height: 50px;
+              width: 50px;
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center center;
+              display: inline-block;
+              background-image: url("gooru/images/download.svg");
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .container-xs {
+    background-color: #30424e;
+
+    .footer-panel {
+      background-color: $navbar-default-toggle-icon-bar-bg;
+      height: 100px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+
+      .file-picker {
+        .tap-section {
+          display: flex;
+          color: $white;
+          border-radius: 50px;
+          width: 60px;
+          height: 60px;
+          border: 3px solid $white;
+          margin: auto;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,157 @@
+.competency-info-pull-up {
+  width: 100%;
+  box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+  position: absolute;
+  grid-template-rows: auto 1fr;
+  height: 0;
+  transition: height 0.5s ease-out;
+  overflow: hidden;
+  bottom: 0;
+  z-index: 2;
+  @media screen and (max-width: 767px) {
+    position: fixed;
+  }
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  &.teacher-view {
+    .competency-info-pull-up-container {
+      .competency-panel-header {
+        grid-template-columns: 1fr 50px;
+        padding-left: 12px;
+        height: auto;
+        min-height: 53px;
+        .competency-status,
+        .status {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .competency-info-pull-up-container {
+    background-color: $white;
+    height: 100%;
+    overflow-y: auto;
+    &.disable-student-performance {
+      .competency-panel-header {
+        grid-template-columns: 1fr 50px;
+        padding-left: 12px;
+        height: auto;
+        min-height: 53px;
+        .competency-status,
+        .status {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.open {
+    height: 100%;
+
+    @media screen and (min-width: 480px) and (max-width: 768px) {
+      height: 94%;
+    }
+
+    @media screen and (max-width: 480px) {
+      height: 89%;
+    }
+
+    @media screen and (min-height: 640px) and (max-height: 750px) {
+      height: 92%;
+    }
+
+    transition: height 0.5s ease-in;
+  }
+
+  .competency-panel-header {
+    display: grid;
+    height: 53px;
+    box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+    align-items: center;
+    grid-template-columns: 53px 1fr 100px 50px;
+
+    .status {
+      width: max-content;
+      justify-self: center;
+      font-weight: bold;
+      margin-right: 40px;
+    }
+
+    .competency-status {
+      justify-self: center;
+      width: 24px;
+      height: 24px;
+
+      &.status-color-1 {
+        background-color: $not-in-framework;
+      }
+
+      &.status-0 {
+        background-color: $gray-no-started;
+      }
+
+      &.status-1 {
+        background-color: $blue-in-progress;
+      }
+
+      &.status-2,
+      &.status-3,
+      &.status-4,
+      &.status-5 {
+        background-color: $blue-mastery;
+      }
+    }
+
+    .competency-title {
+      .competency-name {
+        grid-column-start: 2;
+        font-size: 12px;
+        font-weight: bold;
+        color: $dark-400;
+        display: flex;
+        .lo-content {
+          cursor: pointer;
+          .tag-tooltip {
+            display: none;
+          }
+        }
+      }
+
+      .competency-domain {
+        font-size: 11px;
+        font-style: italic;
+        color: $dark-400;
+        line-height: normal;
+      }
+    }
+
+    .close {
+      width: max-content;
+      height: max-content;
+      justify-self: center;
+
+      i {
+        font-size: 25px;
+      }
+    }
+  }
+
+  .body {
+    height: calc(100% - 53px);
+    overflow-y: auto;
+  }
+}

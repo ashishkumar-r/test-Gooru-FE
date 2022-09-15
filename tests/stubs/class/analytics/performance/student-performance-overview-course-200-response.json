@@ -1,0 +1,51 @@
+{
+  "content": [
+    {
+      "userUid": "id-for-pochita",
+      "usageData": [
+        {
+          "unitId": "first-unit-id",
+          "completedCount": 5,
+          "scoreInPercentage": 80,
+          "timeSpent": 121507,
+          "attempts": 16,
+          "totalCount": 10
+        },
+        {
+          "unitId": "second-unit-id",
+          "completedCount": 3,
+          "scoreInPercentage": 34,
+          "timeSpent": 215122,
+          "attempts": 7,
+          "totalCount": 10
+        },
+        {
+          "unitId": "third-unit-id",
+          "completedCount": 3,
+          "scoreInPercentage": 85,
+          "timeSpent": 215122,
+          "attempts": 3,
+          "totalCount": 10
+        },
+        {
+          "unitId": "c1f810a2-c87f-48f5-a899-0d9753383042",
+          "completedCount": 3,
+          "scoreInPercentage": 34,
+          "timeSpent": 215122,
+          "attempts": 4,
+          "totalCount": 10
+        },
+        {
+          "unitId": "dfc99db4-d331-4733-ac06-35358cee5c64",
+          "completedCount": 3,
+          "scoreInPercentage": 23,
+          "timeSpent": 215122,
+          "attempts": 5,
+          "totalCount": 10
+        }
+      ]
+    }
+  ],
+  "message": null,
+  "paginate": null
+}

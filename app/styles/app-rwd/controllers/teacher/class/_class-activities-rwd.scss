@@ -1,0 +1,301 @@
+.teacher_class_class-activities
+  .content
+  .controller.teacher.class.class-activities {
+  position: inherit;
+  @media only screen and (max-width: $screen-767) {
+    .ca-panel {
+      flex-direction: column;
+
+      .left-panel,
+      .right-panel {
+        width: 100%;
+        border-right: 0;
+
+        .schedule-container {
+          .ca-schedule-items-header {
+            .ca-add-content {
+              .ca-date-section {
+                padding-left: 10px;
+                justify-self: end;
+              }
+            }
+          }
+
+          .ca-schedule-section {
+            .dca-content-list-container {
+              min-height: 48px;
+              max-height: calc(100vh - 405px);
+            }
+          }
+        }
+
+        .offline-activity-container {
+          height: auto;
+          width: 100%;
+          z-index: 1;
+          background: none;
+          padding: 0;
+          position: absolute;
+          top: calc(100% - 150px);
+
+          &.active {
+            height: 100%;
+            width: 100%;
+            background-color: $white;
+            z-index: 10;
+
+            .offline-activity-section {
+              display: block;
+
+              .panel-group {
+                .oa-active-container,
+                .oa-completed-container {
+                  .oa-active-items,
+                  .oa-completed-items {
+                    .oa-active-list,
+                    .oa-completed-list {
+                      max-height: calc(100vh - 280px);
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .right-panel-header {
+            display: none;
+          }
+
+          .offline-activity-item-header {
+            box-shadow: none;
+            border: 0;
+            border-bottom: 1px solid $breadcrumb-color;
+            grid-template-columns: auto 60px;
+
+            span {
+              text-transform: uppercase;
+              padding-left: 20px;
+              font-size: 12px;
+              font-weight: bold;
+              color: inherit;
+            }
+
+            .offline-icon {
+              display: none;
+            }
+          }
+
+          .offline-activity-section {
+            display: none;
+          }
+        }
+
+        .item-to-grade-container {
+          height: auto;
+          width: 100%;
+          z-index: 1;
+          background: none;
+          padding: 0;
+          position: absolute;
+          top: calc(100% - 100px);
+
+          &.active {
+            height: 100%;
+            width: 100%;
+            background-color: $white;
+            z-index: 10;
+          }
+
+          .ca-grade-items-header {
+            box-shadow: none;
+            border: 0;
+            border-bottom: 1px solid $breadcrumb-color;
+          }
+        }
+
+        .unschedule-container {
+          height: auto;
+          width: 100%;
+          z-index: 1;
+          background: none;
+          padding: 0;
+          position: absolute;
+          top: calc(100% - 50px);
+
+          &.active {
+            height: 100%;
+            width: 100%;
+            z-index: 10;
+            background-color: $white;
+
+            .ca-unscheduled-items {
+              height: auto;
+              width: 100%;
+              max-height: calc(100% - 150px);
+              display: block;
+
+              .ca-unscheduled-content-items {
+                margin-top: 0;
+              }
+            }
+          }
+
+          .ca-unschedule-items-header {
+            box-shadow: none;
+            border: 0;
+            border-bottom: 1px solid $breadcrumb-color;
+          }
+        }
+      }
+    }
+
+    .ca-datepicker-schedule-container {
+      width: 100%;
+      height: 100%;
+
+      .ca-daterange-picker {
+        .ca-datepicker-body {
+          transform: none;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+
+          .date-info,
+          .header-section,
+          .submit-btn {
+            display: grid;
+          }
+
+          .calendar {
+            display: block;
+
+            .start-date-picker {
+              display: none;
+
+              &.selected {
+                display: block;
+              }
+            }
+
+            .end-date-picker {
+              display: none;
+
+              &.selected {
+                display: block;
+              }
+            }
+
+            .ca-date-picker-container {
+              .ca-datepicker-container {
+                #ca-datepicker {
+                  grid-row-start: 1;
+                  padding: 10px 20px 20px;
+
+                  .datepicker-inline {
+                    .datepicker-days {
+                      .table-condensed {
+                        thead {
+                          tr:nth-child(2) {
+                            display: grid;
+                            width: 100%;
+                            justify-content: center;
+                            grid-template-columns: repeat(7, 1fr);
+
+                            th.dow {
+                              height: 40px;
+                              width: 40px;
+                              justify-self: center;
+                            }
+                          }
+                        }
+
+                        tbody {
+                          tr {
+                            display: grid;
+                            width: 100%;
+                            justify-content: center;
+                            grid-template-columns: repeat(7, 1fr);
+
+                            td {
+                              height: 40px;
+                              width: 40px;
+                              justify-self: center;
+
+                              &.has-activities:before {
+                                top: 25px;
+                                display: flex;
+                                margin: auto;
+                                left: 0;
+                              }
+
+                              &.active {
+                                background-color: $has-active-bg-color;
+                                background-image: -webkit-linear-gradient(
+                                  top,
+                                  $has-active-bg-color,
+                                  $has-active-bg-color
+                                );
+                                border-radius: 50%;
+                                display: flex;
+                                margin: auto;
+                                align-items: center;
+                                justify-content: center;
+                                color: $has-active-color;
+
+                                &:before {
+                                  content: none;
+                                }
+                              }
+
+                              &.today {
+                                background-color: $has-active-color;
+                                background-image: -webkit-linear-gradient(
+                                  top,
+                                  $has-active-color,
+                                  $has-active-color
+                                );
+                                border-radius: 50%;
+                                display: flex;
+                                margin: auto;
+                                align-items: center;
+                                justify-content: center;
+                                color: $white;
+
+                                &:before {
+                                  content: none;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: $screen-xs) {
+    .ca-calendar-tabs {
+      .title {
+        display: none;
+      }
+      .ca-calendar-tabs-mobile {
+        display: block;
+      }
+    }
+  }
+}
+
+body.teacher_class_class-activities {
+  @media only screen and (max-width: $screen-in-680) {
+    .app-container {
+      padding-top: 102px;
+    }
+  }
+}

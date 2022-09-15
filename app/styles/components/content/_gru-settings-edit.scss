@@ -1,0 +1,127 @@
+.swap_horizontal {
+  width: 24px;
+}
+
+.setting {
+  @include flexbox;
+  @include align-items(center);
+
+  .gru-icon {
+    margin-right: 10px;
+  }
+
+  &:not(.attempts, .publish-to) {
+    > span {
+      @include flex-shrink(0);
+      width: 40%;
+    }
+  }
+
+  &.attempts,
+  &.publish-to {
+    > span {
+      padding-right: 10px;
+    }
+
+    .gru-select .form-group {
+      margin-bottom: 0;
+    }
+  }
+
+  .feedback-options {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include flex-grow(1);
+    max-width: 500px;
+    padding: 5px;
+
+    .gru-radio {
+      @include flex-shrink(0);
+      padding-right: 15px;
+    }
+  }
+
+  .gru-select {
+    padding-left: 5px;
+  }
+}
+
+.diagnostic-assessment {
+  .enable-diagnostic {
+    width: 30%;
+    margin-right: 10px;
+  }
+  &.disable-btn {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.error-messages {
+  .error {
+    color: $red-400;
+    font-size: 12px;
+  }
+}
+
+.language-section {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 25% auto;
+  margin-top: 10px;
+  @media (max-width: $screen-md) {
+    grid-template-columns: 55% auto;
+  }
+}
+
+.difficulty-section {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 25% auto;
+  margin-top: 10px;
+  @media (max-width: $screen-md) {
+    grid-template-columns: 55% auto;
+  }
+}
+
+.feedback-grade {
+  margin-bottom: 20px;
+
+  .default-grade {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 35% auto;
+    height: 45px;
+
+    .switch-label {
+      line-height: initial;
+    }
+    @media (max-width: $screen-md) {
+      grid-template-columns: 55% auto;
+    }
+
+    .text-label {
+      font-weight: bold;
+    }
+  }
+
+  .sub-text {
+    font-style: italic;
+  }
+}
+
+.gru-settings-edit {
+  .header {
+    > div {
+      display: inline-block;
+    }
+  }
+
+  .visibility-settings {
+    h3 {
+      @include flexbox;
+      @include align-items(center);
+    }
+  }
+}

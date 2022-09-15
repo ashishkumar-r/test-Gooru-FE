@@ -1,0 +1,11 @@
+.gru-fib {
+  .fib-answers {
+    overflow: auto;
+    word-wrap: break-word;
+    input {
+      margin: 5px;
+      width: 100px;
+      outline: none;
+    }
+  }
+}

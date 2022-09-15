@@ -1,0 +1,17 @@
+<div class="controller content courses play">
+
+  {{content/courses/gru-course-play
+    course=course
+    isOwner=isOwner
+    createdUsers=createdUsers
+    remixedUsers=remixedUsers
+    selectedLessonId=lessonId
+    onLocationChange='setLocation'
+    isRGOsource=isRGOsource
+    tabindex="3"}}
+
+  <aside class="hidden-sm hidden-xs">
+    {{partial 'content/partials/course-information'}}
+  </aside>
+
+</div>

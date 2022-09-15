@@ -1,0 +1,7 @@
+{{#if completed}}
+  {{ charts/gru-x-bar-chart data=barChartData }}
+  <span>{{completed}}/{{total}}</span>
+{{else}}
+  <span class="no-info">&dash;&dash;</span>
+{{/if}}
+

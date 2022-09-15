@@ -1,0 +1,25 @@
+.library.gru-browse-library {
+  @media only screen and (max-width: $screen-sm - 1) {
+    .content-container {
+      padding: 0;
+      .featured-description {
+        margin-top: 20px;
+        padding: 10px;
+      }
+      .subject-title {
+        text-align: center;
+      }
+      .subject-container {
+        .subject-title {
+          padding: 0;
+        }
+      }
+      .library-cards {
+        justify-content: center;
+      }
+    }
+    .navbar {
+      overflow-x: scroll;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+<div class="summary-container">
+
+  <div class="profile-image">
+    <img class="img-responsive" src="{{imageUrl}}" alt="Avatar for {{profile.username}}">
+  </div>
+
+  <div class="overview">
+    <h5>{{assessmentResult.title}}</h5>
+    <div class="information">
+      {{#if collection.isAssessment}}
+        <span class="attempt">
+          {{#if showAttempts}}
+              <span class="title">{{t "common.attempt"}}</span>
+        <span class="attempt-selector">
+                <span class="dropdown current-attempt">
+                <button class="btn btn-default dropdown-toggle" type="button"
+                    data-toggle="dropdown">{{selectedAttempt}}<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          {{#each attempts as |attempt|}}
+            <li><a {{action 'selectAttempt' attempt.value}}>{{attempt.label}}</a></li>
+          {{/each}}
+        </ul>
+        </span>
+        <span>{{t "common.of"}}</span>
+        <span class="total-attempts">{{assessmentResult.totalAttempts}}</span>
+        </span>
+      {{else}}
+        {{#if isRealTime}}
+          <span class="title current">{{t "common.current-attempt"}}</span>
+        {{else}}
+          <span class="title latest">{{t "common.latest-attempt"}}</span>
+        {{/if}}
+      {{/if}}
+      </span>
+      {{/if}}
+      {{#if assessmentResult.submittedAt}}
+        <span class="date">
+        {{gru-icon name='event'}}<span>{{format-date assessmentResult.submittedAt 'h:mm a MMM. Do, YYYY'}}</span>
+        </span>
+      {{/if}}
+      <span class="time">
+        {{gru-icon name='av_timer'}}<span>{{format-time assessmentResult.totalTimeSpent}}</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="reactions">
+    {{#if showReactionBar}}
+      <span class="reaction">
+      {{reaction-icon assessmentResult.averageReaction }}
+    </span>
+    {{/if}}
+  </div>
+
+  <div class="bubbles">
+    {{#if (not areQuestionLinksHidden)}}
+      {{gru-bubbles bubbleOptions=resourceLinks onBubbleSelect='bubbleSelect'}}
+    {{/if}}
+  </div>
+  {{#if isAssessment}}
+    <div class="grade" style= {{safe-html (concat "color:" (grade-color assessmentResult.correctPercentage))}}>
+      {{#unless hasOnlyOEQuestion}}
+        <span class="percentage">{{round-number assessmentResult.correctPercentage}}%</span>
+  {{else}}
+    <span class="percentage">--</span>
+      {{/unless}}
+      <span class="attempts">
+      <span class="text">PERFORMANCE</span>
+      </span>
+    </div>
+  {{else}}
+    {{#if (or hasQuestionScore hasOnlyOEQuestion)}}
+      <div class="grade {{if hasOnlyOEQuestion 'only-oe' ''}}" style= {{safe-html (concat "color:" (grade-color assessmentResult.correctPercentage))}}>
+        {{#unless hasOnlyOEQuestion}}
+          <span class="percentage">{{round-number assessmentResult.correctPercentage}}%</span>
+    {{else}}
+      <span class="percentage">--</span>
+        {{/unless}}
+        <span class="attempts">
+            <span class="text">PERFORMANCE</span>
+        </span>
+      </div>
+    {{else}}
+      <div class="thumbnail">
+        <span class="title">{{t "gru-assessment-report.gru-summary.total-time-spent"}}</span>
+        <span class="time-spent">{{gru-icon name='av_timer'}}<span>{{format-time assessmentResult.totalTimeSpent}}</span></span>
+      </div>
+    {{/if}}
+  {{/if}}
+
+</div>

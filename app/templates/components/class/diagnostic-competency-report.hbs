@@ -1,0 +1,132 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="diagnostic-competency-report-container ">
+  <div class="report-header">
+    <div class="header-title">
+      <span class="comp-code" data-toggle="popover" data-content={{competencyData.taxonomy.code}} data-placement="bottom">{{competencyData.taxonomy.code}}</span>
+      <span class="title ellipsis" data-toggle="popover" data-content={{competencyData.taxonomy.title}} data-placement="bottom">{{safe-html competencyData.taxonomy.title}}</span>
+    </div>
+    <div class="close" onclick={{action "onPullUpClose" true }} onkeypress={{action "onPullUpClose" true}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="sub-header">
+    <span>{{t 'common.averageScore'}}</span>
+    <div class="overall-score grade-range-{{grade-range competencyAvgScore}}">{{competencyAvgScore}}%</div>
+  </div>
+  <div class="assessment">
+      <i class="{{context.collection.format}}-icons"></i>
+      <span>{{context.collection.title}}</span>
+  </div>
+  <div class="performance-view">
+    <div class="student-list">
+      {{#if (gt studentsSelectedForSuggest.length 0)}}
+        <div class="suggest-bar on-scroll-fixed {{if (gt studentsSelectedForSuggest.length 0) 'active'}}">
+          <div class="suggest-bar-container">
+            <div class="close-all-suggestion" onclick={{action 'onCloseSuggest'}} onkeypress={{action 'onCloseSuggest'}}>
+              {{gru-icon name="close" }}
+            </div>
+            <div class="no-of-student-selected">
+              <span>{{studentsSelectedForSuggest.length}} {{t 'common.student-selected'}}</span>
+            </div>
+            <div class="suggestion-count-container" onclick={{action 'onOpenSuggestionPullup'}} onkeypress={{action 'onOpenSuggestionPullup'}}>
+              <span>{{t 'common.suggestion'}}</span>
+              <div class="suggestion-explore">
+                {{gru-icon name="explore"}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <div class="performance-detail">
+          <div class="student-check" onclick={{action 'onoverallSelectSuggest'}} onkeypress={{action 'onoverallSelectSuggest'}}>
+            <label>
+              {{input type="checkbox" checked=isSelectOverallSuggestion  aria-checked="false"}}
+            </label>
+        </div>
+
+        <div class="selected-type">
+          <div class="dropdown pull-left">
+            <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="button-text">
+                {{#if selectedStudentBasedScore}}
+                  {{selectedStudentBasedScore.name}}
+                {{else}}
+                  {{t 'profile.preference.choose-sec-language'}}
+                {{/if}}
+              </span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              {{#each studentBasedScore as |score|}}
+                <li> <a data-item={{score}} {{ action 'onStudentBasedScore' score}}>{{score.name}} </a> </li>
+              {{else}}
+                <li> {{t 'profile.preference.no-data'}} </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+          <div class="conduct">
+            <span>{{t 'teacher-landing.class.offline-class-report.conducted-on'}}</span>
+            <span class="conduct-date">{{format-date context.activation_date 'DD MMM YYYY'}}</span>
+          </div>
+          <div class="sort-score" onclick={{action 'sortByScore'}} onkeypress={{action 'sortByScore'}}>
+            <span>{{t 'sort-by-score'}}</span>
+              {{#if sortByScoreEnabled}}
+                {{gru-icon name="keyboard_arrow_up"}}
+              {{else}}
+                {{gru-icon name="keyboard_arrow_down"}}
+              {{/if}}
+            </div>
+        </div>
+      {{/if}}
+     <div class="student">
+      {{#each studentData as |student|}}
+      <div class="student-info">
+        <div class="student-info-container {{unless student.performance 'not-started'}}">
+          <label>
+            {{input type="checkbox" checked=student.isChecked click=(action 'onToggleButton' student) key-press=(action 'onToggleButton' student) aria-checked="false"}}
+          </label>
+          <div class='student-icon-col hidden-xs'>
+            <div class='student-icon' style="background-image: url({{student.avatarUrl}})"></div>
+          </div>
+          <div class="student-name">
+            <span>{{student.lastName}}, {{student.firstName}}</span>
+          </div>
+        </div>
+        <div class="student-score grade-range-{{grade-range student.score}}" onclick={{action 'onSelectStudent' student}} onkeypress={{action 'onSelectStudent' student}}>
+          <span>
+            {{#if (eq student.score null)}}
+              --
+            {{else}}
+              {{student.score}}%
+            {{/if}}
+          </span>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    </div>
+  </div>
+</div>
+{{#if isShowStudentActivityReport}}
+  {{teacher/offline-class/oca-student-activity-report-pull-up context=context competencyId=competencyId students=studentData collection=context.collection student=selectedStudent classId=classId showPullUp=isShowStudentActivityReport onClosePullUp="pullUpClose"}}
+{{/if}}
+
+{{#if showSuggestionPullup}}
+  {{teacher/suggestion-pull-up
+    showPullUp=showSuggestionPullup
+    students=studentsSelectedForSuggest
+    onCloseSuggest="onCloseSuggest"
+    context=contextParams
+    collection=collection
+    defaultSuggestContentType=defaultSuggestContentType
+    suggestionOrigin=origin
+    isDiagnosticContent = true
+    courseId = courseId
+    competencyData = competencyData
+    newlyAddedActivity = newlyAddedActivity
+    isEnableCaBaseline=isEnableCaBaseline
+    classFramework = classFramework
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}

@@ -1,0 +1,42 @@
+<div class="backdrop" {{action 'onPullUpClose'}}></div>
+<div class="ca-unscheduled-items-container">
+  <div class="ca-unscheduled-items-header" {{action 'onPullUpOpen'}}>
+    <div class="unscheduled-items">{{t 'common.unscheduled-items'}} ({{unScheduledClassActivities.length}})<span class="unscheduled-items-month"> - {{format-date forFirstDateOfMonth 'MMMM YYYY'}}</span></div>
+    {{gru-icon name="arrow_drop_up"}} {{gru-icon name="arrow_drop_down"}}
+  </div>
+  <div class="ca-unscheduled-content-items">
+    {{#each unScheduledClassActivities as |classActivity|}}
+      {{class/gru-class-activity-panel
+      classActivity=classActivity
+      classId=classId
+      class=class
+      members=members
+      onReportclick='changeStatusValue'
+      onGoLive='goLive'
+      showDcaAssignButton=false
+      showDcaAddButton=false
+      onChangeVisibility='changeVisibility'
+      onRemoveClassActivity='removeClassActivity'
+      openDcaContentReport='openDcaContentReport'
+      activityDate=classActivity.added_date
+      showDcaRemoveButton=false
+      onScheduleContentToDCA='onScheduleContentToDCA'
+      isUnScheduled=true
+    }}
+    {{/each}}
+  </div>
+</div>
+
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+
+<div class="schedule-ca-datepicker-container ca-datepicker-popover-container">
+  {{ca-date-picker
+    userStartDateAsToday=true
+    onSelectDate='onScheduleDate'
+    showMonths=true
+    onSelectMonth='onScheduleForMonth'}}
+</div>

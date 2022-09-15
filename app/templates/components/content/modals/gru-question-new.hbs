@@ -1,0 +1,70 @@
+<div class="modal-header">
+    {{#if showBackBtn}}
+    <span class="back-icon" {{action 'goBack'}}>{{gru-icon name='arrow_back'}}</span>
+    {{/if}}
+    <h4 class="modal-title">{{t "common.add-new-question"}}</h4>
+</div>
+{{#if isH5PContent}}
+  <div class="modal-body">
+    {{#if contentURL}}
+      {{#if isLoading}}
+        <div class="loading-spinner">
+          {{three-bounce-spinner}}
+        </div>
+      {{/if}}
+      <iframe src="{{contentURL}}" width="100%" frameborder="0" allowfullscreen></iframe>
+    {{else}}
+      <form>
+        <div class="resource-types text-center">
+          {{#each h5pContentTypes as |type|}}
+            <div
+                class="panel panel-default {{unless type.isShow 'hideResourceCard'}}" {{action "generateContentURL" type.id type.format}}>
+              <div class="panel-body">
+                <i class="resource-type-icon"></i>
+              </div>
+              <div class="panel-footer">
+                {{t (concat 'common.resource-format.' type.id) }}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </form>
+    {{/if}}
+  </div>
+{{else}}
+  <div class="modal-body">
+      <form>
+        {{#if isShowH5PCreation}}
+          <div class="header {{if isShowH5PCreation 'h5p-content'}}">
+            <button {{action 'h5pContent'}}>{{t 'resource.interactive'}}</button>
+          </div>
+        {{/if}}
+        <div class="col-sm-12 form-field">
+          {{content/etl/gru-etl-second isEditing=true tempData=question isComputedEtl=false valueHours='questionHrs' valueMins='questionMins' labelText=(t 'common-estimate-time-answer-title')}}
+        </div>
+          <label class="type">
+              <span class="required">{{t 'common.add-type-question'}}</span>
+          </label>
+          <div class="question-types text-center">
+            {{#each questionTypes as |questionType|}}
+                <div class="panel panel-default {{unless questionType.isShow 'hideQuestionCard'}} {{if (eq questionType.name 'T/F') 'question-type-T_F' (concat 'question-type-' questionType.name)}} {{set-if-equal 'active' questionType.name selectedType}}" {{action 'selectType' questionType.name}}>
+                    <div class="panel-body">
+                        <i class="question-type-icon"></i>
+                    </div>
+                    <div class="panel-footer">
+                      {{t (concat 'common.question-type.' questionType.name) }}
+                    </div>
+                </div>
+            {{/each}}
+          </div>
+          <div class="actions question-new">
+              <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+                  <span aria-hidden="true">{{t 'common.cancel'}}</span>
+              </button>
+            {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+                <button class="btn btn-primary add" {{action "createQuestion" }}>{{t 'common.create'}}</button>
+            {{/gru-spinner-button}}
+          </div>
+      </form>
+  </div>
+{{/if}}

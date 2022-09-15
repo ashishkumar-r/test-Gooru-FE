@@ -1,0 +1,41 @@
+<label>
+  <span>{{t "common.audience"}}</span>
+</label>
+
+{{#if isEditing}}
+
+  <div class="dropdown">
+    <button class="btn-primary dropdown-toggle btn-sm add-prefix"
+            type="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      {{t "common.add"}}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu audience">
+      {{#each editAudiences as |audience|}}
+        <li><label>{{input type="checkbox" checked=audience.checked aria-checked="false"}}<span>{{audience.name}}</span></label></li>
+      {{/each}}
+    </ul>
+    {{#each editAudiences as |audience|}}
+      {{#if audience.checked}}
+        <button type="button" onclick={{action 'removeAudience' audience}} onkeypress={{action 'removeAudience' audience}} tabindex={{tabindex}} class="btn-audience btn-info btn btn-sm">
+          <span class="btn-label">{{audience.name}}</span>
+          <span class="remove-audience">{{gru-icon name="clear"}}</span>
+        </button>
+      {{/if}}
+    {{/each}}
+  </div>
+
+{{else}}
+  <div>
+    {{#if srcSelectedAudiences.length}}
+      {{#each srcAudiences as |audience|}}
+        {{#if audience.checked}}
+          <div class="btn-empty btn btn-sm">{{audience.name}}</div>
+        {{/if}}
+      {{/each}}
+    {{else}}
+      <span>{{t "common.not-specified"}}</span>
+    {{/if}}
+  </div>
+{{/if}}

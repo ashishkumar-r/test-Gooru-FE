@@ -1,0 +1,30 @@
+.gru-comprehension-container {
+  .gru-comprehension-question-list {
+    .answer-container {
+      .correct-answer {
+        display: none;
+      }
+    }
+    &.show-correct-answer {
+      .answer-container {
+        .correct-answer {
+          display: block;
+        }
+      }
+    }
+    &.disable-useranswer {
+      .question-header-container {
+        .question-performance-container {
+          display: none;
+        }
+      }
+      .answer-container {
+        grid-template-columns: auto;
+
+        .user-answer {
+          display: none;
+        }
+      }
+    }
+  }
+}

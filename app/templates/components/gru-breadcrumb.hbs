@@ -1,0 +1,14 @@
+<div class="btn-group" role="group">
+  {{#each items as |item|}}
+    <div class="item {{itemClassName}} ">
+      <button class=" btn btn-info breadcrumb-item" {{action 'selectItem' item}}>
+        {{#if item.prefix}}
+          {{item.prefix}}{{item.label}}
+        {{else}}
+          {{item.label}}
+        {{/if}}
+      </button>
+      <span class="greater-than">{{gru-icon name='chevron_right'}}</span>
+    </div>
+  {{/each}}
+</div>

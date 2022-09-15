@@ -1,0 +1,376 @@
+<div class="inspect-destination-container">
+  {{#if isBaselineGenerating}}
+    <div class="baseline-loader">
+      {{three-bounce-spinner}}
+    </div>
+  {{/if}}
+  <div class="destination-chart-container {{type}}">
+
+    {{proficiency/learner-proficiency-domain-matrix
+      type=type
+      subjectBucket=subjectBucket
+      timeLine=timeLine
+      studentDestination=studentDestination
+      userId=studentProfile.id
+      subject=activeSubject
+      class=class
+      competencyMatrixDomains=competencyMatrixDomains
+      competencyMatrixCoordinates=competencyMatrixCoordinates
+      isSelectBaseLine=isSelectBaseLine
+      userProficiencyBaseLine=userProficiencyBaseLine
+      onShownBaseLine="onShownBaseLine"
+      isShowMatrixChart=isShowMatrixChart
+      onDomainSelect="onDomainSelect"
+      selectedDomain=selectedDomain
+      taxonomyGrades=taxonomyGrades
+      showGutCompetency=showGutCompetency
+      hideGutCompetencyButton=hideGutCompetencyButton
+      classGrade=(if defaultGrade defaultGrade activeGrade)
+      subjectCode=subjectCode
+      onSelectCompetency="onSelectCompetency"
+      fwCompetencies=fwCompetencies
+      isPlayerProficiency = isPlayerProficiency
+      proficiencyChartData=proficiencyChartData
+      skylinePoints=skylinePoints
+      onSelectTopic="onSelectTopic"
+      selectedCompetency=selectedCompetency
+      totalTopics=totalTopics
+      isDefaultSkyline=isDefaultSkyline
+      isInitialSkyline = isInitialSkyline
+      isShowLoaderSet="isShowLoaderSet"
+      proficiencyType=proficiencyType
+      isPublic=isPublic
+    }}
+
+  </div>
+
+  <div class="header-top {{if (eq type "route") 'hide'}}">
+    <div class="facet common-class">
+      <div class="header-title">
+        <span class="title">{{t 'common.facet'}}</span>
+        <span>{{activeSubject.id}} / {{class.preference.framework}}</span>
+      </div>
+    </div>
+    <div class="my-location common-class">
+      <div class="header-div">
+        <div class="header-title">
+          <span class="title">{{t 'common.myProfile'}}</span>
+          <span>{{if studentMathGrade.level_label studentMathGrade.level_label (if studentMathGrade.grade studentMathGrade.grade studentMathGrade.label)}}</span>
+        </div>
+        <a href="javascript:void(0)" class="info-item location-info">
+          <span class="material-icons-outlined">info</span>
+        </a>
+        <div class="edit-container {{unless (gt mathLevelGrades.length  1) 'hide'}} {{if (or isDisableEditIcon (not-eq type 'destination')) 'hide'}}">
+          <div class="edit-icon" onclick={{action "changesMyLevel"}} onkeypress={{action "changesMyLevel"}}><i class="material-icons">{{if isMathGradeChange 'close' 'edit'}}</i></div>
+        </div>
+        {{#if isDiagnosticApplicable}}
+          <div class="diagnostic common-class {{if (or activeSubPrograme (not-eq type 'destination')) 'hide'}}">
+            <div class="diagnostic-button" onclick={{action "takeDiagnostic"}} onkeypress={{action "takeDiagnostic"}} tabindex="9">
+              {{t "public-class.take-the-diagnostic"}}
+            </div>
+          </div>
+        {{/if}}
+      </div>
+      <div class="body-div">
+        {{#if (gt mathLevelGrades.length  1)}}
+          <div class="math-grade-button {{if isNextEnable 'level-selected'}}">
+            {{#if isMathGradeChange}}
+              <div class="grade-list">
+                {{#each mathLevelGrades as |grade|}}
+                  <div class="grade-div {{if (eq (if studentMathGrade.level_id studentMathGrade.level_id studentMathGrade.id) grade.id) 'selected-div'}}" onclick={{action "updateMathLevelAndLocation" grade}}
+                    onkeypress={{action "updateMathLevelAndLocation" grade}} tabindex="9">
+                    {{if grade.grade grade.grade grade.label}} <i class="selected-icon {{if (eq (or studentMathGrade.level_id studentMathGrade.id) grade.id) 'show' 'hide'}}"></i>
+                  </div>
+                {{/each}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+    <div class="destination common-class">
+      <div class="header-title">
+        <span class="title">{{t 'common.destination'}}</span>
+        <span>{{activeGrade.grade}}</span>
+      </div>
+      <a href="javascript:void(0)" class="info-item destination-info">
+        <span class="material-icons-outlined">info</span>
+      </a>
+      <div class="edit-icon hide">{{gru-icon name='edit'}}</div>
+    </div>
+  </div>
+  {{#if isShowLoader}}
+    <div class="baseline-loader custom-loader">
+      {{three-bounce-spinner}}
+    </div>
+  {{/if}}
+
+  {{#if (or (and isPublic isPremiumClass) showDirections)}}
+    {{#if (eq type "route")}}
+      <div class="course-container">
+        <div class="milestone-details">
+          <div class="assigned-course-title">
+            {{t "student-first-experience.assigned-course-title" title=activeGrade.grade}}
+          </div>
+          <div class="custom-height course-map-accordion-container {{if class.milestoneViewApplicable 'milestone'}}">
+            {{#if (and isMilestoneViewEnabledForTenant class.milestoneViewApplicable)}}
+              {{#if (and isMilestoneFetch (gt milestones.length 0))}}
+                {{student/class/milestone-course-map
+              class=class
+              gradeSubject=subject
+              locateLastPlayedItem=false
+              showToggleButtonToViewFullCourse=true
+              milestones=milestones
+              route0Milestones=route0Milestones
+              resetPerformance = "goToCourseMap"
+              contentVisibility = contentVisibility
+              checkAllContentsAreRescoped = "checkAllContentsAreRescoped"
+              isAllContentsAreRescoped = isAllContentsAreRescoped
+              tabindex="9"
+              isInitialSkyline=true
+            }}
+              {{else if isMilestoneFetch}}
+                <div class="student-milestone-not-ready">{{t (if (and isPublic isPremiumClass) 'studen-grade-not-covered' 'student-milestone-not-ready')}}</div>
+              {{/if}}
+            {{else}}
+              {{student/class/destination/student-destination-course-accordion
+            courseData=course
+            classId=classId
+            courseId=courseId
+            isRoute0=isRoute
+            contentVisibility = contentVisibility
+          }}
+            {{/if}}
+          </div>
+          <div class="study-course-container study-grid button-container-box relative-inline-block">
+            <span class="start-study hide">{{t "public-class.start-study-text"}}</span>
+            <div class="study-course {{if (and class.milestoneViewApplicable isMilestoneViewEnabledForTenant isMilestoneFetch (eq milestones.length 0)) 'no-milestone'}} {{if isNoStudyMaterial 'no-milestone'}}" onclick={{action onMoveNext 'playNext'}}
+              onkeypress={{action onMoveNext 'playNext'}} tabindex="9">
+              {{gru-icon name="near_me"}} {{t "student-first-experience.start-studying"}}
+            </div>
+            <a href="javascript:void(0)" class="info-item start-study-info">
+              <span class="material-icons-outlined">info</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    {{else if (eq type "destination")}}
+      {{#if showTimeoutMessage}}
+        <div class="student-milestone-not-ready">{{t "studen-baseline-generation-timeout"}}</div>
+      {{else}}
+        <div class="grade-data-container">
+          {{#if (and isPublic isPremiumClass)}}
+            <div class="selecte-destination-container margin-left-30px relative-inline-block">
+              <div>{{t 'proficiency.your-destination'}}</div>
+              <div class="grade-title">
+                {{activeGrade.grade}}
+              </div>
+            </div>
+          {{else}}
+            <div class="grade-title">
+              {{activeGrade.grade}}
+            </div>
+          {{/if}}
+          <div class="grade-description margin-left-30px relative-inline-block">
+            {{safe-html gradeDescription}}
+          </div>
+          {{#if isLocationUpdate }}
+            <div class="location-update-container button-container-box relative-inline-block">
+              <div class="icon-container">
+                <span class="curser-pointer" onclick={{action "updateLocation" false}} onkeypress={{action "updateLocation" false}} tabindex="9">{{gru-icon name="arrow_back"}}</span>
+              </div>
+
+              <div class="buttons grid-buttons {{if isNextEnable 'grid-buttons-level-select'}}">
+                <span class="{{if isNextEnable 'hide'}}">{{t "public-class.update-location-title"}}</span>
+                {{#if isDiagnosticApplicable}}
+                  <div class="diagnostic-button margin-auto" onclick={{action "takeDiagnostic"}} onkeypress={{action "takeDiagnostic"}} tabindex="9">
+                    {{t "public-class.take-the-diagnostic"}}
+                  </div>
+                {{/if}}
+                {{#if (gt mathLevelGrades.length  1)}}
+                  <div class="math-grade-button {{if isNextEnable 'level-selected'}}">
+                    {{#if isNextEnable}}
+                      <span class="margin-auto">{{if studentMathGrade.grade studentMathGrade.grade studentMathGrade.label}}</span>
+                    {{/if}}
+                    <div class="grade-button  margin-auto {{if isNextEnable 'next-enabled'}}" onclick={{action "changesMyLevel"}} onkeypress={{action "changesMyLevel"}} tabindex="9">
+                      {{t "public-class.set-my-level"}}
+                    </div>
+                    {{#if isMathGradeChange}}
+                      <div class="grade-list">
+                        <div class="my-location">
+                          <div class="disable-div">{{t 'student-landing.class.my-location'}}</div>
+                        </div>
+                        {{#each mathLevelGrades as |grade|}}
+                          <div class="grade-div" onclick={{action "updateMathLevel" grade}} onkeypress={{action "updateMathLevel" grade}} tabindex="9">
+                            {{if grade.grade grade.grade grade.label}}
+                          </div>
+                        {{/each}}
+                      </div>
+                    {{/if}}
+                  </div>
+                {{/if}}
+                <div class="next-button margin-auto {{unless isNextEnable 'hide'}}" onclick={{action "updateLocation" false}} onkeypress={{action "updateLocation" false}} tabindex="9">{{t 'common.next'}}</div>
+              </div>
+            </div>
+            {{#if isShowLoader}}
+              <div class="baseline-loader custom-loader">
+                {{three-bounce-spinner}}
+              </div>
+            {{/if}}
+          {{else}}
+            <div class="button-container button-container-box relative-inline-block grade-location-6 {{if isShowGradeSection 'active'}}">
+              <div class="show-route-div {{if isPublic 'route' 'routes'}} {{unless activeSubPrograme 'show-all-button'}}">
+                <div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6 audio active">
+                  <div class="destination-grid">
+                    <audio id="gradeDescAudio" src="{{gradeAudioURL}}" preload="auto"></audio>
+                    <div class="show-route-div next-route margin-auto audio {{if isGradeAudioPlaying 'playing'}} {{unless gradeAudioURL 'hide'}}" onclick={{action 'playGradeAudio'}} onkeypress={{action 'playGradeAudio'}} tabindex="9">
+                      {{t (if isGradeAudioPlaying 'common.skip' 'common.play')}} {{t 'common.audio'}}
+                    </div>
+                  </div>
+                </div>
+                <div class="margin-auto text-align-center line-hight text-1 show-route-description hide">
+                  {{t "student-first-experience.competency-level.info-show-my-route-text"}}
+                </div>
+                <div class="show-route-btn">
+                  <div class="next-route margin-auto" onclick={{action onMoveNext 'route'}} onkeypress={{action onMoveNext 'route'}} tabindex="9">
+                    {{t "student-first-experience.show-route"}}
+                  </div>
+                  <a href="javascript:void(0)" class="info-item route-item">
+                    <span class="material-icons-outlined">
+                      info
+                    </span>
+                  </a>
+                </div>
+                {{#if (and isPublic isPremiumClass (or isDiagnosticApplicable (gt mathLevelGrades.length 1)) (not defaultGradeLevel))}}
+                  {{#unless isJoinedPublicClass}}
+                    <div class="margin-auto text-align-center line-hight text-2 show-location-description hide">
+                      {{t "student-first-experience.competency-level.info-update-location-text"}}
+                    </div>
+                    <div class="change-level-btn hide">
+                      <div class="change-level margin-auto" onclick={{action "updateLocation" true}} onkeypress={{action "updateLocation" true}} tabindex="9">
+                        {{t "public-class.update-my-location"}}
+                      </div>
+                      <a href="javascript:void(0)" class="info-item location-item">
+                        <span class="material-icons-outlined">
+                          info
+                        </span>
+                      </a>
+                    </div>
+                  {{/unless}}
+                {{else}}
+                  <div class="margin-auto text-1"></div>
+                  <div class="margin-auto text-1"></div>
+                {{/if}}
+              </div>
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="competency-level-container">
+        <div class="scroll-div margin-left-30px">
+          <div class="proficiency-info-1 proficiency-info">
+            <div class="grade-title">
+              {{t "student-first-experience.competency-level.title-with-name" userName=userDisplayName}}
+            </div>
+            <div class="grade-description margin-top-10px">
+              {{#if (and isPublic isPremiumClass)}}
+                {{#if (and activeSubPrograme activeSubPrograme.title)}}
+                  {{t 'student-first-experience.jumpstart.welcome-message' selectedClass=activeSubPrograme.title }}
+                {{else}}
+                  {{#if isShowIndependentClass}}
+                    {{t 'student-first-experience.competency-level.welcome-message' selectedClass=course.title}}
+                  {{else}}
+                    {{t 'student-first-experience.competency-level.welcome-message' selectedClass= subject.title}}
+                  {{/if}}
+                {{/if}}
+              {{else}}
+                {{ t "student-first-experience.competency-level-partial.desc1"}} {{subject.title}}
+              {{/if}}
+            </div>
+          </div>
+          {{safe-html getStartedDescription}}
+        </div>
+        <div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6 audio active">
+          <div class="destination-grid">
+            <audio id="descAudio" src="{{descAudioURL}}" preload="auto"></audio>
+            <div class="show-route-div next-route margin-auto audio {{if isAudioPlaying 'playing'}} {{unless descAudioURL 'hide'}}" onclick={{action 'playAudio'}} onkeypress={{action 'playAudio'}} tabindex="9">
+              {{t (if isAudioPlaying 'common.skip' 'common.play')}} {{t 'common.audio'}}
+            </div>
+          </div>
+        </div>
+        <div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6 active">
+          <div class="destination-grid">
+            <div class="show-route-div next-route margin-auto btn-primary" onclick={{action 'onClickNext' 'destination'}} onkeypress={{action 'onClickNext' 'destination'}} tabindex="9">
+              {{t "common.next"}}
+            </div>
+          </div>
+        </div>
+        <div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6 active skip-all">
+          <div class="destination-grid">
+            <div class="show-route-div next-route margin-auto btn-primary" onclick={{action 'skipAll'}} onkeypress={{action 'skipAll'}} tabindex="9">
+              {{t "skip-all"}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="student-inspect-destination-carousel-sm">
+        {{student/class/student-inspect-destination-carousel-xs
+      userDisplayName=userDisplayName
+      onMoveNext="onMoveNext"
+      activeGrade=activeGrade
+      isPublic=isPublic
+      isPremiumClass=isPremiumClass
+      isShowIndependentClass=isShowIndependentClass
+      course=course
+      subject=subject
+      isMobileView=isMobileView
+      }}
+      </div>
+    {{/if}}
+    <div class="student-inspect-destination-sm">
+      {{#unless (eq type "proficiency") }}
+        {{student/class/student-inspect-destination-xs
+        type=type
+        onMoveNext="onMoveNext"
+        updateLocation="updateLocation"
+        takeDiagnostic="takeDiagnostic"
+        taxonomyGrades=taxonomyGrades
+        courseData=course
+        classId=classId
+        courseId=courseId
+        grade=activeGrade
+        index=index
+        class=class
+        classData=classData
+        subject=subject
+        isMilestoneFetch=isMilestoneFetch
+        route0Milestones=route0Milestones
+        isRoute0=isRoute
+        milestones=milestones
+        isPublic=isPublic
+        independentCourses = independentCourses
+        isPremiumClass = isPremiumClass
+        isBaselineGenerating = isBaselineGenerating
+        showTimeoutMessage = showTimeoutMessage
+        isNoStudyMaterial = isNoStudyMaterial
+        isShowLoader=isShowLoader
+        updateMathLevel="updateMathLevel"
+        defaultGradeLevel=defaultGradeLevel
+      }}
+      {{/unless}}
+    </div>
+  {{else}}
+    <div class="lp-compute-inprogress">
+      <span>{{t 'common.please-wait'}}.</span>
+      <i class="compute-icon"></i>
+      <p>{{ t "student-first-experience.lp-compute-inprogress" title=subject.title}}</p>
+    </div>
+  {{/if}}
+</div>
+<div class="margin-auto text-align-center line-hight text-1 show-lo-description hide">
+  {{t 'my-location-hover-msg' gradeText=(if studentMathGrade.level_label studentMathGrade.level_label (if studentMathGrade.grade studentMathGrade.grade studentMathGrade.label))}}
+</div>
+<div class="margin-auto text-align-center line-hight text-1 show-destination-description hide">
+  {{t 'destination-msg'}}
+</div>

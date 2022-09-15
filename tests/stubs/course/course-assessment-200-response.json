@@ -1,0 +1,45 @@
+{"courses": [
+  {
+    "id": "f0d98d5b-a1af-47d3-b7fe-2872834db150",
+    "title":"Course Unique Melany",
+    "units": [
+      {
+        "id":"first-unit-id",
+        "title":"Unidad 1",
+        "lessons":[
+          {
+            "id":"637e7599-96de-4459-83cb-c72bd47ae4b0",
+            "title":"Lección 1",
+            "assessments":[
+              {
+                "id":"f3c93681-f82e-4096-bef7-08ae33312a70",
+                "title":"Assessment 3",
+                "format":"assessment",
+                "subformat":null
+              },
+              {
+                "id":"ec2a9b12-93b1-4daf-9c35-3ee86547aada",
+                "title":"Assessment 2",
+                "format":"assessment",
+                "subformat":null
+              },
+              {
+                "id":"30e9837a-1a2f-4e73-8fa5-36f619d8dcf8",
+                "title":"Assessment 1 attempt",
+                "format":"assessment",
+                "subformat":null
+              },
+              {
+                "id":"all-question-types-assessment-id",
+                "title":"Assessment 4",
+                "format":"assessment",
+                "subformat":null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+}

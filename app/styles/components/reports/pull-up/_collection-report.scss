@@ -1,0 +1,587 @@
+.reports.pull-up-collection-report {
+  position: fixed;
+  top: 100%;
+  z-index: 1031;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+
+  &.oa-report-pullup {
+    max-width: 80%;
+    width: 100%;
+    @media screen and (max-width: 700px) {
+      max-width: 100%;
+    }
+
+    .collection-report-container {
+      width: 100%;
+      .report-content {
+        .report-carousel {
+          display: none;
+        }
+        .report-performance-tabular {
+          .report-header-container {
+            .report-action-btns {
+              width: 100%;
+              justify-content: flex-end;
+              .view-btn-actions {
+                margin-right: auto;
+                .dropdown {
+                  .print-preview {
+                    display: block;
+                    text-align: center;
+                  }
+                  .download-dropdown {
+                    display: grid;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .gru-adw-report-preview {
+        display: none;
+        @media print {
+          display: block;
+        }
+      }
+    }
+    @media print {
+      overflow: visible;
+      @page {
+        page-break-after: always;
+      }
+      .collection-report-container {
+        max-height: 100%;
+        height: 100%;
+        .report-header {
+          display: none;
+        }
+        .report-content {
+          max-height: 100%;
+          height: 100%;
+          .report-performance-tabular {
+            .report-header-container {
+              display: none;
+            }
+          }
+        }
+      }
+      .uploaded-evidence-report {
+        display: none;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  .backdrop {
+    background-color: $backdrop-color;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .backdrop-pull-ups {
+    .backdrop {
+      background: none !important;
+    }
+  }
+
+  .loading-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+
+  .custom-text {
+    width: 184px;
+    text-align: center;
+  }
+
+  .font-small {
+    font-size: 13px;
+  }
+
+  .font-small-avg-score {
+    font-size: 13px;
+    margin-top: -20px;
+  }
+
+  .collection-report-container {
+    background: $white-bold;
+    width: 768px;
+    max-height: 90vh;
+    height: 90vh;
+
+    .report-header {
+      display: flex;
+      height: 60px;
+      box-shadow: 0 2px 5px 0 $disabled-bg-color;
+      position: relative;
+      z-index: 1;
+
+      .report-title {
+        width: calc(100% - 50px);
+
+        .collection-icon {
+          width: 34px;
+          height: 38px;
+          background-repeat: no-repeat;
+          background-size: 25px 25px;
+          display: inline-block;
+          float: left;
+
+          &.assessment {
+            background-image: url("../assets/gooru/images/assessment-gray.svg");
+          }
+
+          &.collection {
+            background-image: url("../assets/gooru/images/collection_gray.svg");
+          }
+
+          &.offline-activity {
+            background-image: url("gooru/images/offline.svg");
+          }
+        }
+
+        .title {
+          width: 100%;
+          font-size: 16px;
+          line-height: 20px;
+          padding-left: 15px;
+          letter-spacing: normal;
+          padding-top: 10px;
+          color: $dark-400;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      .report-breadcrumb {
+        width: calc(100% - 50px);
+        display: flex;
+
+        .unit-title {
+          display: flex;
+          align-items: center;
+          max-width: 215px;
+
+          p {
+            max-width: 170px;
+            margin: 0;
+            @include ellipsis(
+              $font-size: 14px,
+              $line-height: 1.2,
+              $lines-to-show: 2
+            );
+          }
+
+          .unit-icon {
+            width: 50px;
+            height: 50px;
+            background-image: url("../assets/gooru/images/unit.svg");
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            background-position: 12px 12px;
+          }
+        }
+
+        .lesson-title {
+          display: flex;
+          align-items: center;
+          max-width: 215px;
+
+          .keyboard_arrow_right {
+            margin-right: 5px;
+          }
+
+          p {
+            margin: 0;
+            max-width: 170px;
+            @include ellipsis(
+              $font-size: 14px,
+              $line-height: 1.2,
+              $lines-to-show: 2
+            );
+          }
+
+          .lesson-icon {
+            width: 45px;
+            height: 50px;
+            background-image: url("../assets/gooru/images/lesson.svg");
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            background-position: 0 11px;
+          }
+        }
+
+        .collection-title {
+          display: flex;
+          align-items: center;
+          max-width: 300px;
+          padding-left: 15px;
+
+          p {
+            margin: 0;
+            max-width: 260px;
+            @include ellipsis(
+              $font-size: 14px,
+              $line-height: 1.2,
+              $lines-to-show: 2
+            );
+          }
+
+          .collection-icon {
+            width: 40px;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            background-position: 0 12px;
+
+            &.assessment {
+              background-image: url("../assets/gooru/images/assessment-gray.svg");
+            }
+
+            &.collection {
+              background-image: url("../assets/gooru/images/collection_gray.svg");
+            }
+
+            &.offline-activity {
+              background-image: url("gooru/images/offline.svg");
+            }
+          }
+        }
+      }
+
+      .assessment-external-icons,
+      .collection-external-icons {
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        opacity: 0.8;
+        justify-self: center;
+        background-image: url("gooru/share.png");
+        background-repeat: no-repeat;
+        margin: auto 10px auto auto;
+      }
+
+      .report-close-pullup {
+        width: 50px;
+
+        .close {
+          color: $breadcrumb-color;
+          margin-top: 20px;
+          margin-right: 20px;
+          font-size: 24px;
+        }
+      }
+      .download {
+        line-height: 1;
+        text-align: center;
+        margin-top: 14px;
+        margin-right: 10px;
+        a {
+          color: $dark-400;
+        }
+      }
+    }
+
+    .report-content {
+      max-height: calc(90vh - 60px);
+      height: calc(90vh - 60px);
+      overflow-y: auto;
+      width: 100%;
+
+      .report-carousel {
+        position: relative;
+
+        #report-carousel-wrapper {
+          background-image: linear-gradient($dark-600, $dark-600);
+          background-blend-mode: multiply;
+
+          .collection-background-cover {
+            height: 251px;
+            background-image: linear-gradient($dark-600, $dark-600);
+            background-blend-mode: multiply;
+          }
+
+          .carousel-control {
+            opacity: 1;
+            background: none;
+
+            &.in-active {
+              opacity: 0.3;
+              pointer-events: none;
+            }
+
+            &.left {
+              z-index: 2;
+              width: 45px;
+
+              .arrow-left {
+                width: 25px;
+                height: 56px;
+                display: block;
+                background-image: url("../assets/gooru/images/arrow-left.svg");
+                background-repeat: no-repeat;
+                margin-left: 15px;
+                position: relative;
+                top: 42%;
+              }
+            }
+
+            &.right {
+              z-index: 2;
+              width: 45px;
+
+              .arrow-right {
+                width: 25px;
+                height: 56px;
+                display: block;
+                background-image: url("../assets/gooru/images/arrow-right.svg");
+                background-repeat: no-repeat;
+                margin-left: 10px;
+                position: relative;
+                top: 42%;
+              }
+            }
+          }
+        }
+
+        .report-carousel-content-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          align-items: center;
+
+          .report-carousel-content {
+            width: 640px;
+            margin: auto;
+            position: relative;
+            display: flex;
+
+            .performance-display-container {
+              margin-right: 15px;
+              margin-top: 15px;
+              width: 190px;
+
+              .collection-performance-average {
+                width: 185px;
+                height: 185px;
+                border-radius: 50%;
+                font-weight: bold;
+                text-indent: 10px;
+                font-size: 60px;
+                color: $white;
+                position: relative;
+              }
+
+              .collection-performance-timespent {
+                width: 185px;
+                height: 185px;
+                border-radius: 50%;
+                font-weight: bold;
+                text-indent: 10px;
+                font-size: 30px;
+                color: $white;
+                background-color: $blue-400;
+                position: relative;
+              }
+            }
+
+            .collection-report-chart {
+              display: flex;
+              align-items: center;
+              width: 445px;
+              position: relative;
+
+              .report-bar-chart {
+                margin-left: 28px;
+              }
+            }
+          }
+        }
+      }
+
+      .report-performance-tabular {
+        width: 100%;
+
+        .report-header-container {
+          width: 100%;
+          height: 50px;
+          box-shadow: 0 2px 5px 0 $disabled-bg-color;
+          display: flex;
+          position: relative;
+          z-index: 1;
+
+          .taxonomy-details {
+            width: 278px;
+            height: 50px;
+
+            .gru-taxonomy-tag-list {
+              .gru-taxonomy-tag {
+                max-width: 200px;
+                width: 200px;
+                border: none;
+                background-color: $suggestion-panel-color;
+                border-radius: 0;
+                color: $white;
+                height: 50px;
+
+                .standard-tag {
+                  width: 200px;
+                  padding-left: 10px;
+                  padding-right: 10px;
+                  padding-top: 13px;
+
+                  b {
+                    color: $white;
+                  }
+                }
+              }
+
+              .non-visible-tags {
+                margin-top: 10px;
+                margin-left: 10px;
+                background: $suggestion-panel-color;
+                width: 35px;
+                color: $white;
+                border-radius: 4px;
+              }
+
+              .popover {
+                background: $white;
+                margin-left: 5px;
+
+                .arrow::after {
+                  border-left-color: $white;
+                  border-right-color: $white;
+                }
+
+                .popover-content {
+                  .gru-taxonomy-tag {
+                    max-width: 300px;
+                    width: 270px;
+                    border-radius: 4px;
+
+                    .standard-tag {
+                      width: 270px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .report-action-btns {
+            display: flex;
+
+            .view-btn-actions {
+              display: flex;
+              width: 220px;
+
+              i {
+                margin-top: 5px;
+              }
+
+              span {
+                display: block;
+                margin-top: -10px;
+              }
+
+              .grid-view-icon,
+              .list-view-icon {
+                width: 40px;
+                text-align: center;
+                opacity: 0.5;
+                cursor: pointer;
+
+                &.active {
+                  color: $font-blue-400-blue-dark;
+                  opacity: 1;
+                }
+              }
+            }
+
+            .filter-btns {
+              display: flex;
+
+              span {
+                display: block;
+                margin-top: -10px;
+              }
+
+              i {
+                margin-top: 5px;
+              }
+
+              .performance-icon,
+              .reaction-icon,
+              .timespent-icon {
+                width: 80px;
+                text-align: center;
+                opacity: 0.5;
+                cursor: pointer;
+
+                &.active {
+                  opacity: 1;
+                }
+              }
+
+              .timespent-icon {
+                &.collection {
+                  pointer-events: none;
+                  cursor: default;
+                }
+              }
+
+              .performance-icon {
+                pointer-events: none;
+                cursor: default;
+
+                &.collection {
+                  visibility: hidden;
+                }
+              }
+            }
+          }
+        }
+
+        .report-view-container {
+          margin-bottom: 20px;
+        }
+
+        &.grid {
+          .report-header-container {
+            .report-action-btns {
+              .filter-btns {
+                .reaction-icon,
+                .timespent-icon {
+                  visibility: hidden;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

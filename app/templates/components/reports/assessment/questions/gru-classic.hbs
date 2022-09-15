@@ -1,0 +1,21 @@
+<div class="classic-container">
+    <div class="choose-answer-section">
+        <ul class="answer-panel-item">
+          {{#each baseAnswers as | answer index |}}
+                {{#if showCorrect}}
+                  <li class="answer-item answer-edit-{{index}}"><div class="answer-item-text">{{answer.text}}</div>
+                    {{#if answer.textImage}}
+                      <img src="{{answer.textImage}}" alt=""> 
+                    {{/if}}
+                  </li>
+                {{else}}
+                  <li class="answer-item answer-edit-{{index}}"><div class="answer-item-text">{{answer.text}}</div>
+                    {{#if answer.textImage}}
+                      <img src="{{answer.textImage}}" alt="">
+                     {{/if}}
+                  </li>
+                {{/if}}
+          {{/each}}
+        </ul>
+    </div>
+</div>

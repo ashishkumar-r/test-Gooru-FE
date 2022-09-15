@@ -1,0 +1,195 @@
+.gru-read-panel {
+  .read-panel {
+    background: $white;
+    height: 56px;
+    margin: 10px;
+    padding: 10px;
+
+    .close-pullup {
+      width: 33px;
+      height: 33px;
+      background-color: rgba(216, 216, 216, 0.3);
+      border-radius: 50%;
+      text-align: center;
+      cursor: pointer;
+
+      i {
+        color: $gray-base;
+        line-height: 32px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  .read-body-container {
+    display: grid;
+    grid-template-columns: 43% 57%;
+
+    .left-panel {
+      background: $white;
+      height: auto;
+      margin: 0 3px 10px;
+      padding: 10px;
+
+      .font-changer {
+        font-size: 15px;
+        font-weight: bold;
+        display: grid;
+        grid-template-columns: auto auto;
+
+        .font-title {
+          .font-size-loader {
+            display: flex;
+            align-items: center;
+
+            .font-label {
+              font-size: 11px;
+              padding-right: 5px;
+            }
+          }
+
+          #wpm-timer-clk {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .questionText {
+        font-size: 14px;
+        overflow-y: auto;
+        height: calc(100% - 44px);
+      }
+
+      .questionText::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .right-panel {
+      background: $white;
+      height: auto;
+      margin: 0 3px 10px 0;
+      padding: 10px;
+
+      .table-container {
+        table {
+          width: 100%;
+
+          tr {
+            display: revert !important;
+            position: relative;
+
+            th {
+              overflow: hidden;
+              font-size: 13px;
+              padding: 7px;
+              border: 1px solid $sep-border-color;
+              font-weight: 400;
+            }
+
+            .name {
+              width: 49%;
+
+              .first-header {
+                margin-left: 12px;
+                opacity: 0.5;
+                cursor: pointer;
+
+                i {
+                  position: relative;
+                  top: 7px;
+                  right: 5px;
+                  font-size: 22px;
+                }
+              }
+
+              .last-header {
+                opacity: 0.5;
+                cursor: pointer;
+
+                i {
+                  position: relative;
+                  top: 7px;
+                  right: 5px;
+                  font-size: 22px;
+                  width: 0;
+                }
+              }
+
+              .active {
+                opacity: 1;
+              }
+            }
+
+            .wpm-count {
+              width: 35%;
+              text-align: center;
+            }
+
+            .read-count {
+              width: 25%;
+            }
+          }
+
+          tbody {
+            tr {
+              &.active-student {
+                border: 2px solid $blue-400;
+                color: $blue-400;
+              }
+
+              td {
+                height: 40px;
+                border: 1px solid $sep-border-color;
+                text-align: center;
+
+                i {
+                  font-size: 20px;
+                }
+
+                .student-info-container {
+                  display: grid;
+                  grid-template-columns: 28px auto;
+                  align-items: center;
+                  padding: 5px;
+
+                  .student-icon-col {
+                    .student-icon {
+                      background-size: contain;
+                      border-radius: 50%;
+                      width: 30px;
+                      height: 30px;
+                      margin: auto;
+                    }
+                  }
+
+                  .student-name {
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    min-width: 98px;
+                    text-align: left;
+                    margin-left: 8px;
+                  }
+                }
+
+                .down-arrow {
+                  i {
+                    transform: rotate(90deg);
+                  }
+                }
+
+                .up-arrow {
+                  i {
+                    transform: rotate(-90deg);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

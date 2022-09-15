@@ -1,0 +1,79 @@
+{
+  "content": [
+    {
+      "usageData": [
+        {
+          "attemptStatus": "completed",
+          "timeSpent": 121688,
+          "reaction": 0,
+          "scoreInPercentage": 0,
+          "totalCount": 1,
+          "completedCount": 1,
+          "attempts": 2,
+          "assessmentId": "first-assessment-id"
+        }
+      ],
+      "userUid": "66d29979-c91f-47a1-a385-93c0df686d2d"
+    },
+    {
+      "usageData": [
+        {
+          "attemptStatus": "completed",
+          "timeSpent": 67962,
+          "reaction": 0,
+          "scoreInPercentage": 100,
+          "totalCount": 1,
+          "completedCount": 1,
+          "attempts": 1,
+          "assessmentId": "first-assessment-id"
+        }
+      ],
+      "userUid": "5ba1ef0d-1102-47dc-8ec5-ced8eec2b7fa"
+    },
+    {
+      "usageData": [
+        {
+          "attemptStatus": "completed",
+          "timeSpent": 255214,
+          "reaction": 0,
+          "scoreInPercentage": 22,
+          "totalCount": 1,
+          "completedCount": 1,
+          "attempts": 1,
+          "assessmentId": "first-assessment-id"
+        }
+      ],
+      "userUid": "df956d5f-b7b2-43ae-98a1-c90a12eacaf9"
+    },
+    {
+      "usageData": [
+        {
+          "attemptStatus": "completed",
+          "timeSpent": 163337,
+          "reaction": 0,
+          "scoreInPercentage": 66,
+          "totalCount": 1,
+          "completedCount": 1,
+          "attempts": 1,
+          "assessmentId": "first-assessment-id"
+        }
+      ],
+      "userUid": "c4176d77-2507-4bd0-b1a1-308ad98526e5"
+    },
+    {
+      "usageData": [
+        {
+          "attemptStatus": "completed",
+          "timeSpent": 108213,
+          "reaction": 0,
+          "scoreInPercentage": 55,
+          "totalCount": 1,
+          "completedCount": 1,
+          "attempts": 1,
+          "assessmentId": "first-assessment-id"
+        }
+      ],
+      "userUid": "f67a2f33-09a5-4a48-bf20-8f3b1d5bb583"
+    }
+  ]
+}

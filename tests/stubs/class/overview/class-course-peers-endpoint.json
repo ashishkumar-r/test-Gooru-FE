@@ -1,0 +1,17 @@
+[
+  {
+    "description": "Gets the course peers for any course",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/course/(.+)/peers$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-course-peers-200-response.json"
+    }
+  }
+]

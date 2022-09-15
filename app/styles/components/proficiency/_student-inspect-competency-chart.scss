@@ -1,0 +1,205 @@
+.student-inspect-competency-chart {
+  margin: 0 auto;
+
+  .three-bounce-spinner {
+    position: absolute;
+    left: 33%;
+    z-index: 9;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .chart-container {
+    .graded-chart-container {
+      display: grid;
+      justify-items: center;
+      .domain-chart {
+        overflow: auto;
+        width: 100%;
+
+        .competency-cell {
+          fill: $gray-no-started;
+
+          &.status-0 {
+            fill: $gray-no-started;
+          }
+          &.route0-suggest-competency {
+            fill: $sun-color;
+          }
+
+          &.status-1 {
+            &.active {
+              fill: $sky-400;
+            }
+          }
+
+          &.status-2,
+          &.status-3,
+          &.status-4,
+          &.status-5 {
+            &.active {
+              fill: #006eb5;
+            }
+          }
+        }
+
+        &::-webkit-scrollbar {
+          height: 6px;
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $gray-light;
+          border: 1px solid $gray-light;
+          border-radius: 5px;
+        }
+
+        .scrollable-chart {
+          overflow-y: auto;
+          width: max-content;
+          height: calc(100vh - 130px);
+          -webkit-transition: -webkit-transform 0.6s ease-in;
+          transition: transform 0.6s ease-in;
+          -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+
+          &::-webkit-scrollbar {
+            height: 6px;
+            width: 8px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: $gray-light;
+            border: 1px solid $gray-light;
+            border-radius: 5px;
+          }
+
+          #popover {
+            width: 234px;
+            height: max-content;
+            border-radius: 2px;
+            z-index: 1;
+            text-align: justify;
+            padding: 5px;
+            -ms-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+            position: absolute;
+            background-color: $white;
+            box-shadow: 0 2px 5px 2px $popover-box-shadow;
+            display: block;
+
+            .custom-transform {
+              -ms-transform: rotateY(180deg);
+              -webkit-transform: rotateY(180deg);
+              -moz-transform: rotateY(180deg);
+              -o-transform: rotateY(180deg);
+              transform: rotateY(180deg);
+            }
+
+            span.title {
+              display: block;
+              font-weight: bold;
+              font-size: 13px;
+            }
+
+            &:before {
+              content: "";
+              display: inline-block;
+              background-color: $table-bg;
+              position: absolute;
+              z-index: 1;
+              width: 0;
+              top: 100%;
+              right: 15px;
+              height: 0;
+              border-left: 8px solid $table-bg;
+              border-right: 8px solid $table-bg;
+              border-top: 10px solid $white;
+            }
+          }
+
+          #student-inspect-competency-chart {
+            position: relative;
+            transform: rotateX(180deg);
+            box-shadow: 0 -2px 4px 0 $disabled-color;
+            top: 75px;
+
+            &.proficiency {
+              #popover,
+              .domain-boundary-line {
+                visibility: hidden;
+              }
+            }
+
+            .competency {
+              stroke: $dark-300;
+              stroke-width: 1;
+              shape-rendering: crispedges;
+              stroke-opacity: 0.7;
+            }
+
+            #skyline-group {
+              &.apply-filter {
+                filter: url(#shadow);
+              }
+              polyline {
+                stroke: $white;
+                stroke-width: 6px;
+                fill: none;
+
+                &.active {
+                  animation: drawLine linear 5s forwards;
+                }
+              }
+            }
+
+            #gradeline-group {
+              filter: url(#back-shadow);
+              polyline {
+                stroke: #8fd383;
+                stroke-width: 4px;
+                fill: none;
+                &.active {
+                  animation: drawLine linear 5s forwards;
+                }
+              }
+            }
+
+            .skyline {
+              transition-property: visibility, opacity;
+              transition-duration: 0s, 1s;
+            }
+          }
+        }
+      }
+    }
+
+    .domain-sequence {
+      width: max-content;
+      display: inline-block;
+
+      .domain-counts {
+        float: left;
+        display: inline-block;
+        width: 32px;
+        text-align: center;
+        margin-top: 0;
+        font-weight: bold;
+        color: $dark-300;
+        display: inline-block;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @keyframes drawLine {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}

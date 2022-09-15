@@ -1,0 +1,33 @@
+.reports.pull-up-unit-report {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .unit-report-container {
+      width: 100%;
+
+      @media only screen and (max-width: $screen-720) {
+        .report-content {
+          .report-carousel {
+            .report-carousel-content-container {
+              .report-carousel-content {
+                .performance-display-container {
+                  margin: auto;
+                }
+
+                .unit-report-chart {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      table {
+        th.tabular-header {
+          position: static;
+        }
+      }
+    }
+  }
+}

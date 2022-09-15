@@ -1,0 +1,63 @@
+<div class="content-filters-container">
+  <div class="filters-header-label">
+    Choose filters to apply
+    {{#if (gt activeFiltersList.length 0)}}
+      <div class="clear-filters" onclick={{action "onResetFilters"}} onkeypress={{action "onResetFilters"}} title="Clear Filters" data-toggle="tooltip" tabindex={{tabindex}}>
+        Clear Filters
+      </div>
+    {{/if}}
+  </div>
+  <div class="filters-container">
+    <div class="date-range-filter-container">
+      <div class="date-range-selector">
+        <div class="date-range-label" onclick={{action "onShowDateRangeSelector"}} onkeypress={{action "onShowDateRangeSelector"}} tabindex={{tabindex}}>
+          {{t 'custom-range'}} <span class="info-icon" title="Select start/end date to filter search results" data-toggle="tooltip">{{gru-icon name="info" style='material-icons-outlined'}}</span>
+        </div>
+        <div class="date-range-value" onclick={{action "onShowDateRangeSelector"}} onkeypress={{action "onShowDateRangeSelector"}} tabindex={{tabindex}}>
+          {{#if daterange}}
+            {{format-date daterange.startDate 'DD MMM YYYY'}} -
+            {{format-date daterange.endDate 'DD MMM YYYY'}}
+          {{else}}
+            All Time
+          {{/if}}
+        </div>
+      </div>
+      {{#if isShowDateRangeSelector}}
+        <div class="date-range-filter">
+          {{ca-daterange-datepicker
+            closeDatePicker='onCloseDatePicker'
+            onScheduleForDate='onSelectDateRange'
+            userStartDateAsToday=false
+            disableFutureDate=false
+            enableScheduleMonth=false
+            courseStartDate=pickerStartDate
+            startDate=pickerStartDate
+            endDate=endDate
+            forChangeStartDateNavMonth= true
+            tabindex=tabindex
+            allowTwoDateRangePicker=true}}
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="gut-selector">
+      <div class="gut-header-container">
+        GUT <span class="info-icon" title="Select Subject, Domain and or Competency to filter search results" data-toggle="tooltip">{{gru-icon name="info" style='material-icons-outlined'}}</span>
+      </div>
+      <div class="gut-body-container">
+        {{gru-gut-filter
+          gutFilters = gutFilters
+          userPreference = userPreference
+          onSelectFilterItem = "onSelectFilterItem"
+          appliedFilters = appliedFilters
+          isReloadFilters = isReloadFilters
+          activeSubject = subject
+          tabindex=tabindex
+          activeDomain = domain}}
+      </div>
+    </div>
+  </div>
+  <div class="apply-filters" onclick={{action "applyFilters"}} onkeypress={{action "applyFilters"}} tabindex={{tabindex}}>
+    Apply Filters
+  </div>
+</div>

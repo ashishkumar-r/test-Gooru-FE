@@ -1,0 +1,317 @@
+@import "variables";
+
+// Variable which are specific to rtl & ltr languages
+$tab-float-dir: right;
+$menu-float-dir: left;
+$border-right-side: 0px;
+$border-left-side: 1px solid;
+$header-menu-rt-pos: -140px;
+$box-shadow: -1px 0px;
+
+// 2) import style file
+
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
+@import "embedded";
+@import "gooru-theme";
+
+@import "mixins";
+@import "common";
+@import "quizzes";
+
+@import "helpers/grading-scale-legend";
+@import "helpers/three-bounce-spinner";
+@import "helpers/fractional";
+@import "mixins/content/edit";
+@import "mixins/gru-accordion";
+
+@import "controllers/application";
+@import "controllers/content/classes/modals";
+@import "controllers/content/classes/create";
+@import "controllers/content/classes/join";
+
+@import "controllers/content/courses/edit";
+@import "controllers/content/courses/play";
+@import "controllers/content/questions/edit";
+@import "controllers/content/questions/play";
+@import "controllers/content/resources/edit";
+@import "controllers/content/resources/play";
+
+@import "controllers/partials/player";
+@import "controllers/profile";
+@import "controllers/profile/about";
+@import "controllers/profile/edit";
+@import "controllers/profile/courses";
+@import "controllers/profile/network";
+@import "controllers/reports/collection";
+@import "controllers/reports/student-collection";
+@import "controllers/reports/student-collection-analytics";
+@import "controllers/reports/study-student-collection";
+@import "controllers/reports/student-open-ended-summary";
+@import "controllers/sign-in";
+@import "controllers/sign-up";
+@import "controllers/teacher-home";
+@import "controllers/student-home";
+@import "controllers/student-independent-learning";
+@import "controllers/forgot-password";
+@import "controllers/reset-password";
+@import "controllers/grading-player";
+@import "controllers/study-player";
+@import "controllers/study-player-external";
+@import "controllers/resource-player";
+@import "controllers/student-independent-study";
+
+@import "controllers/student/class";
+@import "controllers/student/independent";
+@import "controllers/student/class/course-map";
+@import "controllers/student/class/class-activities";
+
+@import "controllers/teacher/class";
+@import "controllers/teacher/class/class-activities";
+@import "controllers/teacher/class/class-management";
+@import "controllers/teacher/class/course-map";
+
+@import "controllers/student-independent-learning/learning-base";
+
+// TODO: update these components so they follow the naming conventions
+@import "components/app-dropdown";
+@import "components/standard-dropdown";
+@import "components/role-radio-button";
+@import "components/datepicker-field";
+@import "components/search-filter";
+@import "components/rating-stars";
+@import "components/gru-resource-results";
+@import "components/grade-dropdown";
+@import "components/gru-breadcrumb";
+@import "components/gru-bubbles";
+@import "components/gru-category-panel";
+@import "components/gru-copy-value";
+@import "components/gru-emotion-picker";
+@import "components/gru-featured-courses";
+@import "components/gru-footer";
+@import "components/gru-header";
+@import "components/gru-image-picker";
+@import "components/gru-modal";
+@import "components/gru-rich-text-editor";
+@import "components/gru-html-editor";
+@import "components/gru-select";
+@import "components/gru-share-pop-over";
+@import "components/gru-standards-popup";
+@import "components/gru-switch";
+@import "components/gru-tour";
+@import "components/gru-two-tier-header-table";
+@import "components/gru-two-tier-header-table-1";
+
+@import "components/gru-unit-tree";
+@import "components/gru-user-icons";
+@import "components/gru-user-registration";
+@import "components/gru-user-sign-up-cancel";
+@import "components/gru-user-teaser";
+@import "components/gru-view-layout-picker";
+@import "components/gru-spinner-button";
+@import "components/gru-icon-popover";
+@import "components/gru-preview-course";
+@import "components/gru-preview-collection";
+@import "components/gru-explore-featured-courses";
+@import "components/gru-grade-items";
+@import "components/gru-student-featured-courses";
+@import "components/gru-teacher-featured-courses";
+@import "components/gru-confetti";
+@import "components/gru-status-switch";
+@import "components/gru-feedback-form";
+
+@import "components/cards/gru-class-card";
+@import "components/cards/gru-student-class-card";
+@import "components/cards/gru-student-featured-course-card";
+@import "components/cards/gru-collection-card";
+@import "components/cards/gru-course-card";
+@import "components/cards/gru-profile-card";
+@import "components/cards/gru-rubric-card";
+@import "components/cards/gru-user-network-card";
+@import "components/cards/gru-resource-result-card";
+@import "components/cards/gru-join-class-card";
+
+@import "components/charts/gru-bubble-chart";
+@import "components/charts/gru-completion-chart";
+@import "components/charts/gru-pie-chart";
+@import "components/charts/gru-radial-chart";
+@import "components/charts/gru-x-bar-chart";
+@import "components/charts/gru-performance-chart";
+
+@import "components/class/gru-student-class-activity-panel";
+@import "components/class/analytics/performance/gru-actions-bar";
+@import "components/class/analytics/performance/gru-data-picker";
+@import "components/class/analytics/performance/gru-performance-summary";
+@import "components/class/analytics/performance/student/gru-student-performance";
+@import "components/class/analytics/performance/student/gru-unit-performance";
+@import "components/class/analytics/performance/student/gru-lesson-performance";
+@import "components/class/overview/gru-accordion-course";
+@import "components/class/overview/gru-accordion-unit";
+@import "components/class/overview/gru-accordion-lesson";
+
+@import "components/content/assessments/gru-assessment-edit";
+@import "components/content/gru-audience";
+@import "components/content/gru-image";
+@import "components/content/gru-settings-edit";
+@import "components/content/gru-depth-of-knowledge";
+@import "components/content/gru-header";
+@import "components/content/collections/gru-collection-edit";
+@import "components/content/collections/gru-collection-list";
+@import "components/content/modals";
+@import "components/content/modals/gru-add-to";
+@import "components/content/modals/gru-add-to-classroom";
+@import "components/content/modals/gru-add-rubric-to-question";
+@import "components/content/modals/gru-assessment-confirmation";
+@import "components/content/modals/gru-base-remix";
+@import "components/content/modals/gru-delete-class";
+@import "components/content/modals/gru-archive-class";
+@import "components/content/modals/gru-delete-content";
+@import "components/content/modals/gru-delete-bookmark";
+@import "components/content/modals/gru-delete-resource";
+@import "components/content/modals/gru-delete-rubric";
+@import "components/content/modals/gru-delete-question";
+@import "components/content/modals/gru-login-prompt";
+@import "components/content/modals/gru-question-new";
+@import "components/content/modals/gru-quick-course-search";
+@import "components/content/modals/gru-quick-delete-content";
+@import "components/content/modals/gru-quick-remove-content";
+@import "components/content/modals/gru-remove-content";
+@import "components/content/modals/gru-remove-student";
+@import "components/content/modals/gru-remove-class-activity";
+@import "components/content/modals/gru-resource-new";
+@import "components/content/modals/gru-submit-confirmation";
+@import "components/content/modals/gru-welcome-message";
+@import "components/content/modals/ca-mastery-accrual-confirmation";
+@import "components/content/modals/ca-auto-assign-confirmation";
+@import "components/content/questions/answers/gru-answers";
+@import "components/content/questions/answers/gru-hot-text-highlight";
+@import "components/content/questions/answers/gru-hs-image";
+@import "components/content/questions/answers/gru-hs-text";
+@import "components/content/questions/answers/gru-multiple-answer";
+@import "components/content/questions/answers/gru-multiple-choice";
+@import "components/content/questions/answers/gru-open-ended";
+@import "components/content/questions/answers/gru-reorder";
+@import "components/content/questions/answers/gru-true-false";
+@import "components/content/questions/gru-question-edit";
+@import "components/content/questions/gru-question-play";
+@import "components/content/resources/gru-resource-edit";
+@import "components/content/resources/gru-resource-play";
+@import "components/content/rubric/gru-rubric-edit";
+@import "components/content/rubric/gru-rubric-creation";
+@import "components/content/rubric/gru-preview-url";
+@import "components/content/rubric/gru-fixed-footer";
+@import "components/content/rubric/gru-category";
+@import "components/content/rubric/gru-scoring-levels";
+
+@import "components/grading/gru-roster-header";
+@import "components/grading/gru-student-roster";
+@import "components/grading/gru-task-header";
+@import "components/grading/gru-rubric-info";
+@import "components/grading/gru-rubric-panel";
+@import "components/grading/gru-rubric-off";
+@import "components/grading/gru-rubric-on";
+
+@import "components/library/gru-browse-library";
+@import "components/library/gru-library-card";
+@import "components/library/gru-partner-library-card";
+
+@import "components/new-cards/gru-bookmark-card";
+@import "components/new-cards/gru-independent-card";
+@import "components/new-cards/gru-collection-card";
+@import "components/new-cards/gru-resource-card";
+@import "components/new-cards/gru-standard-card";
+@import "components/new-cards/gru-teacher-class-card";
+@import "components/new-cards/gru-new-class-card";
+@import "components/new-cards/gru-create-subject-card";
+
+@import "components/player/gru-navigation";
+@import "components/player/gru-navigator";
+@import "components/player/gru-viewer";
+@import "components/player/gru-question-viewer";
+@import "components/player/questions/gru-multiple-answer";
+@import "components/player/questions/gru-multiple-choice";
+@import "components/player/questions/gru-true-false";
+@import "components/player/questions/gru-reorder";
+@import "components/player/questions/gru-hs-text";
+@import "components/player/questions/gru-hs-image";
+@import "components/player/questions/gru-hot-text-highlight";
+@import "components/player/questions/gru-fib";
+@import "components/player/resources/gru-image-resource";
+@import "components/player/resources/gru-youtube-resource";
+@import "components/player/resources/gru-url-resource";
+@import "components/player/resources/gru-pdf-resource";
+@import "components/player/resources/gru-vimeo-resource";
+@import "components/player/gru-study-header";
+@import "components/player/gru-suggest-test";
+@import "components/player/gru-player-done";
+@import "components/player/gru-player-summary-footer.scss";
+@import "components/player/gru-activity-feedback";
+
+@import "components/reports/gru-assessment-report";
+@import "components/reports/assessment/gru-questions";
+@import "components/reports/assessment/gru-resources";
+@import "components/reports/assessment/gru-questions-xs";
+@import "components/reports/assessment/gru-resources-xs";
+@import "components/reports/assessment/gru-summary";
+@import "components/reports/assessment/questions/gru-multiple-choice";
+@import "components/reports/assessment/questions/gru-multiple-answer";
+@import "components/reports/assessment/questions/gru-true-false";
+@import "components/reports/assessment/questions/gru-reorder";
+@import "components/reports/assessment/questions/gru-fib";
+@import "components/reports/assessment/questions/gru-hot-text-highlight";
+@import "components/reports/assessment/questions/gru-hs-image";
+@import "components/reports/assessment/questions/gru-hs-text";
+@import "components/reports/assessment/questions/gru-open-ended";
+@import "components/reports/gru-class-assessment";
+@import "components/reports/gru-class-assessment-report";
+@import "components/reports/class-assessment/gru-question-performance-details";
+@import "components/reports/class-assessment/gru-question-performance";
+@import "components/reports/class-assessment/gru-questions-detail";
+@import "components/reports/class-assessment/gru-questions-summary";
+@import "components/reports/class-assessment/gru-student-performance-box";
+@import "components/reports/class-assessment/gru-student-view";
+@import "components/reports/class-assessment/gru-summary";
+@import "components/reports/class-assessment/gru-table-view";
+
+@import "components/search/gru-question-options";
+@import "components/search/gru-resource-options";
+
+@import "components/student/gru-performance-filter-panel";
+@import "components/student/gru-performance-course-filter";
+@import "components/student/gru-performance-courses";
+
+@import "components/student/class/gru-class-navigation";
+@import "components/student/class/analytics/gru-performance-table";
+
+@import "components/teacher/class/gru-class-statistics";
+
+@import "components/taxonomy/gru-subject-course-picker";
+@import "components/taxonomy/gru-subject-picker";
+@import "components/taxonomy/gru-taxonomy-selector";
+@import "components/taxonomy/gru-taxonomy-tag";
+@import "components/taxonomy/gru-taxonomy-tag-list";
+@import "components/taxonomy/modals/modals";
+
+@import "components/century-skills/modals/modals";
+@import "components/century-skills/gru-century-skills-legend";
+@import "components/century-skills/gru-century-skills-content";
+@import "components/century-skills/gru-century-skill-tag";
+
+@import "components/validation/gru-input";
+
+@import "routes/student/class/performance";
+@import "routes/content/rubric/preview";
+
+@import "controllers/login";
+@import "controllers/login-tenant-url";
+@import "components/content/etl/gru-etl-second";
+@import "controllers/profile/guardian";
+@import "components/gru-study-timer";
+@import "components/player/gru-collection-summary";
+//confirm-profile-merge
+@import "controllers/confirm-profile-merge";
+@import "controllers/reports/student-external-collection";
+@import "controllers/reports/study-student-external-collection";
+@import "components/gru-video-conference";
+
+//guardian-invite
+@import "controllers/guardian-invitees-approval";

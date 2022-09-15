@@ -1,0 +1,15 @@
+<div class="choose-one-player-container">
+  {{#unless readOnly}}
+    <div class="choose-one-player-text">
+        {{gru-math-text text=question.questionText}}
+    </div>
+  {{/unless}}
+  {{player/questions/gru-multiple-choice
+    userAnswer=userAnswer
+    instructionsActionTextKey=instructionsActionTextKey
+    question=question
+    baseQuestion=baseQuestion
+    isChooseOne = true
+    readOnly = readOnly
+  }}
+</div>

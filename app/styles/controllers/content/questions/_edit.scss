@@ -1,0 +1,579 @@
+.controller.content.questions.edit {
+  textarea {
+    resize: none;
+  }
+
+  label {
+    .btn-empty,
+    .title,
+    b {
+      display: block;
+    }
+
+    b {
+      font-size: $font-size-large;
+      font-weight: normal;
+    }
+  }
+
+  .missing-correct-answer,
+  .missing-images {
+    color: $brand-danger;
+  }
+
+  article.fixed-header {
+    #information {
+      padding-top: 0;
+    }
+  }
+
+  #information {
+    .title-section {
+      display: flex;
+
+      .title {
+        width: 60%;
+
+        label {
+          width: 100%;
+
+          .gru-input.title {
+            width: 92%;
+          }
+        }
+      }
+
+      .question-types {
+        width: 40%;
+      }
+
+      .question-types {
+        .btn-group {
+          display: block;
+          margin-top: 10px;
+
+          .dropdown-toggle {
+            background-color: $blue-300;
+          }
+        }
+      }
+    }
+  }
+
+  #builder {
+    .footer,
+    .header {
+      .actions {
+        float: $menu-float-dir;
+      }
+    }
+
+    .footer {
+      margin: 0 0 20px;
+      height: 35px;
+    }
+
+    .panel {
+      border-radius: 6px;
+      margin-bottom: 30px;
+
+      .panel-heading {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+
+        h3 {
+          display: inline-block;
+        }
+
+        .advanced-button {
+          float: $menu-float-dir;
+
+          span {
+            color: $light-500;
+          }
+        }
+
+        div.border-bottom {
+          padding-bottom: 15px;
+          border-bottom: 1px solid $gray-lighter;
+          margin-bottom: 0;
+
+          .instructions {
+            color: $gray;
+            display: block;
+          }
+        }
+      }
+
+      .panel-body {
+        .text-empty {
+          font-size: $font-size-large;
+        }
+
+        .add-image {
+          margin-top: 20px;
+        }
+
+        textarea {
+          line-height: 1;
+        }
+
+        .serp-exemplar {
+          .decoding-exemplar {
+            .audio-recorder {
+              // grid-template-columns: auto;
+              align-items: center;
+              column-gap: 20px;
+              justify-content: left;
+
+              .excercise-seq {
+              }
+
+              .excercise-exemplar {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                align-items: center;
+                padding-left: 12px;
+
+                .exemplar-audio {
+                  grid-template-columns: auto auto;
+                  display: grid;
+                  align-items: center;
+                  justify-content: left;
+
+                  .record-actions {
+                    margin: 0 25px 0 40px;
+
+                    .record-icon {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      width: 24px;
+                      height: 24px;
+                      cursor: pointer;
+                      display: block;
+
+                      i {
+                        font-size: 20px;
+                        width: inherit;
+                        height: inherit;
+                        color: $nobel-gray;
+                        display: block;
+                        text-align: center;
+                        line-height: 1.2;
+                        border: 1px solid $nobel-gray;
+                        border-radius: 50%;
+                      }
+                    }
+                  }
+
+                  .audio-player {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    justify-content: center;
+                    align-items: center;
+                    column-gap: 25px;
+
+                    .audio-play {
+                      width: 24px;
+                      height: 24px;
+                      display: block;
+
+                      i {
+                        width: inherit;
+                        height: inherit;
+                        background-color: $gray-harder;
+                        color: $white;
+                        border-radius: 50%;
+                        display: block;
+                        text-align: center;
+                        line-height: 24px;
+                      }
+                    }
+
+                    .audio-progress {
+                      width: 96px;
+                      height: 8px;
+                      background-color: rgba($color: $gray-harder, $alpha: 0.3);
+                      display: block;
+                      position: relative;
+                      border-radius: 5px;
+
+                      .progress-filling {
+                        width: 0;
+                        position: absolute;
+                        left: 0;
+                        height: inherit;
+                        border-radius: 5px;
+
+                        .progress-pointer {
+                          width: 16px;
+                          height: 16px;
+                          background-color: #6e6e6e;
+                          right: -8px;
+                          top: -4px;
+                          display: block;
+                          border-radius: 50%;
+                          position: absolute;
+                        }
+                      }
+
+                      .audio-wave {
+                        position: absolute;
+                        left: 30px;
+                        top: 6px;
+                        display: none;
+
+                        span {
+                          display: block;
+                          bottom: 0;
+                          width: 3px;
+                          height: 5px;
+                          background: #9b59b6;
+                          position: absolute;
+                          animation: audio-wave 1.5s infinite ease-in-out;
+                        }
+
+                        span:nth-child(2) {
+                          left: 8px;
+                          animation-delay: 0.2s;
+                        }
+
+                        span:nth-child(3) {
+                          left: 16px;
+                          animation-delay: 0.4s;
+                        }
+
+                        span:nth-child(4) {
+                          left: 24px;
+                          animation-delay: 0.6s;
+                        }
+
+                        span:nth-child(5) {
+                          left: 32px;
+                          animation-delay: 0.8s;
+                        }
+                        @keyframes audio-wave {
+                          0% {
+                            height: 5px;
+                            transform: translateY(0px);
+                            background: #3498db;
+                          }
+
+                          25% {
+                            height: 40px;
+                            transform: translateY(20px);
+                            background: #3498db;
+                          }
+                          /*effect is to animate the height of each span from 5px to 30px*/
+                          /*translateY makes Y axis move down to give the effect that it is growing from the center*/
+                          50% {
+                            height: 5px;
+                            transform: translateY(0px);
+                            background: #3498db;
+                          }
+
+                          100% {
+                            height: 5px;
+                            transform: translateY(0px);
+                            background: #3498db;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+
+                .remove-exemplar {
+                  justify-self: right;
+                  padding-right: 12px;
+                  cursor: pointer;
+                }
+              }
+
+              &.recording {
+                .excercise-exemplar {
+                  .exemplar-audio {
+                    .record-actions {
+                      .record-icon {
+                        i {
+                          color: $white;
+                          border-color: $bg-red-bar;
+                          background-color: $bg-red-bar;
+                        }
+                      }
+                    }
+
+                    .audio-player {
+                      .audio-play {
+                        i {
+                          background-color: $gray-harder;
+                          color: $white;
+                        }
+                      }
+
+                      .audio-progress {
+                        background-color: rgba(
+                          $color: $gray-harder,
+                          $alpha: 0.3
+                        );
+                      }
+
+                      .progress-filling {
+                        width: 0 !important;
+
+                        .progress-pointer {
+                          background-color: $bg-progress-pointer;
+                        }
+
+                        .audio-wave {
+                          display: block;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              &.enable {
+                .excercise-exemplar {
+                  .exemplar-audio {
+                    .audio-player {
+                      opacity: 1;
+
+                      .audio-play {
+                        i {
+                          cursor: pointer;
+                          background-color: $sky-400;
+                        }
+                      }
+
+                      .audio-progress {
+                        background-color: $gray-harder;
+
+                        .progress-filling {
+                          background-color: $bg-progress-filling;
+
+                          .progress-pointer {
+                            background-color: $blue-400;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .answer-details {
+          display: flex;
+          align-items: center;
+          height: 33px;
+          font-size: 13px;
+
+          &.hints {
+            text-transform: capitalize;
+          }
+
+          label {
+            width: 10%;
+          }
+
+          .answer-text {
+            width: 90%;
+          }
+        }
+
+        .exemplar-answer {
+          clear: both;
+          box-shadow: 0 0 5px $exampler-box-shadow;
+          padding: 8px;
+
+          &.hints {
+            h3,
+            label {
+              text-transform: capitalize;
+            }
+            box-shadow: none;
+
+            .gru-rich-text-editor .rich-editor {
+              min-height: 100px;
+            }
+
+            label {
+              padding-left: 10px;
+              font-size: 17px;
+            }
+          }
+
+          .exemplar-readonly {
+            border: 1px solid $gray-lighter;
+            padding: 10px;
+          }
+        }
+
+        .feedback-grading {
+          margin: 40px 0 0;
+
+          .content {
+            .switch {
+              margin: 10px 0;
+              font-weight: bold;
+              display: grid;
+              grid-template-columns: 35% auto;
+
+              .switch-label {
+                margin: 10px 0 0;
+                min-width: 50px;
+              }
+            }
+
+            .add-rubric-container {
+              border: 2px dashed $gray-light;
+              height: 80px;
+              margin: 0 0 10px;
+              padding: 10px 0 0 14px;
+            }
+
+            .associated-rubric {
+              border: 1px solid $gray-lighter;
+              box-shadow: 0 1px 2px $gray;
+              padding: 12px 10px 8px;
+              margin: 0 0 30px;
+
+              .image {
+                display: inline-block;
+                padding: 5px 10px 0 0;
+
+                img {
+                  border-radius: 4px;
+                  height: 35px;
+                  width: 35px;
+                }
+
+                .rubric-icon {
+                  background: url("gooru/images/rubric-green.svg");
+                  -webkit-background-size: 31px 30px;
+                  background-size: 31px 30px;
+                  border-radius: 4px;
+                  display: block;
+                  height: 30px;
+                  margin: 0 0 5px;
+                  width: 31px;
+                }
+              }
+
+              .info {
+                display: inline-block;
+                vertical-align: top;
+                border-left: 1px solid $gray-light;
+                border-right: 1px solid $gray-light;
+                width: 88%;
+
+                h3 {
+                  margin: 13px 10px 14px;
+                }
+              }
+
+              .actions {
+                display: inline-block;
+                float: initial;
+                padding: 8px 0 0 8px;
+                vertical-align: top;
+
+                &.disabled {
+                  button {
+                    color: $gray-light;
+                    cursor: not-allowed;
+                    pointer-events: none;
+                  }
+                }
+
+                button {
+                  background-color: $table-bg;
+                  font-size: $font-size-h4;
+                  line-height: 1;
+                  padding: 0;
+                }
+              }
+            }
+
+            .scoring-settings {
+              margin-top: 10px;
+              display: grid;
+              grid-template-columns: 30% auto;
+
+              .setting {
+                @include flexbox;
+                float: $tab-float-dir;
+                width: 25%;
+
+                .title {
+                  margin: 0 15px 0 0;
+                  width: auto;
+                }
+
+                .gru-select {
+                  padding: 8px 0 0;
+
+                  .bootstrap-select {
+                    border-bottom: 1px solid $gray;
+                    width: 50px;
+
+                    span {
+                      right: 0;
+                      text-align: center;
+                    }
+
+                    .dropdown-toggle {
+                      font-size: $font-size-h6;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .exemplar-underline {
+          position: relative;
+        }
+
+        .loading-spinner {
+          position: absolute;
+          margin: auto;
+          width: 100%;
+        }
+      }
+
+      &.question-text {
+        .panel-body {
+          min-height: 184px;
+          overflow-x: auto;
+          word-wrap: break-word;
+        }
+      }
+
+      .add-excercise-exemplar {
+        height: 45px;
+        border: 2px dashed $gray-light;
+        border-radius: 6px;
+        width: 100%;
+        line-height: 45px;
+        text-align: center;
+        cursor: pointer;
+        color: $gray;
+
+        &.disable-event {
+          opacity: 0.4;
+        }
+      }
+
+      .panel-footer {
+        background-color: $white;
+      }
+    }
+  }
+}

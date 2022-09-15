@@ -1,0 +1,55 @@
+.teacher.gru-class-statistics {
+  @include box-shadow(0 1px 4px $class-static-box-shadow);
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(center);
+  background-color: $white;
+  border-radius: 5px;
+  height: 95px;
+  margin: 20px 0 15px 0;
+  padding: 18px 0 16px 0;
+  width: 100%;
+  @media (min-width: $screen-xs) {
+    padding: 18px 15px 16px 15px;
+    width: 77%;
+  }
+  @media (min-width: $screen-md) {
+    width: 64%;
+  }
+  @media (min-width: $screen-lg) {
+    width: 45%;
+  }
+  div {
+    margin: 0 1% 0 2%;
+    text-align: center;
+    @media (min-width: $screen-md) {
+      margin: 0 4% 0 6%;
+    }
+    p {
+      color: $text-color;
+      font-size: 15px;
+      margin: -6px 0 10px 0;
+    }
+    span {
+      color: $gray-base;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    &.title-statistics {
+      border-right: 2px solid $gray-base;
+      margin: 0;
+      text-align: initial;
+      p {
+        color: $gray-base;
+        margin: 5px 20px 0 0;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      span {
+        color: $text-color;
+        font-size: 12px;
+      }
+    }
+  }
+}

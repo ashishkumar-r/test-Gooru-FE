@@ -1,0 +1,113 @@
+.gru-comprehension-new-question {
+  .gru-comprehension-new-question-container {
+    .add-new-comprehension {
+      .question-type-MC {
+        i {
+          background: url("gooru/images/multiple-choice.svg");
+        }
+      }
+
+      .question-type-LS {
+        i {
+          background: url("gooru/images/likert-scale.svg");
+        }
+      }
+
+      .question-type-MA {
+        i {
+          background: url("gooru/images/multiple-answer.svg");
+        }
+      }
+
+      .question-type-OE {
+        i {
+          background: url("gooru/images/free-response.svg");
+        }
+      }
+
+      .question-type-T_F {
+        i {
+          background: url("gooru/images/true-false.svg");
+        }
+      }
+
+      .question-type-FIB {
+        i {
+          background: url("gooru/images/fill-in-the-blank.svg");
+        }
+      }
+
+      .question-type-SE_FIB {
+        i {
+          background: url("gooru/images/fill-in-the-blank.svg");
+        }
+      }
+
+      .question-type-SE_FRQ {
+        i {
+          background: url("gooru/images/free-response.svg");
+        }
+      }
+
+      .question-type-HS_IMG {
+        i {
+          background: url("gooru/images/hs-image.svg");
+        }
+      }
+
+      .question-type-HS_TXT {
+        i {
+          background: url("gooru/images/hs-text.svg");
+        }
+      }
+
+      .question-type-HT_HL {
+        i {
+          background: url("gooru/images/hot-text.svg");
+        }
+      }
+
+      .question-type-HT_RO {
+        i {
+          background: url("gooru/images/hot-text-reorder.svg");
+        }
+      }
+
+      .resource-type-webpage {
+        i {
+          background: url("gooru/images/website-resource-white.svg");
+        }
+      }
+
+      .resource-type-video {
+        i {
+          background: url("gooru/images/video-resource-white.svg");
+        }
+      }
+
+      .resource-type-text {
+        i {
+          background: url("gooru/images/text-resource-white.svg");
+        }
+      }
+
+      .resource-type-interactive {
+        i {
+          background: url("gooru/images/interactive-resource-white.svg");
+        }
+      }
+
+      .resource-type-image {
+        i {
+          background: url("gooru/images/image-resource-white.svg");
+        }
+      }
+
+      .resource-type-audio {
+        i {
+          background: url("gooru/images/audio-resource-white.svg");
+        }
+      }
+    }
+  }
+}

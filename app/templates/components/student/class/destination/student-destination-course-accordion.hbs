@@ -1,0 +1,48 @@
+<div class="student-destination-course-map-container {{if isRoute0 'route0-view'}}">
+  <div class="units-container">
+    {{#each units as |unit unitIndex|}}
+      <div class="u-container collapsed" id="u-{{unit.id}}">
+        <div class="unit-header header" {{action "onSelectUnit" unit}}>
+          <div class="sequence">{{course-sections-prefix index=(if courseData.unit0Content.length (minus-one unitIndex)  unitIndex) type='unit' longName=true}}</div>
+          <div class="unit-title title ellipsis">{{unit.title}}</div>
+        </div>
+        <div class="unit-body body">
+          <div class="lessons-container">
+            {{#each unit.children as |lesson lessonIndex|}}
+              <div class="l-container collapsed" id="l-{{lesson.id}}">
+                <div class="lesson-header header" {{action "onSelectLesson" unit lesson}}>
+                <div class="sequence">
+                {{#if lessonLabelCourseMap}}
+                {{course-sections-prefix index=lessonIndex type=lessonLabelCourseMap longName=true}}
+                {{else}}
+                {{course-sections-prefix index=lessonIndex type='lesson' longName=true}}
+                {{/if}}
+                </div>
+                <div class="lesson-title title ellipsis">{{lesson.title}}</div>
+                </div>
+                <div class="lesson-body body">
+                  <div class="collections-container">
+                    {{#each lesson.children as |collection|}}
+                      <div class="c-container collapsed {{if (eq collection.format 'collection') 'collection' 'assessment'}}" id="{{concat (if (eq collection.format 'collection') 'c' 'a') '-' collection.id}}">
+                        <div class="collection-header header">
+                          <div class="collection-thumbnail" style="background-image: url({{collection.thumbnailUrl}})"></div>
+                          <div class="collection-title title ellipsis">{{collection.title}}</div>
+                        </div>
+                      </div>
+                      {{else}}
+                        <div class="no-data-available">{{t "common.no-content"}}</div>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+              {{else}}
+                <div class="no-data-available">{{t "common.no-content"}}</div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      {{else}}
+        <div class="no-data-available">{{t "common.no-content"}}</div>
+    {{/each}}
+  </div>
+</div>

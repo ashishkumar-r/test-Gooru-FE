@@ -1,0 +1,118 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="student-unit-report-container">
+  <div class="report-header">
+    <div class="report-breadcrumb">
+      <div class="unit-title">
+        <i class="unit-icon"></i>
+        <p>{{t 'common.unit'}} {{unless isHideLessonNumber unit.ui_sequence ''}} : {{unit.title}}</p>
+      </div>
+    </div>
+    <div role="button" aria-label="close" class="report-close-pullup" onclick={{action 'reportClose'}} onkeypress={{action 'reportClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-carousel-tags">
+      <div class="report-carousel">
+        <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            {{#each unitsHasPerformance as |unitItem index|}}
+              <div data-item-index="{{index}}" class="item {{if (eq index 0) 'active'}}">
+                <div class="unit-background-cover" />
+              </div>
+            {{/each}}
+          </div>
+          <!-- Left and right controls -->
+          <a role="link" aria-label="preview " class="left carousel-control" data-slide="prev" onclick={{action 'onClickPrev'}} onkeypress={{action 'onClickPrev'}} tabindex={{tabindex}}>
+          <i class="arrow-left"></i>
+        </a>
+          <a role="link" aria-label="next" class="right carousel-control" data-slide="next" onclick={{action 'onClickNext'}} onkeypress={{action 'onClickNext'}} tabindex={{tabindex}}>
+          <i class="arrow-right"></i>
+        </a>
+        </div>
+        <div class="report-carousel-content-container">
+          <div class="report-carousel-content">
+            <div class="performance-display-container">
+              <div class="unit-performance-average  {{concat 'grade-range-' (grade-range selectedUnit.performance.score)}}">
+                {{#if (gt selectedUnit.performance.score -1) }}
+                  {{#if (eq selectedUnit.performance.score null)}}
+                    --
+                  {{else}}
+                    {{concat selectedUnit.performance.score '%'}}
+                  {{/if}}
+                {{else}}
+                  --
+                {{/if}}
+              </div>
+            </div>
+            <div class="unit-description">
+              <p class="header-desc">{{t 'common.big-ideas' }}</p>
+              <p class="text-desc">
+                {{#if unit.bigIdeas}}
+                  {{unit.bigIdeas}}
+                {{else}}
+                  {{unit.title}}
+                {{/if}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{#if tags.length}}
+        <div class="report-standard-tags">
+          {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=4  showDescription=true }}
+        </div>
+      {{/if}}
+    </div>
+    <div class="report-performance-tabular">
+      <div class="report-performance-header on-scroll-fixed">
+        <div class="content-name">
+          <span>{{t 'common.content-name'}}</span>
+        </div>
+        <div class="score">
+          <span>{{t 'gru-performance-metrics.score'}}</span>
+        </div>
+      </div>
+
+      {{#each lessons as |lesson index|}}
+        <div class="report-performance-list">
+          <div role="button" class="content-name {{unless lesson.performance.hasStarted 'not-started'}}" onclick={{action 'openLessonReport' lesson lessons}} onkeypress={{action 'openLessonReport' lesson lessons}} tabindex={{tabindex}}>
+            <i class="lesson-icon"></i>
+            <span aria-label="{{lesson.title}}">Lesson {{plus-one index}} : {{lesson.title}}</span>
+          </div>
+          <div class="score">
+            {{#if lesson.performance.hasStarted}}
+              <span class="{{concat 'grade-range-text-' (grade-range lesson.performance.score)}}">
+                {{#if (eq lesson.performance.score null)}}
+                  --
+                {{else}}
+                  {{concat lesson.performance.score '%'}}
+                {{/if}}
+              </span>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+          <div class="completion">
+            {{#if lesson.performance.hasStarted}}
+              <div class="completion-bar">
+                <div class="segment {{if (eq lesson.performance.score 100) 'completed'}}" style="width:{{lesson.performance.score}}%; {{safe-html (concat "background-color:" (grade-color lesson.performance.score))}}"></div>
+              </div>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+
+{{#if showLessonReport}}
+  {{reports/pull-up/student-lesson-report context=studentLessonReportContext showPullUp=showLessonReport onClosePullUp="onClosePullUp" tabindex=tabindex isDefaultShowFW = isDefaultShowFW classFramework = classFramework}}
+{{/if}}

@@ -1,0 +1,74 @@
+<div class="controller email-verify row" xmlns="http://www.w3.org/1999/html">
+  <div class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        {{#unless isVerified}}
+        <form autocomplete="off" {{action "resendMail" on="submit"}}>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="main">
+                <div class="email-verify-form">
+                  <div class="form-group text-color">
+                    <label for="message">
+                      {{#if isAccess}}
+                      <span>{{t "email-verification.warning-message"}}</span>
+                      {{else}}
+                      <span>{{t "email-verification.resend-message"}}</span>
+                      {{/if}}
+                    </label>
+                  </div>
+                    <div class="form-group">
+                    <label for="email">
+                        {{validation/gru-input showClearButton=true model=user placeholder=(t 'email-verification.resend-text') valuePath='email' type='email' didValidate=didValidate}}
+                    </label>
+                      {{#if invalidMail }}
+                      <div class="error-messages">
+                        <span class="error">
+                          {{t "email-verification.resent-warning.message"}}
+                        </span>
+                      </div>
+                      {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="submit-button form-group text-center">
+              <button type="submit" class="btn btn-success submit">{{t "email-verification.resend-invitation"}}
+                {{gru-icon name= "keyboard_arrow_right" class=""}}
+              </button>
+            </div>
+          </div>
+        </form>
+        {{else}}
+        <div class="modal-header">
+            <h3>{{t "email-verification.title"}}</h3>
+        </div>
+        <form {{action "userLogin" on="submit"}}>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="main">
+                <div class="email-verify-success">
+                  <div class="form-group">
+                    <label for="message">
+                      <span>{{t "email-verification.message"}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="submit-button form-group text-center">
+              <button type="submit" class="btn btn-success submit">{{t "email-verification.login"}}
+                {{gru-icon name= "keyboard_arrow_right" class=""}}
+              </button>
+            </div>
+          </div>
+        </form>
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+</div>

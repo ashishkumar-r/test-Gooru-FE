@@ -1,0 +1,23 @@
+<div class="student-navigator">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="tab" class="active active-classes tab">
+      <a>
+        <span class="lead">{{t 'student-landing.featured-courses'}}</span>
+      </a>
+    </li>
+  </ul>
+  <div class="heading hidden visible-xs">{{t 'student-landing.featured-courses'}}</div>
+</div>
+<div class="content {{if isShowAllCourses 'show-all-courses'}}">
+  {{#each publicCourses as |course seq|}}
+    {{cards/gru-student-featured-course-card
+      course=course
+      updateUserClasses= "updateUserClasses"
+      contentSeq=(plus-one seq)
+      tabIndex=tabIndex
+    }}
+  {{/each}}
+</div>
+{{#if (gt publicCourses.length 3)}}
+    <div class="show-all" tabIndex="55" onclick={{action 'showAllCourse'}} onkeypress={{action 'showAllCourse'}}> {{if isShowAllCourses (t 'student-home.show-less-courses')  (t 'student-home.show-more-courses')}}</div>
+{{/if}}

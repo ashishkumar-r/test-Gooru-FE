@@ -1,0 +1,58 @@
+<div class="card-panel-container">
+  <div class="card-panel-header {{resource.format}}">
+    <div class="info">
+      <div class="title">{{resource.title}}</div>
+    </div>
+  </div>
+  <div class="resource-format-container">
+    <span>{{resource.format}}</span>
+    {{#if (not resource.isVisibleOnProfile)}}
+      <div class="visibility  visible_false" title="{{t 'common.visibility-tooltip'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">
+        {{gru-icon name="visibility" class='pull-right cca-eye-icon'}}
+      </div>
+    {{else}}
+      <div class="visibility visible_true" title="{{t 'common.visibility-available'}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">
+        {{gru-icon name="visibility" class='pull-right cca-eye-icon'}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="resource-info-container">
+    <div class="resource-user-info">
+      <div class="created-by">{{t (if resource.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}</div>
+      <div class="img-container pull-left">
+        <img class="img-responsive" src="{{resource.owner.avatarUrl}}" alt="owner avatar">
+      </div>
+      <div class="username">{{resource.owner.displayName}}</div>
+    </div>
+    <div class="resource-description">
+      {{safe-html resource.description}}
+    </div>
+    <div class="resource-standards ">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+      {{/if}}
+    </div>
+
+  </div>
+  <div class="card-panel-footer {{if class.isArchived 'disable-footer'}}">
+    <div class="buttons-container">
+      <div class="play-btn" title="Play" data-toggle="tooltip" data-placement="right" {{action "onPlayResource" resource.id}}>{{gru-icon name="ic_play_arrow"}}</div>
+    </div>
+    <div class="resource-prefs-container">
+      <span class="left-arc"></span>
+      <span class="right-arc"></span>
+      <div class="resource-prefs relevance pull-left" style="background-color:rgba(0, 114, 188, {{resource.relevance}})">
+        <div class="count">{{resource.relevance}}</div>
+        <div class="title">{{t 'common.relevance'}}</div>
+      </div>
+      <div class="resource-prefs engagement pull-left" style="background-color:rgba(0, 114, 188, {{resource.engagement}})">
+        <div class="count">{{resource.engagement}}</div>
+        <div class="title">{{t 'common.engagement'}}</div>
+      </div>
+      <div class="resource-prefs efficacy pull-left" style="background-color:rgba(0, 114, 188, {{resource.efficacy}})">
+        <div class="count">{{resource.efficacy}}</div>
+        <div class="title">{{t 'common.efficacy'}}</div>
+      </div>
+    </div>
+  </div>
+</div>

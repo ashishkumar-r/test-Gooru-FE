@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Code conventions2",
+    "gooruOid": "first-unit-id",
+    "collectionId": 24413345,
+    "visibility": true
+  },
+  {
+    "title": "Unit testing2",
+    "gooruOid": "second-unit-id",
+    "collectionId": 24413347,
+    "visibility": true
+  },
+  {
+    "title": "Design Patterns2",
+    "gooruOid": "third-unit-id",
+    "collectionId": 24413352,
+    "visibility": true
+  },
+  {
+    "title": "Learning Methods",
+    "gooruOid": "fourth-unit-id",
+    "collectionId": 24413356,
+    "visibility": true
+  },
+  {
+    "title": "Group Methodologies",
+    "gooruOid": "fifth-unit-id",
+    "collectionId": 24413357,
+    "visibility": true
+  },
+  {
+    "title": "Integration testing",
+    "gooruOid": "sixth-unit-id",
+    "collectionId": 24413358,
+    "visibility": false
+  }
+]

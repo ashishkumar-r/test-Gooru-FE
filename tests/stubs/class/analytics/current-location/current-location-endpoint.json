@@ -1,0 +1,33 @@
+[
+  {
+    "description": "Gets the Current Location for any Class and any User",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/class/(.+)/user/(.+)/current/location",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "current-location-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the Current Location for any Class and any User",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/classes/location",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "classes-current-location-200-response.json"
+    }
+  }
+]
+

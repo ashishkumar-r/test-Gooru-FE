@@ -1,0 +1,131 @@
+.study-player-external {
+  .gru-study-header {
+    height: 93px;
+  }
+
+  .toggle-screen {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: $white;
+    width: 43px;
+    height: 35px;
+    cursor: pointer;
+    border: 1px solid $thumbnail-border;
+    border-radius: 5px 0 0 5px;
+    z-index: 9999;
+
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .gru-header {
+    display: none;
+  }
+
+  .app-container {
+    padding-top: 0;
+  }
+
+  .player-container {
+    padding: 40px 0 10px;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .player {
+      height: 100%;
+      overflow: auto;
+
+      .scorm-player {
+        height: 100%;
+      }
+
+      .iframe-contaier {
+        margin: 20px 15px;
+        height: calc(100vh - 95px);
+
+        iframe {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .resource-content {
+        width: 100%;
+        &.resource-back-drop {
+          display: grid;
+          position: fixed;
+          height: auto;
+          padding-bottom: 50px;
+          bottom: 0;
+          align-items: flex-end;
+          @media screen and (max-width: 767px) {
+            padding-bottom: 83px;
+          }
+        }
+      }
+    }
+  }
+
+  &.fullscreen {
+    &.fullscreen {
+      @mixin fullscreenStyle {
+        background-color: $gray-e47 !important;
+      }
+
+      .app-container {
+        padding: 0;
+        .player-container {
+          padding: 0;
+          .player {
+            overflow: hidden;
+            .scorm-player {
+              .scorm-file {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+              }
+            }
+          }
+        }
+        .toggle-screen {
+          top: 0;
+        }
+      }
+
+      .gru-study-navbar,
+      .gru-study-header {
+        display: none;
+      }
+
+      .bar-charts {
+        top: 0 !important;
+      }
+
+      .report-container {
+        padding-top: 0;
+      }
+
+      .gru-external-assessment-footer {
+        display: none;
+
+        .resource-title {
+          color: $white;
+        }
+
+        .toggle-screen {
+          i {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Introduction to Computer Science",
+    "gooruOid": "fbd76aed-1b8d-4c2c-a9c6-c7603eef843f",
+    "collectionId": 24413843,
+    "visibility": true
+  },
+  {
+    "title": "Software Architecture",
+    "gooruOid": "aaac5d15-8434-43ff-8f8b-78cf0b6f846y",
+    "collectionId": 24413846,
+    "visibility": true
+  },
+  {
+    "title": "Internet of Things",
+    "gooruOid": "cc2bc04c-05ab-4407-9d76-b7021d61849x",
+    "collectionId": 24413849,
+    "visibility": true
+  },
+  {
+    "title": "Cloud Computing",
+    "gooruOid": "cc2bc04c-05ab-4407-9d76-b7021d61852t",
+    "collectionId": 24413852,
+    "visibility": true
+  }
+]

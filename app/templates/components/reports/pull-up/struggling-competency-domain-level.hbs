@@ -1,0 +1,107 @@
+<div class="backdrop" {{action "onClosePullUp"}}></div>
+<div class="struggling-competency-domain-level-container">
+  <div class="struggling-competency-title" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+    {{gru-icon name="arrow_back"}}<span>{{t 'teacher-landing.class.atc-view.learning-growth'}}</span>
+  </div>
+  <div class="struggling-competency-domain-level-content">
+     {{#each gradeDomainsList as |domain domainIndex|}}
+       {{#if domain.competencies.length}}
+        <div class="competency-domain-level-panel">
+           <div class="domain">{{t 'common.domain'}} | {{domain.grade}}</div>
+         <div class="grade-domain-name-accordion" onclick={{action "toggleDomain" domainIndex}} onkeypress={{action "toggleDomain" domainIndex}} tabindex={{tabindex}}>
+            <span>{{domain-gut-to-fw-transform
+              fwDomains
+              domain.domainCode
+              domain.domainName
+              'fwDomainName' true}}</span>
+             {{gru-icon name="arrow_drop_down"}}
+         </div>
+         <div class="grade-domain-competency-list-container {{if (eq domainIndex gradeDomainIndex) 'first-child'}} domain-accordion-{{domainIndex}}">
+           {{#each domain.competencies as |competency competencyIndex|}}
+           <div class="grade-domain-competency-list-panel" onclick={{action "onSelectCompetency" competency domain}} onkeypress={{action "onSelectCompetency" competency domain}} tabindex={{tabindex}}>
+             <div class="grade-domain-competency-heading" title="{{competency-gut-to-fw-transform
+                fwCompetencies
+                competency.code
+                competency.name
+                'frameworkCompetencyName'
+                showGutCompetency
+                true
+               }}">
+              <span title="{{competency-gut-to-fw-transform
+                fwCompetencies
+                competency.code
+                competency.name
+                'frameworkCompetencyName'
+                showGutCompetency
+                true}}">{{competency-gut-to-fw-transform
+                fwCompetencies
+                competency.code
+                competency.name
+                'frameworkCompetencyName'
+                showGutCompetency
+                true
+               }}</span>
+               <ul class="grade-domain-competency-sub-heading">
+                 {{#if isDefaultShowFW}}
+                   <li>{{competency.displayCode}}</li>
+                 {{else}}
+                   <li>{{competency-gut-to-fw-transform
+                     fwCompetencies
+                     competency.code
+                     competency.displayCode
+                     'frameworkCompetencyDisplayCode'
+                     showGutCompetency
+                     true}}</li>
+                  {{/if}}
+                 <li>
+                   <div class="content lo-content" title="{{competency-lo-transform
+                     fwCompetencies
+                     competency.code
+                     'loCode'
+                     false
+                     ''
+                   }}">
+                     {{competency-lo-transform
+                     fwCompetencies
+                     competency.code
+                     'loCode'
+                     false
+                     '|'
+                   }}
+                   {{competency-lo-transform
+                   fwCompetencies
+                   competency.code
+                   'loName'
+                   false
+                   '|'
+                 }}
+                    <span class="tag-tooltip">
+                      {{competency-lo-transform
+                      fwCompetencies
+                      competency.code
+                      'loName'
+                      false
+                      ''
+                    }}
+                    </span>
+                  </div>
+               </li>
+               </ul>
+             </div>
+             <div class="grade-domain-competency-icon">
+               {{gru-icon name="explore"}}
+             </div>
+             <div class="grade-domain-competency-count">
+               <span class="student-count">
+               {{competency.studentsCount}}
+               </span>
+               {{gru-icon name="person"}}
+             </div>
+           </div>
+          {{/each}}
+         </div>
+     </div>
+     {{/if}}
+     {{/each}}
+  </div>
+</div>

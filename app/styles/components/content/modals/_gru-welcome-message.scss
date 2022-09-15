@@ -1,0 +1,74 @@
+.content.modals.gru-welcome-message {
+  .modal-header {
+    height: 35px;
+    position: relative;
+    a {
+      color: $white;
+      cursor: pointer;
+      font-size: 30px;
+      position: absolute;
+      right: 0;
+      top: 4px;
+    }
+  }
+  .modal-body {
+    .title {
+      border-bottom: 2px solid $gray-lighter;
+      padding: 0 0 5px;
+      font-size: 20px;
+      line-height: 30px;
+    }
+    .text {
+      font-size: 14px;
+      line-height: 22px;
+      margin: 0 0 15px;
+
+      i {
+        font-size: $font-size-tour-icon;
+        vertical-align: bottom;
+      }
+      .take-tour-icon {
+        pointer-events: none;
+        background-color: $blue-400;
+        height: 40px;
+        padding: 0px 11px 8px 0;
+        width: 40px;
+        border-radius: 25px;
+        border: none;
+        i {
+          color: $white;
+          font-size: $font-size-tour-icon;
+          height: 22px;
+          width: 25px;
+          margin-left: 4px;
+        }
+      }
+    }
+    .last-text {
+      font-size: 14px;
+      height: 50px;
+      p {
+        float: $tab-float-dir;
+        margin: 0;
+        .logo {
+          background: url("gooru/images/gooru-logo.svg") no-repeat;
+          background-size: contain;
+          float: $menu-float-dir;
+          height: 38px;
+          margin: 2px 0 0 6px;
+          width: 110px;
+        }
+      }
+    }
+    .actions {
+      margin: 25px 0 0;
+      input[type="checkbox"] {
+        float: $tab-float-dir;
+      }
+      label {
+        float: $tab-float-dir;
+        padding: 0 0 0 2px;
+      }
+    }
+  }
+}

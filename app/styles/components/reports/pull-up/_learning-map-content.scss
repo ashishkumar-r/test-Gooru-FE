@@ -1,0 +1,34 @@
+.learning-map-content {
+  background-color: $white;
+
+  .student-learning-map {
+    background-color: #36424b;
+    color: $white;
+
+    .challenging-questions,
+    .practice-question,
+    .solved-examples {
+      color: $white;
+
+      .title {
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        padding: 20px 10px 10px;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-transform: uppercase;
+        color: $white-bold;
+      }
+
+      .no-data {
+        text-align: center;
+        font-size: 16px;
+        padding: 10px;
+        background: $white;
+        color: $dark-400;
+      }
+    }
+  }
+}

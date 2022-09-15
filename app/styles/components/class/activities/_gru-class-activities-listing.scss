@@ -1,0 +1,719 @@
+.class-activities.gru-class-activities-listing {
+  width: 95%;
+  margin: 8px auto;
+
+  .class-activities-container {
+    display: grid;
+    padding: 10px;
+
+    .list-panel-header {
+      .list-panel-top {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        grid-column-gap: 10px;
+        @media screen and (max-width: 600px) {
+          grid-template-columns: 1fr;
+          justify-content: center;
+          grid-row-gap: 10px;
+        }
+
+        .list-title {
+          font-size: 14px;
+          font-weight: bold;
+          text-transform: uppercase;
+          text-align: center;
+          display: block;
+        }
+
+        .panel-picker {
+          display: flex;
+          justify-content: center;
+
+          span {
+            margin: 0 5px;
+            padding: 5px;
+            border: 1px solid $light-200;
+            line-height: 1.4;
+            border-radius: 5px;
+            box-shadow: 0 0 5px $light-200;
+            width: 100px;
+            text-align: center;
+            cursor: pointer;
+
+            &.active {
+              background-color: $dark-400;
+              color: $white;
+            }
+          }
+        }
+
+        .items-to-grade {
+          span {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 5px;
+            border: 1px solid $light-200;
+            line-height: 1.4;
+            border-radius: 5px;
+            box-shadow: 0 0 5px $light-200;
+            text-align: center;
+            cursor: pointer;
+
+            &.active {
+              background-color: $dark-400;
+              color: $white;
+            }
+          }
+        }
+      }
+
+      .student-not-agreed-performance {
+        text-align: center;
+        font-style: italic;
+        font-size: 19px;
+        color: $red-30;
+        padding-top: 10px;
+      }
+
+      .activity-date-range-selector {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+
+        span {
+          cursor: pointer;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 0 10px;
+
+          &.schedule-date {
+            display: flex;
+            align-items: center;
+
+            i {
+              font-size: 20px;
+            }
+          }
+
+          &.material-icons {
+            font-size: 35px;
+          }
+
+          &:hover {
+            transform: scale(1.02);
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .header-container {
+      background-color: $white;
+      box-shadow: 0 4px 10px $light-300;
+      position: relative;
+      margin-top: 10px;
+
+      .filters {
+        display: grid;
+
+        .activities {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          color: $dark-600;
+          height: 100%;
+
+          &.active {
+            opacity: 1;
+            pointer-events: none;
+          }
+        }
+
+        .student-not-agreed-performance {
+          text-align: center;
+          font-style: italic;
+          font-size: 19px;
+          color: $red-30;
+          padding-top: 10px;
+        }
+
+        .activity-date-range-selector {
+          display: grid;
+          grid-template-columns: 30px 1fr 30px;
+          justify-content: center;
+          align-items: center;
+          column-gap: 5px;
+          padding: 10px;
+          height: 48px;
+
+          .dropdown-icon {
+            display: flex;
+          }
+        }
+      }
+
+      .date-range-picker-container {
+        display: none;
+        position: absolute;
+        z-index: 16;
+        background-color: $white;
+        display: none;
+        width: 100%;
+
+        .date-range-selector {
+          display: flex;
+          justify-content: space-around;
+          padding: 5px;
+          background-color: $white;
+
+          span {
+            &.active,
+            &:hover {
+              color: $gray-base;
+              cursor: pointer;
+            }
+
+            &.disabled {
+              pointer-events: none;
+            }
+          }
+        }
+
+        &.open {
+          display: block;
+        }
+
+        .ca-month-picker {
+          background-color: $white;
+
+          .ca-monthpicker-container {
+            #ca-monthpicker {
+              .datepicker {
+                .table-condensed {
+                  tbody {
+                    tr {
+                      @media screen and (max-width: $screen-sm) {
+                        td {
+                          grid-template-columns: repeat(3, 1fr);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .ca-date-picker-container,
+        .ca-month-picker,
+        .ca-week-picker-container {
+          box-shadow: 2px 2px 3px $date-picker-box-shadow,
+            -2px 2px 3px $date-picker-box-shadow;
+
+          .ca-date-nav-container,
+          .ca-week-nav-container {
+            height: 40px;
+            z-index: 2;
+            background-color: $white;
+
+            .ca-date-picker-toggle {
+              pointer-events: none;
+              font-size: 20px;
+
+              i {
+                display: none;
+              }
+            }
+          }
+
+          .ca-datepicker-container,
+          .ca-weekpicker-container {
+            display: grid;
+            padding-bottom: 0;
+
+            .ca-datepicker-today {
+              height: 40px;
+              box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+              background-color: $has-active-color;
+            }
+
+            #ca-datepicker,
+            #ca-weekpicker {
+              grid-row-start: 1;
+              padding: 10px 20px 20px;
+              //NOTE overwritting style for enabling all days to be clickable
+              .datepicker .table-condensed tr td.no-activities {
+                pointer-events: none;
+              }
+
+              &.weekly {
+                .datepicker {
+                  .table-condensed {
+                    tbody {
+                      .tooltip {
+                        z-index: 9999;
+                        visibility: visible;
+                      }
+                    }
+
+                    tbody tr {
+                      &.no-activities {
+                        td {
+                          pointer-events: none;
+                        }
+                      }
+
+                      &.no-activities:hover {
+                        pointer-events: all;
+                      }
+
+                      &.week-active,
+                      &:hover {
+                        border-radius: 50px;
+                        background-color: $has-active-bg-color;
+
+                        td {
+                          color: $has-active-color;
+
+                          &.active {
+                            background: none;
+                            width: auto;
+                            height: auto;
+
+                            &:before {
+                              content: "";
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              .datepicker-inline {
+                .datepicker-days {
+                  .table-condensed {
+                    thead {
+                      tr:nth-child(2) {
+                        display: grid;
+                        width: 100%;
+                        justify-content: center;
+                        grid-template-columns: repeat(7, 1fr);
+
+                        th.dow {
+                          height: 40px;
+                          width: 40px;
+                          justify-self: center;
+                        }
+                      }
+                    }
+
+                    tbody {
+                      tr {
+                        display: grid;
+                        width: 100%;
+                        justify-content: center;
+                        grid-template-columns: repeat(7, 1fr);
+
+                        td {
+                          height: 36px;
+                          width: auto;
+                          justify-self: center;
+                          margin: auto;
+
+                          &.has-activities:before {
+                            position: relative;
+                            left: 50%;
+                            transform: translateX(-50%);
+                          }
+
+                          &.active {
+                            background-color: $has-active-bg-color;
+                            background-image: -webkit-linear-gradient(
+                              top,
+                              $has-active-bg-color,
+                              $has-active-bg-color
+                            );
+                            border-radius: 50%;
+                            display: flex;
+                            margin: auto;
+                            align-items: center;
+                            justify-content: center;
+                            color: $has-active-color;
+                            width: 40px;
+                            height: 40px;
+
+                            &:before {
+                              content: none;
+                            }
+                          }
+
+                          &.today {
+                            background-color: $has-active-color;
+                            background-image: -webkit-linear-gradient(
+                              top,
+                              $has-active-color,
+                              $has-active-color
+                            );
+                            border-radius: 50%;
+                            display: flex;
+                            margin: auto;
+                            align-items: center;
+                            justify-content: center;
+                            color: $white;
+                            width: 40px;
+                            height: 40px;
+                            pointer-events: auto;
+
+                            &:before {
+                              content: none;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .activities-content {
+      background-color: $white;
+      border-radius: 4px;
+      height: 100%;
+
+      .contents-selector {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        column-gap: 1px;
+        height: 100%;
+
+        .content-selector {
+          opacity: 0.6;
+          padding: 10px;
+
+          .icon {
+            width: 20px;
+            height: 20px;
+            background-size: 20px;
+            display: block;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+
+            &.assessment-icon {
+              background-image: url("../assets/gooru/images/add_assessment.svg");
+            }
+
+            &.collection-icon {
+              background-image: url("../assets/gooru/images/add_collection.svg");
+            }
+
+            &.offline-activity-icon {
+              background-position: 2px 2px;
+              background-image: url("../assets/gooru/images/offline.svg");
+            }
+          }
+
+          &.active {
+            background-color: $blue-f3;
+            opacity: 1;
+
+            i {
+              &.assessment-icon {
+                background-image: url("../assets/gooru/images/assessment-white.svg");
+              }
+
+              &.collection-icon {
+                background-image: url("../assets/gooru/images/collection-white.svg");
+              }
+
+              &.offline-activity-icon {
+                background-size: 26px;
+                background-position: center;
+                background-image: url("../assets/gooru/images/offline-white.svg");
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .body-container {
+      height: calc(100vh - 170px);
+      overflow-y: auto;
+
+      &.content-selecter {
+        height: calc(100vh - 170px);
+
+        .list-view {
+          display: grid;
+        }
+      }
+
+      .activities-cards-container {
+        .class-activities {
+          display: flex;
+          flex-flow: wrap row;
+        }
+
+        &.card-view {
+          .video-conference {
+            .class-activities {
+              width: 100%;
+              display: block;
+              justify-content: center;
+            }
+          }
+
+          .content-card {
+            display: flex;
+            flex-flow: wrap row;
+
+            .class-activities {
+              width: 50%;
+              display: grid;
+              justify-content: center;
+            }
+          }
+        }
+
+        &.list-view {
+          width: 100%;
+          justify-content: normal;
+          margin-bottom: 5px;
+
+          .video-conference {
+            .class-activities {
+              .video-card {
+                width: 100%;
+                left: 0;
+              }
+            }
+          }
+
+          .added-date {
+            font-size: 15px;
+            font-weight: bold;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: max-content auto;
+            align-items: center;
+            grid-gap: 10px;
+            background-color: $lite-gray;
+            color: $black-bold;
+
+            hr {
+              border-top: 1px solid #4e5e67;
+              width: 100%;
+            }
+          }
+
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+
+        .sorting-items-to-grade {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 20px 0;
+
+          &.disable-event {
+            opacity: 0.5;
+          }
+
+          .arrow {
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+          }
+
+          .filter-selector {
+            position: relative;
+
+            .filter-type {
+              display: flex;
+              align-items: center;
+              margin: 0 28px;
+              cursor: pointer;
+              min-width: 132px;
+
+              .material-icons {
+                font-size: 20px;
+              }
+
+              .sort-text {
+                margin: 4px 0 4px 8px;
+                font-size: 13px;
+                font-weight: bold;
+                line-height: 1.33;
+                text-align: center;
+                color: $dark-400;
+              }
+            }
+
+            .filter-types-container {
+              display: none;
+              position: absolute;
+              box-shadow: 0 4px 10px $light-300;
+              background-color: $white;
+              text-align: center;
+              font-size: 15px;
+              text-transform: none;
+              z-index: 9;
+              margin: 10px 0 0 25px;
+
+              li {
+                padding: 2px 15px;
+                text-align: left;
+                list-style-type: none;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .plan-activities-msg {
+          padding: 15px;
+          width: 100%;
+          text-align: center;
+          font-size: 18px;
+          line-height: 1.2;
+        }
+      }
+
+      .video-card {
+        background: $white;
+        height: 60px;
+        display: grid;
+        grid-template-columns: 60px auto 56px 63px 30px;
+        @media screen and (max-width: 320px) {
+          grid-template-columns: 45px auto 50px 50px 30px;
+        }
+        grid-template-rows: 50px;
+        width: 90%;
+        position: relative;
+        left: 33px;
+        margin-bottom: 8px;
+        padding: 7px;
+        @media screen and (max-width: 568px) {
+          left: 0;
+          width: 100%;
+        }
+        .videocan {
+          background: url(../assets/gooru/video-conference-ico.png);
+          background-size: cover;
+          height: 79px;
+          width: 79px;
+          background-repeat: no-repeat;
+          text-align: center;
+          position: relative;
+          right: 21px;
+          bottom: 17px;
+
+          i {
+            color: $white;
+            margin-top: 4px;
+          }
+        }
+        .video-call {
+          cursor: pointer;
+          i {
+            color: $white;
+            background-color: $video-icon-bg;
+            padding: 0px 3px;
+            font-size: 17px;
+            border-radius: 3px;
+            margin-top: 5px;
+          }
+          label {
+            position: relative;
+            bottom: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  .learner-proficiency-chart {
+    position: absolute;
+    top: 100px;
+    z-index: 999;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: #37434d;
+    height: 94%;
+  }
+
+  @media screen and (max-width: $screen-767) {
+    .body-container {
+      .activities-cards-container {
+        &.card-view {
+          .class-activities {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $screen-sm) {
+    width: 100%;
+    height: inherit;
+
+    .class-activities-container {
+      height: inherit;
+      grid-template-rows: max-content 1fr;
+
+      .header-container {
+        .activity-tab {
+          padding: 0;
+          column-gap: 0;
+
+          .items-to-grade-selector {
+            .grading-icon {
+              display: none;
+            }
+          }
+
+          i {
+            display: none;
+          }
+        }
+
+        .filters {
+          .activities {
+            display: none;
+          }
+        }
+      }
+
+      .body-container {
+        height: calc(100vh - 190px);
+
+        &.content-selecter {
+          height: calc(100vh - 190px);
+          padding-bottom: 50px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $screen-xs) {
+    width: 100%;
+    margin: 0;
+  }
+}

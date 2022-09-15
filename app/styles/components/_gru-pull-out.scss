@@ -1,0 +1,140 @@
+.gru-pull-out {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  right: -101%;
+  z-index: 99999;
+  width: 100%;
+
+  &.gru-pull-out-more {
+    .pull-out-less-content-container {
+      box-shadow: 3px 0 4px 0 $box-shadow-bg-color;
+      position: relative;
+    }
+  }
+
+  &.gru-pull-out-hidden {
+    z-index: -99999;
+  }
+
+  .pull-out-less-content-container {
+    background: $white;
+    box-shadow: -3px 0 4px 0 $box-shadow-bg-color;
+    -webkit-box-shadow: -3px 0 4px 0 $box-shadow-bg-color;
+    height: inherit;
+    width: 460px;
+
+    .pull-out-header {
+      width: 460px;
+      height: 100px;
+      background-color: $white;
+      border-top: dashed 2px $dark-600;
+      border-bottom: dashed 2px $dark-600;
+
+      .header-content {
+        padding-top: 20px;
+        width: calc(100% - 30px);
+        height: 100%;
+        margin: 0 5px 0 auto;
+      }
+
+      .info {
+        width: 300px;
+
+        .title {
+          font-size: 20px;
+          font-weight: bold;
+          text-align: left;
+          color: $dark-700;
+          @include ellipsis(
+            $font-size: 20px,
+            $line-height: 1.13,
+            $lines-to-show: 1
+          );
+        }
+
+        .description {
+          font-size: 15px;
+          text-align: left;
+          color: $dark-800;
+          @include ellipsis(
+            $font-size: 15px,
+            $line-height: 1.2,
+            $lines-to-show: 2,
+            $excerpt-bg: $white
+          );
+        }
+      }
+
+      .action {
+        width: 120px;
+
+        .close-info,
+        .less-info,
+        .more-info {
+          opacity: 0.8;
+          cursor: pointer;
+          width: 50px;
+
+          &:hover {
+            opacity: 1;
+          }
+
+          i {
+            margin-left: -81px;
+            pointer-events: none;
+            color: $dark-900;
+          }
+
+          div {
+            font-size: 15px;
+            color: $dark-800;
+            line-height: 7px;
+          }
+        }
+
+        .close-info,
+        .less-info {
+          i {
+            font-size: 35px;
+            margin-left: -105px;
+          }
+
+          div {
+            line-height: 1px;
+          }
+        }
+
+        .more-info {
+          margin-top: 5px;
+
+          i {
+            margin-left: -64px;
+          }
+
+          div {
+            line-height: 13px;
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+
+    .pull-out-content {
+      padding-left: 25px;
+      padding-right: 15px;
+      width: 100%;
+      height: calc(100% - 100px);
+      overflow-y: auto;
+    }
+  }
+
+  .pull-out-more-content-container {
+    width: calc(100% - 460px);
+    background: $white;
+    height: inherit;
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+  }
+}

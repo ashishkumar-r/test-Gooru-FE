@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{t 'ca-auto-assign-title'}}</h3>
+  <div {{action 'closePlayer'}} class='modal-close' data-toggle="tooltip" data-placement="bottom" title="{{t 'common.close'}}">
+    {{gru-icon name='ic_close'}}
+  </div>
+</div>
+<div class="modal-body">
+  <span class="description">{{t 'ca-auto-assign-description'}}</span>
+  <div class="actions">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.no'}}" {{action 'cancel'}}>
+        <span aria-hidden="true">{{t 'common.no'}}</span>
+    </button>
+    <button type="button" class="btn btn-primary continue" {{action 'start'}} disabled={{disableStart}}>
+      {{t 'common.yes'}}
+    </button>
+  </div>
+</div>

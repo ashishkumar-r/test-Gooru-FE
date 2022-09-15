@@ -1,0 +1,83 @@
+<div class="backdrop" {{action 'onPullUpClose'}}></div>
+<div class="panel">
+  <div class="header">
+    <div class="title">
+      <span>{{t 'common.suggestions'}}</span>
+    </div>
+    <div class="report-close" {{action 'onPullUpClose'}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="content">
+    {{#each suggestions as |suggestion|}}
+      <div class="suggestion-panel">
+        <div class="icon">
+          <i class="{{suggestion.suggestedContentType}}"></i>
+        </div>
+        <div class="title-info ellipsis">{{suggestion.title}}</div>
+        <div class="user-count" {{action 'openStudentList' suggestion}}>
+          {{gru-icon name="account_circle"}}
+          <span>{{suggestion.userCount}}</span>
+        </div>
+        <div class="content-counts">
+          <div class="resource-count">
+            {{#if (gt suggestion.resourceCount 0)}}
+              <i class="resource-icon"></i>
+              <span>{{suggestion.resourceCount}}</span>
+            {{/if}}
+          </div>
+          <div class="question-count">
+            {{#if (gt suggestion.questionCount 0)}}
+              <i class="question-icon"></i>
+              <span>{{suggestion.questionCount}}</span>
+            {{/if}}
+          </div>
+        </div>
+        <div class="play-container">
+          <div class="ca-play-btn" {{action 'onPlayCASuggestionContent' suggestion}}>
+            {{gru-icon name='play_arrow'}}
+          </div>
+        </div>
+        <div class="suggestion-panel-actions-performance">
+          {{#if suggestion.performance}}
+            {{#if (and (not-eq suggestion.suggestedContentType 'collection') (not-eq suggestion.suggestedContentType 'collection-external'))}}
+              <div class="suggestion-panel-performance" {{action 'studentSuggestionReport' suggestion}} style="background-color:{{grade-color suggestion.performance.score}}">
+                <span>
+                  {{#if (eq suggestion.performance.score null)}}
+                    --
+                  {{else}}
+                    {{concat suggestion.performance.score '%'}}
+                  {{/if}}
+                </span>
+              </div>
+            {{else}}
+              <div class="suggestion-panel-performance collection {{unless suggestion.performance.timeSpent 'disable-event'}}" {{action 'studentSuggestionReport' suggestion}}>
+                <span class="time-spent">
+                  {{if suggestion.performance.timeSpent (format-time suggestion.performance.timeSpent) '--'}}
+                </span>
+              </div>
+            {{/if}}
+          {{else}}
+            <div class="thumbnail-img">
+              <img src="{{suggestion.suggestedForContent.thumbnail}}" alt="content thumbnail"/>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    {{else}}
+      {{three-bounce-spinner}}
+    {{/each}}
+  </div>
+</div>
+{{#if showStudentList}}
+  {{ca-student-list-suggestion suggestion=selectedSuggestion classId=classId onClosePullUp="onClosePullUp"}}
+{{/if}}
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

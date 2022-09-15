@@ -1,0 +1,247 @@
+.student-independent-container {
+  padding: 0;
+  .student.course-map {
+    .gru-accordion.gru-accordion-course {
+      .gru-accordion-unit {
+        padding: 0;
+        .unit.panel-heading {
+          .panel-title {
+            width: calc(100% - 85px) !important;
+            padding-top: 0;
+            > a {
+              width: 100% !important;
+              max-width: none;
+              height: auto;
+            }
+            .title.ellipsis {
+              display: grid;
+              .prefix {
+                border: none;
+                margin-left: 0px;
+              }
+              .unit-title-text {
+                margin-left: 10px;
+              }
+            }
+          }
+          .performance-container {
+            height: 67px;
+            width: 64px;
+            margin-top: 0;
+            .charts.gru-performance-chart {
+              height: 67px;
+              min-width: unset;
+              .container-box {
+                height: 67px;
+              }
+            }
+          }
+        }
+        .panel-collapse {
+          padding: 4px;
+          .panel-body {
+            .gru-accordion-lesson {
+              .panel-heading {
+                .panel-title {
+                  width: calc(100% - 225px);
+                  padding: 0;
+                  margin-left: 8px;
+                  > a.title {
+                    display: grid;
+                    max-width: none;
+                    .lesson-prefix {
+                      border: none;
+                    }
+                    .lesson-title-text {
+                      font-size: 15px;
+                    }
+                  }
+                }
+                .info {
+                  max-width: none !important;
+                  .content-count {
+                    display: inline-block;
+                    visibility: visible;
+                    margin: 0;
+                    height: inherit;
+                    line-height: 60px;
+                    .assessment-count,
+                    .collection-count {
+                      margin: 0;
+                      margin-right: 5px;
+                      i {
+                        margin: 0;
+                        width: 16px;
+                        height: 16px;
+                        background-size: 16px 16px;
+                      }
+                    }
+                  }
+                  .play-btn {
+                    width: 49px;
+                    padding: 0;
+                    button {
+                      padding: 12px;
+                      display: block;
+                      &.study-now {
+                        width: 48px;
+                        padding: 11px;
+                      }
+                    }
+                  }
+                  .performance-container {
+                    width: 60px;
+                    .charts.gru-performance-chart {
+                      min-width: auto;
+                    }
+                  }
+                }
+              }
+              .panel-body {
+                .collections {
+                  .collection,
+                  .assessment {
+                    height: 52px;
+                    .panel-heading {
+                      height: 50px;
+                      .panel-title {
+                        width: calc(100% - 200px) !important;
+                        padding: 0;
+                        margin-left: 0;
+                        display: flex;
+                        .icon-container {
+                          width: 50px;
+                          height: 50px;
+                        }
+                        > a.title {
+                          display: flex;
+                          padding: 0;
+                          padding-left: 5px;
+                          .ellipsis {
+                            font-size: 15px;
+                            line-height: 50px;
+                          }
+                          i {
+                            margin-top: 10px;
+                          }
+                        }
+                      }
+                      .info {
+                        max-width: none !important;
+                        .content-count {
+                          display: inline-block;
+                          visibility: visible;
+                          margin: 0;
+                          height: inherit;
+                          line-height: 45px;
+                          span {
+                            margin: 0;
+                            i {
+                              font-size: 20px;
+                              margin: 0;
+                              margin-right: 5px;
+                            }
+                          }
+                          .resource-count-text,
+                          .question-count-text {
+                            height: 30px;
+                            margin-top: 5px;
+                            display: inline-block;
+                          }
+                        }
+                        .play-btn {
+                          width: 44px;
+                          padding: 0;
+                          height: 50px;
+                          button {
+                            display: block;
+                            padding: 0;
+                            height: 50px;
+                            margin: 0;
+                            background: $table-bg;
+                            &.study-now {
+                              width: 44px;
+                            }
+                          }
+                        }
+                        .performance {
+                          width: 60px;
+                          height: 48px;
+                          line-height: 48px;
+                          padding: 0;
+                          margin-top: 0;
+                          .score {
+                            font-size: 14px;
+                          }
+                          .charts.gru-performance-chart {
+                            min-width: auto;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              &.expanded .panel-collapse.collapse.in {
+                margin: 0;
+                margin-top: -9px;
+              }
+            }
+          }
+          @media screen and (max-width: $screen-376) {
+            .panel-body {
+              .panel-group {
+                .gru-accordion-lesson {
+                  .panel-heading {
+                    .panel-title {
+                      width: calc(100% - 125px) !important;
+                    }
+                    .info {
+                      .content-count {
+                        display: none;
+                      }
+                    }
+                  }
+                  .panel-collapse {
+                    .panel-body {
+                      .collections {
+                        .collection,
+                        .assessment {
+                          .panel-heading {
+                            height: 50px;
+                            .panel-title {
+                              width: calc(100% - 125px) !important;
+                              .title {
+                                padding-left: 10px;
+                              }
+                              .icon-container {
+                                display: none;
+                              }
+                            }
+                            .info {
+                              .content-count {
+                                display: none;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.student_independent_course-map {
+  @media only screen and (max-width: $screen-xs) {
+    .app-container {
+      padding-top: 152px;
+    }
+  }
+}

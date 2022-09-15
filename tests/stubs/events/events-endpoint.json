@@ -1,0 +1,17 @@
+[
+  {
+    "description": "Gets course data for a specific ID",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/event$",
+      "method": "POST"
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "event-created-204-response.json"
+    }
+  }
+]

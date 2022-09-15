@@ -1,0 +1,14 @@
+{{#if (eq question.type 'OE')}}
+<p class="instructions">
+</p>
+{{else}}
+<p class="instructions">
+  {{t "gru-open-ended.instructions" action=(t instructionsActionTextKey)}}
+</p>
+{{/if}}
+<div class="answer-panel">
+  <p class="character-limit help-block text-right">{{t "gru-open-ended.characterLimit"}}:
+    <span>{{charactersLeft}}</span>
+  </p>
+  {{textarea value=answer title="characterLimit" class="form-control" rows="5" maxlength=maxLength disabled=readOnly}}
+</div>

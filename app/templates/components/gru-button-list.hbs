@@ -1,0 +1,3 @@
+{{#each items as |item|}}
+  <div class="card ellipsis {{if (array-contains selectedFilters item.name 'name') 'active-card'}}" onclick={{action "selectItem" item}}  onkeypress={{action "selectItem" item}} tabindex={{tabindex}}><span>{{item.name}}</span></div>
+{{/each}}

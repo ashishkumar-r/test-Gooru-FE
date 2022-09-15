@@ -1,0 +1,34 @@
+<div class="title-statistics hidden-xs">
+  <p>{{t 'class.gru-class-statistics.title'}}</p>
+  <span>{{t 'class.gru-class-statistics.on-average'}}</span>
+</div>
+<div class="performance">
+  <p>{{t 'class.gru-class-statistics.performance'}}</p>
+  <span>
+    {{#if class.performanceSummary}}
+      {{class.performanceSummary.score}}%
+    {{else}}
+      {{t "class.gru-class-statistics.no-performance"}}
+    {{/if}}
+  </span>
+</div>
+<div class="completion">
+  <p>{{t 'class.gru-class-statistics.completion'}}</p>
+  <span>
+    {{#if class.performanceSummary}}
+      {{class.performanceSummary.completedPercentage}}%
+    {{else}}
+      {{t "class.gru-class-statistics.no-performance"}}
+    {{/if}}
+  </span>
+</div>
+<div class="time-spent">
+  <p>{{t 'class.gru-class-statistics.time-spent'}}</p>
+  <span>
+    {{#if class.performanceSummary}}
+      {{format-time class.performanceSummary.timeSpent}}
+    {{else}}
+      {{t "class.gru-class-statistics.no-performance"}}
+    {{/if}}
+  </span>
+</div>

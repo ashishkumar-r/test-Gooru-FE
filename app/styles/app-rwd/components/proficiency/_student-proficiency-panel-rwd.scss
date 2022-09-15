@@ -1,0 +1,55 @@
+.student-proficiency-panel {
+  @media only screen and (max-width: $screen-sm - 1) {
+    .panel-header {
+      grid-gap: 0;
+      margin: 0;
+      grid-template-columns: 30px 1fr auto auto;
+
+      .taxonomy-info {
+        .dropdown-menu {
+          right: 0;
+          left: unset;
+          max-height: calc(100vh - 210px);
+          overflow: hidden;
+          overflow-y: auto;
+        }
+      }
+    }
+
+    .learner-proficiency-domain-matrix {
+      .actions {
+        grid-template-columns: auto max-content max-content;
+        .grade-selector {
+          .dropdown {
+            .dropbtn {
+              font-size: 12px;
+              line-height: 12px;
+            }
+          }
+        }
+        .fwc-panel {
+          line-height: 1.2;
+        }
+        .toggle-chart {
+          justify-self: left;
+          margin-left: 8px;
+        }
+      }
+
+      .chart-area {
+        max-width: 100vw;
+        overflow-x: auto;
+
+        .matrix-chart {
+          .chart-container {
+            .domain-chart-container {
+              .scrollable-chart {
+                max-height: calc(100vh - 400px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

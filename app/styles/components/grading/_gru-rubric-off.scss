@@ -1,0 +1,43 @@
+.gru-rubric-off {
+  margin: 20px 0;
+  .overall-comment {
+    @include flexbox();
+    @include flex-direction(column);
+    padding: 0 14px;
+    .total-score {
+      @include flexbox();
+      height: 30px;
+      margin: 0 0 15px;
+      span.score {
+        vertical-align: middle;
+        padding: 5px 0 0;
+      }
+      .gru-input-number {
+        width: 40%;
+        margin: 0 10px;
+        color: $white;
+        height: inherit;
+        input {
+          height: 30px;
+          color: $dark-400;
+          background-color: $white;
+          border-radius: 1px;
+          padding: 0 3px;
+          font-size: $font-size-base;
+        }
+      }
+    }
+    .overall-lead {
+      color: $light-500;
+      font-size: $font-size-small;
+      margin-bottom: 5px;
+    }
+    textarea {
+      background-color: $white;
+      border-radius: 1px;
+      color: $dark-400;
+      padding: 0 3px;
+      font-size: $font-size-base;
+    }
+  }
+}

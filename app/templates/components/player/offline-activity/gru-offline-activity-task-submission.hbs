@@ -1,0 +1,145 @@
+<div class="task-submission-container">
+  <div class="task-summary-container">
+    <div class="task-icon">
+    </div>
+    <div class="task-info">
+      <div class="task-title">
+        {{task.title}}
+      </div>
+    </div>
+    {{#if typeBasedMandatoryUploads.length}}
+      <div class="expected-submission-container">
+        <span class="expected-submission-label">Submissions Expected:</span>
+        {{#each typeBasedMandatoryUploads as |mandatoryUpload index|}}
+          <span class="expected-submission-value">{{mandatoryUpload.pendingCount}} {{mandatoryUpload.type}}</span>
+          {{#if (lt (plus-one index) typeBasedMandatoryUploads.length ) }}
+            |
+          {{/if}}
+        {{/each}}
+      </div>
+    {{/if}}
+    {{#unless isReadOnly}}
+      {{#if (or pendingUploadSubmissions pendingUrlSubmissions)}}
+        <div class="pending-submission-info">
+          <div class="pending-label-container">{{t 'oa.pending-submissions'}}:</div>
+          <div class="pending-info-container">
+            {{#if pendingUploadSubmissions}}
+              <span class="pending-info">{{pendingUploadSubmissions}} {{t 'common.uploads'}}</span>
+            {{/if}}
+            {{#if pendingUrlSubmissions}}
+              |
+              <span class="pending-info">{{pendingUrlSubmissions}} {{t 'common.urls'}}</span>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+    {{/unless}}
+    <div class="task-description">
+      {{safe-html task.description}}
+    </div>
+    {{#if showToggle}}
+      <div class="task-toggle" onclick={{action "onToggleTask"}} tabindex={{tabindex}}>
+        {{#if isTaskExpanded}}
+          {{gru-icon name="expand_less"}}
+        {{else}}
+          {{gru-icon name="expand_more"}}
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="task-details-container">
+    {{#if showSubmissions}}
+      <div class="task-upload-container">
+        <div class="task-answer">
+          <div class="answer-label">
+            {{t 'oa.task.submissions.frs-label'}}
+          </div>
+          {{#if isReadOnly}}
+            <p>{{safe-html (if task.submissionText task.submissionText '--')}}</p>
+          {{else}}
+            <div class="input-container">
+              {{gru-rich-text-editor isCustomEditor=true content=task.submissionText isAutoFocusDisabled="true" tabindex=tabindex}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="task-file-upload-container">
+          <div class="uploads-label">
+            {{t 'common.uploads'}}
+          </div>
+          <div class="task-file-uploads">
+            {{#each studentTaskUploadSubmission as |file|}}
+              <div class="task-file-preview" data-toggle="tooltip" onclick={{action "filePreview"}} onkeypress={{action "filePreview"}} tabindex={{tabindex}}>
+                <a href="{{file.submissionInfo}}" target="_blank" class="preview-file-link">
+                  {{#if (eq file.submissionSubtype 'image')}}
+                    <img src="{{file.submissionInfo}}" alt="submissionInfo" />
+                  {{else}}
+                    {{#if file.submissionIcon}}
+                      <i class="fa {{file.submissionIcon}}"></i>
+                    {{else}}
+                      {{gru-icon name="insert_drive_file"}}
+                    {{/if}}
+                  {{/if}}
+                </a>
+              </div>
+            {{else}}
+              {{#if isReadOnly}}--{{/if}}
+            {{/each}}
+            {{#unless isReadOnly}}
+              {{#each listOfFilesUploads as |file index|}}
+                <div class="task-file-upload">
+                  {{#file-picker dropzone=false errors=fileUploadErrors fileLoaded="onUploadFile" readAs="readAsFile" removePreview=file.isRemovePreview onRemoveFile=removeFile}}
+                    {{!-- A DIV is used instead of a BUTTON because the button's click default behaviour
+                    may cause unwanted side-effects if this component is placed in a modal
+                     (i.e. clicking on this button will cause the modal to close) --}}
+                    <div class="file-upload-box">
+                      {{gru-icon name="add"}}
+                    </div>
+                  {{/file-picker}}
+                  {{#if file.isFileAvailable}}
+                    <div class="file-upload-actions">
+                      <div class="remove-file" onclick={{action "onRemoveFile" index}} onkeypress={{action "onRemoveFile" index}} tabindex={{tabindex}}>{{gru-icon name="clear"}}</div>
+                    </div>
+                  {{/if}}
+                </div>
+              {{/each}}
+            {{/unless}}
+          </div>
+        </div>
+        <div class="task-url-upload-container">
+          <div class="urls-label">
+            {{t 'common.urls'}}
+          </div>
+          {{#each task.urls as |taskUrl index|}}
+            <div class="task-url-upload {{if taskUrl.isSubmittedUrl 'preview-url'}}" onclick={{action "onUrls"}} onkeypress={{action "onUrls"}} tabindex={{tabindex}}>
+              {{#if taskUrl.isSubmittedUrl}}
+                <span class="url-label">URL {{plus-one index}}: </span>
+                <a class="url-link" href="{{task-url taskUrl.value}}" target="_blank">{{taskUrl.value}}</a>
+              {{else if (not isReadOnly)}}
+                <span class="url-label">URL {{plus-one index}}: </span>
+                <span class="url-value">{{input type="text" value=taskUrl.value}}</span>
+              {{/if}}
+              {{#unless isReadOnly}}
+                {{#if (eq task.urls.length (plus-one index))}}
+                  <div class="add-url" onclick={{action "onAppendUrl"}} onkeypress={{action "onAppendUrl"}} tabindex={{tabindex}}>
+                    {{gru-icon name="add_circle"}}
+                  </div>
+                {{/if}}
+              {{/unless}}
+            </div>
+          {{else}}
+            --
+          {{/each}}
+        </div>
+        {{#unless isReadOnly}}
+          <div class="save-task-submission {{unless isEnableTaskSubmission 'disable-event'}} {{if isSubmittingTask 'saving'}}" onclick={{action "onSaveTask"}} onkeypress={{action "onSaveTask"}} tabindex={{tabindex}}>
+            {{#if isSubmittingTask}}
+              {{t 'common.saving'}}<span class="spinner">{{three-bounce-spinner}}</span>
+            {{else}}
+              {{t 'common.save'}}
+            {{/if}}
+          </div>
+        {{/unless}}
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="btn no-bgd add-item" {{action 'updateSubmissionCollection' submission.taskSubmissionSubType }}>
+    {{gru-icon name="add_circle"}}
+</div>
+<span class="image">
+    <i class="{{submission.taskSubmissionSubType}}-icon"></i>
+</span>
+<span class="countItem">
+    {{submission.count}}
+</span>
+{{#if (gt submission.count 0)}}
+    <button class="remove-uploaded btn no-bgd remove-item" {{action 'removeLineItem' submission.refData }}>{{gru-icon name="remove_circle"}}</button>
+{{/if}}

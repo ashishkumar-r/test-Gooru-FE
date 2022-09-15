@@ -1,0 +1,31 @@
+{
+  "class_sharing": "restricted",
+  "code": "I4BYYQZ",
+  "collaborator": [
+    "e568193d-603a-4c3a-a5d2-320579d32f3f"
+  ],
+  "content_visibility": null,
+  "course_id": "course-123",
+  "cover_image": null,
+  "created_at": "2016-04-06T22:01:24Z",
+  "creator_id": "id-for-pochita",
+  "grade_current": 227,
+  "grade_lower_bound": 597,
+  "grade_upper_bound": 227,
+  "preference": {
+    "subject": "K12.MA",
+    "framework": "CCSS"
+  },
+  "description": null,
+  "end_date": null,
+  "gooru_version": 3,
+  "grade": null,
+  "greeting": "Class Greeting",
+  "id": "462bcc67-1717-4140-bdc0-672e7bf4cdb1",
+  "is_archived": false,
+  "member_count": 7,
+  "primary_language": 1,
+  "min_score": 0,
+  "title": "Pochita As Teacher - With Course",
+  "updated_at": "2016-04-06T22:01:24Z"
+}

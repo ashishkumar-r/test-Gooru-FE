@@ -1,0 +1,154 @@
+<div class="panel-header">
+  <span aria-label="go back" class="{{if (eq isDashboard 'true') 'go-back' 'back'}}" onclick={{action 'goBack'}} onkeypress={{action 'goBack'}} tabindex={{tabIndex}}>{{gru-icon name="arrow_back"}}</span>
+  {{#if (eq isDashboard 'true')}}
+     <span aria-label="go back" class="go-back-dashbord" onclick={{action 'goBackDashboard'}} onkeypress={{action 'goBackDashboard'}} tabindex={{tabIndex}}>{{gru-icon name="arrow_back"}}</span>
+  {{/if}}
+  <div class="student-profile">
+    <div class="profile-img">
+      <img class="img-responsive" src="{{studentProfile.avatarUrl}}" alt="avatarUrl" />
+    </div>
+    {{#if (and (not-eq studentProfile.fullName null) (not-eq studentProfile.fullName 'null, null'))}}
+    <span class="username">{{studentProfile.fullName}} {{if (not studentProfile.isShowLearnerData) '*'}}</span>
+    {{/if}}
+  </div>
+  <div role="menu" class="taxonomy-info {{if disableHeader 'disable-event'}}">
+    <div role="menuitem" class="dropdown categories">
+      <button role="button" class="dropbtn btn-dropdown" type="button" data-toggle="dropdown" tabIndex={{tabIndex}}>
+        <div class="category-header-title">
+          {{selectedCategory.title }}
+        </div>
+        {{#if (not disableHeader)}}
+        <span class="caret"></span>
+        {{/if}}
+        </button>
+      <ul class="dropdown-menu category-list">
+        {{#each taxonomyCategories as |category|}}
+          <li tabIndex={{tabIndex}} role="menuitem" class="list-item category {{if (eq selectedCategory.id category.id) 'active'}}" onclick={{action "onSelectCategory" category}} onkeypress={{action "onSelectCategory" category}} aria-label="{{category.title}}">{{category.title}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{#if activeSubject}}
+      <div class="dropdown subjects">
+        <button role="button" class="dropbtn btn-dropdown" type="button" data-toggle="dropdown" tabIndex={{tabIndex}}>
+          <div class="category-header-title">
+          {{activeSubject.title}}
+          </div>
+          {{#if (not disableHeader)}}
+          <span class="caret"></span>
+          {{/if}}
+          </button>
+        <ul class="dropdown-menu subject-list">
+          {{#each taxonomySubjects as |subject|}}
+            <li role="menuitem" class="list-item category {{if (eq activeSubject.id subject.id) 'active'}}" onclick={{action "onSelectSubject" subject}} onkeypress={{action "onSelectSubject" subject}} aria-label="{{subject.title}}">{{subject.title}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+    <div class="framework">{{if tenantFW tenantFW framework}}</div>
+  </div>
+</div>
+<div class="panel-content">
+  {{#if isShowMatrixChart}}
+    <div class="proficiency-chart">
+      {{proficiency/learner-proficiency-domain-matrix
+        subjectBucket=subjectBucket
+        timeLine=timeLine
+        studentDestination=studentDestination
+        userId=studentProfile.id
+        subject=activeSubject
+        class=class
+        competencyMatrixDomains=competencyMatrixDomains
+        competencyMatrixCoordinates=competencyMatrixCoordinates
+        isSelectBaseLine=isSelectBaseLine
+        userProficiencyBaseLine=userProficiencyBaseLine
+        onShownBaseLine="onShownBaseLine"
+        isShowMatrixChart=isShowMatrixChart
+        onDomainSelect="onDomainSelect"
+        selectedDomain=selectedDomain
+        taxonomyGrades=taxonomyGrades
+        showGutCompetency=showGutCompetency
+        hideGutCompetencyButton=hideGutCompetencyButton
+        classGrade=classGrade
+        subjectCode=subjectCode
+        onSelectCompetency="onSelectCompetency"
+        fwCompetencies=fwCompetencies
+        isPlayerProficiency = isPlayerProficiency
+        proficiencyChartData=proficiencyChartData
+        skylinePoints=skylinePoints
+        onSelectTopic="onSelectTopic"
+        selectedCompetency=selectedCompetency
+        totalTopics=totalTopics
+        isShowLoaderSet="isShowLoaderSet"
+        isPublic=isPublic
+        disableHeader=disableHeader
+        studentProfile=studentProfile
+      }}
+    </div>
+
+    <div class="proficiency-tags">
+      <div class="proficiency-legends">
+        <div class="mastered legend">
+          <span class="box"></span>
+          <span class="title">{{t 'profile.proficiency.mastered'}}</span>
+        </div>
+        <div class="in-progress legend">
+          <span class="box"></span>
+          <span class="title">{{t 'profile.proficiency.in-progress'}}</span>
+        </div>
+        <div class="not-started legend">
+          <span class="box"></span>
+          <span class="title">{{t 'profile.proficiency.not-started'}}</span>
+        </div>
+        <div class="show-gut legend">
+          <span class="box"></span>
+          <span class="title">{{t 'competencies-not-in-framework'}}</span>
+        </div>
+        <div class="skyline legend">
+          <span class="box-skyline"></span>
+          <span class="title">{{t 'profile.proficiency.skyline'}}</span>
+        </div>
+        <div class="class-grade-line legend">
+          <span class="box-class-grade-line"></span>
+          <span class="title">{{t 'grade-selector.placeholder'}}</span>
+        </div>
+      </div>
+    </div>
+    {{#if isShowTimeSeries}}
+      <div class="time-series-container">
+       <div role="button" class="left-arrow-ctn">
+         {{#if (not showPrevtbtn)}}
+          <div class="left_arrow show-grid">
+            <a role="link" title="preview" aria-label="prev" class="left carousel-control" data-slide="prev" onclick={{action "onClickPrev"}} onkeypress={{action "onClickPrev"}}>
+              {{gru-icon name="keyboard_arrow_left"}}
+            </a>
+          </div>
+        {{/if}}
+       </div>
+
+        {{charts/monthly-time-series-chart onSelectMonth="onSelectMonth" startDate=timeSeriesStartDate endDate=timeSeriesEndDate }}
+        <div  role="button" class="right-arrow-ctn">
+          {{#if showNextbtn}}
+          <div class="right_arrow show-grid">
+            <a role="link" aria-label="next" class="right carousel-control" data-slide="next" {{action "onClickNext"}}>
+              {{gru-icon name="keyboard_arrow_right"}}
+            </a>
+          </div>
+        {{/if}}
+
+        </div>
+
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="not-tagged">
+      {{t 'profile.proficiency.not-tagged'}}
+    </div>
+  {{/if}}
+</div>
+{{#if isMobile}}
+  <div class="legend-pull-up">
+    {{proficiency/legend-info-pull-up
+    isLegendPullup=isLegendPullup
+    }}
+  </div>
+{{/if}}

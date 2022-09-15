@@ -1,0 +1,107 @@
+<div class="image-to-data-preview-container">
+  {{#unless showScoreReview}}
+    <div id="image-preview-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+      <div class="carousel-inner">
+        {{#each previewContents as |image index|}}
+          <div data-item-index="{{index}}" class="item {{if (eq index 0) 'active'}}">
+            <div class="image-container">
+              <img src="{{image.url}}" alt="{{index}} preview"/>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      <a class="left carousel-control" data-slide="prev" {{action 'onClickPrev'}}>
+        {{gru-icon name="arrow_left"}}
+      </a>
+      <a class="right carousel-control" data-slide="next" {{action 'onClickNext'}}>
+        {{gru-icon name="arrow_right"}}
+      </a>
+    </div>
+  {{else}}
+    {{#unless isLoading}}
+      {{#if showStudentScore}}
+        <table class="student-score-table">
+          <tbody>
+            <tr>
+              <th>{{t 'common.name'}}</th>
+              {{#each questions as |question|}}
+                <th data-toggle="popover" data-content="{{question.title}}">Q{{question.sequence}}</th>
+              {{/each}}
+            </tr>
+            <tr class="heading">
+              <th>{{t 'teacher-landing.class.class-activities-tab.max-score'}}</th>
+              {{#each questionsMaxScore as |maxScore|}}
+                <th>{{maxScore}}</th>
+              {{/each}}
+            </tr>
+            {{#each studentList as |student|}}
+              <tr class="student-score">
+                <td>{{student.firstName}}</td>
+                {{#each student.questions as |question|}}
+                  <td class="{{if question.invalidScore 'invalid-score'}}"> {{validation/gru-input model=question valuePath='score' maxLength=question.maxScore}}</td>
+                {{/each}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        <div class="message">
+          {{#if (or (eq activeContent.uploadStatus -1) (eq activeContent.uploadStatus 3))}}
+            {{t 'i2d.conversion-error'}}
+          {{else if (not activeContent.uploadStatus)}}
+            {{t 'i2d.new-upload-msg'}}
+          {{else}}
+            {{t 'i2d.conversion-progress'}}
+          {{/if}}
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="loading-spinner {{if isLoading 'active'}}">
+        {{three-bounce-spinner}}
+      </div>
+    {{/unless}}
+  {{/unless}}
+  {{#if showReUpload}}
+    <div class="re-upload-container">
+      {{#file-picker
+      accept=mimeType
+      preview=false
+      dropzone=false
+      fileLoaded=(action 'prepareForReUpload')
+      readAs="readAsFile"
+    }}
+        <button type="button" class="re-upload-btn" {{action 'onReUpload'}}>
+          <span>{{gru-icon name="replay"}}</span>
+        </button>
+      {{/file-picker}}
+    </div>
+  {{/if}}
+  <div class="footer-container {{if showScoreReview 'score-review'}}">
+    <div class="preview-slides">
+      {{#each previewContents as |image index|}}
+        <div class="slide item-{{index}}
+        {{if (eq activePreviewIndex index) 'active'}}" {{action 'onSelectImage' image index}}>
+          <img src="{{image.url}}" alt="{{index}} preview"/>
+        </div>
+      {{/each}}
+    </div>
+    <div class="action">
+      {{#if (and (not showScoreReview) showConfirm)}}
+        <button type="button" class="submit-btn hidden-xs" {{action 'onConfirmUpload'}}>{{t 'common.confirm'}} & {{t 'gru-assessment-confirmation.continue'}}</button>
+        <button type="button" class="submit-btn hidden visible-xs" {{action 'onConfirmUpload'}}>
+          <span class="icon">{{gru-icon name="done_all"}}</span>
+          <span class="label">{{previewContents.length}}</span>
+        </button>
+      {{/if}}
+      {{#if (and showStudentScore showScoreReview)}}
+        <button type="button" class="submit-score-btn" {{action 'onConfirmScore'}}>
+          <span class="label hidden-xs">
+            {{t 'common.confirm'}} {{t 'gru-performance-summary.scores'}}
+          </span>
+          <span class="label hidden visible-xs"> {{t 'common.confirm'}}</span>
+          <span class="icon hidden visible-xs">{{gru-icon name="done_all"}}</span>
+        </button>
+      {{/if}}
+    </div>
+  </div>
+</div>

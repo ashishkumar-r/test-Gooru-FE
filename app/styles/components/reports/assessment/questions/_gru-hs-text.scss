@@ -1,0 +1,38 @@
+.reports.assessment.questions.gru-hs-text {
+  ul {
+    padding-left: 0;
+    li {
+      list-style: none;
+      margin: 0 5px 5px 0;
+      padding: 15px;
+      border: 2px solid $gray-lighter;
+      border-radius: 4px;
+      word-wrap: break-word;
+      overflow: auto;
+      max-width: 13em;
+      @media (min-width: $screen-sm-min) {
+        max-width: 16em;
+      }
+      @media (min-width: $screen-lg-min) {
+        max-width: 25em;
+      }
+
+      .text {
+        p {
+          display: inline-block;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+    li.selected.correct {
+      border-color: $brand-success;
+    }
+    li.selected.incorrect {
+      border-color: $brand-incorrect;
+    }
+    li.selected.anonymous {
+      border-color: $brand-anonymous;
+    }
+  }
+}

@@ -1,0 +1,183 @@
+<div class="performance-data-container {{if isMobileView 'mobile-view' 'desktop-view'}}">
+  <div class="left-container">
+    <div class="students-container">
+      <div class="search-student">
+        {{#if isShowClearStudentSearch}}
+          <span class="clear-search-student" {{action "onClearSearchStudent"}}>
+            {{gru-icon name="clear"}}
+          </span>
+        {{/if}}
+        {{#if (or isCaptureQuestionScore (not isMobileView))}}
+          {{input
+          class="search-student-input"
+          type="text"
+          key-up="onSearchStudent"
+          value=studentSearchPattern
+          placeholder=(concat (t 'common.search') ' ' (t 'common.student'))
+          title="search-student"
+          }}
+          <span class="search-icon">{{gru-icon name="search"}}</span>
+        {{/if}}
+      </div>
+      <div class="student-list-container">
+        {{#each studentsList as |student|}}
+          <div class="student-details {{if (eq activeStudent.id student.id) 'active-student'}} {{ if (not isCaptureQuestionScore) 'after-time-input'}} {{ if (and isMobileView (not isCaptureQuestionScore)) 'after-time-input-mobile'}}">
+            <div class="student-info-container" {{action "onSelectStudent" student}}>
+              <div class="student-thumbnail" style="background-image: url({{student.avatarUrl}})"></div>
+              <div class="student-name">{{student.fullName}} {{if (not student.isShowLearnerData) '*'}}</div>
+              <div class="student-performance grade-range-{{grade-range student.performance.score}}">{{if student.performance (concat student.performance.score '%') ''}}</div>
+            </div>
+            {{#if isMobileView}}
+              <div class="student-score-details">
+                <!-- Container to load right question list in mobile view  -->
+              </div>
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="right-container">
+    {{#if isAssessment}}
+      {{#if (or isCaptureQuestionScore isUpdateData)}}
+        <div class="question-list-container">
+          <div class="question-action-container">
+            <div class="question-container">
+              <div class="save-score-btn action-btn {{if (or isEnableSaveNext isOverwriteScore) 'enabled'}} mar-rgt-16" {{action (if isOverwriteScore "onOverwriteScore" "onClickNext")}}>
+                {{#if isOverwriteScore}}
+                  {{t 'goals.manage.update'}} {{t 'common.score'}}
+                {{else}}
+                  {{#if isLastStudentActive}}
+                    {{t 'common.save'}} &amp; {{t 'common.finish'}}
+                  {{else}}
+                    {{t 'common.save'}} &amp; {{t 'common.next'}}
+                  {{/if}}
+                {{/if}}
+              </div>
+              {{#if (and isOverwriteScore (not isLastStudentActive))}}
+                <div class="save-score-btn action-btn {{if (or isEnableSaveNext isOverwriteScore) 'enabled'}}" {{action "onClickNext"}}>
+                  {{t 'common.next'}}
+                </div>
+              {{/if}}
+              {{#if (and isOverwriteScore isLastStudentActive)}}
+                <div class="save-score-btn action-btn {{if (or isEnableSaveNext isOverwriteScore) 'enabled'}}" {{action "onClickNext"}}>
+                  {{t 'common.finish'}}
+                </div>
+              {{/if}}
+            </div>
+            {{#unless isOverwriteScore}}
+              <div class="cancel-btn action-btn" {{action "onClearQuestionScores"}}>{{t 'common.cancel'}}</div>
+            {{/unless}}
+            <div class="cancel-btn action-btn" {{action "skipAnswer"}}>{{t 'common.skip'}} {{if isLastStudentActive (concat '& ' (t 'common.close'))}}</div>
+          </div>
+          {{#each questions as |question seq|}}
+            {{reports/pull-up/activity/add-question-score
+              question = question
+              seq = seq
+              onToggleQuestion = "onToggleQuestion"
+              isOverwriteScore = isOverwriteScore
+            }}
+          {{/each}}
+        </div>
+      {{else}}
+        <div class="assessment-timespent-container">
+          <div class="input-label">
+            {{t 'teacher-landing.class.class-activities.input-timespent'}}
+          </div>
+          <div class="timepicker">
+            {{cards/gru-timepicker-card hour=maxHour minute=maxMinute}}
+          </div>
+          <div class="action-container">
+            <div class="confirm-btn {{unless isValidMaxTimespent 'disable-event'}}" {{action "onSubmitMaxTimespent"}}>
+              {{t 'common.confirm'}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="external-assessment-score-container">
+        <div class="score-title">
+          {{#if isCaptureExternalAssessmentStudentScore}}
+            {{t 'enter-student-score'}}
+          {{else}}
+            {{t 'enter-assessment-max-score'}}
+          {{/if}}
+        </div>
+        {{#if isCaptureExternalAssessmentStudentScore}}
+          <div class="score-container student-score">
+            {{input type="text" class="student-score score-input" value=activeStudent.score}}
+            <span class="score-label">{{t 'student-score'}}</span>
+          </div>
+        {{/if}}
+        <div class="score-container max-score">
+          {{input type="text" class="max-score score-input" value=externalAssessmentMaxScore disabled=isCaptureExternalAssessmentStudentScore}}
+          <span class="score-label">{{t 'teacher-landing.class.class-activities-tab.max-score'}}</span>
+        </div>
+        <div class="score-action-container">
+          {{#if isCaptureExternalAssessmentStudentScore}}
+            <div class="next-action next-btn {{unless isValidExternalAssessmentStudentScore 'disable-event'}}" {{action "onSubmitExternalAssessmentStudentScore"}}>
+              {{#if isLastStudentActive}}
+                {{t 'common.save-finish'}}
+              {{else}}
+                {{t 'common.save-next'}}
+              {{/if}}
+            </div>
+          {{else}}
+            <div class="next-action next-btn {{unless isValidExternalAssessmentMaxScore 'disable-event'}}" {{action "onSubmitExternalAssessmentMaxScore"}}>
+              {{t 'common.next'}}
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+</div>
+
+{{#if (and (or isShowWarningMessage isShowSaveInformation isValidScore) isSessionStarted)}}
+  <div class="back-shadow"></div>
+  <div class="warning-popup {{if isShowWarningMessage 'warning-dialog' (if isValidScore 'invalid-score' 'information-dialog')}}">
+    <div class="warning-info-container">
+      <div class="warning-icon">
+        {{gru-icon name="error"}}
+        <span class="warning-label">{{t 'warning'}}</span>
+      </div>
+      <div class="warning-message">
+        {{#if isShowSaveInformation}}
+          {{t 'teacher-landing.class.class-activities.info-message' studentName = activeStudent.fullName}}
+        {{else if isShowWarningMessage}}
+          {{t 'teacher-landing.class.class-activities.warning-message' questionCount=unAnsweredQuestionCount studentName = activeStudent.fullName}}
+        {{else if isValidScore}}
+          {{t 'self-report.validation-error'}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="warning-action-container">
+      {{#if isShowSaveInformation}}
+        <div class="back-action action-btn" {{action "onDismissInfoPopup"}}>
+          {{t 'common.no'}}
+        </div>
+        <div class="ok-action action-btn" {{action "onAcceptSaveAndNext"}}>
+          {{t 'common.yes'}}
+        </div>
+      {{else if isShowWarningMessage}}
+        <div class="back-action action-btn" {{action "onDismissWarning"}}>
+          {{t 'common.no'}}
+        </div>
+        <div class="ok-action action-btn" {{action "onAcceptWarning"}}>
+          {{t 'common.yes'}}
+        </div>
+      {{else if isValidScore}}
+        <div class="ok-action action-btn" {{action "onDismissWarning"}}>
+          {{t 'sign-in.conformation-text'}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+{{/if}}
+
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

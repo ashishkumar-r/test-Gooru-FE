@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="image">
+      <img role="presentation" class="img-responsive" src={{user.avatarUrl}} alt="avatarUrl" >
+    </div>
+    <div class="user-info">
+      <h6 class="name truncate">
+        {{#link-to 'profile.edit' user.id  tagName="div" class="pointer"}} {{ user.displayName }} {{/link-to}}
+      </h6>
+      <div class="district truncate">{{if user.schoolDistrict user.schoolDistrict user.country}}</div>
+    </div>
+    <div class="panel-border"></div>
+  </div>
+  <div class="panel-body">
+    <div class="following-followers">
+      <div class="followers">
+        <div class="count  text-center">
+          <span>{{user.followers}}</span>
+        </div>
+        <div class="description text-center">
+          {{t "cards.gru-profile-card.followers"}}
+        </div>
+      </div>
+      <div class="following">
+        <div class="count text-center">
+          <span>{{user.followings}}</span>
+        </div>
+        <div class="description text-center">
+          {{t "cards.gru-profile-card.following"}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{#unless isAnonymous}}
+    <div class="panel-footer">
+      {{#unless isMyProfile}}
+        <div class="follow-btn">
+          {{#if isFollowing}}
+            <button class="btn btn-sm btn-unfollow" {{action 'unFollow'}}>
+              <span class="unfollow">{{t "common.unfollow"}}</span>
+              <span class="following">{{t "common.following"}}</span>
+            </button>
+          {{else}}
+            <button class="btn btn-sm btn-success btn-follow" {{action 'setFollow'}}>{{t "cards.gru-user-network-card.follow"}}</button>
+          {{/if}}
+        </div>
+      {{/unless}}
+    </div>
+  {{/unless}}
+</div>

@@ -1,0 +1,14 @@
+<div class="matrix-chart">
+  <div class="scrollable-chart">
+    <div id="route-suggestion-chart"></div>
+  </div>
+  <div class="domain-sequence-container">
+    <div class="domain-sequence" style="width:{{width}}px">
+      {{#each taxonomyDomains as |taxonomyDomain index |}}
+        <li class="domain-counts" title={{locale-translation (t (concat 'domain-code.' taxonomyDomain.domainCode)) taxonomyDomain.domainName}} data-toggle="tooltip" data-placement="bottom">
+          {{taxonomyDomain.domainSeq}}
+        </li>
+      {{/each}}
+    </div>
+  </div>
+</div>

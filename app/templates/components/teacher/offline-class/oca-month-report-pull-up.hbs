@@ -1,0 +1,69 @@
+{{#if showPullUp}}
+  <div class="backdrop" {{action 'onPullUpClose' true}}></div>
+{{/if}}
+<div class="oca-month-report-container">
+  <div class="report-header">
+    <div class="header-title">
+      <span class="title ellipsis">{{t 'teacher-landing.class.offline-class-report.activity-report'}}</span>
+      <span class="month">{{format-date (concat context.month '/' 01 '/' context.year) 'MMMM YYYY'}}</span>
+    </div>
+    <div class="close" {{action 'onPullUpClose' false}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="performance-activity" style="background-color:{{if context (grade-color context.scoreInPercentage)}}">
+    <div class="performance">
+      <span class="left {{unless isToggleLeft 'disable'}}" {{action 'toggle' true}}>{{gru-icon name="keyboard_arrow_left"}}</span>
+      <div class="score-container">
+        <span class="score">
+          {{#if (eq context.scoreInPercentage null)}}
+            --
+          {{else}}
+            {{concat context.scoreInPercentage '%'}}
+          {{/if}}
+        </span>
+        <span class="time-spent">{{if context.timeSpent (format-time context.timeSpent) '--'}}</span>
+      </div>
+      <span class="right {{unless isToggleRight 'disable'}}" {{action 'toggle' false}}>{{gru-icon name="keyboard_arrow_right"}}</span>
+    </div>
+    <div class="performance-img" style="height: {{context.scoreInPercentage}}% ;background-color:{{if context (grade-color context.scoreInPercentage)}}">
+    </div>
+  </div>
+  {{#if isLoading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    <div class="report-activity-container">
+      {{#each classActivities as |activity|}}
+      {{#each activity.activityClasses as |activityClass|}}
+        <div class="activity-row-container {{unless activity.collection.performance 'not-started'}}" {{action 'onSelectActivity' activityClass}}>
+          <div class="activity-info">
+            <i class="icon {{activity.collection.collectionType}}"></i>
+            <div class="title ellipsis">{{safe-html activity.collection.title}}</div>
+            <i class="icon {{activity.collection.collectionType}}-icons"></i>
+          </div>
+          {{#if activity.collection.performance}}
+            {{#if (or (eq activity.collection.collectionType 'assessment') (eq activity.collection.collectionType 'assessment-external'))}}
+              <div class="score" style="background-color:{{if  activity.collection.performance (grade-color activity.collection.performance.score)}}">
+                {{#if (eq activity.collection.performance.score null)}}
+                  --
+                {{else}}
+                  {{concat activity.collection.performance.score '%'}}
+                {{/if}}
+              </div>
+            {{else}}
+              <div class="timespent">{{if activity.collection.performance.timeSpent (format-time  activity.collection.performance.timeSpent) '--'}}</div>
+            {{/if}}
+          {{else}}
+            <div class="not-started">{{t 'teacher-landing.class.offline-class-report.not-started'}}</div>
+          {{/if}}
+        </div>
+      {{/each}}
+      {{/each}}
+    </div>
+  {{/if}}
+</div>
+
+
+{{#if isShowStudentsSummaryReport}}
+  {{teacher/offline-class/oca-students-summary-report-pull-up members = primaryClass.members classActivities=classActivities context=selectedActivity onOpenPerformanceEntry='onOpenPerformanceEntry' classId=classId isShowAddData=isShowAddData onClosePullUp="pullUpClose" classFramework = classFramework isDefaultShowFW = isDefaultShowFW class=primaryClass}}
+{{/if}}

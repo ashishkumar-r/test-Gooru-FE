@@ -1,0 +1,478 @@
+.study-player_timeline-view {
+  overflow-y: hidden !important;
+}
+
+.timeLineViewContainer {
+  top: 100vh;
+  height: 0;
+  position: relative;
+
+  .charts.gru-x-bar-chart {
+    background-color: #cdd2d6;
+    height: 10px;
+  }
+
+  .segment {
+    position: relative;
+  }
+
+  .msaddon {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin-top: -5px;
+    object-fit: contain;
+    background: url("gooru/images/hover-show-up.svg");
+    background-size: 100%;
+  }
+
+  .msaddon:hover {
+    background: url("gooru/images/close-up.svg");
+    cursor: pointer;
+  }
+
+  .completion-chart {
+    cursor: pointer;
+  }
+
+  .timeSession-icon {
+    position: relative;
+    border: 1px solid;
+    padding: 0;
+    border-radius: 50px;
+    line-height: 24px;
+    height: 24px;
+    width: 24px;
+    border: solid 1px #e9e9e9;
+    background-color: #0094de;
+    color: $white;
+
+    > i {
+      line-height: 20px;
+      font-size: 16px;
+    }
+  }
+
+  .completion-chart:hover .msaddon {
+    background: url("gooru/images/close-up.svg");
+    cursor: pointer;
+  }
+
+  .timeLineRoot {
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    border: brown;
+    z-index: 21;
+    background-image: url("gooru/timeline-view-bg.jpg");
+    background-size: cover;
+    display: flex;
+    padding-top: 20px;
+    flex-direction: column;
+
+    .completion-chart > a > .gru-x-bar-chart > .segment::after {
+      content: url(gooru/images/closeup.svg), auto;
+    }
+
+    .close-showup {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      background: url("gooru/images/closeup.svg");
+      background-size: 100%;
+    }
+
+    .grucount {
+      -webkit-background-size: 25px 25px;
+      background-size: 25px 25px;
+      height: 25px;
+      width: 25px;
+    }
+
+    .pers {
+      background: url("gooru/images/navigation_assessment.svg");
+      -webkit-background-size: 25px 25px;
+      background-size: 25px 25px;
+      height: 25px;
+      width: 25px;
+    }
+
+    .timeSession-icon {
+      position: relative;
+      border: 1px solid;
+      padding: 0;
+      border-radius: 50px;
+      line-height: 45px;
+      height: 40px;
+      width: 40px;
+      border: solid 1px #e9e9e9;
+      background-color: #0094de;
+      color: $white;
+
+      > i {
+        line-height: 20px;
+        font-size: 16px;
+      }
+    }
+
+    .performance-v-view {
+      width: 77px;
+      height: 87vh;
+      box-shadow: 0 2px 5px 0 $disabled-bg-color;
+      border: solid 1px $fraction-of-box-shadow;
+      background-color: $white-bold;
+      display: grid;
+      grid-template-rows: 100px 1fr;
+
+      .Oval-12 {
+        width: 42px;
+        height: 42px;
+        box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+        background-color: $white-bold;
+        border-radius: 59px;
+        margin: auto;
+        color: #4c95d7;
+
+        > i {
+          $size: 30px;
+          font-size: $size;
+          cursor: pointer;
+        }
+      }
+
+      .perf-count {
+        width: 40px;
+        height: 17px;
+        font-size: 12px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: #5295d8;
+      }
+
+      .vbar {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px;
+
+        svg {
+          position: relative;
+
+          circle {
+            color: #5d93d9;
+            stroke: #5d93d9;
+            fill: #5d93d9;
+            position: absolute;
+          }
+
+          rect {
+            stroke-width: 1px;
+            width: 12px;
+          }
+
+          text:first-of-type {
+            fill: #3994b6;
+            font-family: sans-serif;
+            font-size: 12px;
+          }
+
+          text:nth-of-type(2) {
+            fill: #a8d4e4;
+            font-family: sans-serif;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .v-series-parent {
+      display: grid;
+      grid-template-columns: 77px 1fr 77px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 15px;
+
+      .selecthighlight {
+        width: 271px;
+        height: 6px;
+        opacity: 0.3;
+        border-radius: 3px;
+        background-color: $white-bold;
+        margin: 40px auto 20px;
+      }
+
+      .selectedTime {
+        zoom: 3;
+        top: -10px;
+        background-color: green;
+      }
+
+      .perf-container {
+        background-color: #319848;
+        display: flex;
+        width: 70px;
+
+        .performance {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-self: stretch;
+
+          .score {
+            color: $white;
+            font-weight: bold;
+            align-self: center;
+            width: 56px;
+            margin: 25px;
+            font-size: 20px;
+          }
+        }
+      }
+
+      .leftDate,
+      .rightDate {
+        align-self: center;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #211238;
+        margin-right: 10px;
+      }
+
+      .chrono-timeline {
+        display: grid;
+        position: relative;
+
+        .container {
+          width: 100%;
+          height: 100%;
+          display: grid;
+          grid-template-rows: max-content 1fr;
+          grid-gap: 70px;
+
+          &:after,
+          &:before {
+            content: none;
+          }
+
+          .header {
+            width: 100%;
+            height: 70px;
+            box-shadow: 0 0 6px 0 $navbar-default-toggle-icon-bar-bg;
+            background-color: $white;
+          }
+
+          .class-activities {
+            height: 100%;
+            padding-bottom: 60px;
+            width: 100%;
+            display: flex;
+          }
+
+          #carousel {
+            position: relative;
+            overflow: hidden;
+          }
+
+          #carousel .student-activity {
+            height: 400px;
+            width: 288px;
+            border-radius: 8px;
+            margin: auto;
+            position: absolute;
+            transition: transform 1s, left 1s, opacity 1s, z-index 0s;
+            box-shadow: 0 0 3px 3px $coursel-text-shadow;
+            opacity: 1;
+          }
+
+          .student-activity.left-4 {
+            z-index: 5;
+            left: calc(100% - 76vw);
+            transform: scale(0.8);
+            height: 300px;
+            width: 158px;
+          }
+
+          .student-activity.right-1 {
+            z-index: 5;
+            left: calc(100% - 28vw);
+            transform: scale(0.8);
+            height: 300px;
+            width: 158px;
+          }
+
+          .student-activity.selected {
+            z-index: 10;
+            left: 38%;
+            transform: scale(1);
+          }
+
+          .student-activity.right-0 {
+            left: 80%;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.5);
+          }
+
+          .student-activity.right-4 {
+            left: calc(100% - 16vw);
+            opacity: 0;
+            transform: scale(0.5);
+          }
+
+          .student-activity.right-0 {
+            z-index: 4;
+            left: 80%;
+            transform: scale(0.5);
+            opacity: 0.7;
+            height: 40px;
+            width: 40px;
+          }
+
+          .student-activity.left-3 {
+            z-index: 4;
+            left: calc(100% - 81vw);
+            transform: scale(0.7);
+            opacity: 0.7;
+            height: 100px;
+            width: 80px;
+          }
+
+          .student-activity.left-2 {
+            z-index: 3;
+            left: calc(100% - 85vw);
+            transform: scale(0.6);
+            opacity: 0.7;
+            height: 100px;
+            width: 80px;
+          }
+
+          .student-activity.right-2 {
+            z-index: 4;
+            left: calc(100% - 23vw);
+            transform: scale(0.7);
+            opacity: 0.7;
+          }
+
+          .student-activity.right-3 {
+            z-index: 3;
+            left: calc(100% - 19vw);
+            transform: scale(0.6);
+            opacity: 0.7;
+          }
+
+          .student-activity.left-0 {
+            left: calc(100% - 89vw);
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.5);
+          }
+
+          .student-activity.left-1 {
+            left: calc(100% - 88vw);
+            opacity: 0;
+            transform: scale(0.5);
+          }
+          @media screen and (min-width: $screen-md) and(max-width: $screen-1280) {
+            .student-activity.right-4 {
+              left: calc(100% - 21vw);
+            }
+
+            .student-activity.selected {
+              left: calc(100% - 53vw);
+            }
+
+            .student-activity.right-1 {
+              left: calc(100% - 41vw);
+            }
+
+            .student-activity.right-3 {
+              left: calc(100% - 27vw);
+            }
+
+            .student-activity.right-2 {
+              left: calc(100% - 33vw);
+            }
+
+            .student-activity.left-4 {
+              left: calc(100% - 65vw);
+            }
+
+            .student-activity.left-3 {
+              left: calc(100% - 73vw);
+            }
+
+            .student-activity.left-2 {
+              left: calc(100% - 79vw);
+            }
+            .student-activity.left-1 {
+              left: calc(100% - 85vw);
+            }
+          }
+          @media screen and (max-width: $screen-md) {
+            .student-activity.left-1 {
+              left: calc(100% - 80vw);
+            }
+            .student-activity.right-4 {
+              left: calc(100% - 28vw);
+            }
+
+            .student-activity.selected {
+              left: calc(100% - 54vw);
+            }
+
+            .student-activity.right-1 {
+              left: calc(100% - 43vw);
+            }
+
+            .student-activity.right-3 {
+              left: calc(100% - 33vw);
+            }
+
+            .student-activity.right-2 {
+              left: calc(100% - 38vw);
+            }
+
+            .student-activity.left-4 {
+              left: calc(100% - 65vw);
+            }
+
+            .student-activity.left-3 {
+              left: calc(100% - 70vw);
+            }
+
+            .student-activity.left-2 {
+              left: calc(100% - 75vw);
+            }
+          }
+        }
+      }
+    }
+
+    .bottom-perf-line {
+      margin-top: auto;
+      width: 100%;
+      height: 40px;
+      top: 52px;
+      left: 0;
+      background-color: $white;
+      display: inline-block;
+      box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+
+      .completion-chart {
+        padding: 15px 20px 0 15px;
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{{#if isMobileView}}
+  <div class="backdrop" {{action "onTogglePanel"}}></div>
+{{/if}}
+<div class="class-activities-source-container {{if isMobileView 'mobile-view'}}">
+  <div class="header-container">
+    {{class/activities/gru-content-search
+      onSelectExternalActivity="onSelectExternalActivity"
+      onShowTenantLibraries="onShowTenantLibraries"
+      onShowFilteredContents="onShowFilteredContents"
+      onShowCourseMap="onShowCourseMap"
+      activeTenantLibrary=activeTenantLibrary
+      course=primaryClass.course
+      class=primaryClass
+      onTogglePanel="onTogglePanel"
+      defaultContentSource = defaultTab.id
+      goBackToTenantLibraries = "goBackToTenantLibraries"
+      scrollEndHitCount = scrollEndHitCount
+      tabindex='100'
+    }}
+    {{#if (and isShowCourseMap isMultiClassEnabled)}}
+      <div class="course-map-activities-container">
+        <div class="multi-class-course-map">
+          <div class="active-class" onclick={{action "onToggleMultiClassPanel"}} onkeypress={{action "onToggleMultiClassPanel"}} tabindex='101'>{{activeCmClass.title}} {{gru-icon name=(if isMultiClassListExpanded 'arrow_drop_up' 'arrow_drop_down')}}</div>
+          <div class="multi-class-list">
+            {{#each secondaryClassDropdown as |secondaryClass index|}}
+              <div class="class-info {{if (eq activeCmClass.id secondaryClass.id) 'active'}}" tabindex={{plus-any index 102}} onclick={{action "onSelectCmClass" secondaryClass}} onkeypress={{action "onSelectCmClass" secondaryClass}}>{{secondaryClass.title}}</div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  <div class="body-container {{if isShowTenantLibraries 'grid-view'}} {{if isShowCourseMap 'course-map-view'}}">
+    {{#if isShowTenantLibraries}}
+      {{#each tenantLibraries as |tenantLibrary index|}}
+        {{library/gru-partner-library-card onSelectLibrary='onSelectTenantLibrary' content=tenantLibrary tabindex=(plus-any index 202)}}
+      {{else}}
+        <div class="plan-activities-msg">
+          {{t 'class-activity.no-learning-activities'}}
+        </div>
+      {{/each}}
+    {{else if isShowCourseMap}}
+      {{#if (and isPremiumClass activeCmClass.milestoneViewApplicable)}}
+        <div class="milestone-container">
+          {{#if milestones}}
+            {{teacher/class/milestone-course-map
+              class=activeCmClass
+              gradeSubject=gradeSubject
+              milestones=milestones
+              showPerformance = false
+              isClassActivity = true
+              todayActivitiesContentIds = todayActivitiesContentIds
+              onAddActivity=(action (optional (if enableVideoConference (action "onAddActivityPop") (action "onAddActivity"))))
+              onScheduleActivity="onShowDateRangePicker"
+              onPreviewContent = "onPreviewContent"
+              tabindex="101"
+            }}
+          {{else}}
+            <div class="plan-activities-msg">
+              {{t 'class-activity.no-milestone-content'}}
+            </div>
+          {{/if}}
+        </div>
+      {{else}}
+        <div class="course-map-container">
+          {{#if isCourseAttached}}
+            {{teacher/class/ca-course-map
+              onAddActivity=(action (optional (if enableVideoConference (action "onAddActivityPop") (action "onAddActivity"))))
+              onAddContentToDCA=(action (optional (if enableVideoConference (action "onAddActivityPop") (action "onAddActivity"))))
+              onScheduleActivity="onShowDateRangePicker"
+              onScheduleContentToDCA="onShowDateRangePicker"
+              classId=activeCmClass.id
+              courseId=activeCmClass.courseId
+              isShowLessonPlan = false
+              todayActivitiesContentIds = todayActivitiesContentIds
+              onShowContentPreview = "onShowContentPreview"
+              tabindex="101"
+            }}
+          {{else}}
+            <div class="plan-activities-msg">
+              {{t 'class-activity.no-course-map-content'}}
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+    {{else}}
+      {{#each filteredContents as |filteredContent index|}}
+        {{new-cards/activities/gru-add-content-card
+          content=filteredContent
+          onAddActivityPop="onAddActivityPop"
+          onAddActivity="onAddActivity"
+          onShowContentPreview = "onShowContentPreview"
+          tabindex=(plus-any index 300)
+        }}
+      {{else}}
+        <div class="plan-activities-msg">
+          {{t 'class-activity.no-learning-activities'}}
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>
+
+{{#if isEnableExternalActivity}}
+  {{activity/gru-new-offline-activity
+    isShowPullUp=isEnableExternalActivity
+    classPreference=classPreference
+    classId=primaryClass.id
+    onAddExternalCollectionToDCA="onAddExternalActivity" tabindex='101'}}
+{{/if}}
+
+{{#if isShowDateRangePicker}}
+  <div class="ca-datepicker-schedule-container ca-datepicker-popover-container">
+    {{ca-daterange-datepicker
+        closeDatePicker='onCloseDateRangePicker'
+        onScheduleForDate='scheduleContentForDate'
+        onScheduleForMonth='scheduleContentForMonth'
+        endDate=endDate
+        enableVideoConference=enableVideoConference
+        allowTwoDateRangePicker=isShowStartEndDatePicker
+        tabindex='101'}}
+  </div>
+{{/if}}
+
+<!-- Preview -->
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    previewContentId=previewContent.id
+    previewContentType=previewContent.format
+    primaryClass=primaryClass
+    tabindex='101'}}
+{{/if}}
+
+{{#if isShowOfflineActivityPreview}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityPreview
+    oaId=previewContent.id
+    isReportView=false
+    primaryClass=primaryClass
+    tabindex='101'
+  }}
+{{/if}}
+
+{{#if isAddActivity}}
+    {{new-cards/activities/gru-add-content-popup-card
+      isAddActivity=isAddActivity
+      onAddActivity="onAddActivity"
+      activeActivityContent=activeActivityContent
+      tabindex='101'}}
+{{/if}}

@@ -1,0 +1,331 @@
+.student-locate {
+  overflow: hidden !important;
+
+  .gru-header {
+    display: none;
+  }
+
+  .activity-panel {
+    display: block;
+    background-color: $dark-600;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+
+    .competency-container {
+      width: 77px;
+      height: 87vh;
+      box-shadow: 0 2px 5px 0 $disabled-bg-color;
+      border: solid 1px $fraction-of-box-shadow;
+      background-color: $white-bold;
+      display: grid;
+      grid-template-rows: 100px 1fr;
+      grid-area: competency;
+      grid-row-start: 1;
+      grid-column-start: 1;
+
+      .chart-icon {
+        width: 42px;
+        height: 42px;
+        box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+        background-color: $white-bold;
+        border-radius: 59px;
+        margin: auto;
+        color: $blue-5d7;
+
+        i {
+          $size: 30px;
+          font-size: $size;
+          display: flex;
+          justify-content: center;
+          margin-top: 3px;
+          cursor: pointer;
+        }
+      }
+
+      .competency-progress-bar {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px;
+      }
+    }
+
+    .chrono-view {
+      display: flex;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 15px;
+
+      .chrono-timeline {
+        display: grid;
+        position: relative;
+        grid-column-start: 2;
+        width: 100%;
+        height: 90vh;
+
+        .container {
+          width: 100%;
+          height: 100%;
+          display: grid;
+          grid-template-areas: "competency timeline timeline timeline timeline free" "competency activities activities activities activities free";
+          grid-template-rows: 70px 1fr;
+          grid-template-columns: 77px 1fr 77px;
+
+          &:after,
+          &:before {
+            content: none;
+          }
+
+          .header {
+            width: 100%;
+            height: 70px;
+            box-shadow: 0 0 6px 0 $navbar-default-toggle-icon-bar-bg;
+            background-color: $white;
+            grid-area: timeline;
+            margin-left: 10px;
+            grid-column-end: 2;
+          }
+
+          .class-activities {
+            height: 100%;
+            width: 100%;
+            display: flex;
+          }
+
+          #carousel {
+            position: relative;
+            overflow: hidden;
+            grid-area: activities;
+            align-items: center;
+            grid-column-end: 2;
+          }
+
+          #carousel .student-activity {
+            height: 380px;
+            width: 275px;
+            @media screen and (max-width: 320px) {
+              width: 100%;
+            }
+            border-radius: 8px;
+            margin: auto;
+            position: absolute;
+            transition: transform 1s, left 1s, opacity 1s, z-index 0s;
+            box-shadow: 0 0 3px 3px $coursel-text-shadow;
+            opacity: 1;
+          }
+
+          .student-activity.selected {
+            z-index: 10;
+            left: calc(100% - 53vw);
+            transform: scale(1);
+          }
+
+          .student-activity.right-1 {
+            z-index: 5;
+            left: calc(100% - 29vw);
+            transform: scale(0.8);
+          }
+
+          .student-activity.right-2 {
+            z-index: 4;
+            left: calc(100% - 25vw);
+            transform: scale(0.7);
+          }
+
+          .student-activity.right-3 {
+            z-index: 3;
+            left: calc(100% - 21vw);
+            transform: scale(0.6);
+          }
+
+          .student-activity.right-4 {
+            z-index: 2;
+            left: calc(100% - 18vw);
+            transform: scale(0.5);
+          }
+
+          .student-activity.right-0 {
+            visibility: hidden;
+            left: calc(100% - 18vw);
+            transform: scale(0.5);
+          }
+
+          .student-activity.left-4 {
+            z-index: 5;
+            left: calc(100% - 77vw);
+            transform: scale(0.8);
+          }
+
+          .student-activity.left-3 {
+            z-index: 4;
+            left: calc(100% - 81vw);
+            transform: scale(0.7);
+          }
+
+          .student-activity.left-2 {
+            z-index: 3;
+            left: calc(100% - 84vw);
+            transform: scale(0.6);
+          }
+
+          .student-activity.left-1 {
+            left: calc(100% - 87vw);
+            z-index: 2;
+            transform: scale(0.5);
+          }
+
+          .student-activity.left-0 {
+            left: calc(100% - 87vw);
+            visibility: hidden;
+            transform: scale(0.5);
+          }
+          @media screen and (min-width: $screen-1024) and(max-width: $screen-in-1150) {
+            .student-activity.right-4 {
+              visibility: hidden;
+            }
+
+            .student-activity.left-1 {
+              visibility: hidden;
+            }
+          }
+          @media screen and (max-width: $screen-in-1024) {
+            .student-activity.left-1 {
+              left: calc(100% - 80vw);
+            }
+
+            .student-activity.right-4 {
+              left: calc(100% - 28vw);
+            }
+
+            .student-activity.selected {
+              left: calc(100% - 54vw);
+            }
+
+            .student-activity.right-1 {
+              left: calc(100% - 43vw);
+            }
+
+            .student-activity.right-3 {
+              left: calc(100% - 33vw);
+            }
+
+            .student-activity.right-2 {
+              left: calc(100% - 38vw);
+            }
+
+            .student-activity.left-4 {
+              left: calc(100% - 65vw);
+            }
+
+            .student-activity.left-3 {
+              left: calc(100% - 70vw);
+            }
+
+            .student-activity.left-2 {
+              left: calc(100% - 75vw);
+            }
+          }
+        }
+      }
+
+      &.no-activities {
+        margin: auto;
+        padding: inherit;
+      }
+
+      .no-activity {
+        width: 100%;
+        text-align: center;
+
+        .chrono-activity-msg-text {
+          color: $white;
+          font-size: 30px;
+          text-align: center;
+          width: 58%;
+          margin: auto;
+        }
+      }
+    }
+    @media screen and (min-width: 568px) and (max-width: 992px) {
+      .chrono-view {
+        .chrono-timeline {
+          .container {
+            grid-gap: 20px;
+
+            #carousel.class-activities {
+              overflow-y: scroll;
+            }
+          }
+        }
+      }
+    }
+
+    .bottom-perf-line {
+      width: 100%;
+      height: 40px;
+      top: 52px;
+      left: 0;
+      background-color: $white;
+      display: inline-block;
+      box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+
+      &.has-activities {
+        margin-top: auto;
+      }
+
+      .completion-chart {
+        display: grid;
+        align-items: center;
+        height: 40px;
+        grid-template-columns: 22px 1fr 20px;
+        cursor: pointer;
+
+        .destination-point {
+          i {
+            float: right;
+          }
+        }
+
+        .start-point {
+          i {
+            float: left;
+          }
+        }
+
+        .destination-point,
+        .start-point {
+          height: 24px;
+
+          i {
+            color: $blue-400;
+          }
+        }
+
+        .charts.gru-x-bar-chart {
+          background-color: $light-300;
+          height: 10px;
+        }
+
+        .segment {
+          position: relative;
+        }
+
+        .msaddon {
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          margin-top: -5px;
+          object-fit: contain;
+          background: url("gooru/images/close-up.svg");
+          background-size: 100%;
+        }
+      }
+    }
+  }
+}

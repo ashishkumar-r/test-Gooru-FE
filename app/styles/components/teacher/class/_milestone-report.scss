@@ -1,0 +1,305 @@
+.milestone-report {
+  .milestone-report-container {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 40px;
+    max-width: 1300px;
+
+    @media screen and (max-width: 480px) {
+      margin-top: 70px;
+    }
+
+    a {
+      color: $dark-200;
+      text-decoration: none;
+    }
+    .milestone-report-panel {
+      .milestone-by-data {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        align-items: center;
+        padding: 10px;
+        background-color: $white;
+        margin: 10px 0;
+        box-shadow: 0 0 5px $light-200;
+        font-weight: bold;
+        font-size: 15px;
+
+        .back-btn {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .milestone-details-list-panel {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        grid-column-gap: 10px;
+
+        @media screen and (max-width: 800px) {
+          grid-template-columns: 1fr;
+          grid-row-gap: 10px;
+
+          .milestone-list-panel {
+            .milstone-list-body {
+              max-height: 200px;
+              overflow-y: auto;
+            }
+          }
+          .milestone-report-detail-panel {
+            width: 100%;
+            overflow-x: auto;
+
+            .milestone-report-head,
+            .milestone-student-list {
+              width: 600px;
+            }
+          }
+        }
+
+        .flag-icon {
+          background-color: $white;
+          border: 1px solid $font-light-300-dark-400;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          margin: 0 auto;
+
+          &.navigator-icon {
+            background-image: url("gooru/images/NavMath_Logo.png");
+            background-size: 100% 100%;
+          }
+
+          i {
+            background-color: $font-light-300-dark-400;
+            color: $white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+          }
+        }
+
+        .milestone-list-panel {
+          background-color: $white;
+          border-radius: 5px;
+          height: fit-content;
+
+          .milestone-list-head {
+            padding: 10px 15px;
+            font-weight: bold;
+          }
+          .milstone-list-body {
+            border-radius: 5px;
+
+            .milestone-list-body-panel {
+              border-bottom: 10px solid $light-100;
+            }
+            .navigator-milestone-list {
+              display: grid;
+              grid-template-columns: 1fr auto;
+              align-items: center;
+              .milestone-close {
+                display: flex;
+                align-items: center;
+                padding: 0 10px;
+              }
+            }
+            .milestone-card-items {
+              display: grid;
+              grid-template-columns: 40px 1fr;
+              align-items: center;
+              padding: 5px;
+
+              .milestone-item {
+                span {
+                  line-height: 1.4;
+                  display: block;
+
+                  &.milestone-name {
+                    font-weight: bold;
+                  }
+                }
+                .student-list {
+                  display: grid;
+                  align-items: center;
+                  grid-template-columns: auto auto;
+                  .active-student-name {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                      padding-right: 5px;
+                      @include ellipsis(
+                        $font-size: 14px,
+                        $line-height: 1.4,
+                        $lines-to-show: 1
+                      );
+
+                      &:not(:last-child)::after {
+                        content: ",";
+                      }
+                    }
+                  }
+                  .student-count {
+                    text-align: right;
+                  }
+
+                  span {
+                    display: inline;
+                  }
+                }
+              }
+
+              &.active {
+                box-shadow: 0 0 5px $light-200;
+                .flag-icon {
+                  border: 1px solid $gooru-green;
+                  i {
+                    background-color: $gooru-green;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .milestone-report-detail-panel {
+          background-color: $white;
+          border-radius: 5px;
+          .milestone-report-head {
+            display: grid;
+            grid-template-columns: 40px 1fr 40px;
+            align-items: center;
+            padding: 10px;
+            box-shadow: 0 3px 5px $light-200;
+            font-weight: bold;
+
+            .flag-icon {
+              border: 1px solid $gooru-green;
+              i {
+                background-color: $gooru-green;
+              }
+            }
+
+            .milstone-report-head-title {
+              line-height: 1.4;
+
+              .milestone-count-title {
+                display: flex;
+                align-items: center;
+
+                span {
+                  margin-right: 5px;
+                  padding: 0 5px;
+                  border-right: 1px solid $light-200;
+                  line-height: 1.2;
+
+                  &:last-child {
+                    border: none;
+                  }
+                }
+              }
+              .milestone-title {
+                padding: 5px;
+              }
+            }
+            .close-icons {
+              display: grid;
+              grid-template-columns: 1fr;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+            }
+          }
+          .search-student-list {
+            margin: 2px 0;
+            input {
+              width: 100%;
+              padding: 5px 20px;
+            }
+          }
+          .milestone-student-list {
+            .student-table-head {
+              display: grid;
+              grid-template-columns: 300px repeat(3, 1fr);
+              align-items: center;
+
+              span {
+                font-weight: bold;
+                line-height: 1.4;
+                padding: 10px;
+
+                &.profile-head {
+                  padding-left: 59px;
+                }
+              }
+            }
+            .student-table-body {
+              .student-table-content-card {
+                display: grid;
+                grid-template-columns: 300px repeat(3, 1fr);
+                align-items: center;
+
+                .student-profile {
+                  display: grid;
+                  grid-template-columns: 40px 1fr 50px;
+                  align-items: center;
+                  padding: 10px;
+
+                  .profile-image {
+                    width: 30px;
+                    height: 30px;
+                    margin: 0 auto;
+                    background-size: 100% 100%;
+                    background-position: center;
+                    display: block;
+                    border-radius: 50%;
+                  }
+                }
+                span {
+                  padding: 10px;
+                  &.competency-code {
+                    width: fit-content;
+                  }
+                }
+                .avg-count {
+                  font-weight: bold;
+
+                  &.avg-count-not-started {
+                    color: $black-bold;
+                  }
+
+                  &.avg-count-0-59 {
+                    color: $red-400;
+                  }
+
+                  &.avg-count-60-69 {
+                    color: $orange-400;
+                  }
+
+                  &.avg-count-70-79 {
+                    color: $grade-range-70-79-bg;
+                  }
+
+                  &.avg-count-80-89 {
+                    color: $grade-range-80-89-bg;
+                  }
+
+                  &.avg-count-90-100 {
+                    color: $green-700;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

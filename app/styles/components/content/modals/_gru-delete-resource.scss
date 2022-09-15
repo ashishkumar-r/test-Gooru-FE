@@ -1,0 +1,15 @@
+.content.modals.gru-delete-resource {
+  @extend .content.modals.gru-quick-delete-content;
+  .delete-info {
+    li {
+      &:last-child {
+        span {
+          position: relative;
+          left: 26px;
+          bottom: 24px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

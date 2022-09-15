@@ -1,0 +1,115 @@
+.student-destination-course-map-container {
+  .units-container {
+    box-shadow: 0 5px 6px 0 $navbar-box-shadow;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $white;
+      border: 1px solid $white;
+      border-radius: 5px;
+    }
+
+    .u-container {
+      //unit-container
+      height: auto;
+
+      .header {
+        height: 67px;
+        border-radius: 4px;
+        border-bottom: solid 1px $light-200;
+        display: grid;
+        align-items: center;
+
+        .title {
+          font-size: 16px;
+          color: $gray-dove;
+          cursor: pointer;
+          padding-left: 15px;
+        }
+
+        .sequence {
+          font-size: 16px;
+          font-weight: bold;
+          color: $black-bold;
+          height: 30px;
+          border-right: solid 1px $light-200;
+        }
+      }
+
+      .unit-header {
+        padding-left: 15px;
+        grid-template-columns: 80px auto;
+      }
+
+      .unit-body {
+        .lessons-container {
+          margin: 0;
+
+          .l-container {
+            //lesson-container
+            .lesson-header {
+              padding-left: 30px;
+              grid-template-columns: 80px auto;
+            }
+
+            .lesson-body {
+              .collections-container {
+                .c-container {
+                  //collection-container
+                  .collection-header {
+                    grid-template-columns: 80px auto;
+                    padding-left: 15px;
+
+                    .collection-thumbnail {
+                      width: 75px;
+                      height: inherit;
+                      background-size: 75px 65px;
+                      background-repeat: no-repeat;
+                    }
+
+                    .collection-title {
+                      cursor: default;
+                    }
+                  }
+                }
+              }
+            }
+
+            &.collapsed {
+              .body {
+                display: none;
+              }
+            }
+
+            &.expanded {
+              .body {
+                display: grid;
+              }
+            }
+          }
+        }
+      }
+
+      &.collapsed {
+        .body {
+          display: none;
+        }
+      }
+
+      &.expanded {
+        .body {
+          display: grid;
+        }
+      }
+    }
+  }
+
+  .no-data-available {
+    background-color: $white;
+    font-size: 15px;
+  }
+}

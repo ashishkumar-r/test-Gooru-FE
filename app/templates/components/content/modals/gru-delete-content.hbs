@@ -1,0 +1,54 @@
+<div class="modal-header delete">
+  <h4 class="modal-title">{{t "common.delete"}} {{t (concat 'common.' (if model.content.format model.content.format model.type))}}</h4>
+</div>
+<div class="modal-body">
+  <form>
+    <p class="legend">{{t "content.modals.delete-content.legend"}}
+        <b>
+          {{#if model.parentName}}
+            {{#if model.isHeaderDelete}}
+              {{{t "content.modals.delete-content.content-legend-header" title=model.content.title parentName=model.parentName}}}
+            {{else}}
+              {{t "content.modals.delete-content.content-legend" type=model.type index=(plus-one model.index) title=model.content.title parentName=model.parentName}}
+            {{/if}}
+          {{else}}
+            {{model.content.title}}
+          {{/if}}
+        </b>
+    </p>
+    <div class="delete-info">
+      <ul>
+        <li>
+          <label>
+            {{input type="checkbox" checked=validator.check1 aria-checked="false"}}
+            <span>{{t "common.delete-instructions.links-inaccessible"}}</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            {{input type="checkbox" checked=validator.check2 aria-checked="false"}}
+            <span>{{t "common.delete-instructions.content-inaccessible"}}</span>
+          </label>
+        </li>
+       {{#unless hasNoWarning}}
+        <li>
+          <label>
+            {{input type="checkbox" checked=validator.check3 aria-checked="false"}}
+            <span>{{t "content.modals.delete-content.delete-warning" type=(t (concat 'common.' model.type))}}</span>
+          </label>
+        </li>
+       {{/unless}}
+      </ul>
+    </div>
+    <p class="confirmation">{{t "content.modals.delete-content.confirmation"}}</p>
+    {{input type="text" class="delete-input" value=validator.confirm}}
+    <div class="actions delete">
+      <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+      </button>
+      {{#gru-spinner-button classes='btn btn-warning delete' text=(t 'common.loading') isLoading=isLoading}}
+          <button class="btn btn-warning delete" disabled={{isDisabled}} {{action "deleteContent" model}}>{{t 'common.delete'}}</button>
+      {{/gru-spinner-button}}
+    </div>
+  </form>
+</div>

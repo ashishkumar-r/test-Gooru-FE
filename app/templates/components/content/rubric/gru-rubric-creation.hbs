@@ -1,0 +1,37 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="{{if (not rubric.uploaded) 'active'}} from-web tab">
+    <a href="#from-web" aria-controls="from-web" role="tab" data-toggle="tab" {{action 'selectOption' 'fromWeb'}}>
+      <span class="lead">{{t 'gru-rubric-creation.url'}}</span>
+    </a>
+  </li>
+  <li role="presentation" class="{{if rubric.uploaded 'active'}} from-computer tab">
+    <a href="#from-computer" aria-controls="from-computer" role="tab" data-toggle="tab" {{action 'selectOption' 'fromComputer'}}>
+      <span class="lead">{{t 'gru-rubric-creation.upload-file'}}</span>
+    </a>
+  </li>
+</ul>
+<div class="content tab-content">
+  <div role="tabpanel" class="tab-pane {{if (not rubric.uploaded) 'active'}}" id="from-web">
+    <div class="add-from-web">
+      <div class="url-label" aria-label="enter url">
+        {{validation/gru-input model=rubric valuePath='url' placeholder=(t 'gru-rubric-creation.url') didValidate=didValidate}}
+      </div>
+      <button class="btn btn-default btn-primary add-btn" title={{t 'common.add'}} {{action 'addURL' rubric.url}}>{{t 'common.add'}}</button>
+      {{content/rubric/gru-preview-url resource=resource isUploaded=rubric.uploaded isRubric=true}}
+    </div>
+  </div>
+  <div role="tabpanel" class="tab-pane {{if rubric.uploaded 'active'}}" id="from-computer">
+    <div class="add-from-computer">
+      <div class="information">
+        <span class="icon">{{gru-icon name="link"}}</span>
+        <span class="title">{{t 'common.upload-file'}}</span>
+      </div>
+      <label class="filename-label">
+        <span class="required file-name">{{t 'common.file-name'}}</span>
+        <span class="formats">{{t 'common.valid-extensions' extensions=validExtensions}}</span>
+      </label>
+      {{content/gru-file-picker validMimeType=rubric.mimeType onSelectFile=(action 'selectFile')}}
+      {{content/rubric/gru-preview-url resource=resource isUploaded=rubric.uploaded isRubric=true}}
+    </div>
+  </div>
+</div>

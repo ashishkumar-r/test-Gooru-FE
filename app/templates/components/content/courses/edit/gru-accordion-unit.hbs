@@ -1,0 +1,128 @@
+{{#if model.isEditing}}
+  <div class="panel panel-default edit">
+    <div class="panel-heading">
+      {{#if unit.id}}
+        <h3>{{t "common.unit"}} {{unless isHideLessonNumber (plus-one index) ''}}</h3>
+      {{else}}
+        <h3>{{t "common.unit"}} {{unless isHideLessonNumber totalItems ''}}</h3>
+      {{/if}}
+
+      {{validation/gru-input model=tempUnit valuePath='title' class="title" maxLength=150 didValidate=didValidate tabindex=tabindex}}
+
+      <div class="actions">
+        <button class="cancel btn btn-info"  onclick={{action 'cancelEdit'}} onkeypress={{action 'cancelEdit'}} tabindex={{tabindex}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" onclick={{action 'saveUnit'}} onkeypress={{action 'saveUnit'}} tabindex={{tabindex}}>{{t "common.save"}}</button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6 big-ideas">
+            {{gru-rich-text-editor content=tempUnit.bigIdeas model=tempUnit valuePath='bigIdeas' lableValue="Big Ideas" checkFocus="true" class="bigIdeasEditor" isAutoFocusDisabled="true"}}
+        </div>
+        <div class="col-sm-6 essential-questions">
+           {{gru-rich-text-editor content=tempUnit.essentialQuestions model=tempUnit lableValue="Essential Questions" valuePath='essentialQuestions' class="essentialQuestionEditor" checkFocus="true" isAutoFocusDisabled="true"}}
+        </div>
+        <div class="col-sm-12 etl-label">
+          {{content/etl/gru-etl-second isEditing=true tempData=tempUnit modalvalue=unit isComputedEtl=false  valueHours='expectedhours' valueMins='expectedminutes' labelText=(t 'common-estimate-time-learn-title')}}
+        </div>
+      </div>
+
+      <div class="data-row domain">
+        <span>{{t "common.domain"}}</span>
+        <div class="add-taxonomy">
+          <div>
+            <button role="button" type="button" class="btn btn-primary btn-sm add-prefix add-domain" onclick={{action 'openDomainPicker'}} onkeypress={{action 'openDomainPicker'}} tabindex={{tabindex}} disabled={{not course.hasSubject}}>{{t "common.add"}}</button>
+              {{#unless course.hasSubject}}
+                <span class="legend" aria-label={{t 'common.select-a-framework'}}>{{t 'common.select-a-framework'}}</span>
+              {{/unless}}
+          </div>
+          {{taxonomy/gru-taxonomy-tag-list tags=selectedTags onRemove=(action 'removeTag') tabindex=tabindex}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+<div class="panel panel-default view {{if model.isExpanded 'expanded' 'collapsed'}}">
+  <div class="panel-heading">
+
+    {{#if isSorting}}
+      <span class="drag-icon">
+        {{gru-icon name="drag_handle"}}
+      </span>
+    {{/if}}
+
+    <a href="javascript:void(0)" role="link" onclick={{action 'toggle'}} onkeypress={{action 'toggle'}} tabindex={{tabindex}}>
+      <div class="title" aria-label={{unit.title}}>
+          <h3>{{t "common.unit"}} {{unless isHideLessonNumber (plus-one index) ''}}</h3>
+          <strong data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title={{unit.title}}>{{unit.title}}</strong>
+      </div>
+    </a>
+    <div class="detail">
+      {{#if model.isSorting}}
+        <div class="actions">
+          <button class="btn sort-items" onclick={{action 'sortLessons'}} onkeypress={{action 'sortLessons'}} tabindex={{tabindex}}  title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+          <div class="drag-options">
+            <button class="cancel btn btn-info"  onclick={{action 'cancelSort'}} onkeypress={{action 'cancelSort'}} tabindex={{tabindex}}>{{t "common.cancel"}}</button>
+            <button class="save btn btn-success" onclick={{action 'saveLessonsOrder'}} onkeypress={{action 'saveLessonsOrder'}} tabindex={{tabindex}}>{{t "common.save"}}</button>
+          </div>
+        </div>
+
+      {{else}}
+        {{#if isLoaded}}
+          {{#if totalSavedItems}}
+            <span dir="ltr"><b>{{totalSavedItems}}</b> {{if lessonLabelCourseMap lessonLabelCourseMap  (t 'common.lessonObj' count=totalSavedItems)}}</span>
+          {{else}}
+          <span> {{if lessonLabelCourseMap (concat (t 'common.add') ' ' lessonLabelCourseMap)  (t 'common.add-lessons')}}</span>
+          {{/if}}
+        {{else}}
+          {{#if unit.lessonCount}}
+            <span dir="ltr"><b>{{unit.lessonCount}}</b> {{if lessonLabelCourseMap lessonLabelCourseMap (t "common.lessonObj" count=unit.lessonCount)}}</span>
+          {{else}}
+          <span> {{if lessonLabelCourseMap (concat (t 'common.add') ' ' lessonLabelCourseMap)  (t 'common.add-lessons')}}</span>
+          {{/if}}
+        {{/if}}
+
+        <div class="actions">
+          <button title="{{t 'common.create'}}" class="btn add-item" onclick={{action 'add'}}  onkeypress={{action 'add'}} tabindex={{tabindex}}>{{gru-icon name="add"}}</button>
+          <button class="btn sort-items" onclick={{action 'sortLessons'}} onkeypress={{action 'sortLessons'}} tabindex={{tabindex}} title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+
+          <div class="item-actions">
+
+            {{partial 'content/partials/item-actions'}}
+
+            <button {{action 'edit' model}}
+                title="{{t 'common.edit'}}"
+                class="btn edit-item"
+                data-toggle="tooltip"
+                data-placement="auto">{{gru-icon name="edit"}}</button>
+          </div>
+        </div>
+
+      {{/if}}
+    </div>
+  </div>
+  <div class="panel-body">
+    <ol class="accordion-unit sortable" role="tablist" aria-multiselectable="true">
+      {{#each items as |item index|}}
+        {{content/courses/edit/gru-accordion-lesson
+          course=course
+          unitId=unit.id
+          model=item
+          index=index
+          isSorting=model.isSorting
+          totalItems=items.length
+          onExpandLesson=(action 'expandLesson')
+          onCancelAddLesson=(action 'cancelAddLesson')
+          onDeleteLesson=(action 'removeLesson')
+          onRemixLesson=(action 'remixLesson')
+          tabindex=tabindex
+          hasCollaborator=hasCollaborator
+        }}
+      {{/each}}
+      <li class="lesson add-item">
+        <a class="add-prefix" href="javascript:void(0)" onclick={{action 'addLesson'}} onkeypress={{action 'addLesson'}} tabindex={{tabindex}}>{{t "common.add-new-lesson"}}</a>
+      </li>
+    </ol>
+  </div>
+</div>

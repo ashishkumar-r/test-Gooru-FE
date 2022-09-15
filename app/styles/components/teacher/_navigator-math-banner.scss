@@ -1,0 +1,77 @@
+.navigator-math-banner {
+  background-image: url("gooru/images/navigator-math-banner.png");
+  width: 100%;
+  height: 225px;
+  background-size: cover;
+  background-color: $popover-box-shadow;
+  position: relative;
+  .alert-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 4px;
+    @include box-shadow(0 0 7px $table-border-color);
+    .status {
+      padding: 0 15px;
+    }
+    &.error {
+      background-color: $brand-danger;
+    }
+    &.success {
+      background-color: $brand-success;
+    }
+  }
+  .banner-container {
+    height: 100%;
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+    .class-content {
+      display: flex;
+      padding: 15px 0;
+      .banner-circle {
+        width: 240px;
+        height: 203px;
+        background-image: url("gooru/images/NavMath_Logo.png");
+        background-size: 205px 203px;
+        object-fit: contain;
+        background-repeat: no-repeat;
+        margin-top: -3px;
+      }
+      .class-info {
+        margin-left: 20px;
+        width: calc(100% - 128px);
+        line-height: 23px;
+        .title {
+          font-size: 20px;
+          font-weight: bold;
+          color: $white;
+        }
+        .description {
+          font-size: 14px;
+          font-weight: bold;
+          color: $white;
+        }
+      }
+    }
+    .actions {
+      .join-class {
+        width: 151px;
+        height: 35px;
+        line-height: 35px;
+        border-radius: 4px;
+        background-color: #2ea9e9;
+        color: $white;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        position: absolute;
+        right: 0px;
+        top: 175px;
+      }
+    }
+  }
+}

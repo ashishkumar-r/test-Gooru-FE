@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <span class="modal-title">
+      {{#if showAssessments}}
+        {{t 'gru-add-to.add-to-assessment'}}
+      {{else}}
+        {{t 'gru-add-to.add-to-collection'}}
+      {{/if}}
+  </span>
+</div>
+<div class="modal-body">
+  {{#if showAssessments}}
+    <div class="btn-group category-options">
+      <button type="button" class="btn btn-lg {{if showCollections 'btn-info' 'btn-primary'}} assessments" {{action "changeTab" false}}>
+        <i class="icon"></i>
+        <span>{{t "common.assessments"}}</span>
+      </button>
+      <button type="button" class="btn btn-lg {{if showCollections 'btn-primary' 'btn-info'}} collections" {{action "changeTab" true}}>
+        <i class="icon"></i>
+        <span>{{t "common.collections"}}</span>
+      </button>
+    </div>
+  {{/if}}
+  <div class="lead">
+    <span>
+      {{#if showCollections}}
+        {{t 'gru-add-to.add-to-collection-lead' contentTitle=content.title}}
+      {{else}}
+        {{t 'gru-add-to.add-to-assessment-lead' contentTitle=content.title}}
+      {{/if}}
+    </span>
+  </div>
+  <div class="list">
+    {{#each collectionsList as |collection|}}
+      <div class="{{collection.id}} collection" {{action "selectCollection" collection}}>
+        {{cards/gru-collection-card
+        collection=collection
+        isSmall=true}}
+      </div>
+    {{/each}}
+    {{#if showMoreResultsButton}}
+        <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+    {{/if}}
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="btn-group visible-xs">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    <button type="button" class="btn btn-primary add-to"{{action "addTo"}} disabled={{if hasSelectedCollection '' 'true'}}>{{t 'common.add'}}</button>
+  </div>
+  <div class="hidden-xs">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+
+    <button disabled={{if hasSelectedCollection '' 'true'}} type="button" class="btn btn-primary add-to" {{action "addTo"}}>{{t 'common.add'}}</button>
+  </div>
+</div>

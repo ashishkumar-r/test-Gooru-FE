@@ -1,0 +1,79 @@
+.gru-base-words {
+  .gru-base-words-container {
+    .gru-base-words-answer-item {
+      display: grid;
+      grid-template-columns: 50px 1fr 1fr 40px;
+      align-items: center;
+      column-gap: 10px;
+      margin: 10px 0;
+      box-shadow: 0 0 10px $light-200;
+      height: 90px;
+      padding: 0 10px;
+
+      h3 {
+        margin: 0;
+        border-right: 1px solid $light-200;
+        padding: 10px;
+      }
+
+      .base-answer-container {
+        font-size: 20px;
+        text-align: center;
+        letter-spacing: 3px;
+        .serp-hl-text.underline {
+          border: 1px solid green;
+          border-radius: 50%;
+          padding: 5px;
+
+          .serp-hl-text-remove {
+            border: 1px solid green;
+            background-color: green;
+            i {
+              margin-left: -6px;
+            }
+          }
+        }
+      }
+      .close-icon {
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+    .gru-add-excercise {
+      margin-top: 20px;
+      span {
+        background-image: linear-gradient(to right, $blue-300, $blue-500);
+        padding: 10px;
+        color: $white;
+        font-weight: bold;
+        box-shadow: 0 0 10px $light-200;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      &.disabled-btn {
+        span {
+          background: $light-200;
+          cursor: auto;
+        }
+      }
+    }
+  }
+  .base-word-affix-blk {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+    background-color: $white;
+    position: absolute;
+    width: 100px;
+    box-shadow: 0 0 10px $light-200;
+    z-index: 1000;
+    li {
+      padding: 2px;
+      cursor: pointer;
+      text-transform: capitalize;
+      &:hover {
+        background-color: $light-100;
+      }
+    }
+  }
+}

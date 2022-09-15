@@ -1,0 +1,193 @@
+.questions.answers.gru-multiple-choice {
+  padding: 10px 0;
+
+  .panel-header {
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    align-items: center;
+  }
+
+  .panel {
+    margin-bottom: 15px;
+
+    div.answer-content {
+      @include flexbox();
+
+      > div,
+      button {
+        display: inline-block;
+      }
+
+      .delete {
+        outline: none;
+        padding: 10px;
+        cursor: pointer;
+        border: 0;
+        background: $white;
+      }
+
+      .letter-container {
+        margin: 0 20px 0 0;
+        min-width: 4em;
+        text-align: center;
+        @include align-self(center);
+        border-right: 1px solid $gray-light;
+
+        h3 {
+          padding: 0;
+        }
+      }
+
+      .text-area-container {
+        @include flex();
+        width: auto;
+        margin-top: 5px;
+        overflow: auto;
+        word-wrap: break-word;
+        .gru-rich-text-editor {
+          .btn-toolbar {
+            max-width: 59em;
+          }
+          .rich-editor {
+            min-height: 3.2em;
+            max-height: 6.9em;
+            margin: 10px 20px 10px 0;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            overflow: auto;
+            word-wrap: break-word;
+            max-width: 49em;
+            &.editable {
+              max-width: 59em;
+            }
+          }
+        }
+        p {
+          margin: 10px 0 10px 10px;
+        }
+        .answer-text-level {
+          padding: 10px;
+          .answer-struggle-list {
+            align-items: center;
+            display: flex;
+            margin-top: 15px;
+            &.show-struggle {
+              pointer-events: none;
+              opacity: 0.3;
+            }
+            .stuggles-content {
+              background-color: $dark-400;
+              display: flex;
+              align-items: center;
+              border-radius: 20px;
+              padding: 5px 7px;
+              color: $white;
+              height: 30px;
+              margin-left: 3px;
+              flex-wrap: wrap;
+              .close-icon {
+                font-size: 20px;
+                margin-left: 5px;
+                padding: 0px;
+              }
+            }
+          }
+        }
+      }
+      .check {
+        min-height: 4.9em;
+        width: 4.1em;
+        text-align: center;
+        height: auto;
+      }
+      button.check {
+        outline: none;
+        border: 0;
+        background-color: $light-200;
+        color: $light-400;
+        border-bottom-right-radius: 6px;
+        border-top-right-radius: 6px;
+        cursor: pointer;
+      }
+      button.check.correct {
+        background-color: $green-300;
+        color: $dark-200;
+      }
+      div.check.correct {
+        padding: 10px 0 10px 0;
+        margin: auto 0;
+        color: $green-300;
+        line-height: 3.4;
+      }
+    }
+  }
+  .add-answer {
+    margin-bottom: 30px;
+    a {
+      cursor: pointer;
+      border: 2px dashed $gray-light;
+      border-radius: 6px;
+      margin-top: 10px;
+      color: $gray;
+      display: block;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+  }
+  .struggle-header {
+    width: 140px;
+    cursor: pointer;
+    height: 70px;
+    align-items: center;
+    margin-left: 15px;
+    &.show-struggle {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+    .struggle-content {
+      margin-left: 5px;
+      color: $gray-base;
+    }
+    .struggle-update {
+      color: $gray-base;
+      margin-left: 3px;
+      @include ellipsis($font-size: 15px, $line-height: 1.2, $lines-to-show: 2);
+    }
+    .add-button {
+      grid-template-columns: 1fr 50px;
+      display: grid;
+      align-items: center;
+      column-gap: 4px;
+      .struggle-add {
+        color: $gray-base;
+        text-align: right;
+      }
+      .add-struggle {
+        border-radius: 100%;
+        background-color: $blue-400;
+        color: $white;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .struggle-answer-panel {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 50px;
+    background-color: $light-100;
+    z-index: 2000;
+  }
+  .confirm {
+    color: $gray-base;
+  }
+}

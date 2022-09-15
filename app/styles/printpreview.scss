@@ -1,0 +1,12 @@
+/**
+ * Print Page styles container
+ */
+@import "variables";
+@import "mixins";
+//Components
+@import "print-preview/components/reports/pull-up/gru-collection-preview";
+@import "print-preview/components/gru-i2d-template";
+@import "print-preview/components/proficiency/inspect/gru-class-progress-report";
+@import "print-preview/components/proficiency/inspect/student-class-progress-report";
+@import "print-preview/components/proficiency/inspect/students-progress-report";
+@import "print-preview/components/reports/gru-adw-report-print-preview";

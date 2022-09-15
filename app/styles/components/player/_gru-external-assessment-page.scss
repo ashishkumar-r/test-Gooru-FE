@@ -1,0 +1,256 @@
+.gru-external-assessment-page {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  .external-assessment-landing-page {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    grid-template-columns: 370px 1fr;
+    padding: 10px;
+
+    &.full-page-view {
+      grid-template-columns: 1fr;
+
+      .external-assessment-card {
+        display: none;
+      }
+    }
+
+    .external-assessment-card {
+      background-color: $white;
+
+      .card-container {
+        display: grid;
+        grid-template-rows: 150px auto;
+        color: $white;
+        .header-panel {
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          &:after {
+            display: block;
+            z-index: 9;
+            margin-top: -100px;
+            height: 100%;
+            width: 100%;
+            content: "";
+            background-image: linear-gradient(
+              to bottom,
+              $bg-left-box-shadow 0,
+              $black-111 100%
+            );
+          }
+          .header-content {
+            display: grid;
+            height: 100%;
+            position: relative;
+            grid-template-rows: auto 25px;
+            padding: 10px;
+            .title {
+              font-size: 18px;
+              align-items: flex-end;
+              display: flex;
+              font-weight: 600;
+            }
+            .author-name {
+              font-size: 12px;
+              font-style: italic;
+            }
+          }
+        }
+        .body-panel {
+          height: 100%;
+          background-color: $white;
+          .body-content {
+            display: grid;
+            grid-template-rows: auto;
+            .description-panel {
+              display: grid;
+              grid-template-rows: auto auto;
+              padding: 10px 15px;
+              .description p {
+                color: #576ca2;
+                font-size: 13px;
+                margin-bottom: 10px;
+                line-height: 1.2;
+              }
+              .details {
+                display: grid;
+                grid-template-columns: auto 150px;
+                .taxonomy {
+                  align-items: center;
+                  margin-top: 1px;
+                  display: flex;
+                  .gru-taxonomy-tag-list {
+                    .gru-taxonomy-tag {
+                      background-color: $charcoal-grey;
+                      padding: 5px;
+                      .tag-label {
+                        color: $white;
+                        font-size: 12px;
+                        font-weight: bold;
+                      }
+                      .tag-caption {
+                        color: $pre-bg;
+                      }
+                    }
+                  }
+                  .no-competency {
+                    background-color: $charcoal-grey;
+                    border: 1px solid $gray-light;
+                    padding: 0 3px 2px;
+                    border-radius: 4px;
+                    width: 75px;
+                    height: 45px;
+                    text-align: center;
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    color: $white;
+                    justify-content: center;
+                    cursor: pointer;
+                  }
+                }
+                .start-button {
+                  justify-content: flex-end;
+                  display: flex;
+                  align-items: center;
+                  .start {
+                    background-color: #00c451;
+                    padding: 7px 5px;
+                    text-align: center;
+                    font-size: 14px;
+                    width: 100%;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    cursor: pointer;
+                    line-height: 32px;
+                    border-radius: 3px;
+                    &.disabled {
+                      pointer-events: none;
+                      opacity: 0.5;
+                    }
+                  }
+                }
+              }
+            }
+            .content-panel {
+              padding: 10px 15px;
+              color: $charcoal-grey-two;
+              font-size: 15px;
+              line-height: 1.5;
+              .score-type-selector {
+                display: flex;
+                padding: 8px 0;
+                .percentage {
+                  margin-right: 15px;
+                }
+              }
+              .score-editor {
+                .percentage-editor {
+                  input {
+                    height: 37px;
+                    width: 100px;
+                    opacity: 0.8;
+                    font-size: 35px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: $charcoal-grey-two;
+                    &:focus {
+                      outline: none;
+                    }
+                  }
+                  .percentage-symbol {
+                    font-size: 35px;
+                    text-align: right;
+                    font-weight: bold;
+                    color: $dark-400;
+                  }
+                }
+                .fraction-editor {
+                  display: flex;
+                  input {
+                    width: 80px;
+                    opacity: 0.4;
+                    font-size: 35px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: $charcoal-grey-two;
+                    &:focus {
+                      outline: none;
+                    }
+                  }
+                  .fraction-of {
+                    height: 64px;
+                    line-height: 100px;
+                    font-size: 20px;
+                    text-align: center;
+                    color: $charcoal-grey-two;
+                    border-bottom: 1px solid $fraction-of-box-shadow;
+                  }
+                }
+                .score-label {
+                  font-size: 12px;
+                  font-weight: bold;
+                  color: $charcoal-grey-two;
+                  text-transform: uppercase;
+                  margin-top: 4px;
+                }
+                .error {
+                  color: $red-400;
+                  font-size: 10px;
+                }
+              }
+              .score-entered {
+                .score {
+                  font-size: 80px;
+                  font-weight: bold;
+                  text-align: center;
+                  color: $charcoal-grey-two;
+                  height: 80px;
+                  line-height: 80px;
+                  span {
+                    font-weight: normal;
+                  }
+                }
+                .score-label {
+                  font-size: 12px;
+                  font-weight: bold;
+                  color: $charcoal-grey-two;
+                  text-transform: uppercase;
+                  margin-top: 4px;
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $screen-1024) and (min-width: $screen-sm) {
+  .gru-external-assessment-page {
+    background-position: inherit;
+    .external-assessment-landing-page {
+      justify-content: center;
+      .external-assessment-card {
+        width: 75%;
+        margin-left: 0px;
+      }
+    }
+  }
+}
+@media screen and (max-width: $screen-sm - 1) {
+  .gru-external-assessment-page {
+    background-position: inherit;
+    .external-assessment-landing-page {
+      justify-content: center;
+      .external-assessment-card {
+        width: 100%;
+        margin-left: 0px;
+      }
+    }
+  }
+}

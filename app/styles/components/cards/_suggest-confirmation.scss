@@ -1,0 +1,246 @@
+.cards.suggest-confirmation {
+  position: fixed;
+  top: 25%;
+  z-index: 1031;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+
+  .suggest-confirmation-backdrop {
+    background-color: $gray-base;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0.7;
+  }
+
+  .card-panel-container {
+    width: 234px;
+    height: 346px;
+    object-fit: contain;
+    border-radius: 4px;
+    background-color: $white;
+    box-shadow: 0 0 6px 1px $table-box-shadow-07;
+    margin: auto;
+
+    .card-panel-header {
+      width: 234px;
+      height: 130px;
+      object-fit: contain;
+      background-color: $table-bg;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0;
+      position: relative;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+
+      .info {
+        color: $white;
+        position: absolute;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 50px;
+        width: 100%;
+
+        .title {
+          padding-left: 10px;
+          padding-right: 10px;
+          width: 100%;
+          height: 42px;
+          margin-top: 88px;
+          font-weight: bold;
+          $line-height: 1.5;
+          $lines-to-show: 2;
+          @include ellipsis(
+            $font-size: 13px,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show
+          );
+        }
+
+        .assessment-external-icons,
+        .collection-external-icons {
+          width: 20px;
+          height: 20px;
+          background-size: 20px 20px;
+          opacity: 0.8;
+          justify-self: center;
+          background-image: url("../assets/gooru/share.png");
+          background-repeat: no-repeat;
+          margin: auto 10px 15px auto;
+        }
+      }
+
+      &::after {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        background-image: linear-gradient(
+          to bottom,
+          $bg-left-box-shadow 0,
+          $gray-base 100%
+        );
+        margin-top: 52px;
+        height: 60%;
+        width: 100%;
+        content: "";
+      }
+    }
+
+    .content-count-container {
+      height: 25px;
+      width: 100%;
+      border-bottom: 1px solid $gray-ultra-light;
+      display: flex;
+
+      .icon {
+        background-size: 15px 15px;
+        width: 15px;
+        height: 15px;
+        display: block;
+        float: left;
+        margin-right: 6px;
+        margin-top: 5px;
+        margin-left: 10px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+
+      .question {
+        .icon {
+          background-image: url("../assets/gooru/images/add_question.svg");
+        }
+      }
+
+      .resource {
+        .icon {
+          background-image: url("../assets/gooru/images/collections_resource_icon.svg");
+        }
+      }
+    }
+
+    .suggestion-made-to {
+      height: 125px;
+
+      p {
+        color: $dark-block-with-blue;
+        opacity: 0.5;
+        font-size: 15px;
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin: 0;
+      }
+
+      .user-details-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 5px;
+
+        .user-profile-details {
+          height: 50px;
+          width: 65px;
+          display: grid;
+          grid-template-rows: 30px 30px;
+          justify-items: center;
+
+          span {
+            width: 65px;
+            align-self: center;
+            text-align: center;
+          }
+
+          .user-profile-img {
+            img {
+              width: 29px;
+              height: 29px;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+
+    .suggestion-profile-list {
+      height: 27px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .popover-content {
+        .suggestion-profile-details-popover {
+          max-height: 400px;
+          overflow-y: auto;
+
+          .user-profile-details {
+            display: grid;
+            grid-template-columns: 30px 200px;
+            grid-gap: 5px;
+            align-items: center;
+            grid-template-rows: 40px;
+
+            span {
+              width: 190px;
+            }
+
+            .user-profile-img {
+              img {
+                width: 29px;
+                height: 29px;
+                border-radius: 50%;
+              }
+            }
+          }
+        }
+      }
+
+      button {
+        background: $suggestion-panel-color;
+        color: $white;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+      }
+    }
+
+    .card-panel-footer {
+      .buttons-container {
+        height: 36px;
+        display: grid;
+        grid-template-columns: 65px 80px;
+        align-items: center;
+        justify-content: flex-end;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: $dark-400;
+        font-weight: bold;
+
+        .cancel-btn {
+          opacity: 0.3;
+          cursor: pointer;
+        }
+
+        .confirm-btn {
+          cursor: pointer;
+
+          &.disable-event {
+            cursor: default;
+            pointer-events: none;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}

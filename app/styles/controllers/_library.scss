@@ -1,0 +1,67 @@
+.library {
+  .container {
+    padding-top: 50px;
+    background: $black-24a;
+    width: 100%;
+    min-height: calc(100vh - 50px);
+
+    .card-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 20px;
+      justify-content: center;
+
+      .card-panel {
+        width: 200px;
+        height: 190px;
+        border-radius: 4px;
+        background-color: $white-bold;
+        text-align: center;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        display: grid;
+
+        .title {
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 0.94;
+          text-align: center;
+          color: $font-sky-400-dark-400;
+        }
+
+        .image {
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 100px;
+          height: 100px;
+          background-position: center;
+
+          &.my-content {
+            background-image: url("gooru/my-content.png");
+          }
+
+          &.catalog {
+            background-image: url("gooru/images/gooru-logo.svg");
+          }
+        }
+      }
+    }
+
+    .partner-libraries {
+      .heading {
+        padding-left: 35px;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $white;
+      }
+
+      .libraries-container {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

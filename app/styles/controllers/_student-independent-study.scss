@@ -1,0 +1,476 @@
+.independent-study-container {
+  display: flex;
+  grid-template-columns: 100%;
+  justify-content: center;
+  background-color: $white;
+  @media screen and (max-width: 768px) {
+    margin-top: 35px;
+    grid-template-columns: 100%;
+
+    .destination-chart-container {
+      order: 2;
+    }
+  }
+
+  .destination-chart-container {
+    padding: 40px 8px 8px;
+    border-right: 1px solid $gray-light;
+    width: 100%;
+    position: absolute;
+    @media screen and (max-width: 430px) {
+      padding: 0;
+    }
+
+    .learner-proficiency-domain-matrix {
+      .actions,
+      .domains-info-list {
+        display: none;
+      }
+
+      .chart-area {
+        background-color: $white;
+
+        .domain-chart-container {
+          .scrollable-chart {
+            height: calc(100vh - 150px);
+            @media screen and (max-width: 768px) {
+              height: calc(100vh - 380px);
+            }
+
+            #render-proficiency-matrix {
+              pointer-events: none;
+            }
+          }
+
+          .domains-seq-list {
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+
+  .header-top {
+    color: $dark-300;
+    position: relative;
+    background-color: $white;
+    box-shadow: 0 0 11px 3px $light-200;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 30px auto 0 10px;
+    display: flex;
+    column-gap: 20px;
+    height: 60px;
+    align-items: center;
+    @media screen and (max-width: 900px) {
+      display: none;
+      order: 1;
+      grid-row: 1;
+      max-height: 180px;
+      overflow-x: auto;
+      @media screen and (max-width: 799px) {
+        padding-top: 55px;
+      }
+    }
+
+    .facet {
+      padding-right: 30px;
+    }
+
+    .facet,
+    .my-location {
+      border-right: 1px solid;
+    }
+
+    .my-location {
+      display: grid !important;
+
+      .body-div,
+      .header-div {
+        display: flex;
+      }
+    }
+
+    .diagnostic {
+      .diagnostic-button {
+        height: 27px;
+        background-color: $blue-800;
+        border-radius: 20px;
+        font-size: 13px;
+        padding: 2px 10px 4px;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 25px 10px 10px;
+        color: $white;
+        cursor: pointer;
+        width: fit-content;
+      }
+    }
+
+    .common-class {
+      display: flex;
+      height: 47px;
+
+      .header-title {
+        display: grid;
+        padding-left: 10px;
+
+        span {
+          font-size: 13px;
+          font-weight: bold;
+        }
+
+        .title {
+          color: $blue-0e2;
+        }
+      }
+
+      .info-item {
+        margin: auto;
+        padding-left: 10px;
+        padding-right: 30px;
+
+        span {
+          color: $black-bold;
+          font-size: 20px;
+        }
+      }
+
+      .edit-container {
+        margin: auto;
+      }
+
+      .edit-icon {
+        margin: auto;
+        padding-right: 30px;
+        cursor: pointer;
+        position: relative;
+
+        i {
+          font-size: 20px;
+        }
+      }
+
+      .math-grade-button {
+        position: absolute;
+        width: 26%;
+        margin-top: 5px;
+
+        .grade-list {
+          background: $white;
+          width: 100%;
+          bottom: 67px;
+          box-shadow: 0 2px 4px 0 $navbar-box-shadow;
+          text-align: left;
+          left: 12px;
+          height: auto;
+          max-height: 400px;
+          overflow: auto;
+
+          .my-location {
+            padding: 10px;
+            border-bottom: 2px solid $gray-light;
+            cursor: default;
+          }
+
+          .grade-div {
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 1fr 30px;
+
+            .selected-icon {
+              background: url("/assets/gooru/images/check-circle-light-blue.svg")
+                no-repeat center !important;
+              background-size: contain;
+              border: none;
+              display: block;
+              width: 20px;
+              height: 20px;
+              margin: auto;
+            }
+          }
+
+          .grade-div:hover {
+            background-color: $hover-light;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .student-inspect-destination-carousel-sm {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+      height: 190px;
+      line-height: 1.2;
+    }
+  }
+
+  .competency-level-container {
+    padding-top: 30px;
+    overflow-y: auto;
+    color: $dark-300;
+    position: relative;
+    width: 35%;
+    background-color: $white;
+    box-shadow: 0 0 11px 3px $light-200;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: 30px 5px 0 auto;
+    @media screen and (max-width: 799px) {
+      padding-top: 50px;
+    }
+
+    .scroll-div {
+      max-height: calc(100vh - 160px);
+      overflow-y: auto;
+    }
+    @media screen and (max-width: 768px) {
+      height: 200px;
+      order: 1;
+
+      &.desktop-view {
+        display: none;
+      }
+
+      .scroll-div {
+        max-height: calc(100vh - 260px);
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 15px;
+    }
+
+    .proficiency-info {
+      transition: visibility 1s linear, opacity 1s linear;
+      opacity: 0;
+      pointer-events: none;
+
+      &.active {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: visible;
+      }
+    }
+
+    .grade-title {
+      height: 50px;
+      font-size: 26px;
+      line-height: 1;
+      color: $dark-300;
+      text-transform: capitalize;
+      display: flex;
+      align-items: baseline;
+      column-gap: 10px;
+
+      .audio-icon {
+        width: 16px;
+        height: 16px;
+        background-size: 16px 16px;
+        background-repeat: no-repeat;
+        display: block;
+        margin: 0 4px;
+        cursor: pointer;
+        background-image: url("gooru/images/audio-resource-dark.svg") !important;
+
+        &.playing {
+          background-image: url("gooru/images/audio-resource-blue.svg") !important;
+        }
+      }
+    }
+
+    ol {
+      list-style: none;
+      font-size: 15px;
+      padding-top: 20px;
+
+      li {
+        padding-bottom: 10px;
+        transition: visibility 1s linear, opacity 1s linear;
+        opacity: 0;
+        display: none;
+
+        &.active {
+          visibility: visible;
+          opacity: 0.5;
+          display: block;
+        }
+
+        &.active-bold {
+          opacity: 1;
+        }
+
+        i {
+          padding-right: 10px;
+        }
+      }
+    }
+
+    .grade-description {
+      width: 100%;
+      padding-right: 83px;
+      font-size: 15px;
+      white-space: normal;
+      text-align: justify;
+      color: $dark-300;
+
+      .desc-title {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+
+    .competency-level-list {
+      margin-top: 5px;
+      display: grid;
+      grid-gap: 3px;
+      grid-template-rows: auto auto;
+
+      .in-progress-container,
+      .mastery-container,
+      .not-started-container,
+      .skyline-container {
+        display: grid;
+        grid-gap: 15px;
+        align-items: center;
+        grid-template-columns: 40px auto;
+
+        .legend {
+          width: 40px;
+          height: 40px;
+        }
+
+        span.explanatory-title {
+          font-weight: bold;
+        }
+
+        .label {
+          font-size: 20px;
+          color: $dark-300;
+          text-align: start;
+          font-weight: normal;
+          padding: 0;
+        }
+      }
+
+      .in-progress-container {
+        .legend {
+          background-color: $blue-e5;
+        }
+      }
+
+      .not-started-container {
+        .legend {
+          background-color: $gray-no-started;
+        }
+      }
+
+      .skyline-container {
+        height: 40px;
+
+        .legend {
+          width: 40px;
+          box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+          height: 10px;
+          background-color: $white;
+        }
+      }
+
+      .mastery-container {
+        .legend {
+          background-color: $blue-0e2;
+        }
+      }
+    }
+
+    .show-destination {
+      bottom: 20px;
+      color: $white;
+      align-items: center;
+      cursor: pointer;
+      justify-content: center;
+      height: 40px;
+      display: grid;
+      grid-template-columns: 30px auto;
+      background-color: $blue-800;
+      border-radius: 45px;
+      font-size: 18px;
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 225px;
+    }
+
+    .button-container-destination {
+      cursor: pointer;
+      padding: 20px;
+      @media screen and (max-width: 992px) {
+        width: 99%;
+        position: relative;
+        bottom: 0;
+      }
+
+      &.audio {
+        padding-right: 0;
+      }
+
+      &.skip-all {
+        padding-left: 0;
+      }
+
+      .text-align-center {
+        text-align: center;
+      }
+
+      .destination-grid {
+        display: grid;
+        align-items: center;
+        @media screen and (max-width: 992px) {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 10px;
+        }
+      }
+
+      .show-route-div {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .change-level,
+      .next-route {
+        height: 27px;
+        border-radius: 20px;
+        font-size: 14px;
+        padding-left: 15px;
+        padding-right: 15px;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        color: $white;
+        text-transform: capitalize;
+
+        &.audio {
+          background-color: $white;
+          color: $black-bold;
+          border: 1px solid $gray-light;
+          font-size: 14px;
+          width: 120px;
+        }
+      }
+
+      .next-route {
+        width: 95px;
+        text-align: center;
+      }
+
+      .change-level {
+        display: flex;
+      }
+    }
+  }
+}

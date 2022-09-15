@@ -1,0 +1,14 @@
+[
+  {"libraryId":390, "library":"library", "label":"Math", "subjectCode":"20002"},
+  {"libraryId":391, "library":"library", "label":"Science", "subjectCode":"20001"},
+  {"libraryId":392, "library":"library", "label":"featured", "subjectCode":"featured"},
+  {"libraryId":393, "library":"library", "label":"Social Sciences", "subjectCode":"25681"},
+  {"libraryId":394, "library":"library", "label":"Language Arts", "subjectCode":"30186"},
+  {"libraryId":395, "library":"rusd", "label":"featured", "subjectCode":"featured"},
+  {"libraryId":396, "library":"library", "label":"standard", "subjectCode":"standard"},
+  {"libraryId":397, "library":"rusd", "label":"Science", "subjectCode":"20001"},
+  {"libraryId":398, "library":"rusd", "label":"Math", "subjectCode":"20002"},
+  {"libraryId":399, "library":"rusd", "label":"Social Sciences", "subjectCode":"25681"},
+  {"libraryId":400, "library":"rusd", "label":"Language Arts", "subjectCode":"30186"},
+  {"libraryId":401, "library":"rusd", "label":"standard", "subjectCode":"standard"}
+]

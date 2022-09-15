@@ -1,0 +1,15 @@
+<div class="search-navigation">
+    <div class="search-keyword">
+        <span class="search-icon">
+          {{gru-icon name='search'}}
+        </span>
+        <input type="text" class="search-box"/>
+    </div>
+</div>
+{{#each courses as |course|}}
+    <div class="item ellipsis">
+        <input type="radio" name="courseOption" checked="{{if (eq course.id courseId) 'checked'}}"
+          {{action 'selectCourse' course.id preventDefault=false}}/> {{course.title}}</div>
+{{else}}
+  <span class="no-content">{{t 'common.no-content'}}</span>
+{{/each}}

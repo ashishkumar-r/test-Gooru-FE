@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{t titleLabelKey}}</h4>
+</div>
+<div class="modal-body">
+
+  {{taxonomy/gru-taxonomy-picker
+    browseSelectorText=browseSelectorText
+    onSave=(action 'updateSelectedTags')
+    onSearchPath=(action 'loadTaxonomyData')
+    panelHeaders=panelHeaders
+    selected=model.selected
+    fromSearch=model.fromSearch
+    selectedTextKey=selectedTextKey
+    shortcuts=model.shortcuts
+    shortcutText=(t "taxonomy.modals.gru-standard-picker.shortcutText")
+    subject=model.subject }}
+
+</div>

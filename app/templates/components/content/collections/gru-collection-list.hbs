@@ -1,0 +1,79 @@
+<div class="header">
+  <h2>{{t "common.builder"}}</h2>
+  <div class="detail">
+    {{#if isCollection}}
+      {{#if (or model.computedResourceCount model.computedQuestionCount)}}
+        <span><b>{{model.computedResourceCount}}</b> {{t "common.resource-pl" count=model.computedResourceCount}}</span>
+        {{#if model.computedQuestionCount}}
+          | <span><b>{{model.computedQuestionCount}}</b> {{t "common.question-pl" count=model.computedQuestionCount}}</span>
+        {{/if}}
+      {{else}}
+        <span>{{t "common.add-collection-item"}}</span>
+      {{/if}}
+    {{else}}
+      {{#if model.computedQuestionCount}}
+        <span><b>{{model.computedQuestionCount}}</b> {{t "common.question-pl" count=model.computedQuestionCount}}</span>
+      {{else}}
+        <span>{{t "common.add-question"}}</span>
+      {{/if}}
+    {{/if}}
+    <div class="actions">
+      <div class="dropdown">
+        <button class="btn btn-primary add-item dropdown-toggle" title="{{t 'common.create'}}" type="button" data-toggle="dropdown">{{gru-icon name="add"}}</button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          {{#if isCollection}}
+            <li class="out-of-scope"><a href="#">{{t "common.from-my-resources"}}</a></li>
+          {{/if}}
+          <li class="out-of-scope"><a href="#">{{t "common.from-my-questions"}}</a></li>
+          {{#if isCollection}}
+            <li><a href="#" {{action "showModal" "content.modals.gru-resource-new" model null 'gru-resource-new'}}>{{t "common.new-resource"}}</a></li>
+          {{/if}}
+          <li><a href="#" {{action "showModal" "content.modals.gru-question-new" model null 'gru-question-new'}}>{{t "common.new-question"}}</a></li>
+        </ul>
+      </div>
+      {{#if (gt items.length 1)}}
+        {{#unless model.isSorting}}
+          <button class="btn btn-primary sort-items" {{action 'sortItems'}}>{{gru-icon name="swap_vert"}}</button>
+        {{/unless}}
+      {{/if}}
+    </div>
+    {{#if model.isSorting}}
+      <div class="drag-options">
+        <button class="cancel btn btn-info" {{action 'cancelSort'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" {{action 'saveCollectionItemsOrder'}}>{{t "common.save"}}</button>
+      </div>
+    {{/if}}
+  </div>
+</div>
+<ol class="collection-list sortable" role="list">
+  {{#each items as |item index|}}
+    {{content/collections/gru-collection-list-item
+    model=item
+    index=index
+    collection=model
+    isSorting=model.isSorting
+    isCollection=isCollection
+    editingContent=editingContent
+    editingSubContent=editingSubContent
+    onRemoveCollectionItem=(action 'removeCollectionItem')
+    onRemixCollectionItem=(action 'remixCollectionItem')
+    isPreviewReferrer=isPreviewReferrer
+    hasCollaborator=hasCollaborator
+    course=course
+  }}
+  {{/each}}
+</ol>
+<div class="add-resource-question">
+  {{#if isCollection}}
+    <button class="btn btn-success add-prefix out-of-scope">{{t "common.from-my-resources"}}</button>
+  {{/if}}
+  <button class="btn btn-success add-prefix out-of-scope">{{t "common.from-my-questions"}}</button>
+  {{#if isCollection}}
+    <button class="btn btn-success add-prefix add-new-resource" {{action "openResource" }}>{{t "common.new-resource"}}</button>
+  {{/if}}
+  <button class="btn btn-success add-prefix add-new-question" {{action "openQuestion" }}>{{t "common.new-question"}}</button>
+  {{#if isShowMiniLesson}}
+    <button class="btn btn-success add-prefix add-mini-lesson">{{t "common.mini-lesson"}}</button>
+  {{/if}}
+  <span class="out-of-scope">{{t "common.drag-drop-suggestions"}}</span>
+</div>

@@ -1,0 +1,20 @@
+{{#if editMode}}
+  <div class="form-group">
+    <label class="radio-inline">
+      <input type="radio" name="highlightType" value="word" checked={{isHotTextHighlightWord}} {{action 'changeType' 'word' preventDefault=false}}> {{t 'common.word'}}
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="highlightType" value="sentence" checked={{isHotTextHighlightSentence}} {{action 'changeType' 'sentence' preventDefault=false}}> {{t 'common.sentence'}}
+    </label>
+  </div>
+{{/if}}
+<div class="answer-instructions">
+  {{if isHotTextHighlightSentence (t 'content.questions.edit.builder.answer-instructions.HT_HL_ST') (t 'content.questions.edit.builder.answer-instructions.HT_HL_WD')}}
+</div>
+{{#if editMode}}
+  {{validation/gru-textarea rawTextareaValue=answers.firstObject.text model=answers.firstObject valuePath='text' isTextHighlight=true rows=10 maxLength=5000}}
+{{else}}
+  <div class="answer-text">
+    {{textarea class="text-question" value=answers.firstObject.text class="form-control" rows="10" readonly=true}}
+  </div>
+{{/if}}

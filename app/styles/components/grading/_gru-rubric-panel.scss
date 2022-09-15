@@ -1,0 +1,116 @@
+.gru-rubric-panel {
+  @include flexbox;
+  @include flex-direction(column);
+  @include flex-shrink(0);
+  @include flex-grow(0);
+  width: 30%;
+  background-color: $dark-400;
+  height: auto;
+  .rubric-information {
+    @include flexbox;
+    @include flex-direction(column);
+  }
+  .header {
+    @include flex-shrink(0);
+    background-color: $dark-500;
+    color: $white;
+    padding: 0;
+    .icon {
+      display: inherit;
+      cursor: pointer;
+      padding: 10px 0;
+      border-bottom: 1px solid $dark-300;
+    }
+    .separator {
+      cursor: pointer;
+      width: 100%;
+      border-bottom: 1px solid $dark-300;
+    }
+    .tab {
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 10px 23px;
+      border-bottom: 1px solid $dark-300;
+      &.active {
+        background-color: $dark-400;
+        border: 1px solid $dark-300;
+        border-bottom: 0;
+      }
+      &.rubric {
+        padding-right: 26px;
+      }
+    }
+    @include flexbox();
+  }
+  .content {
+    color: $white;
+    overflow: auto;
+    height: auto;
+    > .grading,
+    > .rubric,
+    > .answer {
+      display: none;
+      &.active {
+        display: inherit;
+      }
+    }
+    > .answer {
+      margin: 20px 14px 10px;
+      color: $gray;
+      .question-response {
+        margin-bottom: 0;
+        .inner-text {
+          word-wrap: break-word;
+          padding: 20px;
+          border: 1px solid $gray-light;
+        }
+      }
+    }
+  }
+  &.full-rubric {
+    width: 100%;
+  }
+  .rubric-information {
+    height: auto;
+    @include flexbox();
+    @include flex-direction(column);
+    .content {
+      color: $white;
+    }
+  }
+  .footer {
+    @include flexbox();
+    @include justify-content(space-between);
+    color: $white;
+    margin: 15px 0;
+    font-size: $font-size-base;
+    line-height: $font-size-large;
+
+    .navigation,
+    .previous,
+    .next {
+      @include flexbox();
+    }
+    .next {
+      border-left: 1px solid $white;
+      padding-left: 10px;
+    }
+    .previous {
+      margin-right: 5px;
+    }
+    .previous,
+    .next {
+      @include align-items(center);
+      width: 80px;
+      cursor: pointer;
+      &.disabled {
+        cursor: default;
+        color: $light-500;
+      }
+    }
+    .btn-submit {
+      @include align-self(center);
+      margin-right: 14px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.content.collections.edit {
+  .tags {
+    margin: 10px 0;
+  }
+
+  .century-skills {
+    > label {
+      width: 100%;
+
+      .choose {
+        float: $tab-float-dir;
+        padding: 4px 16px;
+      }
+
+      .skills-buttons {
+        width: 75%;
+        float: $tab-float-dir;
+        margin: 0 0 0 5px;
+        @media (min-width: $screen-sm-min) {
+          width: 78%;
+        }
+        @media (min-width: $screen-lg-min) {
+          width: 85%;
+        }
+      }
+    }
+  }
+}
+
+.exemplar-show {
+  clear: both;
+}

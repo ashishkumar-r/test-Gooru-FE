@@ -1,0 +1,106 @@
+<div class="offline-activity-submission-container {{if isOaCompleted 'grading-enabled'}}">
+  <div class="left-panel">
+    <div class="offline-activity-info-container">
+      <div class="offline-activity-title-container">
+        <div class="icon-container">
+        </div>
+        <div class="title-container">
+          {{offlineActivity.title}}
+        </div>
+      </div>
+      <div class="offline-activity-description-container">
+        {{offlineActivity.learningObjectives}}
+      </div>
+    </div>
+    {{#if (not isStudent)}}
+       <div class="oa-references-container">
+         {{player/offline-activity/gru-offline-activity-references offlineActivity = teacherActivityReferences userType =teacherTitle}}
+       </div>
+    {{/if}}
+    <div class="oa-references-container">
+      {{player/offline-activity/gru-offline-activity-references offlineActivity = studentActivityReferences userType =studentTitle}}
+    </div>
+    <div class="task-submissions-container">
+      {{#each activityTasks as |task|}}
+        {{player/offline-activity/gru-offline-activity-task-submission
+          task=task
+          caContentId=caContentId
+          showSubmissions=true
+          showToggle=true
+          classId=classId
+          timespentInMilliSec=timespentInMilliSec
+          isStudyPlayer = isStudyPlayer
+          courseId = courseId
+          unitId = unitId
+          lessonId = lessonId
+          contentSource = contentSource
+          isReadOnly = isOaCompleted}}
+      {{/each}}
+    </div>
+    <div class="offline-activity-timespent">
+      <div class="timespent-info-container" {{action "onToggleTimespent"}}>
+        <div class="icon-container">
+          {{gru-icon name="schedule"}}
+        </div>
+        <div class="label-container">
+          <span class="title-container">Time spent</span>
+          <span class="description-container">
+            {{t 'oa.enter-timespent-label'}}
+          </span>
+        </div>
+        <div class="toggle-container">
+          {{gru-icon name=(if isTimespentExpanded 'expand_less' 'expand_more')}}
+        </div>
+      </div>
+      <div class="timespent-container">
+        {{cards/gru-timepicker-card
+          maxHour= -1
+          hour=oaTimespentHour
+          minute=oaTimespentMinute
+        }}
+        <div class="save-timespent-action {{unless isEnableSaveTimespent 'disable-event'}}" {{action "onSaveTimespent"}}>
+          {{t 'common.save'}}
+        </div>
+      </div>
+    </div>
+    {{#unless isParentSubmit }}
+    <div class="complete-submission-container {{if isShowCompletionConfirmation 'hidden'}} {{unless isEnableCompletionButton 'disable-event'}}">
+      <div class="complete-submit-btn" {{action "onShowCompletionConfirmation"}}>{{t 'oa-player.mark-complete'}}</div>
+    </div>
+    {{/unless}}
+    {{#if isShowCompletionConfirmation}}
+      <div class="completion-confirmation-popup">
+        <div class="info-container">
+          {{t 'oa-player.complete-confirm'}}
+        </div>
+        <div class="action-container">
+          <div class="cancel-btn action-btn" {{action "onCancelCompletion"}}>
+            {{t 'common.no'}}
+          </div>
+          <div class="confirm-btn action-btn" {{action "onCompleteSubmission"}}>
+            {{t 'common.yes'}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  <div class="right-panel {{if isSelfGradingDone 'grading-done'}}">
+    {{#if isShowOaSelfGrading}}
+      {{activity/offline/grading-report
+        context=selfGradeItemContext
+        itemsToGrade=itemsToGrade
+        isTeacher=false
+        studentId=userId
+        isCourseMapGrading = isCourseMapGrading
+        refreshItem = "onDoneOaGrading"
+        isInlineGrading = true
+        offlineActivitySubmissions = offlineActivitySubmissions
+      }}
+    {{/if}}
+  </div>
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

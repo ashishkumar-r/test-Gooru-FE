@@ -1,0 +1,204 @@
+.gru-i2d-preview {
+  height: 100%;
+  width: 100%;
+
+  .image-to-data-preview-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: $gray-4b;
+
+    #image-preview-carousel-wrapper {
+      height: 100%;
+      width: 100%;
+      max-height: calc(100vh - 252px);
+
+      .carousel-inner {
+        height: 100%;
+        width: 100%;
+
+        .item {
+          width: 100%;
+          height: 100%;
+
+          .image-container {
+            width: 100%;
+            height: 100%;
+
+            img {
+              max-height: 100%;
+              max-width: 100%;
+              padding: 60px;
+              display: grid;
+              margin: auto;
+            }
+          }
+        }
+      }
+
+      .carousel-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 40px;
+          border-radius: 50px;
+          background-color: $breadcrumb-color;
+          color: $gray-3e;
+        }
+      }
+    }
+
+    .loading-spinner {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      visibility: hidden;
+
+      &.active {
+        visibility: visible;
+      }
+    }
+
+    .message {
+      text-align: center;
+      color: $white;
+      font-size: 16px;
+      padding: 20px;
+    }
+
+    .student-score-table {
+      width: 100%;
+      height: auto;
+      color: $gray-4b;
+      display: block;
+      clear: both;
+      padding: 10px 15px 40px;
+      overflow: auto;
+      max-height: calc(100vh - 252px);
+      border-collapse: collapse;
+      position: absolute;
+
+      tbody {
+        tr {
+          background: $white;
+
+          &.heading {
+            border-bottom: 5px solid $gray-4b;
+          }
+
+          td {
+            padding: 10px 15px;
+            text-transform: capitalize;
+
+            &.invalid-score {
+              .gru-input {
+                .form-group {
+                  input {
+                    box-shadow: inset 0 -2px 0 $red-400;
+                  }
+                }
+              }
+            }
+          }
+
+          th {
+            padding-left: 8px;
+            height: 30px;
+            text-align: left;
+            vertical-align: top;
+            padding: 10px 15px;
+
+            &.name {
+              text-align: left;
+            }
+          }
+        }
+      }
+
+      .gru-input.score {
+        .form-group {
+          input {
+            color: $gray-4b;
+            width: 30px;
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    .re-upload-container {
+      position: absolute;
+      bottom: 90px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+
+      button {
+        border-radius: 50px;
+        border: none;
+        box-shadow: none;
+        width: 40px;
+        height: 40px;
+        color: $white;
+        background-color: $upload-container;
+      }
+    }
+
+    .footer-container {
+      position: absolute;
+      bottom: 0;
+      height: 80px;
+      width: 100%;
+      display: flex;
+      background-color: $navbar-default-toggle-icon-bar-bg;
+
+      .preview-slides {
+        display: flex;
+        width: calc(100% - 168px);
+        justify-content: center;
+        align-items: center;
+
+        .slide {
+          width: 64px;
+          height: 64px;
+          background-color: $gray-harder;
+          margin: 0 5px;
+
+          &.active {
+            border: solid 3px $blue-in-progress;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            padding: 2px;
+          }
+        }
+      }
+
+      .action {
+        width: 168px;
+        height: 100%;
+        display: flex;
+
+        button {
+          margin: auto;
+          background-image: linear-gradient(to right, $blue-e0, $blue-400);
+          border: none;
+          color: $white;
+          height: 40px;
+
+          .label {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+.reports.pull-up-dca-question-report {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .dca-question-report-container {
+      width: 100%;
+      .report-content {
+        .report-carousel {
+          #report-carousel-wrapper {
+            .carousel-control.left,
+            .carousel-control.right {
+              margin-top: 5px;
+              width: 30px;
+              height: 30px;
+
+              .arrow-left,
+              .arrow-right {
+                width: 25px;
+                background-size: 25px 25px;
+                height: 25px;
+                top: 10%;
+                margin-left: 0;
+              }
+            }
+            .question-background-cover {
+              .question-content-container {
+                width: 100%;
+                .question-image-container {
+                  display: none;
+                  img {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .report-header {
+        .report-header-info {
+          .dca-activity-date {
+            padding-right: 10px;
+            font-size: 13px;
+            line-height: 18px;
+          }
+
+          .collection-title {
+            .collection-icon.collection {
+              padding: 18px;
+            }
+            .collection-icon.assessment {
+              padding: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: $screen-568 - 1) {
+    .dca-question-report-container {
+      .report-content {
+        .report-info-chart-container {
+          grid-template-columns:  auto 1fr 100px;;
+          .report-chart-container {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: $screen-568) and (max-width: $screen-824) {
+    .dca-question-report-container {
+      width: 100%;
+
+      .report-content {
+        .report-info-chart-container {
+          .report-chart-container {
+            .not-answered {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

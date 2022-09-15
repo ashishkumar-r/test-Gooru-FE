@@ -1,0 +1,59 @@
+{
+  "id": "course-123",
+  "title": "Release time! - Course 1",
+  "unitCount": 4,
+  "description": "This is a course for testing the release!",
+  "owner_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "original_creator_id": null,
+  "modifier_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "original_course_id": null,
+  "publish_status": "unpublished",
+  "publish_date": null,
+  "thumbnail": "f462344b-968a-420b-8584-8893dc845d3e.png",
+  "metadata": null,
+  "taxonomy": {
+    "CCSS.K12.MA-5": {
+      "code": "CCSS.K12.MA-5",
+      "title": "Grade 5",
+      "description": "",
+      "parent_title": "Math",
+      "framework_code": "CCSS"
+    }
+  },
+  "collaborator": null,
+  "visible_on_profile": false,
+  "created_at": "2016-06-16T22:40:18Z",
+  "updated_at": "2016-10-07T23:58:28Z",
+  "sequence_id": 1,
+  "subject_bucket": "CCSS.K12.MA",
+  "license": 271,
+  "creator_system": null,
+  "use_case": "I used it for testing.",
+  "unit_summary": [
+    {
+      "unit_id": "first-unit-id",
+      "title": "Food",
+      "sequence_id": 1,
+      "lesson_count": 3
+    },
+    {
+      "unit_id": "d76ecba0-e1e0-4048-8174-96684c2240c7",
+      "title": "Drinks",
+      "sequence_id": 2,
+      "lesson_count": 1
+    },
+    {
+      "unit_id": "749d420f-d991-469c-814a-bcf7ec365012",
+      "title": "Fun",
+      "sequence_id": 3,
+      "lesson_count": 0
+    },
+    {
+      "unit_id": "bd8b440d-5bbd-4f64-aa4d-6679cdaa8042",
+      "title": "More fun",
+      "sequence_id": 4,
+      "lesson_count": 0
+    }
+  ]
+}

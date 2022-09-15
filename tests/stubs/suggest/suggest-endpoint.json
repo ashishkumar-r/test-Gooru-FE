@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Get suggest resources by collection",
+    "request": {
+      "url": "^/gooru-search/rest/v3/suggest/resource",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "get-suggest-by-collection-200-response.json"
+    }
+  }
+]

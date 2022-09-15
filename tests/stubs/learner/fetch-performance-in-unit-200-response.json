@@ -1,0 +1,33 @@
+{
+  "content":[
+    {
+      "usageData":[
+        {
+          "reaction":0,
+          "attemptStatus":"completed",
+          "timeSpent":28348,
+          "lessonId":"78b338d1-8d9b-49ce-94a4-e45869086cfc",
+          "attempts":1,
+          "completedCount":1,
+          "scoreInPercentage":0.0,
+          "totalCount":0,
+          "sourceList":[
+            {
+              "reaction":0,
+              "attemptStatus":"completed",
+              "timeSpent":28348,
+              "assessmentId":"1af2e4e7-2971-40e7-ac62-52f70aa1364f",
+              "attempts":1,
+              "completedCount":1,
+              "totalCount":0,
+              "scoreInPercentage":0
+            }
+          ]
+        }
+      ],
+      "userUid":"95a744e1-631e-4642-875d-8b07a5e3b421"
+    }
+  ],
+  "message":null,
+  "paginate":null
+}

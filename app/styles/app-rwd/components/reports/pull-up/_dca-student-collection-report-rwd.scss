@@ -1,0 +1,47 @@
+.reports.pull-up-dca-student-collection-report {
+  .user-course-info {
+    height: auto;
+  }
+  @media only screen and (max-width: $screen-sm) {
+  width: 100%;
+  .user-course-info {
+    .user-profile-info {
+      .profile {
+        .img-container {
+          display: none;
+        }
+      }
+    }
+      .assessment-name {
+        margin-left: 30px;
+        font-size: 14px;
+      }
+      .information {
+        margin-left: 30px;
+      }
+      .class-performance {
+        margin-left: 30px;
+      }
+  }
+  .dca-report-panel-container {
+      width: 100%;
+    }
+  }
+  @media only screen and (min-width: $screen-568) and (max-width: $screen-824) {
+    .user-course-info {
+      .assessment-name {
+          margin-left: 0;
+      }
+      .class-performance {
+          margin-left: 0;
+      }
+      .user-profile-info {
+        .profile {
+          .img-container {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

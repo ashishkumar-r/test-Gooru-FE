@@ -1,0 +1,42 @@
+.gru-roster-header {
+  .panel-body {
+    padding: 10px 15px;
+    .content {
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(flex-start);
+      @include flex-wrap(wrap);
+      @media (max-width: $screen-sm) {
+        @include flex-direction(column);
+      }
+    }
+    .actions {
+      margin-right: 30px;
+      @media (max-width: $screen-sm) {
+        margin-right: 0px;
+        margin-bottom: 10px;
+      }
+      .btn {
+        font-size: $font-size-base;
+        .gru-icon {
+          margin-top: -4px;
+          font-size: $font-size-rubric-icon;
+        }
+      }
+    }
+    .legend {
+      font-size: $font-size-large;
+      line-height: 1.4;
+    }
+  }
+  .submitted-at {
+    color: $light-400;
+    line-height: $font-size-small;
+    font-size: $font-size-small;
+    white-space: nowrap;
+    margin-top: 0;
+    @media (min-width: $screen-sm) {
+      margin-top: -14px;
+    }
+  }
+}

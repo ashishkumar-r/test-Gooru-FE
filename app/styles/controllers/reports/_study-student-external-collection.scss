@@ -1,0 +1,248 @@
+.external-content-report-container {
+  margin: 0 276px 0 296px;
+  padding-top: 50px;
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  .conntent-summary {
+    background-color: $white;
+
+    .header-container {
+      height: 48px;
+      background-color: $header-bg-color;
+      display: flex;
+      position: relative;
+
+      .preview-title {
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 48px;
+        color: $white;
+        text-transform: capitalize;
+        padding: 0 12px;
+        width: 100%;
+      }
+    }
+
+    .summary-container {
+      display: grid;
+      width: auto;
+      object-fit: contain;
+      background-color: $white;
+      box-shadow: 0 0 4px 0 $container-box-shadow;
+      grid-template-columns: 80px 24px 1fr;
+      column-gap: 16px;
+      align-items: center;
+
+      .profile-image {
+        width: 80px;
+        height: 48px;
+        padding: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+        background-position: 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+        text-align: center;
+        color: $white;
+
+        .img-responsive {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .content-icon {
+        background-size: 24px 18px;
+        width: 24px;
+        height: 18px;
+        background-repeat: no-repeat;
+        display: block;
+
+        &.assessment {
+          background-image: url("gooru/images/add_assessment.svg");
+        }
+
+        &.collection {
+          background-image: url("gooru/images/add_collection.svg");
+        }
+      }
+
+      .overview {
+        -ms-flex: 1 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+        border-radius: 5px;
+        margin: 0;
+
+        h5 {
+          margin: 0;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 16px;
+          white-space: nowrap;
+          line-height: 1.25;
+          color: $title-color;
+        }
+      }
+    }
+
+    .content-details-container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      height: 50px;
+      align-items: center;
+      box-shadow: 0 2px 4px 0 $container-box-shadow;
+
+      .taxonomy-container {
+        height: 50px;
+        display: grid;
+        align-items: center;
+        padding-left: 15px;
+
+        .gru-taxonomy-tag-list {
+          .gru-taxonomy-tag {
+            min-width: 90px;
+            max-width: 100px;
+            height: 23px;
+            border-radius: 12px;
+            background-color: $dark-gray;
+
+            .standard-tag {
+              text-align: center;
+              padding: 0;
+
+              .tag-label {
+                font-size: 14px;
+                font-weight: bold;
+                color: $white;
+                line-height: 21px;
+              }
+
+              .tag-caption {
+                display: none;
+              }
+            }
+          }
+
+          .non-visible-tags {
+            width: 81px;
+            height: 23px;
+            border-radius: 12px;
+            background-color: $dark-gray;
+            color: $white;
+            padding: 0;
+
+            span {
+              font-weight: bold;
+              font-size: 14px;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+
+      .activity-performance-container {
+        display: grid;
+        grid-template-columns: 1fr 70px;
+        justify-items: right;
+        column-gap: 15px;
+        height: inherit;
+
+        &.collection-performance {
+          grid-template-columns: 1fr;
+
+          .timespent-container {
+            padding-right: 15px;
+          }
+        }
+
+        .timespent-container {
+          display: grid;
+          grid-template-columns: auto auto;
+          align-items: center;
+          column-gap: 5px;
+
+          .timespent-icon {
+            i.query_builder {
+              height: 50px;
+              line-height: 50px;
+              font-size: 30px;
+            }
+          }
+
+          .timespent-data {
+            .timespent-label {
+              font-size: 13px;
+            }
+
+            .timespent-value {
+              font-weight: bold;
+              font-size: 14px;
+            }
+          }
+        }
+
+        .grade {
+          color: $white;
+          font-size: 17px;
+          font-weight: bold;
+          width: 70px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+        }
+      }
+    }
+
+    .body-container {
+      padding: 10px;
+      line-height: 1.5;
+      font-weight: bold;
+      color: $placeholder-color;
+      font-size: 15px;
+    }
+  }
+  @media (min-width: $screen-md) and (max-width: $screen-lg) {
+    margin: 0 183px 0 204px;
+  }
+  @media only screen and (max-width: $sm-width-max) {
+    margin: 0;
+  }
+  @media only screen and (min-width: $sm-width-max) and (max-width: $screen-sm) {
+    margin: 0 51px 0 70px;
+  }
+  @media only screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+    margin: 0 136px 0 156px;
+  }
+}
+
+.iframe-panel {
+  .app-container {
+    overflow-y: auto;
+  }
+
+  &.reports_student-collection {
+    .gru-activity-feedback {
+      padding-top: 0;
+      @media screen and (max-width: 320px) {
+        width: inherit;
+      }
+
+      .activity-feedback-container {
+        .feedback-contaioner {
+          .gru-activity-feedback-card {
+            max-height: calc(100vh - 60px);
+          }
+        }
+      }
+    }
+  }
+}

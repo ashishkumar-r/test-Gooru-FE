@@ -1,0 +1,139 @@
+<div class="students-proficiency-container">
+  {{#unless landingPage}}
+  <div class="students-proficiency-header">
+    <div class="report-selector">
+      <div class="selected-report-type" onclick={{action "onToggleReportTypeContainer"}} onkeypress={{action "onToggleReportTypeContainer"}} tabindex="101">
+        <span class="active-report-text">{{activeReport.text}}</span>
+        <span class="toggle-icon">{{gru-icon name="arrow_drop_down"}}</span>
+      </div>
+      <div class="report-types-container">
+        {{#each reportTypes as |reportType|}}
+          <div class="report-type {{if (eq activeReport.value reportType.value) 'active-report'}}" onclick={{action "onSelectReport" reportType}} onkeypress={{action "onSelectReport" reportType}} tabindex="101">{{reportType.text}}</div>
+        {{/each}}
+      </div>
+    </div>
+
+  </div>
+  {{/unless}}
+
+  {{#if isShowCompetencyReport}}
+    {{#unless domainLevelSummary}}
+      {{#if isDataNotAvailable}}
+        <div class="proficiency-no-data">{{t 'teacher-landing.class.students-tab.data-not-available'}}</div>
+      {{else }}
+        {{three-bounce-spinner}}
+      {{/if}}
+    {{else}}
+      {{#if isShowCourseCompetencyReport}}
+        {{proficiency/inspect/student-domain-performance
+          studentsDomainPerformance=studentsDomainPerformance
+          domainCoverageCount=domainCoverageCount
+          courseCoverageCount=courseCoverageCount
+          totalCompetencies=totalCompetencies
+          subjectBucket=subjectBucket
+          numberOfStudents=numberOfStudents
+          subjectFramework=subjectFramework
+          fwCompetencies=fwCompetencies
+          fwDomains=fwDomains
+          onSelectDomain="onSelectDomain"
+          onSelectStudent="onSelectStudent"
+          class = class
+          tabindex="101"
+          domainCompetenciesList=domainCompetenciesList
+          studentCompetencies=studentCompetencyReport
+        }}
+
+      {{else if isShowDomainCompetencyReport}}
+        {{proficiency/inspect/student-domain-competency-performance
+          domainLevelSummary=domainLevelSummary
+          classMembers=classMembers
+          fwCompetencies=fwCompetencies
+          fwDomains=fwDomains
+          activeDomain=activeDomain
+          class=class
+          onClickBack="onClickBack"
+          tabindex="101"
+          classFramework = classFramework
+          isDefaultShowFW = isDefaultShowFW
+          proficiencyChartData=domainCompetenciesList
+          studentCompetencies=studentCompetencyReport
+        }}
+      {{else if isShowClassProficiencyReport}}
+        {{proficiency/inspect/student-class-proficiency
+          studentsDomainPerformance=studentsDomainPerformance
+          class=class
+          course=course
+          numberOfStudents=numberOfStudents
+          subjectBucket=subjectBucket
+          domainCoverageCount=domainCoverageCount
+          totalCompetencies=totalCompetencies
+          subjectFramework=subjectFramework
+          maxNumberOfCompetencies=maxNumberOfCompetencies
+          onClickCourseCompetencyView="onClickCourseCompetencyView"
+          onSelectStudent="onSelectStudent"
+          domainBoundariesContainer= domainBoundariesContainer
+          subjectPreference=subjectPreference
+          tabindex="101"
+        }}
+
+      {{else if isShowClassProgressReport}}
+        {{proficiency/inspect/student-weekly-report
+          course=course
+          fwCompetencies=fwCompetencies
+          fwDomains=fwDomains
+          domainLevelSummary=domainLevelSummary
+          class=class
+          studentsDomainPerformance=studentsDomainPerformance
+          maxNumberOfCompetencies=maxNumberOfCompetencies
+          domainBoundariesContainer= domainBoundariesContainer
+          tabindex="101"
+          classFramework = classFramework
+          isDefaultShowFW = isDefaultShowFW
+        }}
+
+      {{else if isShowClassWeeklyReport}}
+        {{proficiency/inspect/student-data-standard-chart
+          class=class
+          course=course
+          isShowBackBtn=isShowBackBtn
+          classFramework = classFramework
+          isDefaultShowFW = isDefaultShowFW
+        }}
+
+      {{else if isShowMinProficiencyReport}}
+        {{proficiency/inspect/student-min-proficiency
+          isShowBackBtn=isShowBackBtn
+          classMembers=classMembers
+          classData=class
+          selectedUserId=selectedUserId
+        }}
+      {{/if}}
+    {{/unless}}
+  {{else}}
+    <div class="proficiency-no-data">{{t 'teacher-landing.class.students-tab.error-message'}}</div>
+  {{/if}}
+</div>
+
+
+{{#if isShowProficiencyPullup}}
+  {{#gru-pull-up pullUpType="proficiency-pullup" showPullUp=isShowProficiencyPullup onClosePullUp="onClosePullUp" as |pull-up|}}
+    {{#if pull-up.isShowHeader}}
+      {{proficiency/learner-proficiency-pull-up
+         student=activeStudent
+         subjectBucket=subjectBucket
+         class=class
+         course=course
+         onSelectCompetency="onSelectCompetency"
+         tabindex="101"
+         }}
+    {{/if}}
+  {{/gru-pull-up}}
+{{/if}}
+
+{{#if isShowCompetencyContentReport}}
+  {{#reports/pull-up/competency-report type=(if selectedCompetency.competencyStudentDesc selectedCompetency.competencyStudentDesc selectedCompetency.competencyCode) title=selectedCompetency.competencyStudentDesc showPullUp=isShowCompetencyContentReport
+    onClosePullUp="onCloseCompetencyReportPullUp" competency=selectedCompetency}}
+    {{reports/pull-up/competency-content-report competency=selectedCompetency domainCompetencyList=domainCompetencyList userId=activeStudent.id learningMapData=learningMapData onToggleGlobalCompetencyView="onToggleGlobalCompetencyView"
+    tabindex="101"}}
+  {{/reports/pull-up/competency-report}}
+{{/if}}

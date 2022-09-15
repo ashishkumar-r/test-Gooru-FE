@@ -1,0 +1,49 @@
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title step-title">{{t 'content.classes.create.title'}}</h3>
+        <p class="lead">{{t 'content.classes.create.content'}}</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-group class-name-input-container">
+          <label class="control-label" for="">{{t 'content.classes.create.class-name-input'}}</label>
+          {{validation/gru-input
+             model=newClass
+              valuePath='title'
+               maxLength=25
+               autofocus=true
+               didValidate=didValidate
+             }}
+        </div>
+        <div class="form-group condition-prompt out-of-scope">
+          <p>{{t 'content.classes.create.condition-prompt'}}</p>
+          <div class="conditions">
+            {{
+              validation/gru-radio
+              model=newClass
+              groupValue=currentClassSharing
+              valuePath='open'
+              name="condition-prompt-radio"
+              translationPath="content.classes.create.condition-prompt-code"
+              didValidate=didValidate
+            }}
+            {{
+              validation/gru-radio
+              model=newClass
+              groupValue=currentClassSharing
+              valuePath='restricted'
+              name="condition-prompt-radio"
+              translationPath="content.classes.create.condition-prompt-invite"
+              didValidate=didValidate
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        {{#link-to 'index' class="cancel-button back-cta"}}{{t 'common.cancel'}}{{/link-to}}
+        {{#gru-spinner-button classes='btn btn-success get-started-btn' text=(t 'common.loading') isLoading=isLoading}}
+            <button class="btn btn-success get-started-btn" {{action "createClass"}}>{{t 'common.create'}} {{gru-icon name= "keyboard_arrow_right" class=""}}</button>
+        {{/gru-spinner-button}}
+      </div>
+    </div>
+  </div>

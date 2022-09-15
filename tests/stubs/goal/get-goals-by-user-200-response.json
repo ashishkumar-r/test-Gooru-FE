@@ -1,0 +1,40 @@
+[
+  {
+    "id": "582833880cf247f402e99ee2",
+    "title": "My Fitness Goal",
+    "description": "This is Description to Goal",
+    "start_date": 1409175049,
+    "end_date": 1409175049,
+    "begin_date": 1409175049,
+    "finish_date": 1409175049,
+    "owner_id": "4433833880cf247f402e99ff2",
+    "creator_id": "4433833880cf247f402e99ff2",
+    "modifier_id": "4433833880cf247f402e99ff2",
+    "created_at": 1409175049,
+    "updated_at": 1409175049,
+    "thumbnail": "URI of thumbnail",
+    "sequence_id": 1,
+    "is_deleted": false,
+    "status": "not_started",
+    "reflection": "need to do better"
+  },
+  {
+    "id": "582833880cf247f402e99er2",
+    "title": "My Design Goal",
+    "description": "This is Description to Goal",
+    "start_date": 1409175049,
+    "end_date": 1409175049,
+    "begin_date": 1409175049,
+    "finish_date": 1409175049,
+    "owner_id": "4433833880cf247f402e99ff2",
+    "creator_id": "4433833880cf247f402e99ff2",
+    "modifier_id": "4433833880cf247f402e99ff2",
+    "created_at": 1409175049,
+    "updated_at": 1409175049,
+    "thumbnail": "URI of thumbnail",
+    "sequence_id": 2,
+    "is_deleted": false,
+    "status": "not_started",
+    "reflection": "need to do better design"
+  }
+]

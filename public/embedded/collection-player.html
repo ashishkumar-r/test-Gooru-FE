@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Gooru</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="icon" type="image/png" href="../favicon.png" />
+</head>
+<body>
+
+<div class="container" style="width: 100%">
+  <div class="row" style="padding: 5px; border-bottom: 1px solid black;">
+    <div class="col-md-12">
+      Click here to configure the player
+      <button class="btn btn-primary btn-configure">Configure</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="gooru-application-container"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Generate</h4>
+      </div>
+      <div class="modal-body">
+        <form id="the-form" class="form">
+          <div class="form-group">
+            <label for="collection-id-input">Collection Id</label>
+            <input type="text" class="form-control" id="collection-id-input"
+                   value="b6170219-5841-46b8-9c6a-d684bc457538"
+                   placeholder="Collection Id">
+          </div>
+          <div class="form-group">
+            <label for="collection-id-input">User Token (Optional)</label>
+            <input type="text" class="form-control" id="user-token-input"
+                   placeholder="User Token">
+          </div>
+          <div class="form-group">
+            <label for="collection-id-input">Source id (Optional)</label>
+            <input type="text" class="form-control" id="user-source-input"
+                   placeholder="Source Id">
+          </div>
+          <div class="form-group">
+            <label>Theme</label>
+          </div>
+          <div class="form-group">
+            <label class="radio-inline">
+              <input type="radio" name="theme-id" value="gooru" checked="checked"> Gooru
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="theme-id" value="bergen"> Bergen
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+          </div>
+          <div class="form-group">
+            <label class="radio-inline">
+              <input type="radio" name="collection-type" value="collection" checked="checked"> Collection
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="collection-type" value="assessment"> Assessment
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Options</label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-reactions" type="checkbox" value="true"> Show Reactions
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-report" type="checkbox" value="true"> Show Report
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-back" type="checkbox" value="true"> Show Back Navigation
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-remix" type="checkbox" value="true"> Show Remix
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-collection-name" type="checkbox" value="true"> Show Collection Name
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-collection-author" type="checkbox" value="true"> Show Collection Author
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-resource-number" type="checkbox" value="true"> Show Resource Number
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="show-question-feedback" type="checkbox" value="true"> Show Question Feedback
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input name="allow-profile-navigation" type="checkbox" value="true"> Allow Profile Navigation
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-close">Cancel</button>
+        <button type="button" class="btn btn-primary btn-generate">Generate</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Typical js -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="../application-widget.js"></script>
+
+<script type="text/javascript">
+  (function () {
+    var aw = null;
+    jQuery(".btn-generate").on("click", function(){
+      jQuery('.modal').modal('hide');
+
+      var collectionId = jQuery("#collection-id-input").val();
+      var userToken = jQuery("#user-token-input").val();
+      var sourceId = jQuery("#user-source-input").val();
+      var type = jQuery("#the-form input[name = 'collection-type']:checked").val();
+      var themeId = jQuery("#the-form input[name = 'theme-id']:checked").val();
+      var reactions = jQuery("#the-form input[name = 'show-reactions']:checked").val() === "true";
+      var report = jQuery("#the-form input[name = 'show-report']:checked").val() === "true";
+      var back = jQuery("#the-form input[name = 'show-back']:checked").val() === "true";
+      var remix = jQuery("#the-form input[name = 'show-remix']:checked").val() === "true";
+      var collectionName = jQuery("#the-form input[name = 'show-collection-name']:checked").val() === "true";
+      var collectionAuthor = jQuery("#the-form input[name = 'show-collection-author']:checked").val() === "true";
+      var resourceNumber = jQuery("#the-form input[name = 'show-resource-number']:checked").val() === "true";
+      var showQuestionFeedback = jQuery("#the-form input[name = 'show-question-feedback']:checked").val() === "true";
+      var allowProfileNavigation = jQuery("#the-form input[name = 'allow-profile-navigation']:checked").val() === "true";
+
+      if (aw) {
+        aw.destroy();
+      }
+
+      aw = new ApplicationWidget('#gooru-application-container', {
+        "environment": "qa",
+        "themeId": themeId === "bergen" ? themeId : undefined,
+        "transition": [ 'player', collectionId, { queryParams: { type: type, role: 'student' }}],
+        "token": userToken.length > 0 ? userToken : undefined,
+        "sourceId": sourceId.length > 0 ? sourceId : undefined,
+        "features": {
+          "collections": {
+            "player": {
+              "showReactionBar": reactions,
+              "showReportLink": report,
+              "showBackLink": back,
+              "showRemix": remix,
+              "showCollectionName": collectionName,
+              "showCollectionAuthor": collectionAuthor,
+              "showResourceNumber": resourceNumber,
+              "showQuestionFeedback": showQuestionFeedback,
+              "allowProfileNavigation": allowProfileNavigation
+            }
+          }
+        }
+      });
+    });
+
+    jQuery(".btn-configure").on("click", function(){
+      jQuery('.modal').modal('show');
+    });
+
+    jQuery(".btn-close").on("click", function(){
+      jQuery('.modal').modal('hide');
+    });
+  })();
+</script>
+
+</body>
+</html>

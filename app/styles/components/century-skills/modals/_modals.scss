@@ -1,0 +1,30 @@
+.modal.gru-century-skills {
+  .modal-dialog {
+    width: 80%;
+  }
+  .century-skills.modals.gru-century-skills {
+    max-width: 97%;
+    @extend .content.modals.gru-course-new;
+    li {
+      span.circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        display: inline-block;
+        margin: 0 2px 0 0;
+        &.hewlett {
+          background-color: $gru-century-skills-legend-hewlett;
+        }
+        &.conley {
+          background-color: $gru-century-skills-legend-conley;
+        }
+        &.framework {
+          background-color: $gru-century-skills-legend-framework;
+        }
+        &.national {
+          background-color: $gru-century-skills-legend-national;
+        }
+      }
+    }
+  }
+}

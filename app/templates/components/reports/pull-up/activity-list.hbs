@@ -1,0 +1,50 @@
+<div class="activity-list">
+  <div class="activity-list-header">
+    <div class="header-info">
+      {{concat activityContentType 's'}}
+    </div>
+    <div class="close-pullup" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="activity-list-body">
+    <div class="activity-contents {{concat 'cards-' activityContents.length}}">
+      {{#if (eq activityContentType 'course')}}
+        {{#each activityContents as |content|}}
+          {{activity/course-card course=content class=class tabindex=tabindex}}
+        {{/each}}
+      {{else if (eq activityContentType 'unit')}}
+        {{#each activityContents as |content|}}
+          {{activity/unit-card unit=content class=class tabindex=tabindex}}
+        {{/each}}
+      {{else if (eq activityContentType 'lesson')}}
+        {{#each activityContents as |content|}}
+          {{activity/lesson-card lesson=content class=class tabindex=tabindex}}
+        {{/each}}
+      {{else if (eq activityContentType 'collection')}}
+        {{#each activityContents as |content|}}
+          {{activity/collection-card class=class onSuggestContent="onSuggestContent" collection=content tabindex=tabindex}}
+        {{/each}}
+      {{else if (eq activityContentType 'assessment')}}
+        {{#each activityContents as |content|}}
+          {{activity/assessment-card class=class onSuggestContent="onSuggestContent" assessment=content tabindex=tabindex}}
+        {{/each}}
+      {{else if (eq activityContentType 'resource')}}
+        {{#each activityContents as |content|}}
+          {{activity/resource-card  class=class resource=content tabindex=tabindex}}
+        {{/each}}
+      {{else if (eq activityContentType 'question')}}
+        {{#each activityContents as |content|}}
+          {{activity/question-card class=class question=content tabindex=tabindex}}
+        {{/each}}
+      {{else}}
+        Content Not Available
+      {{/if}}
+    </div>
+    {{#if isShowMoveVisible}}
+     <div class="show-more-results" onclick={{action "onClickShowMoreActivity"}} onkeypress={{action "onClickShowMoreActivity"}} tabindex={{tabindex}}>
+       Show more
+     </div>
+    {{/if}}
+  </div>
+</div>

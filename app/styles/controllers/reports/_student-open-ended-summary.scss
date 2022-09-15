@@ -1,0 +1,152 @@
+.student-open-ended-summary {
+  @include flexbox;
+  height: 100%;
+  position: relative;
+  .response-panel {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    padding: 10px 20px 10px 10px;
+    &.hide-response {
+      display: none;
+    }
+  }
+  @media (min-width: $screen-sm) {
+    padding: 20px 40px;
+  }
+  .navigation {
+    margin: 0 0 20px;
+  }
+  .header {
+    .summary-container {
+      display: block;
+      margin: 0 0 20px;
+      @media (min-width: $screen-xs) {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+      }
+      .overall-score {
+        width: 100%;
+        height: 88px;
+        padding: 0;
+        display: block;
+        border-radius: 12px;
+
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+
+        background-color: $blue-400;
+        text-align: center;
+        color: $white;
+
+        @media (min-width: $screen-xs) {
+          width: 143px;
+          height: 164px;
+        }
+
+        @media (min-width: $screen-lg-min) {
+          height: 133px;
+        }
+
+        span {
+          &.title {
+            display: block;
+            font-size: $font-size-h6;
+            padding-top: 5px;
+
+            @media (min-width: $screen-xs) {
+              padding-top: 16px;
+              padding-bottom: 20px;
+            }
+          }
+          &.scores {
+            font-size: $font-size-h4;
+            line-height: $font-size-h4;
+          }
+        }
+      }
+      .panel.rubric-categories {
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+
+        box-shadow: 0 2px 5px 0 $ruberic-box-shadow;
+        border-radius: 5px;
+        background-color: $white;
+        padding: 0;
+        margin: 10px 0 0 0;
+        min-height: 133px;
+
+        @media (min-width: $screen-xs) {
+          margin: 0 0 0 12px;
+          height: 164px;
+        }
+        @media (min-width: $screen-lg-min) {
+          height: 133px;
+        }
+        .panel-body {
+          padding: 15px 10px 10px;
+          .categories-list {
+            border: 1px solid $light-300;
+            width: 350px;
+            .category {
+              border-bottom: 1px solid $light-300;
+              padding: 0 10px;
+              .title {
+                width: 55%;
+                display: inline-block;
+                vertical-align: middle;
+              }
+              &:last-child {
+                border: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .panel.rubric-categories-desc {
+    .panel-body {
+      padding: 15px 5px;
+      .category {
+        .content {
+          font-size: $font-navigator;
+          font-weight: bold;
+          @include flexbox;
+          @include justify-content(space-between);
+          @include align-items(center);
+          position: relative;
+
+          &:before {
+            border: 1px solid $light-300;
+            content: "";
+            height: 1px;
+            width: 35%;
+          }
+
+          &:after {
+            border: 1px solid $light-300;
+            content: "";
+            height: 1px;
+            width: 35%;
+          }
+        }
+        .comment {
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+}

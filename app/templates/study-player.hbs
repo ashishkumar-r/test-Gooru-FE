@@ -1,0 +1,20 @@
+<div class="timeLineViewContainer" >
+  {{outlet}}
+</div>
+{{player/gru-study-header
+  classId=classId
+  class=class
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  showConfirmation=showConfirmation
+  sourceType= source
+  isStudyPlayer=true
+  isFullScreen=isFullScreen
+  isIframeMode=isIframeMode
+  updateModel=(action 'updateModel')
+}}
+
+<div class="player-container {{if collection.isCollection 'collection' 'assessment'}} {{if showConfirmation 'show-confirmation' 'no-confirmation'}} {{if isIframeMode 'iframe-view'}}">
+    {{partial 'partials/qz-player'}}
+</div>

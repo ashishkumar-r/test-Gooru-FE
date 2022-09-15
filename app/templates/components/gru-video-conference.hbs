@@ -1,0 +1,119 @@
+<div class="add-activity">
+    <div class="input-card">
+        <div class="input-section">
+            <label>
+                {{#if (eq getMeetingToolName 'hangout')}}
+                {{t 'ca-meeting-google-label'}}
+                {{else}}
+                {{t 'ca-meeting-zoom-label'}}
+                {{/if}}
+            </label>
+            <div class="input-box {{if isShowValidationMsg 'input-container'}}">
+                {{validation/gru-input model=videoTitle valuePath='name' maxLength=50 didValidate=didValidate
+                onChange="onCodeChange" tabindex=tabindex ariaLabel='activity name'}}
+                {{#if isShowValidationMsg}}
+                <span class="errorMsg">{{t "ca.meeting-validation"}}</span>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="edit-section">
+        <div class="edit-header">
+            <div class="invite-people">
+                {{gru-icon name="account_circle" class="icon-style"}}
+                <div class="invite-text">
+                    <p>{{t "ca-invite-people"}}</p>
+                </div>
+                <div class="add-people" onclick={{action "onToggleParticipant" 'inviting-participant' }}
+                    onkeypress={{action "onToggleParticipant" 'inviting-participant' }} tabindex={{tabindex}}
+                    aria-label='invite people'>
+                    {{#if isShowCloseBtn}}
+                    {{gru-icon name="clear"}}
+                    {{else}}
+                    {{gru-icon name="add"}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="inviting-participant">
+            {{#each members as |student index|}}
+            <div class="student-info-container">
+                {{#if student.avatarUrl}}
+                <div class='student-icon' style="background-image: url({{student.avatarUrl}})"></div>
+                {{else}}
+                {{gru-icon name="account_circle" class="icon-style"}}
+                {{/if}}
+                <div class="student-name">
+                    <span>{{student.lastName}}, {{student.firstName}} {{if (not student.isShowLearnerData) '*'}}</span>
+                </div>
+                <div class="confirm-participant">
+                    {{#if student.isChecked}}
+                    <div class="select-student" onclick={{action "onSelect" false index student}}
+                        onkeypress={{action "onSelect" false index student}} tabindex={{tabindex}}
+                        aria-label='select student'></div>
+                    {{else}}
+                    <div {{action "onSelect" true index student}} tabindex={{tabindex}}>
+                        {{gru-icon name="add"}}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="datePicker">
+            {{
+            ca-date-picker
+            forMonth=forMonth
+            forYear=forYear
+            onSelectDate="onSelectDate"
+            showToday=false
+            showPreviousAndNext=true
+            disableFutureDate = true
+            tabindex=tabindex
+            isActivity=true
+            }}
+        </div>
+    </div>
+    <div class="footer-section">
+        <div class="conferenc-time-input">
+            <div class="start-time">
+                <label for="startTime" class="marginBottom0">
+                    <span id='start-time' class="time-label">{{t 'conference.start-time'}}</span>
+                    {{input type="text" id='startTime' value=startTime class="startTime" tabindex=tabindex
+                    aria-labelledBy='start-time'}}
+                </label>
+            </div>
+            <div class="end-time">
+                <label for="endTime" class="marginBottom0">
+                    <span id="end-time" class="time-label">{{t 'conference.end-time'}}</span>
+                    {{input type="text" id='endTime' value=endTime class="endTime" tabindex=tabindex
+                    aria-labelledBy='end-time'}}
+                </label>
+            </div>
+        </div>
+        <div class="meeting-url">
+            <label for="conference-meet-url" class="marginBottom0">
+                <span id="conference-meeting-link" class="time-label {{if isShowValidateurl 'input-container'}}">{{t 'conference.meeting-url'}}</span>
+                {{input type="text" id='conference-meet-url' value=meetUrl class="meet-link" tabindex=tabindex
+                aria-labelledBy='conference-meeting-link'}}
+                {{#if isShowValidateurl}}
+                <span class="errorMsg">{{t "ca.meeting-url"}}</span>
+                {{/if}}
+            </label>
+        </div>
+        <div class="createBtn {{if isGuestAccount 'disable-event'}}" onclick={{action "createActivity" }} onkeypress={{action "createActivity" }}
+            tabindex={{tabindex}} aria-label='activity created'>
+            <button>{{t 'teacher-landing.class.class-activities-tab.create-activity'}}</button>
+        </div>
+    </div>
+</div>
+
+{{#if isShowStudentsList}}
+{{teacher/class/ca-student-list-pull-up
+classId = primaryClass.id
+students = members
+showPullUp = isShowStudentsList
+isShowButton = false
+classActivity=newActivity
+}}
+{{/if}}

@@ -1,0 +1,49 @@
+.join-class {
+  .join-terms-and-conditions {
+    line-height: 15px;
+    margin-top: 50px;
+    text-align: initial;
+  }
+  .modal {
+    max-width: 552px;
+    margin: auto;
+    @media (min-width: $screen-md) {
+      .modal-dialog {
+        width: 552px;
+      }
+    }
+    .step-title {
+      font-size: 38px;
+      font-weight: 700;
+    }
+  }
+  .modal-body {
+    width: 70%;
+    margin: auto;
+    .control-label {
+      font-size: 16px;
+      color: $gray-oslo;
+    }
+    .join-terms-and-conditions {
+      color: $gray-oslo;
+      font-size: 14px;
+      text-align: justify;
+    }
+  }
+  .modal-footer {
+    .join-class-btn {
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 30px;
+      position: relative;
+      padding-left: 0px;
+    }
+    i {
+      right: auto;
+      margin-top: 0px;
+      font-size: 28px;
+      line-height: 32px;
+    }
+  }
+}

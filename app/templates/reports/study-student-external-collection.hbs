@@ -1,0 +1,89 @@
+{{player/gru-study-header
+  classId=classId
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  showConfirmation=false
+  fromReport=true
+  class=class
+  isStudyPlayer=true
+  isIframeMode=isIframeMode
+}}
+<div class="external-content-report-container">
+    <div class="conntent-summary">
+      <div class="header-container">
+        <div class="preview-title">
+          {{if  collection.isAssessment (t 'common.assessment') (t 'common.collection')}} {{t "common.report"}}
+        </div>
+      </div>
+      <div class="summary-container">
+        <div class="profile-image">
+          <img class="img-responsive" src="{{collection.thumbnailUrl}}" alt="Avatar for {{profile.username}}">
+        </div>
+        <div class="content-icon {{if  collection.isAssessment 'assessment' 'collection'}}"></div>
+        <div class="overview">
+          <h5>{{collection.title}}</h5>
+        </div>
+      </div>
+      <div class="content-details-container">
+        <div class="taxonomy-container">
+          {{#if tags.length}}
+            {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true}}
+          {{/if}}
+        </div>
+        <div class="activity-performance-container {{unless collection.isAssessment 'collection-performance'}}">
+          <div class="timespent-container">
+            <div class="timespent-icon">
+              {{gru-icon name="query_builder"}}
+            </div>
+            <div class="timespent-data">
+              <div class="timespent-label">{{t "qz-assessment-report.qz-summary.total-time-spent"}}</div>
+              <div class="timespent-value ">
+                {{#if timespent}}
+                  {{format-time timespent}}
+                {{else}}
+                  --
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          {{#if collection.isAssessment}}
+            <div class="grade" style= {{safe-html (concat "background-color:" (grade-color score))}}>
+              {{#if score}}
+                <span class="percentage">{{round-number score}}%</span>
+              {{else}}
+                <span class="percentage">--</span>
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="body-container">
+        <span> {{t 'report.external-content-note'}} </span>
+      </div>
+    </div>
+    <div class="feedback">
+      {{#if isShowActivityFeedback}}
+        {{player/gru-activity-feedback
+        feedbackContent=collection
+        feedbackCategoryLists=feedbackCategory
+        categoryLists = userCategoryFeedback
+        isShowFeedback = isShowFeedback
+        isStudyPlayer=true
+        format = format
+      }}
+      {{/if}}
+    </div>
+</div>
+<div class="footer">
+  {{player/gru-external-assessment-footer
+    assessment=collection
+    playNext="onFeedbackCapture"
+    isDone=isDone
+    classId=classId
+    courseId=courseId
+    onExit="onExit"
+    isShowFeedback = isShowFeedback
+    enableTimeSpent=true
+  }}
+</div>

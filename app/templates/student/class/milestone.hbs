@@ -1,0 +1,80 @@
+{{#if (gt milestones.length 0)}}
+  {{!-- <div class="bar-charts" data-content="{{performancePercentage}}% Completed">
+    <div class="completion-chart">
+      <div class="start-point">{{gru-icon name="stars"}}</div>
+      {{charts/gru-x-bar-chart
+      data=barChartData
+      mileStone=mileStone
+      mileStoneHandler=(action 'mileStoneHandler')  }}
+      <div class="destination-point">{{gru-icon name="place"}}</div>
+    </div>
+  </div> --}}
+  <div class="title-container">
+    <div>
+      <h5 class="learning-path-label">{{t 'course-map.your-learning-path'}} <span class="toggle-course-info" aria-label="toggle course" onclick={{action "onToggleCourseInfo"}} onkeypress={{action "onToggleCourseInfo"}} tabIndex="9">{{gru-icon name="info" style='material-icons-outlined'}}</span></h5>
+    </div>
+    <div class="active-period"  aria-label="toggle report" onclick={{action "onToggleReportPeriod"}} onkeypress={{action "onToggleReportPeriod"}} tabindex="10">
+      <span class="report-period-text">{{activeReportPeriod.text}}</span>
+    </div>
+  </div>
+  <div class="course-info-toggle-container {{if isAllContentsAreRescoped 'show-course-info'}}">
+    <div class="rescope-content-preview">
+      <div class="rescope-content-preview-msg">
+        {{t 'class.overview.course-map.learning-path'}}
+      </div>
+    </div>
+  </div>
+  <div class="milestone-course-map-view">
+    <div class="course-map-milestone-container {{if (gt selfGradeItems.length 0) 'self-grading-enabled'}}">
+      {{student/class/milestone-course-map
+       class=class
+       rescopedContents=rescopedContents
+       showAllRescopedContent=showAllRescopedContent
+       gradeSubject=gradeSubject
+       location=location
+       milestones=milestones
+       currentLocation=currentLocation
+       route0Milestones=route0Milestones
+       resetPerformance="resetPerformance"
+       checkAllContentsAreRescoped = "checkAllContentsAreRescoped"
+       isAllContentsAreRescoped = isAllContentsAreRescoped
+       tabindex=13
+       contentVisibility=contentVisibility
+       unit0Milestones = unit0Milestones
+       classFramework = classFramework
+       isDefaultShowFW = isDefaultShowFW
+     }}
+      {{#if (gt selfGradeItems.length 0)}}
+        <div class="self-grading-container">
+          <div class="header-container">
+            {{t 'class.analytics.performance.grade-items'}}
+          </div>
+          <div class="body-container">
+            {{grading/student/gru-self-grading-items
+             selfGradeItems = selfGradeItems
+             userId = userId
+             classId = class.id}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+{{else}}
+  <div class="student-milestone-not-ready">{{t (if isPublic 'studen-grade-not-covered' 'student-milestone-not-ready')}}</div>
+{{/if}}
+
+{{#if isShowStudentProgressReport}}
+  {{student/class/gru-student-class-progress-report
+    isShowReport = isShowStudentProgressReport
+    userId = userId
+    class = class
+    course = course
+    tabindex="11"
+  }}
+{{/if}}
+{{#if (and (not isPublic) isShowStudyTimerWidget )}}
+{{gru-study-timer
+  studentTimespentData = studentTimespentData
+  tabindex="12"
+}}
+{{/if}}

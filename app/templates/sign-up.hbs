@@ -1,0 +1,189 @@
+{{#if isRedirectionDomainDone}}
+  {{#if showChildLayout}}
+    <div class="modal  show" id="signmodal" tabindex="-1" role="dialog" aria-labelledby="signmodal">
+      <div class="msg modal-dialog" role="document">
+        <div class="modal-content child-layout">
+          <div class="modal-header">
+            <h3>{{t "sign-up.step-child-title"}}</h3>
+            <div class="description" alt="{{t "sign-up.step-child-subtitle"}}" title="{{t "sign-up.step-child-subtitle"}}">{{t "sign-up.step-child-subtitle"}}
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="main">
+                <div class="sign-up-form">
+                  <div class="footer-description" title="{{t "sign-up.step-child-description-1"}}">
+                    {{t "sign-up.step-child-description-1"}}<a href="{{termsConditionsUrl}}" target="_blank">{{t "sign-up.step-child-age-requirements"}}</a>{{t "sign-up.step-child-description-2"}}
+                  </div>
+                  <div class="sign-up-button form-group text-center">
+                    <button type="submit" class="btn btn-success submit-sign-up" {{action "closeMsg" }}>{{t "common.close"}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  <div class="controller sign-up row col-lg-10 col-md-10 col-sm-12 col-lg-offset-1 col-md-offset-1">
+    <div class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="progress-dots">
+              <span class="dot color"></span>
+              <span class="dot"></span>
+            </div>
+            <h1>{{t "sign-up.step-1-title"}}</h1>
+            <div class="description" alt="{{t "sign-up.step-1-description"}}">{{t "sign-up.step-1-description"}}
+            </div>
+            <div class="sign-in-description" alt="{{t "sign-up.sign-in-description"}}">
+              {{#link-to 'sign-in'}} {{t "sign-up.log-in"}} {{/link-to}}
+              {{t "sign-up.log-in-description"}}
+            </div>
+            <a role="button" href="{{unbound googleSignUpUrl}}">
+              <div class="google-button">
+                <div class="google-button-content-wrapper">
+                  <div class="google-button-icon">
+                    <div class="google-button-icon-image">
+                    </div>
+                  </div>
+                  <span class="google-button-content">
+                    <span>{{t "sign-up.google-button"}}</span>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="main">
+                <div class="sign-up-form col-sm-12 col-xs-12">
+                  <form id="signUpForm" {{action "next" on="submit"}}>
+                    <div class="form-left">
+                      <div class="">
+                        <div class="form-group firstName ">
+                          <label for="firstNameId">
+                            <span class="required">{{t "common.first-name"}}</span>
+                            {{validation/gru-input model=profile valuePath='firstName' maxLength=25 didValidate=didValidate inputId='firstNameId' isRequired=true}}
+                          </label>
+                        </div>
+                        <div class="form-group lastName ">
+                          <label for="lastNameId">
+                            <span class="required">{{t "common.last-name"}}</span>
+                            {{validation/gru-input model=profile valuePath='lastName' maxLength=25 didValidate=didValidate inputId='lastNameId' isRequired=true}}
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group email ">
+                        <label for="emailId">
+                          <span class="required">{{t "sign-up.email"}}</span>
+                          {{validation/gru-input model=profile type='email' valuePath='email' didValidate=didValidate inputId='emailId' isRequired=true}}
+                        </label>
+                        {{#if emailError}}
+                          <span class="validation error email-error">{{emailError}}</span>
+                        {{/if}}
+                      </div>
+                      <div class="">
+                        {{gru-select-date-picker wasSubmitted=dateValidated isFromSignUp=true birthYearSelected=birthYearSelected onValidDate="validDate"}}
+                      </div>
+                      <div class="form-group password">
+                        <label for="passwordId">
+                          <span class="required">{{t "sign-up.password"}}</span>
+                          {{validation/gru-input model=profile valuePath='password' type='password' didValidate=didValidate inputId='passwordId' isRequired=true}}
+                        </label>
+                      </div>
+                      <div class="form-group rePassword">
+                        <label for="rePasswordId">
+                          <span class="required">{{t "sign-up.rePassword"}}</span>
+                          {{validation/gru-input model=profile valuePath='rePassword' type='password' didValidate=didValidate inputId='rePasswordId' isRequired=true}}
+                        </label>
+                      </div>
+                    </div>
+                    {{#if askConsentFromUser}}
+                      <div class="col-sm-12 col-xs-12 form-left signup-consent">
+                        <div class="form-group personal-info col-sm-12 col-xs-12">
+                          <label for="info">
+                            <span class="user-content user-{{if isChecked "checked" "unchecked"}}" {{action 'toggleCheckbox' isChecked}}>
+                              {{gru-icon name=(if isChecked 'radio_button_checked' 'radio_button_unchecked')}}
+                            </span>
+                            <span>{{t "sign-up.personal-info"}}</span>
+                          </label>
+                        </div>
+                        <div class="form-group personal-info col-sm-12 col-xs-12">
+                          <label for="info">
+                            <span class="user-content user-{{if isAgree "checked" "unchecked"}}" {{action 'toggleAction' isAgree}}>
+                              {{gru-icon name=(if isAgree 'radio_button_checked' 'radio_button_unchecked')}}
+                            </span>
+                            <span>{{t "sign-up.anonymous-info"}}</span>
+                          </label>
+                        </div>
+                      </div>
+                    {{/if}}
+
+                      <div class="form-group role">
+                      <p><span class="required">{{t 'common.role'}}</span></p>
+                      <div class="roles">
+                        {{
+                          validation/gru-radio
+                          model=profile
+                          groupValue=currentRole
+                          valuePath='teacher'
+                          name="role-radio"
+                          translationPath="common.teacher"
+                        }}
+                        {{
+                          validation/gru-radio
+                          model=profile
+                          groupValue=currentRole
+                          optionSelected=true
+                          valuePath='student'
+                          name="role-radio"
+                          translationPath="common.student"
+                        }}
+                      </div>
+                      <div class="error-messages">
+                        {{#if showRoleErrorMessage}}
+                          <span class="error">
+                            {{t "sign-up.error-role-message"}}
+                          </span>
+                        {{/if}}
+                      </div>
+                    </div>
+
+                      <div class="form-group">
+                      <label>
+                        <span class="required">{{t "common.country"}}</span>
+                        {{validation/gru-select options=countries title=(t "common.select") optionSelected=countrySelected search="true" onOptionSelect="countrySelect" showMessage=showCountryErrorMessage errorMessage=(t "sign-up.error-country-message")}}
+                      </label>
+                      </div><br>
+
+                    {{#if showStates}}
+                      <div class="form-group">
+                        <label>
+                          <span class="required">{{t "sign-up.state"}}</span>
+                          {{validation/gru-select options=states title=(t "common.select") search="true" onOptionSelect="stateSelect" showMessage=showStateErrorMessage errorMessage=(t "sign-up.error-state-message")}}
+                        </label>
+                      </div><br>
+                    {{/if}}
+
+                    {{#if  askConsentFromUser}}
+                      <div class="sign-up-button form-group text-center  {{unless isChecked 'disable-event'}}">
+                        <button type="submit" class="btn btn-success submit-sign-up">{{t "common.next"}}{{gru-icon name="keyboard_arrow_right"}}</button>
+                      </div>
+                    {{else}}
+                      <div class="sign-up-button form-group text-center">
+                        <button type="submit" class="btn btn-success submit-sign-up">{{t "common.next"}}{{gru-icon name="keyboard_arrow_right"}}</button>
+                      </div>
+                    {{/if}}
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}

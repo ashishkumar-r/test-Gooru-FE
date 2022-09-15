@@ -1,0 +1,249 @@
+.new-cards.gru-collection-card {
+  width: 300px;
+  margin: 10px;
+
+  .panel-body,
+  .information,
+  .panel-footer,
+  .actions,
+  .options,
+  .course,
+  .statistics,
+  .collection-counts,
+  .students,
+  .classrooms,
+  .share-box,
+  .visibility {
+    @include flexbox;
+  }
+
+  .panel {
+    border-radius: 6px;
+    .panel-heading {
+      background-color: $table-bg;
+      height: 168px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0;
+      position: relative;
+
+      .new-cards.gru-collection-card .panel .panel-heading:after {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        background-image: linear-gradient(
+          to bottom,
+          $bg-left-box-shadow 0,
+          $gray-base 100%
+        );
+        margin-top: 67px;
+        height: 61%;
+        width: 100%;
+        content: "";
+      }
+
+      .image {
+        display: inline-block;
+        img {
+          border-radius: 4px;
+          height: 74px;
+          width: 74px;
+        }
+      }
+
+      .collection-info {
+        color: $text-color;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 15px;
+        width: 65%;
+        .title-section {
+          h3.title {
+            display: inline-block;
+            color: $blue-400;
+            cursor: pointer;
+            font-size: $font-size-h6;
+            line-height: $font-size-h5;
+            margin: 0;
+          }
+          $line-height: 1.3;
+          $lines-to-show: 2;
+          .truncate {
+            @include ellipsis(
+              $font-size: $font-size-base,
+              $line-height: $line-height,
+              $lines-to-show: $lines-to-show,
+              $excerpt-bg: $white
+            );
+          }
+        }
+        .question-resources {
+          @include flexbox;
+          height: 16px;
+        }
+        .bar {
+          font-weight: bold;
+          color: $gray-dark;
+          margin: 0 2px;
+        }
+      }
+      .publish-icon {
+        display: inline-block;
+        float: $menu-float-dir;
+        vertical-align: top;
+        margin-top: 2px;
+        background: url("gooru/badge-01.png");
+        -webkit-background-size: 17px 17px;
+        background-size: 17px 17px;
+        height: 17px;
+        width: 17px;
+      }
+    }
+    .panel-body {
+      @include flex-direction(column);
+      @include justify-content(space-between);
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      height: 151px;
+      padding-bottom: 2px;
+      .standards {
+        .gru-taxonomy-tag-list {
+          .gru-taxonomy-tag {
+            max-width: 88%;
+            .content {
+              margin: 0;
+            }
+          }
+        }
+        .popover-content {
+          .gru-taxonomy-tag {
+            max-width: 100%;
+          }
+        }
+      }
+      .author,
+      .remixed-by {
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50px;
+          cursor: pointer;
+        }
+        div > * {
+          display: inline-block;
+        }
+        span {
+          cursor: pointer;
+        }
+        span.title {
+          margin: 2px 5px 10px 0;
+          cursor: auto;
+        }
+        .owner {
+          color: $blue-400;
+          max-width: 160px;
+          @include text-overflow;
+          vertical-align: middle;
+        }
+      }
+      .description {
+        height: 51px;
+        $line-height: 1.3;
+        $lines-to-show: 3;
+        margin: 0 0 14px;
+        p.truncate {
+          @include ellipsis(
+            $font-size: $font-size-base,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show,
+            $excerpt-bg: $white
+          );
+        }
+      }
+      .statistics {
+        @include justify-content(space-between);
+        .course,
+        .students,
+        .classrooms {
+          @include align-items(center);
+        }
+        .course {
+          span {
+            margin: 0 0 0 5px;
+          }
+        }
+      }
+    }
+    .panel-footer {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      background-color: $white;
+      border-top: 1px solid $gray-lighter;
+      padding: 0;
+      height: 62px;
+      .options {
+        width: 100%;
+        @include align-items(center);
+        padding: 0 0 0 10px;
+        button {
+          margin: 0 10px 0 0;
+        }
+      }
+      .actions {
+        .visibility {
+          @include align-items(center);
+          padding: 7px 5px;
+        }
+        .btn {
+          border-left: 1px solid $gray-lighter;
+          margin: 0;
+          font-size: $font-size-small;
+          padding: 0 8px;
+
+          &.btn-default {
+            color: $white;
+            background-color: $dark-300;
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .no-bgd {
+          background-color: $table-bg;
+          font-size: 24px;
+          line-height: 1;
+          padding: 7px 5px;
+          i {
+            color: $gray;
+          }
+        }
+        .bookmark-btn {
+          cursor: pointer;
+          &:hover {
+            cursor: pointer;
+          }
+          &.btn-disabled {
+            cursor: default;
+            &:hover {
+              cursor: default;
+            }
+          }
+        }
+        .share-btn.gru-share-pop-over {
+          cursor: pointer;
+          background-color: $table-bg;
+        }
+        .gru-share-pop-over-window {
+          .gru-share-pop-over-content {
+            .share-actions {
+              .btn-primary.btn.copy-btn {
+                border: none;
+                padding: 6px 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

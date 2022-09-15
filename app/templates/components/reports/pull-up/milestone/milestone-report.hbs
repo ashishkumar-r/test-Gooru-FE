@@ -1,0 +1,14 @@
+<div class="backdrop" {{action "onClosePullUp"}}></div>
+<div class="milestone-report-container">
+  <div class="milestone-report-header-container">
+    <div class="title-container">
+      {{title}}
+    </div>
+    <div class="close-container" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+      {{gru-icon name="clear"}}
+    </div>
+  </div>
+  <div class="milestone-report-body-container">
+    {{yield}}
+  </div>
+</div>

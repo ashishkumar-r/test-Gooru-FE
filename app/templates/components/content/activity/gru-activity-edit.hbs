@@ -1,0 +1,199 @@
+<header xmlns="http://www.w3.org/1999/html">
+  {{#if allowBack}}
+    {{#if allowBackToCourse}}
+      {{#link-to 'content.courses.edit' course.id (query-params unitId=activityCollection.unitId lessonId=activityCollection.lessonId) class="back-to"}}
+        <div>
+          {{gru-icon name="keyboard_arrow_left"}}{{t 'common.course'}}: {{course.title}}
+        </div>
+      {{/link-to}}
+    {{else}}
+      {{#link-to 'library-search' (query-params profileId=session.userId type="my-content" activeContentType="offline-activity") class="back-to"}}
+        <div>
+          {{gru-icon name="keyboard_arrow_left"}}Back
+        </div>
+      {{/link-to}}
+    {{/if}}
+  {{/if}}
+  {{#if tempCollection.id }}
+    <h1> {{t 'oa.edit_activity'}}</h1>
+  {{else }}
+    <h1> {{t 'oa.add_activity'}}</h1>
+  {{/if}}
+  {{#if tempCollection.id}}
+    {{partial 'content/partials/collections-header-actions'}}
+  {{/if}}
+  <nav>
+    {{#gru-scroll to="#information" class="selected"  id='emberInfo1123' offset='article > header'}}{{t "common.information"}}{{/gru-scroll}}
+    {{#if tempCollection.id}}
+      {{#gru-scroll to="#reference" offset='article > header'}}{{t "oa.references.label"}}{{/gru-scroll}}
+      {{#gru-scroll to="#tasks" offset='article > header'}}{{t "oa.tasks.label"}}{{/gru-scroll}}
+      {{#gru-scroll to="#rubrics" offset='article > header'}}{{t "common.rubric"}}{{/gru-scroll}}
+    {{/if}}
+  </nav>
+</header>
+<section id="information">
+  <div class="header">
+    <h2>{{t "common.information"}}</h2>
+    {{partial 'content/partials/information-actions'}}
+  </div>
+  <div class="content">
+    {{content/gru-image isEditing=isEditing model=tempCollection srcImage=activityCollection.thumbnailUrl editImage=tempCollection.thumbnailUrl showAltText=true}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class='two-col-info'>
+          <div class="title">
+            <label>
+              <span class="required">{{t "common.activity-title"}}</span>
+              {{#if isEditing}}
+                {{validation/gru-input model=tempCollection valuePath='title' maxLength=50 didValidate=didValidate}}
+              {{else}}
+                <b>{{activityCollection.title}}</b>
+              {{/if}}
+            </label>
+          </div>
+          <div class="activity-type learning-objectives format">
+            <label>
+              <span class="required">{{t "oa.format"}}</span>
+              {{#if tempCollection.id }}
+                <b>{{subTaskDisplayValue}}</b>
+              {{else}}
+                {{#if isEditing   }}
+                  {{gru-dropdown
+                  selectedItemId=tempCollection.subFormat
+                  itemKey='code'
+                  placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                  items=activityCollection.formatList
+                  displayLabelFieldKey="display_name"
+                  onChangeAction="updateSubFormat"
+                  btn-group-size=btn-group-size}}
+                  <div class="validation error-messages">
+                    {{#if (and (v-get tempCollection 'subFormat' 'isInvalid') didValidate) }}
+                      <span class="error">
+                        {{v-get tempCollection 'subFormat' 'message'}}
+                      </span>
+                    {{/if}}
+                  </div>
+                {{else}}
+                  <b>{{t (if tempCollection.subFormat tempCollection.subFormat "common.not-specified")}}</b>
+                {{/if}}
+              {{/if}}
+            </label>
+          </div>
+        </div>
+        <div class='two-col-info'>
+          <div class="learning-objectives">
+            <label>
+              <span>{{t "common.learning-objectives"}}</span>
+              {{#if isEditing}}
+                {{validation/gru-textarea title="learning objectives" model=tempCollection valuePath='learningObjectives' rows=2 maxLength=500 didValidate=didValidate}}
+              {{else}}
+                <b>{{activityCollection.learningObjectives}}</b>
+              {{/if}}
+            </label>
+          </div>
+          <div class="duration-hours etl-label">
+            {{content/etl/gru-etl-second isEditing=isEditing tempData=tempCollection isComputedEtl=false modalvalue=activityCollection valueHours='hours' valueMins='minutes' estimatedHours=activityCollection.hours estimatedMinutes=activityCollection.minutes labelText=(t 'oa.info.duration-hrs')}}
+          </div>
+        </div>
+        {{#if isEditing}}
+          {{taxonomy/gru-taxonomy-selector
+          isEditing=isEditing
+          onSubjectSelected="selectSubject"
+          onCategorySelected="selectCategory"
+          selectedSubject=selectedSubject
+          selectedCategory=selectedCategory
+          subjectLabelKey='common.subject-and-framework'
+          onlySubjectsWithStandards=true
+          }}
+          <div class="validation error-messages">
+            {{#if (and (v-get tempCollection 'standards' 'isInvalid') didValidate) }}
+              <span class="error">
+                {{v-get tempCollection 'standards' 'message'}}
+              </span>
+            {{/if}}
+          </div>
+        {{/if}}
+        <div class="standards">
+          <label>
+            <span>{{t standardLabelKey}}</span>
+            {{#if isEditing}}
+              <button type="button" class="btn btn-primary" {{action 'openTaxonomyModal'}} disabled={{standardDisabled}}>
+                {{gru-icon name="open_in_new"}} {{t "common.select"}}
+              </button>
+              <div class="tags">
+                {{taxonomy/gru-taxonomy-tag-list tags=tempCollection.standards isEditing=isEditing onRemove=(action 'removeTag')}}
+              </div>
+            {{else}}
+              <div class="tags">
+                {{#if tags.length}}
+                  {{taxonomy/gru-taxonomy-tag-list isEditing=isEditing tags=activityCollection.standards}}
+                {{else}}
+                  {{t "common.not-specified"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </label>
+        </div>
+        {{#if isEditing}}
+          {{#if aggregatedTags.length}}
+            <div class="standards">
+              <div>Suggested standards based on questions in this assessment</div>
+              <label>
+                <div class="tags">
+                  {{taxonomy/gru-taxonomy-tag-list tags=tempCollection.aggregatedTag isEditing=isEditing onAdd=(action 'addTag')}}
+                </div>
+              </label>
+            </div>
+          {{/if}}
+        {{/if}}
+        {{content/gru-audience isEditing=isEditing srcSelectedAudiences=activityCollection.audience editSelectedAudiences=tempCollection.audience}}
+        {{content/gru-depth-of-knowledge isEditing=isEditing srcSelectedKnowledge=activityCollection.depthOfknowledge editSelectedKnowledge=tempCollection.depthOfknowledge}}
+        <div class="century-skills">
+          <label>
+            <span>{{t "common.century-skills"}}</span>
+            {{#if isEditing}}
+              <button type="button" class="btn btn-primary choose" {{action 'openSkillsModal'}}>
+                {{gru-icon name="open_in_new"}} {{t "common.choose"}}
+              </button>
+              <div class="skills-buttons">
+                {{#each tempSelectedSkills as |skill|}}
+                  {{century-skills/gru-century-skill-tag skill=skill isReadOnly=false onRemove=(action 'removeSkill')}}
+                {{/each}}
+              </div>
+            {{else}}
+              <div class="skills">
+                {{#if selectedSkills.length}}
+                  {{#each selectedSkills as |skill|}}
+                    {{century-skills/gru-century-skill-tag skill=skill}}
+                  {{/each}}
+                {{else}}
+                  {{t "common.not-specified"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{#if tempCollection.id}}
+  <section id="reference">
+    <div class="header">
+      <h2>{{t "oa.references.label"}}</h2>
+    </div>
+    {{content/activity/gru-references activityModel=activityCollection references=tempCollection.references updateParent=(action 'modelSourceFromChildChanges')
+     model=tempCollection
+     updateContent=(action 'updateContent')
+     }}
+  </section>
+  <section id="tasks">
+    {{content/activity/gru-tasks activityModel=activityCollection tasks=tempCollection.tasks updateParent=(action 'modelSourceFromChildChanges')}}
+  </section>
+  <section id="rubrics">
+    <div class="header">
+      <h2>{{t "common.rubric"}}</h2>
+    </div>
+    {{content/activity/gru-rubrics tempModel=tempCollection course=course  activityModel=activityCollection    updateContent=(action 'updateContent')  }}
+  </section>
+{{/if}}

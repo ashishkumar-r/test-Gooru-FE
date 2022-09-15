@@ -1,0 +1,82 @@
+.class {
+  .content {
+    .teacher-class-search-content-pull-up {
+      width: 100%;
+
+      .search-container {
+        width: 100%;
+        @media screen and (max-width: $screen-sm - 1) {
+          .tenant-libraries {
+            .libraries-container {
+              grid-template-columns: repeat(1, 1fr);
+            }
+          }
+
+          .search-header {
+            grid-template-columns: 20px 100px 1fr;
+
+            .search-filter-container {
+              width: 90px;
+              margin-left: 10px;
+            }
+
+            .search-pullup-close {
+              i {
+                margin-left: 0;
+              }
+            }
+
+            .search-right-menu {
+              .search-input-container {
+                grid-template-columns: auto 90px auto;
+
+                #search-content {
+                  width: 100%;
+                }
+              }
+            }
+          }
+
+          .search-content-type-filter {
+            .filter-content-types {
+              padding-left: 0;
+
+              .filter-item {
+                margin-left: 0;
+                margin-right: 0;
+              }
+            }
+
+            .search-by-filter {
+              .search-panel {
+                .search-content {
+                  padding: 5px;
+
+                  .bottom-panel-container,
+                  .top-panel-container {
+                    width: 100vw;
+                    flex-direction: column;
+
+                    .filter-container {
+                      width: 100%;
+                    }
+
+                    .gru-taxonomy-picker {
+                      .browse-selector {
+                        .taxonomy {
+                          .gru-browser-selector-container {
+                            grid-template-columns: none;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

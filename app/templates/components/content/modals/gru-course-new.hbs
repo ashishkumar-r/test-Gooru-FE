@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{t "common.add-course"}}</h4>
+</div>
+<div class="modal-body">
+  <form>
+    <label>
+      <span class="required">{{t 'common.course-title'}}</span>
+      {{validation/gru-input model=course valuePath='title' maxLength=50 didValidate=didValidate}}
+    </label>
+    {{content/etl/gru-etl-second isEditing=true tempData=course isComputedEtl=false valueHours='hours' valueMins='minutes' labelText=(t 'common-estimate-time-learn-title')}}
+        <div class="dropdown publish-head">
+          <div>
+            <span>{{t "common.publisher"}}</span>
+          </div>
+          <div>
+          </div>
+            <button class="dropbtn publish-btn" type="button" data-toggle="dropdown">
+             + Add <span class="caret"></span>
+            </button>
+    {{#if selectedPublisher}}
+      <button type="button" {{action 'removePublish'}} class="btn-audience btn-info btn btn-sm">
+                <span class="btn-label">{{selectedPublisher.name}}</span>
+                <span class="remove-audience">{{gru-icon name="clear"}}</span>
+              </button>
+    {{/if}}
+            <ul class="dropdown-menu publish-list">
+              {{#each publisherAll as | publish index|}}
+               <li class='publish-name'>
+                 <label for="radio-{{index}}">
+                 <input type="radio" name='radio' id="radio-{{index}}" checked={{if selectedPublisher (eq selectedPublisher.id publish.id)}} onchange={{action 'onSelected' publish}}/>
+                 <span>{{publish.name}}</span>
+                 </label>
+                 </li>
+              {{/each}}
+            </ul>
+</div>
+    <label>
+      <span>{{t 'common.category'}}</span>
+    </label>
+    <div class="btn-group">
+      {{#each categories as |category index| }}
+        <a href="#"
+           class="btn {{set-if-equal 'selected' category.code course.category}}"
+           data-value="{{category.code}}"
+          {{action 'selectCategory' category.code}}>{{category.title}}</a>
+      {{/each}}
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+      </button>
+      {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+          <button class="btn btn-primary create" {{action "createCourse"}}>{{t 'common.create'}}</button>
+      {{/gru-spinner-button}}
+    </div>
+
+  </form>
+</div>

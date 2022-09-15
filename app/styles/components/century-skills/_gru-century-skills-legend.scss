@@ -1,0 +1,19 @@
+.gru-century-skills-legend {
+  border-bottom: 1px solid $light-300;
+  padding-bottom: 12px;
+  ul {
+    height: 22px;
+    margin: 0;
+    padding: 0;
+    li.legend {
+      list-style: none;
+      border-right: 2px solid $light-200;
+      margin-right: 15px;
+      padding-right: 15px;
+      float: $tab-float-dir;
+      &:last-child {
+        border: 0;
+      }
+    }
+  }
+}

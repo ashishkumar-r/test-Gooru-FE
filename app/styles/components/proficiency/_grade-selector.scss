@@ -1,0 +1,167 @@
+.grade-selector {
+  display: flex;
+
+  .dropdown {
+    width: max-content;
+    align-self: center;
+    margin-left: 10px;
+
+    .dropbtn {
+      background-color: $table-bg;
+      color: $black-bold;
+      padding: 3px;
+      outline: none;
+      font-size: 16px;
+      border: none;
+    }
+
+    ul {
+      padding: 10px;
+      border-radius: 0;
+      max-height: 300px;
+      overflow-y: auto;
+      width: auto;
+
+      li {
+        padding: 2px;
+
+        &.disable {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+
+        label {
+          width: max-content;
+          cursor: pointer;
+          display: grid;
+          grid-template-columns: auto auto;
+          grid-gap: 5px;
+
+          &.active {
+            color: $blue-400;
+          }
+
+          span {
+            display: block;
+            width: max-content;
+          }
+        }
+      }
+      @media screen and (max-height: 520px) {
+        max-height: 150px;
+        z-index: 9999;
+      }
+    }
+  }
+
+  .active-grade-list {
+    display: flex;
+
+    .active-grade {
+      background: $dark-400;
+      padding: 4px;
+      border-radius: 4px;
+      margin: 5px;
+      display: grid;
+      grid-template-columns: auto auto;
+      color: $white;
+      align-items: center;
+
+      .close {
+        font-size: 16px;
+        color: $white;
+        opacity: 1;
+      }
+    }
+
+    .more {
+      align-items: center;
+      display: flex;
+      font-weight: bold;
+    }
+  }
+
+  .student-not-agreed-performance {
+    font-style: italic;
+    font-size: 19px;
+    color: #ff3b30;
+    padding: 3px 0 0 15px;
+  }
+}
+
+.grade-selector-download-button-container {
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  margin-right: 20px;
+}
+
+.grade-selector-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media print {
+  .grade-selector-download-button-container {
+    display: none !important;
+  }
+
+  .panel-layout-section {
+    display: none !important;
+  }
+
+  .content-card {
+    display: none !important;
+  }
+
+  .list-panel-header {
+    display: none !important;
+  }
+
+  .standard-chart {
+    opacity: 0;
+  }
+
+  .back {
+    opacity: 0;
+  }
+
+  .profile-navigation {
+    display: none !important;
+  }
+
+  .profile_proficiency .app-container {
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  .scrollable-chart {
+    height: fit-content !important;
+  }
+
+  .active-grade .close {
+    font-size: 16px;
+    color: #fff;
+    opacity: 0 !important;
+  }
+
+  .grade-selector-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+  }
+
+  .go-back-dashbord {
+    opacity: 0;
+  }
+
+  .panel-header {
+    .subject-details {
+      display: none !important;
+    }
+  }
+}

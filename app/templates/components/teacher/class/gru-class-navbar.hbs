@@ -1,0 +1,147 @@
+<div class="header-panel" {{action 'closeNotificationList'}}>
+  <div class="nav-body {{unless isShowExpandedNav 'flexbile-navbar'}} nav-menu-{{if selectedMenuItem selectedMenuItem 'default'}} {{if isPremiumClass 'premium-class'}} {{if showLearningTool "show-learning-tool"}}">
+    <div class="app-close {{if (or class.isDisable isInstructionalCoache) 'disable'}}">
+      <a class="navbar-brand home-link material-icons close" tabindex="1" onclick={{action 'navigateRoute'}} onkeypress={{action 'navigateRoute'}}>
+        <i class="gru-icon material-icons close">close</i>
+      </a>
+    </div>
+
+    <div class="toggleable-navbar hidden-sm hidden-xs {{unless isMenuExpanded 'collapsed-nav'}}" role="menu">
+      <div class="class-activities tab {{concat 'grade-range-' (grade-range performanceSummaryForDCA.performance.scoreInPercentage)}} {{if (eq selectedMenuItem 'class-activities') 'vactive'}}">
+        <a onclick={{action 'selectItem' 'class-activities'}} onkeypress={{action 'selectItem' 'class-activities'}} class="dca" role="menuitem" tabindex="2">
+          <span class="dca-pin"></span>
+          <span class="add-info">{{t 'teacher-landing.class.class-activities'}}</span>
+          <span aria-label="class activities performance score" class="performance-score {{if (not hasCAStarted) 'not-started'}}" onclick={{action 'onOpenOCAReport'}} onkeypress={{action 'onOpenOCAReport'}} tabindex="2">{{if hasCAStarted (concat performanceSummaryForDCA.performance.scoreInPercentage '%') '--' }}</span>
+        </a>
+      </div>
+
+      <div class="toggleable-tabs">
+
+        {{#if isMenuExpanded}}
+          <div class="expanded-tabs">
+
+            <div class="course-map tab {{concat 'grade-range-' (grade-range class.performanceSummary.score)}} {{if (eq selectedMenuItem 'course-map') 'vactive'}}">
+              <a onclick={{action 'selectItem' 'course-map'}} onkeypress={{action 'selectItem' 'course-map'}} role="menuitem" data-toggle="tooltip" title="{{t 'teacher-landing.class.learning-journey'}}" tabindex="4">
+                {{gru-icon name='sort'}}
+                <span class="add-info">{{t 'teacher-landing.class.learning-journey'}}</span>
+                <span aria-label="course map performance score" class="performance-score {{if (not hasCMStarted) 'not-started'}}" onclick={{action 'onOpenCourseReport'}} onkeypress={{action 'onOpenCourseReport'}} tabindex="4">{{if hasCMStarted (concat class.performanceSummary.score '%') '--'}}</span>
+              </a>
+            </div>
+
+            <div class="students tab">
+              <a onclick={{action 'selectItem' 'students'}} onkeypress={{action 'selectItem' 'students'}} role="menuitem" tabindex="5">
+                {{gru-icon name='school'}}
+                <span class="add-info">{{t 'teacher-landing.class.student-locator' }}</span>
+              </a>
+            </div>
+            <div class="atc tab">
+              <a onclick={{action 'selectItem' 'atc'}} onkeypress={{action 'selectItem' 'atc'}} class="atc-link" title="{{t 'teacher-landing.class.performance-overview'}}" role="menuitem" data-toggle="tooltip" tabindex="5">
+                <span class="atc-menu"></span>
+                <span class="add-info">{{t 'teacher-landing.class.performance-overview'}}</span>
+              </a>
+            </div>
+          </div>
+
+          <div aria-label="fast rewind" class="toggle-menu" onclick={{action 'onToggleMenu'}} onkeypress={{action 'onToggleMenu'}} tabindex="6">
+            <span>{{gru-icon name="fast_rewind"}}</span>
+          </div>
+        {{else}}
+          <div class="collapsed-tabs">
+            <div class="advanced tab">
+              <a aria-label="advanced" class="advanced-link" role="menuitem" onclick={{action 'onToggleMenu'}} onkeypress={{action 'onToggleMenu'}} tabindex="3">
+                {{t 'common.advanced'}} <span>{{gru-icon name="fast_forward"}}</span>
+              </a>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+
+    </div>
+
+      <div class=" ori-nav class-activities tab {{concat 'grade-range-' (grade-range performanceSummaryForDCA.performance.scoreInPercentage)}} {{if (eq selectedMenuItem 'class-activities') 'vactive'}}" role="menuitem">
+        <a onclick={{action 'selectItem' 'class-activities'}} onkeypress={{action 'selectItem' 'class-activities'}} class="dca" title="{{t 'teacher-landing.class.class-activities'}}" role="menuitem" data-toggle="tooltip" tabindex="7">
+          <span class="dca-pin"></span>
+          <span class="add-info">{{t 'teacher-landing.class.class-activities'}}</span>
+          <span class="performance-score {{if (not hasCAStarted) 'not-started'}}"  onclick={{action 'onOpenOCAReport'}} onkeypress={{action 'onOpenOCAReport'}} tabindex="8">{{if hasCAStarted (concat performanceSummaryForDCA.performance.scoreInPercentage '%') '--' }}</span>
+        </a>
+      </div>
+
+      <div class=" ori-nav course-map tab grade-range-{{grade-range class.performanceSummary.score}} {{if (eq selectedMenuItem 'course-map') 'vactive'}}" role="menuitem">
+        <a {{action 'selectItem' 'course-map'}} role="menuitem" data-toggle="tooltip" title="{{t 'teacher-landing.class.learning-journey'}}">
+          {{gru-icon name='sort'}}
+          <span class="add-info">{{t 'teacher-landing.class.learning-journey'}}</span>
+          <span class="performance-score {{if (not hasCMStarted) 'not-started'}}" onclick={{action 'onOpenCourseReport'}} onkeypress={{action 'onOpenCourseReport'}} tabindex="9">{{if hasCMStarted (concat class.performanceSummary.score '%') '--' }}</span>
+        </a>
+      </div>
+
+      <div class="students tab ori-nav" role="menuitem">
+        <a onclick={{action 'selectItem' 'students'}} onkeypress={{action 'selectItem' 'students'}} tabindex="10" role="menuitem" data-toggle="tooltip" title="{{t 'teacher-landing.class.student-locator' }}">
+          {{gru-icon name='school'}}
+          <span class="add-info">{{t 'teacher-landing.class.student-locator' }}</span>
+        </a>
+      </div>
+
+      <div class="atc tab ori-nav" role="menuitem">
+        <a onclick={{action 'selectItem' 'atc'}} onkeypress={{action 'selectItem' 'atc'}} tabindex="11" class="atc-link" title="{{t 'teacher-landing.class.performance-overview'}}" role="menuitem" data-toggle="tooltip">
+          <span class="atc-menu"></span>
+          <span class="add-info">{{t 'teacher-landing.class.performance-overview'}}</span>
+        </a>
+      </div>
+
+    {{#if navTitle}}
+      <div class="studyplayer-title">
+        {{#if (and secondaryClasses.length  (not-eq selectedMenuItem 'class-management')  (not-eq selectedMenuItem 'class-activities'))}}
+          <span class="nav-title" onclick={{action 'toggleNavClass'}} onkeypress={{action 'toggleNavClass'}} tabindex="12">
+            {{if selectedSecondaryClass.title selectedSecondaryClass.title navTitle}}
+            {{gru-icon name='arrow_drop_down'}}
+          </span>
+          <div class="nav-class-drop-down">
+            {{#each secondaryClasses as | secondaryClass|}}
+              <span class="{{if (or (and (not isPrimaryClass) secondaryClass.isActive) (and isPrimaryClass secondaryClass.isPrimaryClass)) 'active' ''}}" onclick={{action 'onChangeSecondaryClass' secondaryClass}} onkeypress={{action 'onChangeSecondaryClass' secondaryClass}} tabindex="13">{{secondaryClass.title}}</span>
+            {{/each}}
+          </div>
+        {{else}}
+          <div class="nav-title">{{navTitle}}
+            {{#if class.isArchived}}
+             ({{t "common.archived"}})
+            {{/if}}
+            {{#if (and (eq selectedMenuItem 'class-activities') secondaryClasses.length )}}
+              <span class="nav-title-info-icon" title="{{t 'common.class-activities-info-icon'}}" data-toggle="tooltip" data-placement="bottom auto" data-trigger="hover">
+                {{gru-icon name="info"}}</span>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    {{/if}}
+    <div class="notification-tab">
+      {{notification/notification-indicator displayNotificationList=displayNotificationList accessorClass='class' isTeacher=true classId=class.id tabindex="12" }}
+    </div>
+    {{#if showLearningTool}}
+    <div class="tools tab {{if isShowLearningTool 'vactive'}}" onkeypress={{action 'onOpenLearningTools'}} onclick={{action 'onOpenLearningTools'}}>
+      <span class="material-icons-outlined" tabindex="13">
+        handyman
+      </span>
+    </div>
+    {{/if}}
+    {{#if isPremiumClass}}
+    <div class="performance-containers">
+      <div class="performance-summary {{if (or (and class.competencyStats isPrimaryClass) (and secondaryClass.competencyStats (not isPrimaryClass))) 'has-competency-stats'}}" onclick={{action 'selectItem' 'students'}} onkeypress={{action 'selectItem' 'students'}} tabindex="14">
+        {{#if (and class.competencyStats isPrimaryClass)}}
+          <span class="numerator">{{plus-any class.competencyStats.completedCompetencies class.competencyStats.masteredCompetencies}}</span>
+          <span class="denominator">{{class.competencyStats.totalCompetencies}}</span>
+        {{else if (or (and secondaryClass.competencyStats (not isPrimaryClass)) (and (and secondaryClass.competencyStats (not isPrimaryClass))))}}
+          <span class="numerator">{{plus-any secondaryClass.competencyStats.completedCompetencies secondaryClass.competencyStats.masteredCompetencies}}</span>
+          <span class="denominator">{{secondaryClass.competencyStats.totalCompetencies}}</span>
+        {{else}}
+          <span class="no-completion-score">--</span>
+        {{/if}}
+      </div>
+    </div>
+    {{/if}}
+    <div class="class-management tab">
+      <a onclick={{action 'selectItem' 'class-management'}} onkeypress={{action 'selectItem' 'class-management'}} tabindex="14" title="{{t 'teacher-landing.class.class-settings.class-settings-sec.class-settings-sec-head'}}" data-toggle="tooltip" data-placement="bottom auto" data-trigger="hover">
+        {{gru-icon name="settings"}}
+      </a>
+    </div>
+  </div>
+</div>

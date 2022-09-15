@@ -1,0 +1,395 @@
+.reports.pull-up-student-lesson-report {
+  position: fixed;
+  top: 100%;
+  z-index: 1031;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .backdrop-pull-ups {
+    .backdrop {
+      background: none !important;
+    }
+  }
+
+  .loading-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+
+  .student-lesson-report-container {
+    background: $white-bold;
+    width: 768px;
+    max-height: 90vh;
+    height: 90vh;
+
+    .report-header {
+      display: flex;
+      height: 60px;
+      box-shadow: 0 2px 5px 0 $disabled-bg-color;
+      position: relative;
+      z-index: 1;
+
+      .report-breadcrumb {
+        width: calc(100% - 50px);
+        display: flex;
+
+        .unit-title {
+          display: flex;
+          align-items: center;
+          max-width: 100%;
+
+          p {
+            max-width: calc(100% - 45px);
+            margin: 0;
+            @include ellipsis(
+              $font-size: 14px,
+              $line-height: 1.2,
+              $lines-to-show: 2
+            );
+          }
+
+          .unit-icon {
+            width: 50px;
+            height: 50px;
+            background-image: url("../assets/gooru/images/unit.svg");
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            background-position: 12px 12px;
+          }
+        }
+
+        .lesson-title {
+          display: flex;
+          align-items: center;
+          max-width: calc(100% / 2);
+
+          .keyboard_arrow_right {
+            margin-right: 5px;
+          }
+
+          p {
+            margin: 0;
+            max-width: calc(100% - 45px);
+            @include ellipsis(
+              $font-size: 14px,
+              $line-height: 1.2,
+              $lines-to-show: 2
+            );
+          }
+
+          .lesson-icon {
+            width: 45px;
+            height: 50px;
+            background-image: url("../assets/gooru/images/lesson.svg");
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            background-position: 0 11px;
+          }
+        }
+      }
+
+      .report-close-pullup {
+        width: 50px;
+
+        .close {
+          color: $breadcrumb-color;
+          margin-top: 20px;
+          margin-right: 20px;
+          font-size: 24px;
+          display: block !important;
+        }
+      }
+    }
+
+    .report-content {
+      max-height: calc(90vh - 60px);
+      height: calc(90vh - 60px);
+      overflow-y: auto;
+      width: 100%;
+      padding-bottom: 20px;
+
+      .report-carousel-tags {
+        padding-bottom: 15px;
+
+        .report-carousel {
+          position: relative;
+
+          #report-carousel-wrapper {
+            background-image: linear-gradient($dark-600, $dark-600);
+            background-blend-mode: multiply;
+
+            .lesson-background-cover {
+              height: 251px;
+              background-image: linear-gradient($dark-600, $dark-600);
+              background-blend-mode: multiply;
+            }
+
+            .carousel-control {
+              opacity: 1;
+              background: none;
+
+              &.in-active {
+                opacity: 0.3;
+                pointer-events: none;
+              }
+
+              &.left {
+                z-index: 2;
+                width: 45px;
+
+                .arrow-left {
+                  width: 25px;
+                  height: 56px;
+                  display: block;
+                  background-image: url("../assets/gooru/images/arrow-left.svg");
+                  background-repeat: no-repeat;
+                  margin-left: 15px;
+                  position: relative;
+                  top: 42%;
+                }
+              }
+
+              &.right {
+                z-index: 2;
+                width: 45px;
+
+                .arrow-right {
+                  width: 25px;
+                  height: 56px;
+                  display: block;
+                  background-image: url("../assets/gooru/images/arrow-right.svg");
+                  background-repeat: no-repeat;
+                  margin-left: 10px;
+                  position: relative;
+                  top: 42%;
+                }
+              }
+            }
+          }
+
+          .report-carousel-content-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            background: $navbar-box-shadow;
+
+            .report-carousel-content {
+              width: 640px;
+              margin: auto;
+              position: relative;
+              display: flex;
+              height: 100%;
+              align-items: center;
+
+              .performance-display-container {
+                margin-right: 15px;
+                margin-top: 15px;
+                width: 190px;
+
+                .lesson-performance-average {
+                  width: 185px;
+                  height: 185px;
+                  border-radius: 50%;
+                  line-height: 185px;
+                  text-align: center;
+                  font-weight: bold;
+                  text-indent: 10px;
+                  font-size: 60px;
+                  color: $white;
+                }
+              }
+
+              .lesson-description {
+                color: $white;
+                height: 160px;
+                font-size: 15px;
+                width: calc(100% - 200px);
+
+                .header-desc {
+                  font-weight: bold;
+                }
+
+                .text-desc {
+                  @include ellipsis(
+                    $font-size: 15px,
+                    $line-height: 1.5,
+                    $lines-to-show: 5
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .report-performance-tabular {
+        width: 100%;
+
+        .report-performance-header {
+          display: inline-grid;
+          grid-template-columns: 40% 20% 40%;
+          width: 100%;
+          align-items: center;
+          text-transform: uppercase;
+          color: #535e67;
+          font-size: 11px;
+          font-weight: bold;
+          height: 40px;
+          border-bottom: 1px solid $breadcrumb-color;
+          position: relative;
+          background: $white;
+
+          .content-name {
+            padding-left: 54px;
+          }
+        }
+
+        .report-performance-list {
+          display: inline-grid;
+          grid-template-columns: 40% 10% 40% 10%;
+          width: 100%;
+          align-items: center;
+          color: $gray;
+          height: 49px;
+          border-bottom: 1px solid $breadcrumb-color;
+
+          .content-name {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &.not-started {
+              pointer-events: none;
+            }
+
+            .collection-external-icon,
+            .collection-icon {
+              background-image: url("../assets/gooru/images/collection_gray.svg");
+              width: 50px;
+              height: 40px;
+              background-repeat: no-repeat;
+              display: block;
+              background-position: 15px;
+            }
+
+            .assessment-external-icon,
+            .assessment-icon {
+              background-image: url("../assets/gooru/images/assessment-gray.svg");
+              width: 50px;
+              height: 40px;
+              background-repeat: no-repeat;
+              display: block;
+              background-position: 15px;
+            }
+
+            .offline-activity-icon {
+              background-image: url("gooru/images/offline.svg");
+              width: 50px;
+              height: 40px;
+              display: block;
+              background-repeat: no-repeat;
+              background-position: center;
+            }
+
+            span {
+              width: calc(100% - 80px);
+              padding-right: 20px;
+              @include ellipsis(
+                $font-size: 14px,
+                $line-height: 1.2,
+                $lines-to-show: 1
+              );
+            }
+
+            .explore {
+              padding-right: 20px;
+            }
+
+            &.suggested-content {
+              color: #f78a43;
+
+              .collection-icon {
+                background-image: url("../assets/gooru/images/collection-orange.svg");
+              }
+
+              .assessment-icon {
+                background-image: url("../assets/gooru/images/assessment-orange.svg");
+              }
+            }
+          }
+          .score {
+            .report-student-time-spent {
+              color: $dark-600;
+            }
+          }
+          .completion {
+            .completion-bar {
+              width: 80%;
+              background: #d8d8d8;
+              height: 6px;
+              border-radius: 3px;
+
+              .segment {
+                height: 6px;
+                border-radius: 3px 0 0 3px;
+
+                &.completed {
+                  border-radius: 3px;
+                }
+              }
+            }
+          }
+
+          .assessment-external-icons,
+          .collection-external-icons {
+            width: 20px;
+            height: 20px;
+            background-size: 20px 20px;
+            opacity: 0.8;
+            justify-self: center;
+            background-image: url("gooru/share.png");
+            background-repeat: no-repeat;
+            margin: auto 10px auto auto;
+          }
+
+          .report {
+            svg {
+              width: 20px;
+              height: 20px;
+              display: inline-block;
+              margin-left: 10px;
+              margin-top: 10px;
+              cursor: pointer;
+            }
+
+            span {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

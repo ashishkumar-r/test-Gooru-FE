@@ -1,0 +1,692 @@
+.student.course-map {
+  .routesuggestion-coursemap {
+    .container-desktop {
+      .route-suggestions-container {
+        .course-suggestions {
+          padding: 0;
+        }
+      }
+    }
+  }
+  .actions {
+    display: inline-block;
+    text-align: $menu-float-dir;
+    float: $menu-float-dir;
+    font-size: $font-size-base;
+    height: 24px;
+
+    button {
+      padding: 0 10px 0 7px;
+
+      i {
+        color: $white;
+        font-size: $font-size-h5;
+        width: 18px;
+      }
+
+      &.locate {
+        background-color: $green-400;
+        width: 35px;
+        height: 35px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        margin: 0 0 0 40px;
+
+        i {
+          margin: 0 3px 0 0;
+          font-size: $font-size-large;
+        }
+      }
+    }
+
+    .min-score {
+      margin-right: 5px;
+      vertical-align: text-bottom;
+
+      i {
+        background: url("gooru/trophy.png");
+        background-size: 20px 20px;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  .gru-accordion {
+    clear: both;
+
+    .panel-heading {
+      padding: 0;
+      margin: 0;
+      background-color: $white;
+      height: 67px;
+
+      &.study-active {
+        -webkit-box-shadow: 0 0 11px 3px $green-box-shadow-75;
+        -moz-box-shadow: 0 0 11px 3px $green-box-shadow-75;
+        box-shadow: 0 0 11px 3px $green-box-shadow-75;
+        z-index: 9;
+
+        .info {
+          .btn.study-now {
+            width: 58px;
+
+            i {
+              font-size: $font-size-anonymous;
+              color: $green-400;
+            }
+          }
+        }
+      }
+    }
+
+    .gru-accordion-lesson {
+      height: 67px;
+
+      &.expanded {
+        height: auto;
+      }
+    }
+  }
+
+  .rescope-section {
+    .rescope-toggle {
+      .action {
+        display: flex;
+
+        span {
+          font-size: 15px;
+          color: $gray-base;
+        }
+
+        .gru-toggle-button {
+          margin-top: 7px;
+        }
+      }
+
+      .info {
+        color: $bluish-gray;
+        font-style: italic;
+        margin-right: 20px;
+        text-align: justify;
+      }
+    }
+
+    .custom-msg {
+      margin-top: 15px;
+      width: 960px;
+      height: 62px;
+      border-radius: 4px;
+      background-color: $white;
+      padding: 15px;
+      box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+      display: flex;
+
+      span {
+        opacity: 0.5;
+        color: $gray-base;
+        font-style: italic;
+
+        i {
+          margin-left: 115px;
+        }
+      }
+    }
+  }
+
+  .rescoped-content {
+    .panel-heading {
+      .panel-title {
+        opacity: 0.3;
+        font-style: italic;
+      }
+    }
+    .keep-visible {
+      opacity: 1 !important;
+      font-style: normal !important;
+    }
+  }
+
+  .title-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 10px 15px;
+    @media screen and (max-width: 567px) {
+      margin-top: 45px;
+    }
+    .active-period {
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: right;
+      align-items: center;
+      cursor: pointer;
+      color: $gray-base;
+      column-gap: 8px;
+      .report-period-text {
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.study-active {
+  -webkit-box-shadow: 0 0 11px 3px $green-box-shadow-75;
+  -moz-box-shadow: 0 0 11px 3px $green-box-shadow-75;
+  box-shadow: 0 0 11px 3px $green-box-shadow-75;
+  z-index: 9;
+}
+
+.student.class {
+  .rescope-section {
+    .rescope-toggle {
+      .action {
+        display: inline-flex;
+      }
+    }
+  }
+}
+
+.student.class {
+  .route-suggestions-container {
+    width: 100%;
+    min-height: 90px;
+    object-fit: contain;
+    border-radius: 4px;
+    background-color: $white;
+    box-shadow: 0 0 4px 2px $sun-color;
+    // padding: 13px;
+  }
+
+  .routesuggestion-preview {
+    .route0-banner {
+      cursor: pointer;
+      padding: 12px;
+    }
+
+    .route0-bannerdesc {
+      padding-bottom: 10px;
+    }
+
+    .suggested-lessons {
+      width: 131px;
+      height: 15px;
+      font-family: Lato;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 0.94;
+      letter-spacing: normal;
+      text-align: left;
+      color: $dark-500;
+      margin-top: 14px;
+      margin-left: 12px;
+    }
+
+    .created-by-kangoorus {
+      width: 21%;
+      height: 15px;
+      font-family: Lato;
+      font-size: 13px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.15;
+      letter-spacing: normal;
+      text-align: left;
+      color: $gray-dove;
+      margin-top: 9px;
+      margin-bottom: 9px;
+      margin-left: 12px;
+    }
+
+    .detail-sep {
+      height: 1.5px;
+      border: solid 0.7px $sep-border-color;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .suggest-icon {
+      width: 61.6px;
+      height: 61.6px;
+      color: $sun-color;
+      padding: 8px 0 0;
+
+      i {
+        font-size: 61px;
+        line-height: 45px;
+        color: $sun-color;
+      }
+    }
+
+    .suggest-sep {
+      width: 1px;
+      height: 61px;
+      float: left;
+      border: solid 1px $sep-border-color;
+      display: inline;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+
+    .suggest-desc {
+      display: inline;
+      font-family: $font-family-sans-serif;
+      font-size: 16px;
+      text-align: left;
+      color: $dark-400;
+    }
+
+    .compet-container {
+      width: 724px;
+      height: 169px;
+      background-color: $white-bold;
+      box-shadow: inset 0 5px 4px 0 $box-shadow-bg-color;
+      -webkit-box-shadow: inset 0 5px 4px 0 $box-shadow-bg-color;
+      -moz-box-shadow: inset 0 5px 4px 0 $box-shadow-bg-color;
+      padding: 10px;
+    }
+
+    .Mask {
+      -webkit-box-shadow: inset -1px -7px 48px 0 $mask-box-shadow;
+      -moz-box-shadow: inset -1px -7px 48px 0 $mask-box-shadow;
+      box-shadow: inset -1px -7px 48px 0 $mask-box-shadow;
+    }
+
+    .route-compgraph {
+      width: 298.7px;
+      height: 339px;
+      border: solid 1px $dark-400;
+    }
+
+    .gru-taxonomy-tag-list {
+      border-bottom: 1px solid lightgray;
+
+      .gru-taxonomy-tag {
+        background-color: $dark-400;
+
+        .tag-label {
+          color: $white;
+          font-size: 12px;
+        }
+
+        .tag-caption {
+          display: none;
+        }
+      }
+    }
+
+    .preview-content {
+      display: flex;
+
+      .suggestion-accordion {
+        .gru-accordion-course {
+          width: 490px;
+
+          .gru-accordion-unit {
+            > .panel-collapse {
+              max-height: 320px;
+              overflow-y: auto;
+            }
+
+            .gru-accordion-lesson {
+              .panel-heading {
+                .panel-title {
+                  width: 100%;
+                }
+              }
+
+              .panel-body {
+                .collections {
+                  .panel {
+                    .panel-title {
+                      width: 100%;
+
+                      .title {
+                        width: 100%;
+                        cursor: default;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .route0suggestionHero {
+      background-image: "route0suggestion.jpg";
+      height: 169px;
+      width: 210px;
+      border: 1px solid $sun-color;
+    }
+
+    .action {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+
+      .accept,
+      .ignore {
+        background-color: $sun-color;
+        height: 38px;
+        font-size: 13px;
+        font-weight: bold;
+        color: $white;
+        line-height: 38px;
+        text-align: center;
+        cursor: pointer;
+        width: 108px;
+        border-radius: 3px;
+        box-shadow: 0 0 5px 1px $navbar-box-shadow;
+        vertical-align: text-bottom;
+        display: inline-block;
+      }
+
+      .accept {
+        > i {
+          display: none;
+          line-height: 17px;
+        }
+      }
+
+      .ignore {
+        border-bottom-right-radius: 4px;
+        background-color: $light-400;
+        margin-left: 5px;
+
+        span {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+.controller.student.course-map {
+  //Styles while self grading enabled
+  &.student-grading-enabled {
+    .student-coursemap-container {
+      display: grid;
+      grid-template-columns: auto 331px;
+      column-gap: 15px;
+      .course-map-accordion-container {
+        .assigned-course-title {
+          width: max-content;
+          font-size: 15px;
+        }
+        .gru-accordion-course {
+          padding: 0;
+        }
+      }
+      .self-grading-container {
+        width: 331px;
+        .header-container {
+          width: max-content;
+          font-size: 15px;
+        }
+        .body-container {
+          max-height: 400px;
+          overflow-y: auto;
+        }
+      }
+      @media screen and (max-width: $screen-md - 1) {
+        grid-template-columns: auto;
+
+        .self-grading-container {
+          padding-bottom: 30px;
+          .header-container {
+            color: $white;
+          }
+          width: 100%;
+        }
+      }
+
+      @media screen and (min-width: $screen-md) {
+        .gru-accordion.gru-accordion-course {
+          .gru-accordion-unit {
+            padding: 0;
+
+            .unit.panel-heading {
+              .panel-title {
+                width: calc(100% - 85px) !important;
+                padding-top: 0;
+
+                > a {
+                  width: 100% !important;
+                  max-width: none;
+                  height: auto;
+                }
+
+                .title.ellipsis {
+                  display: grid;
+
+                  .prefix {
+                    border: none;
+                    margin-left: 0;
+                    font-size: 12px;
+                    font-style: bold;
+                  }
+
+                  .unit-title-text {
+                    margin-left: 10px;
+                    font-size: 15px;
+                    font-style: normal;
+                  }
+                }
+              }
+
+              .performance-container {
+                height: 67px;
+                width: 64px;
+                margin-top: 0;
+
+                .charts.gru-performance-chart {
+                  height: 67px;
+                  min-width: unset;
+
+                  .container-box {
+                    height: 67px;
+                  }
+                }
+              }
+            }
+
+            .panel-collapse {
+              padding: 4px;
+
+              .panel-body {
+                .gru-accordion-lesson {
+                  .panel-heading {
+                    .panel-title {
+                      width: calc(100% - 225px);
+                      padding: 0;
+                      margin-left: 8px;
+
+                      > a.title {
+                        display: grid;
+                        max-width: none;
+
+                        .lesson-prefix {
+                          border: none;
+                          font-size: 12px;
+                          font-style: bold;
+                        }
+
+                        .lesson-title-text {
+                          font-size: 15px;
+                          font-style: normal;
+                        }
+                      }
+                    }
+
+                    .info {
+                      max-width: none !important;
+
+                      .content-count {
+                        display: inline-block;
+                        visibility: visible;
+                        margin: 0;
+                        height: inherit;
+                        line-height: 65px;
+
+                        .assessment-count,
+                        .collection-count {
+                          margin: 0 5px 0 0;
+
+                          i {
+                            margin: 0;
+                            width: 16px;
+                            height: 16px;
+                            background-size: 16px 16px;
+                          }
+                        }
+                      }
+
+                      .play-btn {
+                        width: 49px;
+                        padding: 0;
+
+                        button {
+                          padding: 12px;
+                          display: block;
+
+                          &.study-now {
+                            width: 48px;
+                            padding: 11px;
+                          }
+                        }
+                      }
+
+                      .performance-container {
+                        width: 60px;
+
+                        .charts.gru-performance-chart {
+                          min-width: auto;
+                        }
+                      }
+                    }
+                  }
+
+                  .panel-body {
+                    .collections {
+                      .assessment,
+                      .collection {
+                        height: 52px;
+
+                        .panel-heading {
+                          height: 50px;
+
+                          .panel-title {
+                            width: calc(100% - 200px) !important;
+                            padding: 0;
+                            margin-left: 0;
+                            display: flex;
+
+                            .icon-container {
+                              width: 50px;
+                              height: 50px;
+                            }
+
+                            > a.title {
+                              display: flex;
+                              padding: 0 0 0 5px;
+                              width: 100%;
+
+                              .ellipsis {
+                                font-size: 15px;
+                                line-height: 50px;
+                                width: calc(100% - 30px);
+                              }
+
+                              i {
+                                margin-top: 10px;
+                              }
+                            }
+                          }
+
+                          .info {
+                            max-width: none !important;
+
+                            .content-count {
+                              display: inline-block;
+                              visibility: visible;
+                              margin: 0;
+                              height: inherit;
+                              line-height: 46px;
+
+                              span {
+                                margin: 0;
+
+                                i {
+                                  font-size: 20px;
+                                  margin: 0 5px 0 0;
+                                }
+                              }
+
+                              .question-count-text,
+                              .resource-count-text {
+                                height: 30px;
+                                margin-top: 5px;
+                                display: inline-block;
+                              }
+                            }
+
+                            .play-btn {
+                              width: 44px;
+                              padding: 0;
+                              height: 50px;
+
+                              button {
+                                display: block;
+                                padding: 0;
+                                height: 50px;
+                                margin: 0;
+                                background: $table-bg;
+
+                                &.study-now {
+                                  width: 44px;
+                                }
+                              }
+                            }
+
+                            .performance {
+                              width: 60px;
+                              height: 48px;
+                              line-height: 48px;
+                              padding: 0;
+                              margin-top: 0;
+
+                              .score {
+                                font-size: 14px;
+                              }
+
+                              .charts.gru-performance-chart {
+                                min-width: auto;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  &.expanded .panel-collapse.collapse.in {
+                    margin: -9px 0 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

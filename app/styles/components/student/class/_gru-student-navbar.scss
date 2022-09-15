@@ -1,0 +1,348 @@
+.gru-student-navbar {
+  height: auto;
+
+  .gru-student-navbar-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: $white;
+    z-index: 1000;
+
+    a {
+      text-decoration: none;
+    }
+
+    .gru-student-navbar-panel {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+
+      .teacher-head-details {
+        display: flex;
+        align-items: center;
+
+        .close-icon {
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+          color: $dark-400;
+
+          i {
+            font-size: 25px;
+          }
+          &.impersonate-close {
+            pointer-events: none;
+            opacity: 0.5;
+          }
+        }
+
+        .gru-student-title-section {
+          span {
+            display: block;
+            line-height: 1.4;
+
+            &.teacher-name {
+              color: $blue-light;
+              font-weight: bold;
+            }
+
+            &.class-name {
+              font-size: 15px;
+              @include ellipsis(
+                $font-size: 15px,
+                $line-height: 1.4,
+                $lines-to-show: 1
+              );
+            }
+          }
+          @media screen and (max-width: 375px) {
+            width: 130px;
+          }
+        }
+
+        .user-profile {
+          display: flex;
+          height: 40px;
+          align-items: center;
+          margin-left: 15px;
+          border-left: 2px solid $gray;
+          @media screen and (max-width: 900px) {
+            line-height: 1.2;
+          }
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: contain;
+            margin-right: 10px;
+            margin-left: 15px;
+          }
+
+          .username {
+            color: $blue-400;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .menu-list-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .nav-menu-item-list {
+          display: flex;
+          align-items: center;
+          @media screen and (max-width: 567px) {
+            column-gap: inherit;
+          }
+          @media screen and (max-width: 900px) {
+            line-height: 1.2;
+            a {
+              margin: 0 2px;
+              padding: 5px;
+            }
+          }
+
+          a {
+            display: block;
+            padding: 5px 10px;
+            margin: 0 10px;
+            font-weight: bold;
+            color: $dark-400;
+            display: flex;
+            align-items: center;
+            @media all and (min-width: 768px) and (max-width: 1024px) {
+              padding: 5px;
+              margin: 0 5px;
+
+              span {
+                display: block;
+                font-size: 12px;
+              }
+            }
+            @media all and (min-width: 624px) and (max-width: 768px) {
+              padding: 5px;
+              margin: 0 5px;
+
+              span {
+                display: block;
+              }
+            }
+            @media all and (min-width: 280px) and (max-width: 623px) {
+              padding: 5px;
+              margin: 0 5px;
+
+              span {
+                display: none;
+              }
+            }
+
+            i {
+              font-size: 20px;
+              margin-right: 4px;
+
+              &.dashboard {
+                background: none;
+              }
+            }
+
+            &.active {
+              background-color: $green-light;
+              color: $white;
+              border-radius: 20px;
+            }
+          }
+        }
+
+        .additional-notification-section {
+          display: flex;
+          align-items: center;
+          @media screen and (max-width: 567px) {
+            column-gap: inherit;
+          }
+          .tools {
+            height: 33px;
+            cursor: pointer;
+            padding: 5px;
+            background: $btn-default-bg;
+            color: $dark-400;
+            &.active {
+              color: $gooru-green;
+            }
+            &.disabled {
+              pointer-events: none;
+              opacity: 0.5;
+            }
+          }
+          a {
+            display: flex;
+            padding: 5px;
+            color: $dark-400;
+            align-items: center;
+
+            &.suggestion-item {
+              color: $font-orange-49-dark-400;
+            }
+
+            &.notification-item {
+              color: $dark-400;
+
+              .notification {
+                .active-study {
+                  display: flex;
+                  align-items: center;
+
+                  .notification-indicator {
+                    color: $black-bold;
+                    border-color: $black-bold;
+                    height: 20px;
+                    width: 20px;
+                    background-color: $white;
+                    justify-content: center;
+                  }
+
+                  i {
+                    color: $black-bold;
+                  }
+                }
+
+                .inactive-common {
+                  display: flex;
+                  align-items: center;
+
+                  .notification-indicator {
+                    color: $font-light-300-dark-400;
+                    border-color: $font-light-300-dark-400;
+                    height: 20px;
+                    width: 20px;
+                    background-color: $white;
+                    justify-content: center;
+                  }
+
+                  i {
+                    color: $font-light-300-dark-400;
+                  }
+                }
+              }
+            }
+          }
+          .profile-dropdown {
+            cursor: pointer;
+            padding: 0 10px;
+            max-height: 45px;
+            &.disabled {
+              pointer-events: none;
+              opacity: 0.5;
+            }
+            .dropdown-menu {
+              right: 10px;
+              top: 43px;
+              border-top: 2px solid $blue-400;
+              padding: 0;
+              li {
+                padding: 0;
+                border-bottom: 1px solid $light-200;
+                a {
+                  padding: 7px 10px;
+                }
+              }
+              .navbar-nav-list {
+                cursor: pointer;
+                max-height: 45px;
+                .new-version {
+                  width: 100%;
+                  padding: 10px 5px;
+                  min-width: 83px;
+                  position: relative;
+                  vertical-align: middle;
+                  margin: auto;
+                }
+                .menu-dropdown {
+                  width: 100%;
+                  position: relative;
+                  display: inline-block;
+                  button {
+                    margin: 0;
+                  }
+                  .menu-dropbtn {
+                    width: 100%;
+                    background-color: transparent;
+                    padding: 10px 10px;
+                    font-size: 13px;
+                    border: none;
+                    text-align: left;
+                  }
+                  .dropdown-content-menu {
+                    display: none;
+                    position: absolute;
+                    background-color: $white;
+                    min-width: 160px;
+                    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+                    z-index: 1;
+                    right: 160px;
+                    top: 0;
+                    height: 400px;
+                    overflow: auto;
+                    &.show-bg {
+                      display: block;
+                      position: fixed;
+                      top: 5%;
+                      z-index: 1000;
+                      width: 200px;
+                      left: 0;
+                      right: 0;
+                      margin: auto;
+                      background-color: $white;
+                      height: 90%;
+                    }
+                  }
+                }
+                .menu-dropdown:hover .dropdown-content-menu {
+                  display: block;
+                }
+                &.disabled {
+                  a {
+                    cursor: not-allowed;
+                    pointer-events: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+        @media screen and (max-width: 623px) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 10px;
+          justify-content: center;
+          .nav-menu-item-list {
+            justify-content: space-evenly;
+          }
+          .additional-notification-section {
+            justify-content: space-evenly;
+          }
+        }
+        @media screen and (max-width: 320px) {
+          column-gap: 1px;
+        }
+      }
+      @media screen and (max-width: 799px) {
+        grid-template-columns: 1fr;
+
+        .menu-list-item {
+          justify-content: center;
+        }
+      }
+    }
+  }
+  .gru-learning-tool-list {
+    top: 58px;
+    @media screen and (max-width: 799px) {
+      top: 95px;
+    }
+  }
+}

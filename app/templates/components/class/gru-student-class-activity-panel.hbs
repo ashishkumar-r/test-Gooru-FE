@@ -1,0 +1,161 @@
+
+<div class="ca-panel-container {{if showPlayBtn 'today'}} {{if isOfflineActivity 'offline'}} {{if classActivity.isCompleted 'completed'}} {{if isCollection 'collection'}}">  
+  <div class="dca-panel-info {{if (and isActivityFuture (not isCollection)) 'disable-event'}} {{if (or (and (not isOfflineActivity) showPlayBtn (not classActivity.isCompleted)) (and isOfflineActivity (not classActivity.isCompleted)) isCollection) '' 'disable-event'}} {{if isShowImpersonate 'impersonate-dca-panel'}} {{if classActivity.isCompleted 'disable-event'}} {{if (eq item.collectionType 'meeting') 'meeting-panel'}}"  onclick={{action 'onPlayContent' classActivity}}
+    onkeypress={{action 'onPlayContent' classActivity}} tabIndex={{tabIndex}}>
+    <i class="{{item.collectionType}}-icon" />
+    <div>
+      {{#if (eq item.collectionType 'meeting')}}
+        <span>{{startTime}} - {{endTime}}</span>
+      {{/if}}
+      <div class="title-info ellipsis" aria-label="{{item.title}}">
+        <span>{{item.title}}</span>
+        {{#if isOfflineActivity}}
+          <div class="offline-activity-info">
+            <span class="date">
+              {{format-date classActivity.added_date 'DD MMM'}} - {{format-date (if classActivity.end_date classActivity.end_date classActivity.added_date) 'DD MMM'}}
+            </span>
+            <span class="task-count">{{t 'common.tasks'}} {{item.taskCount}}</span>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="dca-content-counts {{if (eq item.collectionType 'meeting') 'meeting-content'}}">
+    {{#if classActivity.meeting_url}}
+      <div class="video-call" title="{{format-time-readable classActivity}}" data-toggle="tooltip" onclick={{action 'onConference' classActivity.meeting_url}} onkeypress={{action 'onConference' classActivity.meeting_url}} tabIndex={{tabIndex}}>
+        {{gru-icon name="videocam"}}
+      </div>
+    {{/if}}
+    <div class="suggestion">
+      {{#if (gt suggestionCount 0)}}
+        <div class="suggestion-explore" {{action 'showSuggestions'}}>
+          {{gru-icon name="explore"}}
+          <div class="suggestion-count">{{suggestionCount}}</div>
+        </div>
+      {{/if}}
+    </div>
+    {{#if isOfflineActivity}}
+      <div class="task-count">
+        <i class="task-icon"></i>
+        <span>{{item.taskCount}}</span>
+      </div>
+    {{else}}
+      <div class="resource-count">
+        {{#if (gt item.resourceCount 0)}}
+          <i class="resource-icon"></i>
+          <span>{{item.resourceCount}}</span>
+        {{/if}}
+      </div>
+
+      <div class="question-count">
+        {{#if (gt item.questionCount 0)}}
+          <i class="question-icon"></i>
+          <span>{{item.questionCount}}</span>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{#if (or (eq item.collectionType 'assessment-external' ) (eq item.collectionType 'collection-external'))}}
+      <i class="external-icon"></i>
+    {{/if}}
+  </div>
+  {{#if (or (and (not isOfflineActivity) showPlayBtn (not classActivity.isCompleted)) (and isOfflineActivity (not classActivity.isCompleted)) isCollection)}}
+    <div class="ca-play-container {{if (and isActivityFuture (not isCollection)) 'future-activity'}} {{if (eq item.collectionType 'meeting') 'hidden'}}" onclick={{action 'onPlayContent' classActivity}} onkeypress={{action 'onPlayContent' classActivity}}
+      tabIndex={{tabIndex}}>
+      <div role="button" class="ca-play-btn" aria-label="play">
+        {{gru-icon name='play_arrow'}}
+      </div>
+    </div>
+  {{/if}}
+  <div class="dca-panel-actions-performance {{if classActivity.isDiagnostic 'diagnostic-activity'}}">
+    {{#if collectionPerformanceSummary}}
+      {{#if (and (not-eq item.collectionType 'collection') (not-eq item.collectionType 'collection-external'))}}
+        {{#if (and (eq collectionPerformanceSummary.isGraded false) isDefaultGrade (eq collectionPerformanceSummary.score null))}}
+          <div class="grading-icon" data-toggle="tooltip" title="{{t 'teacher-not-graded'}}" onclick={{action 'studentDcaReport' item collectionPerformanceSummary activityDate}}
+            onkeypress={{action 'studentDcaReport' item collectionPerformanceSummary activityDate}} tabIndex={{tabIndex}}></div>
+        {{else}}
+          <div class="dca-panel-performance grade-range-{{grade-range collectionPerformanceSummary.score}}" onclick={{action 'studentDcaReport' item collectionPerformanceSummary activityDate}}
+            onkeypress={{action 'studentDcaReport' item collectionPerformanceSummary activityDate}} style="background-color:{{grade-color collectionPerformanceSummary.score}}" tabIndex={{tabIndex}}>
+            <span>{{if (or collectionPerformanceSummary.score (eq collectionPerformanceSummary.score 0)) (concat collectionPerformanceSummary.score '%') '--' }}</span>
+          </div>
+        {{/if}}
+      {{else}}
+        <div class="dca-panel-performance collection" onclick={{action 'studentDcaReport' item collectionPerformanceSummary activityDate}} onkeypress={{action 'studentDcaReport' item collectionPerformanceSummary activityDate}} tabIndex={{tabIndex}}>
+          <span class="time-spent">
+            {{if collectionPerformanceSummary.timeSpent (format-time collectionPerformanceSummary.timeSpent) '--'}}
+          </span>
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="dca-panel-performance not-started">
+        {{#if (not-eq item.collectionType 'meeting') }}
+          {{#if (and isOfflineActivity item.isStudentCompleted)}}
+            <div class="offline-activity">
+              <i class="completed"></i>
+            </div>
+          {{else}}
+            <div class="thumbnail-img">
+              <img src="{{item.thumbnailUrl}}" alt="thumbnailUrl" />
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</div>
+<div class="suggestions">
+  {{#each suggestions as |suggestion|}}
+    <div class="suggestion-panel">
+      <div class="icon">
+        <i class="{{suggestion.suggestedContentType}}"></i>
+      </div>
+      <div class="title-info ellipsis">{{suggestion.title}}</div>
+      <div class="content-counts">
+        <div class="resource-count">
+          {{#if (gt suggestion.resourceCount 0)}}
+            <i class="resource-icon"></i>
+            <span>{{suggestion.resourceCount}}</span>
+          {{/if}}
+        </div>
+        <div class="question-count">
+          {{#if (gt suggestion.questionCount 0)}}
+            <i class="question-icon"></i>
+            <span>{{suggestion.questionCount}}</span>
+          {{/if}}
+        </div>
+      </div>
+      <div class="play-container">
+        <div class="ca-play-btn" {{action 'onPlaySuggestionContent' suggestion}}>
+          {{gru-icon name='play_arrow'}}
+        </div>
+      </div>
+      <div class="suggestion-panel-actions-performance">
+        {{#if suggestion.performance}}
+          {{#if (and (not-eq suggestion.suggestedContentType 'collection') (not-eq suggestion.suggestedContentType 'collection-external'))}}
+            <div class="suggestion-panel-performance" {{action 'studentSuggestionReport' suggestion}} style="background-color:{{grade-color suggestion.performance.score}}">
+              <span>
+                {{#if (eq suggestion.performance.score null)}}
+                  --
+                {{else}}
+                  {{concat suggestion.performance.score '%'}}
+                {{/if}}
+              </span>
+            </div>
+          {{else}}
+            <div class="suggestion-panel-performance collection {{unless suggestion.performance.timeSpent 'disable-event'}}" {{action 'studentSuggestionReport' suggestion}}>
+              <span class="time-spent">
+                {{if suggestion.performance.timeSpent (format-time suggestion.performance.timeSpent) '--'}}
+              </span>
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="thumbnail-img">
+            <img src="{{suggestion.suggestedForContent.thumbnail}}" alt="suggestedForContent thumbnail" />
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  {{else}}
+    {{three-bounce-spinner}}
+  {{/each}}
+</div>

@@ -1,0 +1,165 @@
+{{content/gru-header
+   options=options
+   selected=selected
+   headerActions=headerActions
+   title=headerTitle
+   backButton=backButton
+   useScroll=true
+   scrollSection='.content.rubric.gru-rubric-edit section'}}
+<section class="rubrics-section">
+  <div id="information">
+    <div class="header">
+      <h2>{{t 'common.information'}}</h2>
+      {{partial 'content/partials/information-actions'}}
+    </div>
+    <div class="content">
+      {{content/gru-image isEditing=isEditing model=tempRubric srcImage=rubric.thumbnail editImage=tempRubric.thumbnail showAltText=true}}
+      <div class="panel panel-default information">
+        <div class="panel-body">
+          <div class="title">
+            <label>
+              <span class="required">{{t "common.rubric-title"}}</span>
+              {{#if isEditing}}
+                {{validation/gru-input model=tempRubric valuePath='title' maxLength=50  didValidate=didValidate}}
+              {{else}}
+                <b>{{rubric.title}}</b>
+              {{/if}}
+            </label>
+          </div>
+          {{#if isEditing}}
+            {{taxonomy/gru-taxonomy-selector
+            isEditing=isEditing
+            onSubjectSelected="selectSubject"
+            onCategorySelected="selectCategory"
+            selectedSubject=selectedSubject
+            selectedCategory=selectedCategory
+            subjectLabelKey='common.subject-and-framework'
+            onlySubjectsWithStandards=true
+            }}
+          {{/if}}
+          <div class="standards">
+            <label>
+              <span>{{t standardLabelKey}}</span>
+              {{#if isEditing}}
+                <button type="button" class="btn btn-primary taxonomy" {{action 'openTaxonomyModal'}} disabled={{standardDisabled}}>
+                  {{gru-icon name="open_in_new"}} {{t "common.select"}}
+                </button>
+                <div class="tags">
+                  {{taxonomy/gru-taxonomy-tag-list tags=editableTags onRemove=(action 'removeTag')}}
+                </div>
+              {{else}}
+                <div class="tags">
+                  {{#if tags.length}}
+                    {{taxonomy/gru-taxonomy-tag-list tags=tags}}
+                  {{else}}
+                    {{t "common.not-specified"}}
+                  {{/if}}
+                </div>
+              {{/if}}
+            </label>
+          </div>
+          {{content/gru-audience isEditing=isEditing srcSelectedAudiences=tempRubric.audience editSelectedAudiences=tempRubric.audience}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rubric">
+    <div class="header">
+      <h2>{{t 'common.rubric-creation'}}</h2>
+    </div>
+    {{#if isEditing}}
+      <div class="panel panel-default rubric-creation">
+        <div class="panel-heading">
+          <div class="border-bottom">
+            <h3>{{t 'gru-rubric-edit.upload-rubric'}}</h3>
+          </div>
+        </div>
+        <div class="panel-body">
+          {{content/rubric/gru-rubric-creation
+          rubric=tempRubric
+          didValidate=didValidate
+          emptyFileError=emptyFileError
+          }}
+        </div>
+      </div>
+      <div class="panel panel-default overall-score out-of-scope">
+        <div class="panel-heading">
+          <div>
+            <h3>{{t 'gru-rubric-creation.overall-narrative'}}</h3>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="feedback">
+            <label>
+              <span>{{t "gru-rubric-creation.feedback-guidance"}}</span>
+              {{validation/gru-textarea rawTextareaValue=rubric.feedback model=tempRubric valuePath='feedback' maxLength=500 rows=5 placeholder=(t 'gru-rubric-creation.feedback-guidance-placeholder')}}
+            </label>
+          </div>
+          <label class="required-feedback">
+            <span {{action 'setFeedBack'}}>
+              {{#if tempRubric.requiresFeedback}}
+                {{gru-icon name='check_box'}}
+              {{else}}
+                {{gru-icon name='check_box_outline_blank'}}
+              {{/if}}
+            </span>
+            {{t 'gru-rubric-creation.required-feedback'}}
+          </label>
+        </div>
+      </div>
+      <div class="category-panel">
+        {{#each categories as |category index|}}
+          {{content/rubric/gru-category
+            category=category
+            index=index
+            onCopyCategory='copyCategory'
+            onDeleteCategory='deleteCategory'
+            onCancelNewCategory='deleteCategory'
+            onUpdateCategory='updateCategory'
+          }}
+        {{/each}}
+        <a class="add-prefix add-category" {{action 'addNewCategory'}}>{{t "gru-rubric-creation.add-category"}}</a>
+      </div>
+    {{else}}
+      {{#if rubric.url}}
+        {{content/rubric/gru-preview-url resource=rubric}}
+      {{/if}}
+      <div class="category-panel non-edit">
+        {{#each rubric.categories as |category index|}}
+          {{content/rubric/gru-category
+            category=category
+            index=index
+            preview=true
+          }}
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="language-sections">
+    <div class="header">
+      <h2>{{t 'profile.preference.language'}}</h2>
+    </div>
+    <div class="language-section">
+      <label for="primary-language" class="primary-language">{{t 'select-primary-language'}}</label>
+      <div class="dropdown language-dropdown pull-left">
+        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span class="button-text">
+            {{#if selectedLanguage}}
+              {{selectedLanguage.display_name}}
+            {{else}}
+              {{t 'profile.preference.choose-language'}}
+            {{/if}}
+          </span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          {{#each languageList as |language|}}
+            <li> <a data-item={{language}} {{ action 'updateLanguage' language}}>{{language.display_name}} </a> </li>
+          {{else}}
+            <li> {{t 'profile.preference.no-data'}} </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

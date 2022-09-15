@@ -1,0 +1,31 @@
+<div class="student-class-proficiency">
+    {{student/class/student-inspect-destination
+      reDrawChart=reDrawChart
+      skylineInitialState=skylineInitialState
+      taxonomyGrades=taxonomyGrades
+      classId=classId courseId=courseId
+      course=course
+      onMoveNext="onMoveNext"
+      classGrade=classGrade
+      subjectCode=subjectCode
+      class=class
+      subject=subject
+      isNoStudyMaterial = isNoStudyMaterial
+      independentCourses = independentCourses
+      tenantSetting = tenantSetting
+      proficiencyType = proficiencyType
+      defaultGradeLevel = defaultGradeLevel
+      contentVisibility = contentVisibility
+      profileDetails=profileDetails
+      activeSubPrograme=activeSubPrograme
+    }}
+</div>
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

@@ -1,0 +1,988 @@
+.oa-grading-report {
+  position: fixed;
+  bottom: -100%;
+  z-index: 1031;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+
+  .backdrop {
+    background-color: $backdrop-color;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .backdrop-pull-ups {
+    .backdrop {
+      background: none !important;
+    }
+  }
+
+  .loading-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+
+  .rubric-file-preview-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 5%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    visibility: hidden;
+
+    .rubric-file-preview {
+      max-width: 768px;
+      height: 80vh;
+      margin: 0 auto;
+      background: $white;
+      text-align: center;
+      margin-top: 80px;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        padding: 20px 20px 70px;
+      }
+
+      .rubric-file-preview-close {
+        height: 20px;
+
+        .close {
+          margin-right: 20px;
+          font-size: 24px;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  .oa-grade-container {
+    background: $white-bold;
+    width: 768px;
+    max-height: 90vh;
+    height: 90vh;
+
+    %student-carousel-styles {
+      .student-info {
+        display: grid;
+        grid-template-columns: 74px 1fr auto;
+        width: 100%;
+        height: 74px;
+        border-bottom: 1px solid $dark-600;
+        background-color: $white;
+
+        .student-count {
+          font-family: "Open Sans";
+          font-size: 40px;
+          font-weight: bold;
+          color: $dark-600;
+          text-align: center;
+        }
+
+        .oa-grade-students {
+          width: 100%;
+          height: 100%;
+
+          .oa-grade-students-carousel {
+            padding-top: 5px;
+
+            #oa-grade-students-carousel-wrapper {
+              .user-profile-img {
+                display: grid;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                cursor: default;
+
+                img {
+                  width: 45px;
+                  border-radius: 50%;
+                  border-color: $table-bg;
+                  height: 45px;
+                  justify-self: center;
+                }
+
+                span {
+                  font-family: "Open Sans";
+                  font-size: 12px;
+                  font-weight: bold;
+                  color: $dark-600;
+                  text-transform: capitalize;
+                }
+              }
+
+              .carousel-control {
+                opacity: 1;
+                background: none;
+
+                &.in-active {
+                  opacity: 0.3;
+                  pointer-events: none;
+                }
+
+                &.left,
+                &.right {
+                  z-index: 2;
+                  width: 20px;
+
+                  i {
+                    line-height: 50px;
+                    color: $gray-base;
+                  }
+
+                  &.left {
+                    left: 30px;
+                  }
+
+                  &.right {
+                    right: 30px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .self-grade-section {
+          height: 96%;
+          width: 100%;
+          padding: 5px;
+
+          .label {
+            font-size: 10px;
+            text-align: center;
+            color: $dark-600;
+            padding: 0;
+            display: block;
+          }
+
+          .score {
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            color: $dark-600;
+          }
+        }
+      }
+    }
+
+    .oa-grade-header {
+      height: 50px;
+      display: grid;
+      grid-template-columns: 50px 1fr 50px;
+      grid-column-gap: 10px;
+      align-items: center;
+      box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+      width: 100%;
+      position: relative;
+
+      %icon-content {
+        width: 25px;
+        height: 25px;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        opacity: 0.8;
+        display: block;
+        margin-left: 10px;
+      }
+
+      .close-icon {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 0;
+
+        i {
+          width: max-content;
+          height: max-content;
+          margin: auto;
+          font-size: 28px;
+          color: $gray-light;
+        }
+      }
+
+      .icon {
+        .offline-activity {
+          background-image: url("../assets/gooru/images/offline.svg");
+          @extend %icon-content;
+        }
+      }
+
+      .title {
+        font-size: 15px;
+        font-weight: bold;
+        color: $default-title-color;
+      }
+      .download {
+        display: grid;
+        grid-template-rows: 21px;
+        line-height: 1.3;
+        text-align: center;
+        .download-icon {
+          i {
+            color: $dark-600;
+          }
+        }
+      }
+      &.add-download-option {
+        grid-template-columns: 50px 1fr 100px 50px;
+      }
+    }
+
+    .self-comment-container {
+      padding: 15px;
+      display: grid;
+      row-gap: 8px;
+
+      .comment-label {
+        font-size: 14px;
+        color: $placeholder-color;
+        font-weight: bold;
+      }
+
+      .comment-input {
+        textarea {
+          &::placeholder {
+            opacity: 0.7;
+            font-size: 12px;
+            color: $placeholder-color;
+          }
+        }
+      }
+
+      .comment-action {
+        justify-self: right;
+
+        .submit-comment {
+          width: 80px;
+          height: 38px;
+          line-height: 38px;
+          border-radius: 4px;
+          background-color: $blue-bc;
+          font-size: 15px;
+          text-align: center;
+          color: $white;
+          text-transform: capitalize;
+          cursor: pointer;
+        }
+      }
+
+      &.teacher-graded {
+        .comment-input {
+          pointer-events: none;
+        }
+
+        .comment-action {
+          display: none;
+        }
+      }
+    }
+
+    .oa-grading-section {
+      width: 100%;
+      height: 100%;
+      background-color: $dark-600;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      padding-top: 10px;
+
+      .oa-task-details {
+        height: calc(90vh - 60px);
+
+        &.teacher-grading {
+          height: calc(90vh - 135px);
+        }
+      }
+
+      .student-carousel-container {
+        @extend %student-carousel-styles;
+      }
+
+      .student-carousel-containers {
+        @extend %student-carousel-style;
+      }
+
+      .left-panel {
+        width: 100%;
+        height: 100%;
+        background-color: $white !important;
+        display: flex;
+        flex-direction: column;
+
+        .student-response {
+          display: none;
+        }
+
+        .tasks-section {
+          width: 100%;
+          height: 100%;
+          overflow-y: auto;
+
+          .gru-offline-activity-task-submission {
+            .task-submission-container {
+              .task-toggle {
+                display: none;
+              }
+            }
+
+            .task-details-container {
+              .task-upload-container {
+                .task-file-upload-container {
+                  .task-file-upload {
+                    display: none;
+                  }
+                }
+
+                .save-task-submission {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .students-list {
+        overflow: auto;
+
+        .search-navigation {
+          position: sticky;
+          padding: 0 15px 15px;
+          top: 0;
+          background-color: $white;
+
+          .search-keyword {
+            .search-box {
+              width: 100%;
+              margin: 13px 9px 3px 0;
+              outline: none;
+              box-shadow: none;
+              padding-bottom: 5px;
+              border-bottom: solid 1px $sky-400;
+            }
+
+            .search-icon {
+              position: absolute;
+              right: 10px;
+              top: 10px;
+
+              .clear,
+              .search {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .list-container {
+          padding: 10px 15px 15px;
+
+          .user-profile-img {
+            display: flex;
+            align-items: center;
+            height: 56px;
+            cursor: pointer;
+
+            .profile-img {
+              display: flex;
+
+              img {
+                width: 32px;
+                border-radius: 50%;
+                border-color: $table-bg;
+                height: 32px;
+                justify-self: center;
+              }
+
+              .circle-gray,
+              .circle-green {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                display: block;
+              }
+
+              .circle-gray {
+                background-color: $light-400;
+              }
+
+              .circle-green {
+                background-color: $green-700;
+              }
+            }
+
+            .count-and-name {
+              display: grid;
+              padding-left: 10px;
+              color: $dark-400;
+
+              .count {
+                font-size: 11px;
+                height: 13px;
+              }
+
+              .name {
+                font-size: 14px;
+                font-weight: 300;
+              }
+            }
+
+            span {
+              font-family: "Open Sans";
+              font-size: 12px;
+              font-weight: bold;
+              color: $dark-600;
+              text-transform: capitalize;
+            }
+          }
+        }
+      }
+
+      .right-panel {
+        width: 100%;
+        height: 100%;
+        background-color: $table-bg;
+
+        .oa-grade-right-panel-header {
+          height: 79px;
+          border-bottom: solid 1px $white;
+          grid-template-columns: 1fr 80px;
+          display: grid;
+          align-items: center;
+          justify-items: center;
+
+          .oa-grade-info {
+            .oa-grade-info-title {
+              font-family: "Open Sans";
+              font-size: 34px;
+              line-height: 1.09;
+              color: $white-bold;
+              display: block;
+            }
+
+            .oa-grade-info-desc {
+              font-family: "Open Sans";
+              font-size: 13px;
+              line-height: 1.15;
+              color: $white-bold;
+              display: block;
+            }
+          }
+
+          .oa-grade-score {
+            width: 100%;
+            height: 100%;
+            background-color: $oa-score-bg-color;
+            padding-top: 10px;
+            text-align: center;
+
+            .score {
+              font-size: 25px;
+              font-weight: bold;
+              text-align: center;
+              color: $dark-600;
+            }
+
+            span {
+              font-family: "Open Sans";
+              font-size: 20px;
+              font-weight: bold;
+              color: $dark-600;
+              line-height: 1.5;
+            }
+
+            hr {
+              margin: 0 15px;
+              border-width: 2px;
+              border-color: $dark-600;
+            }
+          }
+        }
+
+        .oa-grade-right-panel-body {
+          color: $white;
+          width: 100%;
+          height: 100%;
+          overflow-y: auto;
+          max-height: calc(100vh - 200px);
+
+          .panel-group {
+            margin-bottom: 0;
+            height: auto;
+            width: 100%;
+
+            .student-rubric-section,
+            .teacher-rubric-section {
+              height: auto;
+              width: 100%;
+
+              &.panel {
+                background: none;
+                box-shadow: none;
+              }
+
+              .student-grading-header,
+              .teacher-grading-header {
+                height: 50px;
+                align-items: center;
+                display: grid;
+                grid-template-columns: auto 60px;
+                position: relative;
+                width: 100%;
+                border-bottom: 1px solid $gray-light;
+
+                .icons {
+                  i {
+                    width: 24px;
+                    margin: auto;
+                    cursor: pointer;
+                  }
+
+                  .arrow_drop_up {
+                    display: block;
+                  }
+
+                  .arrow_drop_down {
+                    display: none;
+                  }
+                }
+
+                &[aria-expanded="true"] {
+                  .icons {
+                    .arrow_drop_up {
+                      display: none;
+                    }
+
+                    .arrow_drop_down {
+                      display: block;
+                    }
+                  }
+                }
+
+                &[aria-expanded="false"] {
+                  .icons {
+                    .arrow_drop_up {
+                      display: block;
+                    }
+
+                    .arrow_drop_down {
+                      display: none;
+                    }
+                  }
+                }
+
+                span {
+                  text-transform: uppercase;
+                  font-size: 12px;
+                  font-weight: bold;
+                  padding-left: 10px;
+                  display: flex;
+                  align-items: center;
+
+                  .rubric-attachment {
+                    color: $blue-text;
+                    cursor: pointer;
+                  }
+                }
+              }
+
+              .student-grading-panel,
+              .teacher-grading-panel {
+                padding: 10px;
+                border-bottom: 1px dotted;
+
+                .no-self-grade {
+                  font-family: "Open Sans";
+                  font-size: 15px;
+                  line-height: 1.15;
+                  color: $white-bold;
+                }
+
+                .oa-grade-rubric-grading {
+                  width: 200px;
+                  font-size: 30px;
+                  line-height: 1;
+                  text-align: center;
+                  margin: 0 auto;
+                  padding-bottom: 20px;
+
+                  .studentScore {
+                    input {
+                      text-align: center;
+                      font-size: 30px;
+                      color: $white;
+                      padding-left: 15px;
+                      width: 200px;
+                      background-color: $table-bg;
+
+                      &:active,
+                      &:focus {
+                        border: none;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .oa-grade-general-comment-container {
+            padding-top: 20px;
+
+            textarea {
+              font-family: "Open Sans";
+              font-size: 16px;
+              font-style: italic;
+              color: $white-bold;
+              background-color: $dark-600;
+            }
+          }
+
+          .oa-grade-action-btns {
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 40px;
+
+            .confirm {
+              width: 100px;
+              height: 40px;
+              border-radius: 4px;
+              background: $sky-400;
+              font-family: "Open Sans";
+              font-size: 15px;
+              font-weight: bold;
+              text-align: center;
+              color: $white-bold;
+              text-transform: uppercase;
+
+              &:active {
+                background: $sky-400;
+                box-shadow: none;
+              }
+            }
+          }
+        }
+      }
+      @media screen and (max-width: $screen-sm) {
+        height: calc(100% - 50px);
+        grid-template-rows: 75px calc(100% - 130px) auto;
+
+        .student-carousel-container {
+          border-bottom: 1px solid $white;
+        }
+
+        .left-panel {
+          position: absolute;
+          z-index: 99;
+          grid-row-start: 3;
+          top: calc(100% - 41px);
+
+          .student-response {
+            padding: 10px;
+            font-family: "Open Sans";
+            font-size: 16px;
+            line-height: 1.09;
+            color: $dark-600;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 2px solid $gray-1a5;
+            border-top: 2px solid $gray-1a5;
+            font-weight: bold;
+
+            span {
+              text-transform: capitalize;
+            }
+          }
+
+          .tasks-section {
+            height: calc(100vh - 270px);
+          }
+        }
+
+        .right-panel {
+          grid-row-start: 2;
+          height: 100%;
+
+          .oa-grade-right-panel-body {
+            height: calc(100% - 80px);
+          }
+        }
+      }
+      @media screen and (min-width: $screen-sm + 1) {
+        .student-carousel-container {
+          grid-column-start: 1;
+          grid-column-end: 2;
+        }
+
+        .left-panel {
+          grid-column-start: 1;
+          grid-row-start: 2;
+        }
+
+        .right-panel {
+          grid-column-start: 2;
+          grid-row-start: 1;
+          grid-row-end: 3;
+        }
+      }
+    }
+  }
+
+  .caught-up-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 30%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: none;
+
+    .caught-up {
+      width: 400px;
+      height: 300px;
+      margin: 0 auto;
+      background: $white;
+      text-align: center;
+      border-radius: 8px;
+
+      .caught-up-tick-container {
+        position: relative;
+        padding-top: 100px;
+        padding-bottom: 28px;
+
+        hr {
+          margin: 0;
+          border-width: 1px;
+          border-color: $default-green;
+          margin-left: 20px;
+          margin-right: 20px;
+          border-color: $green-50;
+        }
+
+        .caught-up-tick {
+          position: absolute;
+          width: 90px;
+          height: 80px;
+          background: $white;
+          display: block;
+          left: 40%;
+          margin-top: -38px;
+          padding-left: 8px;
+
+          span {
+            display: block;
+            height: 75px;
+            width: 75px;
+            border-radius: 50%;
+            color: $green-50;
+            border: 2px solid $green-50;
+
+            i {
+              font-size: 40px;
+              margin-top: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.inline-grading {
+    position: relative;
+    top: 0;
+    width: auto;
+    z-index: auto;
+
+    .backdrop {
+      display: none;
+      visibility: hidden;
+    }
+
+    .oa-grade-container {
+      width: auto;
+      height: auto;
+
+      .oa-grade-header {
+        display: none;
+      }
+
+      .oa-grading-section {
+        grid-template-columns: auto;
+        min-width: 200px;
+        padding: 0;
+
+        .left-panel {
+          display: none;
+        }
+
+        .right-panel {
+          .oa-grade-right-panel-header {
+            justify-items: left;
+            padding-left: 10px;
+
+            .oa-grade-score {
+              border-top: 1px solid $oa-score-bg-color;
+              border-right: 1px solid $oa-score-bg-color;
+            }
+          }
+
+          .oa-grade-right-panel-body {
+            max-height: none;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+%student-carousel-style {
+  .student-info {
+    display: grid;
+    width: 100%;
+    height: 56px;
+    border-bottom: 1px solid $dark-600;
+    background-color: $white;
+
+    &.self-grade {
+      grid-template-columns: 50px 1fr 50px 50px 70px;
+    }
+
+    &.no-self-grade {
+      grid-template-columns: 50px 1fr 50px 50px;
+    }
+
+    .self-grade-section {
+      .scores {
+        font-weight: bold;
+        text-align: center;
+        color: $dark-600;
+        padding-top: 10px;
+      }
+    }
+
+    .carousel-control {
+      opacity: 1;
+      background: none;
+      display: contents;
+      text-shadow: unset;
+
+      &.in-active {
+        opacity: 0.3;
+        pointer-events: none;
+
+        i {
+          opacity: 0.3;
+        }
+      }
+
+      &.left,
+      &.right {
+        z-index: 2;
+        width: 20px;
+
+        i {
+          line-height: 50px;
+          color: $gray-base;
+        }
+
+        &.left {
+          left: 30px;
+        }
+
+        &.right {
+          right: 30px;
+        }
+      }
+    }
+
+    .icon {
+      margin: auto;
+
+      span {
+        cursor: pointer;
+      }
+    }
+
+    .oa-grade-students {
+      width: 100%;
+      height: 100%;
+
+      .oa-grade-students-carousel {
+        padding-top: 5px;
+
+        #oa-grade-students-carousel-wrapper {
+          .user-profile-img {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            width: 100%;
+            cursor: default;
+
+            .count-and-name {
+              display: grid;
+              padding-left: 10px;
+            }
+
+            img {
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              border-color: $table-bg;
+              justify-self: center;
+            }
+
+            span {
+              font-family: "Open Sans";
+              font-size: 12px;
+              font-weight: bold;
+              color: $dark-600;
+              text-transform: capitalize;
+            }
+          }
+        }
+      }
+    }
+
+    .self-grade-section {
+      height: 96%;
+      width: 100%;
+      padding: 5px;
+
+      .label {
+        font-size: 10px;
+        text-align: center;
+        color: $dark-600;
+        padding: 0;
+        display: block;
+      }
+
+      .score {
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+        color: $dark-600;
+      }
+    }
+  }
+}

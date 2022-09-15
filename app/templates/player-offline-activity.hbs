@@ -1,0 +1,109 @@
+<div class="offline-activity-player-container">
+  <div class="header-container {{if isShowActivityFeedback 'capture-feedback'}}">
+    <div class="action" {{action 'onClosePlayer'}} data-toggle="tooltip" data-placement="bottom" title="{{t 'common.close'}}">
+      <div class="close-icon">
+        {{gru-icon name='close'}}
+      </div>
+    </div>
+    <div class="content-title">
+      <i class="icon"></i>
+      <span class="title ellipsis">{{offlineActivity.title}}</span>
+    </div>
+    {{!-- Remeix button added --}}
+   {{#if (or isTeacher isAnonymous)}}
+     <div class="pull-left remix" {{action 'remixOaAcitivity' offlineActivity}}>
+      <div class="nav-icon-container">
+        {{gru-icon name='ic_content_copy' class="pull-left"}}
+        <span class="pull-left">{{t 'common.remix'}}</span>
+      </div>
+    </div>
+    {{/if}}
+    {{#if (and isShowActivityFeedback (not isAnonymous))}}
+      {{player/gru-activity-feedback
+         feedbackContent=offlineActivity
+         feedbackCategoryLists=feedbackCategory
+         categoryLists = userCategoryFeedback
+         format = format
+      }}
+    {{/if}}
+  </div>
+  <div class="body-container {{if isFullView 'player-full-view'}}">
+    {{player/offline-activity/gru-oa-stater-page
+      offlineActivity = offlineActivity
+      onStartPlayer = "onStartPlayer"
+      onClosePlayer = "onClosePlayer"
+      isPreview = isPreview
+      isIframeMode = isIframeMode
+    }}
+    {{#unless isShowStartPlayer}}
+      {{player/offline-activity/gru-offline-activity-submission
+        offlineActivity = offlineActivity
+        classId = classId
+        caContentId = caContentId
+        isPreview = isPreview
+        isTeacher = isTeacher
+        offlineActivitySubmissions = offlineActivitySubmissions
+        isParentSubmit = true
+        tiggerAction=tiggerAction
+      }}
+    {{/unless}}
+  </div>
+  <div class="oa-footer-section">
+    <div class="oa-footer-title">
+    <div class="title-name">
+        <span class="material-icons-outlined article-icon">
+          article
+        </span>
+        <span>{{offlineActivity.title}}</span>
+    </div>
+      <a href="javascript:void(0)" {{action "toggleDetailPullup"}} class="close-icon">{{gru-icon name=(if isFullView 'sort' 'clear')}}</a>
+    </div>
+    <div class="oa-action-btns">
+      <div class="time-spent-btn-with-popup">
+        <a href="javascript:void(0)" {{action "showTimer"}} class="timespent-btn show-div">{{t 'gru-performance-metrics.study-time'}} {{gru-icon name="fiber_manual_record"}}</a>
+        <a href="javascript:void(0)" {{action "showTimer"}} class="timespent-btn hide-div"><span class="timespent-btn material-icons-two-tone hide-div">av_timer</span></a>        {{#if (and (not isTeacher) isShowStudyTimerWidget)}}
+          <div class="study-timer-popup-box">
+            {{gru-study-timer
+                studentTimespentData = studentTimespentData
+                isPlayer = true
+                collection=collection
+                intervalObject = intervalObject
+                isShowPullup = true
+                showTimer = "showTimer"
+               }}
+          </div>
+        {{/if}}
+      </div>
+      {{#if isShowStartPlayer}}
+        <a href="javascript:void(0)" class="cancel-btn" {{action "onClosePlayer"}} aria-label="cancel">{{gru-icon name="arrow_back"}} <span>{{t 'gru-assessment-confirmation.cancel'}}</span>  </a>
+        <a href="javascript:void(0)" class="start-btn" {{action "onStartPlayer"}} aria-label="start"><span>{{t 'gru-assessment-confirmation.start'}}</span> {{gru-icon name="arrow_forward"}}</a>
+      {{else}}
+        <a href="javascript:void(0)" class="cancel-btn" {{action "onClosePlayer"}} aria-label="back">{{gru-icon name="arrow_back"}} <span>{{t 'qz-question-viewer.previous'}}</span>  </a>
+        <div class="complete-btn-with-popup">
+          {{#if isShowCompletionConfirmation}}
+            <div class="completion-confirmation-popup">
+              <div class="info-container">
+                {{t 'oa-player.complete-confirm'}}
+              </div>
+              <div class="action-container">
+                <div class="cancel-btn action-btn" {{action "onCancelCompletion"}}>
+                  {{t 'common.no'}}
+                </div>
+                <div class="confirm-btn action-btn" {{action "onCompleteSubmission"}}>
+                  {{t 'common.yes'}}
+                </div>
+              </div>
+            </div>
+          {{/if}}
+          <a href="javascript:void(0)" class="start-btn {{unless isEnableCompleteButton 'disable-event'}}" {{action "onCompleteOA"}} aria-label="complete"><span>{{t 'oa-player.mark-complete'}}</span> {{gru-icon name="arrow_forward"}}</a>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{#if isLoading}}
+  <div class="loading-progress-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

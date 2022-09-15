@@ -1,0 +1,28 @@
+<div class="btn-group drop-menu">
+  {{#if isStudent }}
+    <button class="btn btn-info share out-of-scope" {{action 'share'}}>{{gru-icon name='send'}} <span>{{t "class.analytics.performance.actions.share"}}</span></button>
+  {{else}}
+    {{#if enableEdit }}
+      <button class="btn btn-info edit" {{action 'editContent'}}> {{gru-icon name='mode_edit'}}<span>{{t "class.analytics.performance.actions.edit"}}</span></button>
+    {{/if}}
+    {{#unless collectionLevel}}
+      <button class="btn btn-info download" {{action 'download'}}>{{gru-icon name='file_download'}} <span>{{t "class.analytics.performance.actions.download"}}</span></button>
+    {{/unless}}
+  {{/if}}
+  {{#if enableFullScreen}}
+    <button class="btn btn-info full-screen hidden-sm hidden-xs {{if isFullScreen 'exit-full-screen' 'view-full-screen'}}" {{action 'toggleFullScreen'}}>
+      {{#if isFullScreen}}
+        {{gru-icon name='fullscreen_exit'}} <span>{{t "class.analytics.performance.actions.exitFullScreen"}}</span>
+      {{else}}
+        {{gru-icon name='fullscreen'}} <span>{{t "class.analytics.performance.actions.fullScreen"}}</span>
+      {{/if}}
+    </button>
+  {{/if}}
+</div>
+{{#unless collectionLevel}}
+  <div class="btn-group drop-menu filters">
+    <button class="btn assessment {{if isFilterByAssessment 'btn-primary selected' 'btn-info'}}" {{action 'filter' 'assessment'}}><span>{{t "common.assessments"}}</span></button>
+    <button class="btn collection {{if isFilterByCollection 'btn-primary selected' 'btn-info' }}" {{action 'filter' 'collection'}}><span>{{t "common.collections"}}</span></button>
+  </div>
+{{/unless}}
+

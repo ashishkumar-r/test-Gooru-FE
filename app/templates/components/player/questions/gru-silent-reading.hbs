@@ -1,0 +1,16 @@
+<p class="instructions">
+  {{t "gru-multiple-choice.instructions" action=(t instructionsActionTextKey)}}
+</p>
+<div class="silent-reading-player-container">
+  <div class="silent-reading-answers">
+      <div class="silent-reading-answers-panel">
+        {{#each questions as |question|}}
+          <div class="silent-reading-text">
+            {{{question.text}}}
+          </div>
+        <span class="passage-btn"> <input type="checkbox" aria-checked="false" title="passageBtn"> {{t 'silent-reading.confirm-btn'}}</span>
+        {{/each}}
+      </div>
+  </div>
+
+</div>

@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Get 21 century skills",
+    "request": {
+      "url": "^/api/nucleus/v1/lookups/21-century-skills",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "get-century-skills-200-response.json"
+    }
+  }
+]

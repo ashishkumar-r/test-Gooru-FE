@@ -1,0 +1,233 @@
+.gru-preview-collection {
+  width: 100%;
+  background-color: $light-100;
+  padding: 10px;
+  border-radius: 4px;
+  @include flexbox();
+  @include flex-direction(column);
+  .header-action {
+    @include flexbox;
+    @include justify-content(flex-end);
+    .btn {
+      margin: 0;
+      font-size: $expand-arrow;
+      padding: 0 8px;
+    }
+    .no-bgd {
+      background-color: $table-bg;
+      line-height: 1;
+      i {
+        color: $gray;
+      }
+    }
+  }
+  .collection-information {
+    @include flexbox();
+    .image {
+      display: inline-block;
+      img {
+        border-radius: 4px;
+        height: 82px;
+        width: 82px;
+      }
+    }
+    .collection-info {
+      color: $text-color;
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 15px;
+      width: 65%;
+      .title-section {
+        i {
+          margin: 0 5px 0 0;
+          width: 22px;
+          height: 17px;
+          vertical-align: middle;
+          background-repeat: no-repeat;
+          background-position: center center;
+          display: inline-block;
+          &.collection {
+            background-image: url("gooru/images/add_collection.svg");
+          }
+          &.assessment {
+            background-image: url("gooru/images/add_assessment.svg");
+          }
+        }
+        .title {
+          display: inline-block;
+          color: $blue-400;
+          font-size: $font-title;
+          margin: 0;
+          vertical-align: middle;
+        }
+      }
+      .question-resources {
+        @include flexbox;
+        height: 25px;
+        .bar {
+          font-weight: bold;
+          color: $gray-base;
+          margin: 0 2px;
+        }
+      }
+      .remixed-by {
+        img {
+          width: 20px;
+          height: 20px;
+          border-radius: 50px;
+          cursor: pointer;
+        }
+        div > * {
+          display: inline-block;
+        }
+        span {
+          cursor: pointer;
+        }
+        span.title {
+          margin: 2px 5px 10px 0;
+          cursor: auto;
+        }
+        .owner {
+          color: $blue-400;
+          max-width: 160px;
+          @include text-overflow;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .description {
+    p.content-description {
+      margin: 10px 0 15px;
+      line-height: $font-size-h6;
+    }
+  }
+  .taxonomy.gru-taxonomy-tag-list.in-card {
+    .popover {
+      .arrow:after {
+        border-top-color: $gray-lighter;
+        border-bottom-color: $gray-lighter;
+        border-left-color: $table-bg;
+        border-right-color: $table-bg;
+      }
+    }
+  }
+  .resources {
+    .panel-body {
+      max-height: 277px;
+      overflow-y: auto;
+      padding: 5px;
+      .resource {
+        @include flexbox();
+        @include align-items(center);
+        padding: 5px;
+        border-bottom: 1px solid $gray-lighter;
+        span.number {
+          width: 22px;
+        }
+        i {
+          display: block;
+          vertical-align: top;
+          &.video-icon {
+            background: url("gooru/images/video-resource-green.svg");
+            -webkit-background-size: 26px 28px;
+            background-size: 26px 28px;
+            height: 28px;
+            width: 26px;
+          }
+          &.webpage-icon {
+            background: url("gooru/images/website-resource-green.svg");
+            -webkit-background-size: 25px 25px;
+            background-size: 25px 25px;
+            height: 25px;
+            width: 25px;
+          }
+          &.interactive-icon {
+            background: url("gooru/images/interactive-resource-green.svg");
+            -webkit-background-size: 25px 25px;
+            background-size: 25px 25px;
+            height: 25px;
+            width: 25px;
+          }
+          &.question-icon {
+            background: url("gooru/images/question-resource-green.svg");
+            -webkit-background-size: 25px 25px;
+            background-size: 25px 25px;
+            height: 25px;
+            width: 25px;
+          }
+          &.image-icon {
+            background: url("gooru/images/image-resource-green.svg");
+            -webkit-background-size: 26px 28px;
+            background-size: 26px 28px;
+            height: 28px;
+            width: 26px;
+          }
+          &.text-icon {
+            background: url("gooru/images/text-resource-green.svg");
+            -webkit-background-size: 26px 28px;
+            background-size: 26px 28px;
+            height: 28px;
+            width: 26px;
+          }
+          &.audio-icon {
+            background: url("gooru/images/audio-resource-green.svg");
+            -webkit-background-size: 26px 28px;
+            background-size: 26px 28px;
+            height: 28px;
+            width: 26px;
+          }
+        }
+        .type {
+          font-size: $font-size-xsmall;
+          line-height: $font-size-xsmall;
+          margin: 0 10px;
+          width: 10%;
+        }
+        .resource-title {
+          width: 58%;
+          height: 25px;
+          padding: 5px 10px;
+          line-height: $font-size-h6;
+          border-left: 1px solid $gray-light;
+          .gru-math-text {
+            > * {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin: 0;
+            }
+          }
+        }
+        .gru-preview-taxonomy-tag-list {
+          width: 20%;
+          text-align: $menu-float-dir;
+          .gru-taxonomy-tag {
+            max-width: 80px;
+            .tag-caption {
+              display: none;
+            }
+          }
+          .counter {
+            width: 22px;
+            display: inline-block;
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .actions {
+    @include flexbox();
+    margin-bottom: 20px;
+    @include align-self(flex-end);
+    button {
+      margin: 0 5px;
+    }
+    .cancel {
+      border: 1px solid $gray-light;
+    }
+  }
+}

@@ -1,0 +1,250 @@
+.login-container {
+  box-shadow: 0 5px 15px 0 $navbar-default-toggle-icon-bar-bg;
+  border-radius: 5px;
+  background-color: $white;
+  width: 100%;
+  margin: 15px auto;
+  padding: 0;
+  float: none;
+  max-width: 400px;
+  height: calc(100% - 80px);
+  position: relative;
+  @media (min-width: $screen-sm-min) {
+    width: 400px;
+    margin: 25px auto 15px;
+  }
+
+  .tenant-container {
+    height: calc(100% - 120px);
+    .back {
+      display: grid;
+      grid-template-columns: 48px auto;
+      padding-top: 24px;
+      width: 100%;
+      .icon {
+        width: 100%;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          width: 24px;
+          height: 24px;
+          object-fit: contain;
+          cursor: pointer;
+        }
+      }
+      .title {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.4;
+        color: $dark-500;
+        span {
+          font-size: 12px;
+          color: $gray-dark;
+        }
+      }
+    }
+  }
+
+  .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: calc(100% - 125px);
+
+    label {
+      width: 250px;
+      input {
+        text-align: center;
+      }
+    }
+
+    .error-message {
+      color: $red-400;
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    .submit-btn {
+      width: 250px;
+      height: 48px;
+      box-shadow: 0 2px 2px 0 $slider-box-shadow,
+        0 0 2px 0 $slider-left-box-shadow;
+      border: solid 1px $bg-green-35-green-800;
+      background-color: $bg-green-35-green-800;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .img-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .gooru-logo {
+        background: url("gooru/images/gooru-logo.svg");
+        height: 32px;
+        padding: 0;
+        width: 111px;
+        transform: scale(0.6, 0.6);
+        justify-self: center;
+      }
+      .tenant-logo {
+        background: url("gooru/images/NavMath_Logo.png");
+        height: 112px;
+        padding: 0;
+        width: 112px;
+        justify-self: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 12px 0;
+      }
+    }
+
+    .login-link {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .footer-contain {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    position: absolute;
+    @media screen and (max-height: 700px) {
+      position: inherit;
+    }
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+.sign-up-container {
+  box-shadow: 0 5px 15px 0 $navbar-default-toggle-icon-bar-bg;
+  border-radius: 5px;
+  background-color: $white;
+  width: 100%;
+  margin: 15px auto;
+  padding: 0;
+  float: none;
+  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  @media (min-width: $screen-sm-min) {
+    width: 400px;
+    margin: 25px auto 15px;
+  }
+  .sign-in-header {
+    .back {
+      display: grid;
+      grid-template-columns: 48px auto;
+      padding-top: 24px;
+      width: 100%;
+      .icon {
+        width: 100%;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          width: 24px;
+          height: 24px;
+          object-fit: contain;
+          cursor: pointer;
+        }
+      }
+      .title {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 20px;
+        color: $dark-500;
+        line-height: 1.4;
+        justify-content: center;
+        span {
+          font-size: 12px;
+          color: $gray-dark;
+        }
+      }
+    }
+  }
+  .header-text {
+    width: 83%;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 35px;
+    color: $black-bold;
+  }
+  .sign-up-panel {
+    .tenant-list {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100% - 72px);
+      flex-direction: column;
+
+      .tenant-info {
+        width: 100%;
+        height: 64px;
+        border-bottom: solid 1px $tenant-info-border-color;
+        display: grid;
+        grid-template-columns: 60px auto;
+        align-items: center;
+        cursor: pointer;
+        .tenant-log {
+          display: flex;
+          justify-content: center;
+          .log {
+            width: 40px;
+            height: 40px;
+          }
+          span {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: $orange-aob;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            font-size: 15px;
+            font-weight: bold;
+          }
+        }
+        .tenant-name {
+          color: $dark-400;
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .footer-container {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    bottom: 0;
+    width: 100%;
+  }
+  .footer-text {
+    color: $black-bold;
+  }
+  .sinup-link {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}

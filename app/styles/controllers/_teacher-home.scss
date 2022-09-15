@@ -1,0 +1,660 @@
+.container-fluid {
+  .teacher-landing {
+    background-color: $dark-400;
+    color: $white;
+
+    &.controller {
+      flex-direction: column;
+    }
+
+    .title {
+      > * {
+        display: inline-block;
+      }
+    }
+
+    .gru-take-tour {
+      right: 80px;
+      top: 135px;
+      width: 40px;
+    }
+
+    &.atc-landing {
+      opacity: 0.8;
+      padding-top: 5px;
+    }
+
+    .teacher-panel {
+      .sort-class-panel {
+        display: grid;
+        grid-template-columns: auto 135px;
+        width: 960px;
+        margin: 0 auto;
+        @media screen and (max-width: $screen-md) {
+          width: 100%;
+        }
+      }
+      > .content {
+        width: 960px;
+        margin: 0 auto;
+        @media screen and (max-width: $screen-md) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .filter-date-asc {
+    padding-top: 25px;
+    bottom: 5px;
+    float: $menu-float-dir;
+
+    button.filter-asc,
+    button.filter-date {
+      margin: 1px;
+      padding: 5px 18px;
+
+      i {
+        font-size: $font-size-h4;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        border-left: 4px solid $table-bg;
+        border-right: 4px solid $table-bg;
+        height: 0;
+        width: 0;
+      }
+
+      .arrow-down {
+        border-top: 4px solid $white;
+      }
+
+      .arrow-up {
+        border-bottom: 4px solid $white;
+      }
+    }
+
+    button.filter-asc {
+      .arrow-down,
+      .arrow-up {
+        right: 8px;
+        margin-left: 5px;
+      }
+    }
+
+    button.filter-date {
+      .arrow-down,
+      .arrow-up {
+        left: 8px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.currently-studying {
+  display: flex;
+  align-items: center;
+  padding: 15px 12px 0px;
+  justify-content: space-between;
+
+  .title {
+    font-size: 20px;
+    margin-right: 10px;
+    display: block;
+    font-weight: 100;
+  }
+
+  .deep-link-container {
+    span {
+      margin-right: 10px;
+    }
+    .disable-event {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  }
+}
+
+.teacher-landing {
+  .greetings {
+    width: 960px;
+    height: 30px;
+
+    .title {
+      float: $tab-float-dir;
+
+      span {
+        color: $gray;
+        font-size: 19px;
+      }
+    }
+
+    .featured-courses {
+      span {
+        color: $gray;
+        font-size: 19px;
+      }
+
+      a {
+        font-style: italic;
+      }
+    }
+  }
+
+  .panels {
+    .panel {
+      &.create-class,
+      &.featured-courses {
+        min-height: 235px;
+      }
+
+      &.featured-courses {
+        .panel-body {
+          .courses {
+            height: 80px;
+            overflow-y: auto;
+          }
+        }
+      }
+
+      &.create-class {
+        .panel-body {
+          .legend {
+            height: 115px;
+          }
+        }
+      }
+
+      .panel-heading {
+        padding: 10px 18px 0;
+        font-size: $font-size-lead;
+        color: $gray-base;
+      }
+
+      .panel-body {
+        padding: 0 15px 10px 18px;
+
+        .legend {
+          font-size: $font-size-lead;
+        }
+
+        .courses {
+          @media (min-width: $screen-lg) {
+            @include flexbox;
+          }
+
+          .gru-course-card.small {
+            padding: 0;
+            margin: 12px 20px 0 0;
+            width: 230px;
+            float: $tab-float-dir;
+            @media (max-width: $screen-lg) {
+              width: 100%;
+              float: none;
+            }
+
+            .panel {
+              padding: 0;
+              overflow: hidden;
+              box-shadow: none;
+              border: 1px solid $light-400;
+              min-height: 65px;
+
+              .panel-body {
+                padding: 0;
+
+                .card-header {
+                  .header-content {
+                    @media (max-width: $screen-lg) {
+                      width: 100%;
+                    }
+
+                    .course-title {
+                      width: 100%;
+                    }
+
+                    .subject {
+                      margin: 15px 0 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .actions {
+          margin: 22px 0 0;
+
+          button {
+            font-size: $font-size-base;
+          }
+        }
+
+        .will-disappear {
+          color: $light-400;
+          line-height: $font-size-base;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 10px 0 0;
+    clear: both;
+    margin-top: 20px;
+    @include transition(width 0.3s ease-out);
+
+    .row:after,
+    .row:before {
+      content: none;
+    }
+
+    .tab-pane.active {
+      margin: 0;
+    }
+
+    #archived-classes {
+      text-align: center;
+
+      span.no-archived {
+        font-size: $font-size-lead;
+        margin-left: 20px;
+        margin: 30px;
+      }
+    }
+    .incomplete-not-available {
+      font-size: 20px;
+      margin: 30px;
+      text-align: center;
+    }
+  }
+}
+
+.teacher-navigator {
+  padding-top: 7px;
+  position: relative;
+  box-shadow: inset 0 -1px 0 $gray-light;
+  -webkit-padding-start: 0;
+  background-color: $white;
+
+  .nav-tabs {
+    height: 50px;
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      margin-right: 15px;
+      float: $tab-float-dir;
+      opacity: 0.8;
+      color: $white;
+
+      a {
+        padding: 10px 0 5px;
+        color: $dark-400;
+        text-transform: uppercase;
+        @media screen and (max-width: 492px) {
+          padding: 0;
+          text-align: center;
+        }
+
+        span.lead {
+          font-size: 13px;
+          font-weight: normal;
+        }
+      }
+
+      &.active {
+        opacity: 1;
+        color: $blue-400;
+        border-bottom: 4px solid $blue-400;
+
+        span.lead {
+          font-size: 13px;
+          font-weight: bold;
+          color: $blue-400;
+        }
+      }
+    }
+  }
+
+  .no-classes-found {
+    font-size: $font-navigator;
+    line-height: $font-size-h5;
+    margin: 15px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .actions {
+    @include flexbox;
+    @include align-items(flex-end);
+    @include justify-content(space-between);
+    height: 35px;
+    margin: 8px 0 0;
+  }
+
+  .nav:after,
+  .nav:before {
+    content: none;
+  }
+
+  .atc-view.nav {
+    height: 50px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 50px;
+    border-bottom: solid 1px $greyish;
+    background-color: $white;
+    box-shadow: 0 2px 4px 0 $left-arrow-box-shadow;
+
+    .class-title {
+      padding: 8px;
+      width: 85%;
+      line-height: 30px;
+      font-size: 20px;
+      color: $dark-400;
+      text-transform: capitalize;
+    }
+
+    .atc-class-performance {
+      width: 80px;
+      text-align: center;
+      color: $white;
+      line-height: 50px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .toggle-view {
+      display: grid;
+      justify-items: center;
+      width: 50px;
+      right: 0;
+      height: 50px;
+      color: $dark-400;
+    }
+  }
+
+  .toggle-view {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+
+    i {
+      font-size: 30px;
+      line-height: 1.8;
+      cursor: pointer;
+    }
+  }
+}
+
+.create-class-card {
+  display: grid;
+  width: 960px;
+  margin: 0 auto;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+
+  .currently-studying {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .create-class {
+    width: 100%;
+    margin: 0 auto;
+    .create-subject-card-list {
+      display: flex;
+      grid-template-columns: 1fr 1fr 1fr;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}
+
+.content .tab-content {
+  margin-top: 20px;
+}
+
+.lessons-list span {
+  color: $green-400;
+}
+
+.new-cards.gru-teacher-class-cards.incomplete-cards {
+  height: 390px;
+
+  .card-panel-heading {
+    padding-left: 16px;
+    background-color: $white;
+    width: 100%;
+    padding: 0 0 0 10px;
+    height: auto;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom: 1px solid $dark-600;
+  }
+
+  .card-panel-heading .title.ellipsis {
+    color: $blue-400;
+    font-family: Montserrat;
+    padding-top: 8px;
+  }
+
+  .card-classname {
+    color: $black-bold;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: normal;
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }
+
+  .cards-panel-body {
+    height: auto;
+
+    .card-details-container {
+      box-shadow: 1px 0 4px 0 $black-bold;
+
+      .help-identify-teacher {
+        opacity: 0.5;
+        font-family: Montserrat;
+        font-size: 13px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        color: $gray;
+        padding: 8px 10px;
+      }
+
+      .overall-card {
+        display: flex;
+        height: 171px;
+
+        .image-column-content {
+          width: 38%;
+
+          .class-code-text {
+            padding: 10px;
+            box-shadow: 0 -2px 0px 0 $black-bold;
+            font-family: Montserrat;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.45;
+            letter-spacing: normal;
+            color: $black-bold;
+            opacity: 0.5;
+          }
+
+          .random-img {
+            background-size: contain;
+            height: 66%;
+            width: 114px;
+          }
+        }
+
+        .lessons-top-bar {
+          border-top: 1px solid $light-200;
+          width: 100%;
+
+          .lessons-list {
+            position: relative;
+            width: 100%;
+
+            .lessons-check {
+              right: 0px;
+              display: flex;
+              justify-content: flex-end;
+              position: absolute;
+              padding: 15px;
+            }
+
+            .class-sections {
+              color: $blue-400;
+              font-family: Montserrat;
+              padding: 4px 16px;
+            }
+
+            .class-subject {
+              color: $black-bold;
+              font-family: Montserrat;
+              font-size: 14px;
+              font-weight: 300;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: 1.14;
+              letter-spacing: normal;
+              padding-left: 16px;
+              padding-bottom: 8px;
+              border-bottom: 1px solid $light-200;
+            }
+
+            .class-sections {
+              color: $blue-400;
+              font-family: Montserrat;
+              padding: 4px 16px;
+            }
+          }
+        }
+
+        .incomplete-no-subject {
+          color: $red-400;
+          font-size: 15px;
+          margin: auto;
+        }
+      }
+
+      .class-code-content {
+        display: flex;
+
+        .classs-code-element {
+          color: $black-bold;
+          opacity: 0.5;
+        }
+
+        .lessons-list {
+          position: relative;
+          width: 100%;
+
+          .lessons-check {
+            right: 0px;
+            display: flex;
+            justify-content: flex-end;
+            position: absolute;
+            padding: 15px;
+          }
+
+          .class-sections {
+            color: $blue-400;
+            font-family: Montserrat;
+            padding: 4px 16px;
+          }
+        }
+        .class-last-subject {
+          color: $black-bold;
+          font-family: Montserrat;
+          font-size: 14px;
+          font-weight: 300;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.14;
+          letter-spacing: normal;
+          padding-left: 16px;
+          padding-bottom: 8px;
+        }
+      }
+    }
+
+    .delete-class-list-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+
+      .delete-card-list {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: $black-bold;
+      }
+
+      .checked-lesson {
+        color: $green-400;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        display: flex;
+
+        .delete-icon {
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .confirm-delete-container {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: flex-end;
+
+      .delete-confirm {
+        background: $green-83c;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: $black-bold;
+        border-radius: 20px;
+        width: 86px;
+        height: 24px;
+        border: none;
+      }
+
+      .close-int-icon {
+        padding-left: 6px;
+        color: $black-bold;
+      }
+    }
+  }
+}

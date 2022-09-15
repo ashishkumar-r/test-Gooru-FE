@@ -1,0 +1,26 @@
+<p class="instructions">
+  {{t "gru-true-false.instructions" action=(t instructionsActionTextKey)}}
+</p>
+
+<div class="answer-choices">
+      <div class="radio {{if readOnly 'disabled'}}">
+          {{#radio-button
+            disabled=readOnly
+            value=trueAnswerId
+            groupValue=userAnswer
+            changed="selectAnswerChoice"
+            name="answer-choice-radio"}}
+              <span>({{answer-letter 0}})</span>{{t "gru-true-false.true"}}
+          {{/radio-button}}
+      </div>
+      <div class="radio {{if readOnly 'disabled'}}">
+          {{#radio-button
+            disabled=readOnly
+            value=falseAnswerId
+            groupValue=userAnswer
+            changed="selectAnswerChoice"
+            name="answer-choice-radio"}}
+            <span>({{answer-letter 1}})</span>{{t "gru-true-false.false"}}
+          {{/radio-button}}
+      </div>
+</div>

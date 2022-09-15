@@ -1,0 +1,74 @@
+.class-modal {
+  margin: 0 -15px;
+
+  &.controller {
+    .modal {
+      display: block;
+      height: inherit;
+      position: relative;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .modal-header {
+      padding-top: 32px;
+    }
+  }
+
+  .modal-dialog {
+    margin: 10px 0;
+    @media (min-width: $screen-sm) {
+      margin: 30px auto;
+      width: 405px;
+    }
+    @media (min-width: $screen-md) {
+      margin: 70px auto;
+    }
+  }
+
+  .modal-content {
+    border: 0;
+    text-align: center;
+
+    > * {
+      padding: 0 10px 15px;
+      @media (min-width: $screen-sm) {
+        padding: 0 15px;
+      }
+    }
+  }
+
+  .form-group {
+    text-align: initial;
+  }
+
+  .modal-footer {
+    @include flexbox;
+    @include flex-direction(column);
+    padding: 0;
+    text-align: center;
+
+    .back-cta {
+      margin: 0 auto;
+      padding: 50px 0 25px;
+      width: initial;
+    }
+
+    .btn {
+      font-size: $font-size-h4;
+      padding-left: 35px;
+      padding-right: 0;
+    }
+    .join-class-btn,
+    .get-started-btn {
+      width: 100%;
+    }
+
+    i {
+      font-size: $font-size-h3;
+      margin-top: 7px;
+      position: absolute;
+      right: 0;
+    }
+  }
+}

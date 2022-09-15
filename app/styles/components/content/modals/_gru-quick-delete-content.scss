@@ -1,0 +1,7 @@
+.content.modals.gru-quick-delete-content {
+  @extend .content.modals.gru-delete-content;
+
+  .modal-header {
+    background-color: $red-400;
+  }
+}

@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <span class="modal-title">
+      {{t 'gru-add-rubric-to-question.title'}}
+  </span>
+</div>
+<div class="modal-body">
+  <div class="lead">
+    <span>
+      {{#if filteredRubrics.length}}
+        {{t 'gru-add-rubric-to-question.lead'}}
+      {{else}}
+        {{t 'gru-add-rubric-to-question.no-rubrics'}}
+      {{/if}}
+    </span>
+  </div>
+  <div class="list">
+    {{#each filteredRubrics as |rubric|}}
+      <div class="{{rubric.id}} rubric" {{action "selectRubric" rubric}}>
+        {{cards/gru-rubric-card rubric=rubric}}
+      </div>
+    {{/each}}
+  </div>
+</div>
+<div class="modal-footer">
+  <div>
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+      <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    {{#if filteredRubrics.length}}
+      <button class="btn btn-primary add-to" disabled={{if selectedRubric false true}} {{action "addTo"}}>
+        {{t 'common.add'}}
+      </button>
+    {{else}}
+      <button class="btn btn-primary go-to" {{action "goToContent"}}>
+        {{t 'gru-add-rubric-to-question.go-to-content'}}
+      </button>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.player .gru-hot-text-highlight {
+  span.item {
+    &.selected {
+      border-color: $green-400;
+      background-color: $green-400;
+    }
+  }
+}

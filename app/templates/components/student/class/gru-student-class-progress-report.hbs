@@ -1,0 +1,116 @@
+<div class="backdrop" {{action "onClose"}}></div>
+{{#if isShowReport}}
+<div class="class-progress-report-container" tabindex={{tabindex}}>
+  <div class="student-details">
+  </div>
+  <div class="header-container">
+    <div class="report-period-selector title-container">
+        <a class="go-back-to-peformance print-preview" {{action "onClose"}} href="javascript:void(0)" tabindex={{tabindex}} aria-label="back to performance page">
+          {{gru-icon name="arrow_back"}}
+        </a>
+      <div class="active-period">
+        <span class="prev-cal-arrow {{if isPrevious 'disable'}}" onclick={{action 'showPrevious'}} onkeypress={{action 'showPrevious'}} tabIndex={{tabIndex}}>{{gru-icon name="keyboard_arrow_left"}}</span>
+        <span class="datepicker" onclick={{action "onToggleReportPeriod"}} onkeypress={{action "onToggleReportPeriod"}} tabIndex={{tabIndex}}>
+          <span>{{gru-icon name='date_range'}}</span>
+          {{#if (and rangeStartDate (not isMonthly))}}
+            <span class="report-period-text">{{format-date rangeStartDate 'DD MMMM YYYY'}}</span>
+            <span> to </span>
+          {{/if}}
+          <span class="report-period-text"> {{format-date rangeEndDate (if isMonthly 'MMM YYYY' 'DD MMMM YYYY')}}</span>
+        </span>
+        <span class="next-cal-arrow {{if isNext 'disable'}}" onclick={{action 'showNext'}} onkeypress={{action 'showNext'}} tabIndex={{tabIndex}}>{{gru-icon name="keyboard_arrow_right"}}</span>
+      </div>
+      {{#if isCalendarEnable}}
+        <div class="backdrop" {{action "closeDatePicker"}}></div>
+      {{/if}}
+      <div class="date-range-picker-container">
+        <div class="date-range-selector">
+          <span class="{{if isDaily 'active'}}" onclick={{action "onSelectRangeType" 'isDaily'}} onkeypress={{action "onSelectRangeType" 'isDaily'}} tabIndex={{tabIndex}}>{{t 'common.daily'}}</span>
+          <span class="{{if isWeekly 'active'}}" onclick={{action "onSelectRangeType" 'isWeekly'}} onkeypress={{action "onSelectRangeType" 'isWeekly'}} tabIndex={{tabIndex}}>{{t 'common.weekly'}}</span>
+          <span class="{{if isMonthly 'active'}}" onclick={{action "onSelectRangeType" 'isMonthly'}} onkeypress={{action "onSelectRangeType" 'isMonthly'}} tabIndex={{tabIndex}}>{{t 'common.monthly'}}</span>
+          <span class="{{if isDateRange 'active'}}" onclick={{action "onRangePickerReport" }} onkeypress={{action "onRangePickerReport" }} tabIndex={{tabIndex}}>{{t 'common.date-range'}}</span>
+          <span class="{{if isAllTime 'active'}}" onclick={{action "getTillnowData" }} onkeypress={{action "getTillnowData" }} tabIndex={{tabIndex}}>{{t 'common.all-time'}}</span>
+        </div>
+        {{#if isDaily}}
+          {{ca-date-picker
+            forMonth=forMonth
+            forYear=forYear
+            onSelectDate="onSelectDate"
+            onSelectToday="onSelectToday"
+            showToday=true
+            selectedDate=selectedDate
+            closeDatePicker="closeDatePicker"
+            pickerStartDate=classStartDate
+            tabindex=tabIndex
+          }}
+        {{else if isWeekly}}
+          {{ca-week-picker
+            forMonth=forMonth
+            forYear=forYear
+            onSelectWeek="onSelectWeek"
+            selectedWeekDate=selectedWeekDate
+            closeDatePicker = "closeDatePicker"
+            disableFutureDate= true
+            pickerStartDate=classStartDate
+            tabindex=tabIndex
+            }}
+        {{else if isMonthly}}
+          {{ca-month-picker
+            forMonth=forMonth
+            forYear=forYear
+            showCalendarView=true
+            onSelectMonth="onSelectMonth"
+            selectedMonth=selectedMonth
+            closeDatePicker="closeDatePicker"
+            disableFutureDate=true
+            tabindex=tabIndex
+          }}
+        {{else if isDateRange}}
+          {{ca-daterange-datepicker
+            closeDatePicker='closeDatePicker'
+            onScheduleForDate='onChangeDateForStudent'
+            userStartDateAsToday=false
+            disableFutureDate=false
+            enableScheduleMonth=false
+            courseStartDate=classStartDate
+            startDate= startDate
+            endDate = endDate
+            forChangeStartDateNavMonth=true
+            allowTwoDateRangePicker=true
+            tabindex=tabIndex}}
+        {{else}}
+          <div class="all-time">
+            <div class="backdrop" {{action "closeDatePicker"}}></div>
+            <div class="date-range"> <span>{{rangeStartDate}}</span> - <span>{{rangeEndDate}}</span></div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  {{#if studentProfile}}
+      {{proficiency/inspect/students-progress-report
+        reportData=weeklyReportData
+        studentProfile=studentProfile
+        startDate=rangeStartDate
+        endDate=rangeEndDate
+        class=class
+        studentCompetenciesReport=studentCompetenciesReport
+        onShowReport="onShowActivityReport"
+        competenciesBucket=competenciesBucket
+        studentCompetencyData=studentCompetencyData
+      }}
+  {{/if}}
+</div>
+{{/if}}
+{{#if isShowPortfolioActivityReport}}
+  {{reports/pull-up/gru-collection-preview
+      showPullUp=isShowPortfolioActivityReport
+      previewContentId=reportActivityId
+      previewContentType=reportActivityType
+      isReportView=true
+      userId=userId
+      repostReadContent=repostReadContent
+      tabindex=tabIndex
+      isCompetencyReport=isCompetencyReport
+    }}
+{{/if}}

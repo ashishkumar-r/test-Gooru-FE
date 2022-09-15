@@ -1,0 +1,357 @@
+.offline-activity-player.gru-offline-activity-task-submission {
+  position: relative;
+  background: $white;
+  padding: 15px;
+  margin-bottom: 15px;
+
+  .task-submission-container {
+    position: relative;
+
+    .task-summary-container {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      align-items: center;
+      margin-right: 50px;
+
+      .task-icon {
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        background-image: url("./gooru/images/website-resource-dark.svg");
+        display: block;
+      }
+
+      .task-info {
+        .task-title {
+          color: $placeholder-color;
+          font-weight: bold;
+          @include ellipsis(
+            $font-size: 14px,
+            $line-height: 1.2,
+            $lines-to-show: 1
+          );
+        }
+      }
+
+      .expected-submission-container {
+        grid-column: 2;
+
+        .expected-submission-label {
+          font-size: 12px;
+          color: $placeholder-color;
+          font-weight: bold;
+        }
+
+        .expected-submission-value {
+          font-size: 11px;
+          color: $dark-400;
+          opacity: 0.7;
+          text-transform: capitalize;
+        }
+      }
+
+      .pending-submission-info {
+        grid-column: 2;
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: left;
+        column-gap: 8px;
+        border-bottom: 1px solid $table-border-color;
+
+        .pending-label-container {
+          font-size: 12px;
+          color: $placeholder-color;
+          font-weight: bold;
+        }
+
+        .pending-info-container {
+          .pending-info {
+            font-size: 11px;
+            color: $dark-400;
+            opacity: 0.7;
+          }
+        }
+      }
+
+      .task-description {
+        grid-column: 2;
+        font-size: 13px;
+        color: $placeholder-color;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      .task-toggle {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-align: center;
+        cursor: pointer;
+
+        i {
+          line-height: 48px;
+          color: $dark-800;
+        }
+      }
+    }
+
+    .task-details-container {
+      .task-upload-container {
+        display: grid;
+        row-gap: 10px;
+        grid-template-columns: 1fr 96px;
+        column-gap: 15px;
+        padding-left: 30px;
+        @media screen and (max-width: 567px) {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .task-answer {
+          grid-column-start: 1;
+          grid-column-end: 3;
+
+          .answer-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: $placeholder-color;
+          }
+
+          .input-container {
+            .gru-rich-text-editor {
+              .wysihtml5-editor {
+                min-height: 100px;
+              }
+
+              .error-messages {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .task-file-upload-container {
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 2;
+
+          .uploads-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: $placeholder-color;
+          }
+
+          .task-file-uploads {
+            display: flex;
+            flex-flow: row wrap;
+
+            .task-file-preview {
+              width: 70px;
+              height: 70px;
+              border: 2px solid $gray-light;
+              border-radius: 5px;
+              text-align: center;
+              margin: 5px;
+
+              a.preview-file-link {
+                width: inherit;
+                height: inherit;
+                display: block;
+
+                i {
+                  font-size: 40px;
+                  line-height: 70px;
+                }
+
+                img {
+                  width: inherit;
+                  height: inherit;
+                  padding: 5px;
+                }
+              }
+            }
+
+            .task-file-upload {
+              position: relative;
+              margin: 5px;
+
+              .file-upload-box {
+                cursor: pointer;
+                width: 70px;
+                height: 70px;
+                border: 2px dashed $gray-light;
+                text-align: center;
+                border-radius: 5px;
+
+                i.add {
+                  line-height: 70px;
+                  font-size: 30px;
+                  color: $gray-light;
+                }
+
+                &:hover {
+                  border-color: $dark-400;
+
+                  i.add {
+                    color: $dark-400;
+                  }
+                }
+              }
+
+              .file-picker__preview {
+                position: absolute;
+                width: 70px;
+                height: 70px;
+                top: 0;
+                text-align: center;
+
+                img {
+                  width: inherit;
+                  height: inherit;
+                  background-color: $light-200;
+                }
+
+                i.file-preview-type-icon {
+                  font-size: 40px;
+                  line-height: 70px;
+                  z-index: 9;
+                  width: inherit;
+                  height: inherit;
+                  background-color: $light-200;
+                }
+              }
+
+              .remove-file {
+                display: none;
+              }
+
+              &:hover {
+                .remove-file {
+                  display: block;
+                  z-index: 5;
+                  position: absolute;
+                  top: 0;
+                  cursor: pointer;
+                  width: 70px;
+                  height: 70px;
+                  background-color: $remove-file-box-shadow;
+                  text-align: center;
+
+                  i.clear {
+                    line-height: 70px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .task-url-upload-container {
+          grid-row-start: 3;
+          max-width: 350px;
+
+          .urls-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: $placeholder-color;
+          }
+
+          .task-url-upload {
+            display: grid;
+            grid-template-columns: 50px 60% 30px;
+            column-gap: 8px;
+            row-gap: 8px;
+
+            .url-label {
+              color: $placeholder-color;
+              text-transform: uppercase;
+              font-size: 14px;
+            }
+
+            .url-value {
+              input {
+                width: 100%;
+
+                &:focus {
+                  outline: none;
+                  border: none;
+                }
+                border-color: $input-border-color;
+              }
+            }
+
+            .add-url {
+              cursor: pointer;
+              display: grid;
+              align-self: end;
+            }
+
+            &.preview-url {
+              .url-value {
+                input {
+                  border: none;
+                }
+              }
+            }
+            @media screen and (max-width: $screen-xs) {
+              grid-template-columns: 50px 1fr 30px;
+            }
+          }
+        }
+
+        .save-task-submission {
+          grid-row-start: 3;
+          justify-self: right;
+          cursor: pointer;
+          width: 96px;
+          height: 36px;
+          background-color: $blue-400;
+          color: $white;
+          text-align: center;
+          line-height: 36px;
+          text-transform: uppercase;
+          display: grid;
+          justify-content: center;
+          grid-template-columns: auto auto;
+          align-self: end;
+
+          &.disable-event {
+            opacity: 0.5;
+          }
+
+          &.saving {
+            pointer-events: none;
+            cursor: progress;
+          }
+
+          .spinner {
+            width: 30px;
+
+            .three-bounce-spinner {
+              width: inherit;
+              margin: 0;
+
+              div {
+                width: 8px;
+                height: 8px;
+                background-color: $white;
+              }
+            }
+          }
+          @media screen and (max-width: $screen-xs) {
+            grid-row-start: 4;
+            grid-column-start: 2;
+          }
+        }
+      }
+    }
+  }
+
+  .loading-progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}

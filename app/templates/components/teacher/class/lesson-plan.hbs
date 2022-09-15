@@ -1,0 +1,265 @@
+<div class="milestone-course-map-container">
+  {{#each milestones as | milestone milestoneIndex | }}
+    {{#unless milestone.isUnit0}}
+      <div class="milestone-course-map {{if milestone.isActive 'active'}} {{if milestone.isClassGrade 'class-grade'}}">
+        <div class="milestone-course-map-panel  {{if milestone.isActive 'active'}}">
+          <div class="milestone-info-container" {{action 'toggleMilestoneItems' milestone }}>
+            <div class="milestone-icon-upward-line {{if  (eq milestoneIndex 0) 'hidden'}}">
+              <svg height="40" width="20">
+                <line x1="0" y1="0" x2="0" y2="40" />
+              </svg>
+            </div>
+            <div class="milestone-flag-icon">
+              {{gru-icon name="flag"}}
+            </div>
+            <div class="milestone-title">
+              <p>{{gradeSubject.title}} - {{milestone.grade_name}}
+                {{#if (gte milestone.performance.completedInPrecentage 0)}} ({{milestone.performance.completedInPrecentage}}% {{t 'common.completed'}}) {{/if}}
+              </p>
+            </div>
+            <div class="milestone-caret">
+              {{#if milestone.isActive}}
+                {{gru-icon name="arrow_drop_up"}}
+              {{else}}
+                {{gru-icon name="arrow_drop_down"}}
+              {{/if}}
+            </div>
+          </div>
+          {{#if showPerformance}}
+            <div class="milestone-peformance {{unless milestone.performance.hasStarted 'disable-event'}} {{concat 'grade-range-' (grade-range milestone.performance.scoreInPercentage)}}">
+              {{#if milestone.performance.hasStarted}}
+                <span class="score">
+                  {{#if (eq milestone.performance.scoreInPercentage null)}}
+                      <span class="not-started">{{t 'common.not_started'}}</span>
+                  {{else}}
+                    {{concat milestone.performance.scoreInPercentage '%'}}
+                  {{/if}}
+                </span>
+                <span class="no-of-submissions">
+                  <span class="count">{{milestone.numberOfSubmissions}}</span> {{gru-icon name="account_circle"}}
+                </span>
+              {{else}}
+                      <span class="not-started">{{t 'common.not_started'}}</span>
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="milestone-course-map-lesson-container" id="milestone-{{milestone.milestone_id}}">
+          {{#if milestone.hasLessonFetched}}
+            {{#if milestone.lessons}}
+              {{#each milestone.lessons as | lesson lessonIndex |}}
+                <div class="milestone-course-map-lesson {{if milestoneHasClassGrade 'class-grade-milestone'}}  {{if lesson.isNextActive 'next-active'}} {{if lesson.isPrevActive 'prev-active'}} {{if lesson.isActive 'active'}}">
+                  <div class="milestone-course-map-lesson-panel first-path-{{lesson.firstCollHasSuggsType}} prev-col-path-{{lesson.prevLeCollHasSuggsType}}  {{if lesson.has-activity 'has-activity'}}">
+                    <div class="lesson-icon-container" {{action 'toggleLessonItems'milestone milestone.lessons lesson lessonIndex }}>
+                      <div class="lesson-icon-upward-line {{if lesson.isPrevActive 'hidden'}}">
+                        <svg height="35" width="20">
+                          <line x1="0" y1="0" x2="0" y2="35" />
+                          <path class="path-right" d="M 0 0  t 8 17 -5 60" />
+                          <path class="path-left" d="M 15 0  t -8 17 5 60" />
+                        </svg>
+                      </div>
+                      <i class="lesson-icon"></i>
+                    </div>
+                    <div class="domain-lesson-title" {{action 'toggleLessonItems'milestone milestone.lessons lesson lessonIndex }}>
+                      <p class="domain-name">{{lesson.tx_domain_name}}</p>
+                      <p>{{lesson.lesson_title}}</p>
+                    </div>
+                    {{#if showPerformance}}
+                      <div class="lesson-peformance {{unless lesson.performance.hasStarted 'disable-event'}} {{concat 'grade-range-' (grade-range lesson.performance.scoreInPercentage)}}">
+                        {{#if lesson.performance.hasStarted}}
+                          <span class="score">
+                            {{#if (eq lesson.performance.scoreInPercentage null)}}
+                            <span class="not-started">{{t 'common.not_started'}}</span>     
+                            {{else}}
+                              {{concat lesson.performance.scoreInPercentage '%'}}
+                            {{/if}}
+                          </span>
+                          <span class="no-of-submissions">
+                            <span class="count">{{lesson.numberOfSubmissions}}</span> {{gru-icon name="account_circle"}}
+                          </span>
+                        {{else}}
+                         <span class="not-started">{{t 'common.not_started'}}</span>
+                        {{/if}}
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="milestone-course-map-lesson-plan-container" id="milestone-lesson-{{milestone.milestone_id}}-{{lesson.lesson_id}}-{{lessonIndex}}">
+                    {{#if lesson.hasLessonPlanFetched}}
+                      {{#if lesson.lessonPlans}}
+                        <div class="milestone-course-map-lesson-plan {{if milestoneHasClassGrade 'class-grade-milestone'}}">
+                          <div class="milestone-course-map-lesson-plan-panel" {{action 'toggleLessonPlanItems' milestone.milestone_id lesson.lesson_id lesson.lessonPlans }}>
+                            <div class="lesson-plan-icon-container">
+                              <i class="lesson-icon"></i>
+                            </div>
+                            <div class="lesson-plan-title-container">
+                              <p>{{t 'common.lesson-plan'}}</p>
+                              <p>{{lesson.lessonPlans.sessions.length}} {{t 'lesson-plan.sessions'}}</p>
+                            </div>
+                          </div>
+                          <div class="milestone-course-map-lesson-plan-lists" id="lesson-plan-{{milestone.milestone_id}}-{{lesson.lesson_id}}-{{lesson.lessonPlans.id}}">
+                            <div class="milestone-course-map-lesson-plan-list-item">
+                              <div class="milestone-course-map-lesson-plan-list-item-title" {{action 'toggleLessonPlanType'  milestone.milestone_id lesson.lesson_id  'prior-knowledge'}}>
+                                <div class="lesson-plan-title">
+                                  <p>{{t 'prior-knowledge' }}</p>
+                                </div>
+                                <div class="milestone-caret">
+                                  {{gru-icon name="arrow_drop_down"}}
+                                </div>
+                              </div>
+                              <div class="milestone-course-map-lesson-plan-list-item-title-description">
+                                <div class="lesson-plan-competency-container" id="lesson-plan-{{milestone.milestone_id}}-{{lesson.lesson_id}}-prior-knowledge">
+                                  <div class="lesson-plan-competency-panel">
+                                    {{#each lesson.lessonPlans.priorKnowledge as |lessonKnowledge|}}
+                                      <div class="lesson-plan-competency-panel-box">
+                                        <h4>{{lessonKnowledge.code}}</h4>
+                                        <p>{{lessonKnowledge.title}}</p>
+                                      </div>
+                                    {{/each}}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="milestone-course-map-lesson-plan-list-item">
+                              <div class="milestone-course-map-lesson-plan-list-item-title" {{action 'toggleLessonPlanType'  milestone.milestone_id lesson.lesson_id  'guiding-question'}}>
+                                <div class="lesson-plan-title">
+                                  <p>{{t 'guiding-question' }}</p>
+                                </div>
+                                <div class="milestone-caret">
+                                  {{gru-icon name="arrow_drop_down"}}
+                                </div>
+                              </div>
+                              <div class="milestone-course-map-lesson-plan-list-item-title-description">
+                                <div class="lesson-plan-question-guiding-container" id="lesson-plan-{{milestone.milestone_id}}-{{lesson.lesson_id}}-guiding-question">
+                                  <p>{{safe-html lesson.lessonPlans.guidingQuestions}}</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="milestone-course-map-lesson-plan-list-item">
+                              <div class="milestone-course-map-lesson-plan-list-item-title" {{action 'toggleLessonPlanType'  milestone.milestone_id lesson.lesson_id  'anticipated-struggle'}}>
+                                <div class="lesson-plan-title">
+                                  <p>{{t 'anticipated-struggle' }}</p>
+                                </div>
+                                <div class="milestone-caret">
+                                  {{gru-icon name="arrow_drop_down"}}
+                                </div>
+                              </div>
+                              <div class="milestone-course-map-lesson-plan-list-item-title-description">
+                                <div class="lesson-plan-anticipated-struggle-container" id="lesson-plan-{{milestone.milestone_id}}-{{lesson.lesson_id}}-anticipated-struggle">
+                                  <div class="lesson-plan-anticipated-struggle-descirption">
+                                    <p>{{t 'content.anticipated-struggles'}}</p>
+                                  </div>
+                                  <div class="lesson-plan-anticipated-struggle-alt-concept">
+                                    <div class="lesson-plan-anticipated-struggle-alt-concept-desciption">
+                                      <p>{{safe-html lesson.lessonPlans.anticipatedStruggles}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            {{#each lesson.lessonPlans.sessions as | sessions sessionIndex|}}
+                              <div class="lesson-plan-session-panel-container">
+                                <div class="lesson-plan-session-panel" {{action 'toggleSessionCollection' milestone.milestone_id lesson.lesson_id lesson.lessonPlans sessionIndex}}>
+                                  <div class="session-icon-container">
+                                    <i class="lesson-icon"></i>
+                                  </div>
+                                  <div class="lesson-plan-session-title">
+                                    <p>{{t 'common.session'}} {{plus-one sessionIndex}}</p>
+                                  </div>
+                                  <div class="lesson-plan-session-time">
+                                    {{format-time sessions.duration}}
+                                  </div>
+                                </div>
+                                <div class="lesson-plan-session-panel-description" id="session-collection-{{milestone.milestone_id}}-{{lesson.lesson_id}}-{{lesson.lessonPlans.id}}-session-{{sessionIndex}}">
+                                  <div class="session-panel-structure">
+                                    <h4>{{sessions.title}}</h4>
+                                    <p>{{safe-html sessions.description}}</p>
+                                  </div>
+                                  <div class="lesson-plan-session-resource-container">
+                                    <div class="lesson-plan-resource-title {{if (not sessions.teacher_contents.length) 'hidden'}}">
+                                      <p>{{t 'teacher-resource'}}</p>
+                                    </div>
+                                    {{#if sessions.teacher_contents.length}}
+                                      {{#each sessions.teacher_contents as | content |}}
+                                        <div class="lesson-plan-teacher-resource-container">
+                                          <div class="resoruce-collection-icon-container {{content.content_format}}" {{action "onPreviewContent" lesson.unit_id lesson.lesson_id content}}>
+                                            <i class="lesson-icon"></i>
+                                          </div>
+                                          <p {{action "onPreviewContent" lesson.unit_id lesson.lesson_id content}}>{{content.title}}</p>
+                                          <div class="play-lesson-plan-content" {{action "onPlayContent" content}}>
+                                            {{gru-icon name="play_arrow"}}
+                                          </div>
+                                        </div>
+                                      {{/each}}
+                                    {{/if}}
+
+                                    <div class="lesson-plan-resource-title {{if (not sessions.student_contents.length) 'hidden'}}">
+                                      <p>{{t 'student-resource'}}</p>
+                                    </div>
+                                    {{#if sessions.student_contents.length}}
+                                      {{#each sessions.student_contents as | content |}}
+                                        <div class="lesson-plan-student-resource-container">
+                                          <div class="resoruce-collection-icon-container {{content.content_format}}" {{action "onPreviewContent" lesson.unit_id lesson.lesson_id content}}>
+                                            <i class="lesson-icon"></i>
+                                          </div>
+                                          <div class="lesson-plan-session-type-title">
+                                            <p {{action "onPreviewContent" lesson.unit_id lesson.lesson_id content}}>{{content.title}}</p>
+                                          </div>
+                                          <div class="play-lesson-plan-content" {{action "onPlayContent" content}}>
+                                            {{gru-icon name="play_arrow"}}
+                                          </div>
+                                        </div>
+                                      {{/each}}
+                                    {{/if}}
+                                  </div>
+
+                                </div>
+                              </div>
+                            {{/each}}
+                          </div>
+                        </div>
+                      {{else}}
+                        <div class="no-lesson-plan">
+                          <span>{{t 'common.no-lesson-plan-info-message'}}</span>
+                        </div>
+                      {{/if}}
+                    {{else}}
+                      <div class="lesson-plan-load-spinner">
+                        {{#if lesson.isActive}}
+                          {{three-bounce-spinner}}
+                        {{/if}}
+                      </div>
+                    {{/if}}
+                  </div>
+                </div>
+              {{/each}}
+            {{else}}
+              <div class="no-lesson">
+                <span>{{t 'common.no-lesson-info-message'}}</span>
+              </div>
+            {{/if}}
+          {{else}}
+            <div class="lesson-load-spinner">
+              {{#if milestone.isActive}}
+                {{three-bounce-spinner}}
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    {{/unless}}
+  {{/each}}
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    previewContentId=previewContent.content_id
+    previewContentType=previewContent.content_format
+    playerContext=previewPlayerContext
+  }}
+{{/if}}

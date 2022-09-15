@@ -1,0 +1,255 @@
+.gru-new-class-card {
+  width: 220px;
+  margin-top: 10px;
+
+  .panel {
+    @include border-top-radius(5px);
+    @include border-bottom-radius(5px);
+    box-shadow: none;
+    margin: 0;
+    position: relative;
+    &.guest-account {
+      &::before {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        position: absolute;
+        background-color: $guest-account-bg;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        color: $gray-base;
+        top: 0;
+        content: attr(data-before);
+        justify-content: center;
+        padding-bottom: 7px;
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      background-color: $white;
+      border-radius: 4px;
+
+      .image {
+        background-image: url("gooru/class-bg.png");
+        background-color: $bg-sky-600-sky-400;
+        background-position: 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 170px;
+        width: 220px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          text-transform: uppercase;
+          font-size: 34px;
+          font-weight: bold;
+          margin: 0;
+          padding: 0;
+          line-height: 1.09;
+          text-align: center;
+          font-family: "Open Sans";
+        }
+        .text-heading {
+          font-size: 29px;
+          font-weight: bold;
+          margin: 0;
+          padding: 0;
+          line-height: 1.09;
+          text-align: center;
+          font-family: "Open Sans";
+          color: $white;
+        }
+      }
+
+      .gru-input {
+        position: absolute;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+
+        input {
+          font-size: 16px;
+          width: 195px;
+          margin: 0 auto;
+          height: auto;
+          @include box-shadow(inset 0 -1px 0 $sky-600);
+          text-align: center;
+          color: $sky-600;
+          &::placeholder {
+            color: $sky-600;
+          }
+          &::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: $sky-600;
+          }
+
+          &::-moz-placeholder {
+            /* Firefox 19+ */
+            color: $sky-600;
+          }
+
+          &:-ms-input-placeholder {
+            /* IE 10+ */
+            color: $sky-600;
+          }
+
+          &:-moz-placeholder {
+            /* Firefox 18- */
+            color: $sky-600;
+          }
+        }
+
+        .error-messages {
+          height: 14px;
+
+          span.error {
+            vertical-align: top;
+            margin: 0;
+            font-size: $font-size-base;
+            height: inherit;
+          }
+        }
+      }
+
+      .info-form {
+        color: $dark-400;
+        font-weight: bold;
+        height: 88px;
+        background: $white;
+
+        .form-group {
+          text-align: center;
+          margin: 0;
+
+          .gru-input {
+            input {
+              font-size: $font-size-small;
+              font-weight: bold;
+              width: 145px;
+              margin: 0 auto;
+              height: 24px;
+              @include box-shadow(inset 0 -1px 0 $white);
+              text-align: center;
+              color: $sky-600;
+
+              &::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: $white;
+              }
+
+              &::-moz-placeholder {
+                /* Firefox 19+ */
+                color: $white;
+              }
+
+              &:-ms-input-placeholder {
+                /* IE 10+ */
+                color: $white;
+              }
+
+              &:-moz-placeholder {
+                /* Firefox 18- */
+                color: $white;
+              }
+            }
+
+            .error-messages {
+              height: 14px;
+
+              span.error {
+                vertical-align: top;
+                margin: 0;
+                font-size: $font-size-xxsmall;
+                height: inherit;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .has-success + .info-form {
+      background: $white;
+    }
+
+    .has-success + .info-form ~ .panel-footer {
+      background: $blue-400;
+      cursor: pointer;
+      .join-class-btn {
+        color: $white;
+      }
+    }
+
+    .has-success input {
+      box-shadow: inset 0 -1px 0 $blue-400 !important;
+    }
+
+    .panel-footer {
+      height: 40px;
+      padding: 0;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+
+      .gru-spinner-button {
+        display: block;
+        height: inherit;
+        background-color: $blue-400;
+
+        button {
+          border: none;
+        }
+
+        .join-class-btn {
+          height: inherit;
+          color: $white;
+          text-align: center;
+          width: 100%;
+          font-size: $font-size-small;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding: 8px 0;
+          border-bottom-right-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+      }
+    }
+  }
+
+  &.class-card-only {
+    width: 300px;
+    height: 300px;
+    margin-top: unset;
+
+    .panel {
+      .panel-body {
+        .image {
+          height: 163px;
+          width: 300px;
+          border-top-right-radius: 4px;
+          border-top-left-radius: 4px;
+        }
+
+        .gru-input {
+          input {
+            width: 255px;
+          }
+        }
+      }
+
+      .panel-footer {
+        height: 38px;
+        .gru-spinner-button {
+          border-bottom-right-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+      }
+    }
+  }
+}

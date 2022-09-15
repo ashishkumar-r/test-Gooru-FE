@@ -1,0 +1,38 @@
+<div class="row">
+  {{#if remixedUsers}}
+    <div class="col-sm-4 remixed-by gru-user-icons">
+      <strong>{{t "common.remixed-by"}}</strong>
+      <ul>
+        {{#each remixedUsers as |remixedUser index|}}
+          <li class="item user">
+            <img class="img-circle" src="{{remixedUser.avatarUrl}}" title="{{remixedUser.username}}" alt="remixed user"/>
+            <span class="user-name">{{truncate text=remixedUser.username maxLength=16}}</span>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+  {{#if createdUsers}}
+    <div class="col-sm-4 created-by gru-user-icons">
+      <strong>{{t "common.created-by"}}</strong>
+      <ul>
+        {{#each createdUsers as |createdUser index|}}
+          <li class="item user">
+            <img class="img-circle" src="{{createdUser.avatarUrl}}" title="{{createdUser.username}}" alt="user thumbnail"/>
+            <span class="user-name">{{truncate text=createdUser.username maxLength=16}}</span>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+  <div class="col-sm-4 license">
+    <strong>{{t "common.license"}}</strong>
+    <p>{{course.license}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 use-case">
+    <strong>{{t "common.use-case"}}</strong>
+    <p>{{course.useCase}}</p>
+  </div>
+</div>

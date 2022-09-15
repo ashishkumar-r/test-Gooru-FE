@@ -1,0 +1,23 @@
+<div class="references-container">
+  <div class="reference-info-container">
+    <div class="reference-icon-container">
+    </div>
+    <div class="reference-title-container">
+      <div class="reference-label">{{t (concat 'oa.' userType '.reference')}}</div>
+      <div class="reference-links">{{offlineActivity.references.length}} Links</div>
+    </div>
+  </div>
+  <div class="reference-container">
+    {{safe-html offlineActivity.reference}}
+  </div>
+  {{#each offlineActivity.references as |reference index|}}
+    <div class="reference-container">
+      <a href="{{reference.location}}" target="_blank" class="reference-link">
+        <span class="reference-label">{{reference.fileName}}</span>
+      </a>
+      {{#if reference.isShowIcon}}
+        <a href="{{reference.locationPath}}" download={{reference.fileName}}  class="download-icon" >{{gru-icon name='file_download'}}</a>
+      {{/if}}
+    </div>
+  {{/each}}
+</div>

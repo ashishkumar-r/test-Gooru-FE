@@ -1,0 +1,43 @@
+{{#each answers as |answer index|}}
+<div class="panel panel-default">
+  <div class="answer-content">
+    <div class="letter-container">
+      <h3>{{answer-letter index}}</h3>
+    </div>
+    <div class="text-write-container">
+      <div class="text-area-container edit-richtext-{{index}}">
+        {{#if editMode}}
+        {{gru-rich-text-editor 
+ content=answer.text disableButtons=disableEditorButtons model=answer valuePath='text'}}
+        {{else}}
+        <p>{{{gru-math-text text=answer.text}}}</p>
+        {{/if}}
+      </div>
+      <div class="text-area-container second-text-edit">
+        <p data-answer-index={{index}} class="text-edit answer-edit-{{index}}" id="add-underline">{{safe-html answer.text}}</p>
+      </div>
+    </div>
+    {{#if editMode}}
+    {{#unless showAdvancedEditor}}
+    <button class="delete" {{action 'removeChoice' answer}}>{{gru-icon name="delete"}}</button>
+    {{/unless}}
+    {{/if}}
+  </div>
+</div>
+{{/each}}
+{{#if selectionOrder}} 
+<div class="max-length-error">
+  <p><small>{{t "common.errors.text-select-order"}}</small></p>
+</div>
+{{/if}}
+{{#if editMode}}
+{{#if (eq answers.length 10)}}
+<div class="max-length-error">
+  <p><small>{{t "common.errors.hotspot-text-max-choices"}}</small></p>
+</div>
+{{else}}
+<div class="add-answer">
+  <a {{action 'addNewChoice'}}>{{t 'content.questions.edit.builder.add-say-out-loud'}}</a>
+</div>
+{{/if}}
+{{/if}}

@@ -1,0 +1,321 @@
+<div class="backdrop" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}></div>
+<div class="oa-preview-container">
+  <div class="oa-header-container {{if isReportView 'report'}} {{if isShowDownloadSubmission 'download-option'}}">
+    <div class="close-pullup" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+      {{gru-icon name="arrow_downward"}}
+    </div>
+    <div class="preview-title-container">
+      <i class="oa-icon"></i>
+      {{#unless isLoading}}
+        <p class="preview-title">{{t 'project'}} {{t offlineActivity.subFormat}}</p>
+      {{/unless}}
+    </div>
+
+    <div class="content-remix" title="{{t 'common.remix'}}" data-toggle="tooltip" onclick={{action "onRemixContent"}} onkeypress={{action "onRemixContent"}} tabindex={{tabindex}}>
+      {{#if showRemix}}
+        {{gru-icon name="content_copy"}}
+      {{/if}}
+    </div>
+    <div class="print-preview {{if (or isInstructionalCoache primaryClass.isArchived) 'disabled'}}" title="{{t 'common.download-print'}}" data-toggle="tooltip" onclick={{action "onPrintPreview"}} onkeypress={{action "onPrintPreview"}} tabindex={{tabindex}}>
+      {{#if showPrint}}
+        {{gru-icon name="get_app"}}
+      {{/if}}
+    </div>
+
+    <div class="content-player {{if (or isInstructionalCoache primaryClass.isArchived) 'disabled'}}" title="{{t 'common.play'}}" data-toggle="tooltip" onclick={{action "onPlayContent"}} onkeypress={{action "onPlayContent"}} tabindex={{tabindex}}>
+      {{#if allowPlay}}
+        {{gru-icon name="play_arrow"}}
+      {{/if}}
+    </div>
+    {{#if isShowDownloadSubmission}}
+      <div class="download">
+        <a class="download-icon" onclick={{action 'onClickDownload'}} onkeypress={{action 'onClickDownload'}} >{{gru-icon name='file_download'}}</a>
+        <span>{{t 'oa.task.submissions.label'}}</span>
+      </div>
+    {{/if}}
+    {{#if (and isReportView isTeacher (not isPortfolioReport))}}
+      <div class="oa-overall-performance-container">
+        {{#if (gte classActivity.collection.performance.score 0)}}
+          <div class="oa-performance grade-range-{{grade-range classActivity.collection.performance.score}}">
+            <span class="oa-score">
+              {{#if (eq classActivity.collection.performance.score null)}}
+                --
+              {{else}}
+                {{concat classActivity.collection.performance.score '%'}}
+              {{/if}}
+            </span>
+            <span class="oa-timespent">{{format-time classActivity.collection.performance.timeSpent}}</span>
+          </div>
+        {{else}}
+          --
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+
+  {{#if isPortfolioReport}}
+    <div class="attempts-container">
+      <div class="latest-attempt">
+        <span class="attempt-label">Latest Attempt - </span>
+        <span class="attempt-value">{{format-date latestAttempt.createdAt 'DD MMM YYYY HH:mm'}}</span>
+      </div>
+      {{#if totalNumberOfAttempts}}
+        <div class="toggle-attempts" onclick={{action "onToggleAttemptsList"}} onkeypress={{action "onToggleAttemptsList"}} tabindex={{tabindex}}>
+          + {{totalNumberOfAttempts}} attempts (show)
+        </div>
+      {{/if}}
+      <div class="all-attempts">
+        {{#each activityAttempts as |attempt|}}
+          <div class="attempt-info {{if (eq attempt.createdAt activeAttempt.createdAt) 'active-attempt'}}" onclick={{action "onSelectAttempt" attempt}} onkeypress={{action "onSelectAttempt" attempt}} tabindex={{tabindex}}>
+            <span class="attempt-value">{{format-date attempt.createdAt 'DD MMM YYYY HH:mm'}}</span>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if (and isReportView (not isPortfolioReport))}}
+    <div class="oa-user-list-container">
+      <div class="user-selected-profile" onclick={{action 'toggleListOfStudents'}} onkeypress={{action 'toggleListOfStudents'}} tabindex={{tabindex}}>
+        <div class="user-profile-img">
+          <img src="{{selectedUser.avatarUrl}}" alt="student avatar"/>
+          <span>{{selectedUser.lastName}}, {{selectedUser.firstName}}</span>
+        </div>
+        {{#if (and isReportView isTeacher (not isCmReport))}}
+          <div class="oa-user-list-drop-down">
+            {{gru-icon name="keyboard_arrow_down"}}
+          </div>
+        {{/if}}
+      </div>
+
+      {{#if (and isReportView isTeacher (not isCmReport))}}
+        <div class="oa-list-of-users">
+          {{#each users as |user index|}}
+            <div class="user-list-container {{if (eq selectedUser.id user.id) 'selected'}}" onclick={{action 'previewStudentReport' user}} onkeypress={{action 'previewStudentReport' user}} tabindex={{tabindex}}>
+              <div class="user-profile-img">
+                <img src="{{user.avatarUrl}}" alt="student avatar"/>
+                <span>{{user.lastName}}, {{user.firstName}}</span>
+              </div>
+              {{#if isReportView}}
+                <div class="oa-performance-container">
+                  {{#if (gte user.performance.score 0)}}
+                    <div class="oa-performance grade-range-{{grade-range user.performance.score}}">
+                      <span class="oa-score">
+                        {{#if (eq user.performance.score null)}}
+                          --
+                        {{else}}
+                          {{concat user.performance.score '%'}}
+                        {{/if}}
+                      </span>
+                      <span class="oa-timespent">{{format-time user.performance.timeSpent}}</span>
+                    </div>
+                  {{else}}
+                    --
+                  {{/if}}
+                </div>
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+
+  <div class="oa-body-container {{if isReportView 'report-view'}}">
+    <div class="oa-info-image-container">
+      <div class="oa-image-container" style="background-image: url({{offlineActivity.thumbnailUrl}})">
+        <div class="oa-standards">
+          {{#if taxonomyTags.length}}
+            {{taxonomy/gru-taxonomy-tag-list
+              tags=taxonomyTags
+              tagsVisible=1
+              tabindex=tabindex
+              isInCard=true}}
+          {{/if}}
+        </div>
+        <div class="oa-etc">
+          {{gru-icon name="access_time"}}
+          <span class="etc-value">{{offlineActivity.hours}} {{offlineActivity.minutes}}</span>
+        </div>
+        <div class="oa-date-range">
+          {{format-date classActivity.added_date 'DD MMM'}} - {{format-date (if classActivity.end_date classActivity.end_date classActivity.added_date) 'DD MMM'}}
+        </div>
+      </div>
+      <div class="oa-info-container">
+        <div class="oa-info-header-container">
+          <div class="oa-icon-container">
+          </div>
+          <div class="oa-title-container">
+            <div class="oa-project-label">{{offlineActivity.title}}</div>
+            {{#if offlineActivity.reference}}
+              <div class="oa-project-tag">{{t 'common.description'}}</div>
+            {{/if}}
+          </div>
+          {{#if isReportView}}
+            <div class="oa-project-performance">
+              {{#if (gte selectedUser.performance.score 0)}}
+                <div class="oa-performance grade-range-{{grade-range selectedUser.performance.score}}">
+                  <span class="oa-score">
+                    {{#if (eq selectedUser.performance.score null)}}
+                      --
+                    {{else}}
+                      {{concat selectedUser.performance.score '%'}}
+                    {{/if}}
+                  </span>
+                  <span class="oa-timespent">{{format-time selectedUser.performance.timeSpent}}</span>
+                </div>
+              {{else}}
+                --
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="oa-description-container">
+          {{safe-html offlineActivity.reference}}
+        </div>
+      </div>
+    </div>
+     {{#if (not isStudent)}}
+      <div class="oa-references-container">
+      {{player/offline-activity/gru-offline-activity-references
+          offlineActivity=teacherActivity userType =teacherTitle
+          tabindex=tabindex
+        }}
+    </div>
+    {{/if}}
+    <div class="oa-references-container">
+      {{player/offline-activity/gru-offline-activity-references
+          offlineActivity=studentActivity userType=studentTitle
+          tabindex=tabindex
+        }}
+    </div>
+    <div class="oa-task-container">
+      {{#each offlineActivity.tasks as |task|}}
+        {{player/offline-activity/gru-offline-activity-task-submission
+          task=task
+          classId=classId
+          showSubmissions=isReportView
+          isReadOnly=true
+          tabindex=tabindex
+        }}
+      {{/each}}
+    </div>
+
+    <div class="oa-teacher-student-rubric">
+      {{#if studentRubric}}
+        <div class="student-rubric-section">
+          <div class="student-grading-header">
+            <div class="rubric-icon-container">
+            </div>
+            <div class="rubric-container">
+              <div class="grader-label">{{t 'common.student'}} {{t 'common.rubric'}}
+                {{#if studentRubric.url}}
+                  <span class="rubric-attachment" title="{{t 'rubric-details'}}" data-toggle="tooltip" onclick={{action 'filePreviewOpen' 'student' bubbles=false}} onkeypress={{action 'filePreviewOpen' 'student' bubbles=false}} tabindex={{tabindex}}>{{gru-icon name="attachment"}}</span>
+                {{/if}}
+              </div>
+              <div class="grade-tag">{{t 'common.self-graded'}}</div>
+            </div>
+            {{#if (and studentRubric.score  isReportView  studentRubric.maxScore) }}
+              <div class="score-section">
+                <div class="oa-grade-score grade-range-{{grade-range studentGradeScore}}">
+                  <span>{{studentRubric.score}}</span>
+                  <hr />
+                  <span>{{studentRubric.maxScore}}</span>
+                </div>
+              </div>
+            {{/if}}
+          </div>
+          {{#if studentRubric.categories}}
+            <div class="student-grading-panel">
+              {{rubric/rubric-category-grades
+              isReadOnly=true
+              categories=studentRubric.categories
+              tabindex=tabindex
+            }}
+            </div>
+          {{/if}}
+          {{#if studentRubric.comment}}
+            <div class="over-all-comment">
+              <div class="over-all-comment-label">{{t 'grading-player.overall-comment'}}</div>
+              <p>{{studentRubric.comment}}</p>
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+      {{#if teacherRubric}}
+        <div class="teacher-rubric-section">
+          <div class="teacher-grading-header">
+            <div class="rubric-icon-container">
+            </div>
+            <div class="rubric-container">
+              <div class="grader-label">{{t 'common.teacher'}} {{t 'common.rubric'}}
+                {{#if teacherRubric.url}}
+                  <span class="rubric-attachment" title="{{t 'rubric-details'}}" data-toggle="tooltip" onclick={{action 'filePreviewOpen' 'teacher'  bubbles=false}} onkeypress={{action 'filePreviewOpen' 'teacher'  bubbles=false}} tabindex={{tabindex}}>{{gru-icon name="attachment"}}</span>
+                {{/if}}
+              </div>
+              <div class="grade-tag">{{t 'common.teacher'}}-{{t 'class.info.grade'}}</div>
+            </div>
+            {{#if (and teacherRubric.score isReportView  teacherRubric.maxScore) }}
+              <div class="score-section">
+                <div class="oa-grade-score grade-range-{{grade-range teacherGradeScore}}">
+                  <span>{{teacherRubric.score}}</span>
+                  <hr />
+                  <span>{{teacherRubric.maxScore}}</span>
+                </div>
+              </div>
+            {{/if}}
+          </div>
+          {{#if teacherRubric.categories}}
+            <div class="teacher-grading-panel">
+              {{rubric/rubric-category-grades
+              isReadOnly=true
+              categories=teacherRubric.categories
+              tabindex=tabindex
+            }}
+            </div>
+          {{/if}}
+          {{#if teacherRubric.comment}}
+            <div class="over-all-comment">
+              <div class="over-all-comment-label">{{t 'grading-player.overall-comment'}}</div>
+              <p>{{teacherRubric.comment}}</p>
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{#if teacherRubric.url}}
+  <div class="rubric-file-preview-container teacher">
+    <div class="backdrop"></div>
+    <div class="rubric-file-preview">
+      <div class="rubric-file-preview-close" onclick={{action 'filePreviewClose' 'teacher'}} onkeypress={{action 'filePreviewClose' 'teacher'}} tabindex={{tabindex}}>
+        {{gru-icon name="close"}}
+      </div>
+      <iframe src="{{teacherRubric.url}}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+{{/if}}
+
+{{#if studentRubric.url}}
+  <div class="rubric-file-preview-container student">
+    <div class="backdrop"></div>
+    <div class="rubric-file-preview">
+      <div class="rubric-file-preview-close" onclick={{action 'filePreviewClose' 'student'}} onkeypress={{action 'filePreviewClose' 'student'}} tabindex={{tabindex}}>
+        {{gru-icon name="close"}}
+      </div>
+      <iframe src="{{studentRubric.url}}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+{{/if}}
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tabindex=tabindex
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

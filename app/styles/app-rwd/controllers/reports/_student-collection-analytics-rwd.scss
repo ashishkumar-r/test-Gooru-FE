@@ -1,0 +1,8 @@
+.controller.analytics.collection.student {
+  @media only screen and (max-width: $sm-width-max) {
+    padding: 0;
+  }
+  @media only screen and (min-width: $sm-width-max) and (max-width: $screen-md) {
+    padding: unset;
+  }
+}

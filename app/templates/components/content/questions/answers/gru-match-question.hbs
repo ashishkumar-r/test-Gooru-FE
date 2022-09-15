@@ -1,0 +1,90 @@
+<div class="gru-match-question-container">
+    <div class="matching-container">
+      <div class="panel-head">
+        <span></span>
+        <div class="left-panel-head">
+          <div class="dropdown {{if (or (and isEditing answers.length) (not isEditing)) 'disabled'}}">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+              {{selectedOptions.left}}
+              {{gru-icon name="keyboard_arrow_down" class="down-arrow"}}
+              {{gru-icon name="keyboard_arrow_up" class="up-arrow"}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {{#each matchOptions as | option |}}
+              <div class="dropdown-item" {{action "onSelectOption" option 'left'}}>{{option.name}}</div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        <div class="right-panel-head">
+          <div class="dropdown {{if (or (and isEditing answers.length) (not isEditing)) 'disabled'}}">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+              {{selectedOptions.right}}
+              {{gru-icon name="keyboard_arrow_down" class="down-arrow"}}
+              {{gru-icon name="keyboard_arrow_up" class="up-arrow"}}            
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {{#each matchOptions as | option |}}
+              <div class="dropdown-item" {{action "onSelectOption" option 'right'}}>{{option.name}}</div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{#each answers as |answer index|}}
+        <div class="panel-container">
+          {{#if isEditing}}
+            <span></span>
+            <div class="text-or-image">
+              {{#if (eq answer.leftValueFormat 'image')}}
+                <div class="preview-image">
+                  <span class="file-upload-image {{if isLeftSideFileUpload '' 'disable-event'}}">
+                    {{content/gru-image enabledPreview=true isEditing=isEditing srcImage=answer.leftValue editImage=answer.leftValue}}
+                  </span>
+                </div>
+              {{else}}
+                {{validation/gru-input content=answer.leftValue  model=answer valuePath='leftValue' didValidate=didValidate autofocus=true disabled=isLeftSideDisableInput}}
+              {{/if}}
+            </div>
+            <div class="text-or-image">
+              {{#if (eq answer.rightValueFormat 'image')}}
+                <div class="preview-image">
+                    <span class="file-upload-image {{if isRightSideFileUpload '' 'disable-event'}}">
+                      {{content/gru-image enabledPreview=true isEditing=isEditing srcImage=answer.rightValue editImage=answer.rightValue}}
+                    </span>
+                </div>
+              {{else}}
+                {{validation/gru-input content=answer.rightValue  model=answer valuePath='rightValue' didValidate=didValidate autofocus=true disabled=isRightSideDisableInput}}
+              {{/if}}
+            </div>
+            <button class="delete" {{action 'removeChoice' answer}}>{{gru-icon name="delete"}}</button>
+          {{else}}
+            <span></span>
+            <div class="text-or-image">
+              {{#if (eq answer.leftValueFormat 'image')}}
+                <div class="preview-image">
+                  <img class="img-responsive" src="{{answer.leftValue}}">
+                </div>
+              {{else}}
+                <span class="answer-text">{{answer.leftValue}}</span>
+              {{/if}}
+            </div>
+            <div class="text-or-image">
+              {{#if (eq answer.rightValueFormat 'image')}}
+                <div class="preview-image">
+                  <img class="img-responsive" src="{{answer.rightValue}}">
+                </div>
+              {{else}}
+                <span class="answer-text">{{answer.rightValue}}</span>
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+      {{/each}}
+      {{#if isEditing}}
+        <div class="add-panel">
+          <span class="add-item material-icons" {{action 'addNewChoice'}}>add</span>
+        </div>
+      {{/if}}
+  </div>
+</div>

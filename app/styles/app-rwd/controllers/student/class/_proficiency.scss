@@ -1,0 +1,208 @@
+.student-class-proficiency {
+  .student-inspect-competency-chart
+    .chart-container
+    .graded-chart-container
+    .domain-chart
+    .scrollable-chart
+    #student-inspect-competency-chart {
+    box-shadow: unset;
+  }
+  .course-container,
+  .grade-data-container {
+    display: none;
+  }
+  .student-inspect-destination-sm {
+    display: block;
+  }
+  .student-inspect-destination.proficiency {
+    .inspect-destination-container {
+      .competency-level-container {
+        position: relative;
+
+        .show-destination {
+          position: absolute;
+          bottom: 10px;
+        }
+      }
+    }
+    @media screen and (max-width: $screen-sm) {
+      .inspect-destination-container {
+        grid-template-columns: 100%;
+
+        .destination-chart-container {
+          margin-right: 0;
+        }
+
+        .competency-level-container {
+          width: 94%;
+          margin: auto auto 15px;
+
+          .grade-title {
+            font-size: 25px;
+            height: 40px;
+            line-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .grade-description {
+            padding-right: 0;
+          }
+
+          .show-destination {
+            margin: auto;
+            position: unset;
+          }
+        }
+      }
+    }
+  }
+
+  .student-inspect-destination.destination {
+    .inspect-destination-container {
+      grid-template-columns: unset;
+      @media screen and (max-width: $screen-xs) {
+        height: 100vh;
+      }
+      @media screen and (min-width: $screen-xs) {
+        height: 100%;
+      }
+
+      .destination-chart-container {
+        margin: 0;
+      }
+
+      .grade-data-container {
+        width: 94%;
+        margin: auto auto 15px;
+
+        .grade-description {
+          height: auto;
+
+          &::-webkit-scrollbar {
+            width: 4px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+          }
+        }
+
+        .next-route {
+          position: unset;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  .student-inspect-destination.inspect-destination {
+    .inspect-destination-container {
+      grid-template-columns: unset;
+      @media screen and (max-width: $screen-xs) {
+        height: 100vh;
+      }
+      @media screen and (min-width: $screen-xs) {
+        height: 100%;
+      }
+
+      .destination-chart-container {
+        margin: 0;
+      }
+
+      .course-container {
+        width: 100%;
+        margin: auto;
+        padding: 0;
+
+        .pre-study-title {
+          padding-left: 15px;
+          font-size: 25px;
+        }
+
+        .route0-container {
+          width: 96%;
+          margin: 15px auto auto;
+
+          .route0-comment {
+            grid-template-columns: 60px auto;
+          }
+
+          .route0-body {
+            .route0-accordion-container {
+              .course-suggestions {
+                ol .gru-accordion-unit {
+                  .panel-title {
+                    a.title {
+                      max-width: none;
+                      width: 100%;
+                    }
+                  }
+
+                  .panel-collapse {
+                    padding: 5px;
+                    max-height: 300px;
+                    overflow-y: auto;
+
+                    .panel-body {
+                      .panel-group {
+                        .gru-accordion-lesson {
+                          .panel-heading {
+                            .panel-title {
+                              width: 100%;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .route0-action {
+          width: 96%;
+          margin: auto;
+        }
+
+        .assigned-course-title {
+          padding-left: 15px;
+          font-size: 25px;
+        }
+
+        .course-map-accordion-container {
+          max-height: 420px;
+          width: 96%;
+          margin: auto;
+        }
+
+        .study-course {
+          position: unset;
+          margin: 15px auto;
+        }
+        @media screen and (max-width: $screen-sm) {
+          .route0-container {
+            width: 87%;
+
+            &.expanded {
+              width: 80%;
+            }
+          }
+
+          .assigned-course-title,
+          .pre-study-title {
+            font-size: 20px;
+          }
+
+          .route0-action {
+            width: 87%;
+            margin: auto;
+          }
+        }
+      }
+    }
+  }
+}

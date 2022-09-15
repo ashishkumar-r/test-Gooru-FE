@@ -1,0 +1,60 @@
+{
+  "followers": [],
+  "followings": ["id-1", "id-2", "id-3"],
+  "details": [
+    {
+      "id": "id-1",
+      "first_name": "Test",
+      "last_name": "01",
+      "thumbnail": null,
+      "school_district_id": null,
+      "followers_count": 1,
+      "followings_count": 1
+    },
+    {
+      "id": "id-2",
+      "first_name": "Test",
+      "last_name": "02",
+      "thumbnail": null,
+      "school_district_id": null,
+      "followers_count": 1,
+      "followings_count": 1
+    },
+    {
+      "id": "id-3",
+      "first_name": "Test",
+      "last_name": "03",
+      "thumbnail": null,
+      "school_district_id": null,
+      "followers_count": 2,
+      "followings_count": 1
+    },
+    {
+      "id": "id-4",
+      "first_name": "Test",
+      "last_name": "04",
+      "thumbnail": null,
+      "school_district_id": null,
+      "followers_count": 0,
+      "followings_count": 2
+    },
+    {
+      "id": "id-5",
+      "first_name": "Test",
+      "last_name": "05",
+      "thumbnail": null,
+      "school_district_id": null,
+      "followers_count": 1,
+      "followings_count": 1
+    },
+    {
+      "id": "id-6",
+      "first_name": "Test",
+      "last_name": "06",
+      "thumbnail": null,
+      "school_district_id": null,
+      "followers_count": 1,
+      "followings_count": 1
+    }
+  ]
+}

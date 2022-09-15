@@ -1,0 +1,33 @@
+{
+  "createdOn": 1445660023555,
+  "dateOfBirth": null,
+  "restEndPoint": "http://qa.gooru.org/",
+  "token": "55dec764-9b48-4921-8a32-78e995ece07f",
+  "user": {
+    "accountCreatedType": null,
+    "accountTypeId": 3,
+    "active": null,
+    "confirmStatus": 1,
+    "createdOn": "2013-03-14 07:37:15.0",
+    "customFields": null,
+    "emailId": "",
+    "firstName": "Guest",
+    "gooruUId": "ANONYMOUS",
+    "lastLogin": null,
+    "lastName": "",
+    "loginType": null,
+    "meta": null,
+    "organizationName": "Gooru",
+    "parentUser": null,
+    "partyUid": "ANONYMOUS",
+    "profileImageUrl": "http://profile-qa.s3.amazonaws.com/ANONYMOUS.png",
+    "registeredOn": 1363246635000,
+    "token": null,
+    "userRole": null,
+    "userRoleSetString": "ANONYMOUS",
+    "username": "Guest4678",
+    "usernameDisplay": "Guest4678",
+    "viewFlag": 12
+  },
+  "userRole": null
+}

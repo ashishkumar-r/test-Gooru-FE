@@ -1,0 +1,102 @@
+.teacher_class_students-proficiency {
+  background-color: $dark-700;
+  @media only screen and (max-width: $screen-in-680) {
+    .app-container {
+      padding-top: 102px;
+    }
+  }
+
+  .teacher.class {
+    padding: 0;
+
+    .students-proficiency-container {
+      .proficiency-no-data {
+        font-size: 15px;
+        text-align: center;
+        margin-top: 30px;
+        color: $white-bold;
+      }
+      .students-proficiency-header {
+        display: flex;
+        align-items: center;
+        margin: 1px 0;
+        padding: 0 50px;
+        justify-content: center;
+        font-size: inherit;
+
+        @media screen and (max-width: $screen-in-680) {
+          padding: 0;
+        }
+        .report-selector {
+          position: relative;
+          @media screen and (max-width: $screen-sm) {
+            position: static;
+          }
+
+          .selected-report-type {
+            height: 50px;
+            text-align: center;
+            font-size: 15px;
+            color: $white;
+            text-transform: uppercase;
+            line-height: 50px;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: auto auto;
+            justify-content: center;
+            padding: 0 20px;
+
+            .active-report-text {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .toggle-icon {
+              height: 50px;
+
+              i {
+                line-height: 50px;
+              }
+            }
+          }
+
+          .report-types-container {
+            display: none;
+            position: absolute;
+            top: 50px;
+            box-shadow: 0 0 0px 1px $disabled-color;
+            background-color: $white;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 15px;
+            text-transform: uppercase;
+            z-index: 9;
+            width: 100%;
+            @media screen and (max-width: $screen-sm) {
+              top: 100px;
+            }
+            @media screen and (max-width: $screen-in-680) {
+              top: 150px;
+            }
+
+            .report-type {
+              height: 50px;
+              line-height: 50px;
+              color: $dark-700;
+              cursor: pointer;
+              border-bottom: 1px solid $white;
+
+              &.active-report,
+              &:hover {
+                background-color: $dark-700;
+                color: $white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "description": "Gets lessons items",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/(.+)/units/first-unit-id/lessons/first-lesson-id",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "get-lesson-response.json"
+    }
+  },
+  {
+    "description": "Delete lesson",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/(.+)/units/(.+)$/lessons/(.+)$",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "description": "Fetch lesson for a specific ID",
+    "request": {
+      "url": "^/api/nucleus/v1/courses/(.+)/units/(.+)/lessons/(.+)$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-lesson-200-response.json"
+    }
+  }
+]

@@ -1,0 +1,242 @@
+.student-journey {
+  background-color: $dark-700;
+
+  .heading {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    padding: 20px 10px 10px;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $white-bold;
+  }
+
+  .portfolio-contents-container {
+    .competency-status-msg,
+    .mastery-source-container {
+      background-color: $white;
+      padding: 8px 15px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    .body-container {
+      &.collapse.in {
+        padding-bottom: 5px;
+        &:last-child {
+          padding-bottom: 0px;
+        }
+      }
+    }
+
+    .competency-source-msg {
+      background-color: $white;
+      padding: 0 15px 10px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    .profile-header {
+      display: grid;
+      grid-template-columns: 50px 1fr 50px;
+      color: $gray-base;
+      cursor: pointer;
+      border-bottom: 1px solid $light-200;
+      height: 48px;
+      background: $white;
+      box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+
+      img {
+        width: 25px;
+        height: 25px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin: auto;
+      }
+
+      .name {
+        font-size: 15px;
+        align-self: center;
+      }
+
+      .toggle-panel {
+        margin: auto;
+
+        .keyboard_arrow_down {
+          display: none;
+        }
+
+        .keyboard_arrow_up {
+          display: block;
+        }
+      }
+
+      &.collapsed {
+        box-shadow: none;
+
+        .toggle-panel {
+          .keyboard_arrow_down {
+            display: block;
+          }
+
+          .keyboard_arrow_up {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .no-data {
+      background-color: $white;
+      color: $dark-400;
+      font-size: 15px;
+      text-align: center;
+      padding: 10px;
+    }
+
+    &.competency-portfolio {
+      .gru-contents-panel {
+        .portfolio-contents-container {
+          box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+
+          .header-container {
+            background-color: $white;
+
+            .panel-info-container {
+              .icon {
+                background-size: 20px;
+
+                &.offline-activity {
+                  background-image: url("gooru/images/offline.svg");
+                }
+
+                &.assessment,
+                &.diagnostic,
+                &.domain-diagnostic {
+                  background-image: url("gooru/images/add_assessment.svg");
+                }
+
+                &.collection {
+                  background-image: url("gooru/images/add_collection.svg");
+                }
+              }
+
+              .title {
+                color: rgb(83, 94, 103);
+              }
+            }
+
+            .search-items-container {
+              .toggle-panel {
+                i.keyboard_arrow_up {
+                  color: rgb(83, 94, 103);
+                }
+                i.keyboard_arrow_down {
+                  color: rgb(83, 94, 103);
+                }
+              }
+            }
+          }
+
+          .body-container {
+            background-color: $white;
+            padding: 0;
+
+            .activities {
+              .gru-portfolio-content-card {
+                .portfolio-card-container {
+                  border: 1px solid $navbar-box-shadow;
+                }
+              }
+            }
+
+            .show-more-container {
+              border: 1px solid $navbar-box-shadow;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .collections-accordion {
+    background-color: $white;
+
+    .message {
+      font-size: 16px;
+      display: block;
+      text-align: justify;
+      padding: 10px;
+    }
+
+    .collection-panel {
+      height: 48px;
+      box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+      background-color: $white-bold;
+      display: grid;
+      grid-template-columns: 49px 1fr 48px;
+      align-items: center;
+
+      .icon {
+        width: 100%;
+        background-position: center;
+        height: 100%;
+        background-repeat: no-repeat;
+
+        &.assessment,
+        &.assessment-external {
+          background-image: url("/assets/gooru/images/add_assessment.svg");
+        }
+
+        &.collection,
+        &.collection-external {
+          background-image: url("/assets/gooru/images/add_collection.svg");
+        }
+
+        &.offline-activity {
+          background-image: url("/assets/gooru/images/offline.svg");
+        }
+      }
+
+      .performance {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: $white;
+
+        &.disable {
+          pointer-events: none;
+        }
+
+        &.collection {
+          background-color: #283142;
+          opacity: 0.8;
+        }
+
+        .score,
+        .timespent {
+          height: 17px;
+          font-size: 12px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: $white-bold;
+        }
+      }
+
+      .collection-title {
+        height: 17px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        color: $dark-400;
+      }
+    }
+  }
+}

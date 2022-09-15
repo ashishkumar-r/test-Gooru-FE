@@ -1,0 +1,55 @@
+.controller.student.class.class-activities {
+  @media only screen and (max-width: $screen-767) {
+    grid-template-columns: unset;
+
+    .ca-container {
+      width: 100%;
+      padding: 5px;
+
+      .header-container {
+        .activity-date-range-selector {
+          .date-range-picker-container {
+            top: 35px;
+          }
+        }
+
+        .activity-tab {
+          padding: 0;
+        }
+      }
+
+      .dca-content-list-container {
+        max-height: calc(100vh - 170px);
+        @media only screen and (max-width: $screen-xs) {
+          max-height: calc(100vh - 220px);
+        }
+        .gru-student-class-activity-panel {
+          .suggestions {
+            .suggestion-panel {
+              grid-template-columns: 65px auto 60px 60px;
+
+              .content-counts {
+                display: none;
+              }
+            }
+          }
+
+          .ca-panel-container {
+            .dca-panel-actions-performance {
+              width: 60px;
+              margin: 0 0 0 auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.student_class_class-activities {
+  @media only screen and (max-width: 799px) {
+    .app-container {
+      padding-top: 90px;
+    }
+  }
+}

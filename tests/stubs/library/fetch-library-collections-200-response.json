@@ -1,0 +1,40 @@
+{
+  "library": {
+    "id": 1,
+    "name": "default library",
+    "description": "This is default library",
+    "thumbnail": null
+  },
+  "library_contents": {
+    "collections": [
+      {
+        "collaborator": null,
+        "course_id": null,
+        "id": "1538bae3-e8ae-4615-af66-625b7efe97e1",
+        "learning_objective": null,
+        "original_creator_id": null,
+        "owner_id": "416922ac-7404-400b-883a-4993e23d1c8f",
+        "publish_status": "unpublished",
+        "question_count": 8,
+        "resource_count": 7,
+        "taxonomy": null,
+        "thumbnail": null,
+        "title": "Test Collection",
+        "visible_on_profile": null
+      }
+    ],
+    "owner_details": [
+      {
+        "id": "416922ac-7404-400b-883a-4993e23d1c8f",
+        "username": "szgooru",
+        "first_name": "TestUpdaetd",
+        "last_name": "Zope",
+        "thumbnail": null,
+        "school_district_id": null,
+        "school_district": null,
+        "country_id": "48a0e88d-32c8-11e6-adef-f8a963065976",
+        "country": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+<div class="panel panel-default view collapsed">
+  <div class="panel-heading">
+    <h3>{{plus-one index}}</h3>
+    {{#if model.isExternalAssessment}}
+      <a href="{{model.url}}" target="_blank" class="title">
+        <img class="img-rounded" src="{{model.thumbnailUrl}}" alt="model thumbnail"/>
+        <div>
+          <strong>{{model.title}}</strong>
+          <span>{{model.format}}</span>
+        </div>
+      </a>
+    {{else}}
+      <a class="title" {{action 'openPlayerContent'}}>
+        <img class="img-rounded" src="{{model.thumbnailUrl}}" alt="model thumbnail"/>
+        <div class="lesson-title-container">
+          <strong title="{{model.title}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">{{model.title}}</strong>
+          <span>{{model.format}}</span>
+        </div>
+      </a>
+    {{/if}}
+    <div class="detail">
+      {{#if model.isCollection}}
+      <div class="{{if model.questionCount 'mixed'}}">
+        <span><b>{{model.resourceCount}}</b> {{t "common.resource-pl" count=model.resourceCount}}</span>
+        {{#if model.questionCount}}
+          <span><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+        {{/if}}
+      </div>
+      {{else}}
+      <div>
+        {{#unless (or (eq model.collectionType 'collection-external') model.isExternalAssessment)}}
+          <span><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+        {{else}}
+          <i class="icons"></i>
+        {{/unless}}
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

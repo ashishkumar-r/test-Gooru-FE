@@ -1,0 +1,22 @@
+.gru-student-performance-container {
+  padding: 0;
+  margin: 0;
+  .performance-headers {
+    @include flexbox;
+    @include align-items(center);
+    @include align-content(center);
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    > * {
+      @include flex-basis(145px);
+      @include flex-grow(1);
+      color: $light-500;
+      &.name-header {
+        min-width: 228px;
+        @include flex-basis(228px);
+        padding-left: 40px;
+      }
+    }
+  }
+}

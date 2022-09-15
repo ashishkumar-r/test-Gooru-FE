@@ -1,0 +1,51 @@
+.gru-actions-bar {
+  .drop-menu {
+    button {
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-align-content: stretch;
+      align-content: stretch;
+      border-right: 1px solid $white;
+      &:last-child {
+        border-right: none;
+      }
+      i {
+        margin-right: 7px;
+        font-size: $font-size-base;
+      }
+    }
+    .dropdown-menu {
+      right: 0;
+      left: inherit;
+      padding: 10px 0;
+      li {
+        padding: 5px;
+        margin: 0 10px;
+        font-size: $font-size-small;
+        cursor: pointer;
+      }
+      li.selected {
+        background-color: $gray-lighter;
+      }
+    }
+  }
+  .drop-menu.open {
+    .dropdown-toggle {
+      box-shadow: none;
+      .arrow {
+        background-position: -135px -37px;
+      }
+    }
+  }
+  .filters {
+    @media (min-width: $screen-sm-max) {
+      margin: 0 0 0 20px;
+    }
+  }
+}

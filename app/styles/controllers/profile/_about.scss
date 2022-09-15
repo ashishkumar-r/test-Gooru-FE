@@ -1,0 +1,310 @@
+.controller.about {
+  padding: 0 20px 10px;
+
+  &.guest-account {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  h4 {
+    margin-top: 10;
+    margin-bottom: 0;
+    width: 99%;
+    text-align: right;
+
+    .btn {
+      margin-top: -0.3em;
+    }
+
+    .about-edit {
+      margin-left: 20px;
+
+      i {
+        color: $gray-darker;
+      }
+      &.guest-account {
+        opacity: 0.5;
+      }
+      &.impersonate-edit {
+        pointer-events: none;
+      }
+    }
+  }
+
+  .edit-view {
+    height: 30px;
+  }
+
+  .about-container {
+    // display: flex;
+    flex-wrap: wrap;
+
+    .school-info {
+      @media (min-width: $screen-md) {
+        margin-left: -15px;
+      }
+    }
+
+    .sub-title {
+      border-bottom: 0.5px solid $light-300;
+      font-size: 20px;
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+      color: $dark-500;
+
+      .verification {
+        color: $font-green-400-green-700;
+
+        .gru-icon {
+          background: url("/assets/gooru/images/icon-verified-green.svg")
+            no-repeat center center;
+          display: inline-block;
+          height: 24px;
+          width: 24px;
+          vertical-align: text-bottom;
+        }
+      }
+    }
+  }
+
+  .info {
+    width: 100%;
+
+    .panel {
+      overflow: hidden;
+    }
+  }
+
+  .avatar {
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 5px;
+      position: relative;
+      margin-left: 15px;
+
+      .image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 5px;
+
+        img {
+          height: 140px;
+        }
+        @media (max-width: $screen-sm-min) {
+          display: none;
+        }
+      }
+    }
+    @media (min-width: $screen-sm-min) {
+      padding: 0;
+      margin-left: 15px;
+      width: 59px;
+
+      img {
+        border-radius: 50%;
+        width: 59px;
+        height: 59px;
+        @media (min-width: $screen-sm-min) {
+          width: 100%;
+        }
+      }
+    }
+
+    .background {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center 25%;
+      @media (min-width: $screen-sm-min) {
+        display: none;
+      }
+    }
+  }
+
+  .panel {
+    object-fit: contain;
+    border-radius: 2px;
+    background-color: $white-bold;
+    box-shadow: 0 2px 5px 0 $table-box-shadow-07;
+    min-height: 455px;
+
+    .panel-body {
+      .username {
+        > p {
+          word-wrap: break-word;
+        }
+      }
+      padding: 26px;
+
+      .row > div {
+        padding-bottom: 10px;
+      }
+    }
+
+    h6 {
+      font-weight: normal;
+      font-size: 13px;
+      color: $gray-dove;
+      margin-top: 0;
+      margin-bottom: 3px;
+    }
+
+    .library-link {
+      color: $blue-400;
+      text-transform: capitalize;
+    }
+
+    p {
+      font-size: 16px;
+      padding: 0 4px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &.role {
+        text-transform: capitalize;
+      }
+    }
+
+    .bios {
+      &.guest-account {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+      p {
+        margin-bottom: 11px !important;
+        display: -webkit-box;
+        height: 85px;
+        overflow: hidden;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+      }
+      text-align: intial;
+      &.impersonate-account {
+        pointer-events: none;
+      }
+    }
+
+    .row {
+      p {
+        margin-bottom: 1.5em;
+        padding: 0;
+      }
+
+      &.deletion-request {
+        button {
+          background-color: $gray-0b0;
+          pointer-events: none;
+        }
+        .message {
+          display: block;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .message {
+      display: none;
+    }
+  }
+
+  .delete-confirmation-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 99999;
+
+    .backdrop {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: $navbar-default-toggle-icon-bar-bg;
+      cursor: pointer;
+    }
+
+    .content-container {
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: $white;
+      .title {
+        display: block;
+        font-size: 17px;
+        line-height: 1.5;
+      }
+
+      .action-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        column-gap: 8px;
+        padding: 5px;
+        margin-top: 10px;
+
+        .action-btn {
+          width: 96px;
+          height: 36px;
+          cursor: pointer;
+          text-align: center;
+          line-height: 36px;
+          border-radius: 4px;
+
+          &.confirm-btn {
+            background-color: $blue-400;
+            color: $white;
+          }
+
+          &.cancel-btn {
+            border: solid 1px $nobel-gray;
+            color: $nobel-gray;
+          }
+        }
+      }
+
+      @media screen and (max-width: $screen-sm) {
+        left: unset;
+        width: 100%;
+      }
+    }
+  }
+}
+
+&.view-profile {
+  .panel {
+    .panel-body {
+      @media (min-width: $screen-lg-min) {
+        width: 461px;
+        height: 371px;
+      }
+    }
+  }
+}
+
+&.edit-profile {
+  .panel {
+    .panel-body {
+      @media (min-width: $screen-lg-min) {
+        width: 461px;
+        min-height: 371px;
+      }
+    }
+  }
+
+  h4 {
+    display: block !important;
+  }
+}

@@ -1,0 +1,20 @@
+.student-comptency-progress {
+  display: flex;
+  width: 100%;
+
+  .completed,
+  .in-progress,
+  .not-started {
+    height: 12px;
+  }
+}
+
+.student-locate {
+  .activity-panel {
+    .competency-container {
+      .competency-progress-bar {
+        padding: 0;
+      }
+    }
+  }
+}

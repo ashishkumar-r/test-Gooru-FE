@@ -1,0 +1,169 @@
+.gru-oa-stater-page {
+  .gru-oa-stater-page-container {
+    .oa-starter-panel {
+      padding: 10px;
+      @media screen and (max-width: $screen-sm - 1) {
+        width: 100vw;
+      }
+      .oa-starter-left-section {
+        background-color: $white;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .oa-header-panel {
+          .oa-banner-section {
+            background-image: url("/assets/gooru/offline-activity-default.png");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 200px;
+            position: relative;
+
+            &::before {
+              position: absolute;
+              width: 100%;
+              left: 0;
+              bottom: 0;
+              z-index: 10;
+              content: "";
+              background-image: linear-gradient(
+                rgba(0, 0, 0, 0),
+                $black-ticker-wrap
+              );
+              height: 100px;
+            }
+            .banner-text-content {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              padding: 10px 0;
+              z-index: 11;
+              .oa-config-details {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                padding: 5px;
+                padding-right: 0;
+
+                .eta-section {
+                  text-align: right;
+                  background-color: $blue-300;
+                  border-radius: 10px 0 0 10px;
+                  padding: 5px 10px;
+                  color: $white;
+                  height: fit-content;
+                }
+              }
+              .oa-project {
+                padding: 5px 10px;
+                color: $white;
+              }
+            }
+          }
+          .oa-title-section {
+            padding: 10px;
+            border-bottom: 1px solid $light-200;
+            span {
+              font-weight: bold;
+              display: block;
+            }
+          }
+        }
+        .oa-body-panel {
+          .student-reference-links {
+            padding: 10px;
+          }
+          .task-list-panel {
+            padding: 5px 0;
+            .task-list-head {
+              border-bottom: 1px solid $light-200;
+              span {
+                margin-left: 40px;
+                font-weight: bold;
+                font-size: 15px;
+              }
+            }
+            .gru-offline-activity-task-submission {
+              padding: 10px;
+              margin: 0;
+            }
+          }
+          .teacher-grading-panel {
+            border-top: 1px solid $light-200;
+            .student-rubrics-container,
+            .teacher-rubrics-container {
+              background-color: $white;
+              padding: 15px;
+
+              .label-container {
+                display: grid;
+                grid-template-columns: 1fr 30px;
+                align-items: center;
+                cursor: pointer;
+
+                .label-type {
+                  color: $dark-400;
+                  font-size: 15px;
+                  display: flex;
+                  align-items: center;
+
+                  .rubric-attachment {
+                    color: $blue-text;
+                    cursor: pointer;
+                    margin-left: 10px;
+                    display: flex;
+                  }
+                }
+              }
+
+              .categories-container {
+                display: none;
+
+                textarea {
+                  pointer-events: none;
+                }
+
+                .rubric-category-container {
+                  .grade-rubric-categories {
+                    .grade-rubric-category {
+                      .grade-rubric-level-container {
+                        .grade-rubric-category-info,
+                        p {
+                          color: $dark-400;
+                        }
+
+                        .grade-comment {
+                          display: none;
+                        }
+
+                        .grade-rubric-levels {
+                          margin: auto;
+                          width: 90%;
+                        }
+                      }
+
+                      .grade-rubric-category-info,
+                      p {
+                        width: 90%;
+                        color: $dark-400;
+                      }
+
+                      .no-progress {
+                        background-color: $frq-gray;
+                        border-radius: 20px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .student-rubrics-container {
+              margin-bottom: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

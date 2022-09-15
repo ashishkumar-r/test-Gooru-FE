@@ -1,0 +1,47 @@
+<div class="navigator-class-cards">
+    <div class="cards-section">
+            <div class="card-layout">
+                <div class="card-content" {{action (optional (if course.programCourse.hasJoined (action "studyNow")))}}>
+                    <div class="card-header">
+                        <span class="creator-name">{{course.programCourse.navigatorProgramInfo.creator_info}}</span>
+                        <span class="header-title">{{course.title}}</span>
+                    </div>
+                    <div class="class-thumbnail">
+                        <img src="{{course.programCourse.navigatorProgramInfo.thumbnail}}">
+                    </div>
+                    <div class="card-description">
+                        <span class="description show-less" {{action "onShowMore"}}>{{course.description}}</span>
+                    </div>
+                    {{#if (not course.programCourse.hasJoined)}}
+                        <div class="start-button">
+                            <button class="start-btn" {{action "studyNow"}}>{{t 'content.classes.create.get-started'}}</button>
+                        </div>
+                        {{else}}
+                        <div class="independent-study-footer-section">
+                            <span class="flag-icons">{{gru-icon name="flag"}}</span>
+
+                            <div class="independent-title-section">
+                                <div class="percentage-card">
+
+                                {{#if performanceScore }}
+                                    <span class="percentage-score">{{performanceScore}}{{t 'student-home-course-percentage'}}</span>
+                                {{else}}
+                                    <span class="percentage-score">{{0}}{{t 'student-home-course-percentage'}}</span>
+                                {{/if}}
+
+                                {{#if timeEta }}
+                                    <span class="time-spent">ETL {{timeEta}} </span>
+                                {{/if}}
+                                </div>
+                                <div class="progress">
+
+                                <div class="progress-bar" role="progressbar" style="width: {{performanceScore}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+    </div>
+</div>

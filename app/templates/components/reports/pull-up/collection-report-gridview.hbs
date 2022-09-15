@@ -1,0 +1,48 @@
+<div class="grid-view-container">
+  {{#each studentReportData as |student|}}
+    <div class="grid-view-card">
+      <div class="user-profile-summary">
+        <div class="user-profile-details {{unless student.hasStarted 'not-started'}}" onclick={{action 'studentReport' selectedCollection student.id}} onkeypress={{action 'studentReport' selectedCollection student.id}} tabindex={{tabindex}}>
+          <div class="user-profile-img">
+            <img src="{{student.avatarUrl}}" alt="student avatar"/>
+          </div>
+          <div class="username">
+            <p>{{student.lastName}},</p>
+            <p>{{student.firstName}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="contents-container">
+        {{#each student.userPerformanceData as |userPerformanceData|}}
+          {{#if (eq userPerformanceData.format 'question')}}
+            {{#unless userPerformanceData.isGraded}}
+              <div class="not-graded">{{gru-icon name="visibility"}}</div>
+          {{else}}
+          {{#if userPerformanceData.hasStarted}}
+            <div class="content-score-value">
+                {{#if userPerformanceData.isSkipped}}
+                  <div class="skipped">
+                    <span>{{userPerformanceData.sequence}}</span> {{gru-icon name="not_interested"}}
+                  </div>
+                {{else}}
+                  <div class="{{if userPerformanceData.correct 'correct' 'wrong'}} {{concat 'grade-range-text-' (grade-range userPerformanceData.score)}}">{{userPerformanceData.sequence}}</div>
+                {{/if}}
+            </div>
+            {{else}}
+              <div class="not-started">--</div>
+            {{/if}}
+            {{/unless}}
+          {{else}}
+            <div class="time-spent">
+              {{#if userPerformanceData.timeSpent}}
+                {{format-time userPerformanceData.timeSpent}}
+              {{else}}
+                --
+              {{/if}}
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</div>

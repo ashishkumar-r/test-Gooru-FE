@@ -1,0 +1,137 @@
+<div class="student-data-by-standard-container">
+    <div class="student-data-by-standard-panel">
+      <div class="domain-data-panel-header">
+          <div class="class-framework-details-card">
+              <span class="fwk-code">{{{preference.framework}}}</span>
+              <div class="category-grade">
+                  <span class="category-title"> {{categoryCode}} / {{class.title}}</span>
+                  <span>{{if filteredCount filteredCount (t 'common.all')}} {{t 'common.domains'}}</span>
+              </div>
+              <div class="edit-btn" aria-label="edit button">
+                <div class="dropdown">
+                      <button class="dropdown-toggle" type="button" tabindex={{tabindex}} id="domain-dropdown" data-toggle="dropdown" aria-expanded="false">
+                        {{gru-icon name="arrow_drop_down"}}
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="domain-dropdown">
+                        {{#each domainCompetenciesList as |domain index|}}
+                          <a class="dropdown-item" href="javascript:void(0)" {{action "onSelectDomains" domain}}>
+                              <input type="checkbox" aria-checked="false" name="domain-{{index}}" checked={{domain.isSelected}} title="domain title">
+                              <span >{{domain.domainName}}</span>
+                          </a>
+                        {{/each}}
+                      </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+      <div class="domain-data-panel-body">
+          <div class="search-domains">
+             {{input type="text" title="Search domains" key-up=(action "onSearchTerms") placeholder=(t 'common.search-competencies')}}
+             {{gru-icon name="search"}}
+          </div>
+          <div class="domain-accordion-panel" id="domain-accordion">
+            {{#each domainDataStandard as | domain domainIndex|}}
+              <div class="domain-panel-card">
+                  <a class="domain-panel-card-header header-panel" data-toggle="collapse" href="#domain-collapse-{{domainIndex}}" role="button" aria-expanded="false" aria-controls="domain-collapse-{{domainIndex}}">
+                        <span class="icon-tag count-icon domain-count">{{plus-one domainIndex}}</span>
+                        <div class="card-title">
+                            <span class="count">{{domain.topics.length}} {{t 'common.topics'}} | {{domain.competencies.length}} {{t 'common.competencies'}}</span>
+                            <span class="title">{{domain.domainName}}</span>
+                        </div>
+                        <span class="icon-tag">{{gru-icon name="arrow_drop_down"}}</span>
+                  </a>
+                  <div class="domain-panel-card-body collapse {{if (eq selectedCompetency.domainCode domain.domainCode) 'in'}}" id="domain-collapse-{{domainIndex}}">
+                    {{#each domain.topics as |topic topicIndex|}}
+                      <div class="topic-panel-card">
+                          <a class="topic-panel-card-header header-panel" data-toggle="collapse" href="#topic-collapse-{{domainIndex}}-{{topicIndex}}" role="button" aria-expanded="false" aria-controls="topic-collapse-{{domainIndex}}-{{topicIndex}}">
+                              <span class="icon-tag count-icon topic-count">T{{plus-one topicIndex}}</span>
+                              <div class="card-title">
+                                  <span class="count">{{topic.topicCode}}</span>
+                                  <span class="title">{{topic.topicName}}</span>
+                              </div>
+                              <span class="icon-tag">{{gru-icon name="arrow_drop_down"}}</span>
+                          </a>
+                          <div class="topic-panel-card-body collapse {{if (eq selectedCompetency.topicCode topic.topicCode) 'in'}}" id="topic-collapse-{{domainIndex}}-{{topicIndex}}">
+                            {{#each topic.competencies as |competency|}}
+                              <a class="competency-card-panel header-panel {{if (eq selectedCompetency.competencyCode competency.competencyCode) 'active'}}" href="javascript:void(0)" {{action "onSelectCompetency" competency}}>
+                                <span class="icon-tag count-icon comp-count">C</span>
+                                <div class="card-title">
+                                    <span class="count">{{competency.displayCode}}</span>
+                                    <span class="title">{{competency.competencyName}}</span>
+                                </div>
+                              </a>
+                              {{/each}}
+                          </div>
+                      </div>
+                      {{/each}}
+                  </div>
+              </div>
+              {{/each}}
+          </div>
+      </div>
+    </div>
+    {{#if activeCompetency}}
+    <div class="competency-details-views-panel">
+        <div class="competency-description-header">
+            <div class="competency-content-card">
+                <span class="comp-count">C</span>
+                <div class="description">
+                    <span>{{activeCompetency.displayCode}} |  <span class="competency-name"> {{activeCompetency.title}}</span> </span>
+                    <p>{{activeCompetency.description}}</p>
+                </div>
+                <div class="action-buttons">
+                    <span class="suggestion-icon">{{gru-icon name="explore"}} <span class="sugg-count">{{totalSuggestions}}</span> </span>
+                    <span class="print-icon" {{action "onSelectPrint"}}> <a href="javascript:void(0)">{{gru-icon name="print"}}</a>  </span>
+                </div>
+            </div>
+            <div class="performance-chart-container">
+              <div class="mastery-distribution">
+                {{charts/gru-standard-dount
+                  data=mastryDistribustion
+                  width=180
+                  height=180
+                  innerRadius=45
+                  outerRadius=60
+                }}
+                <span>{{t 'student-locator.mastery-distribution'}}</span>
+              </div>
+              <div class="performance-distribution">
+                {{charts/gru-standard-dount
+                  data=performanceDistribution
+                  width=180
+                  height=180
+                  innerRadius=45
+                  outerRadius=60
+                }}
+                <span>{{t 'student-locator.performance-distribution'}}</span>
+              </div>
+            </div>
+        </div>
+        <div class="student-list-container">
+            <div class="student-list-panel">
+                <div class="student-list-header">
+                    <span class="student-head">{{t 'common.student'}}</span>
+                    <span>{{t 'student-data-stand.score'}}</span>
+                </div>
+                <div class="student-list-body">
+                  {{#each activeCompetency.students as |student|}}
+                    <div class="student-detail-card">
+                        <span class="material-icons profile-icons">
+                          <img src="{{student.thumbnailUrl}}" alt="student-profile">
+                        </span>
+                        <span class="student-name">{{student.lastName}} {{student.firstName}}</span>
+                          <span class="suggestion-icon">
+                            {{#if student.suggestions}}
+                              {{gru-icon name="explore"}}
+                              <span class="sugg-count">{{student.suggestions}}</span>
+                            {{/if}}
+                          </span>
+                        <span class="performance grade-range-{{grade-range student.score}}">{{student.score}}%</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>

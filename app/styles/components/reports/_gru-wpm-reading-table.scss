@@ -1,0 +1,25 @@
+.gru-wpm-reading-table {
+  .gru-wpm-reading-table-container {
+    .gru-wpm-table {
+      table {
+        thead {
+          .student-head {
+            display: grid;
+            grid-template-columns: auto 1fr;
+          }
+        }
+        tbody {
+          .student-details {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+          }
+          .wpm-count {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}

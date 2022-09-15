@@ -1,0 +1,140 @@
+<div class="backdrop" {{action "onClosePullUp"}}></div>
+<div class="class-setup-container">
+  <div class="panel-header">
+    <span class="verify-label">{{t 'class.setup.verify-setting'}}</span>
+    <span class="class-title">{{classData.title}}</span>
+  </div>
+  <div class="panel-body-container">
+    <div class="class-info-container">
+      <div class="description-container">
+        <div class="description-label description-label--lg">Class Grade</div>
+        <div class="description-info">{{t 'class.setup.grade-set-to'}}:</div>
+      </div>
+      {{#if isLoading}}
+        {{three-bounce-spinner}}
+      {{else}}
+        <div class="class-grade-selector">
+          {{gru-dropdown
+          selectedItemId=activeClassGrade.id
+          rangeStartItemId=classData.gradeLowerBound
+          rangeEndItemId=classData.gradeUpperBound
+          allowItemsRangeSelection=true
+          rangeBound='upper'
+          placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+          items=taxonomyGrades
+          displayLabelFieldKey="grade"
+          onChangeAction="onChangeClassGrade"
+          allowEdit=(not isClassSetupDone)
+          btn-group-size=btn-group-size}}
+        </div>
+      {{/if}}
+      <div class="description-container">
+        <div class="description-label description-label--lg">Class Roster</div>
+        <div class="description-info class-roster-label">{{t 'class.setup.roster'}}</div>
+      </div>
+      <div class="description-container">
+        <div class="description-label">{{t 'class.level'}}:</div>
+        <div class="description-info">{{t 'class.setup.level.info'}}</div>
+      </div>
+      <div class="description-container">
+        <div class="description-label">{{t 'class.math-level'}}:</div>
+        <div class="description-info">{{t 'class.setup.math-level.info'}} <div class="description-second-info">{{t 'class-setup.math-level.info-second'}}</div></div>
+      </div>
+      <div class="description-container">
+        <div class="description-label">{{t 'teacher-landing.class.class-settings.destination'}}:</div>
+        <div class="description-info">
+          {{t 'class.setup.destination-info' grade=activeClassGrade.grade}}
+        </div>
+      </div>
+      <div class="confirmation-label">
+        {{t 'class.setup.confirm'}}
+      </div>
+    </div>
+    <div class="students-container">
+      <div class="student-settings-sec">
+        <table>
+          <thead>
+            <tr>
+              <th>{{t 'teacher-landing.class.class-settings.students'}}</th>
+              <th>{{t 'class.math-level'}}</th>
+              <th>{{t 'teacher-landing.class.class-settings.destination'}}</th>
+            </tr>
+          </thead>
+          <tbody class="students-table-body">
+            {{#if isLoading}}
+              <tr>
+                <td colspan="3">{{three-bounce-spinner}}</td>
+              </tr>
+            {{else}}
+              {{#each students as |student|}}
+              {{#if student.isActive}}
+                <tr class="">
+                  <td class="student-info">
+                    <div class="student-info-container">
+                      <div class='student-icon-col hidden-xs'>
+                        <div class='student-icon' style="background-image: url({{student.avatarUrl}})"></div>
+                      </div>
+                      <div class="student-name  {{if student.isActive "" "inActiveRow"}}  ">
+                        <span>{{student.fullName}}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="student-grade-boundary">
+                    <div class="origin ">
+                      <div class='grade-info'>
+                        {{gru-dropdown
+                          selectedItemId=student.gradeLowerBound
+                          rangeStartItemId=classData.gradeLowerBound
+                          rangeEndItemId=activeClassGrade.id
+                          rangeBound='between'
+                          allowItemsRangeSelection=true
+                          placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                          items=taxonomyGrades
+                          displayLabelFieldKey="grade"
+                          onChangeAction="updateStudentLowerBound"
+                          selectedItemAssocId=student.id
+                          btn-group-size=btn-group-size
+                          allowEdit= (if (or (eq student.diagAsmtState 2) isClassSetupDone) false true)
+                        }}
+                      </div>
+                    </div>
+                  </td>
+                  <td class="student-grade-boundary">
+                    <div class='destination'>
+                      <div class='grade-info'>
+                        {{gru-dropdown
+                          selectedItemId=student.gradeUpperBound
+                          rangeStartItemId=activeClassGrade.id
+                          allowItemsRangeSelection=true
+                          rangeBound='upper'
+                          placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                          items=taxonomyGrades
+                          displayLabelFieldKey="grade"
+                          onChangeAction="updateStudentUpperBound"
+                          selectedItemAssocId=student.id
+                          btn-group-size=btn-group-size
+                          allowEdit= (if (or (eq student.diagAsmtState 2) isClassSetupDone) false true)
+                       }}
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {{/if}}
+              {{/each}}
+            {{/if}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer-container">
+    {{#if isClassSetupDone}}
+      <div class="verified-msg">{{t 'class.setup.done'}}</div>
+    {{else}}
+      <div class="actions-container">
+        <div class="action-btn cancel-btn" {{action "onClosePullUp"}}>{{t 'common.cancel'}}</div>
+        <div class="action-btn confirm-btn" {{action "onCompleteClassSetup"}}>{{t 'common.confirm'}}</div>
+      </div>
+    {{/if}}
+  </div>
+</div>

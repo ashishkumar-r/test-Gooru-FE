@@ -1,0 +1,30 @@
+{{#if status}}
+  {{#if isJoinedSuccessfully}}
+    <div class="alert-status success">
+      <div class="status">{{status}}</div>
+    </div>
+  {{else}}
+    <div class="alert-status error">
+      <div class="status">{{status}}</div>
+    </div>
+  {{/if}}
+{{/if}}
+<div class="banner-container">
+  <div class="class-content">
+    <div class="banner-circle">
+    </div>
+    <div class="class-info">
+      <div class="title">
+        {{t 'teacher-landing.navigator-banner.title'}}
+      </div>
+      <div class="description">
+        {{t 'teacher-landing.navigator-banner.description'}}
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="join-class pull-right {{if isJoinedSuccessfully 'disabled'}}" {{action "onJoinDemoClass"}}>
+      {{t 'teacher-landing.navigator-banner.join'}}
+    </div>
+  </div>
+</div>

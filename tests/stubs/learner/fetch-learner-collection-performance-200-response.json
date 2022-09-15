@@ -1,0 +1,39 @@
+{
+  "content": [
+    {
+      "assessment": {
+        "gooruOId": "2cd383af-a50d-4914-9fe2-d2a83ed39591",
+        "attempts": 1,
+        "reaction": 0,
+        "eventTime": 1499315866440,
+        "sessionId": "5961970f-a0ea-4c8b-8745-e4479588a909",
+        "timeSpent": 104000,
+        "resourceType": "assessment",
+        "score": 70
+      },
+      "questions": [
+        {
+          "reaction": 0,
+          "eventTime": 1499315781236,
+          "questionType": "FIB",
+          "timeSpent": 5000,
+          "resourceType": "question",
+          "gooruOId": "3090b390-6f73-497e-a5db-4857e8d788a7",
+          "sessionId": "5961970f-a0ea-4c8b-8745-e4479588a909",
+          "views": 1,
+          "answerObject": [
+            {
+              "text": "243",
+              "status": "correct",
+              "order": 1,
+              "answerId": "0",
+              "timeStamp": 5000,
+              "skip": false
+            }
+          ],
+          "score": 100
+        }
+      ]
+    }
+  ]
+}

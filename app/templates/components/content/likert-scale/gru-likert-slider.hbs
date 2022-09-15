@@ -1,0 +1,34 @@
+<div class="gru-likert-evaluation-container">
+    <div class="gru-likert-evaluation-panel">
+        <div class="likert-slider-items">
+            <div class="gru-likert-evaluation-panel-body">
+                <span class="likert-item-row"></span>
+                {{#each likertItems as |item|}}
+                    {{#if item.isShow}}
+                        <div class="likert-evaluation-progress">
+                            <span class="likert-item-row likert-evaluation-progress-label" data-toggle="tooltip" data-placement="bottom" title="{{item.label}}">{{item.label}}</span>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="likert-slider-content">
+            <div class="gru-likert-evaluation-panel-head">
+                <div class="evaluation-progress-label likert-item-row">
+                    {{#each likertScalePoints as |scalePoint|}}
+                        <span data-toggle="tooltip" data-placement="bottom" title="{{scalePoint.levelName}}">{{scalePoint.levelName}}</span>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="gru-likert-evaluation-panel-content">
+                {{#each likertItems as |item|}}
+                    {{#if item.isShow}}
+                        <div class="evaluation-progress-item likert-item-row {{if readOnly 'disable-event'}}">
+                            {{gru-slider onChangeAnswer="onChangeAnswer"  likertItems=likertItems likertScalePoints=item.likertScalePoints scaleItems=item}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

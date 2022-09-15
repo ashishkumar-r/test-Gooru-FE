@@ -1,0 +1,102 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="student-course-report-container">
+  <div class="report-header">
+    <div class="report-breadcrumb">
+      <div class="course-title">
+        <i class="course-icon"></i>
+        <p>{{t 'common.course'}} : {{course.title}}</p>
+      </div>
+    </div>
+    <div class="report-close-pullup" onclick={{action 'reportClose'}} onkeypress={{action 'reportClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-carousel-tags">
+      <div class="report-carousel">
+        <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            <div class="item active">
+              <div class="course-background-cover">
+                <div class="report-carousel-content">
+                  <div class="performance-display-container">
+                    {{#if isLoading}}
+                      {{three-bounce-spinner}}
+                    {{else}}
+                      <div class="course-performance-average {{concat 'grade-range-' (grade-range performanceSummary.score)}}">
+                        {{#if (gte performanceSummary.score 0)}}
+                          {{performanceSummary.score}}%
+                        {{else}}
+                          --
+                        {{/if}}
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="course-description">
+                    <p class="header-desc">{{t 'common.description'}}</p>
+                    <p class="text-desc">
+                      {{#if course.description}}
+                        {{course.description}}
+                      {{else}}
+                        {{course.title}}
+                      {{/if}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{#if tags.length}}
+        <div class="report-standard-tags">
+          {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=4  showDescription=true }}
+        </div>
+      {{/if}}
+    </div>
+    <div class="report-performance-tabular">
+      <div class="report-performance-header on-scroll-fixed">
+        <div class="content-name">
+          <span>{{t 'common.content-name'}}</span>
+        </div>
+        <div class="score">
+          <span>{{t 'gru-performance-metrics.score'}}</span>
+        </div>
+      </div>
+      {{#each units as |unit|}}
+        <div class="report-performance-list">
+          <div class="content-name {{unless unit.performance.hasStarted 'not-started'}}" onclick={{action 'openUnitReport' unit units}} onkeypress={{action 'openUnitReport' unit units}} tabindex={{tabindex}}>
+            <i class="unit-icon"></i>
+            <span>Unit {{unit.ui_sequence}} : {{unit.title}}</span>
+          </div>
+          <div class="score">
+            {{#if unit.performance.hasStarted}}
+              <span class="{{concat 'grade-range-text-' (grade-range unit.performance.score)}}">
+                {{#if (eq unit.performance.score null)}}
+                  --
+                {{else}}
+                  {{concat unit.performance.score '%'}}
+                {{/if}}
+              </span>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+          <div class="completion">
+            {{#if unit.performance.hasStarted}}
+              <div class="completion-bar">
+                <div class="segment {{if (eq unit.performance.score 100) 'completed'}}" style="width:{{unit.performance.score}}%; {{safe-html (concat "background-color:" (grade-color unit.performance.score))}}"></div>
+              </div>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{#if showUnitReport}}
+  {{reports/pull-up/student-unit-report onClosePullUp="onClosePullUp" context=studentUnitReportContext showPullUp=showUnitReport tabindex=tabindex}}
+{{/if}}

@@ -1,0 +1,47 @@
+{{#unless isIframeMode}}
+  {{student/class/gru-study-navbar
+    classId=classId
+    navTitle=courseTitle
+    onItemSelected="selectMenuItem"
+    selectedMenuItem=menuItem
+    sourceType=sourceType
+    performanceSummary=performanceSummary
+    isStudyPlayer=isStudyPlayer
+    competencyStats=competencyStats
+    class=class
+    courseId=courseId
+    backUrl=collectionUrl
+  }}
+{{/unless}}
+<div class="{{if showLearningTool "show-learning-tool"}}">
+  {{#if isIframeMode}}
+    <div class="close-panal">
+      <div class="back-to-collection pull-left" {{action 'closePlayer'}} data-toggle="tooltip" data-placement="bottom" title="{{t 'common.close'}}">
+        <div class="nav-icon-container">
+          {{gru-icon name='ic_close'}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  <div class="bar-charts" data-content="{{performancePercentage}}% Completed">
+    <div class="completion-chart">
+      <div class="start-point">{{gru-icon name="stars"}}</div>
+      {{charts/gru-x-bar-chart
+        data=barChartData
+        mileStone=mileStone
+        mileStoneHandler=(action 'mileStoneHandler')
+      }}
+      <div class="destination-point">{{gru-icon name="place"}}</div>
+    </div>
+  </div>
+  {{#if showLearningTool}}
+  <div class="tools {{if isShowLearningTool 'active'}}"  onclick={{action 'onOpenLearningTools'}}>
+    <span class="material-icons-outlined">
+      handyman
+    </span>
+  </div>
+  {{/if}}
+</div>
+  {{#if isShowLearningTool}}
+  {{reports/pull-up/gru-learning-tool-list isShowLearningTool=isShowLearningTool sourceDetails=sourceDetails}}
+  {{/if}}

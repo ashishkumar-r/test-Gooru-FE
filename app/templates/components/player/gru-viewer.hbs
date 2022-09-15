@@ -1,0 +1,64 @@
+<div class="content">
+  {{#if resource.isQuestion}}
+    {{player/gru-question-viewer
+    instructionsActionTextKey=instructionsActionTextKey
+    buttonTextKey=buttonTextKey
+    submitted=submitted
+    question=resource
+    questionResult=resourceResult
+    onSubmitQuestion="submitQuestion"
+    collection=collection
+    showQuestionFeedback=showQuestionFeedback
+    role=role
+    }}
+  {{else}}
+    {{#if resource.hasNarration}}
+      <div class="panel panel-default narration">
+        <div class="panel-body">
+          {{#if collectionHasAuthor}}
+            {{#if showCollectionAuthor}}
+              <span class="avatar">
+                <img src="{{collection.avatarUrl}}" alt="collection avatar">
+                <span class="user">{{ collection.author }}</span>
+              </span>
+            {{/if}}
+          {{/if}}
+          <span class="message">
+            {{t 'common.read-first'}}
+            {{{resource.narration}}}
+          </span>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if isNotIframeUrl}}
+        <div class="panel panel-default not-iframe">
+            <div class="panel-header">
+                <p class="title">
+                  {{t 'player.gru-viewer.not-iframe-url.header_1'}}<br>
+                  {{t 'player.gru-viewer.not-iframe-url.header_2'}}
+                </p>
+            </div>
+            <div class="panel-body">
+                {{new-cards/gru-resource-card allowProfileNavigation=allowProfileNavigation resource=resource editEnabled=false isLinkOut=true}}
+            </div>
+            <div class="panel-footer">
+                <p class="title">
+                  {{t 'player.gru-viewer.not-iframe-url.footer_1'}}
+                </p>
+                <p class="description">
+                  {{t 'player.gru-viewer.not-iframe-url.footer_2'}}<br>
+                  {{t 'player.gru-viewer.not-iframe-url.footer_3'}}<br>
+                  {{t 'player.gru-viewer.not-iframe-url.footer_4'}}
+                </p>
+            </div>
+        </div>
+    {{else}}
+      {{#if resourceComponentSelected}}
+        {{component resourceComponentSelected resource=resource calculatedResourceContentHeight=calculatedResourceContentHeight}}
+      {{else}}
+        Not implemented
+      {{/if}}
+    {{/if}}
+  {{/if}}
+</div>

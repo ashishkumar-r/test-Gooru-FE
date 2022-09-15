@@ -1,0 +1,173 @@
+[
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/account/login$",
+      "query": {
+        "apiKey": "ASERTYUIOMNHBGFDXSDWERT123RTGHYT"
+      },
+      "post": "(.+)\"username\":\"param\"(.+)",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "param-sign-in-ok-response.json"
+    }
+  },
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/account/login$",
+      "query": {
+        "apiKey": "ASERTYUIOMNHBGFDXSDWERT123RTGHYT"
+      },
+      "post": "(.+)\"username\":\"pochita\"(.+)",
+      "method": "POST",
+      "headers": {
+        "authorization": "Basic cG9jaGl0YTpwb2NoaXRh"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "pochita-sign-in-ok-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Sign in support for Pochita username",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/signin$",
+      "query": {},
+      "post": "(.+)\"grant_type\":\"credential\"(.+)",
+      "method": "POST",
+      "headers": {
+        "authorization": "Basic cG9jaGl0YTpwb2NoaXRh"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "sign-in-api3-pochita-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Sign in support for Param username",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/signin$",
+      "query": {},
+      "post": "(.+)\"grant_type\":\"credential\"(.+)",
+      "method": "POST",
+      "headers": {
+        "authorization": "Basic cGFyYW06cGFyYW0="
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "sign-in-api3-param-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Sign in support for Anonymous user",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/signin$",
+      "query": {},
+      "post": "(.+)\"grant_type\":\"anonymous\"(.+)",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "sign-in-api3-anonymous-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Sign in support for Other username",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/signin$",
+      "query": {},
+      "post": "(.+)\"grant_type\":\"credential\"(.+)",
+      "method": "POST",
+      "headers": {
+        "authorization": "Basic b3RoZXI6b3RoZXI="
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "sign-in-api3-other-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Sign in support for user with invalid token",
+    "request": {
+      "url": "^/api/nucleus-auth/v1/token$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token invalid-token"
+      }
+    },
+    "response": {
+      "status": 401,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body":{}
+    }
+  },
+  {
+    "description": "API 3.0 Sign in support for user with token",
+    "request": {
+      "url": "^/api/nucleus-auth/v1/token$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "sign-in-token-api3-pochita-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Domain based redirection for sigin",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/redirect$",
+      "query": {},
+      "post": "(.+)\"domain\":\"localhost\"(.+)",
+      "method": "POST",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "domain-based-redirection-api3-200-response.json"
+    }
+  }
+]

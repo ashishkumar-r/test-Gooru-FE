@@ -1,0 +1,28 @@
+<div class="modal-body">
+  {{#if (and model.hasMultipleCompetencies (not model.allowMasteryAccrual))}}
+    <p class="ca-title">
+      {{gru-icon name="warning" class="warning-icon"}}
+      {{t 'ca.warn.turn-on.multiple-competencies'}}
+    </p>
+    <p class="question">{{t 'ca.warn.turn-on.multiple-competencies.question'}}</p>
+    <p class="note">{{t 'ca.warn.turn-on.multiple-competencies.note'}}</p>
+  {{else if  model.allowMasteryAccrual}}
+    <p class="ca-title">
+       {{gru-icon name="warning" class="warning-icon"}}
+      {{t 'ca.warn.trun-off.mastery-accrual'}}
+    </p>
+    <p class="question">{{t 'want.to.proceed'}}</p>
+  {{else}}
+    <p class="ca-title">
+       {{gru-icon name="warning" class="warning-icon"}}
+      {{t 'ca.warn.trun-on.mastery-accrual'}}
+    </p>
+    <p class="question">{{t 'want.to.proceed'}}</p>
+  {{/if}}
+</div>
+<div class="actions">
+  <div class="cancel-btn" {{action 'cancel'}}>{{t 'common.cancel'}}</div>
+  {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+    <div class="proceed-btn" {{action 'confirm'}}>{{t 'proceed'}}</div>
+  {{/gru-spinner-button}}
+</div>

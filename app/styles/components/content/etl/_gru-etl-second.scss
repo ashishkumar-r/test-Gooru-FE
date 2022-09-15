@@ -1,0 +1,80 @@
+.content.etl.gru-etl-second {
+  .etl-seconds {
+    margin-top: 10px;
+    display: flex;
+    &.computed-etl {
+      padding-left: 30px;
+    }
+
+    label {
+      margin: 0;
+      span {
+        color: $gray;
+        display: block;
+        font-size: 100%;
+        font-weight: normal;
+        text-align: left;
+        margin-bottom: 10px;
+        padding-left: 0px;
+      }
+      b {
+        font-size: 17px;
+        font-weight: normal;
+      }
+      .etl-label {
+        display: grid;
+        margin-bottom: 20px;
+
+        &.duration-hours {
+          span {
+            margin-bottom: 20px;
+          }
+        }
+        .col-sm-12 {
+          display: flex;
+          padding: 0px;
+        }
+
+        .title-label {
+          display: grid;
+          &.estimated-minutes {
+            margin-left: 10px;
+          }
+          span {
+            text-transform: lowercase;
+            font-size: 15px;
+          }
+          .gru-input {
+            border-bottom: none;
+            margin-bottom: 12px;
+
+            .form-group {
+              margin-bottom: 0;
+
+              input {
+                margin-bottom: 0px;
+                width: auto;
+              }
+            }
+          }
+        }
+
+        .error-messages {
+          .error {
+            color: $red-400;
+            margin-top: 0px;
+            padding-left: 0px;
+          }
+        }
+      }
+    }
+  }
+  .fluency {
+    .flu-label {
+      display: block;
+    }
+    .dropdown-toggle {
+      margin-left: 1px;
+    }
+  }
+}

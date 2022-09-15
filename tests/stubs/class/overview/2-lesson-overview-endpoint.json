@@ -1,0 +1,75 @@
+[
+  {
+    "description": "Gets the lessons for the first unit per any-class-units-200-response.json",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/first-unit-id/lesson",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "first-unit-lessons-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the lessons for the second unit per any-class-units-200-response.json",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/second-unit-id/lesson",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "second-unit-lessons-200-response.json"
+    }
+  },
+  {
+    "description": "Simulate a client-side error when getting the lessons for the third unit per any-class-units-200-response.json",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/third-unit-id/lesson",
+      "method": "GET"
+    },
+    "response": {
+      "status": 400,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "Simulation of a client-side error; see /tests/stubs/class/overview/2-lesson-overview-endpoint.json"
+    }
+  },
+  {
+    "description": "Simulate a server-side error when getting the lessons for the fourth unit per any-class-units-200-response.json",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/fourth-unit-id/lesson",
+      "method": "GET"
+    },
+    "response": {
+      "status": 500,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "Simulation of a server-side error; see /tests/stubs/class/overview/2-lesson-overview-endpoint.json"
+    }
+  },
+  {
+    "description": "Gets lessons for any class or course",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/(.*)/lesson",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "any-unit-lessons-200-response.json"
+    }
+  }
+]

@@ -1,0 +1,296 @@
+.student-learner-proficiency {
+  background-color: $dark-600;
+
+  .gru-header {
+    display: none !important;
+  }
+
+  .student-proficiency-container {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    grid-gap: 20px;
+    padding: 20px 20px 10px;
+    display: grid;
+    grid-template-columns: 1fr 35%;
+
+    &.teacher {
+      background: $dark-600;
+    }
+
+    .pull-up-container {
+      padding-right: 15px;
+    }
+
+    .taxonomy-grades {
+      .taxonomy-grades-container {
+        .taxonomy-grades {
+          .grade-list {
+            @extend %scroll-style;
+
+            .grade-container {
+              cursor: pointer;
+
+              &.active-grade {
+                background-color: $blue-eo;
+                border: none;
+                box-shadow: 0 2px 4px 0 $disabled-color;
+                opacity: 1;
+                font-weight: 700;
+                display: grid;
+                align-items: center;
+                color: $white;
+
+                .grade-title {
+                  background-color: $blue-eo;
+                  opacity: 1;
+
+                  &:before {
+                    border-color: $table-bg $table-bg $table-bg $blue-eo;
+                  }
+                }
+              }
+
+              .grade-title {
+                color: $white;
+                opacity: 0.7;
+              }
+            }
+          }
+        }
+
+        .baseline-toggle {
+          position: relative;
+          padding: 0;
+          margin: 0;
+          max-width: 100px;
+          width: max-content;
+          min-width: 100px;
+          text-align: right;
+          cursor: pointer;
+          margin-top: 20px;
+
+          .baseline-label {
+            border: none;
+            display: block;
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 24px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: $white;
+            opacity: 0.7;
+            margin-top: 20px;
+          }
+
+          &.active-baseline {
+            font-weight: bold;
+
+            .baseline-label {
+              background-color: $blue-eo;
+              border: none;
+              box-shadow: 0 2px 4px 0 $disabled-color;
+              opacity: 1;
+              font-weight: bold;
+              display: grid;
+              align-items: center;
+              justify-content: center;
+              color: $white;
+            }
+
+            .baseline-label:after,
+            .baseline-label:before {
+              content: "";
+              display: inline-block;
+              border-width: 16px;
+              border-style: solid;
+              width: 0;
+              height: 0;
+              left: 100%;
+              top: -1px;
+              position: absolute;
+              z-index: 1;
+            }
+
+            .baseline-label:after {
+              border-color: $table-bg $table-bg $table-bg $table-bg;
+            }
+
+            .baseline-label:before {
+              border-width: 12px;
+              display: block;
+              border-color: $table-bg $table-bg $table-bg$blue-eo;
+              z-index: 0;
+              top: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &.player-proficiency {
+      padding-top: 100px;
+      height: max-content;
+      margin-bottom: 50px;
+      justify-content: center;
+
+      .gru-study-header {
+        top: 0;
+        z-index: 22;
+      }
+      @media screen and (max-width: $screen-xs) {
+        padding-top: 140px;
+      }
+      //Overwrite proficiency chart panel styles
+      .panel-container {
+        .student-proficiency-panel {
+          .panel-header {
+            grid-template-columns: 1fr auto;
+
+            span.back {
+              display: none;
+            }
+
+            .taxonomy-info {
+              pointer-events: none;
+
+              .dropdown {
+                button {
+                  .caret {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+
+          .panel-content {
+            padding-bottom: 15px;
+
+            .proficiency-chart {
+              .learner-proficiency-domain-matrix {
+                .actions {
+                  .grade-selector,
+                  .toggle-chart {
+                    display: none;
+                  }
+
+                  .fwc-panel {
+                    justify-content: flex-end;
+                  }
+                }
+
+                .chart-area {
+                  .matrix-chart {
+                    .chart-container {
+                      .domain-chart-container {
+                        .domain-sequence-container {
+                          .domain-sequence {
+                            .domain-counts {
+                              pointer-events: none;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .time-series-container {
+              display: none;
+            }
+          }
+        }
+      }
+      //Disable pointer events
+      .pull-up-container {
+        .proficiency-subject-panel {
+          .domain-list {
+            max-height: 400px;
+          }
+
+          .competency-info-pull-up {
+            .competency-panel-header {
+              .close {
+                display: none;
+              }
+            }
+
+            .body {
+              pointer-events: none;
+            }
+          }
+        }
+      }
+    }
+
+    &.player-suggestion {
+      background-color: $dark-400;
+      z-index: 888;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    &.player-iframe {
+      padding-top: 50px;
+    }
+  }
+  @media only screen and (min-width: $screen-sm) and (max-width: $screen-in-1024) {
+    .student-proficiency-container {
+      grid-template-columns: 1fr;
+      padding-bottom: 0;
+
+      .pull-up-container {
+        display: none;
+      }
+
+      .inspect-competency {
+        .competency-info-pull-up {
+          &.open {
+            height: 385px;
+          }
+
+          &.expand {
+            height: 100%;
+          }
+
+          .body {
+            .competency-content-report {
+              .competency-performance {
+                .competency-name {
+                  min-height: 230px;
+                  align-items: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .gru-player-summary-footer {
+    z-index: 22;
+  }
+}
+//Toggle screen styles
+
+body.student-learner-proficiency {
+  &.fullscreen {
+    .player-proficiency {
+      padding-top: 50px;
+    }
+  }
+}
+
+body.student_class-student-learner-proficiency {
+  // overwrite report/collection style of 100vh
+  .app-container {
+    height: 100%;
+  }
+}

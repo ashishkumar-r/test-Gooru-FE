@@ -1,0 +1,14 @@
+.reports.pull-up-dca-collection-report-gridview {
+  .grid-view-container {
+    width: 100%;
+    justify-content: center;
+    @media only screen and (max-width: $screen-465) {
+      grid-template-columns: none;
+      grid-template-rows: auto;
+    }
+    @media only screen and (min-width: $screen-465 + 1) and (max-width: $screen-705 - 1) {
+      grid-template-columns: auto auto;
+      grid-template-rows: none;
+    }
+  }
+}

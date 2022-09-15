@@ -1,0 +1,138 @@
+<div class="panel panel-default">
+  <div class="panel panel-body">
+    <div class="panel-heading hidden">
+      <div class='actions'>
+        <button class="cancel btn btn-info" {{action 'cancelChanges'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" {{action 'updateContent' model}}>{{t "common.save"}}</button>
+      </div>
+      <div style='clear:both;'></div>
+    </div>
+    <div class="panel-body">
+      {{#if (and (not teacherRubrics.title) (not studentRubrics.title))}}
+        <div class='options-container border-bottom'>
+          {{gru-switch switchOptions=switchOptions isChecked=isAddRubric}}
+          <span class='options-label'> {{t 'oa.rubrics.switch.label'}} </span>
+        </div>
+      {{/if}}
+      <div class="content">
+        {{#unless isAddRubric}}
+          <div class="scoring-option">
+            <span class='hidden'> {{t 'oa.max-score.label'}} </span>
+            <div class="setting maximum-points">
+              {{input type=number value=tempModel.maxScore title="maxScore" class="max-score-input" name='maxScore' maxlength=3
+                            focus-out="updateQuantity"
+                            key-press="inputTyping"
+
+                            }}
+              {{!--{{validation/gru-input options=maximumOptions search="true" optionSelected=tempModel.maxScore onOptionSelect="onMaxScoreChange"}}
+                             --}}
+              <span class="title">{{t 'content.questions.edit.builder.feedback-grading.maximum-points'}}</span>
+            </div>
+          </div>
+        {{/unless}}
+        {{#if isAddRubric}}
+          {{#if teacherRubrics.title}}
+            <span class='head-label'> {{t 'oa.teacher-rubric'}} </span>
+            <div class="associated-rubric">
+              <div class="image">
+                {{#if teacherRubrics.thumbnail}}
+                  <img class="img-responsive" src="{{teacherRubrics.thumbnail}}" alt="teacherRubrics thumbnail" />
+                {{else}}
+                  <i class="rubric-icon"></i>
+                {{/if}}
+              </div>
+              <div class="info">
+                <h3>{{teacherRubrics.title}}</h3>
+              </div>
+              <div class="actions">
+                <button class="btn no-bgd remove-item" {{action 'removeRubric' teacherRubrics true}}>
+                  {{gru-icon name="remove_circle"}}
+                </button>
+                <button {{ action 'rubricQuestionEdit' teacherRubrics.id}} class="btn no-bgd edit-item">
+                  {{gru-icon name="edit"}}
+                </button>
+              </div>
+            </div>
+          {{else}}
+            <span> {{t 'oa.rubrics.label'}} </span>
+            <div class="add-rubric-container">
+              <button class="btn btn-success add-prefix add-rubric" {{action 'showAddRubricModal' 'teacher'}}>
+                {{t 'content.questions.edit.builder.feedback-grading.from-existing-rubric'}}
+              </button>
+            </div>
+            <div class="validation">
+              {{#if rubricError}}
+                <span class="error">
+                  {{t 'content.questions.edit.builder.feedback-grading.rubric-error'}}
+                </span>
+              {{/if}}
+            </div>
+          {{/if}}
+        {{/if}}
+        {{#if isAddRubric}}
+          <div class='student-section'>
+            {{#if studentRubrics.title}}
+              <span class="head-label"> {{t 'oa.student-rubric'}} </span>
+              <div class="associated-rubric">
+                <div class="image">
+                  {{#if studentRubrics.thumbnail}}
+                    <img class="img-responsive" src="{{studentRubrics.thumbnail}}" alt="teacherRubrics thumbnail" />
+                  {{else}}
+                    <i class="rubric-icon"></i>
+                  {{/if}}
+                </div>
+                <div class="info">
+                  <h3>{{studentRubrics.title}}</h3>
+                </div>
+                <div class="actions">
+                  <button class="btn no-bgd remove-item" {{action 'removeRubric' studentRubrics false}}>
+                    {{gru-icon name="remove_circle"}}
+                  </button>
+                  <button {{ action 'rubricQuestionEdit' studentRubrics.id}} class="btn no-bgd edit-item">
+                    {{gru-icon name="edit"}}
+                  </button>
+                </div>
+              </div>
+            {{else}}
+              <span> {{t 'oa.rubrics.student-associate-label'}} </span>
+              <div class="add-rubric-container">
+                <button class="btn btn-success add-prefix add-rubric" {{action 'showAddRubricModal' 'student'}}>
+                  {{t 'content.questions.edit.builder.feedback-grading.from-existing-rubric'}}
+                </button>
+              </div>
+              <div class="validation">
+                {{#if rubricError}}
+                  <span class="error">
+                    {{t 'content.questions.edit.builder.feedback-grading.rubric-error'}}
+                  </span>
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+      <div class="language-section">
+        <label for="primary-language" class="primary-language">{{t 'select-primary-language'}}</label>
+        <div class="dropdown language-dropdown pull-left">
+          <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <span class="button-text">
+              {{#if selectedLanguage}}
+                {{selectedLanguage.display_name}}
+              {{else}}
+                {{t 'profile.preference.choose-language'}}
+              {{/if}}
+            </span>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            {{#each languageList as |language|}}
+              <li> <a data-item={{language}} {{ action 'updateLanguage' language}}>{{language.display_name}} </a> </li>
+            {{else}}
+              <li> {{t 'profile.preference.no-data'}} </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

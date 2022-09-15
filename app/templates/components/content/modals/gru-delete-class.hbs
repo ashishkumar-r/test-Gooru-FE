@@ -1,0 +1,47 @@
+<div class="modal-header delete">
+    <h4 class="modal-title">{{t "common.delete"}} {{t 'common.class'}}</h4>
+</div>
+<div class="modal-body">
+    <form>
+        <p class="legend">{{t "content.modals.delete-class.legend"}}
+            <b>
+              {{model.content.title}}
+            </b>
+        </p>
+        <div class="delete-info">
+            <ul>
+                <li>
+                    <label>
+                      {{input type="checkbox" checked=validator.check1  aria-checked="false" tabindex="1"}}
+                        <span>{{t "common.delete-instructions.links-inaccessible"}}</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                      {{input type="checkbox" checked=validator.check2  aria-checked="false" tabindex="1"}}
+                        <span>{{t "content.modals.delete-class.student-access"}}</span>
+                    </label>
+                </li>
+                  <li>
+                      <label>
+                        {{input type="checkbox" checked=validator.check3  aria-checked="false" tabindex="1"}}
+                          <span>{{t "content.modals.delete-class.student-data-deleted"}}</span>
+                      </label>
+                  </li>
+            </ul>
+        </div>
+        <p class="confirmation">{{t "content.modals.delete-content.confirmation"}}</p>
+      {{input type="text" class="delete-input" value=validator.confirm tabindex="1"}}
+        <div class="actions delete">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}" tabindex="1">
+                <span aria-hidden="true">{{t 'common.cancel'}}</span>
+            </button>
+
+          {{#gru-spinner-button classes='btn btn-danger delete' text=(t 'common.loading') isLoading=isLoading}}
+              <button onclick={{action "deleteContent" model}} onkeypress={{action "deleteContent" model}} class="btn btn-danger delete" disabled={{isDisabled}} tabindex="1">{{t 'common.delete'}}</button>
+          {{/gru-spinner-button}}
+        </div>
+
+    </form>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="header">
+  {{gru-icon name='account_circle'}}
+  <div>
+    <span class="title">{{t 'grading-player.student-roster.title'}}</span>
+    <span class="lead">{{t 'grading-player.student-roster.lead'}}</span>
+  </div>
+  <span class="close-roster" {{action 'close'}}>{{gru-icon name='clear'}}</span>
+</div>
+<div class="student-roster">
+  {{#each students as |student|}}
+    <div class="student {{if student.checked 'checked'}} {{if (eq currentUserId student.id) 'selected'}}" {{action 'selectStudent' student}}>
+      <span class="name"> {{truncate text=student.name maxLength=15}}</span>
+      <span class="student-answer">{{gru-icon name='insert_drive_file'}}</span>
+    </div>
+  {{/each}}
+</div>

@@ -1,0 +1,31 @@
+{
+  "queRubrics": [
+    {
+      "studentId": "profile-id-1",
+      "studentScore": 20,
+      "maxScore": 24,
+      "overallComment": "Good Job!",
+      "categoryScore": [
+        {
+          "level_score": 4,
+          "level_comment": "Good job!",
+          "category_title": "Thesis and Sub-claims",
+          "level_obtained": "Exemplary",
+          "level_max_score": 4
+        },
+        {
+          "level_score": 2,
+          "level_comment": "Be more creative",
+          "category_title": "Idea's in Body Paragraph",
+          "level_obtained": "Basic",
+          "level_max_score": 4
+        },
+        {
+          "level_score": 4,
+          "level_comment": null,
+          "category_title": "Commentary",
+          "level_obtained": "Exemplary",
+          "level_max_score": 4
+        }]
+    }]
+}

@@ -1,0 +1,291 @@
+.teacher_class_add-course {
+  .teacher.class {
+    padding: 0;
+  }
+}
+
+.add-course-ctrl {
+  background-color: $dark-400;
+  min-height: 100vh;
+  @media screen and (max-width: $screen-568) {
+    margin-top: 50px;
+  }
+  .course-main-container {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    .add-course-header {
+      opacity: $opacity-lighter;
+      font-family: "Playfair Display";
+      font-size: 30px;
+      font-style: italic;
+      text-align: center;
+      color: $white;
+    }
+
+    .featured-courses-container {
+      display: flex;
+      overflow-x: auto;
+
+      .featured-course {
+        margin: 10px 15px;
+        margin-left: 0px;
+        &.archived-class {
+          .add-course {
+            .card-panel-container {
+              .card-panel-footer {
+                .buttons-container {
+                  pointer-events: none;
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
+        }
+      }
+      .featured-course:hover {
+        box-shadow: 0 0 10px 5px #00a9e9;
+      }
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .browse-content {
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+    color: $white;
+    opacity: 0.7;
+  }
+
+  .content-catalogs-container {
+    display: flex;
+    overflow-x: auto;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-gap: 20px;
+    grid-column-gap: 16px;
+    grid-row-gap: 24px;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+
+    .catalog-card {
+      min-width: 202px;
+      min-height: 192px;
+      border-radius: 4px;
+      background-color: $white;
+      margin: 0 5px;
+      display: block;
+      cursor: pointer;
+      position: relative;
+      .catalog-name {
+        $font-size: 14px;
+        $line-height: 0.94;
+        $lines-to-show: 2;
+        font-weight: bold;
+        text-align: center;
+        color: $font-sky-400-blue-dark;
+        margin-top: 10px;
+        @include ellipsis(
+          $font-size: $font-size,
+          $line-height: $line-height,
+          $lines-to-show: $lines-to-show
+        );
+        height: 26.32px;
+      }
+      .catalog-image {
+        width: 93px;
+        height: 93px;
+        background-size: 93px 93px;
+        display: block;
+        margin: auto;
+        margin-top: 25px;
+
+        &.gooru-logo {
+          background-image: url(gooru/images/gooru-logo.svg) !important;
+        }
+      }
+      &.archived-catalog {
+        pointer-events: none;
+      }
+    }
+
+    .show-more-results {
+      padding: 10px 0;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .course-main-container {
+      .featured-courses-container {
+      }
+    }
+    .content-catalogs-container {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      padding-top: 30px;
+      grid-column-gap: 5px;
+      grid-row-gap: 15px;
+      padding-bottom: 20px;
+
+      .catalog-card {
+        width: 100px;
+        min-height: 192px;
+        border-radius: 4px;
+        background-color: $white;
+        display: block;
+        justify-self: center;
+        .catalog-name {
+          font-size: 14px;
+        }
+        .catalog-image {
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .course-main-container {
+      .featured-courses-container {
+        display: flex;
+        overflow-x: auto;
+        .featured-course {
+          margin-right: 20px;
+        }
+      }
+    }
+    .content-catalogs-container {
+      grid-template-columns: auto;
+      padding-bottom: 20px;
+      grid-row-gap: 10px;
+      display: grid;
+
+      .catalog-card {
+        .catalog-name {
+          font-size: 12px;
+        }
+        .catalog-image {
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-568) {
+    .course-main-container {
+      .featured-courses-container {
+        .featured-course {
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .content-catalogs-container {
+      grid-template-columns: auto;
+      display: grid;
+      overflow-x: auto;
+      padding-top: 30px;
+      padding-bottom: 20px;
+
+      .catalog-card {
+        min-width: 202px;
+        min-height: 192px;
+        border-radius: 4px;
+        background-color: $white;
+        margin: auto;
+        display: block;
+        .catalog-name {
+          font-size: 11px;
+        }
+        .catalog-image {
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-568) and (max-width: 768px) {
+    .content-catalogs-container {
+      grid-template-columns: auto auto;
+      grid-column-gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 481px) {
+    .course-main-container {
+      .featured-courses-container {
+      }
+    }
+
+    .content-catalogs-container {
+      grid-template-columns: auto;
+      display: grid;
+
+      .catalog-card {
+        width: 100px;
+        min-height: 192px;
+        border-radius: 4px;
+        background-color: $white;
+        margin: auto;
+        display: block;
+        .catalog-name {
+          font-size: 12px;
+        }
+        .catalog-image {
+        }
+      }
+    }
+  }
+}
+
+.warning-message-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 99999;
+
+  .backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: $navbar-default-toggle-icon-bar-bg;
+    cursor: pointer;
+  }
+
+  .content-container {
+    padding: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: $white;
+    .close-btn {
+      width: fit-content;
+      display: block;
+      margin-left: auto;
+      text-align: right;
+
+      i {
+        cursor: pointer;
+      }
+    }
+    .title {
+      display: block;
+      padding: 10px;
+      font-size: 17px;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{{#if isLoadTaxonomyPicker}}
+  <div class="gru-taxonomy-picker-container">
+    {{taxonomy/gru-taxonomy-picker
+      browseSelectorText=browseSelectorText
+      onSave=(action 'updateSelectedTags')
+      onSearchPath=(action 'loadTaxonomyData')
+      panelHeaders=panelHeaders
+      selected=taxonomyPickerData.selected
+      selectedTextKey=selectedTextKey
+      shortcuts=taxonomyPickerData.shortcuts
+      shortcutText=(t "taxonomy.modals.gru-standard-picker.shortcutText")
+      subject=taxonomyPickerData.subject
+      isCompatiableMode=true
+      publishSelectedItems=true
+      course=course
+      domain=domain
+      onCloseTaxonomyPicker="onCloseTaxonomyPicker"}}
+    </div>
+{{/if}}

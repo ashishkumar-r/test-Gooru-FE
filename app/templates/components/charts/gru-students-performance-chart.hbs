@@ -1,0 +1,30 @@
+<div class="container-box {{concat 'grade-range-' (grade-range scoreVal)}}" tabIndex={{tabIndex}}>
+  {{#if hasStarted}}
+    {{#if (and isCollection (gte performanceSummary.timeSpent 0))}}
+      <div class="time-spent">
+        {{format-time performanceSummary.timeSpent}}
+      </div>
+    {{else}}
+      <div class="percentage {{unless (gt performanceSummary.numberOfStudents 0) 'no-students'}}">
+      <span class="{{if isNotStarted 'not-started' '' }}">{{scoreText}}</span>
+
+      {{#if (gte scoreVal 0 )}}
+      <div class="completion-bar">
+      <div class="segment {{if isFull 'full'}}" style="{{colorStyle}} {{widthStyle}}"></div>
+      </div>
+      {{/if}}
+
+      </div>
+    {{/if}}
+    {{#if (gt performanceSummary.numberOfStudents 0)}}
+      <div class="students-count">
+        <div class="count">{{performanceSummary.numberOfStudents}}</div>
+        <div class="avatar">{{gru-icon name="account_circle"}}</div>
+      </div>
+    {{/if}}
+  {{else}}
+    <label class="not-started">
+      {{t "common.notStarted"}}
+    </label>
+  {{/if}}
+</div>

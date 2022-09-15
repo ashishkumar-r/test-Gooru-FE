@@ -1,0 +1,260 @@
+.student-inspect-carousel-slider {
+  margin: 0 auto;
+  padding: 10px;
+  @media screen and (min-width: 481px) and (max-width: 799px) {
+    // margin-top: 80px;
+  }
+
+  .grade-title {
+    font-size: 26px;
+    line-height: 0.8em;
+    color: $dark-300;
+    text-transform: capitalize;
+    display: flex;
+    align-items: baseline;
+    column-gap: 10px;
+
+    .audio-icon {
+      width: 16px;
+      height: 16px;
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      display: block;
+      margin: 0 4px;
+      cursor: pointer;
+      background-image: url("../assets/gooru/images/audio-resource-dark.svg") !important;
+
+      &.playing {
+        background-image: url("../assets/gooru/images/audio-resource-blue.svg") !important;
+      }
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+
+  .grade-description {
+    width: 100%;
+    font-size: 15px;
+    white-space: normal;
+    text-align: justify;
+    color: $dark-300;
+
+    .desc-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+  #carouselExampleSlidesOnly {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 70px);
+    margin: 0 auto;
+
+    .carousel-control {
+      opacity: 1;
+      background: none;
+
+      &.left {
+        z-index: 2;
+        width: 23px;
+        left: -35px;
+
+        .small-arrow-left {
+          width: 23px;
+          height: 23px;
+          display: block;
+          background-image: url("../assets/gooru/images/small-arrow-left.svg");
+          background-repeat: no-repeat;
+          position: relative;
+          top: 45%;
+        }
+      }
+
+      &.right {
+        z-index: 2;
+        width: 23px;
+        right: -35px;
+
+        .small-arrow-right {
+          width: 23px;
+          height: 23px;
+          display: block;
+          background-image: url("../assets/gooru/images/small-arrow-right.svg");
+          background-repeat: no-repeat;
+          position: relative;
+          top: 45%;
+        }
+      }
+    }
+
+    .carousel-inner {
+      .item {
+        li {
+          list-style: none;
+          font-size: 14px;
+        }
+      }
+
+      p {
+        margin-bottom: 0;
+        font-size: 15px;
+      }
+
+      .proficiency-info {
+        transition: visibility 1s linear, opacity 1s linear;
+        opacity: 0;
+
+        &.active {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      .competency-level-list {
+        margin-top: 5px;
+        display: grid;
+        grid-gap: 3px;
+        grid-template-rows: auto auto;
+        justify-content: center;
+        grid-template-columns: auto auto;
+        grid-column-gap: 10px;
+        @media screen and (max-width: 450px) {
+          grid-template-columns: 1fr;
+        }
+
+        .in-progress-container,
+        .mastery-container,
+        .not-started-container,
+        .skyline-container {
+          display: grid;
+          grid-gap: 15px;
+          align-items: center;
+          grid-template-columns: 40px auto;
+
+          .legend {
+            width: 40px;
+            height: 20px;
+          }
+
+          span.explanatory-title {
+            font-weight: bold;
+          }
+
+          .label {
+            font-size: 12px;
+            color: $dark-300;
+            text-align: start;
+            font-weight: normal;
+            padding: 0;
+          }
+        }
+
+        .in-progress-container {
+          .legend {
+            background-color: $blue-e5;
+          }
+        }
+
+        .not-started-container {
+          .legend {
+            background-color: $gray-no-started;
+          }
+        }
+
+        .skyline-container {
+          height: 20px;
+
+          .legend {
+            width: 40px;
+            box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+            height: 10px;
+            background-color: $white;
+          }
+        }
+
+        .mastery-container {
+          .legend {
+            background-color: $blue-0e2;
+          }
+        }
+      }
+    }
+  }
+
+  .button-container-destination {
+    bottom: 0;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    width: 50%;
+    position: fixed;
+    justify-content: center;
+    display: block;
+    background-color: $white;
+    box-shadow: 10px 10px 15px $gray-light;
+    border: 1px solid $gray-light;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    .text-align-center {
+      text-align: center;
+    }
+
+    .destination-grid {
+      display: grid;
+      align-items: center;
+      @media screen and (max-width: 992px) {
+        display: flex;
+        flex-wrap: wrap;
+        // margin-top: 10px;
+      }
+    }
+
+    .show-route-div {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .change-level,
+    .next-route {
+      height: 32px;
+      border-radius: 20px;
+      font-size: 16px;
+      padding-left: 15px;
+      padding-right: 15px;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+      color: $white;
+      text-transform: capitalize;
+    }
+
+    .next-route {
+      width: 120px;
+      text-align: center;
+    }
+
+    .change-level {
+      display: flex;
+    }
+  }
+
+  .proficiency-info {
+    transition: visibility 1s linear, opacity 1s linear;
+    opacity: 0;
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

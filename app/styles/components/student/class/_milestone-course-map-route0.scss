@@ -1,0 +1,519 @@
+.student-class-milestone-course-map-route0 {
+  .milestone-course-map-route0-container {
+    width: 100%;
+
+    .milestone-course-map-route0 {
+      margin-bottom: 5px;
+
+      .milestone-course-map-route0-panel {
+        height: 50px;
+        background-color: $danube;
+        box-shadow: 0 0 6px 0 $navbar-default-toggle-icon-bar-bg;
+        display: inline-grid;
+        width: 100%;
+        grid-template-columns: 1fr 60px;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        margin-top: 3px;
+
+        .milestone-info-container {
+          height: inherit;
+          background-color: $danube;
+          display: inline-grid;
+          width: 100%;
+          grid-template-columns: 70px 1fr 50px;
+          align-items: center;
+          position: relative;
+
+          &.active {
+            box-shadow: 0 2px 4px 0 $disabled-bg-color;
+          }
+
+          .milestone-flag-icon {
+            font-family: "Lato";
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1;
+            letter-spacing: normal;
+            text-align: center;
+            border-radius: 50%;
+            background: $white;
+            width: 30px;
+            height: 30px;
+            align-self: center;
+            justify-self: center;
+
+            i {
+              font-size: 16px;
+              margin-top: 7px;
+              margin-left: 1px;
+              color: $danube;
+            }
+          }
+
+          .milestone-title {
+            p {
+              margin: 0;
+              font-family: "Lato";
+              color: $white;
+              font-weight: bold;
+              @include ellipsis(
+                $font-size: 15px,
+                $line-height: 1.5,
+                $lines-to-show: 1
+              );
+              width: 100%;
+            }
+          }
+
+          .milestone-caret {
+            color: $white;
+            align-self: center;
+            height: 26px;
+            text-align: center;
+
+            i {
+              font-size: 30px;
+            }
+          }
+        }
+
+        .performance {
+          background-color: $performance-bg-color;
+          height: 50px;
+          align-items: center;
+          display: flex;
+          justify-content: center;
+
+          .milestone-peformance {
+            width: 60px;
+            height: 50px;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            color: $white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+
+            &.grade-range-not-started {
+              background: $table-bg;
+              border-bottom: none;
+              color: $gray;
+              background: $breadcrumb-color;
+              pointer-events: none;
+            }
+          }
+        }
+      }
+
+      .milestone-course-map-route0-lesson-container {
+        display: none;
+        box-shadow: $disabled-color 0px 6px 10px 0px;
+
+        .no-lesson {
+          text-align: center;
+          font-size: 15px;
+        }
+
+        .lesson-icon-container {
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+
+          i {
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-image: url("../assets/gooru/images/lesson-dark-outline.svg");
+          }
+
+          .lesson-icon-upward-line {
+            position: absolute;
+            top: -16px;
+            left: 34px;
+
+            svg {
+              stroke: $breadcrumb-color;
+              stroke-width: 3;
+            }
+          }
+
+          .lesson-icon-downward-line {
+            position: absolute;
+            bottom: -22px;
+            left: 34px;
+
+            svg {
+              stroke: $breadcrumb-color;
+              stroke-width: 3;
+            }
+          }
+        }
+
+        .lesson-load-spinner {
+          height: 50px;
+          display: inline-flex;
+          align-items: center;
+          width: 100%;
+
+          .three-bounce-spinner {
+            margin: 0 auto;
+          }
+        }
+
+        .milestone-course-map-route0-lesson {
+          &.active {
+            .milestone-course-map-route0-lesson-panel {
+              box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+              position: relative;
+            }
+          }
+
+          &:last-child {
+            .milestone-course-map-route0-lesson-panel {
+              border-bottom: none;
+            }
+
+            .milestone-course-map-route0-collection-container {
+              .no-collection {
+                padding-bottom: 0;
+              }
+            }
+          }
+
+          .milestone-course-map-route0-lesson-panel {
+            height: 50px;
+            background: $white;
+            display: inline-grid;
+            width: 100%;
+            grid-template-columns: 70px 1fr 60px;
+            align-items: center;
+            border-bottom: 1px solid $light-200;
+            cursor: pointer;
+
+            &.has-activity {
+              .lesson-icon-container {
+                .lesson-icon {
+                  background-image: url("../assets/gooru/images/lesson-blue-outline.svg");
+                }
+
+                .lesson-icon-downward-line,
+                .lesson-icon-upward-line {
+                  svg {
+                    stroke: $sun-color;
+                  }
+                }
+              }
+            }
+
+            .domain-lesson-title {
+              p {
+                margin: 0;
+                font-family: "Lato";
+                color: $gray-dove;
+                font-weight: bold;
+                @include ellipsis(
+                  $font-size: 16px,
+                  $line-height: 1.2,
+                  $lines-to-show: 1
+                );
+                width: 100%;
+
+                &.domain-name {
+                  font-weight: normal;
+                  @include ellipsis(
+                    $font-size: 13px,
+                    $line-height: 1.2,
+                    $lines-to-show: 1
+                  );
+                }
+              }
+            }
+
+            .lesson-peformance {
+              width: 60px;
+              height: 50px;
+              display: grid;
+              align-items: center;
+              justify-items: center;
+              font-size: 16px;
+              font-weight: bold;
+              color: $white;
+              cursor: pointer;
+
+              &.grade-range-not-started {
+                background: $table-bg;
+                color: $gray;
+                background: $breadcrumb-color;
+                border-bottom: 1px solid $white;
+                pointer-events: none;
+              }
+            }
+          }
+
+          .milestone-course-map-route0-collection-container {
+            display: none;
+
+            .no-collection {
+              text-align: center;
+              font-size: 15px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+            }
+
+            .collection-load-spinner {
+              height: 50px;
+              display: inline-flex;
+              align-items: center;
+              width: 100%;
+
+              .three-bounce-spinner {
+                margin: 0 auto;
+              }
+            }
+
+            .milestone-course-map-route0-collection {
+              &:last-child {
+                .milestone-course-map-route0-collection-panel {
+                  border-bottom: 1px solid $light-200;
+                }
+              }
+
+              .milestone-course-map-route0-collection-panel {
+                height: 50px;
+                background: $white;
+                display: inline-grid;
+                width: 100%;
+                grid-template-columns: 70px 1fr 50px 120px 60px;
+                align-items: center;
+                @media screen and (max-width: $screen-sm) {
+                  grid-template-columns: 70px 1fr 50px 60px;
+                }
+
+                &.has-activity {
+                  .collection-icon-container {
+                    .collection-icon {
+                      &.format-collection {
+                        background-image: url("../assets/gooru/images/collection-orange.svg");
+                      }
+
+                      &.format-assessment {
+                        background-image: url("../assets/gooru/images/assessment-orange.svg");
+                      }
+                    }
+
+                    .collection-icon-downward-line,
+                    .collection-icon-upward-line {
+                      svg {
+                        stroke: $sun-color;
+                      }
+                    }
+                  }
+                }
+
+                &.last-played-collection {
+                  .colllection-play-btn {
+                    visibility: visible;
+                    opacity: 1;
+                    &.not-allowed-to-play {
+                      pointer-events: none;
+                      visibility: hidden;
+                    }
+                  }
+
+                  .collection-title-container {
+                    p {
+                      color: #5c8ee2;
+                      font-weight: bold;
+                    }
+                  }
+                }
+
+                &:hover {
+                  .colllection-play-btn {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: visibility 0s linear 0s, opacity 300ms;
+                    &.not-allowed-to-play {
+                      pointer-events: none;
+                      visibility: hidden;
+                    }
+                  }
+                }
+
+                .collection-icon-container {
+                  display: grid;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+
+                  i {
+                    width: 20px;
+                    height: 20px;
+                    background-repeat: no-repeat;
+                    background-size: 20px 20px;
+
+                    &.format-collection,
+                    &.format-collection-external {
+                      background-image: url("../assets/gooru/images/collection_gray.svg");
+                    }
+
+                    &.format-assessment,
+                    &.format-assessment-external {
+                      background-image: url("../assets/gooru/images/assessment-gray.svg");
+                    }
+                  }
+
+                  .collection-icon-upward-line {
+                    position: absolute;
+                    top: -16px;
+                    left: 34px;
+
+                    svg {
+                      stroke: $breadcrumb-color;
+                      stroke-width: 3;
+                    }
+                  }
+
+                  .collection-icon-downward-line {
+                    position: absolute;
+                    bottom: -22px;
+                    left: 34px;
+
+                    svg {
+                      stroke: $breadcrumb-color;
+                      stroke-width: 3;
+                    }
+                  }
+                }
+
+                .colllection-play-btn {
+                  color: #4a8cdb;
+                  visibility: hidden;
+                  opacity: 0;
+                  transition: visibility 0s linear 300ms, opacity 300ms;
+                  cursor: pointer;
+                  align-self: center;
+                  justify-self: center;
+                  height: 30px;
+                  &.not-allowed-to-play {
+                    pointer-events: none;
+                    visibility: hidden;
+                  }
+
+                  i {
+                    font-size: 30px;
+                  }
+                }
+
+                .collection-img-container {
+                  img {
+                    width: 60px;
+                    height: 50px;
+                    border-bottom: 1px solid $white;
+                  }
+                }
+
+                .collection-peformance {
+                  width: 60px;
+                  height: 50px;
+                  display: grid;
+                  align-items: center;
+                  justify-items: center;
+                  font-size: 16px;
+                  font-weight: bold;
+                  color: $white;
+                  border-bottom: 1px solid $white;
+                  line-height: 1;
+                  text-align: center;
+
+                  &.grade-range-not-started {
+                    background: $table-bg;
+                    color: $gray;
+                  }
+
+                  &.format-collection {
+                    background: $breadcrumb-color;
+                  }
+                }
+
+                .collection-title-container {
+                  display: inline-flex;
+                  align-items: center;
+
+                  p {
+                    margin: 0;
+                    font-family: "Open Sans";
+                    color: #545e66;
+                    @include ellipsis(
+                      $font-size: 15px,
+                      $line-height: 2,
+                      $lines-to-show: 1
+                    );
+                    width: 100%;
+                  }
+                }
+
+                .collection-content-counts {
+                  display: grid;
+                  align-items: center;
+                  justify-content: center;
+                  grid-template-columns: 40px 40px 40px;
+                  @media screen and (max-width: $screen-sm) {
+                    display: none;
+                  }
+
+                  .resource-count {
+                    width: 40px;
+                    display: inline-grid;
+                    align-items: center;
+                    grid-template-columns: 50% 50%;
+                    justify-items: center;
+
+                    .resource-icon {
+                      width: 20px;
+                      height: 20px;
+                      background-repeat: no-repeat;
+                      background-size: 20px 20px;
+                      background-image: url("../assets/gooru/images/add_resource_icon.svg");
+                      opacity: 0.8;
+                    }
+                  }
+
+                  .question-count {
+                    width: 40px;
+                    display: inline-grid;
+                    align-items: center;
+                    grid-template-columns: 50% 50%;
+                    justify-items: center;
+
+                    .question-icon {
+                      width: 20px;
+                      height: 20px;
+                      background-repeat: no-repeat;
+                      background-size: 20px 20px;
+                      background-image: url("../assets/gooru/images/add_question.svg");
+                      opacity: 0.8;
+                    }
+                  }
+
+                  .external-icon {
+                    width: 20px;
+                    height: 20px;
+                    background-repeat: no-repeat;
+                    background-size: 20px 20px;
+                    background-image: url("../assets/gooru/share.png");
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

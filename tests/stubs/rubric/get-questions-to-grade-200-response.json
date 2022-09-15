@@ -1,0 +1,14 @@
+{
+  "gradeItems": [
+    {
+      "unitId": "first-unit-id",
+      "lessonId": "637e7599-96de-4459-83cb-c72bd47ae4b0",
+      "collectionId": "all-question-types-assessment-id",
+      "collectionType": "assessment",
+      "resourceId": "c1f03fa0-ad45-4181-96e1-c85f14e791b4",
+      "studentCount": 10
+    }
+  ],
+  "classId": "class-for-pochita-as-teacher",
+  "courseId": "f0d98d5b-a1af-47d3-b7fe-2872834db150"
+}

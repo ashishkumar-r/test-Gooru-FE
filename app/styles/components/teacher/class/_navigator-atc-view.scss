@@ -1,0 +1,629 @@
+.navigator-atc-view {
+  .reset-zoom {
+    padding: 0 8px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 5px;
+    background-color: $white;
+    cursor: pointer;
+    color: $black-pearl-blue;
+    width: max-content;
+    margin-top: 15px;
+    font-size: 12px;
+  }
+
+  svg.navigator-atc-chart {
+    background-color: $black-pearl-blue;
+    letter-spacing: normal;
+
+    #grade-list {
+      width: 100%;
+      padding: 2px;
+      background-color: $table-bg;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: none;
+      color: $white;
+      border: none;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      &:active,
+      &:focus {
+        box-shadow: none;
+        border: none;
+      }
+
+      option {
+        color: $dark-300;
+        padding: 3px;
+        cursor: pointer;
+      }
+    }
+
+    .exclude-inferred {
+      position: fixed;
+      display: grid;
+      grid-template-columns: 200px 200px 1fr;
+      width: auto;
+      column-gap: 40px;
+      color: $white;
+      zoom: inherit;
+      margin-top: -1px;
+
+      input {
+        position: relative;
+      }
+
+      .initial-skyline {
+        padding-left: 15px;
+
+        &.disable-event {
+          opacity: 0.5;
+        }
+
+        span {
+          padding-left: 10px;
+        }
+      }
+
+      .grade-grid {
+        margin-left: auto;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-column-gap: 5px;
+        align-items: center;
+
+        &.disable-event {
+          opacity: 0.5;
+          -webkit-opacity: 0.5;
+        }
+
+        input {
+          margin: 0;
+          position: relative;
+        }
+      }
+      @media screen and (max-width: 750px) {
+        grid-template-columns: repeat(3, auto);
+      }
+      @media screen and (max-width: 480px) {
+        -webkit-transform: scale(0.5);
+        -webkit-transform-origin: 0;
+      }
+    }
+
+    .x.axis,
+    .y.axis {
+      .tick {
+        line {
+          stroke: $white;
+          stroke-dasharray: 4;
+          opacity: 0.5;
+        }
+      }
+
+      &.x.axis {
+        .tick {
+          line {
+            opacity: 1;
+          }
+        }
+      }
+
+      &.x.axis.no-grid {
+        .tick {
+          line {
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    .x1.axis {
+      path {
+        display: none;
+      }
+    }
+
+    .axis {
+      path.domain {
+        stroke: $white;
+        stroke-width: 2px;
+        fill: none;
+      }
+    }
+
+    .tick {
+      text {
+        fill: $white;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      &.no-label {
+        text {
+          display: none;
+        }
+      }
+    }
+
+    .node-point {
+      z-index: 999;
+
+      .student-profile,
+      .student-profile-details {
+        clip-path: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        cursor: pointer;
+
+        &.initial-skyline {
+          clip-path: unset;
+          -webkit-clip-path: unset;
+        }
+      }
+    }
+
+    .student-profile-details {
+      .position-arrow {
+        .arrow_drop_down {
+          color: $gray-2f3;
+        }
+      }
+
+      .position-count {
+        background-color: $gray-2f3;
+        text-align: center;
+
+        .total-count {
+          font-size: 10px;
+          color: $black-bold;
+        }
+      }
+    }
+
+    .placeholder {
+      fill: $white;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: normal;
+
+      &.skyline {
+        text-transform: unset;
+      }
+    }
+  }
+
+  .navigator-atc-chart-skyline {
+    .position-arrow {
+      .arrow_drop_down {
+        color: $gray-2f3;
+      }
+    }
+
+    .position-count {
+      background-color: $gray-2f3;
+      text-align: center;
+
+      .total-count {
+        font-size: 10px;
+        color: $black-bold;
+      }
+    }
+  }
+
+  .active-student-container {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    z-index: 999;
+    @media screen and (max-width: 992px) {
+      width: 64px;
+      height: 64px;
+    }
+
+    .student-performance-container {
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      @media screen and (max-width: 992px) {
+        width: 66px;
+        height: 66px;
+      }
+
+      .student-thumbnail-container {
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        @media screen and (max-width: 992px) {
+          width: 60px;
+          height: 60px;
+          background-size: 60px 60px;
+        }
+      }
+    }
+  }
+  // position: relative;
+}
+
+.navigator-atc-tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 99;
+
+  .tooltip-container {
+    width: 390px;
+    height: 200px;
+    padding: 8px;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+    @media screen and (max-width: $screen-xs) {
+      width: 90%;
+    }
+
+    .header-container {
+      display: grid;
+      grid-template-columns: 75px auto;
+      border-bottom: 1px solid $nobel-gray;
+      padding-bottom: 5px;
+      align-items: end;
+      height: 75px;
+      align-items: center;
+
+      .dp-container {
+        border-radius: 50%;
+        height: 68px;
+        width: 68px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+        }
+      }
+
+      .student-info {
+        .student-name {
+          font-size: 20px;
+          font-weight: bold;
+          color: $dark-400;
+          text-transform: capitalize;
+          overflow: hidden;
+          display: grid;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .grade-info {
+          span {
+            font-size: 15px;
+            color: $dark-400;
+          }
+
+          .title-container {
+            font-weight: bold;
+          }
+
+          .grade-level {
+            padding-left: 8px;
+          }
+        }
+      }
+
+      .competency-status-count {
+        font-size: 13px;
+        font-weight: bold;
+        justify-self: right;
+
+        .mastered {
+          color: $blue-400;
+        }
+
+        .inprogress {
+          color: $sky-400;
+        }
+
+        .not-started {
+          color: $nobel-gray;
+          font-weight: bold;
+        }
+      }
+
+      .close-tooltip {
+        position: absolute;
+        right: 8px;
+        display: none;
+        @media screen and (max-width: $screen-sm) {
+          display: block;
+        }
+      }
+    }
+
+    .body-container {
+      display: grid;
+      row-gap: 5px;
+
+      .info-container {
+        display: grid;
+        grid-template-columns: 105px auto auto;
+        align-items: center;
+      }
+
+      .progress-container {
+        padding-left: 105px;
+        color: $dark-400;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .performance-container {
+        .performance-bar-container {
+          width: 160px;
+          background-color: $completion-bg-color;
+          height: 10px;
+          border-radius: 10px;
+
+          .performance-bar {
+            height: inherit;
+            display: block;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+        }
+
+        .performance-percentage {
+          font-size: 15px;
+          font-weight: bold;
+          justify-self: right;
+        }
+      }
+
+      .competencies-container {
+        cursor: pointer;
+
+        .competency-count-container {
+          width: 126px;
+          height: 24px;
+          display: flex;
+
+          .count-box {
+            height: inherit;
+            display: block;
+          }
+
+          .mastered-count {
+            background-color: $blue-mastery;
+          }
+
+          .inprogress-count {
+            background-color: $blue-in-progress;
+          }
+
+          .not-started-count {
+            background-color: $gray-no-started;
+          }
+        }
+
+        .competency-counts {
+          height: 18px;
+        }
+
+        .competency-count {
+          justify-self: right;
+          margin-right: auto;
+
+          span {
+            font-size: 12px;
+            font-weight: bold;
+            color: $dark-gray-59;
+          }
+
+          .mastered {
+            color: $blue-mastery;
+          }
+
+          .inprogress {
+            color: $blue-in-progress;
+          }
+
+          .not-started {
+            color: $dark-gray-59;
+          }
+
+          .inferred {
+            color: $blue-mastery;
+            font-size: 11px;
+          }
+        }
+      }
+
+      .title-container {
+        font-size: 15px;
+        font-weight: bold;
+        color: $dark-400;
+      }
+    }
+  }
+
+  &.active {
+    visibility: visible;
+    display: grid;
+    justify-items: center;
+    @media screen and (max-width: 992px) {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $active-bg-color;
+      position: fixed;
+
+      .tooltip-container {
+        bottom: 0;
+        position: absolute;
+        z-index: 9999;
+        zoom: 2;
+      }
+    }
+  }
+}
+
+.student-section {
+  overflow: hidden auto;
+  position: absolute;
+  top: 195px;
+  max-height: 360px;
+  @media screen and (max-width: $screen-xs) {
+    top: 37em;
+  }
+}
+
+.navigator-atc-student-list {
+  position: absolute;
+  z-index: 98;
+  visibility: hidden;
+
+  .student-list-card {
+    width: 340px;
+    min-height: 105px;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+
+    .list-card-header {
+      display: grid;
+      box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+      padding: 12px 15px;
+
+      .header-title {
+        font-weight: bolder;
+        font-size: 13px;
+      }
+
+      .header-info {
+        font-size: 12px;
+        line-height: 15px;
+      }
+
+      .close-card {
+        display: none;
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        @media screen and (max-width: $screen-md) {
+          display: block;
+        }
+      }
+    }
+
+    .list-card-body {
+      display: grid;
+      overflow-y: auto;
+      max-height: 175px;
+
+      .student-info {
+        height: 35px;
+        display: grid;
+        grid-template-columns: 30px 1fr auto 45px;
+        column-gap: 5px;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid $gray-lighter;
+        padding-left: 5px;
+
+        > .student-perf,
+        &:last-child {
+          border: none;
+        }
+
+        .student-thumbnail {
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+          }
+        }
+
+        .student-name {
+          text-transform: capitalize;
+          font-size: 13px;
+          line-height: 13px;
+          @include ellipsis(
+            $font-size: 13px,
+            $line-height: 1,
+            $lines-to-show: 2
+          );
+        }
+
+        .mastered-info {
+          display: grid;
+          justify-content: right;
+          align-items: center;
+          line-height: 17px;
+
+          .mastered-count {
+            font-weight: bold;
+            text-align: right;
+            font-size: 12px;
+          }
+
+          .mastered-label {
+            font-size: 12px;
+          }
+        }
+
+        .student-perf {
+          height: inherit;
+          color: $white;
+          line-height: 35px;
+          text-align: center;
+          font-size: 12px;
+          font-weight: bold;
+          border-bottom: 1px solid $gray-lighter;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  &.active {
+    visibility: visible;
+    display: grid;
+    justify-items: center;
+    @media screen and (max-width: 992px) {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $active-bg-color;
+      position: fixed;
+
+      .student-list-card {
+        bottom: 0;
+        position: absolute;
+        z-index: 9999;
+        zoom: 2;
+      }
+    }
+  }
+}

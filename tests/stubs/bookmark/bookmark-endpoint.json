@@ -1,0 +1,82 @@
+[
+  {
+    "description": "Create a bookmark",
+    "request": {
+      "url": "^/api/nucleus/v2/bookmarks$",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 201,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Location": "8c6819e9-ad62-42be-b732-65da9561525c"
+      }
+    }
+  },
+
+  {
+    "description": "Fetch bookmarks",
+    "request": {
+      "url": "^/api/nucleus/v2/bookmarks",
+      "query": {
+        "offset": 0,
+        "limit": 19
+      },
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-bookmarks-200-response.json"
+    }
+  },
+
+  {
+    "description": "Fetch bookmarks second batch",
+    "request": {
+      "url": "^/api/nucleus/v2/bookmarks",
+      "query": {
+        "offset": 19,
+        "limit": 20
+      },
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-bookmarks-200-response.json"
+    }
+  },
+
+  {
+    "description": "Delete bookmark",
+    "request": {
+      "url": "^/api/nucleus/v2/bookmarks/(.+)$",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  }
+]

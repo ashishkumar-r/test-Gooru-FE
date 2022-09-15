@@ -1,0 +1,560 @@
+.gru-student-class-activity-panel {
+  background-color: $white;
+  border-radius: 4px;
+  border-bottom: 1px solid $breadcrumb-color;
+
+  .ca-panel-container {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: 1fr auto 50px 60px;
+    height: 60px;
+
+    &.offline {
+      grid-template-columns: 1fr 60px 50px 60px;
+
+      .dca-content-counts {
+        justify-self: right;
+      }
+
+      .ca-play-container {
+        pointer-events: all;
+        cursor: pointer;
+        grid-column-start: 3;
+
+        .ca-play-btn {
+          i {
+            color: $green-400;
+          }
+        }
+      }
+    }
+
+    &.collection,
+    &.today {
+      &:hover {
+        position: relative;
+      }
+
+      .ca-play-container {
+        pointer-events: all;
+        cursor: pointer;
+
+        .ca-play-btn {
+          i {
+            color: $green-400;
+          }
+        }
+      }
+    }
+
+    .dca-panel-info {
+      width: 100%;
+      display: inline-grid;
+      grid-template-columns: 65px 1fr;
+      align-items: center;
+      cursor: pointer;
+
+      .collection-external-icon,
+      .collection-icon {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        background-image: url("../assets/gooru/images/add_collection.svg");
+        opacity: 0.8;
+        justify-self: center;
+      }
+
+      .offline-activity-icon {
+        background-image: url("../assets/gooru/images/offline.svg");
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        opacity: 0.8;
+        justify-self: center;
+      }
+
+      .meeting-icon {
+        width: 70px;
+        height: 46px;
+        background-size: cover;
+        background-image: url("../assets/gooru/video-conference-ico.png");
+        opacity: 0.8;
+        justify-self: center;
+        position: relative;
+        bottom: 12px;
+      }
+
+      .assessment-external-icon,
+      .assessment-icon {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        background-image: url("../assets/gooru/images/add_assessment.svg");
+        opacity: 0.8;
+        justify-self: center;
+      }
+
+      .title-info {
+        text-transform: capitalize;
+
+        p {
+          margin: 0;
+          font-family: "Open Sans";
+          color: $dark-800;
+          padding: 0 20px 0 0;
+          @include ellipsis(
+            $font-size: 15px,
+            $line-height: 1.5,
+            $lines-to-show: 1
+          );
+        }
+
+        .offline-activity-info {
+          .task-count {
+            text-transform: capitalize;
+          }
+        }
+      }
+
+      &.meeting-panel {
+        cursor: auto;
+      }
+
+      &.impersonate-dca-panel {
+        pointer-events: none;
+      }
+    }
+
+    .dca-content-counts {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-evenly;
+      justify-self: center;
+      cursor: pointer;
+
+      .video-call {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+        cursor: pointer;
+
+        i {
+          font-size: 20px;
+          background-color: $video-icon-bg;
+          color: $white;
+          width: fit-content;
+          margin: 0 auto;
+          padding: 0 2px;
+          border-radius: 3px;
+        }
+      }
+
+      .suggestion {
+        .suggestion-explore {
+          width: 20px;
+          border-radius: 50%;
+          background: $suggestion-explore-bg;
+          height: 20px;
+          box-shadow: 0 0 5px 1px $explore-box-shadow;
+          margin-top: 2px;
+          color: $white;
+          position: relative;
+          cursor: pointer;
+
+          .explore {
+            transform: rotate(90deg);
+            margin-top: -2px;
+            margin-left: -2px;
+            color: $orange-49;
+          }
+
+          .suggestion-count {
+            width: 16px;
+            border-radius: 50%;
+            background: $white;
+            position: absolute;
+            line-height: 14px;
+            top: -5px;
+            height: 16px;
+            left: 14px;
+            color: $gray-4a;
+            border: 1px solid $gray-4a;
+            font-size: 9px;
+            text-indent: 4px;
+          }
+        }
+      }
+
+      .resource-count {
+        width: 40px;
+        display: inline-grid;
+        align-items: center;
+        grid-template-columns: 50% 50%;
+        justify-items: center;
+        height: 20px;
+
+        .resource-icon {
+          width: 20px;
+          height: 20px;
+          background-repeat: no-repeat;
+          background-size: 20px 20px;
+          background-image: url("../assets/gooru/images/add_resource_icon.svg");
+          opacity: 0.8;
+        }
+
+        span {
+          height: 20px;
+        }
+      }
+
+      .task-count {
+        width: 40px;
+        display: inline-grid;
+        align-items: center;
+        grid-template-columns: 50% 50%;
+        justify-items: center;
+        height: 20px;
+
+        .task-icon {
+          width: 20px;
+          height: 20px;
+          background-repeat: no-repeat;
+          background-size: 20px 20px;
+          background-image: url("../assets/gooru/images/text-resource-dark.svg");
+          opacity: 0.8;
+        }
+
+        span {
+          height: 20px;
+        }
+      }
+
+      .question-count {
+        width: 40px;
+        display: inline-grid;
+        align-items: center;
+        grid-template-columns: 50% 50%;
+        justify-items: center;
+        height: 20px;
+
+        .question-icon {
+          width: 20px;
+          height: 20px;
+          background-repeat: no-repeat;
+          background-size: 20px 20px;
+          background-image: url("../assets/gooru/images/add_question.svg");
+          opacity: 0.8;
+        }
+
+        span {
+          height: 20px;
+        }
+      }
+
+      .external-icon {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        background-image: url("../assets/gooru/share.png");
+        margin-right: 5px;
+      }
+
+      &.meeting-content {
+        cursor: auto;
+      }
+    }
+
+    .ca-play-container {
+      color: $white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: none;
+
+      &.future-activity {
+        pointer-events: none;
+
+        .ca-play-btn {
+          i {
+            color: $dark-300;
+          }
+        }
+      }
+
+      .ca-play-btn {
+        height: 30px;
+        border-radius: 50%;
+        width: 30px;
+
+        i {
+          margin-left: 3px;
+          margin-top: 3px;
+          color: $dark-300;
+        }
+      }
+    }
+
+    .dca-panel-actions-performance {
+      grid-column-start: 4;
+
+      &.diagnostic-activity {
+        pointer-events: none;
+      }
+
+      .grading-icon {
+        background-image: url("../assets/gooru/images/grade-pending.png");
+        width: 22px;
+        height: 22px;
+        background-size: 22px;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: block;
+        align-self: center;
+        cursor: pointer;
+        margin: 19px auto;
+      }
+
+      .dca-panel-performance {
+        width: 100%;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: $white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-left: 1px solid $breadcrumb-color;
+
+        &.grade-range-not-started {
+          pointer-events: none;
+        }
+
+        .offline-activity {
+          .completed {
+            background: url("../assets/gooru/images/correct-answer.svg");
+            width: 21px;
+            height: 20px;
+            display: block;
+            background-repeat: no-repeat;
+          }
+        }
+
+        .thumbnail-img {
+          width: 60px;
+          height: 60px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &.collection {
+          background-color: $gray-e68;
+          font-size: 12px;
+          text-overflow: ellipsis;
+        }
+
+        &.not-started {
+          pointer-events: none;
+        }
+
+        .no-performance {
+          color: $dark-400;
+        }
+      }
+    }
+  }
+
+  .suggestions {
+    width: 100%;
+    height: 100%;
+    box-shadow: rgb(248, 140, 73) 0 0;
+    display: none;
+
+    .three-bounce-spinner {
+      visibility: visible;
+    }
+
+    > .suggestion-panel:first-child {
+      border-top: 1px solid $breadcrumb-color;
+    }
+
+    .suggestion-panel {
+      display: inline-grid;
+      width: 100%;
+      grid-template-columns: 65px auto 150px 60px 60px;
+      height: 60px;
+      color: $orange-400;
+      border-bottom: 1px solid $breadcrumb-color;
+
+      .icon {
+        display: inline-flex;
+
+        %icon-container {
+          width: 20px;
+          height: 20px;
+          min-height: 20px;
+          background-repeat: no-repeat;
+          background-size: 20px 20px;
+          opacity: 0.8;
+          justify-self: center;
+          margin: auto;
+          display: block;
+        }
+
+        i {
+          &.offlineactivity {
+            @extend %icon-container;
+            background-image: url("../assets/gooru/images/offline-orange.svg");
+          }
+
+          &.assessment {
+            @extend %icon-container;
+            background-image: url("../assets/gooru/images/assessment-orange.svg");
+          }
+
+          &.collection {
+            @extend %icon-container;
+            background-image: url("../assets/gooru/images/collection-orange.svg");
+          }
+        }
+      }
+
+      .title-info {
+        display: flex;
+        align-items: center;
+
+        p {
+          margin: 0;
+          font-family: "Open Sans";
+          color: $gray-29;
+          padding: 0 20px 0 0;
+          @include ellipsis(
+            $font-size: 15px,
+            $line-height: 1.5,
+            $lines-to-show: 1
+          );
+        }
+      }
+
+      .content-counts {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-evenly;
+        justify-self: center;
+
+        .resource-count {
+          width: 40px;
+          display: inline-grid;
+          align-items: center;
+          grid-template-columns: 50% 50%;
+          justify-items: center;
+          height: 20px;
+
+          .resource-icon {
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-image: url("../assets/gooru/images/add_resource_icon.svg");
+            opacity: 0.8;
+          }
+
+          span {
+            height: 20px;
+          }
+        }
+
+        .question-count {
+          width: 40px;
+          display: inline-grid;
+          align-items: center;
+          grid-template-columns: 50% 50%;
+          justify-items: center;
+          height: 20px;
+
+          .question-icon {
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-image: url("../assets/gooru/images/add_question.svg");
+            opacity: 0.8;
+          }
+
+          span {
+            height: 20px;
+          }
+        }
+      }
+
+      .play-container {
+        pointer-events: all;
+        cursor: pointer;
+        display: flex;
+
+        .ca-play-btn {
+          width: max-content;
+          height: max-content;
+          margin: auto;
+
+          a {
+            color: $orange-49;
+          }
+        }
+      }
+
+      .suggestion-panel-actions-performance {
+        width: 100%;
+        height: 100%;
+
+        .thumbnail-img {
+          width: 60px;
+          height: 60px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .suggestion-panel-performance {
+          width: 100%;
+          height: 100%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: $white;
+          font-size: 18px;
+          font-weight: bold;
+          cursor: pointer;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+
+          &.collection {
+            background-color: $gray-e68;
+            font-size: 12px;
+            text-overflow: ellipsis;
+          }
+
+          &.not-started {
+            pointer-events: none;
+          }
+
+          .no-performance {
+            color: $dark-400;
+          }
+        }
+      }
+    }
+  }
+}

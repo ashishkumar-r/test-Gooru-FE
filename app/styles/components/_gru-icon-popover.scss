@@ -1,0 +1,18 @@
+.gru-icon-popover {
+  cursor: pointer;
+}
+
+.gru-icon-popover-window {
+  max-width: 300px;
+  &.popover {
+    .arrow {
+      &:after {
+        border-top-color: $pre-border-color;
+      }
+    }
+  }
+
+  p {
+    line-height: 14px;
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "owner": [
+    "08fd3a1a-8118-4b02-ab59-c0b4a5037863"
+  ],
+  "collaborator": [
+    "e568193d-603a-4c3a-a5d2-320579d32f3f"
+  ],
+  "member": [
+    "other-student-id"
+  ],
+  "invitees": [],
+  "details": [
+    {
+      "id": "08fd3a1a-8118-4b02-ab59-c0b4a5037863",
+      "first_name": "Jeffrey",
+      "last_name": "Bermudez",
+      "thumbnail": null
+    },
+    {
+      "id": "e568193d-603a-4c3a-a5d2-320579d32f3f",
+      "first_name": "Jeffrey",
+      "last_name": "Bermudez",
+      "thumbnail": null
+    },
+    {
+      "id": "other-student-id",
+      "first_name": "Other",
+      "last_name": "Student",
+      "thumbnail": null
+    }
+  ]
+}

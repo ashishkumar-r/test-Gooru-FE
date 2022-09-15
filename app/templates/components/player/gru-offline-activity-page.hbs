@@ -1,0 +1,26 @@
+<div class="oa-study-player-container {{if isShowFullView 'full-view-player'}}">
+  {{player/offline-activity/gru-oa-stater-page
+    offlineActivity = offlineActivity
+    contentSource = source
+    onClosePlayer = "onClosePlayer"
+    onStartPlayer = "onStartPlayer"
+    classId = classId
+    courseId = courseId
+    unitId = unitId
+    lessonId = lessonId
+    isStudyPlayer = isStudyPlayer
+    isIframeMode=isIframeMode
+  }}
+  {{#unless isShowLandingPage}}
+    {{player/offline-activity/gru-offline-activity-submission
+      offlineActivity = offlineActivity
+      contentSource = source
+      classId = classId
+      courseId = courseId
+      unitId = unitId
+      lessonId = lessonId
+      isStudyPlayer = isStudyPlayer
+      offlineActivitySubmissions = offlineActivitySubmissions
+    }}
+  {{/unless}}
+</div>

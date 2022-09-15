@@ -1,0 +1,60 @@
+.gru-accordion {
+  $locate-icon: 18px;
+  $locate-icon-xs: 10px;
+  $icon-side: $locate-icon + 10px;
+  $icon-side-xs: $locate-icon-xs + 8px;
+
+  ol .panel {
+    position: relative;
+  }
+
+  ol,
+  .panel-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .panel {
+      & + .panel {
+        margin-top: 0;
+      }
+
+      &.selected {
+        .location-marker {
+          display: block;
+        }
+      }
+
+      .panel-heading {
+        padding: 15px 0 0 0;
+        margin: 0 0 15px 0;
+        background-color: $btn-default-border;
+        border: 0 none;
+
+        .panel-title {
+          > a:link,
+          a:active {
+            text-decoration: none;
+          }
+        }
+      }
+      .panel-collapse {
+        .panel-body {
+          border-top: 0 none;
+          padding: 1px;
+        }
+      }
+    }
+  }
+
+  .location-marker {
+    display: none;
+    position: absolute;
+    left: -35px;
+    top: 0;
+
+    i {
+      color: $dark-300;
+    }
+  }
+}

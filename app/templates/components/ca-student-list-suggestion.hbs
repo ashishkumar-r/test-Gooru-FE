@@ -1,0 +1,48 @@
+<div class="backdrop" {{action 'onPullUpClose'}}></div>
+<div class="panel">
+  <div class="report-header">
+    <div class="header-title">
+      <i class="icon {{suggestion.suggestedContentType}}"></i>
+      <span class="title ellipsis">{{safe-html suggestion.title}}</span>
+    </div>
+    <div class="close" {{action 'onPullUpClose' false}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="students-report-container">
+    {{#each suggestedToContext as |student|}}
+      <div class="student-row-container {{unless student.performance 'not-started'}}">
+        <div class="student-info">
+          <div class="user-profile-img">
+            <img src="{{student.profile.avatarUrl}}" alt="student avatar"/>
+          </div>
+          <span class="username">{{student.profile.fullName}}</span>
+        </div>
+        {{#if student.performance}}
+          {{#if (eq suggestion.suggestedContentType 'assessment')}}
+            <div class="score" {{action 'openPerformanceReport' student}} style="background-color:{{if  student.performance (grade-color student.performance.score)}}">
+              {{#if (eq student.performance.score null)}}
+                --
+              {{else}}
+                {{concat student.performance.score '%'}}
+              {{/if}}
+            </div>
+          {{else}}
+            <div class="timespent" {{action 'openPerformanceReport' student}}>{{if student.performance.timeSpent (format-time  student.performance.timeSpent) '--'}}</div>
+          {{/if}}
+        {{else}}
+          <div class="not-started">{{t 'teacher-landing.class.offline-class-report.not-started'}}</div>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{#if showStudentDcaReport}}
+  {{reports/pull-up/dca-student-collection-report
+    showPullUp=showStudentDcaReport
+    reportData=studentReportContextData
+    isStudent=false
+    useSession=true
+    onClosePullUp="onClosePullUp"
+  }}
+{{/if}}

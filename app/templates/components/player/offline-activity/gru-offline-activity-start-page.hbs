@@ -1,0 +1,135 @@
+<div class="player-start-page-container">
+  <div class="project-container">
+    <div class="project-thumbnail-container" style="background-image: url({{offlineActivity.thumbnailUrl}})">
+      <div class="project-standards">
+        {{#if oaTaxonomies.length}}
+          {{taxonomy/gru-taxonomy-tag-list tags=oaTaxonomies tagsVisible=1 isInCard=true}}
+        {{/if}}
+      </div>
+      <div class="project-etc">
+        <span class="label-container">ETC:</span>
+        <span class="etc-value">{{offlineActivity.hours}} {{offlineActivity.minutes}}</span>
+      </div>
+      <div class="project-type">
+        <span class="project-type-label">{{t 'project'}}: </span>
+        <span class="project-type-value">{{t offlineActivity.subFormat}}</span>
+      </div>
+    </div>
+    <div class="project-description-container">
+      <div class="description-label ellipsis">
+        {{offlineActivity.title}}
+      </div>
+      <div class="description-text">
+        {{offlineActivity.learningObjectives}}
+      </div>
+    </div>
+    {{#if (not isStudent)}}
+   <div class="project-references-container">
+     {{player/offline-activity/gru-offline-activity-references offlineActivity = teacherActivityReferences userType =teacherTitle}}
+   </div>
+     {{/if}}
+    <div class="project-references-container">
+      {{player/offline-activity/gru-offline-activity-references
+        offlineActivity = studentActivityReferences userType =studentTitle
+      }}
+    </div>
+  </div>
+  <div class="task-rubric-container">
+    <div class="tasks-container">
+      {{#each activityTasks as |task|}}
+        {{player/offline-activity/gru-offline-activity-task-submission
+          task=task
+        }}
+      {{else}}
+        {{t 'no-task-available'}}
+      {{/each}}
+    </div>
+    {{#if activityStudentRubric}}
+      <div class="student-rubrics-container">
+        <div class="student-label label-container" {{action "onToggleRubricContainer" 'student'}}>
+          <span class="label-type">{{t 'common.self'}} {{t 'grading-player.grading'}}
+            {{#if activityStudentRubric.url}}
+              <span class="rubric-attachment" title="{{t 'rubric-details'}}" data-toggle="tooltip" {{action 'filePreviewOpen' 'student' bubbles=false}}>{{gru-icon name="attachment"}}</span>
+            {{/if}}
+          </span>
+          <span class="toggle-icon">
+            {{gru-icon name=(if isStudentCategoriesExpanded 'expand_less' 'expand_more')}}
+          </span>
+        </div>
+        <div class="student categories-container">
+          {{validation/gru-textarea
+            model=studentRubricCategories
+            valuePath='comment'
+            maxLength=500
+            rows=1
+            placeholder='General Comments Only'
+            disabled="disabled"
+          }}
+          {{rubric/rubric-category-grades
+            categories=studentRubricCategories
+            isReadOnly=true}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if activityTeacherRubric}}
+      <div class="teacher-rubrics-container">
+        <div class="teacher-label label-container" {{action "onToggleRubricContainer" 'teacher'}}>
+          <span class="label-type">{{t 'common.teacher'}} {{t 'grading-player.grading'}}
+            {{#if activityTeacherRubric.url}}
+              <span class="rubric-attachment" title="{{t 'rubric-details'}}" data-toggle="tooltip" {{action 'filePreviewOpen' 'teacher'  bubbles=false}}>{{gru-icon name="attachment"}}</span>
+            {{/if}}
+          </span>
+          <span class="toggle-icon">
+            {{gru-icon name=(if isTeacherCategoriesExpanded 'expand_less' 'expand_more')}}
+          </span>
+        </div>
+        <div class="teacher categories-container">
+          {{validation/gru-textarea
+            model=activityTeacherRubric
+            valuePath='comment'
+            maxLength=500
+            rows=1
+            placeholder='General Comments Only'
+          }}
+          {{rubric/rubric-category-grades
+            categories=teacherRubricCategories
+            isReadOnly=true}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  <div class="actions-container">
+    <div class="cancel-action action-btn" {{action "onClosePlayer"}}>
+      {{t 'common.cancel'}}
+    </div>
+    <div class="start-action action-btn" {{action "onStartPlayer"}}>
+      {{t 'gru-assessment-confirmation.start'}}
+    </div>
+  </div>
+</div>
+
+{{#if activityTeacherRubric.url}}
+  <div class="rubric-file-preview-container teacher">
+    <div class="backdrop"></div>
+    <div class="rubric-file-preview">
+      <div class="rubric-file-preview-close" {{action 'filePreviewClose' 'teacher'}}>
+        {{gru-icon name="close"}}
+      </div>
+      <iframe src="{{activityTeacherRubric.url}}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+{{/if}}
+
+
+{{#if activityStudentRubric.url}}
+  <div class="rubric-file-preview-container student">
+    <div class="backdrop"></div>
+    <div class="rubric-file-preview">
+      <div class="rubric-file-preview-close" {{action 'filePreviewClose' 'student'}}>
+        {{gru-icon name="close"}}
+      </div>
+      <iframe src="{{activityStudentRubric.url}}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+{{/if}}

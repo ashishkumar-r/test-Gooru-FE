@@ -1,0 +1,27 @@
+{
+  "id": "ba956a97-ae15-11e5-a302-f8a963065976",
+  "theme": {
+    "buttons": {
+      "primary": {
+        "color": "gray"
+      },
+      "info": {
+        "color": "blue"
+      },
+      "success": {
+        "color": "green"
+      },
+      "warning": {
+        "color": "orange"
+      },
+      "danger": {
+        "color": "red"
+      }
+    },
+    "header": {
+      "logo": {
+        "url": "http://www.edify.cr/images/logo-EDIFY.png"
+      }
+    }
+  }
+}

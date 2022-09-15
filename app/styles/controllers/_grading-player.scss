@@ -1,0 +1,44 @@
+.teacher.grading {
+  @include flexbox;
+  height: 100%;
+  position: relative;
+  .response-panel {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    padding: 10px 20px 10px 10px;
+    &.hide-response {
+      display: none;
+    }
+  }
+  @media (min-width: $screen-sm) {
+    padding: 20px 40px;
+  }
+  .header {
+    .go-back-container {
+      margin: 0 0 25px;
+      .back-to {
+        font-size: $font-size-large;
+        i {
+          font-size: $font-size-rubric-icon;
+          height: 24px;
+          vertical-align: middle;
+          width: 25px;
+        }
+      }
+    }
+  }
+  .question-response {
+    margin-bottom: 0;
+    .inner-text {
+      padding: 20px;
+      border: 1px solid $gray-light;
+    }
+  }
+  .roster {
+    position: absolute;
+    height: 100%;
+    width: 18%;
+    padding-bottom: 40px;
+  }
+}

@@ -1,0 +1,36 @@
+@media screen and (max-width: $screen-568) {
+    .network {
+      .controller {
+            width: 100vw;
+        .followings {
+            display: grid;
+            justify-content: center;
+      }
+    }
+  }
+}
+@media screen and (min-width: $screen-sm) {
+    .network {
+      .controller {
+        .followings {
+          grid-template-columns: auto auto auto !important;
+      }
+    }
+  }
+}
+@media (orientation: landscape) {
+  .network {
+      .controller {
+        width: 100vw;
+        .followings {
+          width: 100%;
+          display: grid;
+          grid-template-columns: auto auto;
+          justify-content: center;
+          &:before {
+              display: none;
+        }
+      }
+    }
+  }
+}

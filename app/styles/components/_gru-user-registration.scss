@@ -1,0 +1,95 @@
+.gru-user-registration {
+  .wrapper {
+    > .main {
+      h3 {
+        margin-top: 0;
+        color: $brand-primary;
+        text-align: center;
+      }
+
+      .sub-header {
+        margin: 0 0 20px 0;
+        color: $gray;
+        text-align: center;
+        font-size: $font-size-small;
+      }
+
+      .login-form-box {
+        background-color: $gray-lighter;
+        border: 1px solid $gray-lighter;
+        padding: 50px 50px 25px 50px;
+        text-align: center;
+        .login-gooru {
+          text-align: center;
+        }
+        .connect-button {
+          padding: 16px 16px 15px 64px;
+          color: $white;
+          border-radius: 4px;
+          border: 1px solid $brand-primary;
+          margin-bottom: 15px;
+          cursor: pointer;
+          background: url("gooru/login-g.png") no-repeat scroll left center,
+            -webkit-linear-gradient(top, $brand-primary, $brand-primary); /* For Safari 5.1 to 6.0 */
+          background: url("gooru/login-g.png") no-repeat scroll left center,
+            -o-linear-gradient(top, $brand-primary, $brand-primary); /* For Opera 11.1 to 12.0 */
+          background: url("gooru/login-g.png") no-repeat scroll left center,
+            -moz-linear-gradient(top, $brand-primary, $brand-primary); /* For Firefox 3.6 to 15 */
+          background: url("gooru/login-g.png") no-repeat scroll left center,
+            linear-gradient(
+              to top,
+              $brand-primary,
+              $brand-primary
+            ); /* Standard syntax */
+          &:hover {
+            background: url("gooru/login-g.png") no-repeat scroll left center
+              $brand-primary;
+          }
+        }
+        .why-google {
+          .why-google-desc {
+            color: $gray-light;
+            display: inline-block;
+            font-size: $font-size-small;
+          }
+          .img-question {
+            display: inline-table;
+            vertical-align: middle;
+          }
+        }
+        .divider {
+          border-bottom: 1px solid $gray-lighter;
+          height: 1em;
+          margin: 10px 0 20px;
+          width: 100%;
+          .divider-text {
+            background-color: $gray-lighter;
+            display: inline;
+            padding: 0 10px;
+            position: relative;
+            top: 0.3em;
+          }
+        }
+        .email-sign-up {
+          .no-google-account {
+            color: $gray-light;
+            font-size: $font-size-small;
+          }
+        }
+      }
+
+      .log-in-here {
+        margin-top: 10px;
+        font-size: $font-size-small;
+        color: $gray-light;
+        display: block;
+        text-align: center;
+      }
+
+      .row.footer {
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

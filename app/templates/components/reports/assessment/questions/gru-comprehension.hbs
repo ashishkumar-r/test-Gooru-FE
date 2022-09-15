@@ -1,0 +1,49 @@
+<div class="gru-comprehension-container">
+    <div class="gru-comprehension-question-list {{if isPreviewCard 'disable-useranswer'}} {{if isShowAnswerSection 'show-correct-answer'}}">
+        {{#each subQuestions as | content seq |}}
+        {{#unless isPreviewCard}}
+        {{#if (or (eq content.questionType 'OE') (eq content.questionType 'SE_FIB') (eq content.questionType 'SE_FRQ')) }}
+          <div class="{{content.questionType }}">
+            {{reports/assessment/gru-questions
+              isAnswerKeyHidden=isAnswerKeyHidden
+              showPerformance=(not showCorrect)
+              viewMode='open-ended'
+              showReactionBar=showReactionBar
+              isTeacher=isTeacher
+              content=content
+              contentSeq=(plus-one seq)
+              isShowExemplarText=isShowExemplarText
+              tabindex="1"
+            }}
+          </div>
+        {{else}}
+          {{reports/assessment/gru-questions
+            isAnswerKeyHidden = isAnswerKeyHidden
+            showPerformance=(not showCorrect)
+            showReactionBar=showReactionBar
+            isTeacher=isTeacher
+            isChangeScoreEnabled=isChangeScoreEnabled
+            hasAnsweredQuestions=hasAnsweredQuestions
+            showChangeScore=showChangeScore
+            isAssessment=isAssessment
+            content=content
+            contentSeq=(plus-one seq)
+            listOfQuestions=listOfQuestions
+            isShowExemplarText=isShowExemplarText
+            tabindex="1"
+          }}
+        {{/if}}
+        {{/unless}}
+        {{#if isPreviewCard}}
+          {{cards/question-preview-card
+            question=content
+            isShowCorrectAnswer= true
+            contentSeq=(plus-one seq)
+            isReportView = true
+            isShowReportCorrectAnswer = true
+            isStudent = isStudent
+            tabindex="1"}}
+        {{/if}}
+        {{/each}}
+    </div>
+</div>

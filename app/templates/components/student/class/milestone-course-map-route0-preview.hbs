@@ -1,0 +1,34 @@
+<div class="milestone-course-map-route0-preview-container">
+  <div class="milestone-course-map-route0-preview-header" {{action 'showRoute0Preview'}}>
+    <div class="milestone-route0-suggest-icon">
+      {{gru-icon name="explore_outline"}}
+    </div>
+    <div class="milestone-route0-suggest-info">
+      <p>{{t 'pre-study'}}</p>
+    </div>
+  </div>
+  <div class="route0-preview-container">
+    <div class="route0-preview-author-info-container">
+      <p class="route0-preview-title">{{t 'suggested-lessons'}}</p>
+      <p class="created-by">{{t 'created-by-kangoorus'}}</p>
+    </div>
+    <div class="route0-preview-chart-course-map-container">
+      <div class="route0-preview-course-map">
+        {{student/class/milestone-course-map-route0
+          showPerformance=false
+          route0=route0
+          locateLastPlayedItem=false
+          class=class
+        }}
+      </div>
+    </div>
+  </div>
+  <div class="route0-preview-actions-container">
+    <div class="accept" {{action "updateRoute0" 'accepted'}}>
+      {{t 'common.accept'}}
+    </div>
+    <div class="ignore" {{action "updateRoute0" 'rejected'}}>
+      <span>{{t 'gru-suggest-test.no'}}</span>
+    </div>
+  </div>
+</div>

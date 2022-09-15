@@ -1,0 +1,232 @@
+.player .gru-question-viewer {
+  padding: 15px;
+
+  @media (min-width: $screen-sm) {
+    padding: 0;
+  }
+
+  .question-panel > h2,
+  .answers-panel > h2 {
+    color: $gray-dark;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .question-panel {
+    width: 100%;
+    &.likert-question-view {
+      width: 90% !important;
+    }
+    h2 {
+      align-items: center;
+    }
+    .font-size-loader {
+      display: block;
+      font-size: 12px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .font-label-loader {
+      width: 66%;
+      font-size: 19px;
+      margin-top: 14px;
+    }
+    .font-changer {
+      margin-right: 12rem;
+      width: 50%;
+      margin-top: 9px;
+    }
+
+    .question {
+      span.text {
+        display: block;
+        margin-bottom: 10px;
+        word-wrap: break-word;
+        overflow: auto;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    @media (min-width: $screen-sm) {
+      margin-left: 16px;
+      width: 47%;
+      float: $tab-float-dir;
+    }
+    .hints,
+    .explanation {
+      display: block;
+    }
+    .panel-body {
+      padding: 20px;
+    }
+  }
+
+  .answers-panel {
+    width: 100%;
+    margin-bottom: 30px;
+
+    &.likert-answer-view {
+      display: none !important;
+    }
+
+    .not-comp {
+      margin-top: 70px !important;
+    }
+    .panel-body {
+      .decoding-text {
+        height: calc(100vh - 70vh);
+        overflow-y: auto;
+      }
+      .question-panel-left > .slider {
+        display: none;
+      }
+      .font-size-loader {
+        display: none;
+        input {
+          width: 150px;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .SERP_WPM,
+    .SERP_SR,
+    .SERP_PCR,
+    .SERP_AFC {
+      .panel-body {
+        padding-bottom: 5px;
+        h2 {
+          display: flex;
+          align-items: center;
+        }
+        .font-size-loader {
+          // display: none;
+          display: block;
+          font-size: 12px;
+          margin-left: 10px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    .SERP_AFC {
+      box-shadow: none;
+      background-color: $table-bg;
+      > .panel-body {
+        padding: 0;
+        > h2 {
+          margin: 0;
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    .answer-choices {
+      span.letter {
+        vertical-align: top;
+      }
+      .passage-btn {
+        font-size: 14px;
+      }
+    }
+
+    .actions {
+      margin-top: 30px;
+      text-align: center;
+      .save {
+        @media (min-width: $screen-sm) {
+          float: $menu-float-dir;
+        }
+      }
+    }
+
+    @media (min-width: $screen-sm) {
+      margin-left: 20px;
+      width: 48%;
+      float: $tab-float-dir;
+    }
+    .panel-body {
+      padding: 20px;
+    }
+  }
+
+  .feedback {
+    font-size: 1.5em;
+    font-weight: 100;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+  .feedback-content {
+    display: inline-block;
+    @media (min-width: $screen-sm) {
+      float: $tab-float-dir;
+    }
+    svg {
+      height: inherit;
+      width: inherit;
+    }
+    .feedback-emotion {
+      height: 50px;
+      width: 50px;
+      float: $tab-float-dir;
+    }
+    .correct {
+      margin-top: -14px;
+    }
+    .incorrect {
+      margin-top: 4px;
+    }
+  }
+
+  .question-information {
+    margin-top: 24px;
+
+    .actions {
+      text-align: center;
+      margin-bottom: 20px;
+
+      button {
+        min-width: 8em;
+
+        &:first-child {
+          margin-right: 3%;
+        }
+        &:last-child {
+          margin-left: 3%;
+        }
+      }
+    }
+    .btn-group {
+      button {
+        span i {
+          vertical-align: middle;
+        }
+      }
+      & .explanation {
+        margin-left: 1px;
+      }
+    }
+
+    > .hints {
+      margin: 0;
+      padding-left: 30px;
+
+      li {
+        margin-bottom: 10px;
+        padding-right: 40px;
+      }
+    }
+    > .explanation {
+      border-top: 1px solid $gray-lighter;
+      color: $brand-primary;
+      padding: 15px 30px;
+      margin-top: 15px;
+    }
+  }
+}

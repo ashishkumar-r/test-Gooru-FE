@@ -1,0 +1,164 @@
+.reports.pull-up-dca-collection-report {
+  @media only screen and (max-width: $screen-sm - 1) {
+    .scroll-left-arrow,
+    .scroll-right-arrow {
+      display: none;
+    }
+
+    .suggest-bar {
+      .suggest-bar-container {
+        .no-of-student-selected {
+          width: calc(100% - 145px);
+        }
+      }
+    }
+
+    .table-fixed-left,
+    .table-fixed-right {
+      width: 100vw;
+      padding-bottom: 10px;
+
+      table th {
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+
+        .header-filters {
+          grid-template-columns: auto auto;
+          display: grid;
+
+          .score-timespent {
+            width: 100%;
+          }
+        }
+
+        .user-profile-summary {
+          display: grid;
+          grid-template-columns: auto auto;
+
+          .user-profile-details {
+            height: 36px;
+
+            .user-profile-img {
+              height: 100%;
+
+              .selected-user-for-suggestion,
+              img {
+                margin-top: 2px;
+              }
+            }
+          }
+
+          .score-details {
+            justify-self: center;
+          }
+        }
+
+        &:last-child {
+          border-right: 1px solid $gray-80;
+        }
+
+        &:not(:nth-child(1)) {
+          border-left: 1px solid $gray-80;
+        }
+
+        .user-profile-summary {
+          background-color: $light-200;
+          height: 36px;
+        }
+      }
+    }
+    width: 100%;
+
+    .dca-collection-report-container {
+      width: 100%;
+
+      .report-header {
+        .report-header-info {
+          .dca-activity-date {
+            font-size: 11px;
+          }
+
+          .dca-activity-date {
+            padding-right: 0;
+            line-height: 15px;
+          }
+
+          .collection-title {
+            p {
+              font-size: 12px;
+              width: 60%;
+            }
+          }
+
+          .collection-title {
+            .collection-icon {
+              width: 60px;
+            }
+          }
+        }
+      }
+      @media only screen and (max-width: $screen-720) {
+        .report-content {
+          .report-performance-tabular {
+            .report-header-container {
+              .taxonomy-details {
+                display: none;
+              }
+
+              .report-action-btns {
+                .view-btn-actions {
+                  width: max-content;
+                }
+              }
+            }
+          }
+
+          .report-carousel {
+            .report-carousel-content-container {
+              .report-carousel-content {
+                width: 100%;
+
+                .performance-display-container {
+                  margin: auto;
+                }
+
+                .collection-report-chart {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      table {
+        th.tabular-header {
+          position: static;
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: $screen-568) and (max-width: $screen-824) {
+    .dca-collection-report-container {
+      .report-header {
+        .report-header-info {
+          .collection-title {
+            p {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .report-content {
+        .report-performance-tabular {
+          .report-header-container {
+            .taxonomy-details {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

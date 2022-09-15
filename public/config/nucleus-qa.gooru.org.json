@@ -1,0 +1,30 @@
+{
+  "endpoint" : {
+    "url": "",
+    "secureUrl": "https://nucleus-qa.gooru.org",
+    "tenantUrl": "https://s3-us-west-1.amazonaws.com/nile-tenants/qa"
+  },
+
+  "realTime": {
+    "webServiceUrl": "",
+    "webServiceUri": "/nucleus/realtime",
+    "webSocketUrl": "https://rt.nucleus-qa.gooru.org",
+    "webSocketUri": "/ws/realtime"
+  },
+
+  "teams": {
+    "url": "http://teams-qa.gooru.org"
+  },
+
+  "demoClass": {
+    "code": "FZRC834",
+    "id": "002b0b27-1b51-4343-a51f-76fae80534f8"
+  },
+
+  "languageSetting": {
+    "defaultLang": "en",
+    "showDropMenu": true
+  },
+  "OAUTH_LOGIN_LANUCH_URL":
+  "https://staging.gooru.org/api/nucleus-auth-idp/v1/oauth2"
+}

@@ -1,0 +1,162 @@
+<div class="student class">
+  {{#if isNotAbleToStartPlayer}}
+    <div class="alert-player-error">
+      <div class="alert-status">{{t 'common.errors.no-studymaterial'}}</div>
+    </div>
+  {{/if}}
+  <div class="header clearfix">
+    <div class="go-back-container">
+      {{#link-to 'student-home' class="back-to"}}
+        {{gru-icon name='arrow_back'}}
+        {{t 'student-landing.class.back-to'}}
+      {{/link-to}}
+      <h1>{{class.title}}</h1>
+    </div>
+    <div class="panel panel-default panel-primary classroom-information hide-classroom-information">
+      <div class="panel-body {{unless course.tags.length 'no-taxomony'}}">
+        <div class="course-image">
+          {{#if course.thumbnailUrl}}
+            <img src="{{course.thumbnailUrl}}" alt="thumbnailUrl" />
+          {{else}}
+            <div class="no-course-image"></div>
+          {{/if}}
+        </div>
+        <div class="course-name" aria-label="{{course.title}}">
+          {{#if course.title}}
+            {{{truncate text=course.title maxLength=50}}}
+          {{else}}
+            {{t 'student-landing.class.no-course'}}
+          {{/if}}
+        </div>
+        <div class="counts-container">
+          <div class="count" aria-label="unit count">
+            {{#if hasUnits}}
+              {{gru-icon tooltipTitle='common.unit' name="format_align_center"}}
+              <span>{{course.unitCount}}</span>
+            {{/if}}
+          </div>
+          <div class="count" aria-label="member">
+            {{#if hasStudents}}
+              {{gru-icon tooltipTitle='common.student' name="people"}}
+              <span>{{class.countMembers}}</span>
+            {{/if}}
+          </div>
+        </div>
+        <div class="teacher-profile">
+          {{#if class.owner}}
+            <img class="img-responsive" src="{{class.owner.avatarUrl}}" alt="avatarUrl">
+            <span class="owner-name">
+              {{#if class.owner.firstName}}
+                {{truncate text=(concat class.owner.firstName ' ' class.owner.lastName) maxLength=25}}
+              {{else}}
+                {{class.owner.username}}
+              {{/if}}
+            </span>
+          {{/if}}
+        </div>
+        <div class="taxonomy-standards">
+          {{#if course.tags.length}}
+            {{taxonomy/gru-taxonomy-tag-list tags=course.tags tagsVisible=1 isInCard=true hasTooltips=false}}
+          {{/if}}
+        </div>
+        <div class="share-class-data">
+          {{#if class.isShareData}}
+            <div class="toogle-options">
+              {{gru-switch
+            isChecked = getActiveShareData
+            switchOptions = switchOptions
+            onOptionSwitch = "onToggleUpdateShareData"
+            tabindex="8"}}
+            </div>
+            <label class="share-text-lable">Share class data</label>
+          {{/if}}
+        </div>
+        <div class="class-code">
+          <div class="title">{{t 'student-landing.class-code'}}</div>
+          <div aria-label="class code-{{class.code}}" class="code">{{class.code}}</div>
+        </div>
+        <div class="performance-container {{unless hasStarted 'not-started'}}" {{action 'openCourseReport'}}>
+          {{charts/gru-performance-chart performanceSummary=class.performanceSummary }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{#if class}}
+  {{student/class/gru-student-navbar
+    destination=destination
+    performanceSummary=class.performanceSummary
+    navTitle=class.title
+    class=class
+    classId=class.id
+    onItemSelected="selectMenuItem"
+    selectedMenuItem=menuItem
+    studyCurrent=studyPlayer
+    hasClassInfo=true
+    course = course
+    isDisableNavbar = isDisableNavbar
+    openCourseReport='openCourseReport'
+    onOpenCAReport='onOpenCAReport'
+    activeSubPrograme=activeSubPrograme
+    classFramework = classFramework
+    isDefaultShowFW = isDefaultShowFW
+  }}
+  <!-- NOTE: Based on requirement we change it -->
+
+    <!-- {{student/class/gru-study-navbar
+        destination=destination
+        performanceSummary=class.performanceSummary
+        navTitle=class.title
+        class=class
+        classId=class.id
+        onItemSelected="selectMenuItem"
+        selectedMenuItem=menuItem
+        studyCurrent=studyPlayer
+        hasClassInfo=true
+        openCourseReport='openCourseReport'
+        onOpenCAReport='onOpenCAReport'}} -->
+  {{else}}
+    {{student/class/gru-class-navigation
+    class=class
+    onItemSelected="selectMenuItem"
+    onCollapseExpandClicked="toggleHeader"
+    selectedMenuItem=menuItem}}
+  {{/if}}
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>
+{{#if showCourseReport}}
+  {{reports/pull-up/student-course-report onClosePullUp="onClosePullUp" context=studentCourseReportContext showPullUp=showCourseReport tabindex="3"}}
+{{/if}}
+
+{{#if isShowClassActivityReport}}
+  {{#reports/pull-up/student-activity-report showPullUp=isShowClassActivityReport title=(t 'teacher-landing.class.offline-class-report.class-activity-report') tabindex="2"}}
+    {{reports/pull-up/activity/class-summary-report
+      classSummary = class.performanceSummaryForDCA
+      showPullUp=isShowClassActivityReport
+      tabindex="2"
+    }}
+  {{/reports/pull-up/student-activity-report}}
+{{/if}}
+
+{{#if isShowMilestoneReport}}
+  {{#reports/pull-up/milestone/milestone-report
+    showPullUp = isShowMilestoneReport
+    title = course.title
+    tabindex="2"
+  }}
+    {{reports/pull-up/milestone/student-milestone-performance-report
+      class = class
+      tabinex="2"
+    }}
+  {{/reports/pull-up/milestone/milestone-report}}
+{{/if}}
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

@@ -1,0 +1,13 @@
+<div class="suggest-panel panel-default">
+  <div class="panel-body">
+    <div class="no-suggest-result-content">
+      <div class="title">{{t "common.no-suggest-result-message"}}</div>
+      <div class="icon">{{gru-icon name="remove_circle_outline"}}</div>
+      {{#if isFromSearch}}
+        <p class="message">{{t "common.no-suggest-search-results-message"}}</p>
+      {{else}}
+        <p class="suggest-message">{{t "common.no-suggest-results-message"}}</p>
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{{#each answers as |answer index|}}
+    <div class="hs-container">
+        <div class="letter-container">
+            <h3>{{answer-letter index}}</h3>
+        </div>
+      <div class="panel panel-default">
+          {{content/gru-image isEditing=editMode srcImage=answer.text editImage=answer.text showAltText=true}}
+            <div class="panel-footer">
+             {{#if editMode}}
+                <div class="btn-group" role="group" >
+                 <button class="delete" {{action 'removeChoice' answer}}>{{gru-icon name="delete"}}</button>
+                 <button class="check {{if answer.isCorrect 'correct'}}" {{action 'setCorrect' answer}}>{{gru-icon name="check"}}</button>
+                </div>
+               {{else}}
+               {{#if answer.isCorrect}}
+                 <div class="correct">
+                  {{gru-icon name="check"}}
+                 </div>
+               {{/if}}
+             {{/if}}
+            </div>
+
+      </div>
+    </div>
+{{/each}}
+{{#if editMode}}
+  {{#unless hasLimitAnswers}}
+      <div class="add-answer">
+          <a {{action 'addNewChoice'}}>{{t 'content.questions.edit.builder.add-answer-choice'}}</a>
+      </div>
+  {{/unless}}
+{{/if}}

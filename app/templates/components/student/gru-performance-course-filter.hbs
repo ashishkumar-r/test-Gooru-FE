@@ -1,0 +1,46 @@
+<div class="header">
+    <div class="title ellipsis">{{selectedCourse.title}}</div>
+</div>
+<div class="body">
+    {{#if showCourse}}
+        <div class="filter-type course">
+            <span>{{t 'common.course'}}</span>
+            <a class="arrow" {{action 'expandPanel' 'course'}}>
+              {{#if isCourseFiltersExpanded}}
+                {{gru-icon name='arrow_drop_down'}}
+              {{else}}
+                {{gru-icon name='arrow_drop_up'}}
+              {{/if}}
+            </a>
+        </div>
+        <div class="content-panel course {{if isCourseFiltersExpanded 'visible' 'hidden'}}">
+            <span>{{selectedCourse.title}}</span>
+        </div>
+    {{/if}}
+    {{#each units as |unit index|}}
+    <div class="filter-type unit panel-body" {{action 'expandPanel' 'unit' unit}}>
+        <span class="unitTitleellipsis">{{course-sections-prefix index=index type='unit' longName=false}}:&nbsp;{{unit.title}}</span>
+         <a class="arrow">
+          {{#if (eq unit.id unitId)}}
+            {{gru-icon name='arrow_drop_up'}}
+          {{else}}
+            {{gru-icon name='arrow_drop_down'}}
+          {{/if}}
+        </a> 
+    </div>
+    {{#if unit.isUnitFiltersExpanded}}
+    <div></div>
+    {{else}}
+      <div class="content-panel lesson {{if (eq unit.id unitId) 'visible' 'hidden'}}">
+        <div class="items">
+          {{#each lessons as |lesson index|}}
+              <div class="item ellipsis {{if (eq lesson.id lessonId) 'selectedLesson' ''}}" id="{{lesson.id}}" {{action 'selectLesson' lesson.id preventDefault=true}}>
+                  {{course-sections-prefix index=index type='lesson' longName=false}}:&nbsp;{{lesson.title}}</div>
+          {{else}}
+            {{t 'common.no-content'}}
+          {{/each}}
+        </div>
+    </div>
+     {{/if}}
+     {{/each}}
+</div>

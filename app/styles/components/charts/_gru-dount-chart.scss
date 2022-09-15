@@ -1,0 +1,12 @@
+.gru-dount-chart {
+  text-align: center;
+  svg {
+    .fade-color-bg {
+      opacity: 0.3;
+    }
+    .text-content {
+      font-size: 29px;
+      fill: $dark-200;
+    }
+  }
+}

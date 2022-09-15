@@ -1,0 +1,68 @@
+<div class="gru-standard-domain-panel-container">
+  <div class="close-icon" {{action "closeSearch"}}>
+    {{gru-icon name='close'}}
+  </div>
+  <div class="panel-header" {{action "expandPullUp"}}>
+    <div class="subject-details">
+      <div class="subject-name">{{subject.title}}</div>
+      <div class="framework-title">{{framework}}</div>
+    </div>
+    <div class="search-competencies show-div">
+      {{input type="text" title="search competency" key-up=(action "onSearchCompetencies") placeholder=(t 'common.search-for-competencies')}}
+      {{gru-icon name="search"}}
+    </div>
+  </div>
+  <div class="hide-div search-competencies">
+    {{input type="text" title="search competency" key-up=(action "onSearchCompetencies") placeholder=(t 'common.search-for-competencies')}}
+    {{gru-icon name="search"}}
+  </div>
+
+    {{#if isLoading}}
+    {{three-bounce-spinner}}
+    {{/if}}
+
+    <div class="domain-list">
+      {{#each filteredDomain as |domain|}}
+        <div class="domain-list-panel">
+            <a href="javascript:void(0)" aria-label="select domain" class="list-panel-head" id="scroll-domain-{{domain.domainSeq}}" {{action 'onDomainSelect' domain }}>
+                <div class="domain-details-section">
+                    <span>{{domain.domainSeq}}. </span>
+                    <div class="domain-name-title">
+                      <span class="title">{{domain.domainName}}</span>
+                      <span class="counts">{{domain.topics.length}} {{t 'common.topics'}} ({{domain.totalCompetencies}} {{t 'common.competencies'}})</span>
+                    </div>
+                </div>
+                <div class="competency-info-section">
+                    <div class="competency-info-card">
+                        <span class="title-comp" data-toggle="tooltip" title="{{t 'common.highest-competency-mastered'}}">{{t 'common.highest-competency-mastered'}}</span>
+                        <span class="competency-code">--</span>
+                    </div>
+                    <div class="competency-info-card">
+                        <span class="title-comp" data-toggle="tooltip" title="{{t 'common.lowest-competency-mastered'}}">{{t 'common.lowest-competency-mastered'}}</span>
+                        <span class="competency-code">--</span>
+                    </div>
+                </div>
+            </a>
+            {{#if domain.isExpanded}}
+            <div class="domain-list-panel-body">
+                {{#each domain.topics as |topic|}}
+                    <div class="topic-list-panel-head">
+                      <a href="javascript:void(0)" aria-label="select topic" {{action 'onSelectTopic' topic }} class="list-panel-head">
+                          <div class="domain-details-section">
+                              <span>{{domain.domainSeq}} . {{topic.topicSeq}}. </span>
+                              <div class="domain-name-title">
+                                <span class="title">{{topic.topicName}}</span>
+                                <span class="counts">{{topic.competencies.length}} {{t 'common.competencies'}}</span>
+                              </div>
+                          </div>
+                      </a>
+                    </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+      {{/each}}
+
+    </div>
+  {{yield}}
+</div>

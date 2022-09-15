@@ -1,0 +1,70 @@
+[
+  {
+    "description": "Create a resource",
+    "request": {
+      "url": "^/api/nucleus/v1/resources$",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Location": "2d84ab6c-10ee-4578-b89a-6b41c87dc9fc"
+      }
+    }
+  },
+  {
+    "description": "Get a resource",
+    "request": {
+      "url": "^/api/nucleus/v1/resources/(.+)",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-resource-200-response.json"
+    }
+  },
+  {
+    "description": "Update a resource info",
+    "request": {
+      "url": "^/api/nucleus/v1/resources/(.+)$",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  },
+  {
+    "description": "Delete resource",
+    "request": {
+      "url": "^/api/nucleus/v1/resources/(.+)$",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  }
+]

@@ -1,0 +1,15 @@
+.gru-pdf-resource {
+  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  @media (min-width: $screen-lg) {
+    overflow-y: hidden;
+  }
+  .pdf-container {
+    height: calc(100% + 1px);
+    iframe {
+      width: 100%;
+      border: 0 none;
+    }
+  }
+}

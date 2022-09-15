@@ -1,0 +1,33 @@
+<div class='container-desktop notification-list'>
+  <div class="panel panel-default" style="margin-bottom:0px;">
+    <div class="panel-heading" class="notification-panel-heading">
+      <div class="panel-title">
+        <span class="notification-icon">
+          {{gru-icon name='notifications'}}
+        </span>
+        <span class="not-modal-header">
+          {{t 'notifications.notificationlist-header-title'}}
+        </span>
+      </div>
+    </div>
+    <div class="panel-body notfication-container">
+      <ol>
+        {{#each notificationModel.notifications as |item|}}
+          <li class={{if (or (eq item.notificationType 'min.perf.on.activity') (eq item.notificationType 'wpm.thresholds.exceeds') ) 'min-activity'}}>
+            {{notification/notification-list-item model=item  inClass=inClass addressNotification=(action "addressItemNotification") tabindex=tabindex }}
+          </li>
+        {{/each}}
+      </ol>
+    </div>
+    <div class="panel-heading">
+      <div class="panel-title" onclick={{action "showMore"}} onkeypress={{action "showMore"}} tanindex=tabindex>
+        <span class="notification-icon">
+          &nbsp;
+        </span>
+        {{#if moreItemsRemaining}}
+          <span class="noti-title show-more-text">{{t 'notifications.show-more' }}</span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

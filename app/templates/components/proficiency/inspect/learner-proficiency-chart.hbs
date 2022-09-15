@@ -1,0 +1,104 @@
+<div class="learner-proficiency-standard-chart-container">
+  <div class="learner-proficiency-standard-chart-panel">
+    <div class="data-standard-chart-header-container">
+      <div class="left-panel">
+        <div class="standard-chart">
+          {{#if isClassActivity}}
+            <span aria-label="go back" class="go-back" onclick={{action 'onClosePullup'}} onkeypress={{action 'onClosePullup'}}>{{gru-icon name="arrow_back"}}</span>
+          {{/if}}
+        </div>
+        <div class="standard-header-title">
+          <span class="title">{{selectedSubject.title}}</span>
+          <span class="competencies">{{totalCompetencies}} {{t 'common.competencies'}}</span>
+        </div>
+      </div>
+      <div class="panel-header">
+        <div class="taxonomy-info">
+          <div class="col-1">
+            <div class="dropdown subjects">
+              <button class="dropbtn btn-dropdown" type="button" data-toggle="dropdown">
+                <div class="ellipsis">{{selectedSubject.title}}</div>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu subject-list">
+                {{#each taxonomySubjects as |subject|}}
+                  <li class="list-item subject {{if (eq selectedSubject.code subject.code) 'active'}}" onclick={{action "onSelectItem" subject}} onkeypress={{action "onSelectItem" subject}} tabindex="101">{{subject.title}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{proficiency/learner-proficiency-domain-matrix
+        class=class
+        isSelectBaseLine=isSelectBaseLine
+        onDomainSelect="onDomainSelect"
+        selectedDomain=selectedDomain
+        showGutCompetency=showGutCompetency
+        hideGutCompetencyButton=hideGutCompetencyButton
+        subjectCode=class.preference.subject
+        onSelectCompetency="onSelectCompetency"
+        fwCompetencies=fwCompetencies
+        isPlayerProficiency = isPlayerProficiency
+        proficiencyChartData=chartData
+        onSelectTopic="onSelectTopic"
+        selectedCompetency=selectedCompetency
+        totalTopics=totalTopics
+        disableSkyline = true
+        classGradesList=classGradesList
+        onSelectedDomain=onSelectedDomain
+        onSelectedCompetency=onSelectedCompetency
+        isClassActivity=isClassActivity
+        isShowMatrixChart=isShowMatrixChart
+        taxonomyGrades=taxonomyGrades
+        classGrade=classGrade
+        studentProfile=studentProfile
+        isShowLoaderSet="isShowLoaderSet"
+      }}
+  </div>
+  <div class="domain-panel-list-component">
+    {{#cards/gru-standard-domain-panel
+         fwDomains=fwDomains
+         domains=proficiencyChartData
+         showGutCompetency=showGutCompetency
+         onDomainSelect="onDomainSelect"
+          onSelectTopic="onSelectTopic"
+         framework=framework
+         subject=activeSubject
+         class = class
+         isStandardCard=true
+       }}
+
+      {{#if isShowTopicInfo}}
+        {{proficiency/topic-info-pull-up
+          showPullUp=isShowTopicInfo
+          topic=selectedTopic
+          subject=activeSubject
+          onSelectCompetency="onSelectCompetency"
+          onCloseTopicInfoPullup="onCloseTopicInfoPullup"
+          class = class
+          fwCompetencies=fwCompetencies
+         }}
+      {{/if}}
+      {{#if showCompetencyInfo}}
+        {{proficiency/competency-info-pull-up
+         fwDomains=fwDomains
+         fwCompetencies=fwCompetencies
+         isInspectCompetency=showCompetencyInfo
+         showGutCompetency=showGutCompetency
+         framework=framework
+         onClosePullUp="onClosePullUp"
+         isStudent=isStudent
+         competency=selectedCompetency
+         studentProfile=studentProfile
+         domainCompetencyList=domainCompetencyList
+         proficiencyChartData=proficiencyChartData
+         playContent="playContent"
+         class = class
+         isClassActivity=isClassActivity
+       }}
+      {{/if}}
+    {{/cards/gru-standard-domain-panel}}
+  </div>
+</div>

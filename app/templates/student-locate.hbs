@@ -1,0 +1,22 @@
+<div class="student-locate-container">
+  <div class="activity-panel">
+    <div class="chrono-view {{unless activities 'no-activities'}}">
+      {{#if activities}}
+        {{player/chrono-performance/chrono-timeline showStudentProficiency="showStudentProficiency" competency=competencyMatrix performanceSummary=performanceSummary class=class course=course timeData=activities startDate=activityStartDate paginateNext="paginateNext"}}
+      {{else}}
+        <div class="no-activity">
+          <p class="chrono-activity-msg-text">{{t 'chrono-activity-msg-text'}}</p>
+        </div>
+      {{/if}}
+    </div>
+    <div class="bar-charts bottom-perf-line {{if activities 'has-activities'}}" data-content="{{performancePercentage}}% Completed">
+      {{#if barChartData}}
+        <div class="completion-chart">
+          <div class="start-point">{{gru-icon name="stars"}}</div>
+          {{charts/gru-x-bar-chart data=barChartData mileStone=mileStone mileStoneHandler=(action 'mileStoneHandler')}}
+          <div class="destination-point">{{gru-icon name="place"}}</div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

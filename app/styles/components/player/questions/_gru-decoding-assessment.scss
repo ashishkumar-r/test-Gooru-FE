@@ -1,0 +1,15 @@
+.gru-decoding-assessment {
+  ul {
+    padding-left: 8px;
+    li {
+      list-style: none;
+      .exercise-seq {
+        color: $placeholder-color;
+        font-size: 15px;
+        &.in-visible {
+          visibility: hidden;
+        }
+      }
+    }
+  }
+}

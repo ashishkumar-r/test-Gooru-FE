@@ -1,0 +1,5 @@
+<div class="likert-scale-container">
+        {{#if answer}}
+                {{component activeComponent readOnly=true scaleItems=answer.items likertScalePoints=answer.scalePointLabels}}
+        {{/if}}
+</div>

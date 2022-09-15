@@ -1,0 +1,215 @@
+<div class="controller teacher-landing row">
+  {{#if (and isShowNavigatorBanner isShowDemoClass)}}
+    <div class="landing-banner">
+      {{teacher/navigator-math-banner updateClass="updateClass"}}
+    </div>
+  {{/if}}
+  <div class="teacher-panel">
+
+    <div class="teacher-navigator {{if isShowAtcView 'atc-view'}}">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="{{if showActiveClasses 'active'}} active-classes tab">
+          <a href="#active-classes" aria-label="Active Classes" role="tab" data-toggle="tab" onclick={{action 'showClasses' 'active'}} onkeypress={{action 'showClasses' 'active'}} tabindex="3">
+            <span class="lead">{{t 'user.active-classrooms'}}</span>
+          </a>
+        </li>
+        {{#if isShowIncompleteClassess}}
+        <li role="presentation" class="{{if showIncompleteClasses 'active'}} incomplete-classes tab active-classes">
+          <a href="#incomplete-classes" aria-label="Incomplete Classes" role="tab" data-toggle="tab" {{action 'incompleteClass' 'incomplete'}}>
+            <span class="lead">{{t 'user.incomplete-classrooms'}}</span>
+          </a>
+        </li>
+        {{/if}}
+        <li role="presentation" class="{{if showArchivedClasses 'active'}} archived-classes tab">
+          <a href="#archived-classes" aria-label="Archived Classes" role="tab" data-toggle="tab" onclick={{action 'archivedClass' 'archived'}} onkeypress={{action 'archivedClass' 'archived'}} tabindex="3">
+            <span class="lead">{{t 'user.archived-classrooms'}}</span>
+          </a>
+        </li>
+      </ul>
+      <div class="heading hidden visible-xs">{{t 'user.classrooms'}}</div>
+      {{#if showActiveClasses}}
+        {{#unless hasClasses}}
+          {{#if tenantSettingEnableNewClass}}
+            <div class="pull-left no-classes-found">
+              {{t 'teacher-landing.no-classrooms-admin-check'}}
+            </div>
+          {{else}}
+            <div class="pull-left no-classes-found">
+              {{t 'teacher-landing.no-classrooms'}}
+            </div>
+          {{/if}}
+        {{/unless}}
+      {{/if}}
+    </div>
+    <div class="create-class-card tab-content">
+      {{#if (and showActiveClasses isEnableCreateSubjectCard)}}
+        <div class="currently-studying">
+            <span class="title">{{t 'teacher-home.create-classroom'}}</span>
+        </div>
+      {{/if}}
+      <div class="create-class">
+        {{#if (and isEnableCreateSubjectCard showActiveClasses)}}
+          <div class="create-subject-card-list">
+            {{#if isEnableCreateSubjectCard}}
+              {{#each subjectList as |subject index|}}
+                {{new-cards/gru-create-subject-card
+                  subject = subject
+                }}
+              {{/each}}
+            {{/if}}
+            {{#if isEnableCreateClass}}
+              {{#if isShowCreateClassPop}}
+                {{class/gru-create-class-popup
+                  newClass=newClass
+                  isShowCreateClassPop=isShowCreateClassPop
+                  tabindex=51
+                }}
+              {{else}}
+                {{#unless tenantSettingEnableNewClass}}
+                {{new-cards/gru-new-class-card
+                  onJoinClass="joinClass"
+                  validCode=validCode
+                  notMember=notMember
+                  allowedCode=allowedCode
+                  onCreateClass="onCreateClass"
+                  onUpdateUserClasses='updateClass'
+                  isLoading=isLoading
+                  tabindex=52}}
+                  {{/unless}}
+              {{/if}}
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+
+    {{#if isShowSortOptions}}
+      <div class="sort sort-class-panel" aria-label="sort">
+        <div class="currently-studying">
+          <span class="title">{{t 'teacher-home.your-classroom'}}</span>
+    
+        {{#if (and showActiveClasses isDeepLinks)}}
+        <div class="deep-link-container">
+        <input type="checkbox" aria-checked="false" aria-label="checkbox" id="checkAll" class="select-all" name="selectall" tabindex={{tabindex}} onclick={{action "selectBox"}} onkeypress={{action "selectBox"}} /> <span>{{t 'common.select-all'}}</span>
+        <button type="submit" aria-label="submit" class="btn btn-primary {{unless (and selectedCount (not-eq selectedCount 0)) 'disable-event'}}" tabindex={{tabindex}} {{action "onSubmit"}}>{{t 'common.submit'}} {{#if (and selectedCount (not-eq selectedCount 0))}} ({{selectedCount}}) {{/if}}</button>
+        </div>
+        {{/if}}
+
+        </div>
+        <div class="filter-date-asc btn-group">
+          <button type="button" title= {{t 'common.sort-most-recently'}} data-toggle="tooltip" onclick={{action 'filterByDate'}} onkeypress={{action 'filterByDate'}} tabindex="3" class="filter-date btn {{if (eq sortOn 'startDate') 'btn-primary' 'btn-info'}}">
+            {{#if (eq sortOn 'startDate')}}
+              <div class="arrow {{if (eq order 'asc') 'arrow-up' 'arrow-down'}}"></div>
+            {{/if}}
+            {{gru-icon name='timer'}}
+          </button>
+          <button type="button" title= {{t 'common.sortAlphabetical'}} data-toggle="tooltip" onclick={{action 'filterByTitle'}} onkeypress={{action 'filterByTitle'}} tabindex="3" class="filter-asc btn {{if (eq sortOn 'title') 'btn-primary' 'btn-info'}}">
+            {{gru-icon name='sort_by_alpha'}}
+            {{#if (eq sortOn 'title')}}
+              <div class="arrow {{if (eq order 'desc') 'arrow-up' 'arrow-down'}}"></div>
+            {{/if}}
+          </button>
+        </div>
+      </div>
+    {{/if}}
+    <div class="content tab-content">
+
+      <div role="tabpanel" class="tab-pane row {{if showActiveClasses 'active'}}" id="active-classes">
+        {{#unless isEnableCreateSubjectCard}}
+          {{#if isEnableCreateClass}}
+            {{#if isShowCreateClassPop}}
+              {{class/gru-create-class-popup
+                newClass=newClass
+                isShowCreateClassPop=isShowCreateClassPop
+                isNewClassCardOnly = (if isEnableCreateSubjectCard false true)
+                tabindex=51
+              }}
+            {{else}}
+              {{#unless tenantSettingEnableNewClass}}
+                {{new-cards/gru-new-class-card
+                  onJoinClass="joinClass"
+                  validCode=validCode
+                  notMember=notMember
+                  allowedCode=allowedCode
+                  onCreateClass="onCreateClass"
+                  onUpdateUserClasses='updateClass'
+                  isLoading=isLoading
+                  isNewClassCardOnly = (if isEnableCreateSubjectCard false true)
+                  tabindex=52}}
+              {{/unless}}
+            {{/if}}
+          {{/if}}
+        {{/unless}}
+        {{#if hasClasses}}
+          {{#each activeClassesList as |class index|}}
+            {{new-cards/gru-teacher-class-card
+            class=class
+            course=class.course
+            classStudentCount=myClasses.memberCount
+            onPlayCollection='studyPlayer'
+            onItemSelected='selectMenuItem'
+            onShowCompleteSetup="onShowCompleteSetup"
+            selectSingle='onSelectSingleBox'
+            isDeepLink=isDeepLink
+            showActiveClasses=showActiveClasses
+            tabindex=(plus-any index 53)
+          }}
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div role="tabpanel" class="tab-pane row {{if showArchivedClasses 'active'}}" id="archived-classes">
+        {{#each sortedArchivedClassrooms as |class index|}}
+          {{new-cards/gru-teacher-class-card
+            class=class
+            course=class.course
+            classStudentCount=myClasses.memberCount
+            onPlayCollection='studyPlayer'
+            onItemSelected='selectMenuItem'
+            onShowArchivedClassReport="onShowArchivedClassReport"
+            showActiveClasses=showActiveClasses
+            tabindex=(plus-any index 53)
+          }}
+  {{else}}
+    <span class="no-archived">{{t 'common.no-archived'}}</span>
+        {{/each}}
+      </div>
+      <div role="tabpanel" class="tab-pane row {{if showIncompleteClasses 'active'}}" id="incomplete-classes">
+        {{#if sortedIncompleteClasses}}
+          {{#each sortedIncompleteClasses as |class index| }}
+          {{cards/gru-teacher-incomplete-card
+          onDeleteClass = 'onDeleteClass'
+          course=class.course
+          incompleteClass=class
+          onRefreshClass = 'onRefreshClass'
+          }}
+          {{/each}}
+          {{else}}
+          <div class="incomplete-not-available">
+            {{t 'teacher-home-class-not-available'}}
+          </div>
+          {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#if isShowArchiveClassReport}}
+  {{reports/pull-up/course-report context=classReportParams showPullUp=isShowArchiveClassReport onOpenUnitReport="onOpenUnitReport"  onClosePullUp="onClosePullUp"}}
+{{/if}}
+
+{{#if isShowUnitReportPullUp}}
+  {{reports/pull-up/unit-report context=unitReportData onClosePullUp="onClosePullUp" showPullUp=isShowUnitReportPullUp onOpenLessonReport="onOpenLessonReport"}}
+{{/if}}
+
+{{#if isShowLessonReportPullUp}}
+  {{reports/pull-up/lesson-report context=lessonReportData  onClosePullUp="onClosePullUp"  showPullUp=isShowLessonReportPullUp teacherCollectionReport="teacherCollectionReport"}}
+{{/if}}
+
+{{#if isShowCollectionReportPullUp}}
+  {{reports/pull-up/collection-report onClosePullUp="onClosePullUp" context=teacherCollectionReportData showPullUp=isShowCollectionReportPullUp isArchivedClass=true}}
+{{/if}}
+
+{{#if isShowClassSetup}}
+  {{teacher/gru-class-setup showPullUp=isShowClassSetup classData=classSetupData classSetupDone="classSetupDone"}}
+{{/if}}

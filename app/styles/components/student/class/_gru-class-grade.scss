@@ -1,0 +1,71 @@
+.gru-class-grade {
+  background-color: $gray-base;
+  height: calc(100vh - 50px);
+  width: 100vw;
+  overflow-x: auto;
+  .class-grade-container {
+    width: 1220px;
+    margin: auto;
+    .info {
+      font-size: 40px;
+      font-style: italic;
+      text-align: center;
+      color: $white;
+      margin: 50px 0;
+    }
+    .grades-container {
+      display: grid;
+      grid-template-columns: auto auto auto auto auto auto;
+      align-items: center;
+      .grade-container {
+        .grade-info {
+          width: 175px;
+          height: 175px;
+          border-radius: 3px;
+          margin: 0 2px;
+          background-color: $blue-7d7;
+          opacity: 0.3;
+          box-shadow: 0 0 6px 1px $table-box-shadow-07;
+          .title {
+            font-size: 14px;
+            text-align: center;
+            color: $white;
+            line-height: 70px;
+          }
+          .level {
+            font-size: 140px;
+            font-weight: bolder;
+            text-align: center;
+            color: $white;
+            line-height: 75px;
+          }
+        }
+
+        &.class-grade {
+          height: 220px;
+          .grade-info {
+            opacity: 1;
+            height: 220px;
+            width: 220px;
+            margin: 0 50px;
+            .level {
+              line-height: 115px;
+            }
+          }
+        }
+      }
+    }
+    .next {
+      width: 86px;
+      height: 30px;
+      border-radius: 3px;
+      background-color: $blue-7d7;
+      box-shadow: 0 0 5px 1px $navbar-box-shadow;
+      line-height: 30px;
+      text-align: center;
+      margin: 30px auto 0;
+      color: $white;
+      cursor: pointer;
+    }
+  }
+}

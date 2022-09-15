@@ -1,0 +1,229 @@
+{{#if showPullUp}}
+  <div class="backdrop" {{action 'onPullUpClose' true}}></div>
+{{/if}}
+<div class="oca-student-activity-report-container">
+
+{{#if competencyId}}
+
+ <div class="report-header">
+    <div class="header-title">
+      <i class="icon {{collection.collectionType}}"></i>
+      <span class="title ellipsis">{{safe-html collection.title}}</span>
+      <i class="icon {{collection.collectionType}}-icon"></i>
+    </div>
+
+    <div class="close" {{action 'onPullUpClose' false}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+
+    <div class="report-content">
+    <div class="report-info-chart-container">
+      <div class="report-info-container">
+        <i class="quesion-icon"></i>
+        <span>
+             {{t 'common.question'}}
+          </span>
+      </div>
+      <div class="report-header-container">
+      <div class="title">{{resourcesCollection.title}} </div>
+      </div>
+    </div>
+
+        <div class="report-carousel">
+      <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+              <div class="question-background-cover">
+                <div class="question-content-container">
+                  {{#if resourcesCollection.thumbnail}}
+                    <div class="question-image-container">
+                      <img src="{{resourcesCollection.thumbnail}}" alt="question avatar"/>
+                    </div>
+                  {{/if}}
+                  <div class="question-text">
+                      {{gru-math-text text=resourcesCollection.text}}
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+          <div class="answer-report-group">
+              <div class="correct-answer-list-container">
+            <div class="correct-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".correct-answer-list-container"}} onkeypress={{action "onToggleAnswerSection" ".correct-answer-list-container"}} tabindex={{tabindex}}>
+              <span>{{t 'common.correct-answers'}}</span> {{gru-icon name="keyboard_arrow_up"}}
+            </div>
+            <div class="user-answer-list">
+                <div class="correct-answer-list">
+                  <div class="correct-answers">
+                    {{{component (question-config resourcesCollection.type 'component.answer')
+              question=resourcesCollection
+              userAnswer=userAnswer
+              anonymous=false}}}
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+          </div>
+
+    {{else}}
+
+  <div class="report-header {{if isShowDownloadIcon 'download-option'}}">
+    <div class="header-title">
+      <i class="icon {{collection.collectionType}}"></i>
+      <span class="title ellipsis">{{safe-html collection.title}}</span>
+      <i class="icon {{collection.collectionType}}-icon"></i>
+    </div>
+
+    {{#if isShowDownloadIcon}}
+      <div class="download">
+        <a class="download-icon" onclick={{action 'onClickDownload'}} onkeypress={{action 'onClickDownload'}}>{{gru-icon name='file_download'}}</a>
+        <span>{{t 'oa.task.submissions.label'}}</span>
+      </div>
+    {{/if}}
+
+
+    <div class="close" {{action 'onPullUpClose' false}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  {{#if (or (eq collection.collectionType 'assessment') (eq collection.collectionType 'assessment-external'))}}
+    <div class="performance-activity" style="background-color:{{if student (if (and student.performance.isGraded isDefaultGrade (eq student.performance.score null)) (grade-color null) (grade-color student.performance.score))}}">
+      <div class="performance">
+        <span class="left {{unless isToggleLeft 'disable'}}" {{action 'toggle' true}}>{{gru-icon name="keyboard_arrow_left"}}</span>
+        <div class="score-container">
+          {{#if (and student.performance.isGraded isDefaultGrade (eq student.performance.score null))}}
+            <span class="score">--</span>
+          {{else}}
+            <span class="score">
+              {{#if (eq student.performance.score null)}}
+                --
+              {{else}}
+                {{concat student.performance.score '%'}}
+              {{/if}}
+            </span>
+          {{/if}}
+          <span class="time-spent">{{if studentTimeSpent (format-time  studentTimeSpent) '--'}}</span>
+        </div>
+        <span class="right {{unless isToggleRight 'disable'}}" {{action 'toggle' false}}>{{gru-icon name="keyboard_arrow_right"}}</span>
+      </div>
+      <div class="performance-img" style="height: {{if (and student.performance.isGraded isDefaultGrade (eq student.performance.score null)) 0 student.performance.score}}% ;background-color:{{if student (if (and student.performance.isGraded isDefaultGrade (eq student.performance.score null)) (grade-color null) (grade-color student.performance.score))}}">
+      </div>
+    </div>
+  {{else}}
+    <div class="collection-performance">
+      <div class="performance">
+        <span class="left {{unless isToggleLeft 'disable'}}" {{action 'toggle' true}}>{{gru-icon name="keyboard_arrow_left"}}</span>
+        <span class="time-spent">{{if student.performance.timeSpent (format-time  student.performance.timeSpent) '--'}}</span>
+        <span class="right {{unless isToggleRight 'disable'}}" {{action 'toggle' false}}>{{gru-icon name="keyboard_arrow_right"}}</span>
+      </div>
+    </div>
+  {{/if}}
+  <div class="student-info">
+    <div class="user-profile-img">
+      <img src="{{student.avatarUrl}}" alt="student thumbnail" />
+    </div>
+    <span class="username">{{student.name}} {{if (not student.isShowLearnerData) '*'}}</span>
+    <div class="close" {{action 'onCloseStudentActivity'}}>
+      {{gru-icon name="close"}}
+    </div>
+    <div class="conducted-on">
+      <span class="title">{{t 'teacher-landing.class.offline-class-report.conducted-on'}}</span>
+      <span class="date">{{format-date context.activation_date 'DD MMM YY'}}</span>
+    </div>
+  </div>
+  {{#if isLoading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    <div class="resources-report-container">
+      {{#if (eq collection.collectionType 'collection-external')}}
+        <div class="external-collection-link">
+          <div class="note">{{t 'report.external-collection-report.note'}}</div>
+          {{#if collection.url}}
+            <div>{{t 'report.external-collection-report.reference'}} <a class="link" target="_blank" href="{{collection.url}}">{{t 'common.here'}}</a></div>
+          {{/if}}
+        </div>
+      {{else if (eq collection.collectionType 'assessment-external')}}
+        <div class="external-assessment-link">
+          <div class="note">{{t 'report.external-assessment-report.note'}}</div>
+          <div>{{t 'report.external-assessment-report.reference'}} <a class="link" target="_blank" href="{{collection.url}}">{{t 'common.here'}}</a></div>
+        </div>
+      {{/if}}
+      <div class="content-attems">
+        <div class="information">
+          {{#if submittedAt}}
+            <span class="date">
+              {{gru-icon name='event'}}<span>{{format-date submittedAt 'h:mm a MMM. Do, YYYY'}}</span>
+            </span>
+          {{/if}}
+        </div>
+        {{#if (or isAssessment isCollection)}}
+          <div class="content-answer">
+            {{#if (not isTeacher)}}
+              <em>{{t "common.answer-key-was-hidden"}}</em>
+            {{else}}
+              <div class="btn-group summary-report-btn" role="group">
+                <button role="button" type="button" onclick={{action 'selectPerformanceOption' true}} onkeypress={{action 'selectPerformanceOption' true}} class="content-performance btn {{if showPerformance 'btn-primary' 'btn-info'}}" aria-label="{{t "common.performance"}}" tabindex={{tabindex}}>{{t "common.performance"}}</button>
+                <button role="button" type="button" onclick={{action 'selectPerformanceOption' false}} onkeypress={{action 'selectPerformanceOption' false}} class="correct-answer btn {{unless showPerformance 'btn-primary' 'btn-info' }}" aria-label="{{t "common.show-correct-answer"}}" tabindex={{tabindex}}>{{t "common.show-correct-answer"}}</button>
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+
+      {{#if (not isTeacher)}}
+        <div class="hidden-report">
+          <span>{{t "gru-assessment-report.hidden-report"}}</span>
+        </div>
+      {{else}}
+        {{#each resourcesCollection as |content seq|}}
+          {{#if (eq content.format 'question')}}
+            {{#if (or (eq content.questionType 'OE') (eq content.questionType 'SE_FIB') (eq content.questionType 'SE_FRQ')) }}
+              <div class="{{content.questionType }}">
+                {{reports/assessment/gru-questions
+                  isAnswerKeyHidden=isAnswerKeyHidden
+                  showPerformance=showPerformance
+                  viewMode='open-ended'
+                  showReactionBar=true
+                  onViewOEReport='viewOEReport'
+                  isTeacher=isTeacher
+                  content=content
+                  contentSeq=(plus-one seq)
+                  isShowExemplarText=true
+                  tabindex=1
+                }}
+              </div>
+            {{else}}
+              {{reports/assessment/gru-questions
+                isAnswerKeyHidden = isAnswerKeyHidden
+                showPerformance=showPerformance
+                showReactionBar=true
+                isTeacher=isTeacher
+                onUpdateQuestionScore='onUpdateQuestionScore'
+                isChangeScoreEnabled=isChangeScoreEnabled
+                hasAnsweredQuestions=hasAnsweredQuestions
+                showChangeScore=showChangeScore
+                isAssessment=isAssessment
+                content=content
+                contentSeq=(plus-one seq)
+                listOfQuestions=listOfQuestions
+                isShowExemplarText=true
+                tabindex=1
+              }}
+            {{/if}}
+          {{else}}
+            {{reports/assessment/gru-resources
+              results=content
+              content=content
+              contentSeq=(plus-one seq)
+              showReactionBar=true
+            }}
+          {{/if}}
+        {{/each}}
+      {{/if}}
+    </div>
+  {{/if}}
+    {{/if}}
+</div>

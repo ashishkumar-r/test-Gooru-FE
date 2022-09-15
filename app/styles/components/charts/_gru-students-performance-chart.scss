@@ -1,0 +1,76 @@
+.charts.gru-students-performance-chart {
+  color: $white;
+  text-align: center;
+  min-width: 76px;
+  cursor: pointer;
+
+  .container-box {
+    min-height: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &.grade-range-not-started {
+      color: $light-400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .percentage {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+
+      .not-started {
+        font-size: 11px;
+        color: $black-bold;
+        line-height: 15px;
+      }
+    }
+
+    .students-count {
+      display: flex;
+      margin: 0 auto;
+      position: relative;
+      width: 100%;
+      .count {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: right;
+        width: calc(100% - 42px);
+      }
+
+      .avatar {
+        width: 24px;
+        position: absolute;
+        right: 15px;
+      }
+    }
+
+    .not-started {
+      color: $light-400;
+      font-size: $font-size-xxsmall;
+      font-weight: bold;
+    }
+
+    .tooltip {
+      width: 130px;
+      line-height: $font-size-h6;
+      font-size: $font-size-base;
+
+      .tooltip-arrow {
+        border-right-color: $white;
+      }
+
+      .tooltip-inner {
+        color: $dark-400;
+        font-weight: bold;
+        background-color: $white;
+        text-align: $tab-float-dir;
+        box-shadow: 0 0 4px 0 $navbar-box-shadow;
+      }
+    }
+  }
+}

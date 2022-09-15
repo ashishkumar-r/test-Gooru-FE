@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="{{t 'common.close'}}" data-dismiss="modal">
+    <span aria-hidden="true">×</span>
+  </button>
+  <h4 class="modal-title">{{t "common.signUp"}}</h4>
+</div>
+<div class="modal-body">
+  <div class="wrapper">
+
+    <div class="main">
+      <div class="sign-up-form">
+        <h3>{{t "gru-user-registration.joinTitle"}}</h3>
+
+        <div class="sub-header" title="{{t "gru-user-registration.joinDescription"}}">{{t "gru-user-registration.joinDescription"}}</div>
+        <div class="row">
+          <div class="col-md-9 col-center-block login-form-box">
+            <button type="button" class="connect-button" title="{{t "gru-user-registration.googleButton"}}">{{t "gru-user-registration.googleButton"}}</button>
+            <div class="why-google">
+              <div class="why-google-desc" title="{{t "gru-user-registration.whyGoogle"}}">{{t "gru-user-registration.whyGoogle"}}</div>
+              <div class="img-question" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                   title="<p><strong>{{t "gru-user-registration.whyGoogle"}}?</strong></p><p>{{t "gru-user-registration.descriptionWhyGoogle"}}</p>"></div>
+            </div>
+            <div class="divider">
+              <div class="divider-text" title="{{t "gru-user-registration.or"}}">{{t "gru-user-registration.or"}}</div>
+            </div>
+            <div class="email-sign-up pa-top-3">
+              <div class="no-google-account"
+                   title="{{t "gru-user-registration.noGoogleAccount"}}">{{t "gru-user-registration.noGoogleAccount"}}</div>
+              <button class="btn btn-link" {{action "showModal" "gru-user-sign-up"}}>{{t "gru-user-registration.signUpEmail"}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="row footer">
+          <div class="col-md-12">
+            <span class="log-in-here">{{t "gru-user-registration.haveAccount"}}
+              {{#link-to 'sign-in' class="btn btn-link" tagName='button'}} {{t "gru-user-registration.clickLogIn"}} {{/link-to}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

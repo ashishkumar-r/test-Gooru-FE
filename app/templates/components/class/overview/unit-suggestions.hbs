@@ -1,0 +1,82 @@
+<div class="unit panel-heading  {{if isStudentDashboard 'disable-event'}}" role="tab" id="{{elementId}}-heading">
+  {{#if isTeacher}}
+    <div class="performance-container pull-right {{unless (gte model.performance.score 0) 'not-started'}}" tabindex={{plus-one tabindex}}>
+      {{#if (and (eq model.assessmentCount 0) model.performance.timeSpent) }}
+        <div class="timespend">
+          <span>{{format-time model.performance.timeSpent}}</span>
+          <div><span class="total-time-spent">{{t 'common.total-time-spent' }}</span></div>
+          {{#if (gt model.performance.numberOfStudents 0)}}
+            <div class="students-count">
+              <div class="avatar">{{gru-icon name="account_circle"}}</div>
+              <div class="count">{{model.performance.numberOfStudents}}</div>
+            </div>
+          {{/if}}
+        </div>
+      {{else}}
+        {{charts/gru-students-performance-chart performanceSummary=model.performance hasStarted=true isTeacher=isTeacher assessmentCount=model.assessmentCount tabindex=(plus-one tabindex)}}
+      {{/if}}
+    </div>
+  {{else}}
+    <div aria-label="performance score" class="performance-container pull-right {{if isStudentDashboard 'disable-event'}} {{unless model.performance.hasStarted 'not-started'}}" tabindex={{plus-one tabindex}}>
+      {{#if model.performance.isCollection }}
+        <div class="timespend">
+          <span>{{format-time model.performance.timeSpent}}</span>
+          <div><span class="total-time-spent">{{t 'common.total-time-spent' }}</span></div>
+        </div>
+      {{else}}
+        {{charts/gru-performance-chart performanceSummary=model.performance hasStarted=true isTeacher=isTeacher assessmentCount=model.assessmentCount tabindex=(plus-one tabindex)}}
+      {{/if}}
+    </div>
+  {{/if}}
+  <div class="panel-title">
+    <a class="collapsed title" role="button" data-toggle="collapse" href="#{{elementId}}-content" aria-expanded="false" aria-label="unit title" aria-controls="{{elementId}}-content" onclick={{action "selectUnit" model.id}}  onkeypress={{action "selectUnit" model.id}} tabindex={{tabindex}}>
+      <div class="title ellipsis">
+        <span class="prefix">{{course-sections-prefix index=(unless isHideLessonNumber index) type='unit' longName=true}}</span>
+          <span class="unit-title-text ellipsis" title="{{model.unitTitle}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">{{model.unitTitle}}</span>
+      </div>
+    </a>
+  </div>
+  {{#if isShowUnitPlan}}
+    <div class="unit-plan-view">
+      {{#if (or model.bigIdeas model.essentialQuestions)}}
+      <div class="unitPlan">
+        <div class="bigIdeas">{{safe-html model.bigIdeas}}</div>
+        {{#if model.essentialQuestions}}
+        <div class="essentialQuestions-lable">{{t "common.essential-questions"}}:</div>
+        {{/if}}
+        <div class="essentialQuestions">{{safe-html model.essentialQuestions}}</div>
+      </div>
+      {{else}}
+        <div class="unavailable-content">{{t "common.information-unavailable"}}</div>
+    {{/if}}
+    </div>
+  {{/if}}
+  {{#if (and isExpanded (not isStudentDashboard))}}
+    <div role="button" class="unit-class-info {{unless (or model.bigIdeas model.essentialQuestions) 'disable-tag'}}" {{action "showUnitPlan" 'unit-plan-view' elementId}}>
+      <a role="link" aria-label="unit information" data-toggle="tooltip">
+        {{gru-icon name="info" style='material-icons-outlined'}}
+      </a>
+    </div>
+  {{/if}}
+</div>
+<div id="{{elementId}}-content" data-index="{{componentIndex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{elementId}}-heading">
+  <div class="panel-body">
+    <ol class="panel-group" role="tablist" aria-multiselectable="true">
+      {{#each lessons as |lesson index|}}
+        {{class/overview/lesson-suggestions class=class course=course
+                unit=model model=lesson
+                userLocationInRoute0=userLocationInRoute0
+                currentResource=currentResource
+                parsedLocation=parsedLocation
+                index=index
+                onSelectResource=(action 'selectResource')
+                onSelectLesson=(action 'updateLesson')
+                onSelectItem="onSelectItem"
+                isStudentDashboard=isStudentDashboard
+                isPlayer=isPlayer onStudyNow=(action 'studyNow')
+                studentId = studentId
+                }}
+      {{/each}}
+    </ol>
+  </div>
+</div>

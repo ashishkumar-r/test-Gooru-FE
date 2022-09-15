@@ -1,0 +1,17 @@
+.button-list {
+  .card {
+    font-size: 12px;
+    border: 1px solid $dark-300;
+    border-radius: 3px;
+    padding: 0 5px;
+    cursor: pointer;
+    display: inline-block;
+    opacity: $opacity-full;
+
+    &.active-card {
+      background-color: $dark-300;
+      color: $white;
+      opacity: 1;
+    }
+  }
+}

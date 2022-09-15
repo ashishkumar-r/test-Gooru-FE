@@ -1,0 +1,125 @@
+[
+  {
+    "description": "Gets an assessment with all question types",
+    "request": {
+      "url": "^/api/nucleus/v1/assessments/all-question-types-assessment-id$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "all-question-types-assessment-200-response.json"
+    }
+  },
+  {
+    "description": "Gets first assessment id data",
+    "request": {
+      "url": "^/api/nucleus/v1/assessments/first-assessment-id$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "first-assessment-id-200-response.json"
+    }
+  },
+  {
+    "description": "Create a assessment",
+    "request": {
+      "url": "^/api/nucleus/v1/assessments$",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Location": "2d84ab6c-10ee-4578-b89a-6b41c87dc9fc"
+      }
+    }
+  },
+
+  {
+    "description": "Update assessment with a specific ID",
+    "request": {
+      "url": "^/api/nucleus/v1/assessments/(.+)$",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  },
+  {
+    "description": "Delete assessment",
+    "request": {
+      "url": "^/api/nucleus/v1/assessments/(.+)$",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "description": "Gets any assessment",
+    "request": {
+      "url": "^/api/nucleus/v1/assessments/(.+)$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "get-assessment-200-response.json"
+    }
+  },
+  {
+    "description": "Gets any external assessment",
+    "request": {
+      "url": "^/api/nucleus/v1/assessments-external/first-assessment-id$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "get-assessment-200-response.json"
+    }
+  }
+]

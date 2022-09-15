@@ -1,0 +1,23 @@
+.fixed-header {
+  .gru-share-pop-over-window {
+    top: 46px !important;
+  }
+}
+
+.gru-share-pop-over-window {
+  height: 100px;
+  max-width: 350px;
+  min-width: 350px;
+
+  .share-actions {
+    input {
+      &[type="text"] {
+        background-color: $light-200;
+        float: $tab-float-dir;
+        height: 34px;
+        margin-right: 10px;
+        width: 240px;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "description": "Fetch competency stats",
+    "request": {
+      "url": "^/api/ds/users/v2/stats/competency",
+      "method": "POST",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{}"
+    }
+  }
+]

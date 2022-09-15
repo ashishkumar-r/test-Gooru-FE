@@ -1,0 +1,289 @@
+.diagnostic-assessment-report-pull-up {
+  position: fixed;
+  z-index: 1032;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+  bottom: 0;
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .diagnostic-assessment-report-container {
+    background: $white;
+    max-height: 90vh;
+    height: 90vh;
+    display: grid;
+    grid-template-rows: 56px auto 56px 1fr;
+
+    .report-header {
+      display: grid;
+      grid-template-columns: auto 100px 56px;
+      border-bottom: 1px solid $table-border-color;
+      align-items: center;
+
+      .close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 24px;
+        }
+      }
+
+      .header-title {
+        display: grid;
+        grid-template-columns: 56px 1fr 50px;
+        height: 100%;
+
+        .icon {
+          width: 20px;
+          height: 20px;
+          background-size: 20px 20px;
+          opacity: 0.8;
+          justify-self: center;
+          align-self: center;
+          background-repeat: no-repeat;
+
+          &.assessment-external-icon,
+          &.collection-external-icon {
+            background-image: url("gooru/share.png");
+          }
+
+          &.assessment {
+            background-image: url("gooru/images/add_assessment.svg");
+          }
+
+          &.assessment-external {
+            background-image: url("gooru/images/add_assessment.svg");
+          }
+
+          &.collection-external {
+            background-image: url("gooru/images/add_collection.svg");
+          }
+
+          &.collection {
+            background-image: url("gooru/images/add_collection.svg");
+          }
+        }
+
+        .title {
+          align-items: center;
+          display: flex;
+        }
+      }
+      .update-data {
+        background-color: $dark-500;
+        color: $white;
+        font-size: 13px;
+        padding: 6px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        text-transform: capitalize;
+        height: 35px;
+      }
+    }
+    .performance-view {
+      .milestone-student-list {
+        padding: 25px 25px 20px 25px;
+        table {
+          height: auto;
+          .table-container {
+            min-width: 600px;
+            overflow-x: auto;
+            overflow-y: auto;
+            height: auto;
+            width: 716px;
+            max-height: 75vh;
+            thead {
+              background: #fff;
+              position: sticky;
+              top: 0;
+              z-index: 10;
+              tr {
+                &.header {
+                  display: flex;
+                  .student-row {
+                    position: sticky;
+                    left: 0;
+                    background: #fff;
+                    z-index: 11111;
+                    border: 1px solid #ddd;
+                  }
+                }
+                .student-name {
+                  min-width: 188px;
+                  text-align: left;
+                  vertical-align: middle;
+                  padding: 12px;
+                  border-bottom: 0;
+                }
+                .domain-competency {
+                  min-width: 140px;
+                  text-align: center;
+                  cursor: pointer;
+                  border: 1px solid #ddd;
+                  padding: 10px;
+                  &.disable {
+                    pointer-events: none;
+                    cursor: not-allowed;
+                  }
+                  &.enable {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+            tbody {
+              tr {
+                display: flex;
+                margin-bottom: -1px;
+                .student-container {
+                  position: sticky;
+                  left: 0;
+                  background: #fff;
+                  display: block;
+                  z-index: 1;
+                  th {
+                    &.student-row {
+                      min-width: 190px;
+                      border: 1px solid #ddd;
+                      padding: 9px;
+                      display: flex;
+                      align-items: center;
+                      img {
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50px;
+                        margin-right: 5px;
+                      }
+                      span {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 130px;
+                        height: 20px;
+                        display: inline-block;
+                        white-space: nowrap;
+                      }
+                    }
+                  }
+                }
+                .body-container {
+                  .com-code {
+                    min-width: 140px;
+                    text-align: center;
+                    vertical-align: middle;
+                    border: 1px solid #ddd;
+                    padding: 11px;
+                    height: 54px;
+                    .com-cell {
+                      display: flex;
+                      justify-content: center;
+                      text-align: center;
+                      align-items: center;
+                      .not-answered,
+                      .userAns {
+                        text-align: center;
+                      }
+                      div.correct {
+                        color: $brand-success;
+
+                        i {
+                          background: url("quizzes-addon/quizzes/images/correct-answer.svg");
+                          width: 24px;
+                          height: 14px;
+                          display: inline-flex;
+                        }
+                      }
+
+                      div.incorrect {
+                        color: $brand-incorrect;
+
+                        i {
+                          background: url("quizzes-addon/quizzes/images/wrong-answer.svg");
+                          width: 14px;
+                          height: 14px;
+                          display: inline-flex;
+                        }
+                      }
+
+                      div.partially-correct {
+                        color: $brand-incorrect !important;
+
+                        i {
+                          background: url("quizzes-addon/quizzes/images/done_green.svg");
+                          width: 25px;
+                          height: 20px;
+                          display: inline-flex;
+                          background-repeat: no-repeat;
+                        }
+                      }
+
+                      div {
+                        color: $gray-base;
+                        i {
+                          color: $gray-light;
+                        }
+                      }
+                      .ans-icon {
+                        position: relative;
+                        top: 3px;
+                        left: 7px;
+                      }
+                      .not-answer-icon {
+                        position: relative;
+                        top: 1px;
+                        left: 7px;
+                      }
+                      .option:not(:last-child):after {
+                        content: ", ";
+                      }
+                      .ans-option {
+                        .option {
+                          &.fib {
+                            text-decoration: underline;
+                          }
+                          &.incorrect {
+                            color: $red-800 !important;
+                          }
+                          &.correct {
+                            color: $green-400 !important;
+                          }
+                          &.partially-correct {
+                            color: $brand-incorrect !important;
+                          }
+                        }
+                      }
+                      .ans-option {
+                        &.fib {
+                          max-width: 85px;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

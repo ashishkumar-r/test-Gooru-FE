@@ -1,0 +1,54 @@
+<div class="student-milestone-summary-report-container">
+  <div class="student-report-header-container">
+     {{#if activeMilestone.isMilestone }}
+        {{charts/score-fill-gauge-chart
+        timeSpent = activeMilestone.performance.timeSpent
+        timeSpentPos = 50
+        scorePos = 150
+        placeholderPos = (if isMilestoneNotStarted '50%' 200)
+        placeholderText = placeholderText
+        }}
+      {{else}}
+    {{charts/score-fill-gauge-chart
+      scoreInPercentage = activeMilestone.performance.scoreInPercentage
+      timeSpent = activeMilestone.performance.timeSpent
+      timeSpentPos = 50
+      scorePos = 150
+      placeholderPos = (if isMilestoneNotStarted '50%' 200)
+      placeholderText = placeholderText
+    }}
+    {{/if}}
+    <div class="left-arrow {{if isSlideLeftDisabled 'disable-event'}}" onclick={{action "onSlideMilestone" 'left'}} onkeypress={{action "onSlideMilestone" 'left'}} tabindex={{tabindex}}>
+      {{gru-icon name="keyboard_arrow_left"}}
+    </div>
+    <div class="right-arrow {{if isSlideRightDisabled 'disable-event'}}" onclick={{action "onSlideMilestone" 'right'}} onkeypress={{action "onSlideMilestone" 'right'}} tabindex={{tabindex}}>
+      {{gru-icon name="keyboard_arrow_right"}}
+    </div>
+  </div>
+  <div class="student-report-body-container">
+    <div class="milestone-lessons-container {{if isMilestoneNotStarted 'milestone-not-started'}}">
+      {{#each milestoneLessons as |milestoneLesson lessonIndex|}}
+        {{reports/pull-up/milestone/student-milestone-lesson-performance-accordion
+          lesson = milestoneLesson
+          classId = classId
+          courseId = courseId
+          rescopedCollectionIds = rescopedCollectionIds
+          userId = userId
+          milestoneLessons = milestoneLessons
+          lessonIndex = lessonIndex
+          isRoute0MileStone = isRoute0MileStone
+          isUnit0Milestone = isUnit0Milestone
+          tabindex=(plus-any lessonIndex tabindex)
+          isDefaultShowFW = isDefaultShowFW
+          classFramework = classFramework
+        }}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Operating Systems",
+    "gooruOid": "fbd76aed-1b8d-4c2c-abc6-c7603eef567q",
+    "collectionId": 24413567,
+    "visibility": true
+  },
+  {
+    "title": "Programming Paradigms",
+    "gooruOid": "aaac5d15-8434-43ff-8f8b-78cf0b6f570w",
+    "collectionId": 24413570,
+    "visibility": true
+  },
+  {
+    "title": "Natural Language Processing",
+    "gooruOid": "cc2bc04c-05ab-4407-9d76-b7021d61573p",
+    "collectionId": 24413573,
+    "visibility": true
+  },
+  {
+    "title": "Computer Graphics",
+    "gooruOid": "aaac5d15-8434-43ff-8f8b-78cf0b6f576c",
+    "collectionId": 24413576,
+    "visibility": true
+  },
+  {
+    "title": "Machine Learning",
+    "gooruOid": "cc2bc04c-05ab-4407-9d76-b7021d61579z",
+    "collectionId": 24413579,
+    "visibility": true
+  }
+]

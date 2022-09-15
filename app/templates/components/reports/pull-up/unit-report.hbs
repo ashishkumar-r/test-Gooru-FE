@@ -1,0 +1,127 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="unit-report-container">
+  <div class="report-header">
+    <div class="report-breadcrumb">
+      <div class="unit-title">
+        <div>
+          {{#if isShowMilestoneReport}}
+            <div>Milestone {{selectedUnit.sequence}} :</div>
+            <div class="unit-title-value ellipsis">
+              {{concat gradeSubject.title ' - ' selectedUnit.grade_name}}
+            </div>
+          {{else}}
+            <div>{{t 'common.unit'}} {{unless isHideLessonNumber unit.sequence ''}} :</div>
+             <div class="unit-title-value ellipsis">
+               {{unit.title}}
+             </div>
+          {{/if}}
+         </div>
+      </div>
+    </div>
+    <div class="report-close-pullup" onclick={{action 'reportClose'}} onkeypress={{action 'reportClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-carousel">
+      <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+          {{#each unitsHasPerformance as |unitItem index|}}
+            <div data-item-index="{{index}}" class="item {{if (eq index 0) 'active'}}">
+              <div class="unit-background-cover" />
+            </div>
+          {{/each}}
+        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" data-slide="prev" onclick={{action 'onClickPrev'}} onkeypress={{action 'onClickPrev'}} tabindex={{tabindex}}>
+          <i class="arrow-left"></i>
+        </a>
+        <a class="right carousel-control" data-slide="next" onclick={{action 'onClickNext'}} onkeypress={{action 'onClickNext'}} tabindex={{tabindex}}>
+          <i class="arrow-right"></i>
+        </a>
+      </div>
+      <div class="report-carousel-content-container">
+        <div class="report-carousel-content">
+          <div class="performance-display-container">
+            <div class="unit-performance-average {{concat 'grade-range-' (grade-range (not selectedUnit.performance.isCollectionPerformance) selectedUnit.performance.score null)}}">
+              <div class="center-align custom-text">
+                {{#if (gt selectedUnit.performance.score -1) }}
+                  {{#if (eq selectedUnit.performance.score null)}}
+                    --
+                  {{else}}
+                      {{#if (not selectedUnit.performance.isCollectionPerformance)}}
+                    <div>{{concat selectedUnit.performance.score '%'}}</div>
+                    <div class="font-small-avg-score">{{t 'common.averageScore'}}</div>
+                    {{else}}
+                      --
+                    {{/if}}
+                  {{/if}}
+                {{else}}
+                  --
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          <div class="unit-report-chart">
+            {{charts/report-bar-chart useTimeSpentScore=false studentChartReportData=studentReportData tabindex=tabindex onClickChart="onClickChart"}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-performance-tabular">
+      <div class="report-header-container">
+        <div class="filter-btns">
+          <div class="performance-icon">
+            {{gru-icon name="done_all"}}
+            <span>{{t 'gru-course-play.performance'}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-view-container">
+        {{reports/pull-up/unit-report-listview
+          sortByFirstnameEnabled=sortByFirstnameEnabled
+          sortByLastnameEnabled=sortByLastnameEnabled
+          sortByScoreEnabled=sortByScoreEnabled
+          contents=lessons
+          onClosePullUp="onPullUpClose"
+          studentReportData=studentReportData
+          selectedUnit=selectedUnit
+          openLessonReport="openLessonReport"
+          openStudentUnitReport="openStudentUnitReport"
+          isShowMilestoneReport = isShowMilestoneReport
+          tabindex=tabindex
+        }}
+      </div>
+    </div>
+  </div>
+</div>
+{{#if showStudentUnitReport}}
+  {{reports/pull-up/student-unit-report context=studentUnitReportContext tabindex=tabindex onClosePullUp="onPullUpClose" showPullUp=showStudentUnitReport}}
+{{/if}}
+
+{{#if isShowStudentMilestoneReport}}
+  {{#reports/pull-up/milestone/milestone-report
+    showPullUp = isShowStudentMilestoneReport
+    title = (concat gradeSubject.title ' - ' studentMilestone.grade_name)
+    tabindex=tabindex
+  }}
+    {{reports/pull-up/milestone/student-milestone-summary-report
+      activeMilestone = studentMilestone
+      class = class
+      userId = selectedStudentId
+      gradeSubject = gradeSubject
+      isTeacher = true
+      activeMilestoneIndex = activeMilestoneIndex
+      tabindex=tabindex
+      classFramework = classFramework
+      isDefaultShowFW = isDefaultShowFW
+    }}
+  {{/reports/pull-up/milestone/milestone-report}}
+{{/if}}
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

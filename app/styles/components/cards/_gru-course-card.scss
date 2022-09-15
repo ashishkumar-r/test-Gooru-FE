@@ -1,0 +1,215 @@
+.gru-course-card {
+  @include flexbox;
+  @include flex-direction(column);
+  width: 300px;
+  @media (min-width: $screen-md-min) {
+    width: 344px;
+  }
+  @media (min-width: $screen-lg-min) {
+    width: 460px;
+  }
+
+  .tooltip-inner {
+    white-space: nowrap;
+  }
+
+  .panel {
+    height: auto;
+    min-height: 290px;
+    overflow-y: auto;
+  }
+
+  .card-header {
+    @include flexbox;
+
+    .course-image {
+      display: block;
+      height: 80px;
+      overflow: hidden;
+      width: 80px;
+      @media (min-width: $screen-md-min) {
+        height: 100px;
+        width: 100px;
+      }
+    }
+
+    .header-content {
+      margin-left: 15px;
+      position: relative;
+      width: calc(100% - 80px);
+      .truncate {
+        $line-height: 1.1;
+        $lines-to-show: 2;
+        @include ellipsis($font-size: $font-size-large, $line-height: $line-height, $lines-to-show: $lines-to-show, $excerpt-bg: $white);
+        @media (min-width: $screen-md) {
+          &:before {
+            width: 0;
+          }
+        }
+      }
+    }
+
+    .course-title {
+      color: $blue-300;
+      font-size: $font-size-large;
+      height: 50px;
+      margin: 0;
+      width: calc(100% - 25px);
+    }
+
+    .subject {
+      margin: 0;
+
+      > * {
+        &::before {
+          background-color: $gray-base;
+          content: "";
+          width: 5px;
+        }
+      }
+
+      .bars {
+        border-left: 2px solid $gray-base;
+        margin-right: 5px;
+      }
+    }
+
+    .remixed-users {
+      @include flexbox;
+      @include align-items(center);
+      overflow: hidden;
+      @media (min-width: $screen-xs-max) {
+        margin-top: -3px;
+      }
+      .created,
+      .remixed {
+        @media (max-width: $screen-xs-max) {
+          display: none;
+        }
+      }
+    }
+
+    .icon {
+      background: url("gooru/badge-01.png");
+      height: 20px;
+      position: absolute;
+      right: 0;
+      top: -5px;
+      width: 18px;
+    }
+  }
+
+  .gru-user-teaser {
+    @include flexbox;
+    @include align-items(center);
+
+    span {
+      height: 25px;
+
+      a {
+        display: inline-block;
+        max-width: 150px;
+        @include text-overflow;
+        @media (min-width: $screen-xs-max) {
+          max-width: 78px;
+        }
+        @media (min-width: $screen-md-min) {
+          max-width: 100px;
+        }
+        @media (min-width: $screen-lg-min) {
+          max-width: 200px;
+        }
+      }
+
+      .avatar {
+        margin: 0 5px 0 0;
+      }
+    }
+  }
+
+  .card-content {
+    line-height: 15px;
+    margin-top: 10px;
+    padding-top: 10px;
+    position: relative;
+
+    &::before {
+      background-color: $light-100;
+      content: "";
+      height: 1px;
+      left: -15px;
+      position: absolute;
+      top: 0;
+      width: calc(100% + 30px);
+    }
+
+    .taxonomy-standards {
+      min-height: 35px;
+    }
+
+    .course-description {
+      height: 75px;
+      margin-top: 5px;
+      @media (min-width: $screen-md-min) {
+        height: 65px;
+      }
+    }
+
+    .actions {
+      margin-top: 5px;
+      div {
+        display: inline-block;
+      }
+    }
+
+    .visibility {
+      bottom: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+.gru-course-card.small {
+  margin: 15px 0 0;
+  width: 225px;
+  > .panel {
+    border-radius: 6px;
+    box-shadow: 0 0 7px $gray-light;
+    height: 64px;
+    margin: 0;
+    width: 90%;
+    @media (min-width: $screen-xs) {
+      width: 100%;
+    }
+    .panel-body {
+      padding: 0;
+    }
+    .card-header {
+      .image-container {
+        padding: 0;
+        height: 64px;
+        width: 64px;
+        .course-image {
+          border-radius: 6px 0 0 6px;
+          padding: 0;
+          height: inherit;
+          width: inherit;
+        }
+      }
+      .header-content {
+        padding: 5px;
+        margin-left: 5px;
+        height: 64px;
+        width: 154px;
+        .course-title {
+          height: auto;
+        }
+        .subject {
+          margin-top: 5px;
+          font-size: $font-size-xsmall;
+        }
+      }
+    }
+  }
+}

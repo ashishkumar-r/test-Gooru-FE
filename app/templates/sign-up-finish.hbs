@@ -1,0 +1,280 @@
+{{#if onShowSignup}}
+  <div class="controller sign-up finish row col-md-6 col-md-offset-3">
+    <div class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="progress-dots">
+              <span class="dot"></span>
+              <span class="dot color"></span>
+              <span class="dot"></span>
+            </div>
+            <h3 class="step-title">{{t "sign-up.step-2-title"}}</h3>
+            <div class="description" alt="{{t "sign-up.step-2-description"}}" title="{{t "sign-up.step-2-description"}}">
+              {{t "sign-up.step-2-description"}}
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="main">
+                <div class="sign-up-finish-form col-sm-12">
+                  <form id="signUpForm" {{action "next" on="submit"}}>
+                    <div class="signUpForm">
+                      <div class="form-group role">
+                        <p><span class="required">{{t 'common.role'}}</span></p>
+                        <div class="roles">
+                          {{
+                          validation/gru-radio
+                          model=profile
+                          groupValue=currentRole
+                          valuePath='teacher'
+                          name="role-radio"
+                          translationPath="common.teacher"
+                        }}
+                          {{
+                          validation/gru-radio
+                          model=profile
+                          groupValue=currentRole
+                          optionSelected=true
+                          valuePath='student'
+                          name="role-radio"
+                          translationPath="common.student"
+                        }}
+                        </div>
+                        <div class="error-messages">
+                          {{#if showRoleErrorMessage}}
+                            <span class="error">
+                              {{t "sign-up.error-role-message"}}
+                            </span>
+                          {{/if}}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>
+                          <span class="required">{{t "common.country"}}</span>
+                          {{validation/gru-select options=countries title=(t "common.select") optionSelected=countrySelected search="true" onOptionSelect="countrySelect" showMessage=showCountryErrorMessage errorMessage=(t "sign-up.error-country-message")}}
+                        </label>
+                      </div>
+                      {{#if showStates}}
+                        <div class="form-group">
+                          <label>
+                            <span class="required">{{t "sign-up.state"}}</span>
+                            {{validation/gru-select options=states title=(t "common.select") search="true" onOptionSelect="stateSelect" showMessage=showStateErrorMessage errorMessage=(t "sign-up.error-state-message")}}
+                          </label>
+                        </div>
+                      {{/if}}
+                      {{#if districts}}
+                        <div class="form-group">
+                          <label>
+                            <span>{{t "sign-up.district"}}</span>
+                            {{validation/gru-select options=districts title=(t "common.select") search="true" onOptionSelect="districtSelect"}}
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label>
+                            <span>{{t "common.other"}}</span>
+                            {{input value=otherSchoolDistrict class="form-control" name='otherDistrict'}}
+                          </label>
+                          <div class="error-messages">
+                            {{#if showDistrictErrorMessage}}
+                              <span class="error">
+                                {{t "sign-up.error-district-message"}}
+                              </span>
+                            {{/if}}
+                          </div>
+                        </div>
+                      {{/if}}
+                    </div>
+                    <div class="sign-up-button sign-up-finish-btn form-group text-center">
+                      <button type="submit" class="btn btn-success submit-sign-up">{{t "common.next"}}{{gru-icon name="keyboard_arrow_right"}}</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+{{#if (and isShowGuardianpullUp isEnableNavigatorPrograms)}}
+  <div class="back-drop"></div>
+  <div class="universalKnowMorePanel">
+    {{#if (not addLinkConfirmPullUp)}}
+      <div class="gardian-request">
+        <div class="title">{{t 'universal-learner-id'}}</div>
+        <div class="para-one">{{t 'gardian-request-msg'}}</div>
+        {{#if (eq currentRole 'student')}}
+          <div class="para-two" {{action 'onThisIsMyId'}}><a>{{t 'sorry-this-is-my-id'}}</a></div>
+        {{else}}
+          {{#link-to 'teacher-home'}}
+            <div class="para-two"><a>{{t 'sorry-this-is-my-id'}}</a></div>
+          {{/link-to}}
+        {{/if}}
+        <div class="next-btn">
+          <button type="button" name="button" class="link-accounts" {{action 'onShowSearch'}}>{{t 'link-accounts'}}</button><br>
+          <button type="button" name="button" class="maybe-later" {{action 'onOpenAcknowledgement'}}>{{t 'maybe-later'}}</button>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="gardian-request know-more {{if (or (and enableFewMoreQuestions (eq currentRole 'student')) (and addLinkConfirmPullUp (eq currentRole 'student'))) 'few-more-ques'}}">
+      <div class="title">{{t 'just-few-more-questions'}}</div>
+      <span class="personal-details">{{t "personal-details"}}</span>
+      {{#if whereInLifeAreYou}}
+        <label class="know-more-question {{if (not whereInLifeAreYou.is_editable) "disable-event"}}">
+          <span>{{whereInLifeAreYou.question}}</span>
+          {{#if enableFewMoreQuestions}}
+            {{validation/gru-select options=whereInLifeAreYou.options title=(t "common.select")  optionSelected=whereInLifeAreYou.default_value search="true" onOptionSelect="whereInLifeSelect" showMessage=showWhereInLifeErrorMessage errorMessage=(t "where-in-life-error-country-message")}}
+          {{/if}}
+        </label>
+      {{/if}}
+      <label class="know-more-question {{if (not gradeLevel.is_editable) "disable-event"}}">
+        <span>{{gradeLevel.question}}</span>
+        {{#if enableFewMoreQuestions}}
+          {{validation/gru-select options=gradeLevel.options title=(t "common.select")  optionSelected=gradeLevel.default_value  search="true" onOptionSelect="gradeLevelSelect" showMessage=showGradeLevelErrorMessage errorMessage=(t "grade-level-error-country-message")}}
+        {{/if}}
+      </label>
+
+      <div class="submit-continue">
+        <span class="submit-title">{{t "submit-and-continue"}}</span>
+        <button class="btn btn-submit-continue" {{action "onSubmitContinue"}}> <span>{{gru-icon name="arrow_forward"}}</span></button>
+      </div>
+    </div>
+  </div>
+
+{{else if (and isShowGuardianpullUp (not isEnableNavigatorPrograms))}}
+  <div class="universalKnowMorePanel">
+    <div class="back-drop"></div>
+    <div class="gardian-request">
+      <div class="title">{{t 'universal-learner-id'}}</div>
+      <div class="para-one">{{t 'gardian-request-msg'}}</div>
+
+      {{#if (eq currentRole 'student')}}
+        {{#link-to 'student-home'}}
+          <div class="para-two"><a>{{t 'sorry-this-is-my-id'}}</a></div>
+        {{/link-to}}
+
+      {{else}}
+
+        {{#link-to 'teacher-home'}}
+          <div class="para-two"><a>{{t 'sorry-this-is-my-id'}}</a></div>
+        {{/link-to}}
+      {{/if}}
+
+      <div class="next-btn">
+        <button type="button" name="button" class="link-accounts" {{action 'onShowSearch'}}>{{t 'link-accounts'}}</button><br>
+        <button type="button" name="button" class="maybe-later" {{action 'onOpenAcknowledgement'}}>{{t 'maybe-later'}}</button>
+      </div>
+    </div>
+  </div>
+{{/if}}
+{{#if isOpenAcknowledgement}}
+  <div class="back-drop"></div>
+  <div class="acknowledgements">
+    <div class="title">{{t 'no-problem'}}</div>
+    <div class="para-one">{{t 'acknowledgements-msg'}}</div>
+    <div class="para-two" {{action 'universalLearner'}}><a>{{t 'universal-learner-id'}}</a></div>
+    <div class="next-btn">
+      <button type="button" name="button" {{action 'onDismissAcknowledgement'}}>{{t 'common.dismiss'}}</button>
+    </div>
+  </div>
+{{/if}}
+{{#if isShowSearch}}
+  <div class="back-drop" {{action 'onCloseSearch'}}></div>
+  <div class="identify-your-account">
+    <div class="identify-my-account">
+      <span class="material-icons clear" {{action 'onCloseSearch'}}>clear</span>
+      <div class="details">
+        <div class="email">{{if profile.email profile.email (if profile.username profile.username profile.fullName)}}</div>
+        <div class="name">{{t 'identify-your-account'}}</div>
+      </div>
+    </div>
+    <div class="msg">{{t 'identify-your-account-msg'}}</div>
+    <div class="search-for">
+      <label for="search for">{{t 'search-for'}}</label>
+      <div class="search-content">
+        <input type="text" value="{{userEnteredValue}}" onkeyup={{action 'onSearch'}} class="search-text-box">
+        <i class="material-icons" {{action 'onClearSearch'}}>delete_outline</i>
+      </div>
+    </div>
+    {{#if isLoading}}
+      <div class="loading-spinner loading">
+        {{three-bounce-spinner}}
+      </div>
+    {{else}}
+      <div class="next-btn">
+        <button type="button" name="button" class="{{unless userEnteredValue 'disable-button'}}" {{action 'onStudentProfiles'}}>{{t 'identify-my-account'}}</button>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}
+{{#if isShowSearchResults}}
+  <div class="back-drop" {{action 'onCloseSearchResult'}}></div>
+  <div class="search-results">
+    <div class="back">
+      <span class="material-icons clear" {{action 'onCloseSearchResult'}}>arrow_back</span>
+      <div class="details">
+        <div class="email">{{if profile.email profile.email (if profile.username profile.username profile.fullName)}}</div>
+        <div class="name">{{t 'identify-your-account'}}</div>
+      </div>
+    </div>
+    <div class="no-result {{if searchResults 'hide'}}">{{t 'common.no-record-found'}}!</div>
+    <div class="title {{unless searchResults 'hide'}}">{{t 'are-any-of-those'}}</div>
+    <div class="accounts-list">
+      {{#each searchResults as | searchResult |}}
+        <div class="list-accounts {{if searchResult.isChecked 'visible' 'not-visible'}}">
+          <div class="profile">
+            {{#if (eq searchResult.status 'complete')}}
+              <img class="img-responsive" src="{{searchResult.avatarUrl}}" alt="profileImage">
+            {{else}}
+              <img class="img-responsive" src="/assets/gooru/profile.png" alt="profileImage">
+            {{/if}}
+          </div>
+          <div class="details">
+            <div class="name">{{searchResult.firstName}} {{searchResult.lastName}}</div>
+            <div class="email">{{searchResult.email}}</div>
+          </div>
+          <div class="tenant-name">{{searchResult.tenantName}}</div>
+          <div class="icons">
+            <i class="gru-icon-blue {{if searchResult.isChecked 'show' 'hide'}}" onclick={{action 'onClickRemoveUserProfile' searchResult}}></i>
+            <i class="gru-icon-circle {{if searchResult.isChecked 'hide' 'show'}}" onclick={{action 'onClickUserProfile' searchResult}}></i>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class="next-btn">
+      <button type="button" name="button" class="try-again" {{action 'onCloseSearchResult'}}>{{t 'try-again'}}</button>
+      <button type="button" name="button" class="link-accounts {{unless isSelected 'disable-events'}}" {{action 'onMergeUserProfile'}}>{{t 'yes-link-account'}}</button>
+    </div>
+  </div>
+{{/if}}
+{{#if isShowConfirmPullup}}
+  <div class="back-drop" {{action 'closeConfirmPullup'}}></div>
+  <div class="acknowledgement">
+    <div class="title">{{t 'thanks-for-confirming'}}</div>
+    <div class="para-one">{{t 'acknowledgement-msg-one'}}</div>
+    <div class="next-btn">
+      <button type="button" name="button" {{action 'closeConfirmPullup'}}>{{t 'common.dismiss'}}</button>
+    </div>
+  </div>
+{{/if}}
+{{#if isOpenPersonalizeSetting}}
+  <div class="back-drop" {{action 'onClosePullup'}}></div>
+  <div class="personalize-settings">
+    <div class="back">
+      <span class="material-icons clear" {{action 'onClosePullup'}}>arrow_back</span>
+      <div class="details">
+        <div class="email">{{if profile.email profile.email (if profile.username profile.username profile.fullName)}}</div>
+        <div class="name">{{t 'personalize-your-settings'}}</div>
+      </div>
+    </div>
+    <div class="title">{{t 'personalize-title'}}</div>
+    <div class="next-btn">
+      <button type="button" name="button" class="later" {{action 'onClosePullup'}}>{{t 'common.later'}}</button>
+      <button type="button" name="button" class="link-accounts" {{action 'onMergeUserProfile'}}>{{t 'personalize'}}</button>
+    </div>
+  </div>
+{{/if}}

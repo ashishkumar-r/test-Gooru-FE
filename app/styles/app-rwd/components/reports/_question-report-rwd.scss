@@ -1,0 +1,33 @@
+.reports.pull-up-question-report {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .question-report-container {
+      width: 100%;
+
+      .report-content {
+        .report-info-chart-container {
+          grid-template-columns: auto 1fr 100px;
+
+          .report-chart-container {
+            width: 100%;
+          }
+        }
+
+        .report-carousel {
+          #report-carousel-wrapper {
+            .question-background-cover {
+              .question-content-container {
+                width: 100%;
+
+                .question-text {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

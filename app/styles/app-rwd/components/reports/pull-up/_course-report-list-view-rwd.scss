@@ -1,0 +1,51 @@
+.reports.pull-up-course-report-listview {
+  @media only screen and (max-width: $screen-sm - 1) {
+    .scroll-left-arrow,
+    .scroll-right-arrow {
+      display: none;
+    }
+
+    .table-fixed-left,
+    .table-fixed-right {
+      width: 100vw;
+      padding-bottom: 10px;
+
+      table th {
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+
+        .header-filters {
+          grid-template-columns: auto auto;
+          display: grid;
+
+          .score-timespent {
+            width: 100%;
+          }
+        }
+
+        .user-profile-summary {
+          display: grid;
+          grid-template-columns: auto auto;
+
+          .score-details {
+            justify-self: center;
+          }
+        }
+
+        &:last-child {
+          border-right: 1px solid $gray-80;
+        }
+
+        &:not(:nth-child(1)) {
+          border-left: 1px solid $gray-80;
+        }
+
+        .user-profile-summary {
+          background-color: $light-200;
+          height: 36px;
+        }
+      }
+    }
+  }
+}

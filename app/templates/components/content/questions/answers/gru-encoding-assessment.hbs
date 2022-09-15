@@ -1,0 +1,63 @@
+{{#each answers as |answer index|}}
+<div class="panel panel-default">
+  <div class="answer-content">
+    {{#if editMode}}
+    <div class="audio-recorder recorder-{{index}} {{if answer.audioUrl 'enable'}}">
+      <span class="record-actions" {{action 'encodingvoice' index}}>
+        <span class="record-icon">
+          {{gru-icon name="mic"}}
+        </span>
+      </span>
+
+      <div class="audio-player">
+        <span class="audio-progress">
+          <span class="progress-filling play{{index}}">
+            <span class="progress-pointer"></span>
+            <span class="audio-wave">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </span>
+        </span>
+
+        {{#if (and (eq answerIndex index) isPause)}}
+        <span class="audio-play" {{action 'pauseAudio'}}>
+            {{gru-icon name="pause_arrow"}}
+        </span>
+        {{else}}
+        <span class="audio-play" {{action 'playaudio' index}}>
+            {{gru-icon name="play_arrow"}}
+        </span>
+        {{/if}}
+      </div>
+    </div>
+{{/if}}
+    <div class="audio-text-content">
+         {{#if editMode}}
+        {{gru-rich-text-editor content=answer.text disableButtons=disableEditorButtons model=answer valuePath='text'}}
+        {{else}}
+        <p>{{{gru-math-text text=answer.text}}}</p>
+        {{/if}}
+    </div>
+    {{#if editMode}}
+    {{#unless showAdvancedEditor}}
+    <button class="delete" {{action 'removeChoice' answer}}>{{gru-icon name="delete"}}</button>
+    {{/unless}}
+    {{/if}}
+  </div>
+</div>
+{{/each}}
+{{#if editMode}}
+{{#if (eq answers.length 10)}}
+<div class="max-length-error">
+  <p><small>{{t "common.errors.hotspot-text-max-choices"}}</small></p>
+</div>
+{{else}}
+<div class="add-answer">
+  <a {{action 'addNewChoice'}}>{{t 'content.questions.edit.builder.add-encoding-exercise'}}</a>
+</div>
+{{/if}}
+{{/if}}

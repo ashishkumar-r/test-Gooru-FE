@@ -1,0 +1,95 @@
+.gru-diagnostic-player {
+  height: 100%;
+  width: 100%;
+
+  .left-panel-container {
+    background-color: $white;
+    border-radius: 4px;
+    height: 100%;
+    width: 100%;
+
+    .diagnostic-content-panel {
+      background-color: $white;
+
+      .domain-head {
+        padding: 10px;
+        border-bottom: 1px solid $light-200;
+        span {
+          font-size: 15px;
+          font-weight: bold;
+          margin-left: 30px;
+        }
+      }
+      .domain-item-list-panel {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-column-gap: 10px;
+
+        &.expand-diagnostic-path {
+          grid-template-columns: 340px calc(100% - 400px);
+        }
+
+        .domain-body-descriptions {
+          .diagnostic-domain-description {
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            padding: 20px 5px;
+            align-items: center;
+            border-bottom: 3px solid $light-200;
+            grid-column-gap: 5px;
+
+            .domain-icon {
+              display: block;
+              background-position: center;
+              background-size: 100% 100%;
+              text-align: center;
+              width: 25px;
+              height: 25px;
+              margin: 0 auto;
+
+              &.assessment {
+                background-image: url("gooru/images/add_assessment.svg");
+              }
+            }
+          }
+          .diagnostic-domain-instruction {
+            padding: 10px;
+            padding-left: 40px;
+          }
+        }
+        .diagnostic-route-panel {
+          padding: 10px;
+          display: grid;
+          max-height: calc(100vh - 200px);
+          overflow-y: auto;
+
+          &.route-not-generated {
+            align-items: center;
+          }
+
+          .diagnostic-route-container {
+            .failed-to-load-content {
+              text-align: center;
+              width: 350px;
+              margin: 0 auto;
+              .title {
+                font-size: 14px;
+              }
+              .img-content {
+                background-image: url("/assets/gooru/failed.png");
+                width: 100px;
+                height: 100px;
+                display: block;
+                background-position: center;
+                background-size: 100% 100%;
+                background-color: white;
+                margin: 0 auto;
+                opacity: 0.3;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

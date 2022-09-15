@@ -1,0 +1,105 @@
+<div class="student-standard-list-container">
+    <div class="student-standard-list-panel">
+        <div class="student-list-panel-head">
+            <div class="title">
+              <span class="subject-name">{{subject.title}}</span>
+              <span class="framework-name">{{framework}}</span>
+            </div>
+            <a href="javascript:void(0)" {{action "onClosePullup"}} aria-label="close" class="close-icon print-preview">{{gru-icon name="clear"}}</a>
+        </div>
+        {{#unless isLoading}}
+        <div class="student-list-panel-body">
+          <div class="select-competency-details">
+              <div class="competency-description-section">
+                  <div class="competency-title-head"> {{activeCompetency.displayCode}} </div>
+                  <span class="description">{{activeCompetency.description}}</span>
+              </div>
+              <div class="action-button print-preview">
+                  <a class="print-icon" {{action "onPrint"}} aria-label="print">{{gru-icon name="print"}}</a>
+              </div>
+          </div>
+          <div class="student-list-content-head">
+              <div class="label-student">{{t 'common.students'}}</div>
+               <div class="class-container-proficiency">
+                <div class="search-input-container print-preview">
+                  {{
+                    input type="text"
+                    placeholder=(t "common.search-students-placeholder")
+                    spellcheck="true"
+                    id="studentDomainLocal"
+                    key-up=(action "onSearchWeeklyLocal" searchWeekLocal)
+                    value=searchWeekLocal
+                    tabindex=tabindex
+                  }}
+                <label for="studentDomainLocal" id="search-student" class="custom-search-icon">
+                  {{gru-icon name="search"}}
+                </label>
+              </div>
+              </div>
+          </div>
+
+          <div class="student-list-content-section">
+            {{#if filteredWeekLocal}}
+            {{#each filteredWeekLocal as |student|}}
+              <div class="student-detail-card">
+                  <span class="material-icons profile-icons">
+                    <img src="{{student.thumbnailUrl}}" alt="student-profile">
+                  </span>
+                  <span class="student-name">{{student.lastName}} {{student.firstName}}</span>
+                    <a class="suggestion-icon" {{action "onSuggestContent" student}}>
+                      {{#if suggestedCollection}}
+                        {{gru-icon name="explore"}}
+                      {{/if}}
+                    </a>
+                  <span class="performance grade-range-{{grade-range student.score}}">{{student.score}}%</span>
+              </div>
+            {{/each}}
+            {{else}}
+            <span class="no-content-message">{{t 'data-by-standard.no-student-list'}}</span>
+            {{/if}}
+          </div>
+        </div>
+        {{/unless}}
+    </div>
+</div>
+
+{{#if isShowStrugglingCompetencyReport}}
+  {{reports/pull-up/struggling-competency-report
+     class=class
+     fwCompetencies=fwCompetencies
+     onPreviewContent='onPreviewContent'
+     onAddContentToDCA ='onAddCollectionToDCA'
+     onScheduleContentToDCA = 'onScheduleContentToDCA'
+     selectedCompetency = selectedCompetency
+     studentsPerformanceList=selectedStudent
+     isShowCompetencyStudentList = isShowCompetencyStudentList
+     closePullUp="onClosePullUp"
+     tabindex='51'
+     classFramework = classFramework
+     isDefaultShowFW = isDefaultShowFW
+   }}
+{{/if}}
+
+<!-- Preview -->
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    showAssessmentCode=true
+    previewContentId=previewContent.id
+    previewContentType=previewContentType
+    primaryClass=class
+    tabindex='51'
+    classFramework = classFramework
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+<div class="ca-datepicker-schedule-container ca-datepicker-popover-container">
+  {{ca-daterange-datepicker
+      closeDatePicker='onCloseDatePicker'
+      onScheduleForDate='onScheduleDate'
+      onScheduleForMonth='onScheduleForMonth'
+      endDate=endDate
+      allowTwoDateRangePicker=false
+      tabindex='51'}}
+</div>

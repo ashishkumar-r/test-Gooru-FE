@@ -1,0 +1,84 @@
+.gru-unit-performance-container {
+  border-radius: 0 !important;
+  margin-bottom: 17px;
+  &.selected a {
+    border-left: 4px solid $green-400;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+  > a {
+    color: $gray;
+    height: 105px;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-align-content: center;
+    align-content: center;
+    display: -webkit-flex;
+    display: flex;
+    text-decoration: none;
+    margin: 0;
+    @include respond-to(xs) {
+      height: 50px;
+    }
+    > ul {
+      margin: 0;
+      padding: 0;
+      -webkit-order: 0;
+      order: 0;
+      -webkit-flex-grow: 1;
+      flex-grow: 1;
+      -webkit-flex-shrink: 1;
+      flex-shrink: 1;
+      -webkit-flex-basis: auto;
+      flex-basis: auto;
+      -webkit-align-self: auto;
+      align-self: auto;
+      height: 100%;
+    }
+  }
+  ul {
+    li {
+      &.performance-unit-content {
+        height: 100%;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-align-content: center;
+        align-content: center;
+        display: -webkit-flex;
+        display: flex;
+        @include respond-to(xs) {
+          border-left: 1px solid $gray-lighter;
+        }
+        > * {
+          width: 100%;
+          -webkit-order: 0;
+          order: 0;
+          -webkit-flex-grow: 0;
+          flex-grow: 0;
+          -webkit-flex-shrink: 1;
+          flex-shrink: 1;
+          -webkit-flex-basis: auto;
+          flex-basis: auto;
+          -webkit-align-self: auto;
+          align-self: auto;
+          height: 100%;
+        }
+      }
+      span i {
+        margin-right: 10px;
+      }
+    }
+  }
+}

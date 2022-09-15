@@ -1,0 +1,43 @@
+<div class="class-summary-report-container">
+  <div class="class-performance-chart-container">
+    {{charts/score-fill-gauge-chart
+      scoreInPercentage = classSummary.scoreInPercentage
+    }}
+  </div>
+  <div class="monthly-summary-list-container">
+    {{#if isLoading}}
+      <div class="loading-spinner">
+        {{three-bounce-spinner}}
+      </div>
+    {{/if}}
+    {{#each classSummaryReportData as |reportData|}}
+      <div class="month-summary-container" onclick={{action "onShowMonthlyReport" reportData}}  onkeypress={{action "onShowMonthlyReport" reportData}} tabindex={{tabindex}}>
+        <div class="info-container">
+          <div class="activity-timespent">{{if reportData.timeSpent (format-time reportData.timeSpent) '--'}}</div>
+          <div class="activity-month">{{format-date (concat reportData.month '/' 01 '/' reportData.year) 'MMMM YYYY'}}</div>
+        </div>
+        <div class="activity-performance grade-range-{{grade-range reportData.scoreInPercentage}}">
+          {{#if (eq reportData.scoreInPercentage null)}}
+            --
+          {{else}}
+            {{concat reportData.scoreInPercentage '%'}}
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+
+{{#if isShowMonthlySummaryReport}}
+  {{#reports/pull-up/student-activity-report showPullUp=isShowMonthlySummaryReport title=(t 'teacher-landing.class.offline-class-report.class-activity-report') reportPeriod=reportPeriod onClosePullUp="onClosePullUp" tabindex=tabindex}}
+    {{reports/pull-up/activity/monthly-summary-report
+      classId = classId
+      userId = userId
+      reportContext = monthlyReportContext
+      classSummary=classSummaryReportData
+      onClosePullUp="onClosePullUp"
+      tabindex="2"
+    }}
+  {{/reports/pull-up/student-activity-report}}
+{{/if}}

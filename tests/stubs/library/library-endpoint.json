@@ -1,0 +1,143 @@
+[
+  {
+    "description": "Fetch library content - courses",
+    "request": {
+      "url": "^/api/nucleus/v2/libraries/(.+)/contents",
+      "query": {
+        "contentType": "course"
+      },
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-library-courses-200-response.json"
+    }
+  },
+  {
+    "description": "Fetch library content - collections",
+    "request": {
+      "url": "^/api/nucleus/v2/libraries/(.+)/contents",
+      "query": {
+        "contentType": "collection"
+      },
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-library-collections-200-response.json"
+    }
+  },
+  {
+    "description": "Fetch library content - assessments",
+    "request": {
+      "url": "^/api/nucleus/v2/libraries/(.+)/contents",
+      "query": {
+        "contentType": "assessment"
+      },
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-library-assessments-200-response.json"
+    }
+  },
+  {
+    "description": "Fetch library content - resources",
+    "request": {
+      "url": "^/api/nucleus/v2/libraries/(.+)/contents",
+      "query": {
+        "contentType": "resource"
+      },
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-library-resources-200-response.json"
+    }
+  },
+  {
+    "description": "Fetch library content - questions",
+    "request": {
+      "url": "^/api/nucleus/v2/libraries/(.+)/contents",
+      "query": {
+        "contentType": "question"
+      },
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-library-questions-200-response.json"
+    }
+  },
+  {
+    "description": "Gets library data for a specific id",
+    "request": {
+      "url": "^/api/nucleus/v2/libraries/(.+)$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-library-200-response.json"
+    }
+  },
+  {
+    "description": "Fetch libraries",
+    "request": {
+      "url": "^/api/nucleus/v2/libraries",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-libraries-200-response.json"
+    }
+  }
+]

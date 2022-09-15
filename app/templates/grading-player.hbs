@@ -1,0 +1,46 @@
+<div class="teacher grading">
+  <div class="roster {{if showRoster 'visible' 'hidden'}}">
+    {{grading/gru-student-roster
+      students=users
+      onClose='closeRoster'
+      fullRubric=hideResponse
+      currentUserId=currentUserId
+      onChangeUser='changeUser'
+    }}
+  </div>
+  <div class="response-panel {{if hideResponse 'hide-response'}}">
+    <div class="header clearfix">
+      <div class="go-back-container">
+        <a class="back-to" {{action 'navigateBack'}} title="back">
+          {{gru-icon name='arrow_back'}}
+          {{t 'grading-player.back-to'}}
+        </a>
+      </div>
+      {{grading/gru-roster-header
+        currentResponse=currentUser.name
+        timeSpent=currentAnswer.timeSpent
+        submittedAt=currentAnswer.submittedAt
+        onOpenRoster='openStudentRoster'
+      }}
+      {{grading/gru-task-header promptTitle=(t 'grading-player.prompt') promptText=questionText promptThumbnail=questionThumbnail}}
+    </div>
+    <div class="panel panel-default question-response">
+      <div class="panel-body">
+        <div class="inner-text">
+          {{gru-math-text text=currentAnswer.answerText}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{grading/gru-rubric-panel
+    rubric=rubric
+    grade=currentGrade
+    showFullRubric=hideResponse
+    showNavigation=true
+    onSubmitGrade='onSubmitGrade'
+    onLoadNext='onLoadNext'
+    onLoadPrevious='onLoadPrevious'
+    isNextDisabled=isNextDisabled
+    isPreviousDisabled=isPreviousDisabled
+  }}
+</div>

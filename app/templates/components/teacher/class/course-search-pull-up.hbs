@@ -1,0 +1,52 @@
+<div class="search-backdrop" {{action 'onPullUpClose'}} tabindex={{tabindex}}></div>
+<div class="course-search-container">
+  <div class="search-header">
+    <div class="search-pullup-close" onkeypress={{action 'onPullUpClose'}} onclick={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="arrow_downward"}}
+    </div>
+    <div class="search-filter-container">
+      <span class="selected-catalog">{{activeCatalog.name}}</span>
+      <span class="down-arrow" onclick={{action 'toggleMenuList'}} onkeypress={{action 'toggleMenuList'}} tabindex={{tabindex}}>{{gru-icon name="arrow_drop_down"}}</span>
+      <div class="search-filter-container-list {{if isMenuEnabled 'active'}}">
+        {{#each contentCatalogs as |catalog|}}
+          <p onclick={{action 'onSelectCatalog' catalog}} onkeypress={{action 'onSelectCatalog' catalog}} tabindex={{tabindex}} class="{{if catalog.selected 'selected'}}">{{catalog.name}}</p>
+        {{/each}}
+      </div>
+    </div>
+    {{#if (eq activeCatalog.id 'catalog')}}
+      <div class="search-right-menu">
+        <div class="search-input-container">
+          {{input type="text"
+          placeholder=(t "common.search-placeholder")
+          spellcheck="true"
+          id="search-courses"
+          value=searchText
+          tabindex=tabindex
+        }}
+          <label for="search-courses" class="search-icon">
+            {{gru-icon name="search"}}
+          </label>
+        </div>
+        <div class="search-filter-icon">
+          {{gru-icon name="filter_list"}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  <div class="pull-up-body-container">
+    {{#if isLoading}}
+      {{three-bounce-spinner}}
+    {{else}}
+      <div class="cards-container">
+        {{#each courses as |course|}}
+          <div class="course-card-container">
+            {{activity/course-card course=course isHideCoursePerf=true tabindex=tabindex onAddCourse="onAddCourse" onRemixCourse="onRemixCourse"}}
+          </div>
+        {{/each}}
+      </div>
+      {{#if isCourseNotAvailable}}
+        <div class="course-not-found">{{t 'common.no-courses-to-display'}}</div>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

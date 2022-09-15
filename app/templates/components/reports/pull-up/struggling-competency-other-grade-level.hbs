@@ -1,0 +1,91 @@
+<div class="backdrop" {{action "onClosePullUp"}}></div>
+<div class="struggling-competency-other-grade-container">
+  <div class="sc-other-grade-header" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+      {{gru-icon name="arrow_back"}}
+    <div class="sc-other-grade-header-title">
+      {{t 'teacher-landing.class.atc-view.learning-gaps'}}({{t 'profile.proficiency.grade-line'}})
+    </div>
+  </div>
+<div class="sc-other-grade-panel-container">
+  {{#each otherGradeCompetency as |grade gradeIndex| }}
+  {{#if grade.domains}}
+  <div class="sc-other-grade-panel">
+    <div class="sc-other-grade-title-header">
+      <div class="sc-other-grade-title" onclick={{action "onToggleGrade" gradeIndex}} onkeypress={{action "onToggleGrade" gradeIndex}} tabindex={{tabindex}}>
+           {{grade.grade}}
+      </div>
+      <div class="sc-other-grade-title-icon">
+        {{gru-icon name="arrow_drop_down"}}
+      </div>
+    </div>
+    <div class="sc-other-grade-domain-container  sc-other-grade-panel-accordian-{{gradeIndex}} {{if (eq gradeIndex gradeDomainIndex.gradeIndex) 'first-child'}}">
+      <div class="sc-other-grade-domain-domain-level-content">
+         {{#each grade.domains as |domain domainIndex|}}
+         <div class="competency-domain-level-panel">
+             <div class="grade-domain-name-accordion" onclick={{action "toggleDomain" gradeIndex domainIndex}} onkeypress={{action "toggleDomain" gradeIndex domainIndex}} tabindex={{tabindex}}>
+                <span>{{domain-gut-to-fw-transform
+                  fwDomains
+                  domain.domainCode
+                  domain.domainName
+                  'fwDomainName' true}}</span>
+                 {{gru-icon name="arrow_drop_down"}}
+             </div>
+             <div class="grade-domain-competency-list-container {{if (and (eq gradeIndex gradeDomainIndex.gradeIndex) (eq domainIndex gradeDomainIndex.domainIndex)) 'first-child'}} sc-other-grade-domain-accordion-{{gradeIndex}}-{{domainIndex}}">
+               {{#each domain.competencies as |competency data|}}
+               <div class="grade-domain-competency-list-panel" onclick={{action "onSelectCompetency" competency domain}} onkeypress={{action "onSelectCompetency" competency domain}} tabindex={{tabindex}}>
+                 <div class="grade-domain-competency-heading">
+                  <span>{{competency-gut-to-fw-transform
+                    fwCompetencies
+                    competency.code
+                    competency.name
+                    'frameworkCompetencyName'
+                    showGutCompetency
+                    true
+                   }}</span>
+                   <ul class="grade-domain-competency-sub-heading">
+                   <li>{{competency.displayCode}}</li>
+                   <li>
+                     <div class="content lo-content">
+                       {{competency-lo-transform
+                       fwCompetencies
+                       competency.code
+                       'loCode'
+                       false
+                       '|'
+                     }}
+                      <span class="tag-tooltip">
+                        {{competency-lo-transform
+                        fwCompetencies
+                        competency.code
+                        'loName'
+                        false
+                        ''
+                      }}
+                      </span>
+                    </div>
+                 </li>
+                 </ul>
+                 </div>
+                 <div class="grade-domain-competency-icon">
+                   {{gru-icon name="explore"}}
+                 </div>
+                 <div class="grade-domain-competency-count">
+                   <span class="student-count">
+                   {{competency.studentsCount}}
+                   </span>
+                   {{gru-icon name="person"}}
+                 </div>
+               </div>
+              {{/each}}
+             </div>
+
+         </div>
+         {{/each}}
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  {{/each}}
+</div>
+
+</div>

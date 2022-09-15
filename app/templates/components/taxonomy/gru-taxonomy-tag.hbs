@@ -1,0 +1,50 @@
+{{#if model.isReadonly}}
+  <div class="content standard-tag" {{action 'onClickTag' model}} data-toggle="tooltip" data-trigger="hover" data-placement="auto" data-title="{{tooltipLabel}}">
+    {{#if model.data}}
+      {{#if (and model.data.label model.data.caption)}}
+        <b class="tag-label data-label">{{model.data.label}}</b>
+        <span class="tag-caption ellipsis">{{model.data.caption}}</span>
+      {{else}}
+        <b class="tag-label">{{model.data.code}}</b>
+        <span class="tag-caption ellipsis">{{model.data.frameworkCode}}</span>
+      {{/if}}
+    {{else}}
+      <b class="tag-label">{{model.code}}</b>
+      <span class="tag-caption ellipsis">{{model.frameworkCode}}</span>
+    {{/if}}
+
+  </div>
+
+  {{#if hasTooltip}}
+    <div class="tag-tooltip">
+      <span>{{model.data.title}}</span>
+    </div>
+  {{/if}}
+
+{{else}}
+  <button class="toggle content {{if (and isEditing (not model.tagAlreadyexist) (not model.isRemovable))'added-tag' ''}}" tabindex={{tabindex}} onclick={{action 'selectTag'}} onkeypress={{action 'selectTag'}}>
+    <div>
+      {{#if model.data}}
+        <b class="tag-label data-label">{{model.data.label}}</b>
+        <span class="tag-caption {{if isShowcompetency 'hide'}}">{{model.data.caption}}</span>
+      {{else}}
+        <b class="tag-label">{{model.code}}</b>
+        <span class="tag-caption {{if isShowcompetency 'hide'}}">{{model.frameworkCode}}</span>
+      {{/if}}
+    </div>
+  </button>
+  {{#unless model.data}}
+    {{#if model.name}}
+      <div class="tag-tooltip">
+        <span>{{model.name}}</span>
+      </div>
+    {{/if}}
+  {{/unless}}
+{{/if}}
+
+{{#if model.isRemovable}}
+  <button class="remove" tabindex={{tabindex}} onclick={{action 'removeTag'}} onkeypress={{action 'removeTag'}}>{{gru-icon name="clear"}}</button>
+{{/if}}
+{{#if model.tagAlreadyexist}}
+  <button class="add" tabindex={{tabindex}} onclick={{action 'addTag'}} onkeypress={{action 'addTag'}}>{{gru-icon name="add"}}</button>
+{{/if}}

@@ -1,0 +1,66 @@
+<div class="etl-seconds  {{if (or (eq valueHours 'expectedhours') (eq valueHours 'etlHrs')) 'col-sm-6'}}">
+  <label>
+  <span>{{labelText}}</span>
+  {{#if isEditing}}
+  <div class="etl-label">
+    <div class="col-sm-12">
+    <div class="estimated-hours title-label">
+    <span class="col-sm-6">{{t "common-hrs-title"}}</span>
+      {{validation/gru-input  model=tempData valuePath=valueHours maxLength=4 }}
+  </div>
+    <div class="title-label estimated-minutes">
+    <span class="col-sm-6">{{t "common-mins-title"}}</span>
+    {{validation/gru-input  model=tempData valuePath=valueMins maxLength=2 }}
+    </div>
+  </div>
+    {{#if isShowErrorMessage}}
+      <div class="error-messages">
+        <span class="error">
+          {{t "common-etl-error-message"}}
+        </span>
+      </div>
+      {{/if}}
+ </div>
+  {{else}}
+    {{#if estimatedTime}}
+      <b>{{estimatedHours}} {{estimatedMinutes}}</b>
+    {{else}}
+      <b>{{t 'common.not-provided'}}</b>
+    {{/if}}
+  {{/if}}
+</label>
+</div>
+
+{{#if (and isFluency isShowFluency isEditing fluenciesData.length)}}
+    <div class="fluency btn-group">
+      <label aria-label={{t 'common.fluency'}} class="flu-label"><span>{{t 'common.fluency'}}</span></label>
+      <button type="button" class="btn btn-primary btn-sm selected-subject" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{#if tempData.metadata.fluency}}
+          {{tempData.metadata.fluency.fluency_display_code}} - {{tempData.metadata.fluency.fluency_description}}
+        {{else}}
+          {{t 'common.choose'}}
+        {{/if}}
+      </button>
+      <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span><span class="sr-only">{{t "common.toggle-dropdown"}}</span></button>
+      <ul class="dropdown-menu" role="tablist">
+        {{#each fluenciesData as |item|}}
+          <li role="tab">
+            <a aria-label={{item.fluency_display_code}} onclick={{action 'setFluency' item}} onkeypress={{action 'setFluency' item}}>{{item.fluency_display_code}} - {{item.fluency_description}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+  
+{{#if (or isComputedEtl (eq valueHours 'expectedhours')(eq valueHours 'etlHrs')) }}
+<div class="etl-seconds  {{if (or (eq valueHours 'expectedhours') (eq valueHours 'etlHrs')) 'col-sm-6 computed-etl'}}">
+<label>
+  <span>{{t "common-suggested-etl-title"}}</span>
+    {{#if (not (and (eq modalvalue.computedHours '')(eq modalvalue.computedMinutes '')))}}
+      <b>{{modalvalue.computedHours}} {{modalvalue.computedMinutes}}</b>
+    {{else}}
+      <b>{{t 'common.not-provided'}}</b>
+    {{/if}}
+</label>
+</div>
+{{/if}}

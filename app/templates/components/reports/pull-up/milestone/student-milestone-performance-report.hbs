@@ -1,0 +1,52 @@
+<div class="student-milestones-performance-container">
+  <div class="header-container">
+    {{charts/score-fill-gauge-chart
+      scoreInPercentage = courseScoreInPercentage
+    }}
+  </div>
+  <div class="body-container">
+    {{#each milestones as |milestone milestoneIndex|}}
+      <div class="student-milestone-container {{if (and milestone.isRescopedMilestone (not milestone.performance)) 'hidden'}} {{unless (gte milestone.performance.scoreInPercentage 0) 'not-started'}}" {{action "onSelectMilestone" milestone milestoneIndex}}>
+        <div class="student-milestone-info-container">
+          <div class="milestone-icon-container">
+            {{gru-icon name="flag"}}
+          </div>
+          <div class="milestone-title-container">
+            {{#if milestone.isUnit0}}
+                {{milestone.milestoneTitle}}
+            {{else}}
+                {{t 'common.milestone'}} {{plus-one milestoneIndex}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="student-milesont-performance-container grade-range-{{grade-range milestone.performance.scoreInPercentage}}">
+          {{#if (gte milestone.performance.scoreInPercentage 0)}}
+            {{milestone.performance.scoreInPercentage}}%
+          {{else}}
+            --
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+{{#if isShowMilestoneReport}}
+  {{#reports/pull-up/milestone/milestone-report
+    showPullUp = isShowMilestoneReport
+    title = (concat (t 'common.milestone') ' ' (plus-one activeMilestoneIndex))
+    tabindex=tabindex
+  }}
+    {{reports/pull-up/milestone/student-milestone-summary-report
+      activeMilestone = selectedMilestone
+      class = class
+      milestones = milestones
+      activeMilestoneIndex = activeMilestoneIndex
+      userId = userId
+      gradeSubject = gradeSubject
+      isRoute0MileStone = selectedMilestone.isRoute0
+      isDefaultShowFW = isDefaultShowFW
+      classFramework = classFramework
+    }}
+  {{/reports/pull-up/milestone/milestone-report}}
+{{/if}}

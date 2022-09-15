@@ -1,0 +1,52 @@
+<div class="summary-report">
+  <div class="collection-summary">
+    <div class="summary-report-container">
+      <div class="header-panel">
+        <div class="collection-info">
+          <div class="icon-container {{unless collection.isCollection 'assessment' 'collection'}}"></div>
+          <div class="title-container">
+            {{collection.title}}
+          </div>
+          <div class="score-container">
+            {{#if collection.isAssessment}}
+              <div class="grade" style={{safe-html (concat "color:" (grade-color score))}}>
+                {{#if score}}
+                  <span class="percentage">{{round-number score}}%</span>
+                {{else}}
+                  <span class="percentage">--</span>
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+          <div class="timespent-container"> {{format-time timespent}}</div>
+        </div>
+      </div>
+      <div class="body-panel">
+        <div class="panal-container">
+          <span> {{t 'report.external-content-note'}} </span>
+        </div>
+      </div>
+    </div>
+    <div class="feedback">
+      {{#if (and isShowActivityFeedback (not isAnonymous))}}
+        {{player/gru-activity-feedback
+         feedbackContent=collection
+         feedbackCategoryLists=feedbackCategory
+         categoryLists = userCategoryFeedback
+         format = format
+      }}
+      {{/if}}
+    </div>
+  </div>
+  <div class="footer">
+    <div class="collection-info">
+      <div class="icon-container {{unless collection.isCollection 'assessment' 'collection'}}"></div>
+      <div class="title-container">
+        {{collection.title}}
+      </div>
+    </div>
+    <div aria-label="close" class="close" {{action "closePlayer"}}>
+      <span>{{t 'common.close'}}</span>
+    </div>
+  </div>
+</div>

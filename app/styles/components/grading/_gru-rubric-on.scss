@@ -1,0 +1,79 @@
+.gru-rubric-on {
+  margin: 20px 0;
+  .total-score {
+    margin-bottom: 10px;
+    padding: 0 14px;
+  }
+  .rubric-categories {
+    margin-bottom: 10px;
+    .category-title {
+      font-size: $font-size-small;
+      margin: 8px 0;
+      padding: 3px 14px;
+      border: 1px solid $dark-300;
+      &.selected {
+        background-color: $dark-500;
+        .chat {
+          color: $white;
+        }
+      }
+    }
+    .category-level {
+      @include flexbox;
+      padding: 0 14px;
+      .level-label {
+        font-weight: $headings-font-weight;
+        margin-left: 5px;
+      }
+    }
+    .category-comment {
+      padding: 0 14px;
+    }
+    .chat,
+    .show-arrow {
+      float: $menu-float-dir;
+    }
+    .gru-icon {
+      &.chat {
+        font-size: $font-size-rubric-chat-icon;
+        color: $dark-100;
+        margin-top: 4px;
+      }
+      &.keyboard_arrow_down,
+      &.keyboard_arrow_up {
+        font-size: $font-size-arrow-icon;
+        margin-top: -2px;
+        cursor: pointer;
+      }
+    }
+  }
+  .overall-comments {
+    padding: 0 14px;
+    .overall-lead {
+      color: $light-500;
+      font-size: $font-size-small;
+      margin-bottom: 5px;
+    }
+  }
+  .gru-select {
+    width: 100%;
+    font-size: $font-size-base;
+    .form-group .bootstrap-select {
+      width: 100%;
+      .dropdown-toggle {
+        font-size: $font-size-base;
+        span {
+          font-weight: $headings-font-weight;
+          color: $dark-500;
+        }
+      }
+    }
+  }
+  textarea {
+    background-color: $white;
+    border-radius: 1px;
+    color: $dark-400;
+    padding: 0 3px;
+    font-size: $font-size-base;
+  }
+}

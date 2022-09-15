@@ -1,0 +1,270 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="question-report-container">
+  <div class="report-header {{if isShowMilestoneReport 'milestone-question-report'}}">
+    {{#if isShowMilestoneReport}}
+      <div class="milestone-report-breadcrumb">
+        <div class="milestone-info ellipsis">
+          {{concat gradeSubject.title ' - ' unit.grade_name}}
+        </div>
+        {{gru-icon name="keyboard_arrow_right"}}
+        <div class="lesson-info ellipsis">
+          <div class="domain-name ellipsis">{{lesson.tx_domain_name}}</div>
+          <div class="lesson-title ellipsis">{{lesson.lesson_title}}</div>
+        </div>
+        {{gru-icon name="keyboard_arrow_right"}}
+        <div class="collection-info">
+          <i class="collection-icon {{collection.format}}"></i>
+          <div class="collection-title ellipsis">{{collection.title}}</div>
+        </div>
+      </div>
+    {{else}}
+      <div class="report-breadcrumb hidden-xs">
+        <div class="unit-title">
+          <i class="unit-icon"></i>
+          <p>{{t 'common.unit'}} {{unit.sequence}} : {{unit.title}}</p>
+        </div>
+        <div class="lesson-title">
+          {{gru-icon name="keyboard_arrow_right"}}
+          <i class="lesson-icon"></i>
+          <p>{{t 'common.lesson'}} {{lesson.sequence}} : {{lesson.title}}</p>
+        </div>
+        <div class="collection-title">
+          {{gru-icon name="keyboard_arrow_right"}}
+          <i class="collection-icon {{collection.format}}"></i>
+          <p>{{collection.title}}</p>
+        </div>
+      </div>
+      <div class="report-title hidden visible-xs">
+        <div class="title">
+          <p>{{t 'common.unit'}} {{unit.sequence}} / {{t 'common.lesson'}} {{lesson.sequence}} :</p>
+          <i class="collection-icon {{collection.format}}"></i>
+          <p class="ellipsis">{{collection.title}}</p>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="report-close-pullup" onclick={{action 'reportClose'}} onkeypress={{action 'reportClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-info-chart-container {{if evidenceDatas 'download-info'}}">
+      <div class="report-info-container">
+        <i class="quesion-icon {{if (eq selectedQuestion.questionType 'OE') 'free-response-question'}}"></i>
+        <span>
+            {{#if (eq selectedQuestion.questionType 'OE')}}
+             {{t 'common.frq'}}
+            {{else}}
+             {{t 'common.question'}}
+            {{/if}}
+            #{{selectedQuestion.order}}
+          </span>
+      </div>
+      <div class="report-chart-container">
+        {{#if (eq selectedQuestion.questionType 'OE')}}
+          <div style="width:{{selectedQuestionReport.gradedUserPrecentage}}%" class="graded"></div>
+          <div style="width:{{selectedQuestionReport.notGradedUserPrecentage}}%" class="not-graded"></div>
+        {{else}}
+          <div style="width:{{selectedQuestionReport.wrongAnswerUserPrecentage}}%; {{if (eq selectedQuestionReport.wrongAnswerUserPrecentage 0) 'border-width: 0px;'}}" class="wrong"></div>
+          <div style="width:{{selectedQuestionReport.correctAnswerUserPrecentage}}%" class="correct"></div>
+        {{/if}}
+        <div style="width:{{selectedQuestionReport.notAnswerUserPrecentage}}%" class="not-answered"></div>
+      </div>
+      <div>
+        {{#if (eq selectedQuestion.questionType 'OE')}}
+          <span class="responses"> ({{selectedQuestionReport.responses}} {{t 'common.responses'}})</span>
+        {{/if}}
+      </div>
+      {{#if evidenceDatas}}
+        <div class="download">
+          <a class="download-icon" onclick={{action 'onClickDownload'}} onkeypress={{action 'onClickDownload'}} >{{gru-icon name='file_download'}}</a>
+          <span>{{t 'common.download-submission'}}</span>
+        </div>
+      {{/if}}
+    </div>
+    <div class="report-carousel">
+      <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+          {{#each questions as |question index|}}
+            <div data-item-index="{{index}}" class="item {{if (eq index 0) 'active'}}">
+              <div class="question-background-cover {{if (eq selectedQuestionReport.question.type 'SERP_WPM') 'wpm-question-cover'}}">
+                <div class="question-content-container  {{if (eq selectedQuestionReport.question.type 'SERP_WPM') 'wpm-container'}}">
+                  {{#if question.thumbnail}}
+                    <div class="question-image-container">
+                      <img src="{{question.thumbnail}}" alt="question avatar"/>
+                    </div>
+                  {{/if}}
+                  <div class="question-text {{if (eq selectedQuestionReport.question.type 'SERP_WPM') 'wpm-text'}}">
+                    {{#if (eq selectedQuestionReport.question.type 'SERP_WPM')}}
+                       {{class/gru-read-panel
+                        reportData=memberData
+                        question=selectedQuestionReport.question
+                        isCheckLinkedContent = checkContent
+                        tabindex=tabindex
+                        selectedUserId=selectedUserId}}
+                    {{else}}
+                      {{gru-math-text text=(if question.isFIB question.fibText question.text)}}
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" data-slide="prev" onclick={{action 'onClickPrev'}} onkeypress={{action 'onClickPrev'}} tabindex={{tabindex}}>
+        <i class="arrow-left"></i>
+      </a>
+        <a class="right carousel-control" data-slide="next" onclick={{action 'onClickNext'}} onkeypress={{action 'onClickNext'}} tabindex={{tabindex}}>
+        <i class="arrow-right"></i>
+      </a>
+      </div>
+      {{#unless (eq selectedQuestionReport.question.type 'SERP_WPM')}}
+        {{#if showMore}}
+          <p class="show-more" onclick={{action "showMore"}} onkeypress={{action "showMore"}} tabindex={{tabindex}}>{{t 'student-independent-learning.show-more'}}</p>
+        {{/if}}
+        {{#if showLess}}
+          <p class="show-less" onclick={{action "showLess"}} onkeypress={{action "showLess"}} tabindex={{tabindex}}>{{t 'student-independent-learning.show-less'}}</p>
+        {{/if}}
+      {{/unless}}
+    </div>
+      {{#unless (eq selectedQuestionReport.question.type 'SERP_WPM')}}
+        <div class="answer-report-group">
+      {{#if (eq selectedQuestion.questionType 'OE')}}
+        {{#if selectedQuestionReport.graded}}
+          <div class="graded-list-container">
+            <div class="graded-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".graded-list-container"}} onkeypress={{action "onToggleAnswerSection" ".graded-list-container"}} tabindex={{tabindex}}>
+              <span>{{t 'common.rubric-graded'}}</span> {{gru-icon name="keyboard_arrow_up"}}
+            </div>
+            <div class="user-answer-list answer-users">
+              {{#each selectedQuestionReport.graded as |student|}}
+                <div class="user-profile-details">
+                  <div class="user-profile-img">
+                    <img src="{{student.avatarUrl}}" alt="student avatar">
+                  </div>
+                  <span class="ellipsis">{{student.lastName}},</span>
+                  <span class="ellipsis">{{student.firstName}}</span>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if selectedQuestionReport.notGraded}}
+          <div class="not-graded-list-container">
+            <div class="not-graded-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".not-graded-list-container"}} onkeypress={{action "onToggleAnswerSection" ".not-graded-list-container"}} tabindex={{tabindex}}>
+              <span>{{t 'common.rubric-needs-grading'}}</span> {{gru-icon name="keyboard_arrow_up"}}
+            </div>
+            <div class="user-answer-list answer-users">
+              {{#each selectedQuestionReport.notGraded as |student|}}
+                <div class="user-profile-details">
+                  <div class="user-profile-img">
+                    <img src="{{student.avatarUrl}}" alt="student avatar">
+                  </div>
+                  <span class="ellipsis">{{student.lastName}},</span>
+                  <span class="ellipsis">{{student.firstName}}</span>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+      {{else}}
+
+
+
+
+        {{#if selectedQuestionReport.correct}}
+          <div class="correct-answer-list-container">
+            <div class="correct-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".correct-answer-list-container"}} onkeypress={{action "onToggleAnswerSection" ".correct-answer-list-container"}} tabindex={{tabindex}}>
+              <span>{{t 'common.correct-answers'}}</span> {{gru-icon name="keyboard_arrow_up"}}
+            </div>
+            <div class="user-answer-list">
+              {{#each selectedQuestionReport.correct as |correct|}}
+                <div class="correct-answer-list">
+                  <div class="correct-answers">
+                    {{{component (question-config selectedQuestionReport.question.questionType 'component.answer')
+              question=selectedQuestionReport.question
+              userAnswer=correct.userAnswer
+              anonymous=false}}}
+                  </div>
+                  <div class="answer-users">
+                    {{#each correct.users as |student|}}
+                      <div class="user-profile-details">
+                        <div class="user-profile-img">
+                          <img src="{{student.avatarUrl}}" alt="student avatar">
+                        </div>
+                        <span class="ellipsis">{{student.lastName}},</span>
+                        <span class="ellipsis">{{student.firstName}}</span>
+                      </div>
+                    {{/each}}
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+        {{#if selectedQuestionReport.wrong}}
+          <div class="wrong-answer-list-container">
+            <div class="wrong-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".wrong-answer-list-container"}} onkeypress={{action "onToggleAnswerSection" ".wrong-answer-list-container"}} tabindex={{tabindex}}>
+              <span>{{t 'common.incorrect-answers'}}</span> {{gru-icon name="keyboard_arrow_up"}}
+            </div>
+            <div class="user-answer-list">
+              {{#each selectedQuestionReport.wrong as |wrong|}}
+                <div class="wrong-answer-list">
+                  <div class="wrong-answers">
+                    {{{component (question-config selectedQuestionReport.question.questionType 'component.answer')
+              question=selectedQuestionReport.question
+              userAnswer=wrong.userAnswer
+              anonymous=false}}}
+                  </div>
+                  <div class="answer-users">
+                    {{#each wrong.users as |student|}}
+                      <div class="user-profile-details">
+                        <div class="user-profile-img">
+                          <img src="{{student.avatarUrl}}" alt="student avatar">
+                        </div>
+                        <span class="ellipsis">{{student.lastName}},</span>
+                        <span class="ellipsis">{{student.firstName}}</span>
+                      </div>
+                    {{/each}}
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if selectedQuestionReport.notAnswered}}
+        <div class="not-answer-list-container">
+          <div class="not-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".not-answer-list-container"}} onkeypress={{action "onToggleAnswerSection" ".not-answer-list-container"}} tabindex={{tabindex}}>
+            <span>
+              {{#if (eq selectedQuestion.questionType 'OE')}}
+                {{t 'common.rubric-not-answered'}}
+              {{else}}
+                {{t 'common.not-answered'}}
+              {{/if}}
+            </span> {{gru-icon name="keyboard_arrow_up"}}
+          </div>
+          <div class="user-answer-list answer-users">
+            {{#each selectedQuestionReport.notAnswered as |student|}}
+              <div class="user-profile-details">
+                <div class="user-profile-img">
+                  <img src="{{student.avatarUrl}}" alt="student avatar">
+                </div>
+                <span class="ellipsis">{{student.lastName}},</span>
+                <span class="ellipsis">{{student.firstName}}</span>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    {{/unless}}
+  </div>
+</div>
+
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

@@ -1,0 +1,130 @@
+.gru-preview-course {
+  width: 100%;
+  background-color: $light-100;
+  padding: 10px;
+  border-radius: 4px;
+  @include flexbox();
+  @include flex-direction(column);
+  .header-action {
+    @include flexbox;
+    @include justify-content(flex-end);
+    .btn {
+      margin: 0;
+      font-size: $expand-arrow;
+      padding: 0 8px;
+    }
+    .no-bgd {
+      background-color: $table-bg;
+      line-height: 1;
+      i {
+        color: $gray;
+      }
+    }
+  }
+  .course-information {
+    @include flexbox();
+    .image {
+      display: inline-block;
+      img {
+        border-radius: 4px;
+        height: 82px;
+        width: 82px;
+      }
+    }
+    .course-info {
+      color: $text-color;
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 15px;
+      width: 65%;
+      .title-section {
+        margin: 0 0 5px;
+        .title {
+          display: inline-block;
+          color: $blue-400;
+          font-size: $font-title;
+          margin: 0;
+        }
+      }
+      .remixed-by {
+        img {
+          width: 20px;
+          height: 20px;
+          border-radius: 50px;
+          cursor: pointer;
+        }
+        div > * {
+          display: inline-block;
+        }
+        span {
+          cursor: pointer;
+        }
+        span.title {
+          margin: 2px 5px 10px 0;
+          cursor: auto;
+        }
+        .owner {
+          color: $blue-400;
+          max-width: 160px;
+          @include text-overflow;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .description {
+    p {
+      line-height: $font-size-h6;
+    }
+  }
+  .taxonomy.gru-taxonomy-tag-list.in-card {
+    .popover {
+      .arrow:after {
+        border-top-color: $gray-lighter;
+        border-bottom-color: $gray-lighter;
+        border-left-color: $table-bg;
+        border-right-color: $table-bg;
+      }
+    }
+  }
+  .units {
+    .panel-body {
+      max-height: 277px;
+      overflow-y: auto;
+      padding: 5px;
+      .unit {
+        @include flexbox();
+        @include align-items(center);
+        padding: 5px 10px;
+        border-bottom: 1px solid $gray-lighter;
+        .prefix {
+          padding: 5px 5px 5px 0;
+          margin: 0 5px;
+          border-right: $border-right-side $dark-100;
+          border-left: $border-left-side $dark-100;
+          color: $gray-base;
+          min-width: 50px;
+        }
+        .unit-title {
+          width: 75%;
+          padding: 0 5px 0 10px;
+          line-height: $font-size-h6;
+        }
+      }
+      .unit:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  .actions {
+    @include flexbox();
+    margin-bottom: 20px;
+    @include align-self(flex-end);
+    button {
+      margin: 0 5px;
+    }
+    .cancel {
+      border: 1px solid $gray-light;
+    }
+  }
+}

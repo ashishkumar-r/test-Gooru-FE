@@ -1,0 +1,56 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="report-container">
+  <div class="report-header">
+    <div class="collection-container">
+      <div class="collection-thumbnail" style="background-image: url({{externalCollection.thumbnailUrl}})">
+      </div>
+      <div class="collection-info">
+        <div class="title">
+          {{externalCollection.title}}
+        </div>
+        <div class="student-name">
+          {{profile.fullName}}
+        </div>
+      </div>
+    </div>
+    <i class="collection-external-icons"></i>
+    {{#if (and (not isStudent) showSuggestion)}}
+      <div class="teacher-suggestion">
+        <div class="suggestion-count-container" onclick={{action 'onOpenSuggestionPullup'}} onkeypress={{action 'onOpenSuggestionPullup'}} tabindex={{tabindex}}>
+          <div class="suggestion-explore">
+            {{gru-icon name="explore"}}
+            <div class="suggestion-count">{{suggestResultCount}}</div>
+          </div>
+          <span>{{t 'common.suggestion'}}</span>
+        </div>
+      </div>
+    {{/if}}
+    <div class="pullup-close" onclick={{action 'onPullUpClose'}} onkeypress={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+      {{gru-icon name='close'}}
+      <span>Close</span>
+    </div>
+  </div>
+  <div class="report-body">
+    <div class="external-collection-container">
+      <div class="taxonomy-container">
+        {{#if tags.length}}
+          {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=4 showDescription=true }}
+        {{/if}}
+      </div>
+      {{#if collection.url}}<div class="reference">{{t 'report.external-collection-report.reference'}} <a target="_blank" href="{{externalCollection.url}}" class="link">here</a></div>{{/if}}
+      <div class="student-timeSpent" style="color: {{performanceColor}}">{{if timeSpent (format-time timeSpent) '--'}}</div>
+    </div>
+  </div>
+</div>
+
+{{#if showSuggestionPullup}}
+  {{teacher/suggestion-pull-up
+    showPullUp=showSuggestionPullup
+    students=studentsSelectedForSuggest
+    onClosePullUp="onClosePullUp"
+    onCloseSuggest="onCloseSuggest"
+    context=suggestContextParams
+    collection=externalCollectionContent
+    defaultSuggestContentType=defaultSuggestContentType
+  }}
+{{/if}}

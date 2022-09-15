@@ -1,0 +1,47 @@
+<div class="grade-title">
+  {{t "student-first-experience.competency-level.title-with-name" userName=userDisplayName}}
+  <audio id="descAudioXS" src="{{descAudioURLXS}}" preload="auto"></audio>
+  <i class="audio-icon {{if isAudioPlaying 'playing'}} {{unless descAudioURLXS 'hide'}}" onclick={{action 'playAudios'}} onkeypress={{action 'playAudios'}} tabindex="9"></i>
+</div>
+<div class="grade-description margin-top-10px">
+  {{#if (and isPublic isPremiumClass)}}
+    {{#if isShowIndependentClass}}
+      {{t 'student-first-experience.competency-level.welcome-message' selectedClass=course.title}}
+    {{else}}
+      {{t 'student-first-experience.competency-level.welcome-message' selectedClass=subject.title}}
+    {{/if}}
+  {{else}}
+    {{#if isIndipendent}}
+      {{t 'student-first-experience.competency-level.welcome-message' selectedClass=course.title}}
+    {{else}}
+      {{ t "student-first-experience.competency-level-partial.desc1"}} {{subject.title}}
+    {{/if}}
+  {{/if}}
+</div>
+{{#if getStartedDescriptionXS}}
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-interval="false" data-ride="carousel">
+    <div class="carousel-inner">
+      {{#each getStartedDescriptionXS as |desc index|}}
+        {{#if desc}}
+          <div class="item {{if (eq index 0) 'active'}}">
+            {{desc}}
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" data-slide="prev">
+      <i class="small-arrow-left" {{action 'onClickPrev'}}></i>
+    </a>
+    <a class="right carousel-control" {{action 'onClickNext'}} data-slide="next">
+      <i class="small-arrow-right"></i>
+    </a>
+  </div>
+{{/if}}
+<div class="button-container-destination button-container-box proficiency-info relative-inline-block proficiency-info-6">
+  <div class="destination-grid">
+    <div class="show-route-div next-route margin-auto btn-primary" onclick={{action onMoveNext 'destination'}} onkeypress={{action onMoveNext 'destination'}} tabindex="9">
+      {{t "common.next"}}
+    </div>
+  </div>
+</div>

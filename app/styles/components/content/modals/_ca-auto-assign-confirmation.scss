@@ -1,0 +1,66 @@
+.ca-auto-assigned-confirmation {
+  max-width: 450px;
+  margin: auto;
+
+  .modal-header {
+    background-color: $blue-400;
+    display: block;
+    text-align: $tab-float-dir;
+    position: relative;
+  }
+
+  .modal-title {
+    color: $white;
+    font-size: $font-size-h6;
+  }
+
+  .modal-close {
+    color: $white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    height: 38px;
+    cursor: pointer;
+  }
+
+  .modal-body {
+    padding: 15px 40px;
+
+    div {
+      display: block;
+      width: 100%;
+    }
+
+    .info {
+      @include flexbox;
+      @include align-items(center);
+      margin-top: 35px;
+
+      > * {
+        float: $tab-float-dir;
+      }
+
+      p {
+        line-height: 22px;
+        margin: 0;
+      }
+
+      i {
+        font-size: $font-size-h2;
+        margin-right: 10px;
+      }
+    }
+
+    .actions {
+      margin-top: 15px;
+      text-align: $menu-float-dir;
+    }
+  }
+}
+
+.modal.ca-auto-assign {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}

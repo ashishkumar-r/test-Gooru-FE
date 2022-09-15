@@ -1,0 +1,56 @@
+<div class="controller student-independent container-fluid">
+  <div class="student-left-panel">
+    <div class="greetings">
+      <div class="title">
+        <span>{{t 'user.hello' name=profile.firstName}}</span>
+      </div>
+      {{#if isShowFeaturedCourses}}
+      {{#unless (gt loginCount 5)}}
+        <div class="featured-courses pull-right">
+          <span>{{t 'student-landing.browse-our'}} {{#link-to 'library'}}{{t 'student-landing.featured-courses'}}{{/link-to}}</span>
+        </div>
+      {{/unless}}
+      {{/if}}
+    </div>
+    {{#if isShowFeaturedCourses}}
+    {{#unless (gt loginCount 5)}}
+      {{gru-student-featured-courses
+        courses=featuredCourses
+        profile=profile
+        loginCount=loginCount
+      }}
+    {{/unless}}
+    {{/if}}
+    <div class="student-navigator">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="tab" class="active-classes tab">
+          {{#link-to 'student-home'}}
+            <span class="lead">{{t 'user.classrooms'}}</span>
+          {{/link-to}}
+        </li>
+        <li role="tab" class="active independent-learning tab">
+          {{#link-to 'student-independent-learning.learning-base'}}
+            <span class="lead">{{t 'user.independent-learning'}}</span>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    {{#if bookmarks}}
+      {{student/independent/gru-independent-learning-navigation
+        onItemSelected="selectMenuItem"
+        selectedMenuItem=menuItem}}
+      <div class="independent-content">
+        {{outlet}}
+      </div>
+    {{else}}
+      <div class="no-bookmarks">
+        <div class="explore-img">
+        </div>
+        <div class="no-independent-results">{{t 'student-independent-learning.no-independent-results'}}</div>
+        {{#link-to 'library'}}
+          <button class="btn btn-primary">{{t 'common.explore'}}</button>
+        {{/link-to}}
+      </div>
+    {{/if}}
+  </div>
+</div>

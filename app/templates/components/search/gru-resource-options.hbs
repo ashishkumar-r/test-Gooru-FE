@@ -1,0 +1,67 @@
+<section class="options">
+  <ul>
+    <li class="{{unless (and resourceTypes resourceTypes.video) 'hide-btn'}}">
+      <button class="btn video btn-option {{if videoSelected 'selected'}}" onclick={{action 'selectOption' 'video'}} onkeypress={{action 'selectOption' 'video'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.video"}}</span>
+      </button>
+    </li>
+    <li class="web-page {{unless (and resourceTypes resourceTypes.webpage) 'hide-btn'}}">
+      <button class="btn web-page btn-option {{if webPageSelected 'selected'}}" onclick={{action 'selectOption' 'webpage'}} onkeypress={{action 'selectOption' 'webpage'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.webpage"}}</span>
+      </button>
+    </li>
+    <li class="interactive {{unless (and resourceTypes resourceTypes.interactive) 'hide-btn'}}">
+      <button class="btn interactive btn-option {{if interactiveSelected 'selected'}}" onclick={{action 'selectOption' 'interactive'}} onkeypress={{action 'selectOption' 'interactive'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.interactive"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and resourceTypes resourceTypes.image) 'hide-btn'}}">
+      <button class="btn image btn-option {{if imageSelected 'selected'}}" onclick={{action 'selectOption' 'image'}} onkeypress={{action 'selectOption' 'image'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.image"}}</span>
+      </button>
+    </li>
+    <li class="{{unless (and resourceTypes resourceTypes.text) 'hide-btn'}}">
+      <button class="btn text btn-option {{if textSelected 'selected'}}" onclick={{action 'selectOption' 'text'}} onkeypress={{action 'selectOption' 'text'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.text"}}</span>
+      </button>
+    </li>
+    <li  class="{{unless (and resourceTypes resourceTypes.audio) 'hide-btn'}}">
+      <button class="btn audio btn-option {{if audioSelected 'selected'}}" onclick={{action 'selectOption' 'audio'}} onkeypress={{action 'selectOption' 'audio'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.audio"}}</span>
+      </button>
+    </li>
+     <li class="{{unless (and interactiveResourceTypes interactiveResourceTypes.h5p_interactive_video) 'hide-btn'}}">
+     <button class="btn interactiveVideo btn-option {{if interactiveVideoSelected 'selected'}}" onclick={{action 'selectOption' 'h5p_interactive_video'}} onkeypress={{action 'selectOption' 'h5p_interactive_video'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "common.resource-format.h5p_interactive_video"}}</span>
+      </button>
+    </li>
+     <li class="{{unless (and interactiveResourceTypes interactiveResourceTypes.h5p_interactive_slide) 'hide-btn'}}">
+      <button class="btn interactiveSlide btn-option {{if interactiveSlideSelected 'selected'}}" onclick={{action 'selectOption' 'h5p_interactive_slide'}} onkeypress={{action 'selectOption' 'h5p_interactive_slide'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "common.resource-format.h5p_interactive_slide"}}</span>
+      </button>
+    </li>
+
+    <li class="{{unless (and interactiveResourceTypes interactiveResourceTypes.h5p_interactive_personality_quiz) 'hide-btn'}}">
+      <button class="btn interactivePersonalityQuiz btn-option {{if interactivePersonalityQuizSelected 'selected'}}" onclick={{action 'selectOption' 'h5p_interactive_personality_quiz'}} onkeypress={{action 'selectOption' 'h5p_interactive_personality_quiz'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "common.resource-format.h5p_interactive_personality_quiz"}}</span>
+      </button>
+    </li>
+
+    <li class="{{unless (and interactiveResourceTypes interactiveResourceTypes.h5p_drag_and_drop_resource) 'hide-btn'}}">
+      <button class="btn dragAndDropResource btn-option {{if dragAndDropResourceSelected 'selected'}}" onclick={{action 'selectOption' 'h5p_drag_and_drop_resource'}} onkeypress={{action 'selectOption' 'h5p_drag_and_drop_resource'}} tabindex={{tabindex}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "common.resource-format.h5p_drag_and_drop_resource"}}</span>
+      </button>
+    </li>
+
+  </ul>
+</section>

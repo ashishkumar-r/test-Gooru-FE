@@ -1,0 +1,84 @@
+<div class="resource-content-filter-container">
+  <div class="resource-content-filter-panel">
+    <div class="content-resource-panel">
+      <span class="panel-header">Content Source : </span>
+     <div class="content-resource-body">
+       <span class="content-title" onclick={{action 'onToggleBox' 'resource-blk'}} onkeypress={{action 'onToggleBox' 'resource-blk'}} tabindex={{tabindex}}>
+         <div class="selected-items">
+           {{#each selectedContentResource as | source sourceIndex |}}
+              <div class="item-title"> <span>{{source.name}}</span><i class="material-icons" {{action "onSelectResourceContent" source}}>clear</i> </div>
+           {{/each}}
+         </div>
+         <i class="material-icons">arrow_drop_down</i>
+         </span>
+       <ul class="dropdown-blk resource-blk">
+           {{#each contentResource as  |resource|}}
+             <li onclick={{action "onSelectResourceContent" resource}} onkeypress={{action "onSelectResourceContent" resource}} tabindex={{tabindex}}> {{gru-icon name=(if resource.isActive 'check_box' 'check_box_outline_blank')}} {{resource.name}}</li>
+           {{/each}}
+       </ul>
+     </div>
+    </div>
+    <div class="content-resource-panel">
+      <span class="panel-header">{{t 'common.competency'}} : </span>
+     <div class="content-resource-body">
+       <span class="content-title" onclick={{action 'onToggleBox' 'domain-competency-blk'}} onkeypress={{action 'onToggleBox' 'domain-competency-blk'}} tabindex={{tabindex}}>
+         <div class="selected-items">
+           {{#each activeCompetencyList as | competency competencyIndex |}}
+              {{#unless (eq competency.filter "flt.fwCode")}}
+                <div class="item-title"> <span>{{competency.name}}</span><i class="material-icons" onclick={{action "onSelectCompetency" competency}} onkeypress={{action "onSelectCompetency" competency}} tabindex={{tabindex}}>clear</i> </div>
+              {{/unless}}
+           {{/each}}
+         </div>
+          <i class="material-icons">arrow_drop_down</i>
+        </span>
+        <div class="domain-competency-blk">
+          <div class="backdrop" onclick={{action 'onToggleBox' 'domain-competency-blk'}} onkeypress={{action 'onToggleBox' 'domain-competency-blk'}} tabindex={{tabindex}}>
+          </div>
+          <div class="taxonomy-filter-container-section">
+            <span class="close-filter"> {{t 'search-help-message'}} <i class="material-icons" onclick={{action 'onToggleBox' 'domain-competency-blk'}} onkeypress={{action 'onToggleBox' 'domain-competency-blk'}} tabindex={{tabindex}}>clear</i>  </span>
+              {{search/search-by-filter
+              isShow=isShowFilter
+              onFilterApply="onFilter"
+              hideAppScroll=false
+              unCheckedItem=removedFilterItem
+              isClassActivity = true
+              preference=primaryClass.preference
+              selectedFilters=selectedFilters
+              selectedSubject=selectedSubject
+              tabindex=tabindex
+              }}
+          </div>
+        </div>
+     </div>
+    </div>
+    <div class="content-resource-panel">
+      <span class="panel-header">{{t 'common.audience'}} : </span>
+     <div class="content-resource-body">
+       <span class="content-title" onclick={{action 'onToggleBox' 'audience-blk'}} onkeypress={{action 'onToggleBox' 'audience-blk'}} tabindex={{tabindex}}>
+         <div class="selected-items">
+            {{#each selectedAudienceList as | audience audienceIndex |}}
+             <div class="item-title"><span>{{audience.label}}</span><i class="material-icons" onclick={{action "onSelectResourceContent" audience}} onkeypress={{action "onSelectResourceContent" audience}} tabindex={{tabindex}}>clear</i> </div>
+            {{/each}}
+         </div>
+         <i class="material-icons">arrow_drop_down</i>
+       </span>
+       <ul class="dropdown-blk audience-blk">
+           {{#each audienceList as  |audience|}}
+             <li onclick={{action "onSelectResourceContent" audience}} onkeypress={{action "onSelectResourceContent" audience}} tabindex={{tabindex}}> {{gru-icon name=(if audience.isActive 'check_box' 'check_box_outline_blank')}} {{audience.label}}</li>
+           {{/each}}
+       </ul>
+     </div>
+    </div>
+
+    {{#if (and (eq activeContentType.format 'assessment') isShowdiagnosticKey)}}
+      <div class="content-resource-panel diagnostic-resource-panel">
+        <span class="panel-header">{{t 'common.diagnostic-assessment'}} : </span>
+       <div class="content-resource-body">
+         {{gru-switch switchOptions=switchOptions onOptionSwitch='onEnableToggle' isChecked=enableCaBaseline}}
+       </div>
+      </div>
+    {{/if}}
+
+    <button class="{{unless selectedContentResource.length 'disabled-class'}}" type="button" name="button" onclick={{action "applyFilters"}} onkeypress={{action "applyFilters"}} tabindex={{tabindex}}>Apply filter</button>
+  </div>
+</div>

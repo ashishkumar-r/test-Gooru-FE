@@ -1,0 +1,436 @@
+<div>
+  <div class="container-fluid" onclick={{action 'closeNotificationList'}} onkeypress={{action 'closeNotificationList'}}>
+    <div class="row">
+      <div class="col-xs-12">
+        <nav class="navbar navbar-default row">
+          <div class="navbar-header">
+            {{#if (and isTenantUserLogo tenantImageUrl)}}
+              <a onclick={{action 'navigateToMarketSite'}} onkeypress={{action 'navigateToMarketSite'}} style="background-image:url({{tenantImageUrl}})" tabindex="2" target="_blank" class="navbar-brand home-link"></a>
+            {{else}}
+              {{#if session.isAnonymous}}
+                <a onclick={{action 'navigateToMarketSite'}} onkeypress={{action 'navigateToMarketSite'}} target="_blank" class="navbar-brand home-link anonymous" tabindex="2"></a>
+              {{else}}
+                <a onclick={{action 'navigateToHome'}} onkeypress={{action 'navigateToHome'}} class="navbar-brand home-link {{session.role}} {{if profile.isTeacher 'teacher' 'student'}} {{if isShowImpersonate 'impersonate-logo'}}" title="home link" tabindex="2"></a>
+              {{/if}}
+            {{/if}}
+          </div>
+          <div class="navbar-collapse">
+            {{#if (and showDropMenu (not profile.isTeacher) (not profile.isStudent))}}
+              <div class="btn-group clearfix dropMenuLabelWidth" aria-label="select language">
+                <button type="button" data-toggle="dropdown" tabindex="2" aria-expanded="false" class="btn btn-primary btn-sm ">
+                  {{t i18n.locale}}
+                </button>
+                <button type="button" data-toggle="dropdown" aria-expanded="true" tabindex="2" class="btn btn-primary btn-sm dropdown-toggle ">
+                  <span class="caret"></span>
+                  <span class="sr-only">{{t "common.choose-lang"}}</span>
+                </button>
+                <ul class="dropdown-menu">
+                  {{#each locales as |loc|}}
+                    {{#if loc.isActive}}
+                      <li><a class="{{if (eq i18n.locale loc.id) 'active'}}" onclick={{action 'setLocale' loc.id}} onkeypress={{action 'setLocale' loc.id}} tabindex="2" role="button" aria-label={{loc.text}}>{{loc.text}}</a></li>
+                    {{/if}}
+                  {{/each}}
+                </ul>
+              </div>
+            {{/if}}
+            <div class="new-version {{ if profile.isTeacher 'teacher' 'student'}} is-first {{if (and isShowNewVersion isShowWhatsNew) 'show-whats-new' 'hide-whats-new'}}" {{action 'updateWhatsNewState'}}> </div>
+            <ul class="nav navbar-nav menu-navbar" role="menu">
+              {{#if session.isAnonymous}}
+                {{#unless isTenantUrl profile.isStudent session.isAnonymous}}
+                  <li role="menuitem" class="navbar-nav-list visible-md visible-lg library-link">
+                    <a onclick={{action 'navigation' 'library'}} onkeypress={{action 'navigation' 'library'}} tabindex="2">
+                      <span>{{t "common.library"}}</span>
+                    </a>
+                  </li>
+                {{/unless}}
+                <li role="menuitem" class="navbar-nav-list visible-md visible-lg">
+                  {{#link-to 'login' class="btn btn-info sign-in-button" tagName='button' tabindex="2" }} {{t "common.login"}} {{/link-to}}
+                </li>
+                {{#unless isTenantUrl}}
+                  <li role="menuitem" class="navbar-nav-list visible-md visible-lg no-hover ">
+                    {{#link-to 'signup' class="btn btn-primary sign-up-button" tagName='button' tabindex="2"}} {{t "common.signUp"}} {{/link-to}}
+                  </li>
+                {{/unless}}
+
+                <li role="menuitem" class="navbar-nav-list hidden-md hidden-lg dropdown xs-design open-side-menu">
+                  <a role="link" class="dropdown-toggle" data-toggle="dropdown" href="#" tabindex="2">{{gru-icon name='menu'}}</a>
+                  <ul class="dropdown-menu">
+                    <li class="navbar-nav-list close-menu">
+                      <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="2">{{gru-icon name='close'}}</button>
+                    </li>
+                    {{#unless isTenantUrl profile.isStudent session.isAnonymous}}
+                      {{#if showLibrary}}
+                        <li class="navbar-nav-list" aria-label="library">
+                          {{#link-to 'library' role="link" tabindex="2"}} {{t "common.library"}} {{/link-to}}
+                        </li>
+                      {{/if}}
+                    {{/unless}}
+                    <li class="navbar-nav-list" aria-label="login">
+                      {{#link-to 'login' class="navbar-link sign-in-link" role="link" tabindex="2"}} {{t "common.login"}} {{/link-to}}
+                    </li>
+                    {{#unless isTenantUrl}}
+                      <li class="navbar-nav-list" aria-label="signUp">
+                        {{#link-to 'signup' class="navbar-link sign-up-link" role="link" tabindex="2"}} {{t "common.signUp"}} {{/link-to}}
+                      </li>
+                    {{/unless}}
+                  </ul>
+                </li>
+              {{else}}
+                {{#if profile.isResearcher}}
+                  <li role="menuitem" class="navbar-nav-list visible-md visible-lg study-link">
+                    <a role="link" onclick={{action 'navigateToResearchApp'}} onkeypress={{action 'navigateToResearchApp'}} aria-label="rgo" tabindex="2">
+                      <span>{{t "user.rgo"}}</span>
+                    </a>
+                  </li>
+                {{/if}}
+
+                {{#if profile.isTeacher}}
+                  <li role="menuitem" class="navbar-nav-list visible-md visible-lg classrooms-link">
+                    <a role="link" onclick={{action 'navigation' 'teacher-home'}} onkeypress={{action 'navigation' 'teacher-home'}} aria-label="classrooms" tabindex="2">
+                      <span>{{t "user.classrooms"}}</span>
+                    </a>
+                  </li>
+                  <li role="menuitem" class="navbar-nav-list visible-md visible-lg tools-link dropdown out-of-scope">
+                    <a role="link" class="dropdown-toggle" href="#" data-toggle="dropdown" tabindex="2" aria-haspopup="true" aria-expanded="false"><span class="tools">{{t "common.tools"}}{{gru-icon name='arrow_drop_down'}}</span>
+                    </a>
+                    <ul class="tools-menu dropdown-menu pull-left" id="tools">
+                      <li class="navbar-nav-list assessments-link out-of-scope">
+                        <a class="navbar-link" aria-label="assessments" tabindex="2">
+                          {{t "common.live-assessments"}}
+                        </a>
+                      </li>
+                      <li class="navbar-nav-list performance-dashboard-link out-of-scope" tabindex="2">
+                        <a class="navbar-link" aria-label="dashboard">
+                          {{t "common.performance-dashboard"}}
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                {{/if}}
+                {{#if (and showLibrary (not profile.isStudent) (not session.isAnonymous))}}
+                  <li role="menuitem" class="navbar-nav-list visible-md visible-lg library-link">
+                    <a role="link" onclick={{action 'navigation' 'library'}} onkeypress={{action 'navigation' 'library'}} tabindex="2" aria-label="library">
+                      <span>{{t "common.library"}}</span>
+                    </a>
+                  </li>
+                {{/if}}
+
+                <li role="menuitem" class="navbar-nav-list visible-md visible-lg notifications-link">
+                  {{#unless isMobileView}}
+                    <a role="link" style="opacity:1;">
+                      {{notification/notification-indicator displayNotificationList=displayNotificationList tabindex='2'}} </a>
+                  {{/unless}}
+                </li>
+                {{#if showLearningTool}}
+                <li role="menuitem" class="navbar-nav-list visible-md visible-lg notifications-link">
+                    <div class="{{if isShowLearningTool 'active'}} learning-tool" tabIndex="2" aria-label="learning tool" onclick={{action 'onOpenLearningTools'}} onkeypress={{action 'onOpenLearningTools'}}>
+                      <span class="material-icons-outlined">
+                        handyman
+                      </span>
+                    </div>
+                </li>
+                {{/if}}
+                <li role="menuitem" class="navbar-nav-list visible-md visible-lg profile-link">
+                  {{#if isAppUserValid}}
+                    <div class="profile" tabindex="2" onkeypress={{action 'porfileContainer' 'profile-link' 'profile'}}>
+                      <div class="profile dropdown-toggle" data-toggle="dropdown">
+                        <div role="presentation" class="img-container pull-left">
+                          <img class="img-responsive" src="{{session.userData.avatarUrl}}" alt="profileAvatar" />
+                        </div>
+                        {{#if session.userData.userDisplayName}}
+                          <span class="username">{{truncate text=session.userData.userDisplayName maxLength=18}} </span>
+                        {{else}}
+                          <span class="username">{{truncate text=session.userData.username maxLength=18}} </span>
+                        {{/if}}
+                      </div>
+                      <div class="dropdown-menu profile-link">
+                        <div class="user-app-list profile-indicater">
+                          {{#link-to 'profile.about' session.userData.gooruUId class="profile" tabindex="2" }}
+                            <img role="presentation" class="img-responsive" src="{{session.userData.avatarUrl}}" alt="avatarUrl" />
+                            <div class="userProfile">{{t "common.profile"}}</div>
+                          {{/link-to}}
+                        </div>
+                        <div class="user-app-list" onclick={{action "switchLearner"}} onkeypress={{action "switchLearner"}} tabindex="2">
+                          <span class="user-app-icon {{if isSwitchAccount 'instructor-icon' 'learner-icon'}}"></span>
+                          <span>{{t 'common.navigator-learner' user=(t (if isSwitchAccount 'common.instructor' 'common.learner'))}}</span>
+                        </div>
+                        {{#if (gt appUser.length 1)}}
+                          {{#each appUser as |item|}}
+                            {{#if (or (not-eq item.id appId))}}
+                              <div class="user-app-list">
+                                <img role="presentation" src={{item.logoUrl}} alt="logoUrl">
+                                <div class="list" onclick={{action 'openAppUSer' item.lanuchUrl}} onkeypress={{action "switchLearner"}} tabindex="2">{{item.name}}</div>
+                              </div>
+                            {{/if}}
+                          {{/each}}
+                        {{/if}}
+                      </div>
+                    </div>
+                  {{else}}
+                    {{#link-to 'profile.about' session.userData.gooruUId class="profile" tabindex="2"}}
+                      <div class="img-container pull-left">
+                        <img role="presentation" class="img-responsive" src="{{session.userData.avatarUrl}}" alt="profileAvatar" />
+                      </div>
+
+                      {{#if session.userData.userDisplayName}}
+                        <span class="username">{{truncate text=session.userData.userDisplayName maxLength=18}} </span>
+                      {{else}}
+                        <!-- preserving old logic for those users whose token is still valid -->
+                        <span class="username">{{truncate text=session.userData.username maxLength=18}} </span>
+                      {{/if}}
+                    {{/link-to}}
+                  {{/if}}
+                </li>
+                <li role="menuitem" class="navbar-nav-list visible-md visible-lg dropdown profile-dropdown" tabindex="2" onkeypress={{action 'porfileContainer' 'menu-navbar' 'profile-dropdown'}}>
+                  <a class="profile-more dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{gru-icon name='more_vert'}}
+                  </a>
+                  <ul class="dropdown-menu pull-right" id="profile-more">
+                    {{#if (and isShowNewVersion (not isShowWhatsNew))}}
+                      <li role="tab" class="navbar-nav-list">
+                        <div class="new-version {{ if profile.isTeacher 'teacher' 'student'}}" class="navbar-link" role="button" tabindex="2" aria-label="whats new"> </div>
+                      </li>
+                    {{/if}}
+                    <li role="tab" class="navbar-nav-list">
+                      <a onclick={{action 'navigateToSupport' }} onkeypress={{action 'navigateToSupport' }} target="_blank" class="navbar-link" role="button" tabindex="2" aria-label="support">
+                        {{t "common.support"}}
+                      </a>
+                    </li>
+                    {{#if showDropMenu }}
+                      <li role="tab" class="navbar-nav-list">
+                        <div class="menu-dropdown">
+                          <button class="menu-dropbtn" {{action 'openLangPullUp'}}>{{t i18n.locale}} <span class="caret"></span></button>
+                          {{#if showLanguage}}
+                            <div class="backdrop" {{action 'closeLangPullUp'}}></div>
+                          {{/if}}
+                          <div class="dropdown-content-menu {{if showLanguage 'show-bg'}}">
+                            {{#each locales as |loc|}}
+                              {{#if loc.isActive}}
+                                <a class="{{if (eq i18n.locale loc.id) 'active'}}" onclick={{action 'setLocale' loc.id}} onkeypress={{action 'setLocale' loc.id}} tabindex="2" role="button" aria-label={{loc.text}}>{{loc.text}}</a>
+                              {{/if}}
+                            {{/each}}
+                          </div>
+                        </div>
+                      </li>
+                    {{/if}}
+                    {{#if userStudentType}}
+                      <li role="tab" class="navbar-nav-list">
+                        <a onclick={{action 'takeTour' }} onkeypress={{action 'takeTour' }} class="navbar-link" role="button" tabindex="2" aria-label="take tour">
+                          {{t "common.start-tour"}}
+                        </a>
+                      </li>
+                    {{/if}}
+                    <li role="tab" class="navbar-nav-list">
+                      <a class="navbar-link" onclick={{action "logout"}} onkeypress={{action "logout"}} role="button" tabindex="2" aria-label="logout"> {{t "common.logout"}}</a>
+                    </li>
+                  </ul>
+                </li>
+                <li role="menuitem" class="navbar-nav-list hidden-md hidden-lg dropdown xs-design open-side-menu">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" tabindex="2">{{gru-icon name='menu'}}</a>
+                  <ul class="dropdown-menu">
+                    <li class="navbar-nav-list close-menu">
+                      <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="2">{{gru-icon name='close'}}</button>
+                    </li>
+                    {{#if (and isShowNewVersion (not isShowWhatsNew))}}
+                      <li class="navbar-nav-list">
+                        <div class="new-version {{ if profile.isTeacher 'teacher' 'student'}}" class="navbar-link" role="link" tabindex="2" aria-label="whats new"> </div>
+                      </li>
+                    {{/if}}
+                    {{#if profile.isTeacher}}
+                      <li class="navbar-nav-list">
+                        {{#link-to 'teacher-home' tabindex="2"}}
+                          <span>{{t "user.classrooms"}}</span>
+                        {{/link-to}}
+                      </li>
+                    {{/if}}
+                    {{#if (and showLibrary (not profile.isStudent) (not session.isAnonymous))}}
+                      <li class="navbar-nav-list">
+                        <a onclick={{action 'navigation' 'library'}} onkeypress={{action 'navigation' 'library'}} role="link" aria-label="library" tabindex="2">
+                          <span>{{t "common.library"}}</span>
+                        </a>
+                      </li>
+                    {{/if}}
+                    <li class="navbar-nav-list">
+                      {{#if profile.isStudent}}
+                        {{#link-to 'profile.proficiency' session.userData.gooruUId class="navbar-link" tabindex="2"}}
+                          <span class="">{{t "common.profile"}}</span>
+                        {{/link-to}}
+                      {{else}}
+                        {{#link-to 'profile.about' session.userData.gooruUId class="navbar-link" tabindex="2" }}
+                          <span class="">{{t "common.profile"}}</span>
+                        {{/link-to}}
+                      {{/if}}
+                    </li>
+                    <li class="navbar-nav-list">
+                      {{#if isMobileView}}
+                        <a role="link">
+                          {{notification/notification-indicator showNotificationIcon=true displayNotificationList=displayNotificationList tabindex='2'}}
+                        </a>
+                      {{/if}}
+                    </li>
+                    <li class="navbar-nav-list">
+                      {{#if isAppUserValid}}
+                        <a role="link" onclick={{action "switchLearner"}} onkeypress={{action "switchLearner"}} tabindex="31" aria-label="navigatorlearner">
+                          <span class="">{{t 'common.navigator-learner' user=(t (if isSwitchAccount 'common.instructor' 'common.learner'))}}</span>
+                        </a>
+                      {{/if}}
+                    </li>
+                    <li class="navbar-nav-list">
+                      <a onclick={{action 'navigateToSupport' }} onkeypress={{action 'navigateToSupport' }} tabindex="2" target="_blank" role="link" aria-label="support" class="navbar-link">
+                        <span>{{t "common.support"}}</span>
+                      </a>
+                    </li>
+                    {{#if showDropMenu }}
+                      <li class="navbar-nav-list menu-list-dropdown">
+                        <div class="menu-dropdown">
+                          <button class="menu-dropbtn" {{action 'openLangPullUp'}}>{{t i18n.locale}} <span class="caret"></span></button>
+                          {{#if showLanguage}}
+                            <div class="backdrop" {{action 'closeLangPullUp'}}></div>
+                          {{/if}}
+                          <div class="dropdown-content-menu {{if showLanguage 'show-bg'}}">
+                            {{#each locales as |loc|}}
+                              {{#if loc.isActive}}
+                                <a class="{{if (eq i18n.locale loc.id) 'active'}}" onclick={{action 'setLocale' loc.id}} onkeypress={{action 'setLocale' loc.id}} tabindex="2" role="button" aria-label={{loc.text}}>{{loc.text}}</a>
+                              {{/if}}
+                            {{/each}}
+                          </div>
+                        </div>
+                      </li>
+                    {{/if}}
+                    <li class="navbar-nav-list">
+                      {{#if showLearningTool}}
+                        <a onclick={{action 'onOpenLearningTools'}}>
+                          <span>{{t "common.learning-tools"}}</span>
+                        </a>
+                      {{/if}}
+                    </li>
+                    {{#if userStudentType}}
+                      <li role="tab" class="navbar-nav-list">
+                        <a onclick={{action 'takeTour' }} onkeypress={{action 'takeTour' }} class="navbar-link" role="button" tabindex="2" aria-label="take tour">
+                          {{t "common.start-tour"}}
+                        </a>
+                      </li>
+                    {{/if}}
+                    <li class="navbar-nav-list">
+                      <a class="navbar-link" onclick={{action "logout"}} onkeypress={{action "logout"}} tabindex="2" role="button" aria-label="logout"> {{t "common.logout"}}</a>
+                    </li>
+                  </ul>
+                </li>
+              {{/if}}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hidden header-xs">
+  <nav class="navbar-xs navbar-default">
+    <div class="navbar-header-xs">
+      {{#if session.isAnonymous}}
+        <a onclick={{action 'navigateToMarketSite'}} onkeypress={{action 'navigateToMarketSite'}} target="_blank" role="link" tabindex="33" aria-label="home page" class="navbar-brand home-link anonymous"></a>
+      {{else}}
+        <a onclick={{action 'navigateToHome'}} onkeypress={{action 'navigateToHome'}} class="navbar-brand home-link {{session.role}} {{if profile.isTeacher 'teacher' 'student'}}" title="home link" tabindex="2"></a>
+      {{/if}}
+    </div>
+    <div class="action-bar {{if session.isAnonymous 'anonymous'}}">
+      <div class="profile">
+        {{#link-to 'profile.about' session.userData.gooruUId class="profile" tabindex="2"}}
+          <div class="img-container pull-left">
+            <img role="presentation" class="img-responsive" src="{{session.userData.avatarUrl}}" alt="profileAvatar" />
+          </div>
+        {{/link-to}}
+      </div>
+      <div class="menu">
+        <div class="navbar-nav-list hidden-md hidden-lg dropdown xs-design open-side-menu">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="tablist" aria-label="more_vert" tabindex="2">{{gru-icon name='more_vert'}}</a>
+          {{#if session.isAnonymous}}
+            <ul class="dropdown-menu">
+              <li class="navbar-nav-list close-menu">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="2">{{gru-icon name='close'}}</button>
+              </li>
+              {{#unless profile.isStudent session.isAnonymous}}
+                <li class="navbar-nav-list">
+                  {{#link-to 'library' tabindex="2"}} {{t "common.library"}} {{/link-to}}
+                </li>
+              {{/unless}}
+              <li class="navbar-nav-list">
+                {{#link-to 'sign-in' class="navbar-link sign-in-link" tabindex="2"}} {{t "common.login"}} {{/link-to}}
+              </li>
+              {{#unless isTenantUrl}}
+                <li class="navbar-nav-list">
+                  {{#link-to 'sign-up' class="navbar-link sign-up-link" tabindex="2"}} {{t "common.signUp"}} {{/link-to}}
+                </li>
+              {{/unless}}
+            </ul>
+          {{else}}
+            <ul class="dropdown-menu">
+              <li class="navbar-nav-list close-menu">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="2">{{gru-icon name='close'}}</button>
+              </li>
+              {{#if (and isShowNewVersion (not isShowWhatsNew))}}
+                <li class="navbar-nav-list">
+                  <div class="new-version {{ if profile.isTeacher 'teacher' 'student'}}" class="navbar-link" role="button" tabindex="2" aria-label="whats new"> </div>
+                </li>
+              {{/if}}
+              {{#if profile.isTeacher}}
+                <li class="navbar-nav-list">
+                  {{#link-to 'teacher-home' tabindex="2"}}
+                    <span>{{t "user.classrooms"}}</span>
+                  {{/link-to}}
+                </li>
+              {{/if}}
+              {{#if (and showLibrary (not profile.isStudent) (not session.isAnonymous))}}
+                <li class="navbar-nav-list">
+                  {{#link-to 'library' tabindex="2"}}
+                    <span>{{t "common.library"}}</span>
+                  {{/link-to}}
+                </li>
+              {{/if}}
+              <li class="navbar-nav-list">
+                {{#if profile.isStudent}}
+                  {{#link-to 'profile.proficiency' session.userData.gooruUId class="navbar-link" tabindex="2"}}
+                    <span class="">{{t "common.profile"}}</span>
+                  {{/link-to}}
+                {{else}}
+                  {{#link-to 'library-search' (query-params type="my-content" profileId=session.userData.gooruUId)  class="navbar-link" tabindex="2"}}
+                    <span class="">{{t "common.profile"}}</span>
+                  {{/link-to}}
+                {{/if}}
+              </li>
+              <li class="navbar-nav-list">
+                <a onclick={{action 'navigateToSupport' }} onkeypress={{action 'navigateToSupport' }} target="_blank" role="button" aria-label="support" tabindex="2" class="navbar-link">
+                  <span>{{t "common.support"}}</span>
+                </a>
+              </li>
+              {{#if showDropMenu }}
+                <li class="navbar-nav-list">
+                  <div class="menu-dropdown">
+                    <button class="menu-dropbtn" {{action 'openLangPullUp'}}>{{t i18n.locale}} <span class="caret"></span></button>
+                    {{#if showLanguage}}
+                      <div class="backdrop" {{action 'closeLangPullUp'}}></div>
+                    {{/if}}
+                    <div class="dropdown-content-menu {{if showLanguage 'show-bg'}}">
+                      {{#each locales as |loc|}}
+                        {{#if loc.isActive}}
+                          <a class="{{if (eq i18n.locale loc.id) 'active'}}" class="{{if (eq i18n.locale loc.id) 'active'}}" onclick={{action 'setLocale' loc.id}} onkeypress={{action 'setLocale' loc.id}} tabindex="2" role="button"
+                            aria-label={{loc.text}}>{{loc.text}}</a>
+                        {{/if}}
+                      {{/each}}
+                    </div>
+                  </div>
+                </li>
+              {{/if}}
+              <li class="navbar-nav-list">
+                <a class="navbar-link" onclick={{action "logout"}} onkeypress={{action "logout"}} tabindex="2" role="button" aria-label="logout"> {{t "common.logout"}}</a>
+              </li>
+            </ul>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+  {{#if isShowLearningTool}}
+  {{reports/pull-up/gru-learning-tool-list isShowLearningTool=isShowLearningTool}}
+  {{/if}}

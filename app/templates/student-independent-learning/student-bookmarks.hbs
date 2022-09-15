@@ -1,0 +1,36 @@
+<div class="bookmark-content">
+  <div class="title">
+    <span class="bookmark-section">
+      <span class="section-header">{{t 'common.bookmarks'}}</span>
+    {{#link-to "library-search" (query-params type="gooru-catalog" isBack=true) tagName="span" class='add-bookmark' }}
+      <span title="{{t 'student-independent-learning.add-bookmark'}}">
+          {{gru-icon name="add"}}
+        </span>
+    {{/link-to}}
+    </span>
+    <span class="show-more" {{action 'togglePanel'}}>
+      {{#if showMoreToggle}}
+        {{#if isExpanded}}
+          {{t 'student-independent-learning.show-less'}}
+        {{else}}
+          {{t 'student-independent-learning.show-more'}}
+        {{/if}}
+      {{/if}}
+    </span>
+  </div>
+  <div class="content-results {{if isExpanded 'expanded' 'not-expanded'}}">
+    {{#if bookmarks}}
+      {{#each bookmarks as |bookmark|}}
+        {{new-cards/gru-bookmark-card
+          bookmark=bookmark
+          onDeleteBookmark=(action 'removeBookmark')
+        }}
+      {{/each}}
+    {{else}}
+      <div class="no-bookmark">{{t 'student-independent-learning.no-bookmarks'}}</div>
+    {{/if}}
+    {{#if isShowMoreVisible}}
+      <div class="col-md-12 col-lg-12 col-sm-6 col-xs-3 show-more-results" {{action 'showMoreResults'}}>{{t 'common.show-more-results'}}</div>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,59 @@
+.reports.assessment.gru-resources {
+  table {
+    .resource-type-icon {
+      i {
+        &.video-icon {
+          background: url("../../themes/bergen/video-resource.svg");
+          -webkit-background-size: 31px 30px;
+          background-size: 31px 30px;
+          height: 30px;
+          width: 31px;
+        }
+        &.webpage-icon {
+          background: url("../../themes/bergen/website-resource.svg");
+          -webkit-background-size: 29px 30px;
+          background-size: 29px 30px;
+          height: 30px;
+          width: 29px;
+        }
+        &.interactive-icon {
+          background: url("../../themes/bergen/interactive-resource.svg");
+          -webkit-background-size: 34px 30px;
+          background-size: 34px 30px;
+          height: 30px;
+          width: 34px;
+          vertical-align: top;
+          margin: 5px 0 0 0;
+        }
+        &.question-icon {
+          background: url("../../themes/bergen/question-resource.svg");
+          -webkit-background-size: 30px 30px;
+          background-size: 30px 30px;
+          height: 30px;
+          width: 30px;
+        }
+        &.image-icon {
+          background: url("../../themes/bergen/image-resource.svg");
+          -webkit-background-size: 30px 30px;
+          background-size: 30px 30px;
+          height: 30px;
+          width: 30px;
+        }
+        &.text-icon {
+          background: url("../../themes/bergen/text-resource.svg");
+          -webkit-background-size: 31px 30px;
+          background-size: 31px 30px;
+          height: 30px;
+          width: 31px;
+        }
+        &.audio-icon {
+          background: url("../../themes/bergen/audio-resource.svg");
+          -webkit-background-size: 34px 30px;
+          background-size: 34px 30px;
+          height: 30px;
+          width: 34px;
+        }
+      }
+    }
+  }
+}

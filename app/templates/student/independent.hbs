@@ -1,0 +1,64 @@
+<div class="student-independent-container">
+  <div class="header clearfix">
+    <div class="panel panel-default panel-primary course-information classroom-information hide-classroom-information">
+      <div class="panel-body {{unless course.tags.length 'no-taxomony'}}">
+        <div class="course-image">
+          {{#if course.thumbnailUrl}}
+            <img src="{{course.thumbnailUrl}}" alt="course thumbnail"/>
+          {{else}}
+            <div class="no-course-image"></div>
+          {{/if}}
+        </div>
+        <div class="course-name">
+          {{{truncate text=course.title maxLength=50}}}
+        </div>
+        <div class="counts-container">
+          <div class="count">
+            {{#if hasUnits}}
+              {{gru-icon tooltipTitle='common.unit' name="format_align_center"}}
+              <span>{{course.unitCount}}</span>
+            {{/if}}
+          </div>
+        </div>
+        <div class="teacher-profile">
+          {{#if course.owner}}
+            <div class="title pull-left">
+              {{t (if course.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}
+            </div>
+            {{#link-to 'library-search'  (query-params type="my-content" profileId=course.owner.id) class="pointer pull-left profile-container" tagName="div" }}
+              <img class="img-responsive pull-left" src="{{course.owner.avatarUrl}}" alt="owner avatar">
+              <span class="owner">{{course.owner.displayName}}</span>
+            {{/link-to}}
+          {{/if}}
+        </div>
+        <div class="taxonomy-standards">
+          {{#if course.tags.length}}
+            {{taxonomy/gru-taxonomy-tag-list tags=course.tags tagsVisible=1 isInCard=true hasTooltips=false}}
+          {{/if}}
+        </div>
+        <div class="performance-container pull-right {{unless hasStarted 'not-started'}}" {{action 'openCourseReport'}}>
+          {{charts/gru-performance-chart performanceSummary=performance }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{student/class/gru-study-navbar
+    performanceSummary=performance
+    navTitle=course.title
+    onItemSelected="selectMenuItem"
+    selectedMenuItem=menuItem
+    studyCurrent=studyPlayer
+    hasClassInfo=true
+    ILActivity=true
+    openCourseReport='openCourseReport'
+  }}
+
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>
+
+{{#if showCourseReport}}
+  {{reports/pull-up/student-course-report context=studentCourseReportContext showPullUp=showCourseReport}}
+{{/if}}

@@ -1,0 +1,19 @@
+<div class="self-grading-items-container">
+  {{#each itemsToGrade as |gradeItem|}}
+    <div class="grade-item-container" {{action "onSelectGradeItem" gradeItem}}>
+      <div class="item-thumbnail {{gradeItem.contentType}}"></div>
+      <div class="item-title">{{gradeItem.content.title}}</div>
+    </div>
+  {{/each}}
+</div>
+
+{{#if isShowOaSelfGrading}}
+  {{activity/offline/grading-report
+    showPullUp=isShowOaSelfGrading
+    context=selectedGradeItem
+    itemsToGrade=itemsToGrade
+    isTeacher=false
+    studentId=userId
+    isCourseMapGrading = true
+  }}
+{{/if}}

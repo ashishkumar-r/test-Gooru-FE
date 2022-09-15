@@ -1,0 +1,22 @@
+<div class="gru-sorting-container">
+    <div class="sorting-list-panel">
+        <div class="group-panel-title">
+          <span>{{question.softText}}</span>
+          <span></span>
+          <span>{{question.hardText}}</span>
+        </div>
+        <div class="group-panel-list">
+            <ul class="list-item-blk column-list column-soft-blk">
+
+            </ul>
+            <ul class="list-item-blk">
+                {{#each answers as | answer answerIndex| }}
+                  <li class="item-text">{{answer.text}}</li>
+                {{/each}}
+            </ul>
+            <ul class="list-item-blk column-list column-hard-blk">
+
+            </ul>
+        </div>
+    </div>
+</div>

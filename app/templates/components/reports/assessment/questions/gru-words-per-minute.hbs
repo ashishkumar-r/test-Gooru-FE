@@ -1,0 +1,56 @@
+<ul>
+    {{#if showCorrect}}
+    {{#each baseAnswers as |baseAnswer index|}}
+    <li>
+        <div class="wpm-answer-container">
+            <div class="wpm-passage-text-box">
+                {{{baseAnswer.text}}}
+            </div>
+        </div>
+    </li>
+    {{/each}}
+    {{else}}
+    {{#each baseAnswers as |answer index|}}
+    <li>
+        <div class="exercise-seq {{if showCorrect 'in-visible'}}">
+            Excercise {{plus-one index}}
+        </div>
+        <div class="passage-contianer">
+            {{{text-highlight answer.text  (array-index answers index)}}}
+        </div>
+        <div class="answer-container">
+            <div class="audio-player player-{{index}} wpm-audio-player">
+              <span class="wpm-timer-section">
+                  {{gru-icon name="query_builder"}}
+                  <span class="timer-count"><small class="current-count">00:00:00</small>/<small class="duration">{{audioDuration}}</small></span>
+              </span>
+                <span class="audio-progress">
+                    <span class="progress-filling">
+                        <span class="progress-pointer"></span>
+                    </span>
+                </span>
+                {{#if (not isPauseAudio)}}
+                  <span class="audio-play" {{action "onPlayAudio"}}>
+                      {{gru-icon name="play_arrow"}}
+                  </span>
+                {{else}}
+                  <span class="audio-play" {{action "onPauseAudio"}}>
+                      {{gru-icon name="pause"}}
+                  </span>
+                {{/if}}
+            </div>
+        </div>
+        <span class="wpm-count">{{t 'common-report-wpm'}}: {{wpmCount}}</span>
+        <div class="avg-wpm">
+        <span class="avg-wpm-title">{{t 'common-report-avg-wpm'}}: {{wpmAvgCount}}</span>
+          </div>
+        
+    </li>
+    {{/each}}
+    {{/if}}
+</ul>
+{{#if question.wpmResource}}
+  {{reports/gru-wpm-reading-table 
+  question=question
+  }}
+  {{/if}}

@@ -1,0 +1,39 @@
+{
+  "library": {
+    "id": 1,
+    "name": "default library",
+    "description": "This is default library",
+    "thumbnail": null
+  },
+  "library_contents": {
+    "assessments": [
+      {
+        "collaborator": null,
+        "course_id": null,
+        "id": "802a82f3-054e-4245-867e-7e5485fd17eb",
+        "learning_objective": null,
+        "original_creator_id": null,
+        "owner_id": "416922ac-7404-400b-883a-4993e23d1c8f",
+        "publish_status": "unpublished",
+        "question_count": 10,
+        "taxonomy": null,
+        "thumbnail": null,
+        "title": "Test Assessment",
+        "visible_on_profile": null
+      }
+    ],
+    "owner_details": [
+      {
+        "id": "416922ac-7404-400b-883a-4993e23d1c8f",
+        "username": "szgooru",
+        "first_name": "TestUpdaetd",
+        "last_name": "Zope",
+        "thumbnail": null,
+        "school_district_id": null,
+        "school_district": null,
+        "country_id": "48a0e88d-32c8-11e6-adef-f8a963065976",
+        "country": null
+      }
+    ]
+  }
+}

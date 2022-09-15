@@ -1,0 +1,38 @@
+.content.modals.gru-add-rubric-to-question {
+  background-color: $white;
+  .modal-header {
+    text-align: $tab-float-dir;
+  }
+  .modal-body {
+    padding: 30px 20px;
+    margin-top: 0;
+    .lead {
+      font-size: $font-size-base;
+      border-bottom: 1px solid $gray-light;
+      padding: 0 0 20px 0;
+      margin-bottom: 15px;
+      span {
+        color: $gray-base;
+      }
+    }
+    .list {
+      @include flexbox;
+      @include flex-wrap(wrap);
+      @include justify-content(flex-start);
+      padding: 0 5px;
+      max-height: 460px;
+      overflow-y: auto;
+      .selected {
+        .gru-rubric-card .panel {
+          border: 3px solid $blue-400;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+  .modal-footer {
+    button.cancel {
+      border: $gray-light solid 1px;
+    }
+  }
+}

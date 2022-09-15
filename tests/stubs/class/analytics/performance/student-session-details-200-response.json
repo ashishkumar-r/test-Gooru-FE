@@ -1,0 +1,383 @@
+{
+  "content": [
+    {
+      "assessment": {
+        "score": 22,
+        "gooruOId": "first-assessment-id",
+        "reaction": 0,
+        "timeSpent": 255214,
+        "eventTime": 1466467020239,
+        "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+        "resourceType": "assessment",
+        "attempts": 1
+      },
+      "questions": [
+        {
+          "score": 0,
+          "gooruOId": "0faecb80-f6b6-4268-acc9-fdb8b14fe5e2",
+          "reaction": 0,
+          "timeSpent": 40485,
+          "eventTime": 1466466954933,
+          "answerObject": [
+            {
+              "answerId": "answer_1",
+              "skip": false,
+              "text": "Search",
+              "status": "correct",
+              "order": 1.0
+            },
+            {
+              "answerId": "answer_2",
+              "skip": false,
+              "text": "Real-time",
+              "status": "correct",
+              "order": 2.0
+            },
+            {
+              "answerId": "answer_3",
+              "skip": false,
+              "text": "Content Editor",
+              "status": "correct",
+              "order": 3.0
+            },
+            {
+              "answerId": "answer_5",
+              "skip": false,
+              "text": "Featured Courses",
+              "status": "incorrect",
+              "order": 4.0
+            },
+            {
+              "answerId": "answer_4",
+              "skip": false,
+              "text": "Teams",
+              "status": "incorrect",
+              "order": 5.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "HT_RO",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 0,
+          "gooruOId": "14d6a650-fefb-479b-9142-315ddb483830",
+          "reaction": 0,
+          "timeSpent": 26081,
+          "eventTime": 1466466981155,
+          "answerObject": [
+            {
+              "answerId": "answer_1",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 1.0
+            },
+            {
+              "answerId": "answer_2",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 2.0
+            },
+            {
+              "answerId": "answer_3",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 3.0
+            },
+            {
+              "answerId": "answer_4",
+              "skip": false,
+              "text": "No",
+              "status": "incorrect",
+              "order": 4.0
+            },
+            {
+              "answerId": "answer_5",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 5.0
+            },
+            {
+              "answerId": "answer_6",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 6.0
+            },
+            {
+              "answerId": "answer_7",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 7.0
+            },
+            {
+              "answerId": "answer_8",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 8.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "MA",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 0,
+          "gooruOId": "1afe0ff1-051b-42e3-9b08-95444fe6da7d",
+          "reaction": 0,
+          "timeSpent": 15833,
+          "eventTime": 1466466880753,
+          "answerObject": [
+            {
+              "answerId": "answer_2",
+              "skip": false,
+              "text": "False",
+              "status": "incorrect",
+              "order": 1.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "T/F",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 0,
+          "gooruOId": "5764071d-dae0-46a6-9779-d2f7a52db177",
+          "reaction": 0,
+          "timeSpent": 26322,
+          "eventTime": 1466467020096,
+          "answerObject": [
+            {
+              "answerId": "answer_1",
+              "skip": false,
+              "text": "No",
+              "status": "correct",
+              "order": 1.0
+            },
+            {
+              "answerId": "answer_2",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 2.0
+            },
+            {
+              "answerId": "answer_3",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 3.0
+            },
+            {
+              "answerId": "answer_4",
+              "skip": false,
+              "text": "No",
+              "status": "correct",
+              "order": 4.0
+            },
+            {
+              "answerId": "answer_5",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 5.0
+            },
+            {
+              "answerId": "answer_6",
+              "skip": false,
+              "text": "No",
+              "status": "incorrect",
+              "order": 6.0
+            },
+            {
+              "answerId": "answer_7",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 7.0
+            },
+            {
+              "answerId": "answer_8",
+              "skip": false,
+              "text": "Yes",
+              "status": "correct",
+              "order": 8.0
+            },
+            {
+              "answerId": "answer_9",
+              "skip": false,
+              "text": "No",
+              "status": "incorrect",
+              "order": 9.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "MA",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 100,
+          "gooruOId": "70c48ffe-405c-4cb3-a1d8-ae0fb3ff1bb4",
+          "reaction": 0,
+          "timeSpent": 52125,
+          "eventTime": 1466466851143,
+          "answerObject": [
+            {
+              "answerId": "answer_1",
+              "skip": true,
+              "text": "//cdn.gooru.org/d0016d5e-0fce-4af2-b8b0-77a31014a84c.png",
+              "order": 1.0
+            },
+            {
+              "answerId": "answer_2",
+              "skip": true,
+              "text": "//cdn.gooru.org/5dc2d7f5-769d-4852-ad7f-9be984873dc0.jpg",
+              "order": 2.0
+            },
+            {
+              "answerId": "answer_3",
+              "skip": false,
+              "text": "//cdn.gooru.org/b95ef8b0-c8ea-4d96-9576-1b44e65f73ff.png",
+              "status": "correct",
+              "order": 3.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "HS_IMG",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 0,
+          "gooruOId": "9f53dfc1-4057-4cb9-94d5-d0b67efb84fc",
+          "reaction": 0,
+          "timeSpent": 33848,
+          "eventTime": 1466466798882,
+          "answerObject": [
+            {
+              "answerId": "answer_1",
+              "skip": true,
+              "text": "Remix courses",
+              "order": 1.0
+            },
+            {
+              "answerId": "answer_2",
+              "skip": false,
+              "text": "Go live dashboards",
+              "status": "correct",
+              "order": 2.0
+            },
+            {
+              "answerId": "answer_3",
+              "skip": false,
+              "text": "Profiles",
+              "status": "correct",
+              "order": 3.0
+            },
+            {
+              "answerId": "answer_4",
+              "skip": true,
+              "text": "Collaborator",
+              "order": 4.0
+            },
+            {
+              "answerId": "answer_5",
+              "skip": false,
+              "text": "User search",
+              "status": "incorrect",
+              "order": 5.0
+            },
+            {
+              "answerId": "answer_6",
+              "skip": false,
+              "text": "Featured Courses",
+              "status": "correct",
+              "order": 6.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "HS_TXT",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 100,
+          "gooruOId": "a3efb13b-4dbe-4346-954a-a7c52d2286dd",
+          "reaction": 0,
+          "timeSpent": 12296,
+          "eventTime": 1466466993579,
+          "answerObject": [
+            {
+              "answerId": "answer_4",
+              "skip": false,
+              "text": "Learning navigator",
+              "status": "correct",
+              "order": 1.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "MC",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 0,
+          "gooruOId": "ac533753-1873-4ede-bb00-353c5b855de0",
+          "reaction": 0,
+          "timeSpent": 33435,
+          "eventTime": 1466466914320,
+          "answerObject": [
+            {
+              "answerId": 0.0,
+              "skip": false,
+              "text": "Today we present: Gooru’s learning navigator! We are excited to share the news major updates to Gooru are finally here! Read on to see what’s new and how to find the resources that will help you get started.",
+              "status": "incorrect",
+              "order": 1.0
+            },
+            {
+              "answerId": 0.0,
+              "skip": false,
+              "text": "Remix and customize quality courses developed and implemented at innovative schools, districts, and charters. These courses are educator-curated, built in classrooms, and studied by students over the past nine months.",
+              "status": "incorrect",
+              "order": 3.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "HT_HL",
+          "views": 1,
+          "resourceType": "question"
+        },
+        {
+          "score": 0,
+          "gooruOId": "e053d779-7772-47d3-a842-6f7b156792ee",
+          "reaction": 0,
+          "timeSpent": 13511,
+          "eventTime": 1466466864790,
+          "answerObject": [
+            {
+              "answerId": 0.0,
+              "skip": false,
+              "text": "stacey",
+              "status": "incorrect",
+              "order": 1.0
+            }
+          ],
+          "sessionId": "90ee529d-c47a-42f0-915a-c7f0a144b7af",
+          "questionType": "FIB",
+          "views": 1,
+          "resourceType": "question"
+        }
+      ]
+    }
+  ]
+}

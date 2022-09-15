@@ -1,0 +1,111 @@
+.gru-performance-course-filter {
+  background-color: $white;
+  height: auto;
+  max-height: 890px;
+  color: $dark-100;
+  padding: 0;
+  font-size: $font-size-lead;
+
+  .unitTitle {
+    font-size: 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .unitTitleellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 145px;
+    overflow: hidden;
+  }
+  .header {
+    padding: 5px 15px;
+    .title {
+      height: 30px;
+      font-family: Lato;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 2.14;
+      text-align: $tab-float-dir;
+    }
+  }
+  .body {
+    border-top: 1px solid $dark-300;
+    .filter-type {
+      height: 37px;
+      width: 100%;
+      background-color: $white;
+      padding: 5px 10px;
+      box-shadow: 0px 1px 0px 0px $table-box-shadow-07;
+      color: $dark-300;
+      margin: 1px 0 0;
+      span {
+        float: $tab-float-dir;
+        line-height: $font-size-h4;
+        font-size: 13px;
+      }
+      a.arrow {
+        float: $menu-float-dir;
+        height: 25px;
+        i {
+          color: $light-400;
+          font-size: $expand-arrow;
+        }
+      }
+      .filter-category {
+        text-transform: uppercase;
+      }
+    }
+    .content-panel {
+      overflow: hidden;
+      .item {
+        padding: 5px 20px;
+        color: $dark-300;
+        box-shadow: 0px 1px 0px 0px $table-box-shadow-07;
+      }
+      .items {
+        font-size: 12px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+        .activity-option {
+          @include flexbox;
+          @include align-items(flex-end);
+          cursor: pointer;
+          span {
+            margin: 0 0 0 10px;
+          }
+        }
+        .activity-option.active {
+          color: $white;
+        }
+      }
+    }
+    .selectedLesson {
+      background-color: $blue-8e6;
+    }
+    .content-panel.course {
+      height: auto;
+      font-size: $font-size-small;
+      @include flexbox;
+      @include justify-content(center);
+      span {
+        margin: 10px;
+      }
+    }
+    .actions {
+      margin: 30px 0;
+      text-align: center;
+      .update-report {
+        i {
+          width: 13px;
+          height: 13px;
+          background-color: $white;
+          color: $blue-400;
+          border-radius: 2px;
+          padding: 1px 0 0;
+          margin: 0 3px 0 0;
+        }
+      }
+    }
+  }
+}

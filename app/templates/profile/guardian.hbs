@@ -1,0 +1,100 @@
+<div class="guardian-list">
+  <div class="panel-container guardian-invite">
+    <div class="invite-button {{if isGuestAccount 'disable-event'}} {{if isShowImpersonate 'impersonate-invite-btn'}}" {{action 'showInviteGuardian' true}}>{{gru-icon name="add"}}</div>
+    <div class="title">{{t "profile.guardian-invite-title"}}</div>
+  </div>
+  {{#each guardianList as |guardianInfo|}}
+    <div class="panel-container guardian-details">
+      <div class="image-container">
+        {{#if guardianInfo.thumbnail}}
+          <img class="img-responsive" src="{{profile.avatarUrl}}" alt="avatarUrl" />
+        {{else}}
+          <img class="img-responsive" src="{{userProfile}}" alt="userProfile" />
+        {{/if}}
+      </div>
+      <div class="information-container">
+        {{#if (eq guardianInfo.inviteStatus "accepted")}}
+          <div class="message">
+            {{t "profile.invite-accepted-message" firstName=guardianInfo.firstName lastName=guardianInfo.lastName role=guardianInfo.relationType}}
+          </div>
+        {{else}}
+          {{#if (eq guardianInfo.invitedBy "student")}}
+            <div class="message">
+              {{t "profile.student-invite-pending-message" firstName=guardianInfo.firstName lastName=guardianInfo.lastName role=guardianInfo.relationType}}
+            </div>
+          {{else}}
+            <div class="message">
+              {{t "profile.guardian-invite-pending-message" firstName=guardianInfo.firstName lastName=guardianInfo.lastName role=guardianInfo.relationType}}
+            </div>
+            <button type="button" class="btn btn-success access {{if isShowImpersonate 'impersonate-access-btn'}}" {{action 'acceptGuardianRequest' guardianInfo}}>{{t "profile.grant-access"}}</button>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+{{#if showInviteGuardianFlag}}
+  <div class="guardian-container">
+    <div class='invite-guardian-cocoon-container'>
+      {{#gru-pull-up showPullUp=showInviteGuardianFlag onClosePullUp="onClosePullUp"}}
+        <div class='invite-guardian-cocoon'>
+          <div class="panel panel-default" style="margin-bottom:0px;">
+            <div class="panel-heading ">
+              <div class="panel-title title-top">
+                <span class="people-icon">
+                  {{gru-icon name='people'}}
+                </span>
+                <span class="not-modal-header">
+                  {{t "profile-invite-form-title"}}
+                </span>
+              </div>
+            </div>
+            <form id="inviteGuardianForm" {{action "inviteGuardian" on="submit"}}>
+              <div class="panel-body">
+                <div class="panel-title"> {{t "profile.invite-form-details"}}</div>
+                <div class="invite-guardian-form">
+                  <div class="form-group">
+                    <label for="firstName">
+                      <span>{{t "common.first-name"}}</span>
+                    </label>
+                    {{validation/gru-input model=guardianInfo  valuePath='firstName' didValidate=didValidate  isRequired=true}}
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName">
+                      <span>{{t "common.last-name"}}</span>
+                    </label>
+                    {{validation/gru-input model=guardianInfo  valuePath='lastName' didValidate=didValidate isRequired=true }}
+                  </div>
+                  <div class="form-group">
+                    <label for="email">
+                      <span>{{t "profile.invite-form-email"}}</span>
+                    </label>
+                    {{validation/gru-input model=guardianInfo valuePath='email' didValidate=didValidate isRequired=true }}
+                    {{#if emailError}}
+                      <span class="validation error email-error">{{emailError}}</span>
+                    {{/if}}
+                  </div>
+                  <div class="form-group">
+                    <label for="role">
+                      <span>{{t "common.role"}}</span>
+                    </label>
+                    {{validation/gru-select options=guardianRoles  optionSelected=guardianInfo.relationshipId title=(t "common.select") search="false" onOptionSelect="roleSelect" showMessage=showRoleErrorMessage errorMessage=(t "sign-up.error-role-message")}}
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <div class="submit-button form-group ">
+                  <button role="button" aria-label="submit" type="submit" class="btn btn-success submit">{{t "common.invite"}}
+                  </button>
+                  <button role="button" aria-label="cancel" class="btn cancel" {{action "onClosePullUp"}}>{{t "common.cancel"}}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      {{/gru-pull-up }}
+    </div>
+  </div>
+{{/if}}

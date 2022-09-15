@@ -1,0 +1,189 @@
+.rubric-category-container {
+  width: 100%;
+  height: auto;
+
+  .popover {
+    border: 0;
+    padding: 0;
+
+    .popover-title {
+      text-align: center;
+
+      .close-popover {
+        position: absolute;
+        right: 5px;
+        color: $suggestion-panel-color;
+        cursor: pointer;
+      }
+    }
+
+    .popover-content {
+      color: $suggestion-panel-color;
+    }
+  }
+
+  .grade-rubric-categories {
+    .grade-rubric-category {
+      padding-bottom: 15px;
+
+      &.comment-active {
+        .grade-rubric-level-container {
+          .mode_comment {
+            opacity: 1 !important;
+          }
+        }
+      }
+
+      .grade-rubric-category-info {
+        display: inline-flex;
+
+        p {
+          font-family: "Open Sans";
+          font-size: 13px;
+          font-weight: bold;
+          color: $white-bold;
+          line-height: 1.2;
+        }
+      }
+
+      .grade-rubric-level-container {
+        display: flex;
+        align-items: center;
+        height: 25px;
+
+        .grade-rubric-category-info {
+          width: 290px;
+
+          p {
+            margin: 0;
+          }
+        }
+
+        .grade-rubric-levels {
+          width: 50%;
+          background-color: $frq-gray;
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 3px;
+          color: $dark-400;
+          position: relative;
+
+          &.active,
+          &.no-progress {
+            background-color: $table-bg;
+            border-radius: 0;
+          }
+
+          &.no-progress {
+            .grade-info-no-level,
+            .grade-info-popover {
+              opacity: 0.3;
+
+              &.selected {
+                opacity: 1 !important;
+                background-color: $selected-green;
+              }
+
+              &.grade-radio-input {
+                opacity: 1;
+                margin: auto;
+                &.selected-level {
+                  background-color: unset;
+                }
+              }
+            }
+          }
+
+          i {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: $white;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+          }
+
+          .progress-bar {
+            position: absolute;
+            height: 26px;
+            display: block;
+            border-radius: 16px;
+            margin-left: -3px;
+            width: 0;
+          }
+
+          .popover {
+            .popover-title {
+              text-align: center;
+            }
+
+            .popover-content {
+              text-align: center;
+              background-color: $white;
+            }
+          }
+
+          @media screen and (max-width: $screen-xs) {
+            width: 75%;
+          }
+        }
+
+        .grade-clear {
+          height: 18px;
+          width: 25px;
+          padding-left: 4px;
+          pointer-events: none;
+
+          .clear {
+            font-size: 18px;
+            visibility: hidden;
+          }
+
+          &.active {
+            .clear {
+              visibility: visible;
+              cursor: pointer;
+            }
+            pointer-events: all;
+          }
+        }
+
+        .grade-comment {
+          height: 20px;
+          width: 30px;
+
+          .mode_comment {
+            opacity: 0.2;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .grade-comment-section {
+        padding-top: 20px;
+        display: none;
+
+        &.read-only {
+          display: block;
+          padding-top: 10px;
+
+          .category-comment {
+            padding: 0 0 0 10px;
+            margin: 0;
+          }
+        }
+
+        textarea {
+          font-family: "Open Sans";
+          font-size: 16px;
+          font-style: italic;
+          color: $white-bold;
+          background-color: $dark-600;
+        }
+      }
+    }
+  }
+}

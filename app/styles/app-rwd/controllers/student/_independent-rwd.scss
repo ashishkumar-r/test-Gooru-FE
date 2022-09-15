@@ -1,0 +1,39 @@
+.student-independent-container {
+  @media only screen and (max-width: $screen-sm - 1) {
+    .header {
+      .panel.course-information {
+        .panel-body {
+          grid-template-columns: 50px 1fr max-content 200px;
+
+          &.no-taxomony {
+            grid-template-columns: 50px 1fr max-content;
+          }
+
+          .course-image {
+            img {
+              width: 50px;
+            }
+          }
+
+          .performance-container,
+          .teacher-profile {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: $sm-width-max) {
+    .header {
+      .panel.classroom-information {
+        .panel-body {
+          grid-template-columns: 50px 1fr max-content;
+
+          .taxonomy-standards {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

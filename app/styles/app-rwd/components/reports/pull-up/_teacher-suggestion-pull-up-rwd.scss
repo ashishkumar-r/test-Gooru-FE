@@ -1,0 +1,79 @@
+.teacher-suggestion-pull-up {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .suggestion-container {
+      width: 100%;
+
+      .suggestion-header {
+        .suggestion-pullup-close {
+          width: max-content;
+
+          .arrow_downward {
+            margin-left: 10px;
+          }
+        }
+
+        .suggestion-filter-container {
+          width: 130px;
+          margin-left: 0;
+          font-size: 13px;
+        }
+
+        .suggestion-right-menu {
+          width: calc(100% - 130px);
+
+          .search-input-container {
+            width: 100%;
+
+            #suggestion-search {
+              width: 100%;
+            }
+          }
+        }
+
+        .search-filter-icon,
+        .suggestion-explore-icon {
+          display: none;
+        }
+      }
+
+      .search-list-container {
+        .search-list {
+          width: 100%;
+          justify-content: center;
+          @media only screen and (max-width: $screen-465) {
+            grid-template-rows: auto;
+            grid-template-columns: none;
+          }
+          @media only screen and (min-width: $screen-465 + 1) and (max-width: $screen-705 - 1) {
+            grid-template-columns: 220px 220px;
+            grid-template-rows: none;
+          }
+        }
+      }
+    }
+
+    .cards.suggest-confirmation {
+      width: 100%;
+      left: 0;
+
+      .card-panel-container {
+        margin: auto;
+      }
+    }
+  }
+  @media only screen and (orientation: landscape) {
+    .cards.suggest-confirmation {
+      width: 100%;
+      left: 0;
+      top: 10%;
+      height: 84vh;
+      overflow-y: scroll;
+
+      .card-panel-container {
+        margin: auto;
+      }
+    }
+  }
+}

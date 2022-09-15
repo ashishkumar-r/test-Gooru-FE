@@ -1,0 +1,70 @@
+<div class="xs-design hidden-md hidden-lg">
+  <div class="profile-bar">
+    <div class="navigation-active">
+      <div class="btn-group drop-menu">
+        <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="90">{{gru-icon name='person'}}{{gru-icon name='keyboard_arrow_down'}}</button>
+        <ul class="dropdown-menu">
+          <li class="profile-menu-item close" tabindex="91"> <button class="btn dropdown-toggle" data-toggle="dropdown">{{gru-icon name='close'}}</button></li>
+          <li class="profile-menu-item content" tabindex="91" onclick={{action 'selectItem' 'content'}} onkeypress={{action 'selectItem' 'content'}}>
+            {{#if isMyProfile}}
+              <h6>{{t "profile.gru-navigation.my-content"}}</h6>
+            {{else}}
+              <h6>{{t "profile.gru-navigation.content"}}</h6>
+            {{/if}}
+            <i class="gru-icon material-icons content"></i>
+          </li>
+          <li class="profile-menu-item about" tabindex="91" onclick={{action 'selectItem' 'about'}} onkeypress={{action 'selectItem' 'about'}}>
+            {{#if isMyProfile}}
+              <h6>{{t "profile.gru-navigation.about-me"}}</h6>
+            {{else}}
+              <h6>{{t "profile.gru-navigation.about"}}</h6>
+            {{/if}}
+            {{gru-icon name='person'}}
+          </li>
+          <li class="profile-menu-item network" tabindex="91" onclick={{action 'selectItem' 'network'}} onkeypress={{action 'selectItem' 'network'}}>
+            <h6>{{t "profile.gru-navigation.followers"}}</h6><i class="gru-icon material-icons network"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="profile-info clearfix">
+  {{cards/gru-profile-card
+    profile=profile
+    class="clearfix"}}
+    <div class="actions">
+      {{#if isMyProfile}}
+      {{else}}
+      <button class="btn btn-default btn-lg {{if profile.isFollowing 'unfollow' 'follow'}}" tabindex="92" onclick={{action 'toggleFollowingStatus'}} onkeypress={{action 'toggleFollowingStatus'}}>
+        {{if profile.isFollowing (t "common.unfollow") (t "common.follow")}}
+      </button>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="md-design hidden-xs hidden-sm">
+    <ul class="profile-menu list-group">
+      <li class="list-group-item profile-menu-item content" tabindex="93" onclick={{action 'selectItem' 'content'}} onkeypress={{action 'selectItem' 'content'}}>
+        {{#if isMyProfile}}
+          <h6>{{t "profile.gru-navigation.my-content"}}</h6>
+        {{else}}
+          <h6>{{t "profile.gru-navigation.content"}}</h6>
+        {{/if}}
+        <i class="gru-icon material-icons content"></i>
+      </li>
+      <li class="list-group-item profile-menu-item about" tabindex="93" onclick={{action 'selectItem' 'about'}} onkeypress={{action 'selectItem' 'about'}}>
+        {{#if isMyProfile}}
+          <h6>{{t "profile.gru-navigation.about-me"}}</h6>
+        {{else}}
+          <h6>{{t "profile.gru-navigation.about"}}</h6>
+        {{/if}}
+        {{gru-icon name='person'}}
+      </li>
+      <li class="list-group-item profile-menu-item network" tabindex="93" onclick={{action 'selectItem' 'network'}} onkeypress={{action 'selectItem' 'network'}}>
+        <h6>{{t "profile.gru-navigation.followers"}}</h6>
+        <i class="gru-icon material-icons network"></i>
+      </li>
+    </ul>
+  </div>

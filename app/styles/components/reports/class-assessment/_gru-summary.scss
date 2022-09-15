@@ -1,0 +1,127 @@
+.reports.class-assessment.gru-summary {
+  $chart-diameter: 82px;
+  $small-chart-diameter: 4rem;
+
+  padding: 20px 0 10px 0;
+
+  .content {
+    margin-bottom: 35px;
+
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    .overview {
+      list-style: none;
+      margin: 0;
+      padding: 0 15px 0 0;
+      overflow: hidden;
+      float: $tab-float-dir;
+      border-right: 1px solid $gray-lighter;
+
+      > li {
+        width: 132px;
+        height: 147px;
+        text-align: center;
+        display: inline-block;
+        margin: 0 12px 0 0;
+        background: $white;
+        box-shadow: 0px 2px 5px 0px $table-box-shadow-07;
+        border-radius: 5px;
+        &.completion {
+          margin: 0;
+        }
+
+        > div {
+          height: $chart-diameter;
+          width: $chart-diameter;
+          margin: 20px auto 10px;
+        }
+
+        > span {
+          display: block;
+          margin-top: 8px;
+        }
+      }
+
+      &.small {
+        display: none;
+      }
+    }
+
+    .gru-questions-summary {
+      z-index: 1;
+      flex: 1;
+      background: $white;
+      box-shadow: 0px 2px 5px 0px $table-box-shadow-07;
+      border-radius: 5px;
+      padding: 15px 20px 10px;
+    }
+
+    &.all-questions {
+      .overview {
+        display: none;
+        padding: 0;
+        margin: 0 15px 0 0;
+        width: 268px;
+
+        &.small.visible {
+          display: block;
+          background: $white;
+          box-shadow: 0px 2px 5px 0px $table-box-shadow-07;
+          border-radius: 5px;
+          font-size: inherit;
+
+          > li {
+            float: $tab-float-dir;
+            display: block;
+            box-shadow: none;
+            border-radius: inherit;
+            height: auto;
+            width: auto;
+            margin: 0 12px 0 10px;
+
+            > div {
+              margin: 8px auto 0;
+            }
+            > span {
+              margin: 0;
+            }
+
+            &:last-child {
+              float: none;
+              margin: 40px auto 0;
+            }
+          }
+          .completion {
+            float: $menu-float-dir;
+          }
+        }
+      }
+      .gru-questions-summary {
+        font-size: inherit;
+        padding: 15px 28px;
+        > li {
+          margin: 0 23px 0 0;
+        }
+        .charts.gru-x-bar-chart {
+          width: 6.12em;
+        }
+      }
+    }
+  }
+  .grading-scale {
+    display: table;
+    height: 24px;
+    span,
+    ul {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    span.average {
+      padding: 0 18px 0 8px;
+      color: $gray-base;
+      font-size: $font-size-h6;
+    }
+  }
+}

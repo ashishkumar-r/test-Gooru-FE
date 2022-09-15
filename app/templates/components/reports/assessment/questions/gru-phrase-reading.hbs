@@ -1,0 +1,42 @@
+<ul>
+    {{#if showCorrect}}
+    {{#each baseAnswers as |baseAnswer index|}}
+    <li>
+        <div class="pharse-answer-container">
+            <div class="">
+                {{{baseAnswer.text}}}
+            </div>
+        </div>
+    </li>
+    {{/each}}
+    {{else}}
+    {{#each answers as |answer index|}}
+    <li>
+        <div class="exercise-seq {{if showCorrect 'in-visible'}}">
+            Excercise {{plus-one index}}
+        </div>
+        <div class="phrase-passage-text">
+            {{{get (array-index baseAnswers index) 'text'}}}
+        </div>
+        <div class="answer-container">
+            <div class="audio-player player-{{index}}">
+                <span class="audio-progress">
+                    <span class="progress-filling">
+                        <span class="progress-pointer"></span>
+                    </span>
+                </span>
+                {{#if (not isPaused)}}
+                  <span class="audio-play" {{action "onPlayAudio"}}>
+                      {{gru-icon name="play_arrow"}}
+                  </span>
+                {{else}}
+                  <span class="audio-play" {{action "onPauseAudio"}}>
+                      {{gru-icon name="pause"}}
+                  </span>
+                {{/if}}
+            </div>
+        </div>
+    </li>
+    {{/each}}
+    {{/if}}
+</ul>

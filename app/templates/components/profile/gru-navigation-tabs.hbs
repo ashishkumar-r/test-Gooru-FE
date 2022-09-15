@@ -1,0 +1,116 @@
+<div class="profile-navigation col-md-12">
+  <div class="category-menu col-md-12 col-sm-12 col-xs-12">
+    <ul role="list" class="nav nav-tabs category-options">
+      <li role="listitem" class="profile-menu-item about {{if (eq source 'study-player') 'hide'}}" onclick={{action 'selectItem' 'about'}} onkeypress={{action 'selectItem' 'about'}} tabindex={{tabindex}}>
+        <a role="link" href='{{view.href}}' aria-label="about" class="btn btn-category">
+          {{#if isMyProfile}}
+            <span>{{t "profile.gru-navigation.about-me"}}</span>
+          {{else}}
+            <span>{{t "profile.gru-navigation.about"}}</span>
+          {{/if}}
+        </a>
+      </li>
+      {{#if isProficiencyVisible}}
+        <li role="listitem" class="profile-menu-item proficiency" onclick={{action 'selectItem' 'proficiency'}} onkeypress={{action 'selectItem' 'proficiency'}} tabindex={{tabindex}}>
+          <a role="link" href='{{view.href}}' aria-label="proficiency" class="btn btn-category">
+            <span>{{t "profile.gru-navigation.proficiency"}}</span>
+          </a>
+        </li>
+      {{/if}}
+      {{#if isShowTabs}}
+      {{#if (not isStudent)}}
+        {{#link-to "profile.network.following" tagName="li" class='followings'}}
+          <a role="link" href='{{view.href}}' aria-label="following" class="btn btn-category" tabindex={{tabindex}} onclick={{ action 'selectItem' 'network.following'}} onkeypress={{ action 'selectItem' 'network.following'}} >
+            <span>{{t "common.following"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "profile.network.followers" tagName="li" class='followers'}}
+          <a role="link" href='{{view.href}}' aria-label="followers" class="btn btn-category" tabindex={{tabindex}} onclick={{ action 'selectItem' 'network.followers'}} onkeypress={{ action 'selectItem' 'network.followers'}}>
+            <span>{{t "common.followers"}}</span>
+          </a>
+        {{/link-to}}
+     {{/if}}
+        {{#if isMyProfile}}
+          <li  role="listitem" class="profile-menu-item portfolio" tabindex={{tabindex}} onclick={{action 'selectItem' 'portfolio'}} onkeypress={{action 'selectItem' 'portfolio'}}>
+            <a role="link" href='{{view.href}}' aria-label="portfolio" class="btn btn-category">
+              <span>Portfolio</span>
+            </a>
+          </li>
+          {{#link-to "profile.preference" tagName="li" class='preference'}}
+            <a role="link" href='{{view.href}}' aria-label="preference" tabindex={{tabindex}} class="btn btn-category select" onclick={{ action 'selectItem' 'preference'}} onkeypress={{ action 'selectItem' 'preference'}}>
+              <span>{{t "profile.gru-navigation.preference.preference"}}</span>
+            </a>
+          {{/link-to}}
+        {{/if}}
+      {{/if}}
+      {{#if (and isShowGuardianInvite isStudent)}}
+        {{#link-to "profile.guardian" tagName="li" class='guardian'}}
+          <a role="link" href='{{view.href}}' aria-label="guardian" tabindex={{tabindex}} class="btn btn-category select" onclick={{ action 'selectItem' 'guardian'}} onkeypress={{ action 'selectItem' 'guardian'}}>
+            <span>{{t "profile.gru-navigation.guardians"}}</span>
+          </a>
+        {{/link-to}}
+      {{/if}}
+      {{#link-to "profile.universal-learner" tagName="li" class='universal-learner'}}
+        <a role="link" href='{{view.href}}' aria-label="universal learner" class="btn btn-category select" tabindex={{tabindex}} onclick={{ action 'selectItem' 'universal-learner'}} onkeypress={{ action 'selectItem' 'universal-learner'}}>
+          <span>{{t "universal-learner-id"}}</span>
+        </a>
+      {{/link-to}}
+    </ul>
+  </div>
+  <div class="dropdown nav_dropdown">
+    <button class="dropbtn {{selectedMenu}}" type="button" data-toggle="dropdown" tabindex={{tabindex}}>{{t selectedMenuText}}
+      <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="list">
+      <li role="listitem" class="profile-menu-item about {{if (eq source 'study-player') 'hide'}}" tabindex={{tabindex}} onclick={{action 'selectItem' 'about'}} onkeypress={{action 'selectItem' 'about'}}>
+        <a role="link" href='{{view.href}}' aria-label="about" class="btn btn-category" tabindex={{tabindex}}>
+          {{#if isMyProfile}}
+            <span>{{t "profile.gru-navigation.about-me"}}</span>
+          {{else}}
+            <span>{{t "profile.gru-navigation.about"}}</span>
+          {{/if}}
+        </a>
+      </li>
+      {{#if isProficiencyVisible}}
+        <li role="listitem" class="profile-menu-item proficiency" {{action 'selectItem' 'proficiency'}} tabindex={{tabindex}}>
+          <a role="link" href='{{view.href}}' aria-label="proficiency" class="btn btn-category" tabindex={{tabindex}} onclick={{ action 'selectItem' 'proficiency'}} onkeypress={{ action 'selectItem' 'proficiency'}}>
+            <span>{{t "profile.gru-navigation.proficiency"}}</span>
+          </a>
+        </li>
+      {{/if}}
+      {{#if isShowTabs}}
+        {{#link-to "profile.network.following" tagName="li" class='followings' }}
+          <a role="link" href='{{view.href}}' aria-label="following" class="btn btn-category" tabindex={{tabindex}} onclick={{ action 'selectItem' 'network.following'}}  onkeypress={{ action 'selectItem' 'network.following'}}>
+            <span>{{t "profile.gru-navigation.following"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "profile.network.followers" tagName="li" class='followers'}}
+          <a role="link" aria-label="followers" href='{{view.href}}' class="btn btn-category"tabindex={{tabindex}} onclick={{ action 'selectItem' 'network.followers'}} onkeypress={{ action 'selectItem' 'network.followers'}}>
+            <span>{{t "profile.gru-navigation.followers"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "profile.portfolio" tagName="li" class='portfolio' }}
+          <a role="link" aria-label="portfolio" href='{{view.href}}' class="btn btn-category select" tabindex={{tabindex}} onclick={{ action 'selectItem' 'portfolio'}} onkeypress={{ action 'selectItem' 'portfolio'}}>
+            <span>Portfolio</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "profile.preference" tagName="li" class='preference'}}
+          <a role="link" aria-label="preference" href='{{view.href}}' class="btn btn-category select" tabindex={{tabindex}} onclick={{ action 'selectItem' 'preference'}} onkeypress={{ action 'selectItem' 'preference'}}>
+            <span>{{t "profile.gru-navigation.preference.preference"}}</span>
+          </a>
+        {{/link-to}}
+      {{/if}}
+      {{#if (and isShowGuardianInvite isStudent)}}
+        {{#link-to "profile.guardian" tagName="li" class='guardian'}}
+          <a role="link" aria-label="guardian" href='{{view.href}}' class="btn btn-category select" tabindex={{tabindex}} onclick={{ action 'selectItem' 'guardian'}} onkeypress={{ action 'selectItem' 'guardian'}}>
+            <span>{{t "profile.gru-navigation.guardians"}}</span>
+          </a>
+        {{/link-to}}
+      {{/if}}
+      {{#link-to "profile.universal-learner" tagName="li" class='universal-learner' }}
+        <a role="link" aria-label="universal learner" href='{{view.href}}' class="btn btn-category select" tabindex={{tabindex}} onclick={{ action 'selectItem' 'universal-learner'}} onkeypress={{ action 'selectItem' 'universal-learner'}}>
+          <span>{{t "universal-learner-id"}}</span>
+        </a>
+      {{/link-to}}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+{
+  "courses":
+  [
+    {
+      "id":"f0d98d5b-a1af-47d3-b7fe-2872834db150",
+      "title":"Course Unique Melany",
+      "units": [
+        {
+          "id":"first-unit-id",
+          "title":"Unidad 1",
+          "lessons": [
+            {
+              "id":"637e7599-96de-4459-83cb-c72bd47ae4b0",
+              "title":"Lección 1",
+              "collections":[
+                {
+                  "id":"3d6d1beb-5a8b-4dbb-9397-1a095e5abd85",
+                  "title":"new collection",
+                  "format":"collection",
+                  "subformat":null
+                },
+                {
+                  "id":"010108e5-936a-4ab6-8382-5e4cf397c4c9",
+                  "title":"juuuuuu",
+                  "format":"collection",
+                  "subformat":null
+                },
+                {
+                  "id":"3cef27ef-51a5-4c90-8ac4-86f6565f95a5",
+                  "title":"Link Out Collection for test",
+                  "format":"collection",
+                  "subformat":null
+                }
+              ]
+            },
+            {
+              "id":"34550968-9ed7-49c2-af3d-ed11a01b35d1",
+              "title":"Lesson 2",
+              "collections":[
+                {
+                  "id":"742e7da5-296c-4ed3-b6fb-436f57011779",
+                  "title":"collection",
+                  "format":"collection",
+                  "subformat":null
+                }
+              ]
+            }
+          ]
+        }]
+    }
+  ]
+}

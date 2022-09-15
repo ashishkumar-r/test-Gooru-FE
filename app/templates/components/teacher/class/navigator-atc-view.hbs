@@ -1,0 +1,135 @@
+<div class="class-info-container">
+  <div class="class-info">
+    {{#if isInitialSkyline}}
+      <div class="class-name">{{t 'progress-from-class-baseline'}}</div>
+    {{else}}
+      {{#if isOverAllCompetency}}
+        <div class="class-name">{{t 'atc.filter.class-grade-competency-gains'}}</div>
+        <div class="until-month">{{course.title}} {{t 'common.course'}}</div>
+      {{else}}
+        <div class="class-name">{{t 'atc-filter.overall-competency' startGrade=startGrade.name currentGrade=currentGrade.name}}</div>
+      {{/if}}
+    {{/if}}
+  </div>
+
+  {{#if isZoomed}}
+    <div class="reset-zoom" {{action "onResetZoom"}}>
+      {{t 'common.reset-zoom'}}
+    </div>
+  {{/if}}
+  <div class="total-competencies">
+    <div class="competency-details">
+      <div class="competency-count" {{action "onShowStudentLocater"}}>{{if isInitialSkyline totalInitialSkyline totalMasteredCompetencies}} {{t 'common.competencies'}}</div>
+      <div class="competency-label">{{t 'common.gained'}} {{t 'common.until'}} {{format-date firstDayOfMonth 'MMMM YYYY'}}</div>
+    </div>
+  </div>
+</div>
+{{#if studentData}}
+  <div class="tooltip-html-container" style="display: none;">
+    <div class="tooltip-container">
+      <div class="header-container">
+        <div class="dp-container grade-range-{{grade-range studentData.percentScore}}">
+          <img src="{{studentData.thumbnail}}" alt="student thumbnail" />
+        </div>
+        <div class="student-info">
+          <div class="student-name">{{concat studentData.lastName ', ' studentData.firstName}}</div>
+          <div class="grade-info">
+            <span class="title-container">{{t 'common.destination'}}:</span>
+            <span class="grade-level">{{studentData.grade}}</span>
+          </div>
+        </div>
+        <div class="close-tooltip {{unless isShowListCard 'hidden'}}" {{action "onCloseTooltip"}}>
+          {{gru-icon name='clear'}}
+        </div>
+      </div>
+      <div class="body-container">
+        <div class="performance-container info-container">
+          <div class="title-container">{{t 'teacher-landing.class.class-management-tab.performance'}}</div>
+          <div class="performance-bar-container">
+            <span class="performance-bar grade-range-{{grade-range studentData.percentScore}}" style="width: {{studentData.percentScore}}%;"></span>
+          </div>
+          <div class="performance-percentage" style="color: {{safe-html (grade-color studentData.percentScore)}};">{{studentData.percentScore}}%</div>
+        </div>
+
+        <div class="competencies-container info-container" {{action "onShowStudentPerformance" studentData 'proficiency'}}>
+          <div class="title-container">{{t 'common.competencies'}}</div>
+          <div class="competency-count-container">
+            <span class="mastered-count count-box" style="width: {{find-percentage studentData.totalCompetencies studentData.completedCompetencies}}%;"></span>
+            <span class="inprogress-count count-box" style="width: {{find-percentage studentData.totalCompetencies studentData.inprogressCompetencies}}%;"></span>
+            <span class="not-started-count count-box" style="width: {{find-percentage studentData.totalCompetencies studentData.notStartedCompetencies}}%;"></span>
+          </div>
+          <div class="competency-count">
+            <div class="competency-counts">
+              <span class="mastered">{{studentData.completedCompetencies}}</span>
+              /
+              <span class="inprogress">{{studentData.inprogressCompetencies}}</span>
+              /
+              <span class="not-started">{{studentData.notStartedCompetencies}}</span>
+            </div>
+            {{#if studentData.inferredCompetencies}}
+              <div class="inferred">({{studentData.inferredCompetencies}} {{t 'common.of'}} {{studentData.completedCompetencies}} {{t 'common.are'}} {{t 'common.inferred'}})</div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="progress-container">
+          {{studentData.percentCompletion}}% {{t 'teacher-landing.class.atc-view.progress-to-destination'}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+{{#if (and isMobileView isShowTooltip)}}
+  <!-- Elements to show active student profile -->
+  <div class="active-student-container hidden">
+    <div class="student-performance-container grade-range-{{grade-range studentData.percentScore}}">
+      <img class="student-thumbnail-container" src="{{studentData.thumbnail}}" alt="student thumbnail" />
+    </div>
+  </div>
+{{/if}}
+
+{{#if groupedStudentList.length}}
+  <div class="student-list-card-html-container" style="display: none;">
+    <div class="student-list-card">
+      <div class="list-card-header">
+        <span class="header-title">
+          Multiple students at this location
+        </span>
+        <span class="header-info">
+          It looks like multiple students at the same point.
+          Please select who you would like to view.
+        </span>
+        <span class="close-card" {{action "onCloseListCard"}}>
+          {{gru-icon name="clear"}}
+        </span>
+      </div>
+      <div class="list-card-body">
+        {{#each groupedStudentList as |student|}}
+          <div class="student-info" {{action "onSelectStudent" student}}>
+            <div class="student-thumbnail">
+              <img src="{{student.thumbnail}}" alt="student thumbnail" />
+            </div>
+            <div class="student-name">
+              {{student.fullName}}
+            </div>
+            <div class="mastered-info">
+              <span class="mastered-count">
+                {{student.completedCompetencies}} / {{student.totalCompetencies}}
+              </span>
+              <span class="mastered-label">
+                Competencies Mastered
+              </span>
+            </div>
+            <div class="student-perf grade-range-{{grade-range student.percentScore}}">
+              {{#if (eq student.percentScore null)}}
+                --
+              {{else}}
+                {{concat student.percentScore '%'}}
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+{{/if}}

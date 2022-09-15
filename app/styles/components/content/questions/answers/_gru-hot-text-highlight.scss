@@ -1,0 +1,19 @@
+.questions.answers.gru-hot-text-highlight {
+  margin-top: -15px;
+
+  .form-group {
+    .radio-inline {
+      margin-left: 20px;
+
+      &:first-of-type {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .answer-instructions {
+    padding-bottom: 15px;
+    border-bottom: 1px solid $gray-lighter;
+    margin-bottom: 10px;
+  }
+}

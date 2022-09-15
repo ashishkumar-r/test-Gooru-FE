@@ -1,0 +1,33 @@
+[
+  {
+    "description": "Gets units for any class or course",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.+)/member",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "any-class-students-200-response.json"
+    }
+  },
+  {
+    "description": "Delete class",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/(.+)$",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  }
+]

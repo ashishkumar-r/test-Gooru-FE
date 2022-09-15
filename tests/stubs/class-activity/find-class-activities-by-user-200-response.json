@@ -1,0 +1,46 @@
+{
+  "class_contents":[
+    {
+      "id":"collection-1",
+      "content_id":"all-resource-types-collection-id",
+      "content_type":"collection",
+      "ctx_course_id":"course-1",
+      "ctx_unit_id":"first-unit-id",
+      "ctx_lesson_id":"first-lesson-id",
+      "ctx_collection_id":null,
+      "activation_date":"2017-09-30",
+      "title":"Introduction to Integers Part 1",
+      "resource_count":5,
+      "question_count":1,
+      "oe_question_count":1
+    },
+    {
+      "id":"assessment-1",
+      "content_id":"all-question-types-assessment-id",
+      "content_type":"assessment",
+      "ctx_course_id":"course-1",
+      "ctx_unit_id":"first-unit-id",
+      "ctx_lesson_id":"first-lesson-id",
+      "ctx_collection_id":null,
+      "activation_date":"2017-09-30",
+      "title":"Introduction to Integers Part 2",
+      "resource_count":5,
+      "question_count":1,
+      "oe_question_count":1
+    },
+    {
+      "id":"assessment-2",
+      "content_id":"123456",
+      "content_type":"assessment",
+      "ctx_course_id":"course-1",
+      "ctx_unit_id":"first-unit-id",
+      "ctx_lesson_id":"first-lesson-id",
+      "ctx_collection_id":null,
+      "activation_date":null,
+      "title":"Introduction to Integers Part 3",
+      "resource_count":5,
+      "question_count":1,
+      "oe_question_count":1
+    }
+  ]
+}

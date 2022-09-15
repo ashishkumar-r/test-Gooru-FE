@@ -1,0 +1,222 @@
+{{#if (not isShowAddData) }}
+  <div class="backdrop" {{action 'onPullUpClose' true}}></div>
+{{/if}}
+<div class="oca-students-summary-report-container">
+  <div class="report-header">
+    <div class="header-title">
+      <i class="icon {{collection.collectionType}}"></i>
+      <span class="title ellipsis">{{safe-html collection.title}}</span>
+      <i class="icon {{collection.collectionType}}-icon"></i>
+    </div>
+    <div class="close" onclick={{action 'onPullUpClose' false}} onkeypress={{action 'onPullUpClose' false}} tabindex={{tabindex}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="performance-view">
+  {{#if (or (eq collection.collectionType 'assessment') (eq collection.collectionType 'assessment-external'))}}
+    <div class="performance-activity" style="background-color:{{if collection (grade-color collection.performance.score)}}">
+      <div class="performance {{if isShowCarousel '' 'not-show-carousal'}}">
+        {{#if isShowCarousel}}
+        <span class="left {{unless isToggleLeft 'disable'}}" onclick={{action 'toggle' true}} onkeypress={{action 'toggle' true}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_left"}}</span>
+        {{/if}}
+        <div class="score-container">
+          <span class="score">
+            {{#if (eq collection.performance.score null)}}
+              --
+            {{else}}
+              {{concat collection.performance.score '%'}}
+            {{/if}}
+          </span>
+          <span class="time-spent">{{if collectionAverageTimespent (format-time  collectionAverageTimespent) '--'}}</span>
+        </div>
+        {{#if isShowCarousel}}
+        <span class="right {{unless isToggleRight 'disable'}}" onclick={{action 'toggle' false}} onkeypress={{action 'toggle' false}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_right"}}</span>
+        {{/if}}
+      </div>
+      <div class="performance-img" style="height: {{collection.performance.score}}% ;background-color:{{if collection (grade-color collection.performance.score)}}">
+      </div>
+    </div>
+  {{else}}
+    <div class="collection-performance">
+      <div class="performance {{if isShowCarousel '' 'not-show-carousal'}}">
+        {{#if isShowCarousel}}
+        <span class="left {{unless isToggleLeft 'disable'}}" onclick={{action 'toggle' true}} onkeypress={{action 'toggle' true}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_left"}}</span>
+        {{/if}}
+        <span class="time-spent">{{if collectionAverageTimespent (format-time  collectionAverageTimespent) '--'}}</span>
+        {{#if isShowCarousel}}
+        <span class="right {{unless isToggleRight 'disable'}}" onclick={{action 'toggle' false}} onkeypress={{action 'toggle' false}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_right"}}</span>
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+  <div>
+  {{#if (gt studentsSelectedForSuggest.length 0)}}
+    <div class="suggest-bar on-scroll-fixed {{if (gt studentsSelectedForSuggest.length 0) 'active'}}">
+      <div class="suggest-bar-container {{if (gt taxonomyLength 0) '' 'taxonomy-not-tagged'}} {{if isDiagnosticCollection 'diagnostic-content'}}">
+        <div class="close-all-suggestion" onclick={{action 'onCloseSuggest'}} onkeypress={{action 'onCloseSuggest'}} tabindex={{tabindex}}>
+          {{gru-icon name="close" }}
+        </div>
+        <div class="no-of-student-selected">
+          <span>{{studentsSelectedForSuggest.length}} {{t 'common.student-selected'}}</span>
+        </div>
+        {{#if (gt taxonomyLength 0)}}
+          {{#if isEnableCaBaseline}}
+            <div class="suggestion-count-container" onclick={{action 'onOpenSuggestionPullup' 'collection' }} onkeypress={{action 'onOpenSuggestionPullup' 'collection'}} tabindex={{tabindex}}>
+              <span>{{t 'common.suggestion-collection'}}</span>
+              <div class="suggestion-explore">
+                {{gru-icon name="explore"}}
+              </div>
+            </div>
+            <div class="suggestion-count-container" onclick={{action 'onOpenSuggestionPullup' 'assessment'}} onkeypress={{action 'onOpenSuggestionPullup' 'assessment'}} tabindex={{tabindex}}>
+              <span>{{t 'common.signature-assessment'}}</span>
+              <div class="suggestion-explore">
+                {{gru-icon name="explore"}}
+              </div>
+            </div>
+          {{else}}
+            <div class="suggestion-count-container regular-workflow" onclick={{action 'onOpenSuggestionPullup' 'collection' }} onkeypress={{action 'onOpenSuggestionPullup' 'collection'}} tabindex={{tabindex}}>
+              <span>{{t 'common.suggestion'}}</span>
+              <div class="suggestion-explore">
+                {{gru-icon name="explore"}}
+              </div>
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="taxonomy-not-tagged-message">{{t 'ca.suggestions-not-available'}}</div>
+        {{/if}}
+      </div>
+    </div>
+  {{else}}
+    <div class="activity-info">
+      {{#if (and isEnableCaBaseline (eq context.contentType 'assessment'))}}
+        <div class="student-check" onclick={{action 'onoverallSelectSuggest'}} onkeypress={{action 'onoverallSelectSuggest'}}>
+          <label>
+            {{input type="checkbox" checked=isSelectOverallSuggestion  aria-checked="false"}}
+          </label>
+        </div>
+      {{else}}
+        <div class="circle-img"></div>
+      {{/if}}
+      {{#if (and isEnableCaBaseline (eq context.contentType "assessment"))}}
+          <div class="selected-type">
+            <div class="dropdown pull-left">
+              <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="button-text">
+                  {{#if selectedStudentBasedScore}}
+                    {{selectedStudentBasedScore.name}}
+                  {{else}}
+                    {{t 'profile.preference.choose-sec-language'}}
+                  {{/if}}
+                </span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                {{#each studentBasedScore as |score|}}
+                  <li> <a data-item={{score}} {{ action 'onStudentBasedScore' score}}>{{score.name}} </a> </li>
+                {{else}}
+                  <li> {{t 'profile.preference.no-data'}} </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+      {{else}}
+        <span class="students-count">{{students.length}} Students</span>
+      {{/if}}
+      <span class="student-performance-update {{if isInstructionalCoache 'disabled'}}" onclick={{action "onOpenPerformanceEntry"}} onkeypress={{action "onOpenPerformanceEntry"}} tabindex={{tabindex}}>update data</span>
+      {{#unless isSuggestedContent}}
+        <div class="conducted-on">
+          <span class="title">{{t 'teacher-landing.class.offline-class-report.conducted-on'}}</span>
+          <span class="date">{{format-date context.activation_date 'DD MMM YY'}}</span>
+        </div>
+      {{/unless}}
+
+      <div class="sort-score" onclick={{action 'sortByScore'}} onkeypress={{action 'sortByScore'}}>
+        <span>{{t 'sort-by-score'}}</span>
+          {{gru-icon name=(if sortByScoreEnabled 'keyboard_arrow_up' 'keyboard_arrow_down')}}
+        </div>
+    </div>
+  {{/if}}
+</div>
+  {{#if isLoading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    <div class="students-report-container">
+      {{#each students as |student|}}
+        <div class="student-row-container {{unless student.performance 'not-started'}}" tabindex={{tabindex}}>
+          <div class="student-info {{if (and isEnableCaBaseline (eq context.contentType 'assessment')) 'student-info-gpf'}}">
+            {{#if (and isEnableCaBaseline (eq context.contentType 'assessment'))}}
+                <label class={{if isInstructionalCoache 'disabled'}}>
+                  {{input type="checkbox" checked=student.isChecked click=(action 'onToggleButton' student) key-press=(action 'onToggleButton' student) aria-checked="false"}}
+                </label>
+                <div class='student-icon-col hidden-xs'>
+                  <div class='student-icon' style="background-image: url({{student.avatarUrl}})"></div>
+                </div>
+                <div class="student-name">
+                  <span>{{student.lastName}}, {{student.firstName}}</span>
+                </div>
+            {{else}}
+              <div class="user-profile-img">
+                {{#if student.selectedForSuggestion}}
+                  <div class="selected-user-for-suggestion">
+                    {{gru-icon name="done_all"}}
+                    <div class="de-select-user" onclick={{action 'onDeSelectStudentForSuggestion' student bubbles=false}} onkeypress={{action 'onDeSelectStudentForSuggestion' student bubbles=false}} tabindex={{tabindex}}>
+                      {{gru-icon name="close"}}
+                    </div>
+                  </div>
+                {{else}}
+                  <img src="{{student.avatarUrl}}" alt="student thumbnail" class="{{if student.selectedForSuggestion 'selected'}}" onclick={{action 'onSelectStudentForSuggestion' student bubbles=false}} onkeypress={{action 'onSelectStudentForSuggestion' student bubbles=false}} tabindex={{tabindex}}/>
+                {{/if}}
+              </div>
+              <span class="username" onclick={{action 'onSelectStudent' student}} onkeypress={{action 'onSelectStudent' student}}>{{student.name}} {{if (not student.isShowLearnerData) '*'}}</span>
+            {{/if}}
+          </div>
+          <div onclick={{action 'onSelectStudent' student}} onkeypress={{action 'onSelectStudent' student}}>
+              {{#if student.performance}}
+                {{#if (eq student.performance.type 'assessment')}}
+                  {{#if (and student.performance.isGraded isDefaultGrade (eq student.performance.score null))}}
+                    <div class="grading-icon" data-toggle="tooltip" title="{{t 'teacher-not-graded'}}"></div>
+                  {{else}}
+                    <div class="score" style="background-color:{{if  student.performance (grade-color student.performance.score)}}">
+                      {{#if (eq student.performance.score null)}}
+                        --
+                      {{else}}
+                        {{concat student.performance.score '%'}}
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                {{else}}
+                  <div class="timespent">{{if student.performance.timeSpent (format-time  student.performance.timeSpent) '--'}}</div>
+                {{/if}}
+              {{else}}
+                <div class="not-started">{{t 'teacher-landing.class.offline-class-report.not-started'}}</div>
+              {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+  </div>
+</div>
+{{#if isShowStudentActivityReport}}
+  {{teacher/offline-class/oca-student-activity-report-pull-up context=context students=students collection=collection student=selectedStudent classId=classId showPullUp=isShowStudentActivityReport onClosePullUp="pullUpClose" tabindex=tabindex isDefaultShowFW = isDefaultShowFW  class=class}}
+{{/if}}
+
+{{#if showSuggestionPullup}}
+  {{teacher/suggestion-pull-up
+    showPullUp=showSuggestionPullup
+    students=studentsSelectedForSuggest
+    onCloseSuggest="onCloseSuggest"
+    context=contextParams
+    collection=collection
+    defaultSuggestContentType=defaultSuggestContentType
+    suggestionOrigin=origin
+    tabindex=tabindex
+    isDiagnosticContent = false
+    isEnableCaBaseline = isEnableCaBaseline
+    newlyAddedActivity = newlyAddedActivity
+    isHideContentType = isHideContentType
+    classFramework = classFramework
+    isDefaultShowFW = isDefaultShowFW
+    class= class
+  }}
+{{/if}}

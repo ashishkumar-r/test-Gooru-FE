@@ -1,0 +1,30 @@
+.gru-standard-dount-chart {
+  text-align: center;
+
+  svg {
+    path {
+      &.not-started {
+        fill: $gray-no-started;
+      }
+      &.progress {
+        fill: $blue-in-progress;
+      }
+      &.mastery {
+        fill: $blue-mastery;
+      }
+    }
+    text {
+      font-weight: bold;
+
+      &.progress {
+        fill: $dark-200;
+      }
+      &.completed {
+        fill: $blue-in-progress;
+      }
+      &.mastery {
+        fill: $blue-mastery;
+      }
+    }
+  }
+}

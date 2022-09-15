@@ -1,0 +1,269 @@
+.chrono-header {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 70px;
+
+  .timeline-container {
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+
+    .start-date {
+      flex-direction: row-reverse;
+    }
+
+    .end-date,
+    .start-date {
+      font-size: 12px;
+      font-weight: bold;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      color: #211238;
+      padding: 6px;
+
+      .loader {
+        width: 20px;
+        height: 20px;
+
+        i {
+          background-image: url("gooru/images/loader.svg");
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 20px 20px;
+        }
+      }
+    }
+
+    .student-activities {
+      display: grid;
+      grid-template-columns: 1fr max-content 45%;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 5px;
+        opacity: 0.5;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 8px;
+      }
+    }
+
+    .left-timeline-activities {
+      svg {
+        float: right;
+      }
+    }
+
+    .active-timeline-resource,
+    .left-timeline-activities,
+    .right-timeline-activities {
+      height: 70px;
+
+      svg {
+        height: 70px;
+
+        .suggestion-curve,
+        .suggestion-line {
+          stroke-width: 2;
+          fill: none;
+          stroke: #f9944b;
+        }
+
+        .curve,
+        .line {
+          stroke-width: 2;
+          stroke: #0094dc;
+          fill: none;
+        }
+      }
+
+      %bg-container {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 11px 12px;
+        background-position: center;
+        cursor: pointer;
+      }
+
+      .suggestion-activity {
+        r: 10;
+        fill: #f9944b;
+      }
+
+      .activity {
+        r: 10;
+        fill: #0094dc;
+      }
+
+      .assessment-img {
+        background-image: url("gooru/images/assessment-white.svg");
+        @extend %bg-container;
+      }
+
+      .collection-img {
+        background-image: url("gooru/images/navigation_collection_selected.svg");
+        @extend %bg-container;
+      }
+    }
+
+    .active-timeline-resource {
+      width: 100px;
+      height: 70px;
+      margin-left: -2px;
+      margin-right: -4px;
+
+      svg {
+        width: 100px;
+        height: 100%;
+      }
+
+      .active {
+        stroke: #0094dc;
+        fill: $white;
+        r: 30;
+        cy: 35;
+        cx: 50;
+
+        &.suggested {
+          stroke: #f9944b;
+        }
+      }
+
+      foreignObject {
+        x: 32;
+        y: 21;
+        width: 36.7px;
+        height: 27.5px;
+      }
+
+      .active-assessment {
+        background-image: url("gooru/images/assessment-white.svg");
+        display: block;
+        width: 36.7px;
+        height: 27.5px;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+      }
+
+      .active-collection {
+        background-image: url("gooru/images/navigation_collection_selected.svg");
+        display: block;
+        width: 36.7px;
+        height: 27.5px;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+      }
+    }
+
+    .timeline-actvities {
+      height: 70px;
+      width: 100%;
+      display: grid;
+      align-items: center;
+      overflow-x: auto;
+      // .activities {
+      //   height: 100%;
+      //   width: 100%;
+      // }
+      .active {
+        stroke: #359649;
+        fill: $white;
+        r: 30;
+      }
+
+      .suggestion-activity {
+        r: 11;
+        fill: #f9944b;
+      }
+
+      .activity {
+        r: 11;
+        fill: #0094dc;
+      }
+
+      .suggestion-curve,
+      .suggestion-line {
+        stroke-width: 2;
+        fill: none;
+        stroke: #f9944b;
+      }
+
+      .curve,
+      .line {
+        stroke-width: 2;
+        stroke: #0094dc;
+        fill: none;
+      }
+
+      .active-assessment {
+        background-image: url("gooru/images/assessment-white.svg");
+        display: block;
+        width: 36.7px;
+        background-color: green;
+        height: 27.5px;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+      }
+
+      .active-collection {
+        background-image: url("gooru/images/navigation_collection_selected.svg");
+        display: block;
+        width: 36.7px;
+        background-color: green;
+        height: 27.5px;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+      }
+
+      %bg-container {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 12px 12px;
+        background-position: center;
+        cursor: pointer;
+      }
+
+      .assessment-img {
+        background-image: url("gooru/images/assessment-white.svg");
+        @extend %bg-container;
+      }
+
+      .collection-img {
+        background-image: url("gooru/images/navigation_collection_selected.svg");
+        @extend %bg-container;
+      }
+    }
+  }
+
+  .performance {
+    display: flex;
+    cursor: pointer;
+    height: 70px;
+
+    .score {
+      height: 30px;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: normal;
+      margin: auto;
+      color: $white;
+    }
+  }
+}

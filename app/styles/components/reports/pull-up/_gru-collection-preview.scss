@@ -1,0 +1,456 @@
+.preview.gru-collection-preview {
+  position: fixed;
+  top: 100%;
+  z-index: 1031;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+  background-color: $white;
+  height: 90%;
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .preview-container {
+    height: 100%;
+    background-color: $white;
+    position: relative;
+
+    .header-container {
+      height: 48px;
+      background-color: $header-bg-color;
+      display: flex;
+      padding-left: 16px;
+      position: relative;
+
+      .close-pullup {
+        width: 32px;
+        height: 32px;
+        background-color: $close-pull-up-bg;
+        border-radius: 50%;
+        text-align: center;
+        cursor: pointer;
+        margin: 8px 0;
+
+        i {
+          color: $white;
+          line-height: 32px;
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      .preview-title {
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 48px;
+        color: $white;
+        text-transform: capitalize;
+        padding: 0 16px;
+        width: 100%;
+      }
+
+      .assessment-code {
+        display: flex;
+        align-items: center;
+        color: $white;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .content-player,
+      .content-remix,
+      .print-preview {
+        width: 40px;
+        cursor: pointer;
+        margin: 0 8px;
+
+        i {
+          color: $white;
+          line-height: 48px;
+        }
+      }
+    }
+
+    .body-container {
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      .content-info-container {
+        box-shadow: 0 0 4px 0 $container-box-shadow;
+
+        .title-info-container {
+          display: grid;
+          grid-template-columns: 80px 24px 1fr 50px;
+          align-items: center;
+          column-gap: 16px;
+
+          &.diagnostic-report-title {
+            .content-title {
+              color: $orange-400;
+            }
+
+            .content-icon {
+              &.assessment,
+              &.assessment-external {
+                background-image: url("gooru/images/assessment-orange.svg");
+              }
+            }
+          }
+
+          .thumbnail-container {
+            width: 80px;
+            height: 48px;
+            background-size: 80px 48px;
+            display: block;
+            background-repeat: no-repeat;
+          }
+
+          .content-title {
+            font-size: 16px;
+            color: $title-color;
+          }
+
+          .content-icon {
+            background-size: 24px 18px;
+            width: 24px;
+            height: 18px;
+            background-repeat: no-repeat;
+            display: block;
+
+            &.assessment-external-icon,
+            &.collection-external-icon {
+              background-image: url("gooru/share.png");
+            }
+
+            &.assessment,
+            &.assessment-external {
+              background-image: url("gooru/images/add_assessment.svg");
+            }
+
+            &.collection,
+            &.collection-external {
+              background-image: url("gooru/images/add_collection.svg");
+            }
+          }
+        }
+      }
+
+      .content-details-container {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        height: 50px;
+        align-items: center;
+
+        &.single-container {
+          grid-template-columns: 1fr;
+        }
+
+        .taxonomy-container {
+          height: 50px;
+          display: grid;
+          align-items: center;
+          padding-left: 15px;
+
+          .gru-taxonomy-tag-list {
+            .gru-taxonomy-tag {
+              min-width: 90px;
+              max-width: 100px;
+              height: 23px;
+              border-radius: 12px;
+              background-color: $dark-gray;
+
+              .standard-tag {
+                text-align: center;
+                padding: 0;
+
+                .tag-label {
+                  font-size: 14px;
+                  font-weight: bold;
+                  color: $white;
+                  line-height: 21px;
+                }
+
+                .tag-caption {
+                  display: none;
+                }
+              }
+            }
+
+            .non-visible-tags {
+              width: 35px;
+              height: 23px;
+              border-radius: 12px;
+              background-color: $dark-gray;
+              color: $white;
+              padding: 0;
+
+              span {
+                font-weight: bold;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+
+        .activity-performance-container {
+          display: grid;
+          grid-template-columns: 1fr 70px;
+          justify-items: right;
+          column-gap: 15px;
+          height: inherit;
+
+          &.collection-performance {
+            grid-template-columns: 1fr;
+
+            .timespent-container {
+              padding-right: 15px;
+            }
+          }
+
+          .timespent-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+            column-gap: 5px;
+
+            .timespent-icon {
+              i.query_builder {
+                height: 50px;
+                line-height: 50px;
+                font-size: 30px;
+              }
+            }
+
+            .timespent-data {
+              .timespent-label {
+                font-size: 13px;
+              }
+
+              .timespent-value {
+                font-weight: bold;
+                font-size: 14px;
+              }
+            }
+          }
+
+          .grading-icon {
+            background-image: url("../assets/gooru/images/grade-pending.png");
+            width: 22px;
+            height: 22px;
+            background-size: 22px;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: block;
+            align-self: center;
+            margin-right: 20px;
+            cursor: pointer;
+          }
+
+          .activity-score-container {
+            color: $white;
+            font-size: 17px;
+            font-weight: bold;
+            width: 70px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+          }
+
+          &.download-option {
+            grid-template-columns: 1fr 120px 100px;
+
+            .download {
+              display: grid;
+              grid-template-rows: 22px;
+              line-height: 1.5;
+              text-align: center;
+              margin-top: 6px;
+
+              .download-icon {
+                i {
+                  color: $dark-600;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .activity-attempts-container {
+        box-shadow: 0 2px 4px 0 $container-box-shadow;
+        padding: 0 15px;
+
+        .common-container {
+          display: grid;
+          grid-template-columns: 50% 50%;
+          font-size: 14px;
+
+          .toggle-current-attempts,
+          .toggle-other-attempts {
+            cursor: pointer;
+          }
+
+          .current-attempts,
+          .other-attempts {
+            display: none;
+            max-height: 140px;
+            overflow-y: auto;
+
+            .attempt-info {
+              color: rgb(62, 94, 103);
+              font-size: 14px;
+              cursor: pointer;
+
+              &.active-attempt {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        .latest-attempt {
+          color: rgb(62, 94, 103);
+          font-size: 14px;
+          cursor: pointer;
+        }
+
+        .other-attempt {
+          color: rgb(62, 94, 103);
+          font-size: 14px;
+        }
+
+        .toggle-all-attempts {
+          cursor: pointer;
+        }
+
+        .attempt-label {
+          font-weight: bold;
+        }
+
+        .all-attempts {
+          display: none;
+          max-height: 140px;
+          overflow-y: auto;
+
+          .attempt-info {
+            color: rgb(62, 94, 103);
+            font-size: 14px;
+            cursor: pointer;
+
+            &.active-attempt {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      .content-items-container {
+        height: calc(100% - 140px);
+        overflow-y: auto;
+        padding-bottom: 48px;
+
+        &::-webkit-scrollbar {
+          height: 6px;
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $gray-light;
+          border: 1px solid $gray-light;
+          border-radius: 5px;
+        }
+
+        .external-content {
+          padding: 24px;
+
+          .content-description {
+            color: $gray-dove;
+            font-size: 12px;
+            line-height: 1.5;
+          }
+
+          .content-url {
+            .url-content,
+            .url-label {
+              font-size: 15px;
+              color: $placeholder-color;
+            }
+
+            .url-label {
+              font-weight: bold;
+            }
+
+            .url-content {
+              font-style: italic;
+            }
+          }
+        }
+      }
+
+      .loading-spinner {
+        position: absolute;
+        margin: auto;
+        top: 50px;
+        left: 48%;
+      }
+    }
+
+    .footer-container {
+      height: 48px;
+      width: 100%;
+      box-shadow: 0 0 4px 0 $container-box-shadow;
+      background-color: $bg-blue-ce0-blue-dark;
+      color: $white;
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 2;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 48px;
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+  @media screen and (max-width: $screen-sm) {
+    width: 100%;
+
+    .preview-container {
+      .body-container {
+        .content-items-container {
+          width: 100vw;
+          overflow-x: hidden;
+          height: calc(100% - 200px);
+        }
+      }
+    }
+  }
+
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  @media screen and (max-width: 480px) {
+    height: 82%;
+
+    .preview-container {
+      top: 10%;
+    }
+  }
+}

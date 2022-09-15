@@ -1,0 +1,83 @@
+<div class="external-player-container">
+  <div class="header-container">
+    <div class="action pull-left" {{action 'onClosePlayer'}} data-toggle="tooltip" data-placement="bottom" title="{{t 'common.close'}}">
+      <div class="close-icon">
+        {{gru-icon name='close'}}
+      </div>
+    </div>
+    <div class="pull-left content-title  {{if isShowActivityFeedback 'capture-feedback'}}">
+      <div class="title-info">
+        <i class="icon pull-left {{resourceType}}"></i>
+        <p class="title pull-left">{{externalResource.title}}</p>
+      </div>
+    </div>
+    <div class="pull-left remix" {{action 'remixCollection' collection}}>
+      <div class="nav-icon-container">
+        {{gru-icon name='ic_content_copy' class="pull-left"}}
+        <span class="pull-left">{{t 'common.remix'}}</span>
+      </div>
+    </div>
+  </div>
+  {{#if isEnableFullScreen}}
+    <div class="toggle-screen" {{action 'onToggleScreen'}}>
+      {{#if isFullScreen}}
+        {{gru-icon name="fullscreen_exit"}}
+      {{else}}
+        {{gru-icon name="fullscreen"}}
+      {{/if}}
+    </div>
+  {{/if}}
+  <div class="player-container">
+    {{#if (and isContentPlayed (not-eq externalResource.subFormat 'scorm'))}}
+      {{#if (eq toolDetails.toolType "LTI")}}
+        <div class="iframe-contaier">
+          {{player/gru-launch
+         toolDetails=toolDetails
+         mapLocation=mapLocation
+         resource=externalResource
+         }}
+        </div>
+      {{else}}
+        <div class="iframe-contaier">
+          <iframe id="external-player" src="{{externalResource.url}}"></iframe>
+        </div>
+      {{/if}}
+    {{else}}
+      {{#if (eq externalResource.subFormat 'scorm')}}
+        {{player/scorm-player
+           collection=externalResource
+           mapLocation=mapLocation
+           source=source
+           isIframeMode=isIframeMode
+           onClosePlayer = "onClosePlayer"
+           onStartContentPlayed = "onStartContentPlayed"
+           toolDetails = toolDetails
+           onVisibilityChange = "onVisibilityChange"
+           onStopPlayContentEvent = "onStopPlayContentEvent"
+         }}
+      {{else}}
+        {{#if (eq resourceType 'collection-external')}}
+          {{player/gru-external-collection-page
+          collection=externalResource
+          mapLocation=mapLocation
+          source=source
+          isIframeMode=isIframeMode
+          onClosePlayer = "onClosePlayer"
+          onStartContentPlayed = "onStartContentPlayed"
+          toolDetails = toolDetails
+        }}
+        {{else}}
+          {{player/gru-external-assessment-page
+          assessment=externalResource
+          mapLocation=mapLocation
+          source=source
+          isIframeMode=isIframeMode
+          onClosePlayer = "onClosePlayer"
+          onStartContentPlayed = "onStartContentPlayed"
+          toolDetails = toolDetails
+        }}
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

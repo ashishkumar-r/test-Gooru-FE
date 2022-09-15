@@ -1,0 +1,97 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="course-report-container">
+  <div class="report-header">
+    <div class="report-breadcrumb">
+      <div class="course-title">
+        <div>
+          <div>{{t 'common.course'}} :</div>
+          <div class="course-title-value ellipsis">{{course.title}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="report-close-pullup" onclick={{action 'onPullUpClose'}} onkeypress={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-carousel">
+      <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+          <div data-item-index="{{index}}" class="item active">
+            <div class="course-background-cover" />
+          </div>
+        </div>
+      </div>
+      <div class="report-carousel-content-container">
+        <div class="report-carousel-content">
+          <div class="performance-display-container">
+            <div class="course-performance-average {{concat 'grade-range-' (grade-range class.performanceSummary.score)}}">
+              <div class="center-align custom-text">
+                {{#if (gte class.performanceSummary.score 0)}}
+                  {{class.performanceSummary.score}}%
+                  <div class="font-small-avg-score">{{t 'common.averageScore'}}</div>
+                {{else}}
+                  --
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          <div class="course-report-chart">
+            {{charts/report-bar-chart useTimeSpentScore=false studentChartReportData=studentReportData onClickChart="onClickChart"}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-performance-tabular">
+      <div class="report-header-container">
+        <div class="filter-btns">
+          <div class="performance-icon">
+            {{gru-icon name="done_all"}}
+            <span>{{t 'gru-course-play.performance'}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-view-container">
+        {{reports/pull-up/course-report-listview
+          sortByFirstnameEnabled=sortByFirstnameEnabled
+          sortByLastnameEnabled=sortByLastnameEnabled
+          sortByScoreEnabled=sortByScoreEnabled
+          contents=(if isShowMilestoneReport milestones units)
+          studentReportData=studentReportData
+          course=course
+          openUnitReport="openUnitReport"
+          openStudentCourseReport="openStudentCourseReport"
+          gradeSubject = gradeSubject
+          isShowMilestoneReport = isShowMilestoneReport
+          tabindex=tabindex
+        }}
+      </div>
+    </div>
+  </div>
+</div>
+{{#if showStudentCourseReport}}
+  {{reports/pull-up/student-course-report context=studentCourseReportContext onClosePullUp="onClosePullUp" showPullUp=showStudentCourseReport tabindex=tabindex}}
+{{/if}}
+
+{{#if isShowStudentMilestoneCourseReport}}
+  {{#reports/pull-up/milestone/milestone-report
+    showPullUp = isShowStudentMilestoneCourseReport
+    title = course.title
+    tabindex=tabindex
+  }}
+    {{reports/pull-up/milestone/student-milestone-performance-report
+      class = studentClassData
+      userId = selectedStudentId
+      tabindex=tabindex
+      classFramework = classFramework
+      isDefaultShowFW = isDefaultShowFW 
+    }}
+  {{/reports/pull-up/milestone/milestone-report}}
+{{/if}}
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

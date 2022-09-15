@@ -1,0 +1,160 @@
+.new-cards.gru-offline-activity-card {
+  margin: 15px 10px;
+  .offline-activity-card-container {
+    width: 250px;
+    background-color: $white;
+    box-shadow: 0 0 1px 0 $navbar-box-shadow;
+    .header-container {
+      .oa-thumbnail-container {
+        position: relative;
+        width: 250px;
+        height: 168px;
+        background-size: 250px 168px;
+        background-color: $bg-table-bg-black;
+        &:after {
+          display: block;
+          position: absolute;
+          z-index: 9;
+          background-image: linear-gradient(
+            to bottom,
+            $bg-left-box-shadow 0,
+            $gray-base 100%
+          );
+          margin-top: 52px;
+          height: 60%;
+          width: 100%;
+          bottom: 0;
+          content: "";
+        }
+
+        .oa-title-container {
+          position: absolute;
+          bottom: 0;
+          color: $white;
+          z-index: 10;
+          text-transform: capitalize;
+          font-weight: 700;
+          padding: 8px;
+          @include ellipsis(
+            $font-size: 13px,
+            $line-height: 1.5,
+            $lines-to-show: 2
+          );
+          max-height: 60px;
+        }
+      }
+      .oa-info-container {
+        height: 35px;
+        padding: 0 8px;
+        border-bottom: 1px solid $lite-gray-medium;
+        display: grid;
+        grid-template-columns: auto auto;
+        .oa-task-count {
+          display: grid;
+          grid-template-columns: 20px auto;
+          justify-content: left;
+          align-items: center;
+          column-gap: 5px;
+          .icon {
+            background-image: url("./gooru/images/text-resource-dark.svg");
+            width: 20px;
+            height: 20px;
+            background-size: 20px;
+            background-repeat: no-repeat;
+          }
+        }
+        .oa-visibility {
+          display: grid;
+          align-items: center;
+          justify-self: right;
+          &.not-visible {
+            opacity: $opacity-light;
+          }
+        }
+      }
+    }
+    .body-container {
+      padding: 0 8px;
+      display: grid;
+      row-gap: 5px;
+      border-bottom: 1px solid $lite-gray-medium;
+      .oa-owner-info {
+        display: grid;
+        grid-template-columns: auto 25px auto;
+        column-gap: 5px;
+        justify-content: left;
+        z-index: 1;
+        .owner-label {
+          font-style: italic;
+        }
+        .owner-thumbnail {
+          width: 25px;
+          height: 25px;
+          background-size: 25px;
+          border-radius: 50%;
+          border: none;
+        }
+        .owner-name {
+          color: $blue-400;
+        }
+      }
+      .oa-description {
+        height: 75px;
+        @include ellipsis(
+          $font-size: 13px,
+          $line-height: 1.15,
+          $lines-to-show: 4
+        );
+      }
+      .oa-standards {
+        height: 38px;
+      }
+    }
+    .footer-container {
+      height: 44px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 44px 44px;
+      justify-content: right;
+      align-items: center;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+
+      .checked-img {
+        background-image: url("../assets/gooru/images/icon-verified-green.svg");
+        width: 16px;
+        height: 16px;
+        display: block;
+        background-size: cover;
+        margin: 15px;
+        cursor: pointer;
+        position: absolute;
+      }
+
+      .add-icon {
+        margin: 11px;
+        cursor: pointer;
+        position: absolute;
+      }
+
+      .oa-edit,
+      .oa-add,
+      .oa-preview {
+        cursor: pointer;
+        height: 44px;
+        width: inherit;
+        text-align: center;
+        border-left: 1px solid $lite-gray-medium;
+        i {
+          line-height: 44px;
+        }
+      }
+      .oa-preview {
+        position: absolute;
+        left: 0;
+        border-right: 1px solid $lite-gray-medium;
+        width: 44px;
+      }
+    }
+  }
+}

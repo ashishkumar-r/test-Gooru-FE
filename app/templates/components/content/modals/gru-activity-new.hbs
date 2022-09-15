@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{t "teacher-landing.class.class-activities-tab.create-activity"}}</h4>
+</div>
+<div class="modal-body">
+    <form {{action "create" on="submit"}}>
+        <label>
+            <span class="required">{{t 'common.activity-title'}}</span>
+            {{validation/gru-input model=activity valuePath='title' maxLength=50 didValidate=didValidate}}
+        </label>
+        <div class="actions">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+                <span aria-hidden="true">{{t 'common.cancel'}}</span>
+            </button>
+            {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+                <button type="submit" class="btn btn-primary add">{{t 'common.create'}}</button>
+            {{/gru-spinner-button}}
+        </div>
+    </form>
+</div>

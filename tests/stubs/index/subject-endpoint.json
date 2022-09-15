@@ -1,0 +1,17 @@
+[
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/library$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "subject-ok-response.json"
+    }
+  }
+]
+

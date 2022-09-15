@@ -1,0 +1,29 @@
+<div class="question-card {{if showPerformance 'show-performance' 'show-correct-answer'}}">
+  <div class="question-container">
+    <div class="question">
+      <span class="question-number">{{result.question.order}}</span>
+      <span class="question-text">
+        {{gru-math-text text=(if result.question.isFIB result.question.fibText result.question.text)}}
+        {{#if result.question.hasMedia}}
+          <img class="img-responsive" src="{{result.question.mediaUrl}}" alt="question media"/>
+        {{/if}}
+      </span>
+    </div>
+    <div class="answer">
+      <div class="your-answer">
+          <span>{{t "common.answer"}}</span>
+        <span>
+          {{#if result.answered}}
+            {{{component (question-config result.question.questionType 'component.answer') question=result.question userAnswer=result.userAnswer}}}
+          {{/if}}
+        </span>
+      </div>
+        <div class="correct-answer">
+          <span>{{t "common.correct-answer"}}</span>
+          <span>
+            {{{component (question-config result.question.questionType 'component.answer') question=result.question showCorrect=true}}}
+          </span>
+        </div>
+    </div>
+  </div>
+</div>

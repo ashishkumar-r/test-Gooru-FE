@@ -1,0 +1,30 @@
+.competency-content-report {
+  overflow: hidden;
+
+  .no-framework-message {
+    font-style: italic;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .competency-performance {
+    .competency-name {
+      font-size: 15px;
+      color: $dark-500;
+      padding: 20px 15px;
+      margin: auto;
+      border-bottom: dashed 1px $nobel-gray;
+      border-bottom-width: thin;
+    }
+
+    .toggle-view {
+      font-size: 15px;
+      font-weight: bold;
+      color: #4496fa;
+      margin: 10px 50px;
+      cursor: pointer;
+      width: max-content;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="question-report-container">
+  <div class="report-header">
+    <div class="report-breadcrumb hidden-xs">
+      <div class="unit-title">
+        <i class="unit-icon"></i>
+        <p>{{t 'common.unit'}} {{unit.sequence}} : {{unit.title}}</p>
+      </div>
+      <div class="lesson-title">
+        {{gru-icon name="keyboard_arrow_right"}}
+        <i class="lesson-icon"></i>
+        <p>{{t 'common.lesson'}} {{lesson.sequence}} : {{lesson.title}}</p>
+      </div>
+      <div class="collection-title">
+        {{gru-icon name="keyboard_arrow_right"}}
+        <i class="collection-icon {{collection.format}}"></i>
+        <p>{{collection.title}}</p>
+      </div>
+    </div>
+    <div class="report-title hidden visible-xs">
+      <div class="title">
+        <p>{{t 'common.unit'}} {{unit.sequence}} / {{t 'common.lesson'}} {{lesson.sequence}} :</p>
+        <i class="collection-icon {{collection.format}}"></i>
+        <p class="ellipsis">{{collection.title}}</p>
+      </div>
+    </div>
+    <div class="report-close-pullup" onclick={{action 'reportClose' }} onkeypress={{action 'reportClose' }}
+      tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-chart-container">
+      {{#each userResourcesResults as |data i|}}
+      <div class="barchart-report-content">
+        <div class="barchart-question-title">
+          <span> {{t 'common.question'}} {{plus-one i}} : {{data.questionTitle}}</span>
+        </div>
+        {{#if isUserChart}}
+        {{reports/pull-up/likert-chart-report context=userContext questionData = data tabindex=tabindex}}
+        {{/if}}
+      </div>
+      {{/each}}
+      {{#if isEmptyQuestionArray}}
+      <div class="questions-not-available">{{t 'student-not-answered-question-type'}}</div>
+      {{/if}}
+    </div>
+  </div>
+</div>

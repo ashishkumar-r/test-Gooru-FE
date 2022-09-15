@@ -1,0 +1,49 @@
+.gru-slider {
+  #step-progress-bar {
+    position: relative;
+    width: 500px;
+    .progress {
+      display: flex;
+      height: 12px;
+      width: 100%;
+      border: 1px solid $frq-text;
+      background-color: $frq-text;
+      border-radius: 5px;
+      position: relative;
+      z-index: 0;
+      .fill-area {
+        background-color: $frq-text;
+        background-image: linear-gradient(to right, $blue-100, $blue-400);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        display: flex;
+        &.slider-range-25 {
+          background-image: linear-gradient(to right, $blue-100, $blue-100);
+        }
+        &.slider-range-50 {
+          background-image: linear-gradient(to right, $blue-100, $blue-200);
+        }
+        &.slider-range-75 {
+          background-image: linear-gradient(to right, $blue-100, $blue-300);
+        }
+      }
+      .connector-container {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .connector {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: $white;
+      }
+    }
+  }
+}

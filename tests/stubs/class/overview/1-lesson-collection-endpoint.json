@@ -1,0 +1,62 @@
+[
+  {
+    "description": "Gets the resources for the first lesson in the first unit per first-unit-lessons-200-response.json",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/first-unit-id/lesson/fbd76aed-1b8d-4c2c-abc6-c7603eef567q",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "first-unit-first-lesson-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the resources for the first lesson in the second unit per second-unit-lessons-200-response.json",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/second-unit-id/lesson/fbd76aed-1b8d-4c2c-a9c6-c7603eef843f",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "second-unit-first-lesson-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the resources for the second lesson in the second unit per second-unit-lessons-200-response.json",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/second-unit-id/lesson/aaac5d15-8434-43ff-8f8b-78cf0b6f846y",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "second-unit-second-lesson-200-response.json"
+    }
+  },
+  {
+    "description": "Gets the resources for any class/course/unit/lesson",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit/(.*)/lesson/(.*)",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "any-lesson-collections-200-response.json"
+    }
+  }
+]

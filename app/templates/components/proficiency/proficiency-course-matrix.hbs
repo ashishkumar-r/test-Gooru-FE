@@ -1,0 +1,26 @@
+{{#if isLoading}}
+  <div class="spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+<div class="course-matrix-container">
+  <div class="course-chart">
+    {{#if (not isCompetenciesNull)}}
+      <div class="courses pull-left">
+        <ul>
+          {{#each taxonomyCourses as |taxonomyCourse|}}
+            <li class="course">
+              {{taxonomyCourse.courseName}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{else}}
+      <span class="no-data">{{t 'profile.proficiency.is-empty'}}</span>
+    {{/if}}
+    <div class="pull-left matrix-container {{if (not isCompetenciesNull) 'scroll-view'}}">
+      <div id="render-proficiency-course-matrix"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

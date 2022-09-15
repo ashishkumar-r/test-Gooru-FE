@@ -1,0 +1,57 @@
+<header>
+  <div class="header-content">
+    {{#if (not isRGOsource)}}
+      <button type="button" class="btn-back" {{action "goBack"}}>
+        {{gru-icon name="keyboard_arrow_left"}} {{t 'common.back'}}
+      </button>
+    {{/if}}
+    <div class="heading">
+      {{#if isRGOsource}}
+        <div class="close-icon" {{action "onCloseWindow"}} title="Close" data-toggle="tooltip" data-placement="bottom">
+          {{gru-icon name="clear"}}
+        </div>
+      {{/if}}
+      <div class="information">
+        <h1 title="{{{question.title}}}">{{{question.title}}}</h1>
+        <div class="details">
+          <div class="type">
+            <i class="{{if (eq question.type 'T/F') 'T_F-icon' (concat question.type '-icon')}}"></i>
+            <span>{{t (concat "common.question-type." question.type)}}</span>
+          </div>
+          <div class="tags">
+            {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=3}}
+          </div>
+        </div>
+      </div>
+      <div class="publisher">
+        {{#if question.owner}}
+          <span>
+            {{#if question.sameOwnerAndCreator}}
+              {{t "common.created-by"}}
+            {{else}}
+              {{t "common.remixed-by"}}
+            {{/if}}
+          </span>
+          <img class="img-responsive" src="{{question.owner.avatarUrl}}" alt="owner thumbnail">
+          {{#link-to 'library-search' (query-params type="my-content" profileId= question.owner.id ) class="pointer" tagName="div"}}
+            <span class="owner">{{question.owner.displayName}}</span>
+          {{/link-to}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="content" class="player">
+  {{#if isH5PContent}}
+    <iframe src="{{contentURL}}" width="100%" frameborder="0" allowfullscreen></iframe>
+  {{else}}
+    {{player/gru-question-viewer
+    submitted=false
+    question=playerQuestion
+    questionResult=questionResult
+    baseQuestion=question
+    onSubmitQuestion="submitQuestion"
+    }}
+  {{/if}}
+</div>

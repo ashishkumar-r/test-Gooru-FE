@@ -1,0 +1,65 @@
+{{#if loading}}
+  {{three-bounce-spinner}}
+{{else}}
+  <div class="card-container" {{action "onSelectCard" activity}}>
+    {{#if collection}}
+      <div class="collection-img" style="background-image: url({{collection.thumbnailUrl}})">
+      </div>
+      <div class="collection-performance">
+        <div class="icon-{{type}}">
+        </div>
+        <div class="title ellipsis">
+          <span class="ellipsis">{{collection.title}}</span>
+        </div>
+        {{#if (or (eq type 'collection' ) (eq type 'collection-external'))}}
+          <div class="performance {{if (eq activity.status 'in-progress') 'disable'}}" {{action "onOpenCollectionReport"}} style="background-color:{{defaultBarColor}}">
+            <span class="time-spent">
+            {{#if activity.timeSpent}}
+              {{format-time activity.timeSpent}}
+            {{else}}
+              &dash;&dash;
+            {{/if}}
+          </span>
+          </div>
+        {{else}}
+          <div class="performance {{if (eq activity.status 'in-progress') 'disable'}}" {{action "onOpenCollectionReport"}} style="background-color:{{if activity (grade-color activity.score) defaultBarColor}}">
+            <span class="score">
+              {{#if (eq activity.status 'complete')}}
+                {{activity.score}}%
+              {{else}}
+                &dash;&dash;
+              {{/if}}
+          </span>
+          </div>
+        {{/if}}
+      </div>
+      <div class="collections">
+        {{#each (if isOfflineActivity collection.tasks collection.children ) as |resource|}}
+          <div class="resource">
+            {{#if (eq type 'assessment')}}
+              <i class="question-img"></i>
+            {{else if (eq type 'offline-activity')}}
+              <i class="task-img"></i>
+            {{else}}
+              <i class="resource-img {{resource.format}}"></i>
+            {{/if}}
+            <div class="collection-info">
+              <p class="title ellipsis">{{resource.title}}</p>
+              {{#if (eq type "assessment")}}
+                <span class="type">{{t (concat "common.question-type." resource.type)}}</span>
+              {{else if isOfflineActivity}}
+                <span class="type ellipsis">{{resource.description}}</span>
+              {{else}}
+                <span class="type">{{t (concat "common.resource-format." resource.format)}}</span>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <div class="no-resource">
+        <span> {{t 'student-card.message' type=type}}</span>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}

@@ -1,0 +1,168 @@
+<div class="left-panel-container">
+  <div class="header-panel">
+    <div class="collection-info">
+      <div class="icon-container {{if isCollection 'collection' 'assessment'}}"></div>
+      <div class="title-container {{if isSuggestedContent 'suggestion'}}">
+        <p class="lesson-title">{{lesson.title}}</p>
+        <p class="collection-title">{{collectionInfo.title}}</p>
+      </div>
+      <div class="timespent-container {{collection}}"> {{format-time collectionInfo.totalTimeSpent}}</div>
+      <div class="hide-div close-button" {{action 'toggleLeftPanel'}}>
+        {{gru-icon name='close'}}
+      </div>
+    </div>
+    <div class="collection-desc">
+      <div class="resource-count {{if collectionInfo.learningObjectives 'show-description' 'hidden-description'}}" {{action 'toggleDesction'}}>
+        <div class="resource-icon-count">
+          {{#if hasCollectionItems }}
+            {{#if (and isCollection (gt collectionInfo.resourceCount 0)) }}
+              <div class="resource">
+                <span>{{collectionInfo.resourceCount}}</span>
+                <i class="icon"></i>
+              </div>
+            {{/if}}
+            {{#if (gt collectionInfo.questionCount 0)}}
+              <div class="question">
+                <span>{{collectionInfo.questionCount}}</span>
+                <i class="icon"></i>
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
+        <div class="accordion-icon">
+            {{gru-icon name=(if isDisplayDescription 'arrow_drop_up' 'arrow_drop_down')}}
+        </div>
+      </div>
+      <div class="description">
+        <div class="desc-img">
+          <div class="desc-icon" style="background-image: url({{collectionInfo.thumbnailUrl}})"></div>
+        </div>
+        <div class="desc">
+
+          {{#if isCollection}}
+            <p>
+              {{#if collectionInfo.taxonomy.length}}
+              {{t 'collection-summary.collection-desc' collectionTitle = collectionInfo.title}}
+              {{else}}
+              {{t 'collection-summary.collection-without-desc' collectionTitle = collectionInfo.title}}
+              {{/if}}
+              <div class="taxonomy">
+                {{#if tags.length}}
+                  {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true}}
+                {{/if}}
+              </div>
+            </p>
+          {{else}}
+            <p>
+              {{#if collectionInfo.taxonomy.length}}
+              {{t 'collection-summary.assessment-desc' collectionTitle = collectionInfo.title}}
+              {{else}}
+              {{t 'collection-summary.assessment-without-desc' collectionTitle = collectionInfo.title}}
+              {{/if}}
+              <div class="taxonomy">
+                {{#if tags.length}}
+                  {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true}}
+                {{/if}}
+              </div>
+            </p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body-panel">
+    {{#if hasCollectionItems }}
+      {{#if showConfirmation}}
+        {{#unless isCollection}}
+          <div class="properties">
+              {{#unless noMoreAttempts}}
+                <div class="navigation">
+                  <div class="direction">
+                    {{#if collection.bidirectional}}
+                      {{gru-icon name='swap_horiz'}}
+                      <div class="info bidirectional">
+                        {{t "qz-assessment-confirmation.forward-backward"}}
+                      </div>
+                    {{else}}
+                      {{gru-icon name='trending_flat'}}
+                      <div class="info not-bidirectional">
+                        {{t "qz-assessment-confirmation.forward"}}
+                      </div>
+                    {{/if}}
+                  </div>
+                </div>
+              {{/unless}}
+              {{#if (eq collection.showFeedback 'immediate')}}
+                <div class="answers">
+                  {{gru-icon name='visibility'}}
+                  <div class="info">
+                    {{t "qz-assessment-confirmation.answers"}}
+                  </div>
+                </div>
+              {{/if}}
+              {{#unless notCheckAttempts}}
+                <div class="attempts">
+                  {{#if unlimited}}
+                    {{gru-icon name='cached'}}
+                    <div class="info unlimited">{{t "qz-assessment-confirmation.unlimited-attempts-left"}}</div>
+                  {{else}}
+                    {{#if noMoreAttempts}}
+                      <div class="no-more-attempts">
+                        {{gru-icon name='warning'}}
+                        <div class="info no-more">{{t "qz-assessment-confirmation.attempts-left.no-attempts"}}</div>
+                      </div>
+                    {{else}}
+                      <div class="attempt">{{attemptsLeft}}</div>
+                      <div class="info">{{t "qz-assessment-confirmation.attempts-left" count=attemptsLeft}}</div>
+                    {{/if}}
+                  {{/if}}
+                </div>
+              {{/unless}}
+          </div>
+        {{/unless}}
+      {{/if}}
+      <div class="resource-list {{if isNavigationDisabled 'disabled' }}">
+        {{#each collectionInfo.content as |item index|}}
+          <div class="resource-info {{if item.started 'started'}} {{if item.selected 'selected'}}" {{action 'selectItem' item}}>
+            {{#if (and showFeedback (show-score item.resource 'type'))}}
+              {{#if (and item.started (not item.isResource))}}
+                {{#if item.isCorrect}}
+                  <div class="score correct pull-left">
+                    {{gru-icon name='done_all'}}
+                  </div>
+                {{else if item.isPartialCorrect}}
+                  <div class="score correct pull-left">
+                    {{gru-icon name='check'}}
+                  </div>
+                {{else}}
+                  <div class="score pull-left incorrect">
+                    {{gru-icon name='close'}}
+                  </div>
+                {{/if}}
+              {{else}}
+                <div class="resource-icon">
+                  <i class="icon {{item.content_format }} {{item.content_subformat}}"></i>
+                </div>
+              {{/if}}
+            {{else}}
+              <div class="resource-icon">
+                <i class="icon {{item.content_format }} {{item.content_subformat}}"></i>
+              </div>
+            {{/if}}
+            <div class="resource-title">
+              <span class="title"> {{plus-one index}}. {{safe-html item.title}} </span>
+              {{#unless (eq item.resource.type 'html_resource')}}
+              <span class="desc"> {{gru-math-text text=item.description isShowVideo=false isShowURL=false}}</span>
+              {{/unless}}
+            </div>
+            <div class="resource-timespent">
+              {{format-time item.timespent}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <div class="under-construction">{{t 'common.under-construction'}}</div>
+    {{/if}}
+  </div>
+</div>

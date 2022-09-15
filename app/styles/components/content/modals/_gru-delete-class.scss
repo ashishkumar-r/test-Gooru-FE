@@ -1,0 +1,14 @@
+.content.modals.gru-delete-class {
+  .modal-header {
+    background-color: $red-400;
+  }
+  .modal-body form div {
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
+  input[type=text] {
+    outline: none;
+  }
+}

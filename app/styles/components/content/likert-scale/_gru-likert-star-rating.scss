@@ -1,0 +1,79 @@
+.gru-likert-star-rating {
+  padding: 10px;
+  .gru-likert-start-rating-container {
+    width: 100%;
+    max-width: max-content;
+    .gru-likert-start-rating {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+      .likert-item-row {
+        display: grid;
+        height: 40px;
+        align-items: center;
+        line-height: 1.2;
+        &.gru-likert-start-label {
+          span {
+            @include ellipsis(
+              $font-size: 12px,
+              $line-height: 1.4,
+              $lines-to-show: 2
+            );
+          }
+        }
+      }
+      .likert-labels {
+        overflow: hidden;
+        overflow-x: auto;
+        display: grid;
+        &::-webkit-scrollbar {
+          width: 0px;
+          background: transparent; /* make scrollbar transparent */
+        }
+        .likert-start-rating-level {
+          display: flex;
+          justify-content: space-between;
+          height: 40px;
+          span {
+            width: 100px;
+            text-align: center;
+            @include ellipsis(
+              $font-size: 12px,
+              $line-height: 1.4,
+              $lines-to-show: 1
+            );
+          }
+        }
+        .likert-star-rating {
+          .gru-likert-start-points {
+            .rating-stars {
+              margin: 0;
+              ul {
+                display: flex;
+                justify-content: space-between;
+                padding: 0;
+                li {
+                  width: 100px;
+                  text-align: center;
+                }
+              }
+              .star {
+                i {
+                  color: $dark-200;
+                  &.fa-star {
+                    color: $blue-400;
+                  }
+                }
+              }
+            }
+            .number-stars-label {
+              p {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

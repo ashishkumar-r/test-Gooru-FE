@@ -1,0 +1,9 @@
+<ul>
+    {{#each answers as |answer index|}}
+    <li>
+        <div class="answer-underline">
+               <p class="answer-edit-{{index}}"> {{answer.text}} </p>
+        </div>
+    </li>
+    {{/each}}
+</ul>

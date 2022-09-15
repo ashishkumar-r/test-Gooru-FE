@@ -1,0 +1,78 @@
+.students-proficiency-header {
+  display: none !important;
+}
+
+.weekly-report.student-weekly-report {
+  .weekly-report-container {
+    .header-container {
+      display: none !important;
+    }
+    .body-container {
+      height: auto !important;
+      display: block !important;
+      width: 800px;
+    }
+    .body-scroll {
+      display: none !important;
+    }
+  }
+}
+.students-progress-report {
+  .print-preview {
+    display: none !important;
+  }
+  .students-progress-report-container {
+    .student-basic-details,
+    .student-analytic-report,
+    .competencies-mastered-list-panel,
+    .competencies-target-list,
+    .competencies-areas-concern {
+      border: 1px solid $nobel-gray;
+    }
+    .student-analytic-report,
+    .competencies-mastered-list-panel,
+    .competencies-target-list,
+    .competencies-areas-concern {
+      border-radius: 4px;
+    }
+    .student-basic-details .student-performance-section .count-card.mastered i {
+      color: $blue-400 !important;
+    }
+    .student-basic-details
+      .student-performance-section
+      .count-card.inprogress
+      i {
+      color: $blue-200 !important;
+    }
+    .student-analytic-report {
+      .analytic-panel {
+        span {
+          &.suggest-icon {
+            i {
+              color: $orange-500 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .grade-range-0-59 {
+    background: $red-400 !important;
+  }
+
+  .grade-range-60-69 {
+    background: $orange-400 !important;
+  }
+
+  .grade-range-70-79 {
+    background: $grade-range-70-79-bg !important;
+  }
+
+  .grade-range-80-89 {
+    background: $grade-range-80-89-bg !important;
+  }
+
+  .grade-range-90-100 {
+    background: $bg-green-700-green-dark !important;
+  }
+}

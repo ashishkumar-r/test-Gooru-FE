@@ -1,0 +1,57 @@
+<div class="student-min-proficiency-container">
+    <div class="panel-head">
+        <a class="go-back-to-peformance" {{action 'goBacktoPerformance'}} href="javascript:void(0)">
+        {{gru-icon name="arrow_back"}}
+        </a>
+            <div class="search-container">
+                {{
+                input type="text"
+                placeholder=(t "assignments-view.search")
+                key-up=(action "onSearchStudent")
+                }}
+                <label class="custom-search-icon">
+                    {{gru-icon name="search"}}
+                </label>
+            </div>
+    </div>
+    <div class="student-proficiency-table-section">
+        <div class="student-list-panel">
+            <div class="student-head-section">
+                <div class="student-head-item">
+                    <span>{{t 'teacher-landing.class.class-management-tab.student-name'}}</span>
+                </div>
+                <div class="student-name-list">
+                    {{#each studentList as | student | }}
+                        <div class="student-details {{if (eq selectedUserId student.studentDetail.id) 'active-student'}}">
+                            <span class="student-img">
+                                <img src= "{{student.studentDetail.avatarUrl}}" alt="">
+                            </span>
+                            <span class="student-name">{{student.studentDetail.fullName}}</span>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="student-body-section">
+                <div class="student-proficiency-list-container">
+                    <div class="proficiency-panel-head">
+                    <span>{{t 'number-of-exercises'}}</span>
+                    <span>{{t 'number-of-exercises-below-threshold'}}</span>
+                    <span>{{t 'avg-performance-score'}}</span>
+                   </div>
+                    <div class="proficiency-item-list">
+                        {{#each studentList as |item index|}}
+                            <div class="proficiency-panel {{if (eq selectedUserId item.studentDetail.id) 'active-student'}}">
+                                    <span class="count-panel">{{item.questionCount}}</span>
+                                    <span class="count-panel">{{item.minProficiency}}</span>
+                                    <span class="count-panel {{concat 'grade-range-text-' (grade-range item.percentScore)}}">{{item.percentScore}}%</span>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if (and (not isLoading) (eq studentList.length 0))}}
+            <span class="no-record">{{t 'common.no-record-found'}}</span>
+        {{/if}}
+    </div>
+</div>

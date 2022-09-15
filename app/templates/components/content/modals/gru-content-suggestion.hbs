@@ -1,0 +1,118 @@
+<div class="modal-header">
+  <span class="suggestion-title">
+    {{#if isAssessment}}
+      {{t 'reroute.show-mastery'}}
+    {{else}}
+      {{t 'reroute.suggestion'}}
+    {{/if}}
+  </span>
+</div>
+<div class="modal-body">
+  <div class="image-container {{if isAssessment 'show-mastery' 'show-suggestion'}}">
+    <i class="suggestion-img"></i>
+  </div>
+  <div class="suggestion-details">
+    <div class="title {{if isAssessment 'hidden'}}">{{t 'reroute.suggestion.title'}}</div>
+    <div class="description">
+      {{#if isAssessment}}
+        {{t 'reroute.take-assessment'}}
+      {{else}}
+        {{t 'reroute.suggestion.desc' suggestionType = (t (concat 'common.signature-' suggestedContentType))}}
+      {{/if}}
+    </div>
+    <div class="taxonomy">
+      {{#if tags.length}}
+        {{taxonomy.gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+        <span class="border"></span>
+      {{/if}}
+    </div>
+  </div>
+  <div class="suggestion-container">
+    <div class="thumbnail-img">
+      <img src="{{suggestedContent.thumbnail}}" alt="suggestedContent thumbnail"/>
+    </div>
+    <div class="suggestion-info-panel">
+      <div class="suggestion-info">
+        <div class="title ellipsis">
+          {{suggestedContent.title}}
+        </div>
+        <div class="count">
+          {{#if suggestedContent.resourceCount}}
+            <span class="resource">{{suggestedContent.resourceCount}} {{t "common.resource-pl" count=suggestedContent.resourceCount}}</span>
+          {{/if}}
+          {{#if (and suggestedContent.resourceCount suggestedContent.questionCount)}}
+            <span>|</span>
+          {{/if}}
+          {{#if suggestedContent.questionCount}}
+            <span class="question">{{suggestedContent.questionCount}} {{t "common.question-pl" count=suggestedContent.questionCount}}</span>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="action">
+    <div class="ignore" {{action "onIgnoreSuggestion"}}>
+      <span>{{t 'gru-suggest.not-now'}}</span>
+    </div>
+    <div class="accept" {{action "onAcceptSuggestion"}}>
+      {{t 'gru-assessment-confirmation.continue'}}
+    </div>
+  </div>
+  <!-- <div class="deviation">
+  </div>
+  <div class="suggestion-details">
+    <div class="title">
+      {{currentContent.title}}
+    </div>
+    <div class="type">
+      {{t 'common.suggestion'}}
+    </div>
+    <div class="taxonomy">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+        <span class="border"></span>
+      {{/if}}
+    </div>
+    <div class="description">
+      {{t (if (eq suggestedContent.type 'collection') 'gru-content-suggestion.suggestion-text.collection' 'gru-content-suggestion.suggestion-text.assessment')}}
+    </div>
+  </div>
+  <div class="content-details">
+    <div class="collection">
+      <div class="header" style="background-image: url({{suggestedContent.thumbnail}});">
+        <div class="title truncate">
+          {{suggestedContent.title}}
+        </div>
+      </div>
+      <div class="count">
+        {{#if suggestedContent.resourceCount}}
+          <span class="resource">{{suggestedContent.resourceCount}} {{t "common.resource-pl" count=suggestedContent.resourceCount}}</span>
+        {{/if}}
+        {{#if (and suggestedContent.resourceCount suggestedContent.questionCount)}}
+          <span>|</span>
+        {{/if}}
+        {{#if suggestedContent.questionCount}}
+          <span class="question">{{suggestedContent.questionCount}} {{t "common.question-pl" count=suggestedContent.questionCount}}</span>
+        {{/if}}
+      </div>
+      <div class="taxonomy">
+        {{#if suggestedTags.length}}
+          {{taxonomy/gru-taxonomy-tag-list tags=suggestedTags tagsVisible=1 isInCard=true showDescription=true}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="actions">
+      <div class="system-suggestion">
+        {{gru-icon name="explore"}}
+      </div>
+      <div class="action">
+        <div class="accept" {{action "onAcceptSuggestion"}}>
+          {{t 'common.accept'}}
+        </div>
+        <div class="ignore" {{action "onIgnoreSuggestion"}}>
+          <span>{{t 'common.ignore'}}</span>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

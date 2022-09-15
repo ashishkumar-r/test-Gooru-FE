@@ -1,0 +1,79 @@
+<div class="panel panel-default {{if isPanelExpanded 'expanded' 'collapsed'}}">
+  <div class="panel-heading">
+    <h3 class="category-index">{{plus-one index}}</h3>
+    <h3 class="required">{{t 'gru-rubric-creation.gru-category.category-title'}}</h3>
+    {{#if isEditingInline}}
+      <div class="edit-title">
+        <div class="input">
+          {{validation/gru-input model=tempCategory valuePath='title' maxLength=50}}
+        </div>
+      </div>
+    {{else}}
+      {{#if preview}}
+        {{#if (and category.allowsLevels hasLevels)}}
+          <a class="title" {{action 'showInfo'}}>
+            <div>
+              <h2 class="pointer">{{{category.title}}}</h2>
+            </div>
+          </a>
+        {{else}}
+          <a class="title">
+            <div>
+              <h2>{{{category.title}}}</h2>
+            </div>
+          </a>
+        {{/if}}
+      {{else}}
+        <a class="title" {{action 'editInline'}}>
+          <div>
+            <h2 class="pointer">{{{category.title}}}</h2>
+          </div>
+        </a>
+      {{/if}}
+    {{/if}}
+
+    {{#unless preview}}
+      <div class="detail {{if isPanelExpanded 'hidden' 'visible'}} collapsed">
+        <div class="actions">
+          <div class="item-actions border">
+            <button title="{{t 'common.delete'}}" class="btn no-bgd delete" {{action 'deleteCategory' category}} data-toggle="tooltip" data-placement="auto" data-trigger="hover">{{gru-icon name="delete"}}</button>
+            <button title="{{t 'common.copy'}}" class="btn no-bgd copy" {{action 'copyCategory' category index}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="content_copy"}}</button>
+            <button class="btn edit no-bgd" title="{{t 'common.edit'}}" {{action 'editInline'}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="edit"}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="detail {{if isPanelExpanded 'visible' 'hidden'}} expanded">
+        <div class="actions">
+          <div class="item-actions">
+            <button class="cancel btn btn-info" {{action 'cancel'}}>{{t "common.cancel"}}</button>
+            <button class="save btn btn-success"  {{action 'saveCategory'}}>{{t "common.save"}}</button>
+          </div>
+        </div>
+      </div>
+    {{/unless}}
+  </div>
+
+  <div class="panel-body">
+    <div class="feedback out-of-scope">
+      <label>
+        <span>{{t "gru-rubric-creation.feedback-guidance"}}</span>
+        {{validation/gru-textarea rawTextareaValue=category.feedbackGuidance model=category valuePath='feedbackGuidance' maxLength=500 rows=5 placeholder=(t 'gru-rubric-creation.gru-category.category-feedback')}}
+      </label>
+    </div>
+    <label class="required-feedback out-of-scope">
+      <span {{action 'setFeedBack'}}>
+        {{#if category.requiresFeedback}}
+          {{gru-icon name='check_box'}}
+        {{else}}
+          {{gru-icon name='check_box_outline_blank'}}
+        {{/if}}
+      </span>
+      {{t 'gru-rubric-creation.required-feedback'}}
+    </label>
+    {{#if preview}}
+      {{content/rubric/gru-scoring-levels scoringLevels=category.levels preview=preview category=category}}
+    {{else}}
+      {{content/rubric/gru-scoring-levels scoringLevels=tempCategory.levels showNoLevelsError=showNoLevelsError preview=preview category=tempCategory}}
+    {{/if}}
+  </div>
+</div>

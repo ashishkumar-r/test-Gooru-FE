@@ -1,0 +1,39 @@
+{{#if (eq editType 'upload')}}
+  <div class="border-bottom">
+    <h3>{{t "oa.references.uploads"}}</h3>
+  </div>
+  <div class='upload-list-container'>
+    {{#each parsedReference as | refItem|}}
+      <div class="text-center">
+        <div class="uploaded-item">
+          {{#file-picker
+             preview=false
+             dropzone=false
+             fileLoaded=(action 'selectFile')
+             readAs="readAsFile"
+             errors=filePickerErrors
+             onRemoveFile=(action 'resetFileSelection')
+          }}
+          <div class="btn add-file">{{gru-icon name="add"}}</div>
+          {{/file-picker}}
+          {{#if (gt refItem.count 0)}}
+            <button class="remove-uploaded btn no-bgd remove-item hidden" {{action 'deleteReference' refItem.refData }}>{{gru-icon name="remove_circle"}}</button>
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  {{#each filePickerErrors as |error|}}
+    <div class="error">{{error}}</div>
+  {{/each}}
+{{else}}
+{{#if isLoading}}
+  {{three-bounce-spinner}}
+{{else}}
+<div class="input-box">
+{{validation/gru-input placeholder=(t 'common.referene') title="reference" model=model valuePath='fileName' class='addUrl col-md-10' maxLength=1000 didValidate=didValidate}}
+  {{validation/gru-input placeholder='https://example.org' title="example" model=model valuePath='location' class='addUrl col-md-10' maxLength=1000 didValidate=didValidate}}
+</div>
+  <button class="btn add-item no-bgd {{unless isValidRefItem 'disable-event'}}" {{ action 'updateURLRef' }}>{{gru-icon name="add_circle"}}</button>
+  {{/if}}
+{{/if}}

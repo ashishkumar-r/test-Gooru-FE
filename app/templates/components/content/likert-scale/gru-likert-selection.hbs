@@ -1,0 +1,34 @@
+<div class="gru-likert-satisfaction-container">
+    <div class="gru-likert-satisfaction-panel">
+        <div class="gru-likert-satisfaction-panel-body">
+            <div class="likert-selection-items">
+                <span class="likert-item-row"></span>
+                {{#each likertItems as |item|}}
+                    {{#if item.isShow}}
+                        <div class="satisfaction-items-panel likert-item-row">
+                            <span class="item-panel-title" data-toggle="tooltip" data-placement="bottom" title="{{item.label}}">{{item.label}}</span>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+            <div class="likert-selection">
+                <div class="likert-satisfaction-head">
+                    {{#each likertScalePoints as |item|}}
+                        <span class="likert-item-row" data-toggle="tooltip" data-placement="bottom" title="{{item.levelName}}">{{item.levelName}}</span>
+                    {{/each}}
+                </div>
+                <div class="likert-selection-option">
+                    {{#each likertItems as |item|}}
+                        {{#if item.isShow}}
+                            <div class="satisfaction-rating-panel {{if readOnly 'disable-event'}}">
+                                {{#each item.likertScalePoints as |scalePoint index|}}
+                                    <span class="material-icons {{if (eq item.selectedPoint scalePoint.levelPoint) 'task_alt' 'radio_button_unchecked'}}" {{action 'onSelectRating' item scalePoint }}>{{if (eq item.selectedPoint scalePoint.levelPoint) 'task_alt' 'radio_button_unchecked'}}</span>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

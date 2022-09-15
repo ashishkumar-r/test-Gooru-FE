@@ -1,0 +1,7 @@
+{{#each visibleTags as |taxonomyTag|}}
+  {{taxonomy/gru-taxonomy-tag model=taxonomyTag hasTooltip=hasTooltips}}
+{{/each}}
+
+{{#if nonVisibleTags}}
+  <span class="counter non-visible">{{nonVisibleTags}}+</span>
+{{/if}}

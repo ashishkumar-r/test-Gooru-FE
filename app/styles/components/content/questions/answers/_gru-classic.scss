@@ -1,0 +1,214 @@
+.gru-classic {
+  .classic-question-container {
+    .classic-answer-list {
+      .classic-answer-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: baseline;
+        column-gap: 10px;
+        grid-row-gap: 10px;
+
+        .answer-section {
+          box-shadow: 0 0 10px $light-200;
+          padding: 10px;
+
+          .answer-input-section {
+            display: grid;
+            grid-template-columns: 40px 1fr 100px;
+            align-items: center;
+            column-gap: 10px;
+            margin-bottom: 10px;
+            h3 {
+              border-right: 1px solid $light-200;
+              text-align: center;
+              margin: 0;
+            }
+            .image-content {
+              width: 80px;
+              height: 80px;
+              margin: 5px;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: contain;
+
+              &:not(.has-image) {
+                display: none;
+              }
+            }
+
+            .gru-image {
+              width: 80px;
+              height: 80px;
+              margin: 0;
+              overflow: hidden;
+
+              .library_add {
+                font-size: 25px;
+                top: 66%;
+                left: 71%;
+                display: none;
+              }
+
+              .file-picker {
+                width: 80px;
+                height: 80px;
+                background-color: $light-100;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &::before {
+                  content: "100X100";
+                  font-size: 18px;
+                  font-weight: bold;
+                  color: $light-300;
+                }
+
+                .btn-info {
+                  font-size: 8px;
+                  display: none;
+                }
+                .file-picker__preview img {
+                  height: 80px;
+                }
+              }
+              &.has-src-image {
+                .file-picker::before {
+                  display: none;
+                }
+              }
+            }
+          }
+          .answer-actions {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            background-color: $light-100;
+            column-gap: 10px;
+
+            i {
+              font-size: 25px;
+              color: $light-300;
+              cursor: pointer;
+              text-align: center;
+            }
+            .answer-text {
+              font-size: 20px;
+              font-family: sans-serif;
+              display: flex;
+              flex-wrap: wrap;
+              padding: 5px 10px;
+
+              span {
+                padding: 0 2px;
+                cursor: pointer;
+
+                &.active {
+                  color: $light-300;
+                  border-bottom: 2px solid $blue-400;
+                  letter-spacing: normal;
+                }
+              }
+            }
+            &.has-answer {
+              i {
+                color: $green-400;
+              }
+            }
+          }
+          .answer-extra-letters {
+            .letter-head {
+              font-size: 14px;
+              font-style: italic;
+            }
+            .answer-extra-blk {
+              list-style: none;
+              display: flex;
+              flex-wrap: wrap;
+              padding: 0;
+              margin: 0;
+
+              li {
+                margin: 5px;
+                position: relative;
+
+                .form-group {
+                  margin: 0;
+                  input {
+                    font-size: 20px;
+                    width: 30px;
+                    text-align: center;
+                  }
+                }
+
+                i {
+                  font-size: 12px;
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  background-color: $blue-400;
+                  border-radius: 10px;
+                  color: $white;
+                  cursor: pointer;
+                }
+
+                &.add-letter {
+                  display: grid;
+                  align-items: center;
+                  span {
+                    background-color: $light-200;
+                    cursor: pointer;
+                    border-radius: 10px;
+                  }
+                }
+              }
+            }
+          }
+          .errorMsg {
+            color: $red-400;
+            display: inline-block;
+            font-size: 12px;
+            margin-top: 4px;
+          }
+        }
+      }
+
+      .gru-add-excercise {
+        margin-top: 20px;
+        span {
+          background-image: linear-gradient(to right, $blue-300, $blue-500);
+          padding: 10px;
+          color: $white;
+          font-weight: bold;
+          box-shadow: 0 0 10px $light-200;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+        &.disabled-btn {
+          span {
+            background: $light-200;
+            cursor: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content.collections.gru-collection-list
+  .collection-list
+  .gru-collection-list-item
+  > .panel
+  > .panel-body
+  .answer-input-section
+  .content.gru-image {
+  width: 80px;
+  height: 80px;
+
+  .file-picker {
+    width: 80px;
+    height: 80px;
+    .file-picker__preview img {
+      height: 80px;
+    }
+  }
+}

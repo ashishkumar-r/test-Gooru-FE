@@ -1,0 +1,19 @@
+{
+  "content":[
+    {
+      "userUid": "6f337b1c-0b0d-49b3-8314-e279181aeddf",
+      "usageData":[
+        {
+          "completedCount": 10,
+          "collectionId": "74eb3854-9187-44d4-87bb-b8ad3063028e",
+          "scoreInPercentage": 90,
+          "timeSpent": 130339,
+          "views": 18,
+          "totalCount": 20
+        }
+      ]
+    }
+  ],
+  "message": null,
+  "paginate": null
+}

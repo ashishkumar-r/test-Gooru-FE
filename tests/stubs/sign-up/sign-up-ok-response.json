@@ -1,0 +1,18 @@
+{
+  "accountCreatedType": "normal",
+  "accountTypeId": 3,
+  "active": 1,
+  "confirmStatus": 0,
+  "createdOn": "MonDec0106:25:15UTC2014",
+  "emailId": "sdffsgf@gmail.com",
+  "firstName": "developer",
+  "gooruUId": "006449b7-fd9a-457b-99b0-98e2cacf1536",
+  "lastName": "team",
+  "organizationName": "Gooru",
+  "partyUid": "006449b7-fd9a-457b-99b0-98e2cacf1536",
+  "profileImageUrl": "http://profile-demo.s3.amazonaws.com/profile-prod/006449b7-fd9a-457b-99b0-98e2cacf1536.png",
+  "userRoleSetString": "User",
+  "username": "developer2",
+  "usernameDisplay": "developer2",
+  "viewFlag": 0
+}

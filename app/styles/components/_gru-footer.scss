@@ -1,0 +1,55 @@
+.gru-footer {
+  min-height: 180px;
+  padding: 25px 0;
+  background-color: $gray;
+
+  .imgLogo {
+    background: url("gooru/footer-logo.png") no-repeat 0 0;
+    background-size: contain;
+    height: 56px;
+    width: 163px;
+  }
+  p {
+    color: $gray-lighter;
+    font-size: $font-size-small;
+  }
+  .footercolum {
+    border-right: 1px solid;
+    border-right-color: $gray;
+    min-height: 132px;
+  }
+  h5 {
+    margin-top: 0;
+    color: $white;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    a {
+      text-decoration: none;
+      color: $gray-lighter;
+    }
+  }
+  .social {
+    width: 32px;
+    height: 32px;
+    display: block;
+    background: url(gooru/gooru-sprite.png) no-repeat 0 0;
+  }
+  .facebook {
+    background-position: -451px -24px;
+    float: $tab-float-dir;
+  }
+  .twitter {
+    background-position: -357px -24px;
+    float: $tab-float-dir;
+  }
+  .youtube {
+    background-position: -406px -24px;
+    float: $tab-float-dir;
+  }
+  .google {
+    background-position: -500px -24px;
+    float: $tab-float-dir;
+  }
+}

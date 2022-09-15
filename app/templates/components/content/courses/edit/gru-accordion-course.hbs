@@ -1,0 +1,55 @@
+<div class="header">
+  <h2>{{t "common.builder"}}</h2>
+
+  <div class="detail">
+    {{#if totalSavedItems}}
+      <span dir="ltr"><b>{{totalSavedItems}}</b> {{t "common.unitObj" count=totalSavedItems}}</span>
+    {{else}}
+      <span>{{t "common.add-units"}}</span>
+    {{/if}}
+
+    <div class="actions">
+      <button class="btn btn-primary add-unit" onclick={{action 'addUnit'}} onkeypress={{action 'addUnit'}} tabindex={{tabindex}}>{{gru-icon name="add"}}</button>
+
+      {{#if (gt totalSavedItems 1)}}
+        {{#unless model.isSorting}}
+          <button role="button" class="btn btn-primary sort-items" onclick={{action 'sortUnits'}} onkeypress={{action 'sortUnits'}} tabindex={{tabindex}}>{{gru-icon name="swap_vert"}}</button>
+        {{/unless}}
+      {{/if}}
+    </div>
+    {{#if model.isSorting}}
+      <div class="drag-options">
+        <button role="button" class="cancel btn btn-info" aria-label={{t "common.cancel"}}  onclick={{action 'cancelSort'}}  onkeypress={{action 'cancelSort'}} tabindex={{tabindex}}>{{t "common.cancel"}}</button>
+        <button role="button" class="save btn btn-success" aria-label={{t "common.save"}} onclick={{action 'saveUnitsOrder'}} onkeypress={{action 'saveUnitsOrder'}} tabindex={{tabindex}}>{{t "common.save"}}</button>
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+<ol class="accordion-course sortable" role="list">
+
+  {{#each items as |item index|}}
+
+    {{content/courses/edit/gru-accordion-unit
+      course=model
+      model=item
+      index=index
+      isSorting=model.isSorting
+      totalItems=items.length
+      onCancelAddUnit=(action 'cancelAddUnit')
+      onExpandUnit=(action 'expandUnit')
+      onDeleteUnit=(action 'removeUnit')
+      onRemixUnit=(action 'remixUnit')
+      selectedLessonId=selectedLessonId
+      onExpandLesson=(action 'expandLesson')
+      tabindex=tabindex
+      hasCollaborator=hasCollaborator
+    }}
+
+  {{/each}}
+
+  <li class="unit add-item">
+    <a role="link" class="add-prefix" aria-label={{t "common.add-new-unit"}} href="#" {{action 'addUnit'}}>{{t "common.add-new-unit"}}</a>
+  </li>
+
+</ol>

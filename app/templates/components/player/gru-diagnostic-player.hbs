@@ -1,0 +1,55 @@
+<div class="left-panel-container">
+  <div class="diagnostic-content-panel">
+      <div class="domain-head">
+          <span>{{diagnosticDetails.starting_domain_name}}</span>
+      </div>
+      <div class="domain-item-list-panel {{if isDiagnosticEnd 'expand-diagnostic-path'}}">
+        <div class="domain-body-descriptions">
+          <div class="diagnostic-domain-description">
+              <span class="domain-icon assessment"></span>
+              <span>{{diagnosticDetails.starting_domain_name}}</span>
+          </div>
+          <div class="diagnostic-domain-instruction">
+            {{#unless isDiagnosticEnd}}
+              {{t 'diagnostic-player.start-new-domain-text'}}
+              {{#unless hideLandingText}}
+                <span>{{t 'diagnostic-player.start-to-begins'}}</span>
+              {{/unless}}
+            {{else}}
+              {{t 'diagnostic.completed-diagnostic-assessments' domain=diagnosticDetails.starting_domain_name}}
+              <span>{{t 'diagnostic.continue-to-keep-studying'}}</span>
+            {{/unless}}
+          </div>
+        </div>
+        {{#if isDiagnosticEnd}}
+          <div class="diagnostic-route-panel {{if isFailed 'route-not-generated'}}">
+              <div class="diagnostic-route-container">
+                {{#unless isPathLoading}}
+                  {{#unless isFailed}}
+                    {{#if currentClass.memberGradeBounds}}
+                        {{student/class/dashboard/learner-path
+                          currentClass=currentClass
+                          userLocation=mapLocation.context
+                          course=course
+                          units=course.children
+                          diagnosticDetails=diagnosticDetails
+                          contentVisibility=contentVisibility
+                          isStudyPlayer = true
+                          isDiagnosticEnd = true
+                        }}
+                    {{/if}}
+                  {{else}}
+                    <div class="failed-to-load-content">
+                      <span class="img-content"></span>
+                      <span class="title">{{t 'diagnostic.failed-to-load'}}</span>
+                    </div>
+                  {{/unless}}
+                {{else}}
+                  {{three-bounce-spinner}}
+                {{/unless}}
+            </div>
+          </div>
+        {{/if}}
+      </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="login-container">
+  {{#if isShowUserTenantList}}
+    <div class="tenant-container">
+      <div class="back">
+        <span class="icon" {{action 'goBack'}}>{{gru-icon name='arrow_back'}}</span>
+        <div class="title"> {{t 'login.choose-account'}}</div>
+      </div>
+      <div class="tenant-list">
+        {{#each tenantLists as |tenant|}}
+          <div class="tenant-info" {{action 'tenantLogin' tenant}}>
+            <div class="tenant-log">
+              {{#if tenant.imageUrl}}
+                <img class="img-responsive log" src="{{tenant.imageUrl}}" alt="tenant image">
+              {{else}}
+                <span>{{avatar tenant.tenantName}}</span>
+              {{/if}}
+            </div>
+            <div class="tenant-name">{{tenant.tenantName}}</div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{else}}
+    <div class="form-container">
+      <div class="img-container">
+        <div class="gooru-logo"></div>
+        <div class="tenant-logo"></div>
+      </div>
+      <form>
+        <div class="form-group emial">
+          <label for="userEmail">
+            <span>{{t "login.enter-your-email"}}</span>
+            {{validation/gru-input model=user valuePath='email' type='email' didValidate=didValidate inputId='userEmail'}}
+            {{#if isShowErrormessage }}
+              <div class="error-message">
+                  <span class="error">{{t 'login.invalid-email'}}</span>
+              </div>
+            {{/if}}
+          </label>
+        </div>
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-success submit-btn" role="button" {{action "getUserTenantAccount"}}>{{t "common.submit"}}</button>
+        </div>
+        <div class="sinup-link">
+          <a {{action "singUp"}} role="button"> {{t "common.signUp"}} </a>
+        </div>
+      </form>
+    </div>
+  {{/if}}
+  <div class="footer-container">
+    <span> {{t "login.email-not-register"}} </span>
+    {{#if redirectURL}}
+    {{#link-to 'sign-in' (query-params redirectURL=redirectURL) aria-label="redirectURL"}}  {{t "login.sign-in-username"}} {{/link-to}}
+    {{else}}
+    {{#link-to 'sign-in'}}  {{t "login.sign-in-username" aria-label="username"}} {{/link-to}}
+    {{/if}}
+    <span> {{t 'sign-in.tenant-login'}} </span>
+    {{#link-to 'login-tenant-url' aria-label="tenantUrl"}}  {{t 'sign-in.enter-url'}} {{/link-to}}
+  </div>
+</div>

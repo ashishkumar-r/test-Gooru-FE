@@ -1,0 +1,108 @@
+.controller.guest-sign-in {
+  .sign-in-wrapper {
+    box-shadow: 0 5px 15px 0 $navbar-default-toggle-icon-bar-bg;
+    border-radius: 5px;
+    background-color: $white;
+    width: 100%;
+    margin: 15px auto;
+    padding: 0;
+    float: none;
+    max-width: 800px;
+    @media (min-width: 700px) {
+      width: 700px;
+      margin: auto;
+    }
+
+    .sign-in-header {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      grid-row-gap: 5px;
+      padding-top: 15px;
+      color: $dark-black;
+      text-align: center;
+
+      .guest-logo {
+        background: url("gooru/images/NavMath_Logo.png");
+        height: 50px;
+        padding: 0;
+        width: 50px;
+        justify-self: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .title {
+        font-weight: bold;
+        font-size: 20px;
+        justify-self: center;
+      }
+      .description {
+        display: flex;
+        flex-flow: column;
+        line-height: 1.5;
+        .info {
+          font-size: 14px;
+        }
+        .link {
+          font-size: 11px;
+          text-align: center;
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .divider {
+      border-bottom: 2px solid $light-200;
+      margin: 35px 0 0;
+      width: 100%;
+    }
+
+    .role-sign-in {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      @media (max-width: 700px) {
+        margin: auto;
+        width: auto;
+        grid-template-columns: auto;
+      }
+      .teacher-sign-in {
+        border-right: 1px solid $breadcrumb-color;
+        padding-right: 2px;
+      }
+      .student-sign-in {
+        padding-left: 2px;
+        border-right: 1px solid $breadcrumb-color;
+      }
+
+      .teacher-sign-in,
+      .student-sign-in,
+      .admin-sign-in {
+        .role {
+          text-align: center;
+          padding: 10px;
+          font-size: 15px;
+          font-weight: bold;
+          cursor: pointer;
+          border-bottom: 1px solid $light-200;
+          &.active {
+            background-color: $blue-5ba;
+            color: $white;
+          }
+        }
+
+        .details {
+          padding: 20px 30px 10px;
+          text-align: center;
+          line-height: 1.5;
+        }
+
+        .log-in-button {
+          margin: 15px 0px;
+        }
+      }
+    }
+  }
+}

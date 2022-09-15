@@ -1,0 +1,37 @@
+<div class="suggestion-panel">
+  <div class="suggestion-header">
+    <i class="suggestion-icon {{collectionType}}"></i>
+    <div class="suggestion {{unless isStudent 'hide-play'}}">
+      <div class="title ellipsis {{if isStudent 'disable-event'}}" {{action 'onPreviewContent'}} title="{{content.title}}">
+        {{content.collection.title}}</div>
+      <div class="content-count">
+        {{#if (or content.collection.questionCount content.collection.resourceCount)}}
+          <span class="{{if (gt content.collection.resourceCount 0) '' 'invisible'}}" title="{{t "common.resources"}}">{{gru-icon name='local_library'}}</span><span
+            class="{{if (gt content.collection.resourceCount 0) '' 'invisible'}}">{{content.collection.resourceCount}}</span>
+          <span class="{{if (gt content.collection.questionCount 0) '' 'invisible'}}" title="{{t "common.questions"}}">{{gru-icon name='help_outline'}}</span><span
+            class="{{if (gt content.collection.questionCount 0) '' 'invisible'}}">{{content.collection.questionCount}}</span>
+        {{/if}}
+      </div>
+      {{#if isStudent}}
+        <div class="action" {{action 'playContent'}}>
+          {{gru-icon name='play_arrow'}}
+        </div>
+      {{/if}}
+      {{#if isTeacherSuggestion}}
+        <span class="teacher-suggestion">
+          <i class="icon"></i>
+        </span>
+      {{else}}
+        {{#if isStudent}}
+          <span class="suggestion-icon">
+            {{gru-icon name='explore'}}
+          </span>
+        {{else}}
+          <span class="suggestion-icon suggest {{if (or isInstructionalCoache class.isArchived) 'disableSuggestion'}}" {{action 'onSuggestContent' content collectionType}} data-toggle="tooltip" data-placement="left" title="{{t 'common.suggest-to-student'}}">
+            {{gru-icon name='explore'}}
+          </span>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>

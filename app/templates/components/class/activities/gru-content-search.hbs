@@ -1,0 +1,89 @@
+<div class="content-search-container {{unless isShowContentSelector 'disable-content-selector'}}">
+  <div class="content-source-container {{if showAsDropdown 'show-dropdown'}}">
+    {{#if showAsDropdown}}
+      <div class="dropdown sources">
+        <button class="dropbtn btn-dropdown" type="button" data-toggle="dropdown">{{activeContentSource}}
+          <span class="caret"></span></button>
+        <ul class="dropdown-menu source-list">
+          {{#each contentSources as |contentSource|}}
+            <div class="list-item source {{if (eq activeContentSource contentSource.id) 'active'}}" {{action "onSelectContentSource" contentSource}}>
+              {{contentSource.label}}
+            </div>
+          {{/each}}
+        </ul>
+      </div>
+    {{else}}
+      {{#each contentSources as |contentSource|}}
+        <div class="content-source {{if (eq activeContentSource contentSource.id) 'active'}}" {{action "onSelectContentSource" contentSource}}>
+          {{contentSource.label}}
+        </div>
+      {{/each}}
+    {{/if}}
+    {{#if isShowListView}}
+      <div class="toggle-panel" {{action "onTogglePanel"}}>
+        {{gru-icon name='unfold_more'}}
+      </div>
+    {{/if}}
+  </div>
+  {{#if ( and isShowContentSelector (eq activeContentSource 'tenant-library'))}}
+    <div class="library-info">
+      <div class="back" {{action 'goBackToTenantLibraries'}}>
+        {{gru-icon name="arrow_back"}}
+      </div>
+      <div class="library-icon" style="background-image: url({{activeTenantLibrary.image}})"></div>
+      <div class="library-name">{{activeTenantLibrary.name}}</div>
+    </div>
+  {{/if}}
+  <div class="content-selector-container">
+    <div class="content-types-container">
+      {{#each contentTypes as |contentType|}}
+        <div class="content-type {{if (eq activeContentType contentType.value) 'active'}}" {{action "onSelectContentType" contentType}}>
+          <span class="icon {{contentType.value}}-icon"></span>
+        </div>
+      {{/each}}
+      <div class="content-type add-external-activity" {{action "onSelectExternalActivity"}}>
+        {{gru-icon name="add"}}
+      </div>
+    </div>
+    <div class="search-content-container">
+      {{input
+        type="text"
+        id="search-content"
+        class="search-content"
+        value=contentSearchTerm}}
+      <div class="filter-items">
+        {{#each filters as |selectedFilter index|}}
+          <div class="filter-item">
+            <span class="name ellipsis" data-toggle="tooltip" title={{selectedFilter.name}}>{{selectedFilter.name}}</span>
+            <span class="clear" {{action 'clearFilter' selectedFilter}}> {{gru-icon name="close"}}</span>
+          </div>
+        {{/each}}
+        {{#if moreFilters}}
+          <span class="more-pointer">+{{moreFilters.length}}</span>
+        {{/if}}
+        <div class="more-filters hidden">
+          {{#each moreFilters as |moreFilter|}}
+            <div class="filter-item">
+              <span class="name ellipsis" data-toggle="tooltip" title={{moreFilter.name}}>{{moreFilter.name}}</span>
+              <span class="clear" {{action 'clearFilter' moreFilter}}> {{gru-icon name="close"}}</span>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <span class="clear-icon {{unless filters 'show' 'hidden'}}" {{action "onClearSearch"}}>{{gru-icon name="close"}}</span>
+      <span class="search-icon">{{gru-icon name="search"}}</span>
+    </div>
+    <div class="filter-container" {{action "onClickFilterIcon"}}>
+      {{gru-icon name="filter_list"}}
+    </div>
+  </div>
+</div>
+{{#if (and isFilterEnabled isFilterLoaded)}}
+  {{search/search-by-filter
+  isShow=isShowFilter
+  onFilterApply="onApplyFilter"
+  hideAppScroll=false
+  unCheckedItem=removedFilterItem
+  preference=classPreference
+  selectedFilters=selectedFilters}}
+{{/if}}

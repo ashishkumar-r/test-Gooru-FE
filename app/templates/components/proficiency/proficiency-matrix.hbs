@@ -1,0 +1,33 @@
+{{#if isLoading}}
+  <div class="spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+<div class="competency-chart-tab-container">
+  <div class="competency-courses-chart">
+    <div class="courses pull-right">
+      <ul>
+        {{#each taxonomyDomains as |taxonomyDomain index |}}
+          <li>
+            {{taxonomyDomain.domainSeq}}. {{locale-translation (t (concat 'domain-code.' taxonomyDomain.domainCode)) taxonomyDomain.domainName}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="pull-left matrix-chart-container {{if isTaxonomyDomains 'scroll-view' ''}}">
+      <div id="render-proficiency-matrix"></div>
+      <div class="domain-list" style="width:{{width}}px">
+        {{#each taxonomyDomains as |taxonomyDomain index |}}
+          <li class="domain-counts">
+            {{taxonomyDomain.domainSeq}}
+          </li>
+        {{/each}}
+      </div>
+    </div>
+
+    {{#if (and (not isLoading) (not isTaxonomyDomains) ) }}
+      <span class="no-data">{{t 'profile.proficiency.is-empty'}}</span>
+    {{/if}}
+  </div>
+  <div class="clear"></div>
+</div>

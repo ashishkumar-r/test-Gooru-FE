@@ -1,0 +1,39 @@
+<div class="backdrop" {{action 'closeAll'}} tabindex={{tabindex}}></div>
+<div class="report-container">
+  <div class="report-header">
+    <div class="assessment-container">
+      <div class="assessment-thumbnail" style="background-image: url({{externalAssessment.thumbnailUrl}})">
+      </div>
+      <div class="assessment-info">
+        <div class="title">
+          {{externalAssessment.title}}
+        </div>
+        <div class="student-name">
+          {{profile.fullName}}
+        </div>
+        <div class="performance-bar">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="{{performanceColorStyle}} {{studentAverage}}">
+          </div>
+          <span class="score-text" style="color: {{performanceColor}}"> {{performanceScore}} % </span>
+        </div>
+      </div>
+    </div>
+    <i class="assessment-external-icons"></i>
+    <div class="pullup-close pull-right" onclick={{action 'onPullUpClose'}} onkeypress={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+      {{gru-icon name='close'}}
+      <span>Close</span>
+    </div>
+  </div>
+  <div class="report-body">
+    <div class="external-assessment-container">
+      <div class="taxonomy-container">
+        {{#if tags.length}}
+          {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=4 showDescription=true }}
+        {{/if}}
+      </div>
+      <div class="reference">{{t 'report.external-assessment-report.reference'}} <a target="_blank" href="{{externalAssessment.url}}" class="link">here</a></div>
+      <div class="wish">{{t 'report.external-assessment-report.wish'}}</div>
+      <div class="student-score" style="color: {{performanceColor}}">{{performanceScore}}%</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="gru-student-navbar-container">
+  <div class="gru-student-navbar-panel">
+    <div class="teacher-head-details">
+      <a {{action "onCloseStudyClassPlayer"}} href="javascript:void(0)" class="close-icon {{if isShowImpersonate 'impersonate-close'}}" tabindex="1">
+        {{gru-icon name="arrow_back"}}
+      </a>
+      <div class="gru-student-title-section">
+        {{#if session.userData.userDisplayName}}
+          <span class="teacher-name">{{truncate text=session.userData.userDisplayName maxLength=25}}</span>
+        {{else}}
+          <span class="teacher-name">{{session.userData.username}}</span>
+        {{/if}}
+        <span class="class-name">
+          {{#if activeSubPrograme}}
+          {{activeSubPrograme.title}}
+          {{else}}
+            {{#if class}}
+              {{class.title}}
+            {{else}}
+              {{course.title}}
+            {{/if}}
+          {{/if}}
+        </span>
+      </div>
+    </div>
+    <div class="navbar-nav menu-list-item {{if isDisableNavbar 'disable-div '}}">
+      <div class="nav-menu-item-list">
+        <a href="javascript:void(0)" {{action 'selectItem' 'dashboard'}} class="menu-item {{if (eq selectedMenuItem 'dashboard') 'active'}}" tabindex="1">
+          {{gru-icon name='dashboard'}}
+          <span>{{t 'student-landing.class.dashboard'}}</span>
+        </a>
+        {{#unless (or isPublicClass isILActivity)}}
+          <a href="javascript:void(0)" {{action 'selectItem' 'class-activities'}} class="menu-item {{if (eq selectedMenuItem 'class-activities') 'active'}}" tabindex="1">
+            {{gru-icon name='push_pin'}}
+            <span>{{t 'student-landing.class.class-activities'}}</span>
+          </a>
+        {{/unless}}
+        <a href="javascript:void(0)" {{action 'selectItem' 'course-map'}} class="menu-item {{if (or (eq selectedMenuItem 'course-map') (eq selectedMenuItem 'study-player')) 'active'}}" tabindex="1">
+          {{gru-icon name='sort'}}
+          <span>{{t 'teacher-landing.class.learning-journey'}}</span>
+        </a>
+        {{#unless isILActivity }}
+          <a href="javascript:void(0)" class="menu-item {{if (eq selectedMenuItem 'profile-prof') 'active'}}" {{action 'selectItem' 'profile-prof'}} tabindex="1">
+            {{gru-icon name='school'}}
+            <span>{{t 'student-landing.class.my-proficiency'}}</span>
+          </a>
+        {{/unless}}
+      </div>
+      <div class="additional-notification-section">
+          {{#if showLearningTool}}
+            <div class="tools {{if isShowLearningTool 'active'}}  {{if isShowImpersonate 'disabled'}}" tabindex="1" onclick={{action 'onOpenLearningTools'}} onkeypress={{action 'onOpenLearningTools'}}>
+              <span class="material-icons-outlined">
+                handyman
+              </span>
+            </div>
+          {{/if}}
+            {{#if isShowLearningTool}}
+            {{reports/pull-up/gru-learning-tool-list isShowLearningTool=isShowLearningTool sourceDetails=sourceDetails}}
+            {{/if}}
+        <div class="suggestion-container">
+          <a href="javascript:void(0)" {{action 'toogleSuggestionContainer'}} class="suggestion-item" tabindex="1">
+            {{gru-icon name="explore"}}
+          </a>
+          {{#if showSuggestionContainer}}
+            {{student-suggestion-container classId=classId isPublicClass=isPublicClass courseId=courseId onCloseContainer='toogleSuggestionContainer' tabindex="5" classFramework = classFramework isDefaultShowFW = isDefaultShowFW}}
+          {{/if}}
+        </div>
+        <a href="javascript:void(0)" class="notification-item" tabindex="1">
+          {{notification/notification-indicator displayNotificationList=displayNotificationList accessorClass='class' classId=classId isTeacher=false tabindex=6}}
+        </a>
+
+        <li role="menuitem" class="navbar-nav-list visible-md visible-lg dropdown profile-dropdown {{if isShowImpersonate 'disabled'}}" tabindex="2" onkeypress={{action 'porfileContainer' 'nav-menu-item-list' 'profile-dropdown'}}>
+          <a class="profile-more dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{gru-icon name='more_vert'}}
+          </a>
+          <ul class="dropdown-menu pull-right" id="profile-more">
+
+            <li role="tab" class="navbar-nav-list profile">
+              <a onclick={{action 'navigateToSupport' 'profile' }} onkeypress={{action 'navigateToSupport' 'Profile'}} target="_blank" class="navbar-link" role="button" tabindex="2" aria-label="home">
+                {{t "common.profile"}}
+              </a>
+            </li>
+
+            <li role="tab" class="navbar-nav-list home">
+              <a onclick={{action 'navigateToSupport' 'home'}} onkeypress={{action 'navigateToSupport' 'Home'}} target="_blank" class="navbar-link" role="button" tabindex="2" aria-label="home">
+                {{t "common.home"}}
+              </a>
+            </li>
+
+            <li role="tab" class="navbar-nav-list support">
+              <a onclick={{action 'navigateToSupport' 'support' }} onkeypress={{action 'navigateToSupport' }} target="_blank" class="navbar-link" role="button" tabindex="2" aria-label="support">
+                {{t "common.support"}}
+              </a>
+            </li>
+
+            {{#if showDropMenu }}
+              <li role="tab" class="navbar-nav-list">
+                <div class="menu-dropdown">
+                  <button class="menu-dropbtn" {{action 'openLangPullUp'}}>{{t i18n.locale}} <span class="caret"></span></button>
+                  {{#if showLanguage}}
+                    <div class="backdrop" {{action 'closeLangPullUp'}}></div>
+                  {{/if}}
+                  <div class="dropdown-content-menu {{if showLanguage 'show-bg'}}">
+                    {{#each locales as |loc|}}
+                      {{#if loc.isActive}}
+                        <a class="{{if (eq i18n.locale loc.id) 'active'}}" onclick={{action 'setLocale' loc.id}} onkeypress={{action 'setLocale' loc.id}} tabindex="2" role="button" aria-label={{loc.text}}>{{loc.text}}</a>
+                      {{/if}}
+                    {{/each}}
+                  </div>
+                </div>
+              </li>
+            {{/if}}
+
+            <li role="tab" class="navbar-nav-list">
+              <a class="navbar-link" onclick={{action "logout"}} onkeypress={{action "logout"}} role="button" tabindex="2" aria-label="logout"> {{t "common.logout"}}</a>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+
+  </div>
+</div>

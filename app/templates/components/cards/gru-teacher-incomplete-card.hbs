@@ -1,0 +1,75 @@
+<div class="new-cards gru-teacher-class-cards ember-view incomplete-cards">
+  <div class="panel">
+    <div class="card-panel-heading">
+      <div data-placement="bottom" data-toggle="tooltip" title="" data-trigger="hover" class="title ellipsis"
+        data-original-title="FilterByTags">
+        {{#if gradename}}
+        {{gradename}}
+        {{else}}
+        {{t 'teacher-incomplete-card-grade'}}
+        {{/if}}
+      </div>
+      <div class="card-classname">
+        {{incompleteClass.title}}
+      </div>
+    </div>
+    <div class="cards-panel-body">
+        <div class="card-details-container">
+          <div class="help-identify-teacher">
+            {{t 'teacher-incomplete-card-help-label'}}
+          </div>
+          <div class="overall-card">
+            <div class="image-column-content">
+              <div class="random-img" style="background-image: url({{cardBackgroundImage}})">
+              </div>
+              <div class="class-code-text">
+                <div class="classs-code-element">{{t 'teacher-incomplete-class-code'}}</div>
+                <div class="classs-code-element">{{incompleteClass.code}}</div>
+              </div>
+            </div>
+            {{#if subjects}}
+            <div class="lessons-top-bar">
+              <div class="lessons-list">
+                <div class="lessons-check">
+                  <span class="material-icons-outlined" {{action 'handleClick' }}>
+                    {{if checked 'task_alt' 'radio_button_unchecked'}}
+                  </span>
+                </div>
+                <div class="class-sections">
+                  {{fw_code}} / {{code}}
+                </div>
+                <div class="class-subject">
+                  {{label}}
+                </div>
+              </div>
+            </div>
+            {{else}}
+            <div class="incomplete-no-subject">{{t 'teacher-incomplete-card-no-subjects'}}</div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="delete-class-list-container">
+          <div class="delete-card-list">{{t 'teacher-incomplete-card-delete-classroom'}}</div>
+          <div class="checked-lesson">
+            <span class="material-icons-outlined" {{action 'deleteClick' }}>
+              {{#if isBottomPanelExpanded}}
+              <img src="assets/gooru/icons-remove.png" class="delete-icon" />
+              {{else}}
+              radio_button_unchecked
+              {{/if}}
+            </span>
+          </div>
+        </div>
+        {{#if isBottomPanelExpanded}}
+        <div class="confirm-delete-container">
+          {{#if checked}}
+          <button class="delete-confirm" {{action 'updatePerference' incompleteClass.id code fw_code }}>{{t 'common.confirm'}}</button>
+              {{else}}
+            <button class="delete-confirm" {{action 'deleteClasses' }}>{{t 'common.confirm'}}
+             </button>
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>  

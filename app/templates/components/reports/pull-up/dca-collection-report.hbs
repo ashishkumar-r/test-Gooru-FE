@@ -1,0 +1,167 @@
+<div class="backdrop" {{action 'onPullUpClose'}}></div>
+<div class="dca-collection-report-container">
+  <div class="report-header">
+    <div class="report-header-info">
+      <div class="collection-title">
+        <i class="collection-icon {{collectionType}}"></i>
+        <p>{{selectedCollection.title}}</p>
+      </div>
+      <div class="dca-activity-date">
+        <span>{{format-date activityDate 'MMMM DD, YYYY'}}</span>
+      </div>
+    </div>
+    <div class="report-close-pullup" {{action 'onPullUpClose'}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-carousel">
+      <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+          {{#each collections as |collectionItem index|}}
+            <div data-item-index="{{index}}" class="item {{if (eq index 0) 'active'}}">
+              <div class="collection-background-cover" />
+            </div>
+          {{/each}}
+        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" data-slide="prev" {{action 'onClickPrev'}}>
+          <i class="arrow-left"></i>
+        </a>
+        <a class="right carousel-control" data-slide="next" {{action 'onClickNext'}}>
+          <i class="arrow-right"></i>
+        </a>
+      </div>
+      <div class="report-carousel-content-container">
+        <div class="report-carousel-content">
+          <div class="performance-display-container">
+            {{#if (eq collectionType 'assessment')}}
+              <div class="collection-performance-average {{concat 'grade-range-' (grade-range selectedCollection.performance.score)}}">
+                {{#if (eq selectedCollection.performance.score null)}}
+                  --
+                {{else}}
+                  {{concat selectedCollection.performance.score '%'}}
+                {{/if}}
+              </div>
+            {{else}}
+              <div class="collection-performance-timespent">{{format-time selectedCollection.performance.timeSpent}}</div>
+            {{/if}}
+          </div>
+          <div class="collection-report-chart">
+            {{#if (eq collectionType 'assessment') }}
+              {{charts/report-bar-chart useTimeSpentScore=false assessmentFormat=selectedCollection.format studentChartReportData=studentReportData onClickChart="onClickChart"}}
+            {{else}}
+              {{charts/report-bar-chart useTimeSpentScore=true assessmentFormat=selectedCollection.format studentChartReportData=studentReportData onClickChart="onClickChart"}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-performance-tabular {{if isGridView 'grid'}}">
+      <div class="report-header-container">
+        <div class="taxonomy-details">
+          {{#if tags.length}}
+            {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 showDescription=true }}
+          {{/if}}
+        </div>
+        <div class="report-action-btns">
+          <div class="view-btn-actions">
+            <div class="grid-view-icon {{if isGridView 'active'}}" {{action "onChooseGridView"}}>
+              {{gru-icon name="view_module"}}
+              <span>{{t 'common.grid'}}</span>
+            </div>
+            <div class="list-view-icon {{if isListView 'active'}}" {{action "onChooseListView"}}>
+              {{gru-icon name="view_list"}}
+              <span>{{t 'common.list'}}</span>
+            </div>
+          </div>
+          {{#unless (eq selectedCollection.format 'assessment-external')}}
+            <div class="filter-btns">
+              <div class="performance-icon {{collectionType}} active">
+                {{gru-icon name="done_all"}}
+                <span>{{t 'gru-course-play.performance'}}</span>
+              </div>
+              <div class="timespent-icon {{selectedCollection.format}} {{if isTimeSpentFltApplied 'active'}}" {{action "onToggleTimeSpentFlt"}}>
+                {{gru-icon name="access_time"}}
+                <span>{{t 'common.timeSpent'}}</span>
+              </div>
+              <div class="reaction-icon {{if isReactionFltApplied 'active'}}" {{action "onToggleReactionFlt"}}>
+                {{gru-icon name="insert_emoticon"}}
+                <span>{{t 'reports.gru-table-view.reactions'}}</span>
+              </div>
+            </div>
+          {{/unless}}
+        </div>
+      </div>
+      <div class="report-view-container">
+        {{#if (eq selectedCollection.format 'assessment-external')}}
+          {{#if isGridView}}
+          {{reports/pull-up/dca-teacher-external-assessment-report-grid-view
+            studentReportData=studentReportData
+            selectedCollection=selectedCollection
+          }}
+          {{else}}
+            {{reports/pull-up/dca-teacher-external-assessment-report-list-view
+              studentReportData=studentReportData
+              selectedCollection=selectedCollection
+              context=context
+              collection=collection
+              studentReport="studentReport"
+            }}
+          {{/if}}
+        {{else}}
+          {{#if isGridView}}
+            {{reports/pull-up/dca-collection-report-gridview
+              contents=collection.children
+              studentReportData=studentReportData
+              selectedCollection=selectedCollection
+              studentReport="studentReport"
+              collection=collection
+            }}
+          {{else}}
+            {{reports/pull-up/dca-collection-report-listview
+              sortByFirstnameEnabled=sortByFirstnameEnabled
+              sortByLastnameEnabled=sortByLastnameEnabled
+              sortByScoreEnabled=sortByScoreEnabled
+              sortByTimeSpentEnabled=sortByTimeSpentEnabled
+              contents=collection.children
+              studentReportData=studentReportData
+              selectedCollection=selectedCollection
+              isReactionFltApplied=isReactionFltApplied
+              isTimeSpentFltApplied=isTimeSpentFltApplied
+              studentReport="studentReport"
+              openQuestionReport="openQuestionReport"
+              context=context
+              collection=collection
+            }}
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#if isShowStudentReport}}
+  {{reports/pull-up/dca-student-collection-report showPullUp=isShowStudentReport reportData=studentReportContextData model=studentReportContextData.lesson isStudent=studentReportContextData.isStudent onClosePullUp="onClosePullUp"}}
+{{/if}}
+
+{{#if isShowStudentExternalAssessmentReport}}
+  {{
+    reports/pull-up/dca-student-external-assessment-report
+    reportData=studentReportContextData
+    isStudent=studentReportContextData.isStudent
+    onClosePullUp="onClosePullUp"
+    showPullUp=isShowStudentExternalAssessmentReport
+  }}
+{{/if}}
+
+{{#if isShowQuestionReport}}
+  {{reports/pull-up/dca-question-report showPullUp=isShowQuestionReport  context=studentQuestionReportContextData}}
+{{/if}}
+
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

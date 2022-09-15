@@ -1,0 +1,13 @@
+.cancel-signup-confirmation-section {
+  .title {
+    color: $brand-primary;
+  }
+  .leave-registration-submit {
+    background: -webkit-linear-gradient($white, $gray-lighter);
+    color: $brand-primary;
+    border: 1px solid $gray-lighter;
+  }
+  .footer {
+    border-top: 2px solid $gray-lighter;
+  }
+}

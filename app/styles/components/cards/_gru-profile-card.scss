@@ -1,0 +1,118 @@
+.cards.gru-profile-card {
+  > .avatar {
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+    > strong {
+      color: $gray-base;
+      display: block;
+      font-size: 1.7rem;
+      font-weight: normal;
+      margin-bottom: 15px;
+      padding: 0 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    .img-wrapper {
+      display: inline-block;
+      margin: 10px auto 2px;
+      overflow: hidden;
+      border-radius: 50%;
+      background-clip: padding-box;
+      height: 9rem;
+      width: 9rem;
+      img {
+        display: block;
+        width: 100%;
+        border-radius: 0;
+        background: url(/assets/gooru/profile.png) center center;
+        background-size: cover;
+        color: $table-bg;
+      }
+    }
+  }
+
+  > .social {
+    margin: 20px 0;
+    white-space: nowrap;
+
+    > span {
+      display: inline-block;
+      padding: 0 0 0 20px;
+      line-height: 1;
+      font-size: 1.1rem;
+      margin-right: -4px;
+      font-weight: 300;
+      &:first-of-type {
+        padding: 0 20px 0 0;
+      }
+
+      > em {
+        display: block;
+        font-size: 1.4rem;
+        font-style: normal;
+        line-height: 1.2;
+        padding-bottom: 8px;
+        font-weight: normal;
+      }
+      &:last-child {
+        border-left: 1px solid $gray;
+      }
+    }
+  }
+
+  @media (max-width: $screen-sm-max) {
+    margin: 0 5px;
+    position: relative;
+    > .avatar {
+      height: 100%;
+      position: absolute;
+      left: 0;
+      max-width: 35%;
+      > strong {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
+        width: 95%;
+        line-height: 60px;
+      }
+      .img-wrapper {
+        margin: 0;
+        display: inline-block;
+        vertical-align: middle;
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+    > .social {
+      margin: 8px 0 0;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
+    > .avatar {
+      max-width: 55%;
+      left: 43%;
+      @include translate(-50%, 0);
+      > strong {
+        padding: 0;
+        width: 100%;
+      }
+      .img-wrapper {
+        margin-left: -3.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+    > .social {
+      margin-top: 60px;
+      > span {
+        padding: 4px 15px 0;
+      }
+    }
+  }
+}

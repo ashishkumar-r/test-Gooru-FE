@@ -1,0 +1,114 @@
+.student-class-milestone-course-map-route0-preview {
+  .milestone-course-map-route0-preview-container {
+    width: 100%;
+    min-height: 90px;
+    object-fit: contain;
+    border-radius: 4px;
+    background-color: $white;
+    box-shadow: 0 0 4px 2px $sun-color;
+
+    .milestone-course-map-route0-preview-header {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      align-items: center;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid $breadcrumb-color;
+      cursor: pointer;
+
+      .milestone-route0-suggest-icon {
+        i {
+          font-size: 61px;
+          width: 69px;
+          color: $sun-color;
+        }
+        justify-self: center;
+        border-right: 2px solid $breadcrumb-color;
+        height: 60px;
+      }
+
+      .milestone-route0-suggest-info {
+        p {
+          display: inline;
+          font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 16px;
+          text-align: left;
+          color: $dark-400;
+          line-height: 1.2;
+        }
+      }
+    }
+
+    .route0-preview-actions-container {
+      display: grid;
+      justify-content: end;
+      grid-template-columns: 120px 120px;
+      margin-top: 10px;
+      padding-bottom: 10px;
+
+      .accept,
+      .ignore {
+        background-color: $sun-color;
+        height: 38px;
+        font-size: 13px;
+        font-weight: 700;
+        color: $white;
+        line-height: 38px;
+        text-align: center;
+        cursor: pointer;
+        width: 108px;
+        border-radius: 3px;
+        box-shadow: 0 0 5px 1px $navbar-box-shadow;
+        vertical-align: text-bottom;
+        display: inline-block;
+      }
+
+      .ignore {
+        border-bottom-right-radius: 4px;
+        background-color: $light-400;
+        margin-left: 5px;
+      }
+    }
+
+    .route0-preview-container {
+      display: none;
+      .route0-preview-author-info-container {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $breadcrumb-color;
+
+        .route0-preview-title {
+          font-family: "Lato";
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1.5;
+          text-align: left;
+          color: $dark-500;
+          margin: 0;
+          padding-left: 15px;
+        }
+
+        .created-by {
+          font-family: "Lato";
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 1.5;
+          text-align: left;
+          color: $gray;
+          margin: 0;
+          padding-left: 15px;
+        }
+      }
+
+      .route0-preview-chart {
+        padding: 15px;
+
+        .route-suggestion-proficiency-matrix {
+          .matrix-chart {
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+}

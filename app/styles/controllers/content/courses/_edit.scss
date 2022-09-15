@@ -1,0 +1,501 @@
+.controller.content.courses.edit {
+  .gru-accordion {
+    ol .panel {
+      position: initial;
+    }
+  }
+
+  .gru-accordion-course {
+    > .header > .detail > .drag-options {
+      display: inline-block;
+
+      button {
+        font-size: 12px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+    }
+  }
+
+  .accordion-course,
+  .accordion-lesson,
+  .accordion-unit {
+    > li {
+      padding: 10px 0;
+    }
+
+    &.sortable.sorting > li .panel {
+      cursor: move;
+    }
+  }
+
+  .accordion-course {
+    // Start with the styles in common,
+    // then continue with a hierarchy of styles
+    .gru-accordion-lesson > .view > .panel-heading,
+    .gru-accordion-lesson-item .panel-heading {
+      > .detail {
+        > div:first-of-type {
+          &.mixed {
+            @media (max-width: $screen-lg-min) {
+              vertical-align: top;
+            }
+
+            > span:last-child {
+              @media (min-width: $screen-lg) {
+                border-left: 1px solid $gray;
+                padding-left: 4px;
+                margin-left: 2px;
+              }
+            }
+          }
+
+          > span {
+            display: block;
+            line-height: 1.4;
+            text-align: $menu-float-dir;
+            @media (min-width: $screen-lg) {
+              display: inline;
+            }
+          }
+        }
+      }
+    }
+
+    .panel-heading {
+      position: relative;
+      border-bottom: 1px solid $gray-light;
+
+      a {
+        color: $text-color;
+      }
+
+      .title {
+        display: inline-block;
+        width: 53%;
+        @include text-overflow();
+        @media (max-width: $screen-xs-max) {
+          width: 50%;
+        }
+      }
+
+      h3 {
+        display: inline-block;
+        margin: 0 0 10px;
+        padding: 0 20px 0 0;
+        font-weight: bold;
+        border-right: 1px solid $gray-light;
+        line-height: 2.5;
+        color: $text-color;
+      }
+
+      strong {
+        margin-left: 15px;
+        font-weight: normal;
+        font-size: 16px;
+      }
+    }
+
+    .add-item {
+      a {
+        display: block;
+        border: 2px dashed $gray-light;
+        padding: 20px;
+        border-radius: 6px;
+        font-size: $font-size-large;
+        color: $gray;
+        text-align: center;
+      }
+    }
+
+    .gru-accordion {
+      &.view {
+        > .edit {
+          display: none;
+        }
+
+        > .view {
+          .panel-heading {
+            padding-right: 10px;
+            margin-bottom: 0;
+
+            .drag-icon {
+              color: $light-500;
+              display: inline-block;
+              vertical-align: middle;
+            }
+
+            .detail {
+              float: $menu-float-dir;
+
+              .icons {
+                background-image: url("/assets/gooru/share.png");
+                width: 22px;
+                height: 16px;
+                display: block;
+                background-size: cover;
+              }
+
+              > span {
+                vertical-align: middle;
+                margin-right: 2px;
+                margin-left: 2px;
+              }
+
+              button {
+                background-color: $well-border;
+                font-size: 24px;
+                line-height: 1;
+                padding: 7px 5px;
+
+                i {
+                  color: $gray;
+                }
+              }
+
+              div {
+                display: inline-block;
+              }
+
+              .actions {
+                margin-left: 5px;
+
+                > div:last-of-type {
+                  border-left: 1px solid $gray-light;
+                  margin-left: 5px;
+                  padding-left: 10px;
+                }
+
+                .drag-options {
+                  display: inline-block;
+
+                  .cancel.btn-info {
+                    padding: 10px 15px;
+                    font-size: 12px;
+                    background-color: $brand-info;
+                  }
+
+                  .save.btn-success {
+                    padding: 10px 15px;
+                    font-size: 12px;
+                    background-color: $brand-success;
+                  }
+                }
+              }
+            }
+          }
+
+          &.collapsed {
+            .panel-heading {
+              margin-bottom: 0;
+              border-bottom: 0 none;
+            }
+
+            .panel-body {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &.edit {
+        > .view {
+          display: none;
+        }
+
+        > .edit {
+          .panel-heading {
+            @include flexbox;
+
+            > .title {
+              @include flex();
+
+              .form-group {
+                padding-left: 10px;
+                margin-bottom: 0;
+              }
+            }
+
+            > .actions {
+              width: 150px;
+              text-align: $menu-float-dir;
+              padding-top: 5px;
+            }
+          }
+        }
+      }
+    }
+    .gru-accordion-lesson,
+    .gru-accordion-unit {
+      .panel-body {
+        padding: 10px 15px 15px;
+
+        .gru-taxonomy-tag-list {
+          padding-left: 5px;
+        }
+
+        .col-sm-6,
+        .col-sm-12 {
+          &.etl-label {
+            margin-top: 20px;
+            &.lesson-label {
+              > article {
+                .etl-seconds {
+                  margin-top: 0px;
+                }
+              }
+            }
+
+            .title-label {
+              display: grid;
+
+              .gru-input {
+                border-bottom: none;
+
+                .form-group {
+                  margin-bottom: 0;
+                }
+              }
+            }
+          }
+
+          label {
+            width: auto;
+
+            span {
+              display: block;
+            }
+
+            textarea {
+              font-size: $font-size-base;
+              height: 80px;
+              resize: none;
+              width: 100%;
+              margin-top: 6px;
+
+              &:focus {
+                outline: 0 none;
+              }
+            }
+          }
+        }
+
+        .data-row {
+          > span {
+            display: block;
+            margin: 10px 0;
+          }
+
+          .add-taxonomy {
+            @include flexbox();
+
+            > ul {
+              @include flex();
+            }
+          }
+
+          &.domain,
+          &.standards {
+            ul {
+              margin-left: 5px;
+              list-style: none;
+              padding: 0;
+              display: inline-block;
+
+              li {
+                display: inline-block;
+                margin-right: 2px;
+              }
+            }
+          }
+        }
+      }
+
+      &.view {
+        > .view > .panel-heading {
+          > strong {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -6px;
+            @include text-overflow();
+            max-width: 34%;
+            @media (min-width: $screen-lg) {
+              max-width: 45%;
+            }
+          }
+        }
+
+        > .expanded > .panel-body {
+          background-color: $dark-400;
+
+          .add-item a {
+            color: $white;
+          }
+        }
+      }
+    }
+
+    .gru-accordion-lesson {
+      &.view {
+        > .view > .panel-heading {
+          > strong {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -6px;
+            @include text-overflow();
+            max-width: 25%;
+            @media (min-width: $screen-lg) {
+              max-width: 31%;
+            }
+          }
+
+          .actions {
+            .dropdown {
+              &.open > .dropdown-toggle {
+                z-index: $zindex-dropdown + 1;
+                @include box-shadow(0 -4px 4px $box-shadow-bg-color);
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                position: relative;
+                background-color: $white;
+              }
+
+              .dropdown-menu {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                margin-top: -4px;
+
+                li {
+                  > a {
+                    padding: 10px 20px 10px 15px;
+                    border-bottom: 1px solid $gray-lighter;
+                  }
+
+                  &:last-child > a {
+                    border-bottom: 0 none;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        > .expanded > .panel-body {
+          background-color: $dark-300;
+        }
+
+        .accordion-lesson {
+          > li.gru-accordion-lesson-item {
+            .panel-heading {
+              border-bottom: 0 none;
+              border-bottom-left-radius: 3px;
+              border-bottom-right-radius: 3px;
+              padding-bottom: 8px;
+
+              .drag-icon {
+                vertical-align: text-bottom;
+              }
+
+              > h3 {
+                border-right: 0 none;
+                padding-right: 10px;
+                margin-bottom: 0;
+                vertical-align: top;
+              }
+
+              > .title {
+                > .image-placeholder,
+                > img {
+                  display: inline-block;
+                  width: 50px;
+                  height: 40px;
+                  vertical-align: top;
+                }
+
+                .resource-title-container {
+                  max-width: calc(100% - 65px);
+                }
+
+                > .image-placeholder {
+                  border-radius: 3px;
+                  background-color: $gray-lighter;
+                }
+
+                > div {
+                  border-left: 1px solid $gray-light;
+                  display: inline-block;
+                  margin-left: 10px;
+                  line-height: 1.4;
+                  max-width: 40%;
+
+                  > strong {
+                    color: $text-color;
+                    display: block;
+                    line-height: 1.2;
+                    margin-bottom: 5px;
+                    @include text-overflow();
+                  }
+
+                  > span {
+                    color: $gray-light;
+                    margin-left: 15px;
+                    text-transform: capitalize;
+                  }
+                }
+              }
+            }
+
+            &.ui-sortable-helper {
+              padding-top: 0;
+              padding-bottom: 0;
+            }
+          }
+
+          + div {
+            padding: 10px 0 5px;
+
+            button {
+              font-size: $font-size-base;
+              padding: 5px 10px;
+            }
+          }
+        }
+      }
+
+      &.edit {
+        > .edit > .panel-heading {
+          .gru-input {
+            width: 62%;
+
+            .form-group {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #information {
+    .description,
+    .use-case {
+      textarea {
+        line-height: $font-size-large;
+      }
+
+      > label {
+        display: block;
+        width: 100%;
+      }
+    }
+    .description {
+      label {
+        .text-description {
+          height: auto;
+          overflow: auto;
+          max-height: 118px;
+        }
+      }
+    }
+  }
+}

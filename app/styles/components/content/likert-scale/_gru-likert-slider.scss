@@ -1,0 +1,68 @@
+.gru-likert-slider {
+  padding: 10px;
+  .gru-likert-evaluation-container {
+    .gru-likert-evaluation-panel {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      .likert-item-row {
+        display: grid;
+        height: 40px;
+        align-items: center;
+        line-height: 1.2;
+      }
+      .likert-slider-items {
+        .gru-likert-evaluation-panel-body {
+          .likert-evaluation-progress {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            align-items: baseline;
+            grid-column-gap: 10px;
+            .likert-evaluation-progress-label {
+              @include ellipsis(
+                $font-size: 14px,
+                $line-height: 1.4,
+                $lines-to-show: 2
+              );
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .likert-slider-content {
+        overflow: hidden;
+        overflow-x: auto;
+        &::-webkit-scrollbar {
+          width: 0px;
+          background: transparent; /* make scrollbar transparent */
+        }
+        .gru-likert-evaluation-panel-head {
+          padding-bottom: 10px;
+          .evaluation-progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            width: 500px;
+            line-height: 1.2;
+            span {
+              width: 70px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              line-height: 1.2;
+            }
+          }
+        }
+        .gru-likert-evaluation-panel-content {
+          .evaluation-progress-item {
+            .title {
+              text-align: right;
+            }
+            progress {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

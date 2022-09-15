@@ -1,0 +1,50 @@
+{
+  "endpoint": {
+    "url": "",
+    "secureUrl": "https://nile.gooru.org",
+    "tenantUrl": "https://s3-us-west-1.amazonaws.com/nile-tenants/prod"
+  },
+  "realTime": {
+    "webServiceUrl": "",
+    "webServiceUri": "/nucleus/realtime",
+    "webSocketUrl": "https://rt.nile.gooru.org",
+    "webSocketUri": "/ws/realtime"
+  },
+  "teams": {
+    "url": "http://teams.gooru.org"
+  },
+
+  "quizzes-addon": {
+    "endpoint" : {
+      "url": "/quizzes",
+      "secureUrl": "/quizzes",
+      "providerUrl": ""
+    },
+
+    "realTime": {
+      "webServiceUrl": "",
+      "webServiceUri": "/",
+      "webSocketUrl": "https://rt-nile.gooru.org",
+      "webSocketUri": "/ws/quizzes-realtime"
+    }
+  },
+
+  "exploreFeaturedCourses": {
+    "firstCourseId": "1d91657f-694b-43dc-9306-bca17b107c7d",
+    "secondCourseId": "3def51be-bd91-48fd-b747-9c86339b571a",
+    "thirdCourseId": "d9b7c359-adff-486d-a2cf-bbbbc66c2ba5",
+    "fourthCourseId": "781c3e76-a382-4652-86ae-079b92f57a9d"
+  },
+
+  "demoClass": {
+    "code": "DGNTIKN",
+    "id": "71bfbc07-1b87-4e8e-a98a-1839e834cd20"
+  },
+
+  "languageSetting": {
+    "defaultLang": "en",
+    "showDropMenu": true
+  },
+  "OAUTH_LOGIN_LANUCH_URL":
+  "https://staging.gooru.org/api/nucleus-auth-idp/v1/oauth2"
+}

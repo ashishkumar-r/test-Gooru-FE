@@ -1,0 +1,55 @@
+.charts.score-fill-gauge-chart {
+  svg {
+    text.score-percentage,
+    text.total-timespent,
+    text.placeholder-text {
+      fill: $white;
+      font-weight: bold;
+    }
+
+    text.score-percentage {
+      font-size: 90px;
+
+      @media screen and (max-width: $screen-360) {
+        font-size: 60px;
+      }
+    }
+    text.total-timespent,
+    text.placeholder-text {
+      font-size: 20px;
+    }
+
+    .fill-range-not-started {
+      fill: $dark-gray-54;
+    }
+
+    &.transparent-grade-range-not-started {
+      background-color: $suggestion-panel-color;
+
+      text.placeholder-text,
+      text.total-timespent {
+        fill: $gray;
+      }
+    }
+
+    &.transparent-grade-range-0-59 {
+      background-color: $grade-range-0-59;
+    }
+
+    &.transparent-grade-range-60-69 {
+      background-color: $grade-range-60-69;
+    }
+
+    &.transparent-grade-range-70-79 {
+      background-color: $grade-range-70-79;
+    }
+
+    &.transparent-grade-range-80-89 {
+      background-color: $grade-range-80-89;
+    }
+
+    &.transparent-grade-range-90-100 {
+      background-color: $grade-range-90-100;
+    }
+  }
+}

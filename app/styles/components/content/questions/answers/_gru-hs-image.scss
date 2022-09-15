@@ -1,0 +1,85 @@
+.questions.answers.gru-hs-image {
+  $component-height: 126px;
+  .add-answer,
+  .gru-image {
+    width: 114px;
+    height: $component-height;
+    border-radius: 4px;
+  }
+
+  .hs-container {
+    float: $tab-float-dir;
+    margin-right: 25px;
+    margin-bottom: 30px;
+    .panel {
+      margin-top: 12px;
+      border-radius: 0;
+      @include box-shadow(none);
+    }
+    .letter-container,
+    .panel {
+      display: inline-block;
+    }
+    .letter-container {
+      vertical-align: top;
+      margin-right: 10px;
+    }
+    .content.gru-image {
+      margin-right: 0;
+      border-radius: 0;
+      .validation {
+        margin-bottom: -60px;
+      }
+      button.btn-info {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .delete {
+        display: none;
+      }
+    }
+    .panel-footer {
+      padding: 0;
+      .btn-group {
+        button {
+          border: 0;
+          padding: 10px;
+          width: 56px;
+          margin: -0.5px;
+          background-color: $light-200;
+        }
+        .delete {
+          border-bottom-left-radius: 4px;
+        }
+        .check {
+          border-bottom-right-radius: 4px;
+        }
+        .check.correct {
+          background-color: $green-300;
+        }
+      }
+    }
+    div.correct {
+      text-align: center;
+      color: $green-300;
+      i.check {
+        margin-top: 10px;
+      }
+    }
+  }
+  .add-answer {
+    margin-bottom: 10px;
+    margin-top: 12px;
+    float: $tab-float-dir;
+    a {
+      cursor: pointer;
+      width: 100%;
+      border: 2px dashed $gray-light;
+      border-radius: 6px;
+      color: $gray;
+      display: block;
+      padding: 24px;
+      text-align: center;
+    }
+  }
+}

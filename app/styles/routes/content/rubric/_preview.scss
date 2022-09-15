@@ -1,0 +1,228 @@
+.content.rubric.preview {
+  > article {
+    min-width: 0;
+    $content-md-width: 90%;
+
+    > header {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 0;
+      @media (min-width: $screen-md) {
+        padding-bottom: 0 !important;
+      }
+
+      * {
+        color: $white;
+      }
+
+      .header-content {
+        padding: 15px 5%;
+        @media (min-width: $screen-md) {
+          padding: 15px 0;
+          width: $content-md-width;
+          margin: 0 auto;
+        }
+
+        .btn-back {
+          border: 0;
+          padding: 0;
+          background-color: $table-bg;
+          font-size: $font-size-large;
+          outline: none;
+
+          .gru-icon {
+            vertical-align: text-top;
+          }
+        }
+
+        .heading {
+          @media (min-width: $screen-sm) {
+            @include flexbox();
+            @include justify-content(space-between);
+          }
+
+          .information {
+            width: 100%;
+            @media (min-width: $screen-sm) {
+              width: 85%;
+            }
+            h1 {
+              $line-height: 1.2;
+              $lines-to-show: 1;
+              text-transform: capitalize;
+              @include ellipsis(
+                $font-size: $font-size-h4,
+                $line-height: $line-height,
+                $lines-to-show: $lines-to-show,
+                $excerpt-bg: $dark-400
+              );
+              @media (min-width: $screen-xs) {
+                @include ellipsis(
+                  $font-size: $font-size-h3,
+                  $line-height: $line-height,
+                  $lines-to-show: $lines-to-show,
+                  $excerpt-bg: $dark-400
+                );
+              }
+            }
+
+            .details {
+              margin-top: 10px;
+              @include flexbox();
+
+              .type {
+                @include flexbox();
+                @include align-items(center);
+
+                i {
+                  display: block;
+                  height: 49px;
+                  width: 30px;
+                  vertical-align: top;
+                  &.rubric-icon {
+                    background: url("gooru/images/rubric-white.svg") no-repeat;
+                    background-size: contain;
+                    height: 20px;
+                    width: 30px;
+                  }
+                }
+
+                span {
+                  padding-left: 15px;
+                }
+              }
+
+              .tags {
+                @include flexbox();
+                @include align-items(stretch);
+                margin-left: 10px;
+                padding-left: 10px;
+                border-left: 2px solid $dark-300;
+
+                .taxonomy.gru-taxonomy-tag {
+                  border-color: $dark-300;
+                  background-color: $dark-300;
+                  color: $white;
+                  margin-right: 5px;
+                }
+                .taxonomy.gru-taxonomy-tag-list {
+                  @include flexbox();
+                  @include align-items(flex-end);
+                }
+              }
+            }
+          }
+
+          .publisher {
+            margin-top: 10px;
+
+            img {
+              @include border-top-radius(50%);
+              @include border-bottom-radius(50%);
+              height: 1.7rem;
+              width: 1.7rem;
+              vertical-align: middle;
+              margin: 0 5px;
+            }
+
+            @media (min-width: $screen-sm) {
+              @include flexbox();
+              @include flex-direction(column);
+              @include align-items(center);
+              @include justify-content(center);
+              border-left: 2px solid $dark-300;
+              padding-left: 20px;
+              margin: 0 0 0 10px;
+              min-width: 125px;
+              max-width: 115px;
+
+              span.owner {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 115px;
+              }
+
+              img {
+                height: 2.3rem;
+                width: 2.3rem;
+                margin: 3px 0;
+              }
+            }
+          }
+        }
+      }
+
+      @media (min-width: $screen-md) {
+        top: 63px;
+        padding-bottom: 30px;
+      }
+    }
+    .preview {
+      margin: 24px;
+
+      .preview-panel {
+        h2 {
+          display: inline-block;
+          font-size: $font-size-h4;
+          padding: 0;
+          margin: 0;
+          line-height: 34px; // height of the buttons
+        }
+      }
+      h3 {
+        font-size: $font-size-large;
+      }
+      .preview-panel {
+        .header {
+          margin: 0 0 10px 24px;
+        }
+        .panel-body {
+          padding-top: 24px;
+          .gru-preview-url {
+            width: 96%;
+            height: 90%;
+            .preview.show-url {
+              margin: 0 24px;
+            }
+          }
+        }
+        .has-rubric {
+          min-height: 500px;
+        }
+      }
+      .panel {
+        border-radius: 6px;
+        margin-bottom: 18px;
+        .panel-heading {
+          border-top-right-radius: 6px;
+          border-top-left-radius: 6px;
+          background-color: $white;
+          padding-top: 10px;
+
+          h3 {
+            color: $gray;
+            display: inline-block;
+          }
+          div.border-bottom {
+            padding-bottom: 15px;
+            border-bottom: 1px solid $gray-lighter;
+            margin-bottom: 0;
+          }
+        }
+      }
+      .category-panel {
+        .panel {
+          margin-bottom: 0;
+        }
+        .gru-category {
+          padding: 5px 0;
+          margin: 0;
+          .title {
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}

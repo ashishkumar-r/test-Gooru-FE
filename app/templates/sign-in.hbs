@@ -1,0 +1,86 @@
+{{#if isRedirectionDomainDone}}
+  <div class="controller sign-in row">
+    <div class="sign-in-wrapper col-md-12 col-sm-12 col-xs-12">
+      <div class="sign-in-header">
+        <div class="back">
+          <span class="icon" {{action 'goBack'}}>{{gru-icon name='arrow_back'}}</span>
+          <div class="title">{{t "sign-in.sign-in-with-username" tenantName=tenantName}}</div>
+        </div>
+      </div>
+      <div class="sign-in-form">
+        <div class="img-container">
+          {{#if isGooruLogin}}
+            <div class="tenant-logo gooru"></div>
+          {{else}}
+            {{#if tenantLogoUrl}}
+              <div class="tenant-logo" style="background-image:url({{tenantLogoUrl}})"></div>
+            {{else}}
+              <div class="tenant-logo">
+                <span>{{avatar tenantName}}</span>
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
+        <form>
+          <div class="form-group username">
+            <label for="usernameId">
+              <span>{{t "login.usernameOrEmail"}}</span>
+              {{validation/gru-input model=user valuePath='username' aria-label="username" didValidate=didValidate inputId='usernameId'}}
+            </label>
+          </div>
+          <div class="form-group password">
+            <label for="passwordId">
+              <span>{{t "login.password"}}</span>
+              {{validation/gru-input model=user valuePath='password' type='password' aria-label="password" didValidate=didValidate inputId='passwordId'}}
+            </label>
+          </div>
+          {{#if isGooruLogin}}
+            <div class="form-group forgot-password">
+              {{#link-to 'forgot-password' role="link" aria-label="forgot password"}} {{t "login.forgotPassword"}} {{/link-to}}
+            </div>
+          {{/if}}
+          <div class="log-in-button form-group text-center">
+            <button class="btn btn-success submit-btn" aria-label="submit" {{action "authenticate"}}>{{t "common.submit"}}</button>
+          </div>
+          {{#if isGooruLogin }}
+            <a href="{{unbound googleSignInUrl}}">
+              <div class="google-button">
+                <div class="google-button-content-wrapper">
+                  <div class="google-button-icon">
+                    <div class="google-button-icon-image">
+                    </div>
+                  </div>
+                  <span class="google-button-content">
+                    <span role="button" aria-label="sign with google">{{t "login.googleButton"}}</span>
+                  </span>
+                </div>
+              </div>
+            </a>
+          {{/if}}
+          {{#if isShowGg4lButton}}
+            <a href="{{gg4lLoginUrl}}" onclick="window.open(this.href,'targetWindow','scrollbars=yes,resizable=yes,width=600,height=600'); return false;">
+              <div class="passport-login"></div>
+            </a>
+          {{/if}}
+          {{#if showClassLinkLogin}}
+            <div class="classlink-button" {{action "tenantLogin"}}>
+              <div class="classlink-button-content-wrapper">
+                <div class="classlink-button-icon">
+                  <div class="classlink-button-icon-image">
+                  </div>
+                </div>
+                <span class="classlink-button-content">
+                  <span role="button" aria-label="class link">{{t "login.classlink-btn"}}</span>
+                </span>
+              </div>
+            </div>
+          {{/if}}
+        </form>
+      </div>
+      <div class="footer-container">
+        <span> {{t 'sign-in.tenant-login'}} </span>
+        {{#link-to 'login-tenant-url'  role="link" aria-label="tenant url"}} {{t 'sign-in.enter-url'}} {{/link-to}}
+      </div>
+    </div>
+  </div>
+{{/if}}

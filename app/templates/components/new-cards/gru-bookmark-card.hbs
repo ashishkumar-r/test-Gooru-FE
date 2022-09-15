@@ -1,0 +1,64 @@
+<div class="panel">
+  <div class="panel-heading">
+    {{#if isCourse}}
+      {{#link-to 'student.independent.course-map' bookmark.contentId}}
+        <div class="card-heading" style="background-image: url({{content.thumbnailUrl}})">
+          <div class="title pointer">
+            {{bookmark.title}}
+          </div>
+        </div>
+        {{/link-to}}
+      {{else}}
+        <a {{action 'openPlayerContent'}}>
+          <div class="card-heading" style="background-image: url({{content.thumbnailUrl}})">
+            <div class="title pointer">
+              {{bookmark.title}}
+            </div>
+          </div>
+        </a>
+      {{/if}}
+  </div>
+  <div class="panel-body">
+    <div class="items-icon">
+      {{#if isCourse}}
+        {{#if (gt content.unitCount 0)}}
+          <span><i data-toggle="tooltip" data-placement="auto" class="units" title="{{t 'common.unit'}}"></i> {{content.unitCount}}</span>
+        {{/if}}
+      {{else}}
+        {{#if (gt content.resourceCount 0)}}
+          <span><i data-toggle="tooltip" data-placement="auto" class="resources" title="{{t 'common.resource'}}"></i> {{content.resourceCount}}</span>
+        {{/if}}
+        {{#if (gt content.questionCount 0)}}
+          <span><i data-toggle="tooltip" data-placement="auto" class="questions" title="{{t 'common.question'}}"></i> {{content.questionCount}}</span>
+        {{/if}}
+      {{/if}}
+    </div>
+    <div class="timestamp">
+      <span class="pull-right">
+        {{#if location.lastAccessed}}
+          {{format-date location.lastAccessed 'd MMM\'YY \| h:mma' }}
+        {{/if}}</span>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="first-half">
+      <span>
+        <i class="{{bookmark.contentType}}"></i>
+      </span>
+    </div>
+    <div class="second-half">
+      <span  title="{{t 'common.click-unBookmark'}}" data-toggle="tooltip" {{action "removeBookmark" bookmark}}>
+        {{gru-icon name="bookmark"}}
+      </span>
+    </div>
+  </div>
+</div>
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

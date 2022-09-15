@@ -1,0 +1,74 @@
+.activity-report.class-summary-report {
+  .class-summary-report-container {
+    .class-performance-chart-container {
+      height: 240px;
+    }
+    .monthly-summary-list-container {
+      overflow-y: auto;
+      height: calc(80vh - 240px);
+      position: relative;
+      .month-summary-container {
+        display: grid;
+        grid-template-columns: 1fr 56px;
+        height: 56px;
+        box-shadow: 0 1px 3px 0 $disabled-bg-color;
+        cursor: pointer;
+        .info-container {
+          padding: 13px 0 0 15px;
+          .activity-timespent {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            color: $dark-400;
+          }
+          .activity-month {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.33;
+            color: $dark-400;
+          }
+        }
+        .activity-performance {
+          font-size: 20px;
+          font-weight: 700;
+          color: $white;
+          text-align: center;
+          border-bottom: 1px solid $white;
+        }
+
+        &:first-child .activity-performance {
+          border-top: 1px solid $white;
+        }
+
+        .activity-performance {
+          display: grid;
+          align-items: center;
+        }
+      }
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+
+      .loading-spinner {
+        position: absolute;
+        left: 50%;
+        top: 50px;
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-sm - 1) {
+    .class-summary-report-container {
+      .monthly-summary-list-container {
+        height: calc(100vh - 300px);
+      }
+    }
+  }
+}

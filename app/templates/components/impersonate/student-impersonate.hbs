@@ -1,0 +1,19 @@
+<div class='back-drop' {{action 'onClosePullUp'}}></div>
+<div class="iframe-panel">
+  <div id="impersonate-header">
+    <div class="student-info-container">
+      <div class='student-icon-col hidden-xs'>
+        <div class='student-icon' style="background-image: url({{student.avatarUrl}})"></div>
+      </div>
+      <div class="student-name  {{if student.isActive "" "inActiveRow"}}  ">
+        <span>{{student.lastName}}, {{student.firstName}}'s  class view</span>
+      </div>
+    </div>
+    <div class="impersonate-close" onclick={{action 'onClosePullUp'}} onkeypress={{action 'onClosePullUp'}} tabindex={{tabindex}}>
+      <div class="impersonate-close-btn">
+        <i class="gru-icon material-icons close">close</i>
+      </div>
+    </div>
+  </div>
+  <iframe id="impersonate-frame" src='{{impersonateUrl}}' frameborder="0" allowfullscreen></iframe>
+</div>

@@ -1,0 +1,15 @@
+{
+  "frameworks": [{
+    "code": "CCSS",
+    "title": "Common Core State Standards",
+    "sequence_id": 1
+  }, {
+    "code": "AL",
+    "title": "Alabama Course of Study Standards",
+    "sequence_id": 5
+  }, {
+    "code": "AZ",
+    "title": "Arizona Standards",
+    "sequence_id": 6
+  }]
+}

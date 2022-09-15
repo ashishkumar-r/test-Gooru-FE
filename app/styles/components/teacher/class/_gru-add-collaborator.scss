@@ -1,0 +1,135 @@
+.gru-add-collaborator {
+  .add-collaborator-container {
+    width: 95%;
+    height: auto;
+    border-radius: 4px;
+    padding: 0 15px;
+    margin-top: 8px;
+    row-gap: 8px;
+
+    .collaborator-list-conatiner {
+      display: grid;
+      align-items: center;
+      .selected-user {
+        display: grid;
+        grid-template-columns: 24px auto auto 24px;
+        align-items: center;
+        justify-content: left;
+        height: 24px;
+        background-color: $light-200;
+        margin: 5px 0;
+        width: max-content;
+        max-width: 100%;
+
+        .user-thumbnail {
+          width: 24px;
+          height: 24px;
+          background-size: 24px;
+          display: block;
+        }
+
+        .user-email,
+        .user-name {
+          font-size: 13px;
+          color: $dark-400;
+        }
+
+        .user-name {
+          text-transform: capitalize;
+          padding-left: 8px;
+          padding-right: 4px;
+        }
+
+        .remove-user {
+          cursor: pointer;
+          padding-left: 8px;
+          height: 24px;
+
+          i.clear {
+            line-height: 24px;
+            font-size: 15px;
+          }
+        }
+      }
+
+      .email-value-container {
+        height: 35px;
+        margin-bottom: 8px;
+        display: grid;
+        grid-template-columns: 1fr 30px;
+        column-gap: 10px;
+        .email-value {
+          height: inherit;
+          width: 100%;
+          &.in-valid {
+            color: $red-400;
+          }
+          &:focus,
+          &:active {
+            outline: none;
+            border: none;
+            &::placeholder {
+              display: none;
+            }
+          }
+          &::placeholder {
+            font-size: 13px;
+            opacity: 0.7;
+          }
+        }
+        .validate-icon {
+          height: 35px;
+          text-align: center;
+          position: relative;
+          opacity: 0.7;
+          i {
+            position: absolute;
+            bottom: 4px;
+            font-size: 20px;
+            left: 6px;
+          }
+          &.enabled {
+            opacity: 1;
+            cursor: pointer;
+          }
+        }
+        .error-msg {
+          grid-column-start: 1;
+          grid-column-end: 2;
+          color: $red-400;
+        }
+      }
+    }
+
+    .collaborator-action-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: 8px;
+      justify-content: right;
+      align-self: end;
+
+      .action-btn {
+        width: 73px;
+        height: 28px;
+        border-radius: 2px;
+        text-align: center;
+        line-height: 28px;
+        cursor: pointer;
+      }
+
+      .cancel-btn {
+        border: solid 1px $nobel-gray;
+        color: $elephant-dark;
+      }
+
+      .done-btn {
+        background-color: $blue-400;
+        color: $white;
+
+        &.disable-event {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

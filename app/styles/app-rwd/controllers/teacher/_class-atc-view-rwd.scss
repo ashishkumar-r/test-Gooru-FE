@@ -1,0 +1,32 @@
+.teacher-panel {
+  .teacher.class-atc-view {
+    .class-view {
+      .body {
+        .nav-previous {
+          left: -15px;
+        }
+
+        .nav-next {
+          right: -15px;
+        }
+
+        .atc-chart {
+          display: grid;
+          justify-content: center;
+          zoom: 0.7;
+          @media only screen and(max-width: $screen-sm) {
+            zoom: 0.69;
+          }
+
+          @media only screen and (max-width: $screen-xs) {
+            zoom: 0.6;
+          }
+
+          @media only screen and (max-width: $screen-359 + 1) {
+            zoom: 0.59;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<div class="collection-content">
+  <div class="collection-header">
+    <div class="{{collection.collectionType}}">
+      <i class="icon"></i>
+    </div>
+    <div class="collection-info">
+      <div class="title">
+        <div class="clickable">
+          <div class="title-text ellipsis">
+            {{safe-html collection.title}}
+          </div>
+        </div>
+      </div>
+      <div class="collection-status">
+        <div class="score" style="color: {{colorStyle}};">
+          {{concat collection.score '%'}}
+        </div>
+        <div class="time">
+          {{collectionTimespent}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="collection-body">
+    {{#if isLoading}}
+      {{three-bounce-spinner}}
+    {{else}}
+      {{#each resources as |resource|}}
+        <div class="resource-content">
+          <div class="resource-header">
+            <div class="{{if (eq resource.type 'question') 'question' resource.contentType}}">
+              <i class="icon"></i>
+            </div>
+            <div class="resource-info">
+              <div class="title">
+                <div class="title-text ellipsis">
+                  {{safe-html resource.title}}
+                </div>
+              </div>
+              <div class="resource-report">
+                <div class="answer">
+                  <span class="{{resource.answer}}"><i class="icon"></i></span>
+                </div>
+                <div class="time">
+                  {{format-time resource.timeSpent}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <div class="not-found">No Data Found</div>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>

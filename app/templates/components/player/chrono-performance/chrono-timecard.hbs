@@ -1,0 +1,85 @@
+<div class={{cardClass}}>
+    {{#if timeSession}}
+        {{#if (eq timeSession.collectionType 'assessment')}}
+            <div class="imgClassAssesment"> </div>
+        {{else if (eq timeSession.collectionType 'assessment-external') }}
+            <div class="imgClassCollection"> </div>
+        {{else if (eq timeSession.collectionType 'collection') }}
+            <div class="imgClassCollection"> </div>
+        {{else }}
+            <div class="imgClassPlaceHolder"> </div>
+        {{/if}}
+        <div class='cardTitle'>
+            <div class='cardTypeIcon'>
+                {{#if (eq timeSession.collectionType 'assessment')}}
+                    {{gru-icon name='pers'  }}
+                {{else if (eq timeSession.collectionType 'assessment-external')}}
+                    {{gru-icon name='pers'  }}
+                {{else if (eq timeSession.collectionType 'collection') }}
+                    {{gru-icon name='view_comfy'  }}
+                {{else }}
+                    {{gru-icon name='node'  }}
+                {{/if}}
+            </div>
+            <div class='titleCont'>
+                <div class='cardSubTitle ellipsis'>
+                    {{#if (eq timeSession.collectionType 'dummy')}}
+                    {{else }}
+                        {{timeSession.collectionType}}
+                    {{/if}}
+                </div>
+                <div class='cardMainTitle ellipsis'>
+                    {{timeSession.title}}
+                </div>
+            </div>
+        </div>
+        {{!--  new info card[start] --}} 
+        <div class='cardrowscore cperf-container'>
+            <div class='cperformance'  style="{{colorStyle}}">
+                <span class='scorelable'> {{t 'locateme.score'}}</span>
+                <span class='scorevlaue'> 
+                    {{#if timeSession.scoreInPercentage}}
+                    {{timeSession.scoreInPercentage  }} %
+                        {{else}}
+                        -- 
+                    {{/if}}
+                    </span>  
+            </div>
+            <div class='timespent'>
+                <span class='tslable ellipsis'> {{t 'locateme.timespent'}}: </span> 
+                <span class='tsvalue ellipsis'>
+                    {{#if timeSession.timeSpent}}
+                        {{format-time timeSession.timeSpent}}
+                    {{else}}
+                        &dash;&dash;
+                    {{/if}}
+                </span> 
+            </div>
+        </div>
+
+        {{!-- <div class='cardTitle'>
+            {{#if (eq timeSession.collectionType 'assessment')}}
+                <span> {{t 'locateme.attempt'}}: </span>  
+                <span>
+                {{timeSession.attempts }}
+                </span>
+            {{else }}
+                <span> {{t 'locateme.view'}}: </span> 
+                <span>
+                {{timeSession.views  }}
+                </span>
+            {{/if}}
+        </div> --}}
+        <div class='cardTitle ellipsis lastaccessed'>
+            <span class="lastacessedLable"> {{t 'locateme.lastAcessesed'}} </span> 
+            <span>
+            {{format-date timeSession.lastAccessed 'MMM DD, YYYY' }}
+            </span>
+        </div> 
+        {{!--  new info card[end] --}}
+    {{else}}
+        {{log 'nodata time ' timeSession}}
+        {{!-- Dummy Card, Get the injected class and apply for card size --}}
+        <div> nodata</div>
+    {{/if}}
+</div>

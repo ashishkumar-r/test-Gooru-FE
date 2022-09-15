@@ -1,0 +1,304 @@
+.gruPullUp {
+  .overlay {
+    opacity: 0.8;
+    top: 64px !important;
+  }
+}
+
+.notification-indicator {
+  position: absolute;
+  margin-left: -13px;
+  margin-top: -9px;
+  background-color: $table-bg;
+  border: 1px solid;
+  padding: 0;
+  border-radius: 50px;
+  line-height: 24px;
+  height: 24px;
+  width: 24px;
+  &.active-study {
+    position: relative;
+    margin-left: -16px;
+    margin-top: -20px;
+  }
+}
+
+.active-common {
+  color: $font-dodgerblue-dark-400;
+  border-color: $font-dodgerblue-dark-400;
+  //box-shadow: 0 2px 13px 6px #f6f3ef;
+}
+
+.inactive-common {
+  color: $font-gray-200-gray-900;
+  border-color: $gray-a9;
+  cursor: default;
+  @media screen and (max-width: $screen-sm - 1) {
+    color: $white;
+    border-color: $white;
+    opacity: 0.5;
+  }
+}
+
+.active-study {
+  color: $white;
+  border-color: $white;
+  //box-shadow: 0 2px 13px 6px #f6f3ef;
+  opacity: 1;
+  // background-color: dodgerblue;
+}
+
+.notification-icon {
+  padding: 21px;
+  height: 62px;
+  color: $bg-dogger-blue-dark-blue-600;
+}
+
+.pull-close {
+  position: absolute;
+  right: 2%;
+  top: 1%;
+  background: $table-bg;
+  /* width: 63px; */
+  text-align: center;
+  cursor: pointer;
+}
+
+.pull-out-ex {
+  top: 64px !important;
+  left: 50px;
+  position: absolute;
+  color: $gray-a9;
+}
+
+.notification-list {
+  width: 600px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  $container-height: 35vh;
+  $showmorepanel: calc($container-height +15px);
+
+  .panel.panel-default {
+    background-color: $white;
+  }
+
+  .show-more-text {
+    color: $font-dodgerblue-dark-400;
+    line-height: 16px;
+    font-size: 13px;
+  }
+
+  .notification-panel-heading {
+    border-bottom: 1px solid $dogger-blue;
+  }
+
+  .not-modal-header {
+    width: 123px;
+    height: 19px;
+    font-family: Lato;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: left;
+    color: $dark-400;
+  }
+
+  .notfication-container {
+    height: $container-height;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @media screen and (max-width: $screen-md - 1) {
+      overflow-x: auto;
+    }
+    background-color: $white;
+    color: $font-gray-500-black-bold;
+
+    .list-item-container {
+      position: relative;
+      display: grid;
+      grid-template-columns: 50px 1fr 50px;
+      align-items: center;
+      .notification-details {
+        display: grid;
+        margin-left: 10px;
+        align-items: center;
+      }
+      .flag {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .suggestion-icon {
+        width: 100px;
+
+        i {
+          font-size: 43px;
+          background-color: $bg-orange-400-dark;
+          border-radius: 50%;
+          border: 1px solid $bg-orange-400-dark;
+        }
+
+        .teacher_suggestions,
+        .account_circle {
+          background-image: url("gooru/images/account-cirlce-orange.svg");
+          width: 50px;
+          height: 50px;
+          background-size: 49px;
+          color: $orange-400;
+          display: block;
+          border-radius: 50%;
+          background-color: $dark;
+        }
+
+        .iconperformance {
+          background: url("gooru/images/teacher-landing-class-report.svg");
+          width: 50px;
+          height: 50px;
+          display: inline-block;
+          background-size: 51px;
+          object-fit: contain;
+          border-color: $white;
+        }
+
+        .grucount {
+          background: url("gooru/images/add_assessment.svg");
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          height: 45px;
+          width: 47px;
+          border-color: $white;
+          border-radius: inherit;
+          display: inline-block;
+        }
+      }
+
+      .line-desc {
+        height: 16px;
+        font-family: Lato;
+        font-size: 13px;
+        line-height: normal;
+        text-align: left;
+        color: $dark-400;
+        margin-left: 47px;
+        @include ellipsis(
+          $font-size: 13px,
+          $line-height: 1.2,
+          $lines-to-show: 1
+        );
+        display: block;
+      }
+
+      .line-item-title {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .line-suggestion-title {
+        width: auto;
+        height: 15px;
+        font-family: Lato;
+        font-size: 16px;
+        line-height: 0.94;
+        text-align: left;
+        color: $dark-400;
+        margin-left: 20px;
+      }
+
+      .assessment-external-icons,
+      .collection-external-icons {
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        opacity: 0.8;
+        justify-self: center;
+        background-image: url("./gooru/share.png");
+        background-repeat: no-repeat;
+        margin: 10px;
+        position: absolute;
+        right: 0;
+      }
+
+      .line-suggestion-type {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        object-fit: contain;
+        background-color: $orange-400;
+        background-color: var(--dusty-orange);
+
+        .grucount {
+          background: url("gooru/images/navigation_assessment.svg");
+          background-size: 100%;
+          background-repeat: no-repeat;
+          height: 25px;
+          width: 25px;
+        }
+      }
+
+      .flag {
+        i {
+          color: red;
+        }
+      }
+    }
+  }
+
+  li,
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      border-bottom: 0.5px solid $gains-boro;
+      line-height: 20px;
+
+      &.min-activity {
+        height: 75px !important;
+
+        .line-item-title {
+          top: 35px !important;
+        }
+      }
+    }
+
+    li:last-child {
+      border-bottom: 0.5px solid $white;
+    }
+  }
+
+  .panel-body {
+    padding: 0;
+  }
+}
+
+.gru-pull-out,
+.gru-pull-up {
+  height: auto;
+}
+
+.notification-list-icon-suggestions {
+  font-size: 21px;
+  background-color: $sun-color;
+  border-radius: 50%;
+  color: $white;
+  border: 1px solid $white;
+}
+@media screen and (max-width: $screen-md - 1) {
+  .notification-responsive {
+    display: none;
+  }
+}
+@media screen and (min-width: $screen-md) {
+  .responsive-notification {
+    display: none;
+  }
+}

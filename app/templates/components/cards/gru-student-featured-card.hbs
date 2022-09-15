@@ -1,0 +1,59 @@
+<div class="gru-student-featured-card-container">
+    <div class="featured-card-panel">
+        <span class="featured-panel-head" title="{{course.title}}" data-toggle="tooltip" data-placement="top"> 
+            {{course.title}}
+        </span>
+        <!-- NOTE: Can enable for future implementation -->
+        <!-- <div class="featured-rating-card">
+            <span class="featured-star">
+              {{gru-icon name="grade"}}
+            </span>
+            <div class="rating-content">
+                <span class="rating">Rating</span>
+                <span class="count-rate">4.3 Stars</span>
+            </div>
+        </div> -->
+        {{#if course.publisherInfo.name}}
+          <div class="publisher-name">{{course.publisherInfo.name}}</div>
+          {{else}}
+           <div class="publisher-name no-name"></div>
+        {{/if}}
+        <div class="class-card-image">
+            <span class="card-image-blk" style="background-image:url({{course.thumbnailUrl}})"></span>
+            <div class="preview-content">
+
+      {{#if isExpand}}
+        <div>
+        <div class="preview-open">
+              <a href="javascript:void(0)" aria-expanded="{{unless isExpand false true}}" class="preview-btn-close-left expand" aria-label="preview" onclick={{action "studyNow"}} 
+                onkeypress={{action "studyNow"}} tabIndex={{tabIndex}}>  {{t (if course.hasJoined 'common.currently-studying' 'common.study-now')}}
+              </a> 
+        </div> 
+        
+        <div class="preview-close">
+              <a><span onclick={{action "close"}} class="close preview-btn-close-right">&times;</span></a>
+        </div>
+        </div>
+      
+      {{else}}
+        <a href="javascript:void(0)" aria-expanded="{{unless isExpand false true}}" class="preview-btn expand" aria-label="preview" onclick={{action "toggleContent"}} 
+        onkeypress={{action "toggleContent"}} tabIndex={{tabIndex}}>Preview</a>
+      {{/if}}
+
+            </div>
+        </div>
+        <div class="card-footer">
+
+        {{#if course.author_etl_secs}}
+        ETL: {{course.author_etl_secs}}
+        {{/if}}
+
+        </div>
+      {{#if (and course.summary isExpand)}}
+      <div aria-label="course description" class="description {{unless isExpand 'content-collapse'}}">
+        {{course.summary}}
+      </div>
+    {{/if}}
+    </div>
+</div>
+<br>

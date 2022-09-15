@@ -1,0 +1,79 @@
+<div class="student-competency-progress-report-card-container">
+  {{#each studentCompetencyActivties as |studentCompetencyActivtiy|}}
+    <div class="student-card-panel">
+      <div class="code-info">
+        <div class="display-code">
+          <span class="code">
+            {{competency-gut-to-fw-transform
+             fwCompetencies
+             studentCompetencyActivtiy.competencyCode
+             studentCompetencyActivtiy.code
+             'frameworkCompetencyDisplayCode'
+             false
+             true
+            }}
+          </span>
+          <span class="short-desc ellipsis" title={{concat studentCompetencyActivtiy.domainName ' | ' studentCompetencyActivtiy.topicName}} data-toggle="tooltip">
+            {{studentCompetencyActivtiy.domainName}} | {{studentCompetencyActivtiy.topicName}}
+          </span>
+        </div>
+        <div class="competency-status">
+          <div class="status competency-status-{{studentCompetencyActivtiy.status}}"></div>
+        </div>
+      </div>
+      <div class="competency-name">
+        {{competency-gut-to-fw-transform
+         fwCompetencies
+         studentCompetencyActivtiy.competencyCode
+         studentCompetencyActivtiy.competencyName
+         'frameworkCompetencyName'
+         false
+         true
+          }}
+      </div>
+      {{#each studentCompetencyActivtiy.activities as |activity index|}}
+        <div class="activity-row">
+          <div class="type {{activity.type}}"></div>
+          <div class="title">
+            <span class="title-text ellipsis" title={{activity.title}} data-toggle="tooltip">{{activity.title}}</span>
+            <span class="date ellipsis">{{format-date activity.activityTimestamp 'DD MMM YYYY'}}</span>
+          </div>
+          <div class="timespent {{unless activity.timeSpent 'no-performance'}}" {{action "onShowReport" activity}}>
+            {{if activity.timeSpent (format-time activity.timeSpent) '--'}}
+          </div>
+          <div class="percentage grade-range-{{grade-range activity.score}}" {{action "onShowReport" activity}}>
+            {{if (or activity.score (eq activity.score 0)) (concat (round-number activity.score) '%') '--' }}
+          </div>
+        </div>
+      {{/each}}
+      {{#if studentCompetencyActivtiy.inferredCompetencies}}
+        <div class="inferred-competency-panel">
+          <div class="competency-header-section">
+            <div class="info-row">
+              <span class="competency-status-4 competency-status"></span>
+              <div class="icon">
+                <i class="gru-icon material-icons">arrow_forward</i>
+              </div>
+            </div>
+            <div class="inferred-competency-title">
+              {{t 'common.inferred'}} {{t 'common.competencies'}}
+            </div>
+          </div>
+          <div class="inferred-competency-list">
+            {{#each studentCompetencyActivtiy.inferredCompetencies as |inferredCompetency|}}
+              <div class="row-item">
+                <span class="competency-code">
+                  {{inferredCompetency.code}}
+                </span>
+                <span class="pull-left">-</span>
+                <div class="competency-desc" title={{inferredCompetency.competencyStudentDesc}} data-toggle="tooltip">
+                  {{inferredCompetency.competencyName}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  {{/each}}
+</div>

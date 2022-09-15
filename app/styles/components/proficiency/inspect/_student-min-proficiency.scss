@@ -1,0 +1,186 @@
+.student-min-proficiency {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: $white;
+
+  .student-min-proficiency-container {
+    .panel-head {
+      display: flex;
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        background-color: $gray-light;
+        border-radius: 50%;
+        margin: 10px;
+        color: $white;
+      }
+
+      .search-container {
+        cursor: pointer;
+        max-width: 350px;
+        display: flex;
+        margin: 10px;
+
+        input {
+          width: 320px;
+          font-style: italic;
+          @media screen and (max-width: 567px) {
+            width: 100%;
+          }
+        }
+
+        label {
+          align-items: center;
+          display: flex;
+        }
+      }
+    }
+
+    .student-proficiency-table-section {
+      .student-list-panel {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        align-items: center;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 10px;
+        @media screen and (max-width: 599px) {
+          grid-template-columns: 150px 1fr;
+        }
+
+        .student-head-section {
+          .student-head-item {
+            border: 1px solid $light-200;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+          }
+
+          .student-name-list {
+            .student-details {
+              font-weight: bold;
+              height: 40px;
+              display: flex;
+              align-items: center;
+              border: 1px solid $light-200;
+              border-top: none;
+              padding: 5px 10px;
+
+              &.active-student {
+                border-top: 2px solid $blue-400;
+                border-left: 2px solid $blue-400;
+                border-bottom: 2px solid $blue-400;
+                color: $blue-400;
+              }
+
+              span {
+                display: flex;
+                align-items: center;
+
+                &.student-profile {
+                  width: 20px;
+                  height: 20px;
+                  background-color: $light-200;
+                  border-radius: 50%;
+                  margin-right: 5px;
+                }
+              }
+
+              .student-img {
+                width: 30px;
+                height: 30px;
+                display: block;
+                border-radius: 50%;
+
+                img {
+                  width: 100%;
+                  border-radius: 100%;
+                }
+              }
+
+              .student-name {
+                padding-left: 10px;
+                text-transform: capitalize;
+              }
+            }
+          }
+        }
+
+        .student-body-section {
+          overflow-x: auto;
+          -ms-overflow-style: none;
+          /* Internet Explorer 10+ */
+          scrollbar-width: none;
+          /* Firefox */
+          &::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+          }
+
+          .student-proficiency-list-container {
+            @media screen and (max-width: 1150px) {
+              width: max-content;
+            }
+          }
+
+          .proficiency-panel-head {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            height: 40px;
+
+            span {
+              padding: 5px 10px;
+              display: flex;
+              justify-content: center;
+              width: 100%;
+              height: 100%;
+              border: 1px solid $light-200;
+              border-left: none;
+            }
+          }
+
+          .proficiency-item-list {
+            .proficiency-panel {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              align-items: center;
+              height: 40px;
+              border-bottom: 1px solid $light-200;
+
+              &.active-student {
+                border-top: 2px solid $blue-400;
+                border-right: 2px solid $blue-400;
+                border-bottom: 2px solid $blue-400;
+                color: $blue-400;
+              }
+
+              .count-panel {
+                border-right: 1px solid $light-200;
+                padding: 5px 10px;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .no-record {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+}

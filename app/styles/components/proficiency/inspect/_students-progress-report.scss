@@ -1,0 +1,290 @@
+.students-progress-report {
+  overflow-y: auto;
+  .students-progress-report-container {
+    background-color: $dark-200;
+    padding: 10px;
+    min-width: 600px;
+    overflow-x: auto;
+
+    .assessments-icon,
+    .collections-icon,
+    .lesson-blue,
+    .mastered-icon {
+      width: 20px;
+      height: 20px;
+      margin: 0 auto;
+      display: block;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .student-basic-details {
+      background-color: $white;
+
+      .student-details-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 10px;
+        grid-column-gap: 20px;
+
+        .student-profile-section {
+          display: grid;
+          grid-template-columns: 60px 1fr;
+          align-items: center;
+
+          .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+
+            img {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+          }
+          .student-grade-name {
+            span {
+              display: block;
+              line-height: 1.4;
+              &.name {
+                font-size: 15px;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+        .student-external-options {
+          display: grid;
+          grid-template-columns: 40px 1fr 50px;
+          align-items: center;
+          .dropdown {
+            .dropdown-toggle .material-icons {
+              font-size: 24px;
+            }
+            .dropdown-menu {
+              padding: 5px 15px;
+            }
+          }
+
+          .student-time-period {
+            .calendar_today {
+              text-align: center;
+              font-size: 20px;
+            }
+            span {
+              display: block;
+              line-height: 1.4;
+              &.title {
+                font-weight: bold;
+              }
+              &.date {
+                font-weight: 15px;
+              }
+            }
+          }
+          .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $blue-400;
+            cursor: pointer;
+          }
+        }
+        .date-wise-report-button {
+          border-radius: 25px;
+          width: 170px;
+          margin-left: 25px;
+        }
+      }
+      .student-performance-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .count-card {
+          display: grid;
+          grid-template-columns: 40px 1fr;
+          align-items: center;
+          padding: 10px;
+          i {
+            text-align: center;
+          }
+          &.mastered i {
+            color: $blue-400;
+          }
+          &.inprogress i {
+            color: $blue-200;
+          }
+          .card-titles {
+            span {
+              display: block;
+              line-height: 1.4;
+              &.title {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+        .student-timespent-activties-panel {
+          .activites-counts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+          }
+        }
+      }
+    }
+    .student-analytic-report {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      margin: 10px 0;
+      background-color: $white;
+      padding: 20px 10px;
+
+      .analytic-panel {
+        text-align: center;
+        .hide-panel {
+          display: none;
+        }
+        span {
+          display: block;
+          line-height: 1.4;
+          &.analytic-icons {
+            text-align: center;
+            color: $blue-400;
+            padding: 10px;
+            height: 45px;
+            width: 45px;
+            margin: 0 auto;
+
+            &.mastered-icon {
+              transform: scale(1.5);
+            }
+            img {
+              width: 100%;
+              height: 100%;
+            }
+
+            &.suggest-icon {
+              color: $orange-500;
+              position: relative;
+
+              .suggest-count {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: $white;
+                color: $orange-500;
+                border: 1px solid $orange-500;
+                border-radius: 50%;
+                font-size: 12px;
+                top: 0px;
+                right: 40%;
+              }
+            }
+          }
+          &.title {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .activity-content-list-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 10px;
+
+      @media screen and (max-width: 850px) {
+        grid-template-columns: 1fr;
+      }
+
+      .competencies-mastered-list-panel {
+        background-color: $white;
+        .title-head {
+          padding: 10px;
+          font-weight: bold;
+        }
+        .no-content-message {
+          padding: 10px;
+        }
+      }
+      .competencies-progress-list {
+        .title-head {
+          padding: 10px;
+          font-weight: bold;
+        }
+        .competencies-target-list,
+        .competencies-areas-concern {
+          background-color: $white;
+          margin-bottom: 10px;
+        }
+        .no-content-message {
+          padding: 10px;
+        }
+      }
+    }
+    .activity-content-list-container-datewise {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-column-gap: 10px;
+
+      @media screen and (max-width: 850px) {
+        grid-template-columns: 1fr;
+      }
+
+      .competencies-mastered-list-panel {
+        background-color: $white;
+        .title-head {
+          padding: 10px;
+          font-weight: bold;
+        }
+        .student-competency-info {
+          border-bottom: 2px solid $dark-200;
+          span {
+            i {
+              font-size: 24px;
+            }
+          }
+          .gru-cp-activity-card:last-child {
+            margin-bottom: 5px;
+          }
+          .report-date {
+            padding: 10px 10px 0 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 35px 1fr 100px;
+          }
+          .competency-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 10px;
+
+            @media screen and (max-width: 850px) {
+              grid-template-columns: 1fr;
+            }
+          }
+        }
+      }
+      .competencies-progress-list {
+        .title-head {
+          padding: 10px;
+          font-weight: bold;
+        }
+        .competencies-target-list,
+        .competencies-areas-concern {
+          background-color: $white;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

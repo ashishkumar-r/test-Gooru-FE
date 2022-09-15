@@ -1,0 +1,139 @@
+<div class="student-proficiency-container {{if isShowSuggestion 'player-suggestion'}} {{if isPlayerProficiency 'player-proficiency'}} {{if isIframeMode 'player-iframe'}}">
+  {{#if isPlayerProficiency}}
+    {{player/gru-study-header
+      classId=class.id
+      class=class
+      courseId=course.id
+      courseTitle=course.title
+      sourceType= source
+      isStudyPlayer=true
+      menuItem = 'profile-prof'
+      isIframeMode=isIframeMode
+      tabindex=101
+    }}
+  {{/if}}
+  <div class="panel-container">
+    {{proficiency/student-proficiency-panel
+       studentProfile=studentProfile
+       course=course
+       activeSubject=activeSubject
+       timeLine=timeLine
+       class=class
+       isStudent=isStudent
+       competencyMatrixDomains=competencyMatrixDomains
+       userProficiencyBaseLine=userProficiencyBaseLine
+       competencyMatrixCoordinates=competencyMatrixCoordinates
+       subjectBucket=subjectBucket
+       taxonomyCategories=taxonomyCategories
+       taxonomySubjects=taxonomySubjects
+       isShowMatrixChart=isShowMatrixChart
+       isSelectBaseLine=isSelectBaseLine
+       selectedCategory=selectedCategory
+       showGutCompetency=showGutCompetency
+       hideGutCompetencyButton=hideGutCompetencyButton
+       onSelectMonth="onSelectMonth"
+       onSelectCompetency="onSelectCompetency"
+       onDomainSelect="onDomainSelect"
+       onSubjectChange="onSubjectChange"
+       taxonomyGrades=taxonomyGrades
+       classGrade=classGrade
+       subjectCode=subjectCode
+       framework=framework
+       fwCompetencies=fwCompetencies
+       onSelectCategory="onSelectCategory"
+       isPlayerProficiency = isPlayerProficiency
+
+       proficiencyChartData=proficiencyChartData
+       skylinePoints=skylinePoints
+       onSelectTopic="onSelectTopic"
+       selectedCompetency=selectedCompetency
+       selectedDomain=selectedDomain
+       selectedTopic=selectedTopic
+       totalTopics=totalTopics
+       tabindex=101
+     }}
+
+    {{#if isMobile}}
+      <div class="inspect-competency">
+        {{proficiency/competency-info-pull-up
+          fwDomains=fwDomains
+          fwCompetencies=fwCompetencies
+          showGutCompetency=showGutCompetency
+          isInspectCompetency=showCompetencyInfo
+          onClosePullUp="onClosePullUp"
+          framework=framework
+          isStudent=isStudent
+          competency=selectedCompetency
+          studentProfile=studentProfile
+          domainCompetencyList=domainCompetencyList
+          isPlayerProficiency=isPlayerProficiency
+          tabindex=101
+        }}
+      </div>
+   {{/if}}
+  </div>
+  <div class="pull-up-container">
+    {{#if isShowMatrixChart}}
+      {{#proficiency/proficiency-subject-panel
+         fwDomains=fwDomains
+         showGutCompetency=showGutCompetency
+         onDomainSelect="onDomainSelect"
+         framework=framework
+         subject=activeSubject
+         competencyMatrixCoordinates=competencyMatrixCoordinates
+         tabindex=101
+         domains=proficiencyChartData
+       }}
+        {{#if showDomainInfo}}
+          {{proficiency/domain-info-pull-up
+          fwDomains=fwDomains
+          fwCompetencies=fwCompetencies
+          showGutCompetency=showGutCompetency
+          onSelectCompetency="onSelectCompetency"
+          showPullUp=showDomainInfo
+          competencies=selectedDomainCompetencies
+          domain=selectedDomain
+
+          onClosePullup="onCloseDomainInfoPullup"
+          tabindex=101
+          }}
+        {{/if}}
+        {{proficiency/competency-info-pull-up
+          fwDomains=fwDomains
+          fwCompetencies=fwCompetencies
+          showGutCompetency=showGutCompetency
+          isInspectCompetency=showCompetencyInfo
+          onClosePullUp="onClosePullUp"
+          framework=framework
+          isStudent=isStudent
+          competency=selectedCompetency
+          studentProfile=studentProfile
+          domainCompetencyList=domainCompetencyList
+          isPlayerProficiency=isPlayerProficiency
+          proficiencyChartData=proficiencyChartData
+          playContent="playContent"
+          tabindex=101
+        }}
+      {{/proficiency/proficiency-subject-panel}}
+    {{/if}}
+  </div>
+</div>
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tabindex=101
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}
+
+{{#if isPlayerProficiency}}
+  {{player/gru-player-summary-footer isDone=isDone tabindex=101 classId=classId parents="onPlayNext" courseId=courseId courseTitle=course.title isPlayerProficiency = isPlayerProficiency isFullScreen=isFullScreen onToggleScreen="onToggleScreen" isIframeMode=isIframeMode}}
+{{/if}}
+
+{{#if isShowSuggestion}}
+  {{content/modals/gru-content-suggestion mapLocation=mapLocation tabindex=101 onAcceptSuggestion="onAcceptSuggestion" onIgnoreSuggestion="onIgnoreSuggestion"}}
+{{/if}}

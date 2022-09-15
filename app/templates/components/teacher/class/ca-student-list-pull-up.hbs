@@ -1,0 +1,77 @@
+<div class="backdrop" {{action 'onPullUpClose'}}></div>
+<div class="ca-student-list-container {{if isActivityPast 'past-activity' }}">
+  <div class="ca-student-list-header">
+    <div class="ca-student-selected-ctn">
+      {{gru-icon name="account_circle"}}
+      {{#if (eq usersCount -1)}}
+        <span>{{t 'common.all'}}</span>
+      {{else if (eq usersCount 0)}}
+        <span>{{t 'common.none'}}</span>
+      {{else}}
+        <span> {{usersCount}}</span>
+      {{/if}}
+    </div>
+    <div class="search-student-container">
+      <div class="search-input-container">
+        {{input type="text"
+          placeholder=(t "common.search-placeholder")
+          spellcheck="true"
+          id="student-search"
+          tabindex=tabindex
+        }}
+        <label for="student-search" id="search-student" class="search-icon">
+          {{gru-icon name="search"}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="ca-student-list-select-ctn {{if classActivity.isCompleted 'hidden'}}">
+    {{#if (eq usersCount -1)}}
+      <button class="btn btn-primary de-select " {{action 'onDeSelect'}}>{{t 'common.de-select'}}</button>
+    {{else}}
+      <button class="btn btn-primary select-all" {{action 'onSelectAll'}}>{{t 'common.select-all'}}</button>
+    {{/if}}
+  </div>
+  <div class="student-list-container">
+    {{#each studentSearchResults as |student| }}
+      <div class="user-profile-details">
+        <div class="user-profile-img {{if classActivity.isCompleted 'disable-event'}}">
+          {{#if student.isSelected}}
+            <div class="selected-user-for-class-activity"  onclick={{action 'onDeSelectUser' student}} onkeypress={{action 'onDeSelectUser' student}} tabindex={{tabindex}}>
+              {{gru-icon name="done_all"}}
+              <div class="de-select-user"  onclick={{action 'onDeSelectUser' student}} onkeypress={{action 'onDeSelectUser' student}} tabindex={{tabindex}}>
+                {{gru-icon name="close"}}
+              </div>
+            </div>
+          {{/if}}
+          <img src="{{student.avatarUrl}}" class="{{if student.isSelected 'selected'}}"  onclick={{action 'onSelectUser' student}} onkeypress={{action 'onSelectUser' student}} alt="user thumbnail" tabindex={{tabindex}}/>
+        </div>
+        <div class="username">
+        {{#if (and student.lastName student.firstName)}}
+        <span>{{student.lastName}},</span>
+        <span>{{student.firstName}} {{if (not student.isShowLearnerData) '*'}}</span>
+        {{else}}
+        <span>{{student.username}} {{if (not student.isShowLearnerData) '*'}}</span>
+        {{/if}}
+        </div>
+      </div>
+    {{else}}
+      <span class="no-student">{{t 'common.add-students-into-the-class'}}</span>
+    {{/each}}
+  </div>
+  {{#if isShowButton}}
+  <div class="action-buttons">
+    <button class="btn" {{action 'onPullUpClose'}}>{{t 'common.cancel'}}</button>
+    <button class="btn btn-primary save-users {{if classActivity.isCompleted 'disable-event'}}" {{action 'saveUsersToClassActivityContent'}}>{{t 'common.save'}}</button>
+  </div>
+  {{else}}
+  <div class="action-buttons">
+    <button class="btn" {{action 'onPullUpClose'}}>{{t 'sign-in.conformation-text'}}</button>
+    </div>  
+  {{/if}}
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

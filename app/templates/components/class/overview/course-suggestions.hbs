@@ -1,0 +1,15 @@
+<div style="clear:both"></div>
+<div class=''>
+    <ol class=''>
+        {{#each units as |unit index|}}
+                {{class/overview/unit-suggestions model=unit class=class course=course
+                  onLocationUpdate=(action 'updateLocation')
+                 currentResource=currentResource
+                 parsedLocation=parsedLocation
+                 userLocationInRoute0=userLocationInRoute0
+                 isStudentDashboard=isStudentDashboard
+                 index=index isPlayer=isPlayer onStudyNow=(action 'studyNow')
+                 studentId=studentId}}
+        {{/each}}
+    </ol>
+</div>

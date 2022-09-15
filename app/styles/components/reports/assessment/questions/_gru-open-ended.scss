@@ -1,0 +1,9 @@
+.reports.assessment.questions.gru-open-ended {
+  word-wrap: break-word;
+  overflow: auto;
+  max-width: 15em;
+
+  @media (min-width: $screen-sm-min) {
+    max-width: 19em;
+  }
+}

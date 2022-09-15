@@ -1,0 +1,157 @@
+<div class="domain-panel-header">
+  <div class="domain-name">
+    {{domain-gut-to-fw-transform
+       fwDomains
+       domain.domainCode
+       domain.domainName
+      'fwDomainName'
+      (not showGutCompetency)
+    }}
+  </div>
+  <div class="domain-seq">{{t 'common.domain'}} {{domain.domainSeq}}</div>
+  <div class="data-model-selector out-of-scope">
+    <div class="proficiency-selector {{if isShowCompetencies 'active'}}" onclick={{action "onSelectDatamodel" 'proficiency'}} onkeypress={{action "onSelectDatamodel" 'proficiency'}} tabindex="0">Proficiency</div>
+    <span>|</span>
+    <div class="portfolio-selector {{unless isShowCompetencies 'active'}}" onclick={{action "onSelectDatamodel" 'portfolio'}} onkeypress={{action "onSelectDatamodel" 'portfolio'}} tabindex="0">Portfolio</div>
+  </div>
+  <span class="close" onclick={{action 'closePullUp'}} onkeypress={{action 'closePullUp'}} tabindex="0">{{gru-icon name="close"}}</span>
+</div>
+
+<div class="competency-container">
+    <div class="title">{{domain.topics.length}} Topics</div>
+   <ol>
+
+      {{#each domain.topics as |topic|}}
+        <li {{action 'onSelectTopic' topic }}>
+          <span class="topic-title">
+            <span>{{domain.domainSeq}}.{{topic.topicSeq}}</span> <span class="topic-name">{{topic.topicName}}</span>
+            {{#if isShowTopicCompetencies}}
+              <div class="competency-count">{{topic.competencies.length}} {{t 'common.competencies'}}</div>
+            {{/if}}
+          </span>
+          {{#if isShowTopicCompetencies}}
+            <div class="competencies-list">
+            {{#each topic.competencies as |competency|}}
+              <div class="competency-card" onclick={{action "onInspectCompetency" competency}} onkeypress={{action "onInspectCompetency" competency}} tabindex="1">
+                <div class="comp-code">
+                  {{competency.displayCode}}
+                </div>
+                <div class="comp-desc" title="{{if competency.competencyStudentDesc competency.competencyStudentDesc competency.competencyName }}" data-toggle="tooltip" data-placement="bottom">
+                  {{#if (not competency.competencyStudentDesc)}}
+                    {{competency.competencyName}}
+                  {{else}}
+                    {{competency.competencyStudentDesc}}
+                  {{/if}}
+                </div>
+              </div>
+            {{/each}}
+            </div>
+          {{else}}
+            <div class="competency-sec">
+              <div class="competency-status">
+                <div class="mastered">
+                  <div class="count">{{topic.masteredCompetencies}}</div>
+                  <div class="status-label" title="{{t 'profile.proficiency.mastered'}}" data-toggle="tooltip"></div>
+                </div>
+                <div class="in-progress">
+                  <div class="count">{{topic.inprogressCompetencies}}</div>
+                  <div class="status-label" title="{{t 'profile.proficiency.in-progress'}}" data-toggle="tooltip"></div>
+                </div>
+                <div class="not-started">
+                  <div class="count">{{topic.notstartedCompetencies}}</div>
+                  <div class="status-label" title="{{t 'profile.proficiency.not-started'}}" data-toggle="tooltip"></div>
+                </div>
+              </div>
+              <span class="competency-count">| {{topic.competencies.length}} {{t 'common.competencies'}}</span>
+            </div>
+          {{/if}}
+        </li>
+      {{/each}}
+
+    </ol>
+
+  </div>
+
+
+
+{{#if (and  isShowCompetencies false)}}
+<div class="competency-container">
+  <div class="title">{{competencies.length}} {{t 'common.competencies'}}</div>
+  <div class="competency-list">
+    {{#each competencies as |competency|}}
+      <div class="competency-info" {{action 'onInspectCompetency' competency}}>
+        <div class="competency">
+          <div class="title">
+            {{competency-gut-to-fw-transform
+              fwCompetencies
+              competency.competencyCode
+              competency.competencyCode
+              'frameworkCompetencyDisplayCode'
+              showGutCompetency
+              true
+            }}
+            <div class="content lo-content">
+              {{competency-lo-transform
+                fwCompetencies
+                competency.competencyCode
+                'loCode'
+                false
+                '|'
+              }}
+              <span class="tag-tooltip">
+                {{competency-lo-transform
+                  fwCompetencies
+                  competency.competencyCode
+                  'loName'
+                  false
+                  ''
+                }}
+              </span>
+            </div>
+          </div>
+          <div class="competency-status status-{{competency.status}}"></div>
+        </div>
+        <div class="competency-desc" title="{{competency.competencyDesc}}" data-toggle="tooltip" data-placement="bottom">
+          {{competency-gut-to-fw-transform
+            fwCompetencies
+            competency.competencyCode
+            competency.competencyStudentDesc
+            'frameworkCompetencyName'
+            showGutCompetency
+            true
+          }}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{else}}
+  {{!-- <div class="portfolio-contents-container">
+    {{portfolio/gru-contents-panel
+      contentType = 'offline-activity'
+      userProfile = userProfile
+      userPreference = userPreference
+      subject = subject
+      domain = domain
+      isDisableFilter = true
+      isExpanded = true}}
+
+    {{portfolio/gru-contents-panel
+      contentType = 'collection'
+      userProfile = userProfile
+      userPreference = userPreference
+      subject = subject
+      domain = domain
+      isDisableFilter = true
+      isExpanded = false}}
+
+    {{portfolio/gru-contents-panel
+      contentType = 'assessment'
+      userProfile = userProfile
+      userPreference = userPreference
+      subject = subject
+      domain = domain
+      isDisableFilter = true
+      isExpanded = false}}
+  </div> --}}
+{{/if}}

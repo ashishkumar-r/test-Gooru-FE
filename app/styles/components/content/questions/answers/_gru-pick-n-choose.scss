@@ -1,0 +1,69 @@
+.gru-pick-n-choose {
+  .gru-pick-n-choose-container {
+    .gru-pick-n-choose-panel {
+      .answer-panel {
+        display: grid;
+        grid-template-columns: 30px 1fr 40px 40px;
+        align-items: center;
+        column-gap: 10px;
+        padding: 10px;
+        box-shadow: 0 0 10px $light-200;
+        margin: 10px 0;
+
+        h3 {
+          font-size: 15px;
+          margin: 0;
+          text-align: center;
+          border-right: 1px solid $light-200;
+        }
+
+        .delete-action {
+          cursor: pointer;
+          padding: 10px;
+        }
+
+        .answer-selection {
+          padding: 10px;
+          border: 1px solid $light-200;
+          cursor: pointer;
+          color: $light-400;
+          border-radius: 3px;
+          box-shadow: 2px 2px 5px $light-200;
+          font-size: 20px;
+          font-weight: bold;
+          grid-column-start: 4;
+
+          &.disabled {
+            opacity: 0.5;
+            cursor: default;
+            pointer-events: none;
+          }
+
+          &.active {
+            background-color: $green-400;
+            color: $white;
+          }
+        }
+      }
+
+      .gru-add-excercise {
+        margin-top: 20px;
+        span {
+          background-image: linear-gradient(to right, $blue-300, $blue-500);
+          padding: 10px;
+          color: $white;
+          font-weight: bold;
+          box-shadow: 0 0 10px $light-200;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+        &.disabled-btn {
+          span {
+            background: $light-200;
+            cursor: auto;
+          }
+        }
+      }
+    }
+  }
+}

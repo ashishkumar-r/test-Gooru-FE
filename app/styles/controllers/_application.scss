@@ -1,0 +1,302 @@
+.application {
+  /*Hide tooltip for mobile and tablets*/
+  @media only screen and (max-width: $screen-1024) {
+    .tooltip {
+      visibility: hidden;
+    }
+  }
+  overflow-x: hidden;
+
+  &.no-vertical-scroll {
+    overflow-y: hidden;
+  }
+
+  &.not-found {
+    .gru-header {
+      display: none;
+    }
+
+    .app-container {
+      padding: 0;
+    }
+  }
+}
+
+.note-tool-hw {
+  width: 1000px;
+  height: 480px;
+}
+
+.resize-drag {
+  color: white;
+  font-family: sans-serif;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 30px 20px;
+  height: 500px;
+  width: 1000px;
+  position: relative;
+  transform: translate(calc(100vw - 1050px), 0px);
+
+  /* This makes things *much* easier */
+  box-sizing: border-box;
+  @media screen and (max-width: 915px) {
+    width: 90vw !important;
+    margin: 10px;
+    transform: translate(0px, 0px);
+  }
+  @media screen and (min-width: 1000px) {
+    width: 1000px;
+    margin: 30px 20px;
+  }
+}
+
+.resize-container {
+  width: 100%;
+  height: 100vh;
+  z-index: 1033;
+  position: fixed;
+  top: 60px;
+}
+
+.close-note {
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.move-notes {
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.profile_proficiency {
+  overflow-y: hidden;
+
+  .app-container {
+    overflow-y: auto;
+  }
+}
+
+.app-container {
+  height: 100vh;
+  padding-top: 55px;
+  @media (min-width: $screen-md) {
+    padding-top: 63px;
+  }
+
+  > .backdrop-pull-ups .backdrop {
+    background: none !important;
+  }
+
+  > .backdrop-pull-ups:last-child .backdrop {
+    background-color: $close-color !important;
+  }
+
+  > .controller {
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-content(flex-start);
+    min-height: 100%;
+    @media (min-width: $screen-md) {
+      @include flex-direction(row);
+    }
+
+    > * {
+      width: 100%;
+    }
+
+    > .navigation {
+      @media (min-width: $screen-md) {
+        height: 100%;
+        width: 20%;
+      }
+      background: $white;
+      box-shadow: 0 2px 5px 0 $disabled-bg-color;
+
+      * {
+        background-color: $table-bg;
+      }
+    }
+
+    > .content {
+      @media (min-width: $screen-md) {
+        width: 80%;
+      }
+
+      &.full-screen {
+        width: 100%;
+      }
+    }
+
+    > .channel {
+      @media (min-width: $screen-md) {
+        width: 25%;
+      }
+      @include linear-gradient($blue-500, $blue-400);
+      box-shadow: inset 0 1px 3px 0 $navbar-default-toggle-icon-bar-bg;
+
+      * {
+        background-color: $table-bg;
+      }
+    }
+  }
+}
+
+.popover {
+  z-index: 99999;
+}
+
+.network-inprogress {
+  .network-progress-indicator {
+    content: "";
+    width: 100%;
+    height: 3px;
+    position: fixed;
+    -webkit-animation: network-progress-indicator 2s infinite;
+    /* Safari 4.0 - 8.0 */
+    animation: network-progress-indicator 2s infinite;
+    z-index: 9999;
+  }
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes network-progress-indicator {
+  0% {
+    top: 0;
+    width: 0;
+    left: 0;
+    right: 0;
+    background: red;
+  }
+
+  50% {
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    background: orange;
+  }
+
+  99% {
+    top: 0;
+    width: 0;
+    left: 100%;
+    right: 0;
+    background: red;
+  }
+}
+/* Standard syntax */
+@keyframes network-progress-indicator {
+  0% {
+    top: 0;
+    width: 0;
+    left: 0;
+    right: 0;
+    background: red;
+  }
+
+  50% {
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    background: orange;
+  }
+
+  99% {
+    top: 0;
+    width: 0;
+    left: 100%;
+    right: 0;
+    background: red;
+  }
+}
+
+/* Ticker related styles - Start */
+* {
+  box-sizing: border-box;
+}
+$duration: 25s;
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.ticker-close {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: $black-bold;
+  font-size: 1.2rem;
+  margin: 10px;
+  z-index: 2005;
+  cursor: pointer;
+  background-color: $white;
+  border-radius: 10px;
+}
+
+.ticker-wrap {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 3rem;
+  background-color: $black-ticker-wrap;
+  padding-left: 100%;
+  box-sizing: content-box;
+  z-index: 2000;
+
+  .ticker {
+    display: inline-block;
+    height: 3rem;
+    line-height: 3rem;
+    white-space: nowrap;
+    padding-right: 100%;
+    box-sizing: content-box;
+
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    animation-name: ticker;
+    -webkit-animation-duration: $duration;
+    animation-duration: $duration;
+
+    &__item {
+      display: inline-block;
+      padding: 0 2.8rem;
+      font-size: 1.2rem;
+      color: $white;
+    }
+  }
+}
+.helpPullUp {
+  display: none;
+}
+/* Ticker related styles - End */

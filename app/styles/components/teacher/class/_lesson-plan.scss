@@ -1,0 +1,661 @@
+.teacher-class-milestone-course-map-lesson-plan {
+  .milestone-course-map-container {
+    width: 100%;
+
+    .milestone-course-map {
+      margin-bottom: 5px;
+      position: relative;
+
+      &.class-grade {
+        box-shadow: 0 0 10px 0 $gray-base;
+
+        .milestone-course-map-panel {
+          .milestone-info-container {
+            background-color: $gray-base;
+          }
+        }
+      }
+
+      .not-started {
+        font-size: 10px;
+        color: $black-bold;
+        line-height: 15px;
+        margin-top: 8px;
+      }
+
+      .milestone-course-map-panel {
+        display: inline-grid;
+        width: 100%;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        grid-template-columns: 1fr 60px;
+        height: 50px;
+        box-shadow: 0 0 6px 0 $navbar-default-toggle-icon-bar-bg;
+        background-color: $white;
+
+        &.sticky {
+          position: fixed;
+          top: 50px;
+          z-index: 2;
+          @media screen and (max-width: $screen-xs) {
+            top: 100px;
+          }
+        }
+
+        .milestone-info-container {
+          height: inherit;
+          background-color: $danube;
+          display: inline-grid;
+          width: 100%;
+          grid-template-columns: 70px 1fr 50px;
+          align-items: center;
+          cursor: pointer;
+          position: relative;
+
+          &.active {
+            box-shadow: 0 2px 4px 0 $disabled-bg-color;
+          }
+
+          .milestone-icon-upward-line {
+            position: absolute;
+            top: -32px;
+            left: 34px;
+
+            svg {
+              line {
+                stroke: $breadcrumb-color;
+                stroke-width: 3;
+              }
+            }
+          }
+
+          .milestone-flag-icon {
+            font-family: "Lato";
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1;
+            letter-spacing: normal;
+            text-align: center;
+            border-radius: 50%;
+            background: $white;
+            width: 30px;
+            height: 30px;
+            align-self: center;
+            justify-self: center;
+            position: relative;
+            z-index: 1;
+
+            i {
+              font-size: 16px;
+              margin-top: 7px;
+              margin-left: 1px;
+              color: $danube;
+            }
+          }
+
+          .milestone-title {
+            p {
+              margin: 0;
+              font-family: "Lato";
+              color: $white;
+              font-weight: bold;
+              @include ellipsis(
+                $font-size: 15px,
+                $line-height: 1.5,
+                $lines-to-show: 1
+              );
+              width: 100%;
+            }
+          }
+
+          .milestone-caret {
+            color: $white;
+            align-self: center;
+            height: 26px;
+            text-align: center;
+
+            i {
+              font-size: 30px;
+            }
+          }
+        }
+
+        .milestone-peformance {
+          width: 60px;
+          height: 50px;
+          display: grid;
+          align-items: center;
+          justify-items: center;
+          color: $white;
+          font-size: 16px;
+          font-weight: bold;
+          border-bottom: 1px solid $white;
+
+          .no-of-submissions {
+            display: grid;
+            align-items: center;
+            grid-template-columns: auto auto;
+            grid-gap: 2px;
+            position: relative;
+            top: -5px;
+
+            .count {
+              font-size: 14px;
+            }
+
+            i {
+              font-size: 20px;
+            }
+          }
+
+          &.grade-range-not-started {
+            background: $table-bg;
+            border-bottom: none;
+            color: $gray;
+          }
+        }
+      }
+
+      .milestone-course-map-lesson-container {
+        display: none;
+
+        .no-lesson {
+          text-align: center;
+          font-size: 15px;
+        }
+
+        .lesson-icon-container {
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+
+          i {
+            position: relative;
+            z-index: 1;
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-image: url("../assets/gooru/images/lesson-dark-outline.svg");
+          }
+
+          .lesson-icon-upward-line {
+            position: absolute;
+            top: -32px;
+            left: 34px;
+
+            svg {
+              line {
+                stroke: $breadcrumb-color;
+                stroke-width: 3;
+              }
+
+              path {
+                stroke: #ec8f42;
+                stroke-width: 2;
+                fill: none;
+                display: none;
+              }
+            }
+          }
+        }
+
+        .lesson-load-spinner {
+          height: 50px;
+          display: inline-flex;
+          align-items: center;
+          width: 100%;
+
+          .three-bounce-spinner {
+            margin: 0 auto;
+          }
+        }
+
+        .milestone-course-map-lesson {
+          &.active {
+            .milestone-course-map-lesson-panel {
+              box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+              position: relative;
+            }
+          }
+
+          &:last-child {
+            .milestone-course-map-lesson-panel {
+              border-bottom: none;
+            }
+
+            .milestone-course-map-lesson-plan-container {
+              .no-collection {
+                padding-bottom: 0;
+              }
+            }
+          }
+
+          &.prev-active {
+            .milestone-course-map-lesson-panel {
+              &.first-path-.prev-col-path-system {
+                .lesson-icon-container {
+                  .lesson-icon-upward-line {
+                    left: 30px;
+
+                    svg {
+                      line {
+                        display: none;
+                      }
+
+                      .path-left {
+                        display: block;
+                      }
+                    }
+                  }
+                }
+              }
+
+              &.first-path-.prev-col-path-teacher {
+                .lesson-icon-container {
+                  .lesson-icon-upward-line {
+                    left: 26px;
+
+                    svg {
+                      line {
+                        display: none;
+                      }
+
+                      .path-right {
+                        display: block;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .milestone-course-map-lesson-panel {
+            height: 50px;
+            background: $white;
+            display: inline-grid;
+            width: 100%;
+            grid-template-columns: 70px 1fr 60px;
+            align-items: center;
+            border-bottom: 1px solid $light-200;
+            cursor: pointer;
+
+            &.has-activity {
+              .lesson-icon-container {
+                .lesson-icon {
+                  background-image: url("../assets/gooru/images/lesson-blue-outline.svg");
+                }
+
+                .lesson-icon-upward-line {
+                  svg {
+                    line {
+                      stroke: #5c8ee2;
+                    }
+                  }
+                }
+              }
+            }
+
+            .domain-lesson-title {
+              p {
+                margin: 0;
+                font-family: "Lato";
+                color: $gray-dove;
+                font-weight: bold;
+                @include ellipsis(
+                  $font-size: 16px,
+                  $line-height: 1.2,
+                  $lines-to-show: 1
+                );
+                width: 100%;
+
+                &.domain-name {
+                  font-weight: normal;
+                  @include ellipsis(
+                    $font-size: 13px,
+                    $line-height: 1.2,
+                    $lines-to-show: 1
+                  );
+                }
+              }
+            }
+
+            .lesson-peformance {
+              width: 60px;
+              height: 50px;
+              display: grid;
+              align-items: center;
+              justify-items: center;
+              font-size: 16px;
+              font-weight: bold;
+              color: $white;
+
+              .no-of-submissions {
+                display: grid;
+                align-items: center;
+                grid-template-columns: auto auto;
+                grid-gap: 2px;
+                position: relative;
+                top: -5px;
+
+                .count {
+                  font-size: 14px;
+                }
+
+                i {
+                  font-size: 20px;
+                }
+              }
+
+              &.grade-range-not-started {
+                background: $table-bg;
+                color: $gray;
+              }
+            }
+          }
+
+          .milestone-course-map-lesson-plan-container {
+            display: none;
+            box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+            margin: 0 auto;
+            width: 100%;
+            margin-bottom: 2px;
+
+            .no-lesson-plan {
+              text-align: center;
+              font-size: 15px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+            }
+
+            .lesson-plan-load-spinner {
+              height: 50px;
+              display: inline-flex;
+              align-items: center;
+              width: 100%;
+
+              .three-bounce-spinner {
+                margin: 0 auto;
+              }
+            }
+
+            .milestone-course-map-lesson-plan {
+              padding: 0 10px;
+              .milestone-course-map-lesson-plan-lists {
+                display: none;
+                margin-bottom: 10px;
+                .milestone-course-map-lesson-plan-list-item {
+                  .milestone-course-map-lesson-plan-list-item-title {
+                    display: grid;
+                    grid-template-columns: 1fr 50px;
+                    align-items: center;
+                    font-size: 15px;
+                    font-weight: 700;
+                    padding: 10px 30px;
+                    background-color: $white;
+                    border-bottom: 1px solid $light-200;
+                    cursor: pointer;
+
+                    p {
+                      margin: 0;
+                    }
+                    .milestone-caret {
+                      text-align: right;
+                      display: grid;
+                      grid-template-columns: 1fr;
+                    }
+                  }
+                  .milestone-course-map-lesson-plan-list-item-title-description {
+                    border-bottom: 1px solid $light-200;
+                    p,
+                    h4 {
+                      margin: 0;
+                    }
+                    .lesson-plan-competency-container {
+                      display: none;
+                      .lesson-plan-competency-panel {
+                        display: grid;
+                        grid-template-columns: Repeat(4, 1fr);
+                        grid-column-gap: 10px;
+                        grid-row-gap: 10px;
+                        align-items: center;
+                        margin: 10px;
+                        padding: 0 20px;
+                        @media screen and (max-width: $screen-sm) {
+                          grid-template-columns: Repeat(2, 1fr);
+                        }
+                        .lesson-plan-competency-panel-box {
+                          background-color: $white;
+                          h4 {
+                            border-bottom: 1px solid $breadcrumb-color;
+                            padding: 10px;
+                            font-size: 20px;
+                            color: $gray;
+                          }
+                          p {
+                            padding: 10px;
+                            font-weight: 700;
+                          }
+                        }
+                      }
+                    }
+                    .lesson-plan-question-guiding-container {
+                      background-color: $white;
+                      padding: 10px;
+                      display: none;
+                      p {
+                        padding: 5px;
+                      }
+                    }
+                    .lesson-plan-anticipated-struggle-container {
+                      display: none;
+                      .lesson-plan-anticipated-struggle-descirption {
+                        background-color: $white;
+                        padding: 10px 30px;
+                        p {
+                          padding: 5px;
+                        }
+                      }
+                      .lesson-plan-anticipated-struggle-alt-concept-desciption {
+                        background-color: $white;
+                        margin: 10px;
+                        padding: 10px;
+                      }
+                    }
+                  }
+                }
+                .lesson-plan-session-panel-container {
+                  margin-bottom: 10px;
+                  padding-bottom: 5px;
+                  .lesson-plan-session-panel {
+                    display: grid;
+                    grid-template-columns: 70px 1fr 70px;
+                    align-items: center;
+                    padding: 10px 0;
+                    background-color: $white;
+                    border-bottom: 1px solid $breadcrumb-color;
+                    box-shadow: 0 5px 5px -5px $breadcrumb-color;
+                    margin-bottom: 1px;
+                    cursor: pointer;
+
+                    .session-icon-container {
+                      display: grid;
+                      align-items: center;
+                      justify-content: center;
+                      position: relative;
+
+                      i {
+                        position: relative;
+                        z-index: 1;
+                        width: 20px;
+                        height: 20px;
+                        background-repeat: no-repeat;
+                        background-size: 20px 20px;
+                        background-image: url("../assets/gooru/images/lesson-dark-outline.svg");
+                      }
+                    }
+                    .lesson-plan-session-title {
+                      p {
+                        margin: 0px;
+                        font-size: 15px;
+                      }
+                    }
+                  }
+                  .lesson-plan-session-panel-description {
+                    display: none;
+                    padding-bottom: 5px;
+                    p,
+                    h4 {
+                      margin: 0px;
+                    }
+                    .session-panel-structure {
+                      background-color: $white;
+                      padding: 10px 30px;
+                      h4 {
+                        margin-bottom: 10px;
+                        font-size: 20px;
+                        color: $gray;
+                      }
+                    }
+                    .lesson-plan-session-resource-container {
+                      margin: 10px;
+                      .lesson-plan-resource-title {
+                        margin: 10px 20px;
+                      }
+                      .lesson-plan-teacher-resource-container,
+                      .lesson-plan-student-resource-container {
+                        background-color: $white;
+                        display: grid;
+                        height: 40px;
+                        align-items: center;
+                        grid-template-columns: 70px 1fr 50px;
+                        border-bottom: 1px solid $light-200;
+                        &:last-child {
+                          border: none;
+                        }
+                        p {
+                          display: block;
+                          display: -webkit-box;
+                          max-height: 19.2px;
+                          font-size: 15px;
+                          line-height: 1.2;
+                          -webkit-line-clamp: 1;
+                          -webkit-box-orient: vertical;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          width: 100%;
+                          cursor: pointer;
+                        }
+
+                        .resoruce-collection-icon-container {
+                          display: grid;
+                          align-items: center;
+                          justify-content: center;
+                          position: relative;
+                          cursor: pointer;
+                          i {
+                            position: relative;
+                            z-index: 1;
+                            width: 20px;
+                            height: 20px;
+                            background-repeat: no-repeat;
+                            background-size: 20px 20px;
+                            background-image: url("../assets/gooru/images/lesson-dark-outline.svg");
+                          }
+                          &.collection {
+                            i {
+                              background-image: url("../assets/gooru/images/collection_gray.svg");
+                            }
+                          }
+                          &.resource {
+                            i {
+                              background-image: url("../assets/gooru/images/add_resource_icon.svg");
+                            }
+                          }
+                          &.assessment {
+                            i {
+                              background-image: url("../assets/gooru/images/assessment-gray.svg");
+                            }
+                          }
+
+                          &.offline-activity {
+                            i {
+                              background-image: url("../assets/gooru/images/offline.svg");
+                            }
+                          }
+                        }
+                        .play-lesson-plan-content {
+                          display: grid;
+                          height: 100%;
+                          width: 100%;
+                          text-align: center;
+                          align-items: center;
+                          cursor: pointer;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              &:last-child {
+                .milestone-course-map-lesson-plan-panel {
+                  border-bottom: 1px solid $light-200;
+                }
+              }
+
+              .milestone-course-map-lesson-plan-panel {
+                height: 50px;
+                background: $white;
+                display: inline-grid;
+                width: 100%;
+                grid-template-columns: 70px 1fr;
+                align-items: center;
+                border-bottom: 1px solid $breadcrumb-color;
+                box-shadow: 0 5px 5px -5px $breadcrumb-color;
+                margin-bottom: 1px;
+
+                .lesson-plan-icon-container {
+                  display: grid;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+
+                  i {
+                    position: relative;
+                    z-index: 1;
+                    width: 20px;
+                    height: 20px;
+                    background-repeat: no-repeat;
+                    background-size: 20px 20px;
+                    background-image: url("../assets/gooru/images/lesson-dark-outline.svg");
+                  }
+                }
+                .lesson-plan-title-container {
+                  display: grid;
+                  align-items: center;
+                  cursor: pointer;
+                  grid-template-columns: 1fr 100px;
+
+                  p {
+                    margin: 0;
+                    font-family: "Open Sans";
+                    color: #545e66;
+                    @include ellipsis(
+                      $font-size: 15px,
+                      $line-height: 2,
+                      $lines-to-show: 1
+                    );
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

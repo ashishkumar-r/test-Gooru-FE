@@ -1,0 +1,29 @@
+{{#if isRubric}}
+  <span>{{t 'common.preview'}}</span>
+{{/if}}
+{{#if url}}
+  {{#if isLinkOut}}
+    <div class="external-link">
+      <div class="panel panel-default placeholder">
+        <div class="panel-body">
+          <div class="external-https">
+            <p class="title">
+              {{t 'player.gru-viewer.not-iframe-url.https_external'}}
+              <br>
+              {{t 'player.gru-viewer.not-iframe-url.https_new_tab'}}
+            </p>
+            <a href="{{resource.url}}" target="_blank">{{resource.url}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class="preview {{if url 'show-url' 'show-legend'}}">
+      <iframe src='{{url}}'></iframe>
+    </div>
+  {{/if}}
+{{else}}
+  <div class="preview {{if url 'show-url' 'show-legend'}}">
+    <span>{{t 'gru-rubric-creation.gru-preview-url.preview'}}</span>
+  </div>
+{{/if}}

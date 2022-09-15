@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{t "common.add-century-skills"}}</h4>
+</div>
+<div class="modal-body">
+  {{century-skills/gru-century-skills-legend}}
+  {{century-skills/gru-century-skills-content
+    centurySkills=centurySkills
+    selectedCenturySkills=selectedCenturySkills
+    onSave=(action 'updateSelectedSkills')
+  }}
+</div>

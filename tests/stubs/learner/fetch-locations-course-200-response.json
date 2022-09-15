@@ -1,0 +1,15 @@
+{
+  "usageData":[
+    {
+      "courseId": "course-id1",
+      "courseTitle": "course-title1",
+      "status": "complete",
+      "lastAccessed": "2017-03-07 18:44:04.798"
+    }, {
+      "courseId": "course-id2",
+      "courseTitle": "course-title2",
+      "status": "complete",
+      "lastAccessed": "2017-03-07 18:44:04.798"
+    }
+  ]
+}

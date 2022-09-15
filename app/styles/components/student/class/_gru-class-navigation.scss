@@ -1,0 +1,69 @@
+.student.gru-class-navigation,
+.teacher.gru-class-navigation {
+  clear: both;
+  margin: 20px 0 0 0;
+  .nav-tabs {
+    box-shadow: inset 0 -1px 0 $gray-light;
+    height: 44px;
+    -webkit-padding-start: 0px;
+    li {
+      float: $tab-float-dir;
+      margin-right: 15px;
+      a {
+        padding: 10px 0 3px;
+      }
+    }
+  }
+  li {
+    display: none;
+    height: 43px;
+    margin-bottom: 0;
+    @media (min-width: $screen-sm) {
+      display: block;
+    }
+    &.active {
+      display: block;
+      a {
+        box-shadow: inset 0 -3px 0 $gray-base;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: $gray-base;
+        &:focus {
+          box-shadow: inset 0 -3px 0 $gray-base;
+          color: $gray-base;
+        }
+        &:active {
+          box-shadow: inset 0 -3px 0 $gray-base;
+          color: $gray-base;
+        }
+      }
+    }
+
+    &:not(.active) {
+      a {
+        box-shadow: none;
+      }
+    }
+
+    &.actions {
+      @include flexbox;
+      @include align-items(flex-end);
+      @include justify-content(space-between);
+      height: 39px;
+      .manage-goals-cta {
+        margin-right: 10px;
+      }
+    }
+
+    a {
+      color: $light-400;
+      &:hover {
+        color: $gray-base;
+      }
+      span {
+        font-size: $font-navigator;
+        font-weight: 500;
+      }
+    }
+  }
+}

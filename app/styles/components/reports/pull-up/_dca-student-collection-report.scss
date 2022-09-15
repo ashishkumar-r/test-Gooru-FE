@@ -1,0 +1,480 @@
+.reports.pull-up-dca-student-collection-report {
+  position: fixed;
+  top: 0;
+  height: 90vh;
+  top: 100%;
+  z-index: 99999;
+  background: $white;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .loading-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+
+  .backdrop-pull-ups {
+    .backdrop {
+      background: none !important;
+    }
+  }
+
+  .close {
+    display: none !important;
+  }
+
+  .header-container {
+    height: 48px;
+    background-color: $header-bg-color;
+    display: flex;
+    padding-left: 16px;
+    position: relative;
+
+    .close-pullup {
+      width: 32px;
+      height: 32px;
+      background-color: $close-pull-up-bg;
+      border-radius: 50%;
+      text-align: center;
+      cursor: pointer;
+      margin: 8px 0;
+
+      i {
+        color: $white;
+        line-height: 32px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    .preview-title {
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 48px;
+      color: $white;
+      text-transform: capitalize;
+      padding: 0 16px;
+      width: 100%;
+    }
+  }
+
+  .user-course-info {
+    width: 100%;
+    background: $white-bold;
+
+    .content-info-container {
+      box-shadow: 0 0 4px 0 $container-box-shadow;
+
+      .title-info-container {
+        display: grid;
+        grid-template-columns: 80px 24px 1fr auto;
+        align-items: center;
+        column-gap: 16px;
+
+        .thumbnail-container {
+          width: 80px;
+          height: 60px;
+          background-size: 80px 60px;
+          display: block;
+          background-repeat: no-repeat;
+        }
+
+        .content-title {
+          font-size: 16px;
+          color: $title-color;
+        }
+
+        .content-icon {
+          background-size: 24px 18px;
+          width: 24px;
+          height: 18px;
+          background-repeat: no-repeat;
+          display: block;
+
+          &.assessment,
+          &.assessment-external {
+            background-image: url("gooru/images/add_assessment.svg");
+          }
+
+          &.collection,
+          &.collection-external {
+            background-image: url("gooru/images/add_collection.svg");
+          }
+        }
+
+        .teacher-suggestion {
+          padding: 5px;
+
+          .suggestion-count-container {
+            cursor: pointer;
+
+            .suggestion-explore {
+              position: relative;
+              width: 35px;
+              height: 31px;
+              margin-left: 15px;
+              color: $orange-49;
+
+              .explore {
+                font-size: 35px;
+                transform: rotate(90deg);
+              }
+
+              .suggestion-count {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                color: $gray-4a;
+                top: 0;
+                right: 0;
+                border: 1px solid $gray-4a;
+                background: $white;
+                font-size: 10px;
+                line-height: 13px;
+                text-align: center;
+              }
+            }
+
+            span {
+              color: $orange-49;
+            }
+          }
+        }
+      }
+    }
+
+    .content-details-container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      height: 50px;
+      align-items: center;
+      &.single-container {
+        grid-template-columns: 1fr;
+      }
+      .taxonomy-container {
+        height: 50px;
+        display: grid;
+        align-items: center;
+        padding-left: 15px;
+
+        .gru-taxonomy-tag-list {
+          .gru-taxonomy-tag {
+            min-width: 90px;
+            max-width: 100px;
+            height: 23px;
+            border-radius: 12px;
+            background-color: $dark-gray;
+
+            .standard-tag {
+              text-align: center;
+              padding: 0;
+
+              .tag-label {
+                font-size: 14px;
+                font-weight: bold;
+                color: $white;
+                line-height: 21px;
+              }
+
+              .tag-caption {
+                display: none;
+              }
+            }
+          }
+
+          .non-visible-tags {
+            width: 81px;
+            height: 23px;
+            border-radius: 12px;
+            background-color: $dark-gray;
+            color: $white;
+            padding: 0;
+
+            span {
+              font-weight: bold;
+              font-size: 14px;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+      .activity-performance-container {
+        display: grid;
+        grid-template-columns: 1fr 70px;
+        justify-items: right;
+        column-gap: 15px;
+        height: inherit;
+
+        &.collection-performance {
+          grid-template-columns: 1fr;
+          .timespent-container {
+            padding-right: 15px;
+          }
+        }
+        &.download-option {
+          display: flex;
+          justify-content: flex-end;
+          .download {
+            display: grid;
+            grid-template-rows: 22px;
+            line-height: 1.5;
+            text-align: center;
+            margin-top: 6px;
+            .download-icon {
+              i {
+                color: $dark-600;
+              }
+            }
+          }
+          @media screen and (max-width: 500px) {
+            &.download-option {
+              display: flex;
+              justify-content: flex-end;
+              .download {
+                display: flex;
+                align-items: center;
+                span {
+                  display: none;
+                }
+              }
+              .timespent-container {
+                .timespent-data {
+                  .timespent-label {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .timespent-container {
+          display: grid;
+          grid-template-columns: auto auto;
+          align-items: center;
+          column-gap: 5px;
+          .timespent-icon {
+            i.query_builder {
+              height: 50px;
+              line-height: 50px;
+              font-size: 30px;
+            }
+          }
+          .timespent-data {
+            .timespent-label {
+              font-size: 13px;
+            }
+            .timespent-value {
+              font-weight: bold;
+              font-size: 14px;
+            }
+          }
+        }
+        .grading-icon {
+          background-image: url("../assets/gooru/images/grade-pending.png");
+          width: 22px;
+          height: 22px;
+          background-size: 22px;
+          background-position: center;
+          background-repeat: no-repeat;
+          display: block;
+          align-self: center;
+          margin-right: 20px;
+          cursor: pointer;
+        }
+
+        .activity-score-container {
+          color: $white;
+          font-size: 17px;
+          font-weight: bold;
+          width: 70px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+        }
+      }
+    }
+
+    .content-attems {
+      padding: 10px;
+      box-shadow: 0 2px 4px 0 $container-box-shadow;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      .information {
+        margin: 0;
+        height: 30px;
+        font-size: $font-size-h6;
+        display: table;
+
+        i {
+          vertical-align: middle;
+          margin: 0 5px 0 0;
+        }
+
+        span {
+          font-size: 13px;
+        }
+
+        .attempt {
+          margin: 0 3px 0 0;
+
+          .attempt-selector {
+            display: inline-block;
+
+            .current-attempt {
+              display: inline-block;
+
+              button {
+                line-height: 1;
+                font-size: 13px;
+
+                .caret {
+                  margin-left: 10px;
+                }
+                color: $gray;
+
+                &:hover {
+                  background-color: $breadcrumb-color;
+                }
+              }
+
+              .dropdown-menu {
+                li a {
+                  &.active {
+                    background-color: $breadcrumb-color;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .date {
+          margin: 0 2px 0 0;
+        }
+
+        .attempt,
+        .date,
+        .reaction {
+          @media (max-width: $screen-xs) {
+            display: block;
+            margin: 0 0 10px;
+          }
+          @media (max-width: $screen-md) {
+            margin: 0 10px 0 0;
+          }
+        }
+      }
+      .content-answer {
+        text-align: end;
+        .btn-group {
+          button {
+            margin: 0 2px 0 0;
+            border-radius: 10px;
+            @media (max-width: $screen-xs) {
+              padding: 6px 10px;
+            }
+          }
+        }
+        .summary-report-btn {
+          border: 1px solid $light-400;
+          border-radius: 16px;
+          background: $light-400;
+          z-index: 0;
+
+          .content-performance {
+            color: $black-bold;
+            height: 20px;
+            line-height: 9px;
+            background-color: $light-400;
+          }
+
+          .correct-answer {
+            color: $black-bold;
+            height: 20px;
+            line-height: 9px;
+            background-color: $light-400;
+          }
+
+          .btn-primary {
+            background: $white-bold;
+          }
+        }
+        .score-change-container {
+          padding: 5px;
+        }
+      }
+    }
+
+    .course {
+      margin-top: -50px;
+    }
+
+    .report {
+      margin-top: -85px;
+    }
+
+    .rescope-toggle {
+      .action {
+        display: flex;
+
+        span {
+          font-size: 15px;
+          color: $gray-base;
+        }
+
+        .gru-toggle-button {
+          margin-top: 7px;
+        }
+      }
+
+      .info {
+        color: $bluish-gray;
+        font-style: italic;
+      }
+    }
+  }
+
+  .reports.gru-assessment-report {
+    max-height: calc(90vh - 220px);
+    height: calc(90vh - 220px);
+    overflow-y: auto;
+    margin-top: 5px;
+
+    .desc-align {
+      position: relative !important;
+    }
+  }
+
+  .dca-report-panel-container {
+    background: $white-bold !important;
+    width: 768px;
+    max-height: 90vh;
+    height: 90vh;
+
+    .reports.assessment.gru-questions
+      .summary-report-questions
+      .questions-header {
+      margin-right: 25px;
+    }
+  }
+}

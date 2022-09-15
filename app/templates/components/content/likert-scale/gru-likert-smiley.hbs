@@ -1,0 +1,32 @@
+<div class="gru-likert-smiley-container">
+    <div class="gru-likert-smiley-panel">
+        <div class="gru-likert-smiley-items">
+            <div class="gru-likert-smiley-content-panel">
+                <span class="likert-item-row"></span>
+                {{#each likertItems as |item|}}
+                    {{#if item.isShow}}
+                        <div class="gru-likert-smiley-content-head likert-item-row">
+                            <span data-toggle="tooltip" data-placement="bottom" title="{{item.label}}">{{item.label}}</span>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="gru-likert-smiley-panel-body">
+            <div class="likert-smiley-head likert-item-row">
+                {{#each likertScalePoints as |item|}}
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{item.levelName}}">{{item.levelName}}</span>
+                {{/each}}
+            </div>
+            <div class="likert-smiley-content likert-item-row">
+                {{#each likertItems as |item|}}
+                    {{#if item.isShow}}
+                        <div class="gru-likert-smiley-content {{if readOnly 'disable-event'}}">
+                            {{gru-emotion-picker  likertScalePoints=likertScalePoints.length startEmotion=(if item.selectedPoint item.selectedPoint 0) onChangeEmotion=(action "onChangeEmotion" item) readOnly=readOnly}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

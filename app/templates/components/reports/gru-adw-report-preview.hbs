@@ -1,0 +1,34 @@
+<div class="adw-report-preview">
+    {{#each studentEvidence as |student|}}
+        <div class="student-evidence">
+            <div class="student-head">
+                <div class="student-details">
+                    <span class="student-img">
+                        <img class="img-responsive" src={{student.user.thumbnail}} alt="profileImage">
+                    </span>
+                    <span class="student-name">{{student.user.fullName}}</span>
+                </div>
+            </div>
+            {{#each student.evidence as |evidence eIndex|}}
+            <div class="student-attempt">{{t 'common.notes'}} {{plus-one eIndex}}</div>
+            <div class="student-data">
+                {{#each-in evidence as | header value index|}}
+                    <div class="evidence-data">
+                        <span class="evidence-header">{{header}}</span>
+                        {{#if (eq header 'images')}}
+                            <div class="image-container">
+                                {{#each value as |image|}}
+                                    <img src={{image}} alt="image" {{action 'showImageModal' image}}>
+                                {{/each}}
+                            </div>
+                            {{else}}
+                                <span class="evidence-body">{{value}}</span>
+                        {{/if}}
+                    </div>
+                {{/each-in}}
+            </div>
+            {{/each}}
+        </div>
+        <div class="pagebreak"> </div>
+    {{/each}}
+</div>

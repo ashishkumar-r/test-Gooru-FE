@@ -1,0 +1,37 @@
+<div class="resource-preview-container {{if resource.isFade 'fade-content'}}">
+  <div class="resource-header-container">
+    <div class="resource-title-container">
+      <div class="resource-order">{{contentSeq}}.</div>
+      <div class="resource-type {{resource.format}} {{if (eq resource.format 'h5p') resource.type}}"></div>
+      <div class="title ellipsis">{{safe-html resource.title}}</div>
+    </div>
+    {{#if isReportView}}
+      <div class="resource-performance-container {{if (eq resource.answerStatus 'skipped') 'skipped-resource'}}">
+        {{#if (eq resource.answerStatus 'skipped')}}
+          <div class="resoure-status" data-toggle="tooltip" title="Skipped">
+            {{gru-icon name="block"}}
+          </div>
+        {{/if}}
+        <div class="resource-reaction">
+          {{reaction-icon question.reaction }}
+        </div>
+        <div class="resource-timespent">
+          {{format-time resource.timespent}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  {{#if taxonomyTags.length}}
+    <div class="resource-taxonomies-container">
+      {{taxonomy/gru-taxonomy-tag-list tags=taxonomyTags tagsVisible=1 isInCard=true}}
+    </div>
+  {{/if}}
+  <div class="resource-description-container">
+    {{safe-html resource.description}}
+  </div>
+  {{#if (and resource.url (not-eq resource.format 'html'))}}
+    <div class="resource-url-container">
+      <span class="url-label">{{t 'gru-rubric-creation.url'}}: </span><span class="url-content"><a href="{{resource.url}}" target="_blank">{{resource.url}}</a></span>
+    </div>
+  {{/if}}
+</div>

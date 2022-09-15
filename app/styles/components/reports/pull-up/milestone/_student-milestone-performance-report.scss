@@ -1,0 +1,85 @@
+.milestone-report.student-milestone-performance-report {
+  background-color: $white;
+  .student-milestones-performance-container {
+    .header-container {
+      height: 240px;
+      box-shadow: 0 2px 5px 0 $disabled-bg-color;
+    }
+    .body-container {
+      height: calc(80vh - 230px);
+      overflow-y: auto;
+      .student-milestone-container {
+        display: grid;
+        grid-template-columns: 1fr 50px;
+        height: 50px;
+        margin-top: 5px;
+        cursor: pointer;
+        &.not-started {
+          pointer-events: none;
+        }
+        .student-milestone-info-container {
+          display: grid;
+          grid-template-columns: 55px 1fr;
+          height: inherit;
+          box-shadow: 0 2px 5px 0 $disabled-bg-color;
+          align-items: center;
+          background-color: $danube;
+          .milestone-icon-container {
+            font-family: "Lato";
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1;
+            letter-spacing: normal;
+            text-align: center;
+            border-radius: 50%;
+            background: $white;
+            width: 30px;
+            height: 30px;
+            align-self: center;
+            justify-self: center;
+            position: relative;
+            z-index: 1;
+
+            i {
+              font-size: 16px;
+              margin-top: 7px;
+              margin-left: 1px;
+              color: $danube;
+            }
+          }
+          .milestone-title-container {
+            font-size: 15px;
+            font-weight: bold;
+            color: $white;
+          }
+        }
+        .student-milesont-performance-container {
+          width: 50px;
+          height: 50px;
+          font-size: 13px;
+          font-weight: bold;
+          color: $white;
+          text-align: center;
+          line-height: 50px;
+          border-top: 2px solid $disabled-bg-color;
+
+          &.grade-range-not-started {
+            background-color: $suggestion-panel-color;
+            color: $gray;
+          }
+        }
+      }
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+    }
+  }
+}

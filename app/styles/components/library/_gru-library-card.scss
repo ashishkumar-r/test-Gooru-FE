@@ -1,0 +1,91 @@
+.library.gru-library-card {
+  width: 100%;
+
+  @media (min-width: $screen-sm-min) {
+    width: 49%;
+  }
+  @media (min-width: $screen-sm-max) {
+    width: 32%;
+  }
+
+  .panel-body,
+  .information,
+  .panel-footer,
+  .actions,
+  .type {
+    @include flexbox;
+  }
+  .panel {
+    border-radius: 6px;
+    .panel-body {
+      @include flex-direction(column);
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      .information {
+        @include justify-content(space-between);
+        .title {
+          h3 {
+            color: $blue-500;
+            cursor: pointer;
+            font-size: $font-size-large;
+            margin: 0;
+          }
+        }
+        .image {
+          display: block;
+          height: 60px;
+          width: 60px;
+          overflow: hidden;
+          @media (min-width: $screen-md-min) {
+            height: 80px;
+            width: 80px;
+          }
+        }
+      }
+      .type {
+        span {
+          margin: 0 0 0 5px;
+        }
+      }
+      .description {
+        margin: 5px 0 0;
+      }
+    }
+    .panel-footer {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      background-color: $white;
+      border-top: 1px solid $gray-lighter;
+      padding: 0;
+      height: 62px;
+      .network {
+        width: 80%;
+      }
+      .actions {
+        .btn {
+          border-left: 1px solid $gray-lighter;
+          margin: 0;
+          font-size: $font-size-small;
+          padding: 0 8px;
+
+          &.btn-default {
+            color: $white;
+            background-color: $dark-300;
+          }
+          &:hover {
+            cursor: default;
+          }
+        }
+        .no-bgd {
+          background-color: $table-bg;
+          font-size: 24px;
+          line-height: 1;
+          padding: 7px 5px;
+          i {
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+}

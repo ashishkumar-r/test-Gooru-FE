@@ -1,0 +1,206 @@
+.controller.about.edit {
+  .action-buttons {
+    padding-right: 15px;
+    .cancel,
+    .save {
+      width: 55px;
+      height: 28px;
+      border-radius: 4px;
+      padding: 0;
+      font-size: 13px;
+      line-height: 1.08;
+    }
+    .cancel {
+      background-color: $light-200;
+      color: $dark-400;
+      margin-right: 5px;
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    $component-height: 210px;
+    .avatar {
+      width: 100%;
+      .gru-image {
+        button.delete > i {
+          color: $white;
+          opacity: 1;
+        }
+        width: 100%;
+        height: $component-height;
+        border-radius: 4px;
+        img {
+          height: $component-height - 30px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+  .avatar {
+    width: inherit;
+    .gru-image-edit {
+      .library_add {
+        color: $picton-blue;
+      }
+      display: flex;
+      .image-edit-actions {
+        display: inline-grid;
+        .file-picker {
+          border-bottom: 1px solid $gray-lighter;
+          padding-right: 13px;
+          color: $font-picton-blue-gray;
+        }
+        .file-picker,
+        .remove-photo {
+          cursor: pointer;
+          padding-left: 15px;
+          font-weight: bold;
+        }
+        &.impersonate-image-edit {
+          pointer-events: none;
+        }
+      }
+      img {
+        border-radius: 50%;
+        width: 59px;
+        height: 59px;
+      }
+    }
+    .gru-image {
+      width: 59px;
+      height: 59px;
+    }
+  }
+
+  .panel {
+    .panel-body {
+      padding: 22px;
+      .row > div {
+        padding-bottom: 15px;
+        .firstName,
+        .lastName,
+        .username {
+          margin-top: -9px;
+        }
+      }
+    }
+    h6 {
+      font-weight: normal;
+      font-size: 13px;
+      color: $gray-dove;
+      margin-top: 0;
+      margin-bottom: 3px;
+    }
+    input[type="text"],
+    textarea,
+    select {
+      -webkit-box-shadow: inset 0 -2px 0 $light-300;
+      box-shadow: inset 0 -2px 0 $light-300;
+      outline: none;
+      margin-bottom: 1em;
+    }
+    .dropdown-toggle {
+      border-bottom: 1px solid $light-300;
+      border-radius: unset;
+    }
+    :focus {
+      border-bottom: 1px solid $blue-400;
+      border-radius: unset;
+    }
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      -webkit-box-shadow: inset 0 -2px 0 $blue-400;
+      box-shadow: inset 0 -2px 0 $blue-400;
+    }
+    input[type="radio"]:focus {
+      border: none;
+    }
+    input[type="radio"]::before {
+      background: none;
+    }
+    input[type="radio"]:checked::after {
+      background: url(/assets/gooru/images/tick-inside-circle-blue.svg)
+        no-repeat center;
+      background-size: contain;
+      border: none;
+      display: block;
+    }
+    select {
+      padding: 6px 16px 6px 4px;
+    }
+    .checkbox-inline {
+      padding: 0;
+      margin-bottom: 1.2em;
+      label {
+        margin: 0;
+        padding: 0;
+      }
+      input {
+        margin-left: 0;
+      }
+    }
+    .roles {
+      @include flexbox;
+      font-size: 16px;
+      text-transform: capitalize;
+      padding-top: 5px;
+      padding-bottom: 10px;
+    }
+    .bootstrap-select {
+      width: 100%;
+    }
+    span.error {
+      color: $red-400;
+      display: inline-block;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    span.required {
+      display: block;
+      &:after {
+        content: " *";
+      }
+    }
+    .existing-user-error {
+      position: relative;
+      top: -16px;
+    }
+  }
+  .school-info {
+    .panel {
+      .panel-body {
+        .row,
+        .student-id > div {
+          padding-bottom: 0px;
+          .filter-option {
+            font-size: 16px;
+            line-height: 1.88;
+            color: $gray-dove;
+            font-weight: 400;
+          }
+          .district {
+            height: 80px;
+          }
+        }
+      }
+      .student-profile {
+        padding-bottom: 0;
+        .row > div {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    .panel {
+      select {
+        width: auto;
+      }
+    }
+  }
+}
+
+.text-hide {
+  opacity: 0.5;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

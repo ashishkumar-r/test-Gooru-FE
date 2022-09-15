@@ -1,0 +1,103 @@
+<div class="backdrop" {{action "onClosePullup"}}></div>
+<div class="competency-completion-report-container">
+  <div class="competencies-list-container">
+    <div class="title-container"><span class="close-pullup" onclick={{action "onClosePullup"}} onkeypress={{action "onClosePullup"}} tabindex={{tabindex}}>{{gru-icon name="keyboard_backspace"}}</span><span class="title-text">{{t 'common.competencies'}}</span></div>
+    <div class="competencies-container">
+      {{#each competencyCompletionReport as |competencyData competencySeq|}}
+        <div class="competency-container {{unless activeCompetency.suggestionContentCount 'empty-suggestion'}} competency-{{competencySeq}} {{if competencyData.isExpanded 'expanded' 'collapsed'}}">
+          <div class="competency-completion-info-container">
+            <div class="competency-info" onclick={{action "onSelectCompetency" competencyData}} onkeypress={{action "onSelectCompetency" competencyData}} tabindex={{tabindex}}>
+              <div class="competency-code">
+                {{competency-gut-to-fw-transform
+                   fwCompetencies competencyData.competencyCode
+                   competencyData.competencyCode
+                  'frameworkCompetencyDisplayCode'
+                  false
+                  true
+                }} {{competencyData.suggestionContentCount}}</div>
+              <div class="competency-name ellipsis">
+                {{competency-gut-to-fw-transform
+                  fwCompetencies
+                  competencyData.competencyCode
+                  competencyData.competencyDesc
+                 'frameworkCompetencyName'
+                  false
+                  true
+               }}
+              </div>
+            </div>
+            <div class="competency-completion-performance">
+              <div class="completion-percentage">{{competencyData.completionPercentage}}%</div>
+              <div class="completion-box"><span style="background-color: {{safe-html (grade-color competencyData.completionPercentage)}}; width: {{competencyData.completionPercentage}}%;"></span></div>
+            </div>
+            <div class="competency-toggle" onclick={{action "onSelectCompetency" competencyData}} onkeypress={{action "onSelectCompetency" competencyData}} tabindex={{tabindex}}>
+              <span>{{gru-icon name="arrow_drop_down"}}</span>
+              <span>{{gru-icon name="arrow_drop_up"}}</span>
+            </div>
+          </div>
+          <div class="users-completion-container">
+            {{#if isLoading}}
+              {{three-bounce-spinner}}
+            {{else}}
+              {{#each competencyData.usersCompletionSummary as |userCompletionData|}}
+                <div class="user-completion-container">
+                  <div class="user-info">
+                    <div class="user-thumbnail {{if userCompletionData.selected 'selected-student'}}" tabindex={{tabindex}} onclick={{action "onSelectStudent" userCompletionData}} onkeypress={{action "onSelectStudent" userCompletionData}} style="background-image: url({{userCompletionData.thumbnail}})">
+                      {{gru-icon name="done_all" class="tick-icon"}}
+                    </div>
+                    <div class="user-name ellipsis">{{concat userCompletionData.lastName ', ' userCompletionData.firstName}}</div>
+                  </div>
+                  <div class="user-competency-status">
+                    <div class="competency-status-text">{{t (concat 'common.competency-status-' userCompletionData.status)}}</div>
+                    <div class="competency-status-color competency-status-{{userCompletionData.status}}"></div>
+                  </div>
+                </div>
+              {{else}}
+                <div class="user-data-not-available">
+                  {{t 'teacher-landing.class.students-tab.data-not-available'}}
+                </div>
+              {{/each}}
+            {{/if}}
+          </div>
+        </div>
+      {{else}}
+        <div class="data-not-available">{{t 'teacher-landing.class.students-tab.data-not-available'}}</div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{#if activeCompetency.isExpanded}}
+  <div class="trigger-suggestion {{unless activeCompetency.suggestionContentCount 'empty-suggestion'}}">
+    <div class="clear-suggestion" tabindex={{tabindex}} onclick={{action "onClearStudents"}} onkeypress={{action "onClearStudents"}}>
+      {{gru-icon name="clear"}}
+    </div>
+    {{#if (eq activeCompetency.usersCompletionSummary.length selectedUserIds.length)}}
+      <div class="selected-all" tabindex={{tabindex}} onclick={{action "onClearStudents"}} onkeypress={{action "onClearStudents"}}>
+        <span class="selected-icon">
+          {{gru-icon name="done_all" class="tick-icon"}}
+        </span>
+        <span class="selected-all-text">
+          {{t 'common.all'}} {{t 'common.students'}}
+        </span>
+      </div>
+    {{else}}
+      <div class="selected-all" tabindex={{tabindex}} onclick={{action "onSelectAllStudent"}} onkeypress={{action "onSelectAllStudent"}}>
+        <span class="selected-icon unselect">
+          {{gru-icon name="done_all" class="tick-icon"}}
+        </span>
+      </div>
+      <div class="selected-student-count">
+        {{selectedUserIds.length}} {{t (if (lt selectedUserIds.length 2) 'common.student' 'common.students')}}
+      </div>
+    {{/if}}
+    <div class="label-text">{{t 'common.plan-activities'}}</div>
+    <div class="students-suggestion" tabindex={{tabindex}} onclick={{action "onSuggestAtStudents" competencyData}} onkeypress={{action "onSuggestAtStudents" competencyData}}>
+      {{#if activeCompetency.suggestionContentCount}}
+        {{gru-icon name="explore"}}
+        <span class="suggestion-count">{{activeCompetency.suggestionContentCount}}</span>
+      {{else}}
+        <i class="collection-icon" />
+      {{/if}}
+    </div>
+  </div>
+{{/if}}

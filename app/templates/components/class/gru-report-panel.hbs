@@ -1,0 +1,178 @@
+<div class="backdrop" {{action 'onPullUpClose' true}} tabindex={{tabindex}}></div>
+<div class="report-panel-container">
+  <div class="header-container">
+    <div aria-label="close" class="close-pullup" onclick={{action "reportClose"}} onkeypress={{action "reportClose"}} tabindex={{tabindex}}>
+      {{gru-icon name="arrow_downward"}}
+    </div>
+    <div aria-label="{{t (concat 'common.' reportData.type)}} {{t 'common.report' }}" class="preview-title {{reportData.type}}-preview">
+      {{t (concat 'common.' reportData.type)}} {{t 'common.report' }}
+    </div>
+  </div>
+  <div class="user-course-info">
+    <div class="content-info-container">
+      <div class="title-info-container">
+        <div class="thumbnail-container" style="background-image: url({{if courseView course.thumbnailUrl assessmentResult.collection.thumbnailUrl}})"></div>
+        <div class="content-icon {{reportData.type}}"></div>
+        <div class="content-title ellipsis" aria-label="{{assessmentResult.collection.title}}">{{assessmentResult.collection.title}}</div>
+        {{#if (and (not isStudent) showSuggestion (not isArchivedClass) isAssessment)}}
+          <div class="teacher-suggestion">
+            <div class="suggestion-count-container" onclick={{action 'onOpenSuggestionPullup'}} onkeypress={{action 'onOpenSuggestionPullup'}} tabindex={{tabindex}}>
+              <div class="suggestion-explore">
+                {{gru-icon name="explore"}}
+              </div>
+              <span>{{t 'common.suggestion'}}</span>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+    <div class="content-details-container {{if (lt tags.length 1) 'single-container'}}">
+      {{#if tags.length}}
+        <div class="taxonomy-container">
+          {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=2 isInCard=true}}
+        </div>
+      {{/if}}
+      <div class="activity-performance-container {{if isCollection 'collection-performance'}} {{if isShowDownloadSubmission 'download-performance'}}">
+        {{#if isShowDownloadSubmission}}
+          <div class="download">
+            <a class="download-icon" onclick={{action 'onClickDownload'}} onkeypress={{action 'onClickDownload'}} >{{gru-icon name='file_download'}}</a>
+            <span>{{t 'common.download-submission'}}</span>
+          </div>
+        {{/if}}
+        <div role="timer" class="timespent-container">
+          <div class="timespent-icon">
+            {{gru-icon name="query_builder"}}
+          </div>
+          <div class="timespent-data">
+            <div class="timespent-label">{{t 'common.timeSpent'}}</div>
+            <div class="timespent-value">
+              {{#if assessmentResult.totalTimeSpent}}
+                {{format-time assessmentResult.totalTimeSpent}}
+              {{else}}
+                --
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        {{#if isAssessment}}
+          {{#if (and isGraded isDefaultGrade (eq assessmentResult.score null))}}
+            <div class="grading-icon" data-toggle="tooltip" title="{{t 'teacher-not-graded'}}"></div>
+          {{else}}
+            <div class="activity-score-container grade-range-{{grade-range assessmentResult.score}}">
+              {{#if (eq assessmentResult.score null)}}
+                --
+              {{else}}
+                {{concat assessmentResult.score '%'}}
+              {{/if}}
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="content-attems">
+      <div class="information">
+        {{#if isShowAttempts}}
+          <span class="attempt">
+            <span class="title">{{t "locateme.attempt"}}</span>
+            <span class="attempt-selector">
+              <span class="dropdown current-attempt">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{{if visibleAttempt visibleAttempt.sequence}}<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  {{#each attempts as |attempt|}}
+                    <li><a onclick={{action 'onSelectAttempt' attempt}} onkeypress={{action 'onSelectAttempt' attempt}} class="{{if (eq visibleAttempt.sequence attempt.sequence) 'active'}}" tabindex={{tabindex}}>{{attempt.sequence}}</a></li>
+                  {{/each}}
+                </ul>
+              </span>
+              <span>{{t "common.of"}}</span>
+              <span class="total-attempts">{{collection.attempts}}</span>
+            </span>
+          </span>
+        {{/if}}
+        {{#if assessmentResult.submittedAt}}
+          <span class="date">
+            {{gru-icon name='event'}}<span>{{format-date assessmentResult.submittedAt 'h:mm a MMM. Do, YYYY'}}</span>
+          </span>
+        {{/if}}
+      </div>
+      <div class="content-answer">
+      {{#if (gt orderedQuestions.length 0)}}
+        {{#if (and (not isTeacher) isAnswerKeyHidden)}}
+          <em>{{t "common.answer-key-was-hidden"}}</em>
+        {{else}}
+        {{#unless (eq reportData.subType 'signature-assessment')}}
+          <div class="btn-group summary-report-btn" role="group">
+            <button role="button" type="button" onclick={{action 'selectPerformanceOption' true}} onkeypress={{action 'selectPerformanceOption' true}} class="content-performance btn {{if showPerformance 'btn-primary' 'btn-info'}}" aria-label="{{t "common.performance"}}" tabindex={{tabindex}}>{{t "common.performance"}}</button>
+            <button role="button" type="button" onclick={{action 'selectPerformanceOption' false}} onkeypress={{action 'selectPerformanceOption' false}} class="correct-answer btn {{unless showPerformance 'btn-primary' 'btn-info' }}" aria-label="{{t "common.show-correct-answer"}}" tabindex={{tabindex}}>{{t "common.show-correct-answer"}}</button>
+          </div>
+          {{/unless}}
+        {{/if}}
+      {{/if}}
+      {{#if (and (gt orderedQuestions.length 0) isTeacher hasAnsweredQuestions showChangeScore isAssessment showPerformance)}}
+        <div class="score-change-container">
+          {{#if isChangeScoreEnabled}}
+            <button type="button" class="btn btn-info cancel" onclick={{action 'onChangeScore' isChangeScoreEnabled}} onkeypress={{action 'onChangeScore' isChangeScoreEnabled}}  tabindex={{tabindex}}>{{t 'common.cancel'}}</button>
+            <button type="button" class="btn btn-primary confirm" onclick={{action 'onChangeScoreConfirm'}} onkeypress={{action 'onChangeScoreConfirm'}} tabindex={{tabindex}}>{{t 'common.confirm'}}</button>
+          {{else}}
+            <button type="button" class="btn btn-primary change-score" {{action 'onChangeScore' isChangeScoreEnabled}}>{{t 'common.change-score'}}</button>
+          {{/if}}
+        </div>
+      {{/if}}
+      </div>
+    </div>
+  </div>
+  <div>
+
+    {{#if assessmentResult}}
+      {{reports/gru-assessment-report
+     areAnswersHidden=areAnswersHidden
+     isAnswerKeyHidden=isAnswerKeyHidden
+     showPerformance=showPerformance
+     assessmentResult=assessmentResult
+     onSelectAttempt='selectAttempt'
+     onViewOEReport='viewOEReport'
+     isPathway=true
+     profile=profile
+     isTeacher=isTeacher
+     onUpdateQuestionScore='onUpdateQuestionScore'
+     isChangeScoreEnabled=isChangeScoreEnabled
+     showChangeScore=showChangeScore
+     isAssessment=isAssessment
+     listOfQuestions=listOfQuestions
+     isShowExemplarText=isShowExemplarText
+     tabindex=tabindex
+     class=class
+   }}
+    {{else}}
+      {{#unless isLoading}}
+        {{t 'common.no-available-results'}}
+      {{/unless}}
+    {{/if}}
+
+  </div>
+</div>
+
+{{#if showSuggestionPullup}}
+  {{teacher/suggestion-pull-up
+    showPullUp=showSuggestionPullup
+    students=studentsSelectedForSuggest
+    onCloseSuggest="onCloseSuggest"
+    context=suggestContextParams
+    onClosePullUp="onClosePullUp"
+    collection=collections
+    defaultSuggestContentType=defaultSuggestContentType
+    class=class
+    tabindex=tabindex
+    isDefaultShowFW = isDefaultShowFW
+    classFramework = classFramework
+  }}
+{{/if}}
+
+{{#if showOpenEndedPullup}}
+  {{reports/pull-up/open-ended-report-pull-up collectionTitle=assessmentResult.collection.title onClosePullUp="onClosePullUp" showPullUp=showOpenEndedPullup context=freeResponseContextParams tabindex=tabindex}}
+{{/if}}
+
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

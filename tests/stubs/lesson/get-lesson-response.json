@@ -1,0 +1,39 @@
+{
+  "lesson_id": "first-lesson-id",
+  "unit_id": "48d4c12b-716c-4f40-b9f4-d8ea83a7d691",
+  "course_id": "14a7ad67-6bbc-474c-8cc2-0cf15fa7e806",
+  "title": "Release Day Quiz",
+  "created_at": "2016-06-17T11:31:31Z",
+  "updated_at": "2016-06-17T12:59:20Z",
+  "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "modifier_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "owner_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "original_creator_id": null,
+  "original_lesson_id": null,
+  "metadata": null,
+  "taxonomy": [],
+  "sequence_id": 3,
+  "creator_system": null,
+  "collection_summary": [
+    {
+      "id": "first-assessment-id",
+      "title": "How well do you know 3.0?",
+      "format": "assessment",
+      "sequence_id": 1,
+      "thumbnail": null,
+      "url": null,
+      "resource_count": 0,
+      "question_count": 9
+    },
+    {
+      "id": "first-collection-id",
+      "title": "Group Collaboration, Writing/Reflection",
+      "format": "collection",
+      "sequence_id": 2,
+      "thumbnail": "f000/2526/8537/23fc9b6b-9270-459a-99e3-c8fc8b277b32_07bcf51c-0ee5-4106-a60a-1139ab51d0f3.png",
+      "url": null,
+      "resource_count": 6,
+      "question_count": 0
+    }
+  ]
+}

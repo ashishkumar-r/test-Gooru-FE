@@ -1,0 +1,16 @@
+[
+  {
+    "description": "Save an error",
+    "request": {
+      "url": "^/api/nucleus-utils/v1/user-error$",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/text"
+      },
+      "body": "No content"
+    }
+  }
+]

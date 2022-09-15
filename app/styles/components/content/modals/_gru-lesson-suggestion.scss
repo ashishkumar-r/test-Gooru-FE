@@ -1,0 +1,139 @@
+.gru-lesson-suggestion {
+  width: 320px;
+  height: max-content;
+  object-fit: contain;
+  border-radius: 4px;
+  background-color: $white;
+  z-index: 1111;
+  position: fixed;
+  box-shadow: 0 0 6px 1px $table-box-shadow-07,
+    0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+  margin: 0 auto;
+  right: 10px;
+  border-radius: 10px;
+
+  .modal-header {
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    background-color: $orange-153;
+    display: flex;
+    padding: 0;
+    border-radius: 10px 10px 0 0;
+
+    .suggestion-title {
+      font-size: 20px;
+      font-style: italic;
+      line-height: 0.83;
+      text-align: center;
+      color: $white;
+      text-transform: uppercase;
+    }
+  }
+
+  .modal-body {
+    border: none;
+    display: flex;
+    margin-right: 1px;
+    padding: 0;
+    flex-direction: column;
+
+    .lesson-info-container {
+      display: flex;
+      margin-top: 10px;
+      .lesson-icon {
+        background-image: url(../assets/gooru/images/lesson-blue-outline.svg);
+        display: block;
+        width: 120px;
+        height: 50px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      p {
+        line-height: 1.5;
+      }
+    }
+
+    .action {
+      display: grid;
+      grid-template-columns: auto auto;
+      height: 40px;
+      justify-content: flex-end;
+      padding: 0 10px;
+
+      .accept {
+        padding: 5px;
+        width: 100px;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: -0.24px;
+        text-align: right;
+        color: $orage-f3f;
+        cursor: pointer;
+        height: 40px;
+        position: relative;
+      }
+    }
+
+    .suggestion-container {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      border-left: 0;
+      border-right: 0;
+      border: 1px solid $breadcrumb-color;
+
+      .thumbnail-img {
+        width: 71px;
+        height: 69px;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .suggestion-info-panel {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        .suggestion-info {
+          display: grid;
+          align-items: center;
+          margin: auto;
+
+          .title {
+            font-size: 15px;
+            font-weight: bold;
+            color: $black-94b;
+          }
+        }
+      }
+    }
+
+    .suggestion-details {
+      text-align: center;
+
+      .title {
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px 0;
+        color: $orage-f3f;
+        padding-bottom: 0;
+      }
+
+      .description {
+        font-size: 13px;
+        text-align: center;
+        color: $dark-700;
+        padding: 10px;
+        line-height: 1.5;
+
+        span {
+          font-weight: bold;
+          color: $orange-153;
+        }
+      }
+    }
+  }
+}

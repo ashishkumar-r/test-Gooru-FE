@@ -1,0 +1,97 @@
+.gru-user-icons {
+  $modal-height: 270px;
+  $tooltip-width: 290px;
+  text-align: $menu-float-dir;
+  margin: 0 5px 0 0;
+  @media (min-width: $screen-lg-min) {
+    margin: 0 15px 0 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .item {
+    position: relative;
+    display: inline-block;
+    margin: 0 3px 0 0;
+    vertical-align: middle;
+    color: $gray;
+    i {
+      vertical-align: middle;
+      margin: 0 5px 0 0;
+    }
+    span {
+      font-size: $font-size-large;
+      vertical-align: middle;
+    }
+  }
+
+  .first-view {
+    display: inline-block;
+    cursor: default;
+
+    &.clickable {
+      color: $gray;
+      cursor: pointer;
+    }
+  }
+
+  .modal {
+    text-align: $tab-float-dir;
+
+    .item {
+      margin: 6px 4px;
+    }
+
+    .modal-dialog {
+      margin: 30px auto;
+      max-width: 290px;
+
+      .modal-header {
+        padding-top: 10px;
+        padding-bottom: 5px;
+
+        .close > span {
+          font-size: 28px;
+          vertical-align: middle;
+        }
+      }
+
+      .modal-body {
+        max-height: $modal-height;
+        overflow: scroll;
+      }
+    }
+
+    @media (min-width: $screen-md) {
+      .modal-dialog {
+        width: 550px;
+        max-width: none;
+      }
+    }
+  }
+
+  // Override default bootstrap styles for placing the tooltip
+  .popover {
+    max-width: $tooltip-width !important;
+    left: auto !important;
+    right: 0 !important;
+
+    .arrow {
+      left: auto !important;
+      right: 5% !important;
+    }
+
+    .popover-content {
+      width: inherit;
+      max-height: $modal-height;
+      overflow: scroll;
+
+      .item {
+        margin: 6px 4px;
+      }
+    }
+  }
+}

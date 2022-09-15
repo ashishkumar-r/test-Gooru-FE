@@ -1,0 +1,112 @@
+<div class="portfolio-card-container" tabIndex={{tabIndex}}>
+  <div class="left-panel">
+    <div class="activity-info">
+      <div class="activity-thumbnail" style="background-image: url({{content.thumbnailUrl}})">
+      </div>
+      <div class="activity-title">
+        <span class="title">
+          {{content.title}}
+          {{#if (and (not isAssessment) (not isCollection) (not isOfflineActivity))}}
+            <i class="assessment-external-icons"></i>
+          {{/if}}
+        </span>
+        <span class="owner">by {{content.owner.fullName}}</span>
+      </div>
+    </div>
+    <div class="activity-details">
+      <div class="taxonomies">
+        {{#if tags.length}}
+          {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true tabindex=tabindex}}
+        {{/if}}
+      </div>
+      <div class="description">
+        {{contentDescription}}
+      </div>
+    </div>
+    <div class="activity-metadata">
+      <div class="last-accessed">
+        {{#if isAssessment}}
+          <span>{{t 'locateme.lastAttempted'}} on</span>
+        {{else}}
+          <span>{{t 'locateme.lastAcessesed'}} on</span>
+        {{/if}}
+        <span>{{format-date content.updatedAt 'DD MMM YYYY' 'UTC'}}</span>
+      </div>
+      <div class="content-count">
+        {{#if isCollection}}
+          <div class="count resource-count"><span class="icon"></span><span class="count-value">{{content.resourceCount}}</span></div>
+          <div class="count question-count"><span class="icon"></span><span class="count-value">{{content.questionCount}}</span></div>
+        {{else if isAssessment}}
+          <div class="count question-count"><span class="icon"></span><span class="count-value">{{content.questionCount}}</span></div>
+        {{else if isOfflineActivity}}
+          <div class="count task-count"><span class="icon"></span><span class="count-value">{{content.taskCount}}</span></div>
+        {{/if}}
+      </div>
+      {{#if (or isCollection isExternalCollection)}}
+        {{#unless isDataLake}}
+          <div class="activity-performance timespent" onclick={{action "onShowReport"}} onkeypress={{action "onShowReport"}} tabindex={{tabindex}}>
+            {{#if content.timespent}}
+              {{#if (or (eq contentType 'diagnostic') (eq contentType 'domain-diagnostic'))}}
+                --
+              {{else}}
+                {{format-time content.timespent}}
+              {{/if}}
+            {{else}}
+              --
+            {{/if}}
+          </div>
+        {{/unless}}
+      {{else}}
+        {{#unless isDataLake}}
+          {{#if (and (eq content.isGraded false) isDefaultGrade (eq content.score null))}}
+            <div class="grading-icon" data-toggle="tooltip" title="{{t 'teacher-not-graded'}}" onclick={{action "onShowReport"}} onkeypress={{action "onShowReport"}} tabindex={{tabindex}}></div>
+          {{else}}
+            <div
+              class="activity-performance  {{if (or (eq contentType 'diagnostic') (eq contentType 'domain-diagnostic')) 'disable-event'}} grade-range-{{if (or (eq contentType 'diagnostic') (eq contentType 'domain-diagnostic')) '' (grade-range content.score)}}"
+              onclick={{action "onShowReport"}} onkeypress={{action "onShowReport"}} tabindex={{tabindex}}>
+              {{#if (eq content.score null)}}
+                --
+              {{else}}
+                {{#if (or (eq contentType 'diagnostic') (eq contentType 'domain-diagnostic'))}}
+                  --
+                {{else}}
+                  {{concat content.score '%'}}
+                {{/if}}
+              {{/if}}
+            </div>
+          {{/if}}
+        {{/unless}}
+      {{/if}}
+    </div>
+  </div>
+  <div class="right-panel">
+    <div class="activity-reef-values">
+      <div class="releavance activity-reef-value">
+        <span class="reef-label">{{t 'common.relevance'}}</span><span class="reef-value">{{content.relevance}}</span>
+      </div>
+      <div class="engagement activity-reef-value">
+        <span class="reef-label">{{t 'common.engagement'}}</span><span class="reef-value">{{content.engagement}}</span>
+      </div>
+      <div class="efficacy activity-reef-value">
+        <span class="reef-label">{{t 'common.efficacy'}}</span><span class="reef-value">{{content.efficacy}}</span>
+      </div>
+    </div>
+    {{#if (or isCollection isExternalCollection)}}
+      <div class="activity-performance timespent" onclick={{action "onShowReport"}} onkeypress={{action "onShowReport"}} tabindex={{tabindex}}>
+        {{#if content.timespent}}
+          {{format-time content.timespent}}
+        {{else}}
+          --
+        {{/if}}
+      </div>
+    {{else}}
+      <div class="activity-performance grade-range-{{grade-range content.score}}" onclick={{action "onShowReport"}} onkeypress={{action "onShowReport"}} tabindex={{tabindex}}>
+        {{#if (eq content.score null)}}
+          --
+        {{else}}
+          {{concat content.score '%'}}
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</div>

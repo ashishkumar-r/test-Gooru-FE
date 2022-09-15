@@ -1,0 +1,47 @@
+.proficiency-view {
+  svg {
+    transform: rotateX(180deg);
+    -webkit-transition: -webkit-transform 0.6s ease-in;
+    transition: transform 0.6s ease-in;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    .fill-0 {
+      fill: $gray-no-started;
+    }
+    .fill-1 {
+      fill: $blue-in-progress;
+    }
+    .fill-2,
+    .fill-3,
+    .fill-4,
+    .fill-5 {
+      fill: $blue-mastery;
+    }
+
+    #skyline-group {
+      polyline {
+        stroke: $white;
+        stroke-width: 2px;
+        fill: none;
+      }
+    }
+    #domain-boundary-line-container {
+      line {
+        stroke: #8fd383;
+        stroke-width: 2px;
+      }
+    }
+    #gradeline-group {
+      polyline {
+        stroke: #8fd383;
+        stroke-width: 2px;
+        fill: none;
+      }
+    }
+  }
+
+  &.loading-chart {
+    visibility: hidden;
+  }
+}

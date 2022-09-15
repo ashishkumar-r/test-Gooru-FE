@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Property name conventions",
+    "gooruOid": "first-lesson-id",
+    "collectionId": 24413346,
+    "visibility": true
+  },
+  {
+    "title": "Method naming convention",
+    "gooruOid": "second-lesson-id",
+    "collectionId": 24413350,
+    "visibility": false
+  },
+  {
+    "title": "Class naming conventions",
+    "gooruOid": "third-lesson-id",
+    "collectionId": 24413351,
+    "visibility": true
+  }
+]

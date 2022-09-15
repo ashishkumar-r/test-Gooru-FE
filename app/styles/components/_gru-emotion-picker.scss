@@ -1,0 +1,47 @@
+.gru-emotion-picker {
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+
+  .legend {
+    float: $tab-float-dir;
+    line-height: $emotion-icon-size;
+    margin-right: 20px;
+  }
+
+  .emotions-list {
+    line-height: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+
+    li {
+      display: inline-block;
+      padding: 0 4%;
+
+      .emotion {
+        cursor: pointer;
+        position: relative;
+
+        &:after {
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
+      }
+
+      @media (min-width: $screen-sm) {
+        padding: 0 1%;
+      }
+    }
+  }
+  @media (min-width: $screen-sm) {
+    text-align: $tab-float-dir;
+  }
+  @media (min-width: $screen-md) {
+    padding: 0;
+  }
+}

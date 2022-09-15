@@ -1,0 +1,111 @@
+.atc-chart {
+  svg {
+    width: 865px;
+    height: 442px;
+    overflow: scroll;
+  }
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: $white;
+    stroke-dasharray: 4;
+    opacity: 0.5;
+  }
+
+  .line {
+    fill: none;
+    stroke: blue;
+  }
+
+  .tick text,
+  .placeholder {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    fill: $white;
+  }
+
+  .placeholder {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .tick line {
+    opacity: 0.5;
+  }
+
+  .student-profile {
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    cursor: pointer;
+  }
+
+  text.student-info {
+    font-size: 10px;
+    text-align: center;
+    fill: $white;
+    text-transform: uppercase;
+  }
+
+  .reset {
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+    color: #202e32;
+    box-shadow: 2px 0px 9px 2px $left-arrow-box-shadow;
+    text-align: center;
+    width: 77px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: -12px;
+    top: -5px;
+    cursor: pointer;
+    background-color: $white;
+  }
+
+  .no-subject {
+    text-align: center;
+    font-size: 20px;
+    height: 150px;
+    line-height: 150px;
+  }
+
+  .header-container {
+    .class-name {
+      font-size: 25px;
+      font-weight: bold;
+      color: $white;
+      margin-left: 15px;
+    }
+  }
+
+  @media only screen and(max-width: $screen-sm) {
+    zoom: 0.9;
+  }
+
+  @media only screen and (max-width: $screen-640) {
+    zoom: 0.7;
+  }
+
+  @media only screen and (max-width: $screen-xs) {
+    zoom: 0.6;
+  }
+
+  @media only screen and (max-width: $screen-359 + 1) {
+    zoom: 0.59;
+  }
+}
+
+.atc-tooltip {
+  background-color: $white;
+  box-shadow: -2px 1px 5px 3px $left-arrow-box-shadow;
+  border-radius: 4px;
+  padding: 8px;
+  div {
+    background-color: $white;
+    span {
+      font-weight: bold;
+    }
+  }
+}

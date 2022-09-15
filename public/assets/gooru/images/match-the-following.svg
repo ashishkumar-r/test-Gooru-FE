@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Resources/MatchTheFollowing</title>
+    <g id="Resources/MatchTheFollowing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#FFFFFF" x="14" y="3" width="6" height="6"></rect>
+        <polygon id="Triangle" fill="#FFFFFF" points="7 3 10 9 4 9"></polygon>
+        <path d="M17,15.118034 L19.190983,19.5 L14.809017,19.5 L17,15.118034 Z" id="Triangle" stroke="#FFFFFF"></path>
+        <path d="M7,14 C8.65685425,14 10,15.3431458 10,17 C10,18.6568542 8.65685425,20 7,20 C5.34314575,20 4,18.6568542 4,17 C4,15.3431458 5.34314575,14 7,14 Z M7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 Z" id="Oval" fill="#FFFFFF" fill-rule="nonzero"></path>
+        <line x1="7.5" y1="8.5" x2="15.5" y2="17.5" id="Line" stroke="#FFFFFF" stroke-linecap="square" stroke-dasharray="3"></line>
+    </g>
+</svg>

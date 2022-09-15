@@ -1,0 +1,60 @@
+<div class="total-score">
+  {{#if rubric.totalPoints}}
+    <span class="title">{{t 'grading-player.total-score'}}</span>
+    <span class="score">( {{if grade.hasScore grade.currentScore '-'}} / {{rubric.totalPoints}} )</span>
+  {{/if}}
+</div>
+
+<div class="rubric-categories">
+  {{#each categories as |category|}}
+    <div class="rubric-category">
+      <div class="category-title {{if category.selected 'selected'}}">
+        <span class="title">{{category.info.title}}</span>
+        {{#if category.info.totalPoints}}
+          <span class="score">( {{if category.grade.hasScore category.grade.levelScore '-'}} / {{category.info.totalPoints}} )</span>
+        {{/if}}
+        <span class='show-arrow' {{action 'showCategory' category}}>
+          {{#if category.selected}}
+            {{gru-icon name='keyboard_arrow_up'}}
+          {{else}}
+            {{gru-icon name='keyboard_arrow_down'}}
+          {{/if}}
+        </span>
+        <span class='chat'>
+          {{gru-icon name='chat'}}
+        </span>
+      </div>
+      {{#if category.selected}}
+        {{#if category.info.levels.length}}
+          <div class="category-level">
+            {{validation/gru-select
+              options=category.levels
+              search="false"
+              optionSelected=category.grade.levelObtained
+            }}
+            <span class="level-label">{{t 'grading-player.level'}}</span>
+          </div>
+        {{/if}}
+        <div class="category-comment">
+          {{validation/gru-textarea
+            model=category.grade
+            valuePath='levelComment'
+            maxLength=500
+            rows=5
+          }}
+        </div>
+      {{/if}}
+    </div>
+  {{/each}}
+</div>
+
+<div class="overall-comments">
+  <div class="overall-title">{{t 'grading-player.overall-comment'}}</div>
+  <div class="overall-lead">{{t 'grading-player.overall-lead'}}</div>
+  {{validation/gru-textarea
+    model=grade
+    valuePath='comment'
+    maxLength=500
+    rows=5
+  }}
+</div>

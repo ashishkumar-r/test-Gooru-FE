@@ -1,0 +1,34 @@
+<a href="#_{{lesson.id}}" data-toggle="collapse" aria-expanded="false" aria-controls="_{{lesson.id}}" id="lesson-{{lesson.id}}" class='panel' {{action "selectLesson" lesson}}>
+  <ul>
+    <li class="lesson-performance-content">
+      {{class/analytics/performance/gru-performance-summary
+          showScore=(not isFilteredByCollection)
+          performance=lesson
+          index=index
+          isSelected=selected
+          selectedOption=selectedOption}}
+    </li>
+  </ul>
+</a>
+<div class="collections-container collapse" id="_{{lesson.id}}">
+  <ul>
+    {{#each lesson.collections as |collection index|}}
+      <li class="collection-performance-content">
+        {{class/analytics/performance/gru-performance-summary
+          performance=collection
+          showScore=collection.model.hasNonOpenEndedQuestions
+          selectedOption=selectedOption
+          onSelectResource=(action 'selectResource')
+          onViewReport=(action 'viewReport')
+          contentVisibility=contentVisibility
+          }}
+      </li>
+    {{else}}
+      {{#if loading}}
+        {{three-bounce-spinner}}
+      {{else}}
+        <span class="no-content">{{t "gru-performance.no-content"}}</span>
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>

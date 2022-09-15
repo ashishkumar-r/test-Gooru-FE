@@ -1,0 +1,396 @@
+<div class="class-activities-container">
+  <div class="list-panel-header">
+    <div class="list-panel-top">
+      <span class="list-title">{{t 'common.plan'}}</span>
+      <div class="panel-picker">
+        <span class="{{if (and isDaily (not isShowItemsToGrade)) 'active'}}" onclick={{action "onChangeDateRangeType" 'isDaily' selectedDate}} onkeypress={{action "onChangeDateRangeType" 'isDaily' selectedDate}} tabindex={{tabindex}}>{{t 'common.daily' }} {{t 'locateme.view'}}</span>
+        <span class="{{if (and isWeekly (not isShowItemsToGrade)) 'active'}}" onclick={{action "onChangeDateRangeType" 'isWeekly' selectedWeekDate}} onkeypress={{action "onChangeDateRangeType" 'isWeekly' selectedWeekDate}} tabindex={{tabindex}}>{{t 'common.weekly'}} {{t 'locateme.view'}}</span>
+        <span class="{{if (and isMonthly (not isShowItemsToGrade)) 'active'}}" onclick={{action "onChangeDateRangeType" 'isMonthly' selectedMonth}} onkeypress={{action "onChangeDateRangeType" 'isMonthly' selectedMonth}} tabindex={{tabindex}}>{{t 'common.monthly'}} {{t 'locateme.view'}}</span>
+      </div>
+      <div class="items-to-grade">
+        <span class="{{if isShowItemsToGrade 'active'}}" onclick={{action "onShowItemsToGrade"}} onkeypress={{action "onShowItemsToGrade"}} tabindex={{tabindex}}>{{t 'class-activity.items-to-grade'}} ({{gradingItems.length}}) </span>
+      </div>
+    </div>
+    {{#unless isShowItemsToGrade}}
+      <div class="activity-date-range-selector">
+        <span class="material-icons" onclick={{action "dateCarousel" 'subtract'}} onkeypress={{action "dateCarousel" 'subtract'}} tabindex={{tabindex}} aria-label="previous date" role="button">arrow_left</span>
+        <span class="schedule-date" onclick={{action "onToggleDatePicker"}} onkeypress={{action "onToggleDatePicker"}} tabindex={{tabindex}}>{{gru-icon name=(if isDaily 'today' 'date_range')}} <span>{{format-date startDate 'DD MMM YYYY'}}</span> <b class="{{unless isShowEndDate 'hidden'}}">-</b><span
+            class="{{unless isShowEndDate 'hidden'}}"> {{format-date endDate 'DD MMM YYYY'}}</span></span>
+        <span class="material-icons" onclick={{action "dateCarousel" 'add'}} onkeypress={{action "dateCarousel" 'add'}} aria-label="next date" role="button" tabindex={{tabindex}}>arrow_right</span>
+      </div>
+    {{/unless}}
+  </div>
+  <div class="header-container">
+    <div class="date-range-picker-container ">
+      <div class="date-range-selector">
+        {{#unless isShowUnscheduledActivities}}
+          <span class="{{if isDaily 'active'}}" onclick={{action "onSelectRangeType" 'isDaily'}} onkeypress={{action "onSelectRangeType" 'isDaily'}} tabindex={{tabindex}}>{{t 'common.daily'}}</span>
+          <span class="{{if isWeekly 'active'}}" onclick={{action "onSelectRangeType" 'isWeekly'}} onkeypress={{action "onSelectRangeType" 'isWeekly'}} tabindex={{tabindex}}>{{t 'common.weekly'}}</span>
+        {{/unless}}
+        <span class="{{if isMonthly 'active'}}" onclick={{action "onSelectRangeType" 'isMonthly'}} onkeypress={{action "onSelectRangeType" 'isMonthly'}} tabindex={{tabindex}}>{{t 'common.monthly'}}</span>
+      </div>
+      {{#if isDaily}}
+        {{ca-date-picker
+          showPreviousMonth="showPreviousMonth"
+          showNextMonth="showNextMonth"
+          forMonth=forMonth
+          forYear=forYear
+          onSelectDate="onSelectDate"
+          updateMonthAndYear=false
+          highlightFirstDayOfMonth=false
+          onSelectToday="onSelectToday"
+          showToday=true
+          selectedDate=selectedDate
+          activities=scheduledClassActivitiesDatewise
+          highlightActivities=true
+          closeDatePicker = "closeDatePicker"
+          isEnableFutureActivities = true
+          tabindex=tabindex
+        }}
+      {{else if isWeekly}}
+        {{ca-week-picker
+          forMonth=forMonth
+          forYear=forYear
+          onSelectWeek="onSelectWeek"
+          showPreviousMonth="showPreviousMonth"
+          showNextMonth="showNextMonth"
+          selectedWeekDate=selectedWeekDate
+          activities=scheduledClassActivitiesDatewise
+          highlightActivities=true
+          closeDatePicker = "closeDatePicker"
+          tabindex=tabindex
+          }}
+      {{else}}
+        {{ca-month-picker
+          forMonth=forMonth
+          forYear=forYear
+          showCalendarView=true
+          onSelectMonth="onSelectMonth"
+          selectedMonth=selectedMonth
+          closeDatePicker = "closeDatePicker"
+          tabindex=tabindex}}
+        }}
+      {{/if}}
+    </div>
+  </div>
+  <div class="body-container {{unless isShowItemsToGrade 'content-selecter'}}">
+    <div class="activities-cards-container {{if isShowListCard 'list-view' 'card-view'}}">
+      {{#unless isLoading}}
+        {{#if isShowUnscheduledActivities}}
+          {{#each unScheduledActivities as |unScheduledActivity index|}}
+            {{new-cards/gru-class-activity-card
+            activity = unScheduledActivity
+            isUnscheduledActivity = true
+            onRescheduleActivity = "onRescheduleActivity"
+            onShowContentPreview = "onShowContentPreview"
+            isShowListView = isShowListCard
+            tabindex=(plus-any index tabindex)
+            primaryClass = primaryClass
+            onShowConfirmPullup = "onShowConfirmPullup"
+            isTagGoogleClassroom=isTagGoogleClassroom
+            googleClassroomName=googleClassroomName
+            onShowProficiency='onShowProficiency'
+            courseId = courseId
+            course = course
+            activitiesList = activitiesList
+            newlyAddedActivity = newlyAddedActivity
+            onRefreshActivity="onRefreshActivity"
+          }}
+          {{else}}
+            <div class="plan-activities-msg">
+              {{#if isMobileView}}
+                {{t 'class-activity.no-activity-unscheduled-message-mobile' selectedItem=selectedFilter}}
+              {{else}}
+                {{t 'class-activity.no-activity-unscheduled-message-desktop' selectedItem=selectedFilter}}
+              {{/if}}
+            </div>
+          {{/each}}
+        {{/if}}
+        {{#unless isShowItemsToGrade}}
+          <div class="video-conference">
+            {{#each meetingScheduleActivities as |activity index|}}
+              {{new-cards/gru-class-activity-card
+                activity = activity
+                onRemoveActivityClass='removeActivityClass'
+                onShowStudentsList = "onShowStudentsList"
+                onOpenPerformanceEntry = "onOpenPerformanceEntry"
+                onClosePerformanceEntry = "onClosePerformanceEntry"
+                onRescheduleActivity = "onRescheduleActivity"
+                onEnableMastery = "onEnableMastery"
+                onGoLive="onGoLive"
+                onShowConfirmPullup = "onShowConfirmPullup"
+                isSecondaryClass=isSecondaryClass
+                onShowContentPreview = "onShowContentPreview"
+                onGradeItem="onGradeItem"
+                isShowListView=isShowListCard
+                onShowContentReport='onShowContentReport'
+                markOACompleted = 'onMarkOACompleted'
+                onUpdateVideConference="onUpdateVideConference"
+                primaryClass = primaryClass
+                onCAPresent = 'onCAPresent'
+                isVideoConfernce= true
+                tabindex=(plus-any index tabindex)
+                isTagGoogleClassroom=isTagGoogleClassroom
+                googleClassroomName=googleClassroomName
+                onShowProficiency='onShowProficiency'
+                courseId = courseId
+                course = course
+                activitiesList = activitiesList
+                newlyAddedActivity = newlyAddedActivity
+                onRefreshActivity="onRefreshActivity"
+              }}
+            {{/each}}
+          </div>
+        {{/unless}}
+        {{#if isShowScheduledActivities}}
+          {{#each scheduledActivitiesList as |scheduledActivity index|}}
+            {{#if isShowEndDate}}
+              <div class="added-date">{{format-date scheduledActivity.added_date 'DD MMM YYYY'}}
+                {{if (eq scheduleDateBefore scheduledActivity.added_date) (concat ' - ' (format-date endDate 'DD MMM YYYY'))}}
+                <hr />
+              </div>
+            {{/if}}
+            <div class="content-card">
+              {{#each scheduledActivity.scheduledActivities as |activity index|}}
+                {{#if (not-eq activity.collection.format 'meeting')}}
+                  {{new-cards/gru-class-activity-card
+                    activity = activity
+                    dateRangeType = dateRangeType
+                    onRemoveActivityClass='removeActivityClass'
+                    onShowStudentsList = "onShowStudentsList"
+                    onOpenPerformanceEntry = "onOpenPerformanceEntry"
+                    onClosePerformanceEntry = "onClosePerformanceEntry"
+                    onRescheduleActivity = "onRescheduleActivity"
+                    onEnableMastery = "onEnableMastery"
+                    onGoLive="onGoLive"
+                    onShowConfirmPullup = "onShowConfirmPullup"
+                    isSecondaryClass=isSecondaryClass
+                    onShowContentPreview = "onShowContentPreview"
+                    onGradeItem="onGradeItem"
+                    isShowListView=isShowListCard
+                    onShowContentReport='onShowContentReport'
+                    markOACompleted = 'onMarkOACompleted'
+                    onUpdateVideConference="onUpdateVideConference"
+                    primaryClass = primaryClass
+                    onCAPresent = 'onCAPresent'
+                    tabindex=(plus-any index tabindex)
+                    isTagGoogleClassroom=isTagGoogleClassroom
+                    googleClassroomName=googleClassroomName
+                    onShowProficiency='onShowProficiency'
+                    courseId = courseId
+                    course = course
+                    activitiesList = activitiesList
+                    newlyAddedActivity = newlyAddedActivity
+                    onRefreshActivity="onRefreshActivity"
+                  }}
+                {{/if}}
+              {{/each}}
+            </div>
+          {{else}}
+            <div class="plan-activities-msg">
+              {{#if isMobileView}}
+                {{t 'class-activity.no-activity-scheduled-message-mobile' selectedItem=selectedFilter}}
+              {{else}}
+                {{t 'class-activity.no-activity-scheduled-message-desktop' selectedItem=selectedFilter}}
+              {{/if}}
+            </div>
+          {{/each}}
+        {{/if}}
+
+        {{#if isShowItemsToGrade}}
+          <div class="sorting-items-to-grade {{unless gradingItems.length 'disable-event'}}">
+            <span class="material-icons arrow" onclick={{action 'clickPrev'}} onkeypress={{action 'clickPrev'}} tabindex={{tabindex}}>arrow_left</span>
+            <div class="filter-selector">
+              <div class="filter-type" tabindex={{tabindex}} onclick={{action "onToggleFilterTypeContainer"}} onkeypress={{action "onToggleFilterTypeContainer"}}>
+                <span class="material-icons">{{if (eq filterItem 'student') 'account_circle' (if (eq filterItem 'activity') 'local_library' 'calendar_today')}}</span>
+                <span class="sort-text">Sorted by {{filterItem}}</span>
+              </div>
+              <div class="filter-types-container">
+                <li tabindex={{tabindex}} onclick={{action 'filterGrade' 'student'}} onkeypress={{action 'filterGrade' 'student'}}>{{t 'sorted-by-student'}}</li>
+                <li tabindex={{tabindex}} onclick={{action 'filterGrade' 'activity'}} onkeypress={{action 'filterGrade' 'activity'}}>{{t 'sorted-by-activity'}}</li>
+                <li tabindex={{tabindex}} onclick={{action 'filterGrade' 'date'}} onkeypress={{action 'filterGrade' 'date'}}>{{t 'sorted-by-date'}}</li>
+              </div>
+            </div>
+            <span class="material-icons arrow" tabindex={{tabindex}} onclick={{action 'clickNext'}} onkeypress={{action 'clickNext'}}>arrow_right</span>
+          </div>
+
+          {{#each gradingItems as |gradingItem index|}}
+            {{new-cards/gru-activity-grading-card
+            gradingItem=gradingItem
+            onGradeItem="onGradeItem"
+            onAllGradeItem="onAllGradeItem"
+            primaryClass = primaryClass
+            tabindex=(plus-any index tabindex)
+          }}
+          {{else}}
+            <div class="plan-activities-msg">
+              {{#if isMobileView}}
+                {{t 'class-activity.no-activity-items-to-grade-message-mobile' selectedItem=selectedFilter}}
+              {{else}}
+                {{t 'class-activity.no-activity-items-to-grade-message-desktop' selectedItem=selectedFilter}}
+              {{/if}}
+            </div>
+          {{/each}}
+        {{/if}}
+      {{/unless}}
+      {{#if isLoading}}
+        {{three-bounce-spinner}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{#if isShowDaterangePicker}}
+  <div class="ca-datepicker-schedule-container ca-datepicker-popover-container">
+    {{ca-daterange-datepicker
+      closeDatePicker='onCloseDaterangePicker'
+      onScheduleForDate='onScheduleByDate'
+      onScheduleForMonth='onScheduleByMonth'
+      allowTwoDateRangePicker=allowTwoDateRangePicker
+      selectedClassActivity=selectedClassActivity
+      tabindex=tabindex}}
+  </div>
+{{/if}}
+
+{{#if isShowStudentsList}}
+  {{teacher/class/ca-student-list-pull-up
+    classActivity = selectedActivityClass.activity
+    classId = selectedActivityClass.id
+    members = selectedActivityClass.members
+    showPullUp = isShowStudentsList
+    tabindex=selectedActivityClass.tabindex
+    }}
+{{/if}}
+
+<!-- Acitvity Add Performance Data -->
+{{#if isShowAddData}}
+  {{#reports/pull-up/activity/add-performance-data
+    showPullUp = isShowAddData
+    activityDate = selectedClassActivity.activationDate
+    activityTitle = selectedActivityContent.title
+    onClosePullUp = "onClosePerformanceEntry"
+    contentType = selectedActivityContent.collectionType
+    tabindex=tabindex
+  }}
+    {{reports/pull-up/activity/add-student-performance-data
+      collection = selectedActivityContent
+      course = selectedClassData.course
+      class = selectedClassData
+      students = selectedClassActivityMembers
+      activityData = selectedClassActivity
+      onClosePullUp = "onClosePerformanceEntry"
+      contentType = selectedActivityContent.collectionType
+      tabindex=selectedClassData.tabindex
+    }}
+  {{/reports/pull-up/activity/add-performance-data}}
+{{/if}}
+
+{{#if isShowQuestionGrading}}
+  {{grade/pull-up/free-response-question-grade
+    isDCAContext=true
+    showPullUp=isShowQuestionGrading
+    context=gradingObject
+    allContext=allGradingObject
+    itemsToGrade=gradingItemsList
+    onClosePullUp="onClosePerformanceEntry"
+    refreshItem="onRefreshItemsToGrade"
+    tabindex=gradingObject.tabindex
+    isDefaultShowFW = isDefaultShowFW
+    classFramework = classFramework
+  }}
+{{/if}}
+{{#if isShowOaGrading}}
+  {{activity/offline/grading-report
+    showPullUp=isShowOaGrading
+    context=gradingObject
+    itemsToGrade=gradingItemsList
+    isTeacher=true
+    refreshItem='onRefreshItemsToGrade'
+    onClosePullUp="onClosePerformanceEntry"
+    tabindex=gradingObject.tabindex
+  }}
+{{/if}}
+
+<!-- Preview -->
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    previewContentId=previewContent.contentId
+    previewContentType=previewContent.contentType
+    showAssessmentCode=true
+    assessmentCode=assessmentCode
+    tabindex=previewContent.tabindex
+    primaryClass = primaryClass
+    isReportView=isReportView
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isShowDiagnosticReport}}
+  {{class/diagnostic-assessment-report
+    context=selectedActivity
+    classActivities=reportActivityList
+    onOpenPerformanceEntry='onOpenPerformanceEntry'
+    classId=selectedActivity.classId
+    members = primaryClass.members
+    showPullUp=isShowDiagnosticReport
+    newlyAddedActivity = newlyAddedActivity
+    primaryClass = primaryClass
+    reportData = reportData
+    classFramework = classFramework
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isShowStudentsSummaryReport}}
+  {{teacher/offline-class/oca-students-summary-report-pull-up
+    context=selectedActivity
+    classActivities=reportActivityList
+    onOpenPerformanceEntry='onOpenPerformanceEntry'
+    classId=selectedActivity.classId
+    isShowAddData=isShowAddData
+    members = primaryClass.members
+    tabindex=selectedActivity.tabindex
+    showPullUp=isShowStudentsSummaryReport
+    newlyAddedActivity = newlyAddedActivity
+    class= primaryClass
+    isDefaultShowFW = isDefaultShowFW
+    classFramework = classFramework
+  }}
+{{/if}}
+
+{{#if isShowOfflineActivityPreview}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityPreview
+    oaId=previewContent.contentId
+    classActivity=previewContent
+    classId=previewContent.classId
+    isReportView=isReportView
+    primaryClass = primaryClass
+    tabindex=previewContent.tabindex
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isUpdateVideConference}}
+  {{new-cards/activities/gru-add-content-popup-card
+      isAddActivity=isUpdateVideConference
+       dateRangeType = dateRangeType
+      isUpdateCard=true
+      onAddActivity="onUpdateConference"
+      activeActivityContent=updateVideoConferenceContent
+      tabindex=updateVideoConferenceContent.tabindex
+      primaryClass = primaryClass}}
+{{/if}}
+
+{{#if isShowProficiencyPullup}}
+<div class="back-drop" {{action 'onCloseProficiency'}}></div>
+  {{proficiency/inspect/learner-proficiency-chart
+    class=primaryClass
+    course=primaryClass.course
+    isShowBackBtn=false
+    isClassActivity=true
+    onCloseProficiency='onCloseProficiency'
+    taxonomyTag=taxonomyTag
+  }}
+{{/if}}

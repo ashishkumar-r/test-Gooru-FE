@@ -1,0 +1,119 @@
+{{#if class.courseId}}
+  <div class="bar-charts" aria-label="completion-chart" data-content="{{performancePercentage}}% Completed">
+    <div class="completion-chart">
+      <div class="start-point">{{gru-icon name="stars"}}</div>
+      {{charts/gru-x-bar-chart data=barChartData mileStone=mileStone mileStoneHandler=(action 'mileStoneHandler')  }}
+      <div class="destination-point">{{gru-icon name="place"}}</div>
+    </div>
+  </div>
+  <div class="controller student course-map {{if selfGradeItems.length 'student-grading-enabled'}}">
+    {{#if hasRouteSuggestion}}
+      <h5 class="pre-study-title hidden-xs">{{t 'class.overview.pre-study-title'}}</h5>
+      {{class/overview/routesuggestion-preview route0=route0 routeSuggestAction=(action 'courseRouteSuggestAction' ) class=currentClass course=course }}
+    {{/if}}
+    {{#if showRoute0Suggestion}}
+      <h5 class="pre-study-title hidden-xs">{{t 'class.overview.pre-study-title'}}</h5>
+      {{class/overview/routesuggestion-coursemap route0=route0
+           onLocationUpdate=(action 'updateUserLocation')
+          userLocation=userLocation
+          location=openingLocation
+          class=class
+          course=course
+          routeSuggestAction=(action 'courseRouteSuggestAction')
+          onStudyNow=(action 'studyCoursePlayer' ) }}
+    {{/if}}
+    <div class="rescope-section">
+      {{#if isPremiumClass}}
+        <div class="rescope-toggle" style="display:flex">
+          <div class="info" style="/*line-height: 67px*/;align-self: flex-start;width: 73%;">
+            <span>{{t 'class.overview.course-map.rescope-info'}}</span>
+          </div>
+        </div>
+        {{#if (not isContentAvailable)}}
+          <div class="custom-msg">
+            <span>
+              {{t 'class.overview.course-map.custom-msg'}}
+            </span>
+            <span {{action "onClearCustomizeMsg"}}>
+              {{gru-icon name="clear"}}
+            </span>
+          </div>
+        {{/if}}
+      {{/if}}
+    </div>
+    <div class="student-coursemap-container">
+      <div class="course-map-accordion-container">
+        <div class="title-container">
+          <div aria-label="assigned course title">
+            <h5 class="assigned-course-title">{{t 'class.overview.assigned-course'}}</h5>
+          </div>
+          {{#if isPremiumClass}}
+            <div role="tab" class="active-period"  {{action "onToggleReportPeriod"}}>
+              <span class="report-period-text" aria-label="progress report">{{activeReportPeriod.text}}</span>
+            </div>
+          {{/if}}
+        </div>
+        {{class/overview/gru-accordion-course
+            currentClass=class
+            classMembers=classMembers
+            onSelectResource="playResource"
+            onStudyNow="studyPlayer"
+            onLocationUpdate=(action 'updateLocation')
+            userLocation=userLocation
+            location=openingLocation
+            units=units
+            contentVisibility=contentVisibility
+            showLocation=showLocation
+            isTeacher=false
+            isStudent=true
+            toggleLocation=toggleLocation
+            onSelectItem="onSelectItem"
+            showLocationReport= tab
+            resetPerformance=resetPerformance
+            tabindex=10
+          }}
+      </div>
+      {{#if (gt selfGradeItems.length 0) }}
+        <div class="self-grading-container">
+          <h5 class="header-container">
+            {{t 'class.analytics.performance.grade-items'}}
+          </h5>
+          <div class="body-container">
+            {{grading/student/gru-self-grading-items
+             selfGradeItems = selfGradeItems
+             userId = userId
+             classId = class.id}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+{{else}}
+  <div class="no-course-content">{{t 'student-landing.no-course-assigned'}}</div>
+{{/if}}
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}
+{{#if showCourseReport}}
+  {{reports/pull-up/student-course-report onClosePullUp="onClosePullUp" context=studentCourseReportContext showPullUp=showCourseReport}}
+{{/if}}
+
+{{#if isShowStudentProgressReport}}
+  {{student/class/gru-student-class-progress-report
+    isShowReport = isShowStudentProgressReport
+    userId = userId
+    class = class
+    course = course
+  }}
+{{/if}}
+{{#if (and (not isPublicClass) isShowStudyTimerWidget)}}
+{{gru-study-timer
+  studentTimespentData = studentTimespentData
+}}
+{{/if}}

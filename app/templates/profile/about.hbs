@@ -1,0 +1,218 @@
+  <div class="controller about view view-profile">
+    <h4>
+      {{#if isMyProfile}}
+        <!-- <span class="edit-text">{{t "common.edit"}} </span> -->
+        {{#if isGuest }}
+          <div class="about-edit guest-account" title="{{t 'common.not-editable-for-demo'}}" tabindex='101' data-toggle="tooltip">
+            {{gru-icon name="mode_edit"}}
+          </div>
+        {{else}}
+          <div class="about-edit {{if isShowImpersonate 'impersonate-edit'}}" title="Edit" data-toggle="tooltip">
+            {{#link-to "profile.edit" tagName="a" tabindex='101'}}{{gru-icon name="mode_edit"}}{{/link-to}}
+          </div>
+        {{/if}}
+
+      {{/if}}
+    </h4>
+    <div class="about-container row">
+      <div class='change-password-cocoon-container'>
+        {{#gru-pull-up showPullUp=showChangePassFlag onClosePullUp="onClosePullUp" tabIndex="24"}}
+          <div class='change-password-cocoon'>
+            <div class="panel panel-default" style="margin-bottom:0px;">
+              <div class="panel-heading ">
+                <div class="panel-title title-top">
+                  <span class="password-icon">
+                    {{gru-icon name='lock'}}
+                  </span>
+                  <span class="not-modal-header">
+                    {{t 'change-password.title'}}
+                  </span>
+                </div>
+              </div>
+              <form id="changePasswordForm">
+                <div class="panel-body">
+                  <div class="change-password-form">
+                    <div class="form-group password">
+                      <div class="formLabel" for="oldPassword">
+                        <span id="oldPassword">{{t "change-password.current-password-label"}}</span>
+                      </div>
+                      {{validation/gru-input model=cprofile id='oldPassword' valuePath='oldPassword' type='password'  maxLength=254 didValidate=didValidate tabindex="24" onTyping="onTyping" onFocusOut="onTyping"  }}
+                      {{#if isShowError}}
+                        <div class="error-messages">
+                          <span class="error">{{isErrorMsg}}</span>
+                        </div>
+                      {{/if}}
+                    </div>
+                    <div class="form-group password">
+                      <div class="formLabel" for="newPassword">
+                        <span>{{t "reset-password.new-password"}}</span>
+                      </div>
+                      {{validation/gru-input model=cprofile id='newPassword' valuePath='newPassword' type='password' didValidate=didValidate isRequired=true  maxLength=254 tabindex="24"}}
+                    </div>
+                    <div class="form-group password-confirm">
+                      <div class="formLabel" for="confirmPassword">
+                        <span>{{t "reset-password.new-password-confirm"}}</span>
+                      </div>
+                      {{validation/gru-input model=cprofile id='confirmPassword' valuePath='confirmPassword' type='password' didValidate=didValidate isRequired=true  maxLength=254 tabindex="24"}}
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-heading">
+                  <div class="modal-footer">
+                    <div class="panel-title">
+                      <div class="submit-button form-group ">
+                        <button type="button" class="btn btn-success submit" tabIndex="24" onclick={{action "changePassword" on="submit"}} onkeypress={{action "changePassword" on="submit"}}>{{t "common.submit"}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        {{/gru-pull-up }}
+      </div>
+      <div class="personal-info col-md-6 col-xs-12">
+        <div class="sub-title">
+          {{t "common.personal-information"}}
+        </div>
+        <div class="info">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <h6>{{t "common.first-name"}}</h6>
+                  <p class="first-name">{{profile.firstName}}</p>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                  <h6>{{t "common.last-name"}}</h6>
+                  <p class="last-name">{{profile.lastName}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <h6>{{t "sign-up.username"}}</h6>
+                  <div class="username">
+                    <p> {{profile.username}}</p>
+                  </div>
+                </div>
+                <div class="avatar col-xs-12 col-sm-6">
+                  <div class="background" style={{safe-html (concat "background-image: url(" profile.avatarUrl ")")}}></div>
+                  <div class="image-container"><img class="img-responsive" src="{{profile.avatarUrl}}" alt="avatarUrl" /></div>
+                </div>
+              </div>
+              {{#if (and isMyProfile (eq profile.loginType 'credential')) }}
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="bios {{if isGuest 'guest-account'}} {{if isShowImpersonate 'impersonate-account'}}">
+                      <p>
+                        <a onclick={{action 'showChangePass' true}} onkeypress={{action 'showChangePass' true}} tabIndex="23">{{t "change-password.title"}}</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              {{/if}}
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  <h6>{{t "common.biography"}}</h6>
+                  <div class="bio">
+                    <p>
+                      {{#if profile.aboutMe}}
+                        {{profile.aboutMe}}
+                      {{else}}
+                        <span class="italic">{{t "common.not-added"}}</span>
+                      {{/if}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {{#if (and isPrivacyDataSettingsEnable (eq profile.role 'student'))}}
+                <div class="row {{if isUserDeletionRequest 'deletion-request'}}">
+                  <div class="col-xs-12 col-sm-12">
+                    <button class="btn btn-primary" onclick={{action "onDelete"}} onkeypress={{action "onDelete"}} tabIndex="23">{{t 'profile.delete-profile'}}</button>
+                    <div class="message">{{t "profile.deletion-message" date=(format-date profile.deletionTriggerDate "MMMM D, YYYY")}}</div>
+                  </div>
+                </div>
+              {{/if}}
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  {{#link-to "library-search" (query-params profileId=profile.id  type="my-content" isBack=true) title="library search"}}
+                    {{#if (eq profile.role 'teacher')}}
+                      {{#if isMyProfile}}
+                        <h5 class="library-link">{{t "profile.gru-navigation.my-content"}}</h5>
+                      {{else}}
+                        <h5 class="library-link">{{profile.firstName}} {{profile.lastName}}'s {{t 'common.content'}} {{t 'common.library'}}</h5>
+                      {{/if}}
+                    {{/if}}
+                  {{/link-to}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="school-info col-md-6 col-xs-12">
+        <div class="sub-title">
+          {{t "common.school-info"}}
+          <span class="verification pull-right hidden-xs"><i class="gru-icon verified"></i> {{t "common.verified"}}</span>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <h6>{{t "common.role"}}</h6>
+                <p class="role">
+                  {{profile.role}}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <h6>{{t "common.country"}}</h6>
+                <p class="country">
+                  {{#if profile.country}}
+                    {{profile.country}}
+                  {{else}}
+                    <span class="italic">{{t "common.not-specified"}}</span>
+                  {{/if}}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <h6>{{t "common.state-territory"}}</h6>
+                <p class="school">
+                  {{#if profile.state}}
+                    {{profile.state}}
+                  {{else}}
+                    <span class="italic">{{t "common.not-specified"}}</span>
+                  {{/if}}
+                </p>
+              </div>
+            </div>
+            {{#if profile.lastUpdate}}
+              <span class="pull-right hidden-xs">{{t "common.last-updated"}}: {{format-date profile.lastUpdate "MMMM D, YYYY"}}</span>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{#if showDelateConformationPopup}}
+      <div class="delete-confirmation-popup">
+        <div class="backdrop" {{action "onCancel"}}></div>
+        <div class="content-container">
+          <span class="title">{{t 'profile.delete-confirmation-message'}}</span>
+          <div class="action-container">
+            <div class="cancel-btn action-btn" onclick={{action "onCancel"}} onkeypress={{action "onCancel"}} tabIndex="24">
+              {{t 'common.cancel'}}
+            </div>
+            <div class="confirm-btn action-btn" onclick={{action "onConfirm"}} onkeypress={{action "onConfirm"}} tabIndex="24">
+              {{t 'common.confirm'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+  </div>

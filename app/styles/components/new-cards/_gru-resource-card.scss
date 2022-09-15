@@ -1,0 +1,426 @@
+.cards.gru-resource-card {
+  $line-height: 1.2;
+  width: 220px;
+  height: 270px;
+  .panel {
+    border-radius: 6px;
+    box-shadow: 0 2px 5px 0 $table-box-shadow-07;
+    .panel-heading {
+      background-color: $white;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      height: 80px;
+
+      .header {
+        width: 100%;
+        > * {
+          display: inline-block;
+        }
+        .image {
+          $lines-to-show: 2;
+          vertical-align: top;
+          height: 42px;
+          display: flex;
+          a > img {
+            width: 35px;
+            height: 35px;
+          }
+          h6 {
+            margin: 2px 0 5px 13px;
+            @include ellipsis(
+              $font-size: $font-size-base,
+              $line-height: $line-height,
+              $lines-to-show: $lines-to-show,
+              $excerpt-bg: $white
+            );
+            max-height: 40px;
+          }
+          .title-section {
+            width: 80px;
+            h6.title {
+              display: inline-block;
+              width: 79%;
+              color: $blue-400;
+              font-size: 16px;
+            }
+            .publish-icon {
+              display: inline-block;
+              float: $menu-float-dir;
+              vertical-align: top;
+              margin-top: 5px;
+              background: url("gooru/badge-01.png");
+              -webkit-background-size: 17px 17px;
+              background-size: 17px 17px;
+              height: 17px;
+              width: 17px;
+            }
+          }
+          .external-assessment {
+            img {
+              -webkit-background-size: 31px 30px;
+              background-size: 31px 30px;
+              height: 30px;
+              width: 31px;
+            }
+          }
+        }
+        i {
+          display: block;
+          height: 36px;
+          width: 28px;
+          margin: 0 auto;
+          vertical-align: top;
+          margin: 5px 0 0 0;
+          &.video-icon {
+            background: url("gooru/images/video-resource-green.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            height: 30px;
+            width: 31px;
+          }
+          &.html-icon {
+            background: url("./gooru/images/html-icon.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            height: 30px;
+            width: 31px;
+          }
+          &.webpage-icon {
+            background: url("gooru/images/website-resource-green.svg");
+            -webkit-background-size: 29px 30px;
+            background-size: 29px 30px;
+            height: 30px;
+            width: 29px;
+          }
+          &.interactive-icon {
+            background: url("gooru/images/interactive-resource-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+            vertical-align: top;
+            margin: 5px 0 0 0;
+          }
+          &.question-icon {
+            background: url("gooru/images/question-resource-green.svg");
+            -webkit-background-size: 30px 30px;
+            background-size: 30px 30px;
+            height: 30px;
+            width: 30px;
+          }
+          &.rubric-icon {
+            background: url("gooru/images/rubric-green.svg");
+            -webkit-background-size: 30px 30px;
+            background-size: 30px 30px;
+            height: 30px;
+            width: 30px;
+            margin-top: 0px;
+          }
+          &.image-icon {
+            background: url("gooru/images/image-resource-green.svg");
+            -webkit-background-size: 30px 30px;
+            background-size: 30px 30px;
+            height: 30px;
+            width: 30px;
+          }
+          &.text-icon {
+            background: url("gooru/images/text-resource-green.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            height: 30px;
+            width: 31px;
+          }
+          &.audio-icon {
+            background: url("gooru/images/audio-resource-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+          }
+          &.h5p_interactive_video-icon {
+            background: url("gooru/images/interactive-video-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+          }
+          &.h5p_interactive_slide-icon {
+            background: url("gooru/images/interactive-slides-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+          }
+          &.h5p_interactive_personality_quiz-icon {
+            background: url("gooru/images/personality-quiz-icon.png");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+          }
+          &.h5p_drag_and_drop_resource-icon {
+            background: url("gooru/images/drag-and-drop-icon.png");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+          }
+        }
+      }
+      .resource-info {
+        display: flex;
+        margin-left: 5px;
+        width: 224px;
+        border-bottom: 1px solid $gray-lighter;
+        border-top: 1px solid $gray-lighter;
+        line-height: 2.2;
+        padding-left: 15px;
+        padding-top: 5px;
+        margin-left: -17px;
+        $lines-to-show: 2;
+        > * {
+          display: block;
+        }
+        .visibility {
+          display: inline-block;
+          float: $menu-float-dir;
+          height: 24px;
+          margin: 1px 0 0 0;
+        }
+        .visible-icon > i {
+          color: $gray-dove;
+        }
+        .invisible-icon > i {
+          color: $font-gray-lighter-gray;
+        }
+        .resource-type {
+          padding-right: 15px;
+        }
+        .question-type {
+          width: 70%;
+          span {
+            color: $text-color;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+          }
+        }
+        .resource-visibility {
+          width: 26%;
+        }
+        .search-type-position {
+          margin-left: 21%;
+        }
+      }
+      .rubric-info {
+        border: none;
+      }
+      .exist-resource {
+        border: none;
+        justify-content: space-between;
+        width: 80px;
+      }
+      .publish-icon {
+        display: inline-block;
+        float: $menu-float-dir;
+        vertical-align: top;
+        margin-top: 5px;
+        margin-right: 7px;
+        background: url("gooru/badge-01.png");
+        -webkit-background-size: 17px 17px;
+        background-size: 17px 17px;
+        height: 17px;
+        width: 17px;
+      }
+    }
+    .panel-body {
+      padding: 12px 15px 0 15px;
+      height: 145px;
+      margin-top: 5px;
+      .publisher {
+        margin: 3px 0 3px 2px;
+        width: 100%;
+        display: flex;
+        .creator-label {
+          font-size: 13px;
+          font-style: italic;
+          padding-right: 6px;
+        }
+        img {
+          width: 21px;
+          height: 22px;
+          border-radius: 50px;
+        }
+        .owner {
+          padding-left: 7px;
+        }
+        .publisher-name {
+          padding-left: 7px;
+          max-width: 112px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          vertical-align: middle;
+          > a {
+            margin-left: 5px;
+            color: $blue-400;
+          }
+        }
+      }
+      .description {
+        $lines-to-show: 3;
+        width: 100%;
+        p.truncate {
+          @include ellipsis(
+            $font-size: $font-size-base,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show,
+            $excerpt-bg: $white
+          );
+        }
+      }
+      .gru-taxonomy-tag-list {
+        .gru-taxonomy-tag {
+          background-color: $light-300;
+          div {
+            > b {
+              color: $font-white-dark-400;
+            }
+
+            > span {
+              color: $font-white-dark-400;
+            }
+          }
+        }
+      }
+    }
+    .panel-footer {
+      background-color: $white;
+      height: 44px;
+      border: solid 1px $gray-ultra-light;
+      padding: 0px !important;
+
+      .checked-img {
+        background-image: url("../assets/gooru/images/icon-verified-green.svg");
+        width: 16px;
+        height: 16px;
+        display: block;
+        background-size: cover;
+        margin: 15px;
+        cursor: pointer;
+        position: inherit;
+      }
+
+      .add-icon {
+        margin: 11px;
+        cursor: pointer;
+        position: inherit;
+      }
+
+      .buttons {
+        display: -webkit-flex;
+        .left-btns {
+          width: 50%;
+        }
+        .right-btns {
+          width: 50%;
+          .resource-icon-btn {
+            float: $menu-float-dir;
+          }
+        }
+        .remix-btn {
+          background-color: $blue-400;
+          height: 43px;
+          width: 74px;
+          display: flex;
+          border-bottom-left-radius: 5px;
+          a {
+            color: $white;
+            text-decoration: inherit;
+            font-size: 13px;
+            line-height: 41px;
+            display: block;
+            margin: auto;
+            > i {
+              font-size: 16px;
+            }
+          }
+        }
+        .remix-anonymous {
+          margin-right: 0px !important;
+        }
+        .resource-icon-btn {
+          padding: 10px 15px;
+          border-right: solid 1px $gray-ultra-light;
+          width: 45px;
+          height: 43px;
+          text-align: center;
+          display: block;
+          > a {
+            color: $gray-dove;
+            display: block;
+          }
+          &.edit {
+            border-left: solid 1px $gray-ultra-light;
+            i {
+              margin-left: -4px;
+            }
+          }
+          &.edit-with-copy {
+            margin-left: 0px;
+            border-left: solid 1px $gray-ultra-light;
+            i {
+              margin-left: -4px;
+            }
+          }
+          &.add {
+            border: none;
+            i {
+              margin-left: -5px;
+              color: $dark-400;
+            }
+          }
+          &.share {
+            border-left: solid 1px $gray-ultra-light;
+            a {
+              text-decoration: none;
+              background-color: $table-bg;
+              padding: 1px;
+              i {
+                font-size: 18px;
+                margin-left: -5px;
+                color: $dark-400;
+              }
+            }
+          }
+          &.share-with-copy {
+            border-left: solid 1px $gray-ultra-light;
+            a {
+              text-decoration: none;
+              background-color: $table-bg;
+              padding: 1px;
+              i {
+                font-size: 18px;
+                margin-left: -5px;
+                color: $dark-400;
+              }
+            }
+          }
+          :hover {
+            background-color: $white;
+          }
+          &.play {
+            i {
+              margin-left: -5px;
+              color: $blue-400;
+            }
+          }
+          .resource-mode-edit > i {
+            font-size: 21px;
+          }
+        }
+      }
+    }
+  }
+}

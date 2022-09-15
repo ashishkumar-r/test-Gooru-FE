@@ -1,0 +1,51 @@
+
+<div class="panel panel-default view {{if model.isExpanded 'expanded' 'collapsed'}}">
+  <div class="panel-heading">
+    <h3><a href="#" {{action 'toggle'}}>{{t "common.lesson"}} {{unless isHideLessonNumber (plus-one index) ''}}</a></h3>
+    <strong title="{{lesson.title}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"><a href="#" {{action 'toggle'}}>{{lesson.title}}</a></strong>
+
+    <div class="detail">
+      <div class="{{if lesson.assessmentCount 'mixed'}}">
+        {{#if lesson.assessmentCount}}
+          <span><b>{{lesson.assessmentCount}}</b> {{t "common.assessment-pl" count=lesson.assessmentCount}}</span>
+        {{/if}}
+        <span><b>{{lesson.collectionCount}}</b> {{t "common.collection-pl" count=lesson.collectionCount}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    {{#if (or model.data.lessonPlan.description model.data.lessonPlan.guidingQuestions)}}
+      <div class="overview">
+        <div class="row">
+        <div class="col-sm-6 description">
+          <label>
+            <span>{{t "common.description"}}</span>
+            <p>{{safe-html model.data.lessonPlan.description}}</p>
+          </label>
+        </div>
+        <div class="col-sm-6 quiding-questions">
+          <label>
+            <span>{{t "guiding-question"}}</span>
+            <p>{{safe-html model.data.lessonPlan.guidingQuestions}}</p>
+          </label>
+        </div>
+      </div>
+      </div>
+    {{/if}}
+
+    <ol class="accordion-lesson" role="tablist" aria-multiselectable="true">
+
+      {{#each items as |item index|}}
+
+        {{content/courses/play/gru-accordion-lesson-item
+          courseId=course.id
+          unitId=unitId
+          lessonId=model.data.id
+          model=item
+          index=index }}
+
+      {{/each}}
+    </ol>
+
+  </div>
+</div>

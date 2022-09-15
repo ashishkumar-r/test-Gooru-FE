@@ -1,0 +1,40 @@
+<div class="gru-wpm-reading-table-container">
+    <div class="gru-wpm-table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    {{#if hasLinkContent}}
+                    <th>{{t 'common.first-read'}}</th>
+                    <th>{{t 'common.second-read'}}</th>
+                    {{else}}
+                    <th class="">{{t 'common.wpm-count'}}</th>
+                    {{/if}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#if hasLinkContent}}
+                <tr>
+                    <td>
+                        <div class="wpm-count">
+                            {{if wpmResource.first_read_wpm_count wpmResource.first_read_wpm_count '--'}} <span class="material-icons">{{if wpmResource.first_read_wpm_count wpmResource.firstRangeText ''}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="wpm-count">
+                            {{if wpmResource.second_read_wpm_count wpmResource.second_read_wpm_count '--'}} <span class="material-icons">{{if wpmResource.second_read_wpm_count wpmResource.secondRangeText ''}}</span>
+                        </div>
+                    </td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td>
+                        <div class="wpm-count">
+                            {{if wpmResource wpmResource.wpm_count '--'}} <span class="material-icons">{{wpmResource.countRangeText}}</span>
+                        </div>
+                    </td>
+                </tr>
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+</div>

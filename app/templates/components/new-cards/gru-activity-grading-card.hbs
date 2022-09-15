@@ -1,0 +1,46 @@
+<div class="activity-grading-card {{if isAssessmentGrading 'question-grading' 'offline-activity-grading'}}">
+
+  <div class="grading-header-container {{if (or isInstructionalCoache primaryClass.isArchived) 'disable-header'}}" onclick={{action "onAllGradeItem" filterGrades}} onkeypress={{action "onAllGradeItem" filterGrades}} tabindex={{tabindex}}>
+    <div class="content-icon"><div class="grading-icon"></div></div>
+    <div class="content-title">{{if isAssessmentGrading content.title gradingContent.title}}
+
+       <span class="activation-date">{{activationDate}}</span>
+    </div>
+
+
+    <div class="grading-info">
+      <div class="content-info">
+        {{#if isAssessmentGrading}}
+          <div class="question-info">
+            <span class="material-icons">help</span>
+            <div class="task-count">{{filterGrades.length}}</div>
+          </div>
+        {{else}}
+          <div class="task-info">
+            <div class="task-thumbnail"></div>
+            <div class="task-count">{{content.taskCount}}</div>
+          </div>
+        {{/if}}
+      </div>
+      <div class="content-thumbnail" style="background-image: url({{if isAssessmentGrading content.thumbnailUrl gradingContent.thumbnailUrl}})"></div>
+    </div>
+  </div>
+
+  <div class="grading-body-container">
+    <div class="grading-classes-container">
+      {{#each filterGrades as |filterGrade|}}
+        {{#each filterGrade.gradingClasses as |grade|}}
+          <div class="grading-class-container">
+            <div class="class-title">{{if isAssessmentGrading (safe-html filterGrade.title) (safe-html grade.title)}}</div>
+              <div class="student-count">
+                {{gru-icon name="account_circle"}}
+                <span class="count-value">{{grade.studentCount}}</span>
+              </div>
+            <div class="grading-thumbnail"></div>
+          </div>
+        {{/each}}
+      {{/each}}
+    </div>
+  </div>
+
+</div>

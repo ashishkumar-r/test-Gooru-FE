@@ -1,0 +1,1260 @@
+.student-inspect-destination {
+  .popover {
+    width: 160px;
+    box-shadow: 0 2px 5px 2px $popover-box-shadow;
+
+    .popover-title {
+      font-weight: bold;
+      font-size: 13px;
+      background-color: $white;
+      border-bottom: none;
+    }
+
+    .popover-content {
+      padding-top: 0;
+    }
+  }
+
+  .custom-loader {
+    @media screen and (min-width: 993px) {
+      width: 100% !important;
+    }
+    top: 0;
+    left: 0;
+  }
+
+  .button-container-box {
+    @media screen and (max-width: 469px) {
+      height: auto;
+      padding: 20px 0;
+    }
+  }
+
+  .custom-height {
+    max-height: calc(85vh - 185px) !important;
+    overflow-y: auto !important;
+  }
+
+  .student-inspect-destination-carousel-sm {
+    @media screen and (min-width: 901px) {
+      display: none;
+    }
+  }
+
+  .student-inspect-destination-sm {
+    display: none;
+  }
+
+  .selecte-destination-container {
+    display: flex;
+    flex-direction: column;
+
+    .grade-info {
+      .gru-dropdown {
+        .btn-group {
+          button {
+            padding: 0;
+            line-height: 0.8em;
+            font-size: 30px;
+            color: $green-52;
+
+            .caret {
+              width: 14px;
+              height: 12px;
+              border-top: 8px dashed;
+              border-right: 7px solid $table-bg;
+              border-left: 7px solid $table-bg;
+              color: $caret-color;
+            }
+          }
+
+          .btn-default:active,
+          .btn-default:hover {
+            box-shadow: none;
+            background-color: $white;
+            background-image: none;
+          }
+
+          &.open {
+            .dropdown-toggle,
+            .dropdown-toggle:hover {
+              box-shadow: none;
+              background-color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .inspect-destination-container {
+    display: flex;
+    grid-template-columns: 100%;
+    justify-content: center;
+    background-color: $white;
+    @media screen and (min-width: 481px) and (max-width: 799px) {
+      margin-top: 80px;
+    }
+    @media screen and (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+
+    .destination-chart-container {
+      padding: 40px 8px 8px;
+      border-right: 1px solid #bbb;
+      width: 100%;
+      position: absolute;
+      @media screen and (max-width: 900px) {
+        order: 2;
+        grid-row: 2;
+        border-right: 0 solid #bbb;
+      }
+
+      .learner-proficiency-domain-matrix {
+        zoom: 1;
+        @media screen and (max-width: 1129px) {
+          zoom: 0.7;
+          @media screen and (min-width: 901px) {
+            zoom: 0.7;
+            margin-top: 40%;
+          }
+        }
+        @media screen and (min-width: 1130px) and (max-width: 1250px) {
+          zoom: 0.9;
+          margin-top: 65px;
+        }
+
+        .actions,
+        .domains-info-list {
+          display: none;
+        }
+
+        .chart-area {
+          background-color: $white;
+
+          .domain-chart-container {
+            .scrollable-chart {
+              height: calc(100vh - 150px);
+
+              #render-proficiency-matrix {
+                pointer-events: none;
+              }
+            }
+
+            .proficiency {
+              @media screen and (max-width: 799px) {
+                height: calc(100vh - 280px);
+              }
+              @media screen and (min-width: 800px) and (max-width: 900px) {
+                height: calc(100vh - 180px);
+              }
+            }
+
+            .domains-seq-list {
+              pointer-events: none;
+            }
+          }
+        }
+      }
+    }
+
+    .destination {
+      order: initial;
+      grid-row: auto;
+    }
+
+    .competency-level-container {
+      padding-top: 30px;
+      overflow-y: auto;
+      color: $dark-300;
+      position: relative;
+      width: 35%;
+      background-color: $white;
+      box-shadow: 0 0 11px 3px $light-200;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      margin: 30px 5px 0 auto;
+      @media screen and (max-width: 900px) {
+        display: none;
+        order: 1;
+        grid-row: 1;
+        max-height: 180px;
+        overflow-x: auto;
+        @media screen and (max-width: 799px) {
+          padding-top: 55px;
+        }
+      }
+
+      .scroll-div {
+        max-height: calc(90vh - 100px);
+        overflow-y: auto;
+        @media screen and (max-width: 900px) {
+          width: max-content;
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      p {
+        margin-bottom: 0;
+        font-size: 15px;
+      }
+
+      .proficiency-info {
+        transition: visibility 1s linear, opacity 1s linear;
+        opacity: 0;
+        pointer-events: none;
+
+        &.active {
+          visibility: visible;
+          opacity: 1;
+          pointer-events: visible;
+        }
+      }
+
+      .grade-title {
+        height: 50px;
+        font-size: 23px;
+        line-height: 1;
+        color: $dark-300;
+        text-transform: capitalize;
+        display: flex;
+        align-items: baseline;
+        column-gap: 10px;
+      }
+
+      ol {
+        list-style: none;
+        font-size: 15px;
+        padding-top: 20px;
+
+        li {
+          padding-bottom: 10px;
+          transition: visibility 1s linear, opacity 1s linear;
+          opacity: 0;
+          display: none;
+
+          &.active {
+            visibility: visible;
+            opacity: 0.5;
+            display: block;
+          }
+
+          &.active-bold {
+            opacity: 1;
+          }
+
+          i {
+            padding-right: 10px;
+          }
+        }
+      }
+
+      .grade-description {
+        width: 100%;
+        padding-right: 83px;
+        font-size: 15px;
+        white-space: normal;
+        text-align: justify;
+        color: $dark-300;
+
+        .desc-title {
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+
+      .competency-level-list {
+        margin-top: 5px;
+        display: grid;
+        grid-gap: 3px;
+        grid-template-rows: auto auto;
+        display: none;
+
+        .in-progress-container,
+        .mastery-container,
+        .not-started-container,
+        .skyline-container {
+          display: grid;
+          grid-gap: 15px;
+          align-items: center;
+          grid-template-columns: 40px auto;
+
+          .legend {
+            width: 40px;
+            height: 40px;
+          }
+
+          span.explanatory-title {
+            font-weight: bold;
+          }
+
+          .label {
+            font-size: 20px;
+            color: $dark-300;
+            text-align: start;
+            font-weight: normal;
+            padding: 0;
+          }
+        }
+
+        .in-progress-container {
+          .legend {
+            background-color: $blue-e5;
+          }
+        }
+
+        .not-started-container {
+          .legend {
+            background-color: $gray-no-started;
+          }
+        }
+
+        .skyline-container {
+          height: 40px;
+
+          .legend {
+            width: 40px;
+            box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+            height: 10px;
+            background-color: $white;
+          }
+        }
+
+        .mastery-container {
+          .legend {
+            background-color: $blue-0e2;
+          }
+        }
+      }
+
+      .show-destination {
+        bottom: 20px;
+        color: $white;
+        align-items: center;
+        cursor: pointer;
+        justify-content: center;
+        height: 40px;
+        display: grid;
+        grid-template-columns: 30px auto;
+        background-color: $blue-800;
+        border-radius: 45px;
+        font-size: 18px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 225px;
+      }
+
+      .button-container-destination {
+        cursor: pointer;
+        padding: 20px;
+
+        &.audio {
+          padding-right: 0;
+        }
+
+        &.skip-all {
+          padding-left: 0;
+        }
+        @media screen and (max-width: 900px) {
+          width: 100%;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+        }
+
+        .text-align-center {
+          text-align: center;
+          margin: auto;
+        }
+
+        .destination-grid {
+          display: grid;
+          align-items: center;
+          @media screen and (max-width: 992px) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+        }
+
+        .show-route-div {
+          display: grid;
+          justify-content: center;
+          align-items: center;
+
+          &.move-center {
+            justify-content: center;
+          }
+        }
+
+        .change-level,
+        .next-route {
+          height: 27px;
+          border-radius: 20px;
+          font-size: 14px;
+          padding-left: 13px;
+          padding-right: 13px;
+          align-items: center;
+          justify-content: center;
+          margin: 10px;
+          color: $white;
+          text-transform: capitalize;
+          display: flex;
+
+          &.audio {
+            background-color: $white;
+            color: $black-bold;
+            border: 1px solid $gray-light;
+            font-size: 14px;
+            width: 120px;
+          }
+        }
+
+        .next-route {
+          width: 95px;
+          text-align: center;
+        }
+
+        .change-level {
+          display: flex;
+          line-height: normal;
+        }
+      }
+    }
+    //TODO new screen changes
+    .baseline-loader {
+      margin: auto;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: $black-bold;
+      opacity: 0.6;
+      z-index: 9999;
+    }
+
+    .student-milestone-not-ready {
+      font-size: 24px;
+      line-height: 1.2;
+      box-shadow: $disabled-color 0 0 11px;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 10px 15px;
+    }
+
+    .grade-data-container {
+      width: 35%;
+      padding-top: 30px;
+      margin-left: auto;
+      margin-top: 30px;
+      z-index: 1;
+      background-color: $white;
+      box-shadow: 0 0 15px $gray-light;
+      transition: visibility 1s linear, opacity 1s linear;
+
+      .grade-title {
+        height: 50px;
+        font-size: 30px;
+        line-height: 0.8em;
+        color: $green-52;
+        text-transform: capitalize;
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+        margin-left: 30px;
+
+        .audio-icon {
+          width: 16px;
+          height: 16px;
+          background-size: 16px 16px;
+          background-repeat: no-repeat;
+          display: block;
+          margin: 0 4px;
+          cursor: pointer;
+          background-image: url("gooru/images/audio-resource-dark.svg") !important;
+
+          &.playing {
+            background-image: url("gooru/images/audio-resource-blue.svg") !important;
+          }
+        }
+      }
+
+      ul {
+        font-size: 15px;
+
+        li {
+          padding-bottom: 10px;
+          transition: visibility 1s linear, opacity 1s linear;
+          opacity: 0;
+          display: none;
+
+          &.active {
+            visibility: visible;
+            opacity: 0.5;
+            display: block;
+          }
+
+          &.active-bold {
+            opacity: 1;
+          }
+
+          i {
+            padding-right: 10px;
+          }
+        }
+      }
+
+      .grade-description {
+        margin-top: 10px;
+        color: $dark-400;
+        max-height: calc(85vh - 185px);
+        overflow-y: auto;
+        width: 96%;
+
+        &::-webkit-scrollbar {
+          height: 6px;
+          width: 8px;
+          background-color: $white;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $gray-light;
+          border: 1px solid $gray-light;
+          border-radius: 5px;
+        }
+
+        p {
+          transition: visibility 1s linear, opacity 1s linear;
+          opacity: 0;
+
+          &.active {
+            visibility: visible;
+            opacity: 0.5;
+          }
+
+          &.active-bold {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+
+        ol {
+          li {
+            line-height: 1.4;
+          }
+        }
+      }
+
+      .button-container {
+        align-items: center;
+        cursor: pointer;
+        padding: 10px;
+        width: auto;
+        justify-content: center;
+        display: block;
+        background-color: $white;
+        box-shadow: 10px 10px 15px $gray-light;
+        transition: visibility 1s linear, opacity 1s linear;
+        opacity: 0;
+        pointer-events: none;
+
+        &.active {
+          visibility: visible;
+          opacity: 1;
+          pointer-events: visible;
+        }
+
+        .text-align-center {
+          text-align: center;
+        }
+
+        .show-route-div {
+          display: flex;
+          grid-template-columns: 29% 19% 30% 22%;
+          justify-content: center;
+          align-items: center;
+
+          &.route,
+          &.routes {
+            justify-content: flex-start;
+            column-gap: 30px;
+            padding-left: 20px;
+
+            .button-container-destination.audio {
+              .audio {
+                background-color: $white;
+                color: $black-bold;
+                border: 1px solid $gray-light;
+                font-size: 14px;
+                width: 120px;
+                padding: 0;
+                height: 28px;
+              }
+            }
+          }
+
+          &.show-all-button {
+            padding-left: 20px;
+            column-gap: 20px;
+
+            .change-level-btn {
+              line-height: 1;
+
+              .change-level {
+                line-height: 1;
+              }
+            }
+
+            .change-level-btn,
+            .show-route-btn {
+              column-gap: 5px;
+            }
+          }
+
+          .change-level-btn,
+          .show-route-btn {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+
+            a {
+              display: flex;
+            }
+          }
+
+          .show-route {
+            width: 45%;
+          }
+
+          .line-hight {
+            line-height: 1.3;
+          }
+
+          .text-1 {
+            width: 31%;
+          }
+
+          .text-2 {
+            width: 30%;
+          }
+        }
+
+        .change-level,
+        .next-route {
+          height: 28px;
+          background-color: $blue-800;
+          border-radius: 20px;
+          font-size: 13px;
+          padding-left: 13px;
+          padding-right: 13px;
+          align-items: center;
+          justify-content: center;
+          margin: 10px;
+          color: $white;
+          width: fit-content;
+        }
+
+        .next-route {
+          width: 100px;
+          padding-top: 3px;
+          text-align: center;
+        }
+
+        .change-level {
+          display: flex;
+          line-height: normal;
+        }
+      }
+
+      .location-update-container {
+        width: auto;
+        background-color: $white;
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        box-shadow: 0 10px 15px $gray-light;
+        position: fixed;
+
+        .text-align-center {
+          text-align: center;
+        }
+
+        .icon-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: flex-start;
+          text-align: center;
+
+          &.grid-buttons {
+            display: grid;
+            justify-content: center;
+            padding: 5px;
+            grid-template-columns: auto auto auto auto;
+            text-align: center;
+            align-items: center;
+            grid-column-gap: 10px;
+          }
+
+          &.grid-buttons-level-select {
+            display: grid;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 5px;
+            grid-template-columns: auto auto auto auto;
+            grid-column-gap: 10px;
+
+            span {
+              @media screen and (max-width: 1271px) {
+                line-height: 1.3;
+              }
+            }
+          }
+
+          .show-route {
+            width: 40%;
+          }
+
+          .diagnostic-button,
+          .grade-button,
+          .next-button {
+            height: 32px;
+            background-color: $blue-800;
+            border-radius: 20px;
+            font-size: 13px;
+            padding: 4px 10px;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            color: $white;
+            cursor: pointer;
+            width: fit-content !important;
+            margin: 0 auto;
+          }
+
+          .next-enabled {
+            line-height: 1;
+          }
+
+          .diagnostic-button {
+            width: 200px;
+            @media screen and (max-width: 1222px) {
+              height: auto;
+              line-height: 1.2;
+            }
+          }
+
+          .grade-button {
+            width: 150px;
+            @media screen and (max-width: 1222px) {
+              height: auto;
+              line-height: 1.2;
+            }
+          }
+
+          .next-button {
+            width: 100px;
+            background-color: $green-400;
+            @media screen and (max-width: 1222px) {
+              line-height: 1.2;
+              height: auto;
+            }
+
+            &.disabled {
+              pointer-events: none;
+              opacity: 0.5;
+            }
+          }
+
+          .math-grade-button {
+            position: relative;
+
+            &.level-selected {
+              display: grid;
+              grid-template-columns: auto auto;
+              grid-column-gap: 10px;
+            }
+
+            .grade-list {
+              position: absolute;
+              background: $white;
+              width: max-content;
+              bottom: 50px;
+              box-shadow: 0 2px 4px 0 $navbar-box-shadow;
+              border: 1px solid $gray-light;
+              text-align: left;
+              left: -25px;
+              height: auto;
+              max-height: 400px;
+              overflow: auto;
+
+              .my-location {
+                padding: 10px;
+                border-bottom: 2px solid $gray-light;
+                cursor: default;
+              }
+
+              .grade-div {
+                padding: 10px;
+              }
+
+              .grade-div:hover {
+                background-color: $hover-light;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .header-top {
+      color: $dark-300;
+      position: relative;
+      background-color: $white;
+      box-shadow: 0 0 11px 3px $light-200;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin: 30px auto 0 10px;
+      display: flex;
+      column-gap: 20px;
+      height: 60px;
+      align-items: center;
+      @media screen and (max-width: 900px) {
+        display: none;
+        order: 1;
+        grid-row: 1;
+        max-height: 180px;
+        overflow-x: auto;
+        @media screen and (max-width: 799px) {
+          padding-top: 55px;
+        }
+      }
+
+      .facet {
+        padding-right: 30px;
+      }
+
+      .facet,
+      .my-location {
+        border-right: 1px solid;
+      }
+
+      .my-location {
+        display: grid !important;
+
+        .body-div,
+        .header-div {
+          display: flex;
+        }
+      }
+
+      .diagnostic {
+        .diagnostic-button {
+          height: 27px;
+          background-color: $blue-800;
+          border-radius: 20px;
+          font-size: 13px;
+          padding: 2px 10px 4px;
+          align-items: center;
+          justify-content: center;
+          margin: 10px 25px 10px 10px;
+          color: $white;
+          cursor: pointer;
+          width: fit-content;
+        }
+      }
+
+      .common-class {
+        display: flex;
+        height: 47px;
+
+        .header-title {
+          display: grid;
+          padding-left: 10px;
+
+          span {
+            font-size: 13px;
+            font-weight: bold;
+          }
+
+          .title {
+            color: $blue-0e2;
+          }
+        }
+
+        .info-item {
+          margin: auto;
+          padding-left: 10px;
+          padding-right: 30px;
+
+          span {
+            color: $black-bold;
+            font-size: 20px;
+          }
+        }
+
+        .edit-container {
+          margin: auto;
+        }
+
+        .edit-icon {
+          margin: auto;
+          padding-right: 30px;
+          cursor: pointer;
+          position: relative;
+
+          i {
+            font-size: 20px;
+          }
+        }
+
+        .math-grade-button {
+          position: absolute;
+          width: 26%;
+          margin-top: 5px;
+
+          .grade-list {
+            background: $white;
+            width: 100%;
+            bottom: 67px;
+            box-shadow: 0 2px 4px 0 $navbar-box-shadow;
+            text-align: left;
+            left: 12px;
+            height: auto;
+            max-height: 400px;
+            overflow: auto;
+
+            .my-location {
+              padding: 10px;
+              border-bottom: 2px solid $gray-light;
+              cursor: default;
+            }
+
+            .grade-div {
+              padding: 10px;
+              display: grid;
+              grid-template-columns: 1fr 30px;
+
+              .selected-icon {
+                background: url("/assets/gooru/images/check-circle-light-blue.svg")
+                  no-repeat center !important;
+                background-size: contain;
+                border: none;
+                display: block;
+                width: 20px;
+                height: 20px;
+                margin: auto;
+              }
+            }
+
+            .grade-div:hover {
+              background-color: $hover-light;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    .course-container {
+      width: 50%;
+      padding-top: 30px;
+      padding-left: 20px;
+      position: relative;
+      border-radius: 5px;
+      box-shadow: 0 0 5px 0 $navbar-box-shadow;
+      background-color: $white;
+      margin: 10px 0 0 auto;
+
+      .student-class-milestone-course-map-route0 {
+        width: 100%;
+      }
+
+      .pre-study-title {
+        font-size: 30px;
+        color: $dark-400;
+        line-height: 0.8em;
+        padding-left: 20px;
+      }
+
+      .course-description {
+        font-size: 15px;
+        color: $gray-dark-1;
+        line-height: 23px;
+        box-shadow: 0 1px 6px 0 $navbar-box-shadow;
+        margin-left: 4px;
+
+        div {
+          width: 100%;
+          margin: auto;
+        }
+      }
+
+      .assigned-course-title {
+        font-size: 30px;
+        text-align: justify;
+        white-space: nowrap;
+        line-height: 0.8em;
+        color: $dark-300;
+        margin-bottom: 10px;
+        padding-left: 20px;
+        padding-top: 10px;
+      }
+
+      .route0-container {
+        margin-top: 20px;
+        box-shadow: 0 0 6px 6px $sun-color;
+        background-color: $white;
+        margin-left: 4px;
+
+        &.milestone {
+          box-shadow: none;
+          padding-bottom: 20px;
+
+          .student-class-milestone-course-map-route0,
+          .student-class-milestone-course-map-route0-preview {
+            width: 100%;
+          }
+        }
+
+        .route0-comment {
+          display: grid;
+          grid-template-columns: 85px auto;
+          align-items: center;
+          padding-bottom: 8px;
+          padding-top: 8px;
+          cursor: pointer;
+
+          .suggestion-icon {
+            align-items: center;
+
+            i {
+              font-size: 50px;
+              margin-left: 15px;
+            }
+            color: $orange-400;
+          }
+
+          .suggestion-note {
+            margin: 0 15px;
+            font-size: 16px;
+            color: $dark-400;
+            line-height: 19px;
+          }
+        }
+
+        .route0-accordion-container {
+          border-top: 1px solid $sep-border-color;
+
+          .gru-accordion-course {
+            padding-top: 0;
+            border-bottom: 1px solid $sep-border-color;
+
+            .gru-accordion-unit {
+              .unit {
+                padding-left: 7px !important;
+              }
+            }
+          }
+        }
+      }
+
+      .route0-action {
+        height: 65px;
+        grid-gap: 15px;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        padding-bottom: 8px;
+        padding-top: 8px;
+        justify-content: end;
+
+        .accept {
+          background-color: $orange-400;
+          width: 100px;
+          height: 30px;
+          border-radius: 45px;
+          display: grid;
+          box-shadow: 0 0 5px 1px $navbar-box-shadow;
+          color: $white;
+          grid-template-columns: 30px auto;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          i {
+            background-image: url("gooru/images/baseline-add.svg");
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            background-size: 20px 20px;
+            display: block;
+            margin-top: 2px;
+          }
+        }
+
+        .ignore {
+          width: 86px;
+          height: 30px;
+          display: grid;
+          grid-template-columns: 20px auto;
+          align-items: center;
+          justify-content: space-evenly;
+          border-radius: 45px;
+          background-color: $light-400;
+          box-shadow: 0 0 5px 1px $navbar-box-shadow;
+          color: $white;
+          line-height: 30px;
+          text-align: center;
+          cursor: pointer;
+
+          i {
+            background-image: url("gooru/images/baseline-close.svg");
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            background-size: 20px 20px;
+            display: block;
+            margin-top: 2px;
+          }
+        }
+      }
+
+      .course-map-accordion-container {
+        max-height: calc(73vh - 271px);
+        box-shadow: 0 1px 6px 0 $navbar-box-shadow;
+        margin-left: 4px;
+        overflow-y: auto;
+        background: $white;
+
+        .student-milestone-not-ready {
+          font-size: 24px;
+          line-height: 1.2;
+          box-shadow: $disabled-color 0 0 11px;
+          padding: 15px;
+          border-radius: 4px;
+        }
+
+        &.milestone {
+          overflow: unset;
+          box-shadow: none;
+
+          .student-class-milestone-course-map {
+            width: 100%;
+            padding-top: 20px;
+          }
+        }
+
+        &::-webkit-scrollbar {
+          height: 6px;
+          width: 8px;
+          background-color: $white;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $gray-light;
+          border: 1px solid $gray-light;
+          border-radius: 5px;
+        }
+      }
+
+      .study-course-container {
+        align-items: center;
+        padding: 10px;
+        width: auto;
+        position: inherit;
+        justify-content: center;
+        display: block;
+        background-color: #fff;
+        column-gap: 10px;
+      }
+
+      .study-grid {
+        display: flex;
+        grid-template-columns: 100%;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+      }
+
+      .study-course {
+        color: $white;
+        align-items: center;
+        cursor: pointer;
+        justify-content: space-evenly;
+        height: 28px;
+        display: grid;
+        grid-template-columns: 30px auto;
+        background-color: $blue-800;
+        border-radius: 20px;
+        font-size: 13px;
+        padding-left: 15px;
+        padding-right: 15px;
+        z-index: 10;
+        width: fit-content;
+
+        &.no-milestone {
+          pointer-events: none;
+          opacity: 0.8;
+        }
+      }
+
+      .start-study-info {
+        padding-top: 8px;
+      }
+    }
+  }
+
+  .loading-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  .lp-compute-inprogress {
+    align-self: center;
+    justify-self: center;
+    z-index: 1;
+
+    span {
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .compute-icon {
+      background: url("gooru/images/ellipsis-loading-icon.svg") no-repeat;
+      display: block;
+      background-size: 150px 150px;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+    }
+
+    p {
+      padding-top: 20px;
+      font-size: 35px;
+      line-height: 1.2;
+      margin: 0;
+      text-align: center;
+      padding-right: 20px;
+    }
+  }
+}
+
+.app-container {
+  padding-top: 55px;
+  padding-bottom: 40px;
+  @media screen and (max-width: 799px) {
+    padding-top: 40px;
+  }
+}

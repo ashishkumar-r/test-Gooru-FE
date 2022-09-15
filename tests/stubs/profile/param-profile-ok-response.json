@@ -1,0 +1,30 @@
+{
+  "aboutMe": "I'm Param",
+  "dateOfBirth": 649728000000,
+  "profileId": "profile-param-123",
+  "user": {
+    "firstName": "Param",
+    "lastName": "V",
+    "gooruUId": "param-123",
+    "meta": {
+      "taxonomyPreference": {
+        "codeId": [
+          "24146",
+          "27787",
+          "30424",
+          "42236",
+          "42237",
+          "79622"
+        ],
+        "code": [
+          "CCSSM",
+          "CCSS",
+          "CA",
+          "CASK5",
+          "CAS612",
+          "C3"
+        ]
+      }
+    }
+  }
+}

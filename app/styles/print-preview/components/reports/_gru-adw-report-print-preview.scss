@@ -1,0 +1,25 @@
+.adw-report-preview {
+  display: block;
+  .student-evidence {
+    page-break-inside: avoid;
+    page-break-after: always !important;
+    page-break-before: always !important;
+    min-height: 900px;
+    .student-data {
+      .evidence-data {
+        .image-container {
+          display: block;
+        }
+      }
+    }
+  }
+  .pagebreak {
+    page-break-after: always !important;
+    page-break-before: always !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 40px;
+  }
+}
+.reports.pull-up-collection-report {
+  position: absolute;
+}

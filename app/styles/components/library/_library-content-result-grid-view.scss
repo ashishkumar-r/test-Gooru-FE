@@ -1,0 +1,346 @@
+.library-content-result-grid {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .contents {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    margin-top: 10px;
+
+    @media screen and (min-width: $screen-in-1024) {
+      &.course,
+      &.assessment,
+      &.collection,
+      &.offline-activity {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
+
+    @media screen and (max-width: $screen-in-1150) and (min-width: $screen-in-1024) {
+      grid-template-columns: repeat(3, 1fr);
+
+      &.question,
+      &.resource,
+      &.rubric {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    &.course {
+      grid-template-columns: repeat(4, 1fr);
+      @media screen and (max-width: $screen-in-1150) and (min-width: $screen-in-1024) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .card {
+        .new-cards.gru-standard-card {
+          width: 304px;
+        }
+      }
+    }
+
+    &.no-content {
+      grid-template-columns: none !important;
+
+      .panel.add-content {
+        border-radius: 5px;
+        width: 100%;
+        margin-top: 30px;
+        padding: 60px 50px 40px;
+        margin: auto;
+
+        &.search {
+          width: 50%;
+        }
+
+        .panel-body {
+          text-align: center;
+
+          p {
+            margin-top: 20px;
+            font-size: $font-size-large;
+          }
+
+          button {
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 14px;
+          }
+
+          .gru-icon.explore {
+            font-size: 150px;
+            opacity: 0.1;
+          }
+        }
+      }
+    }
+
+    .three-bounce-spinner {
+      grid-column-start: 3;
+    }
+
+    .card {
+      display: flex;
+      justify-content: center;
+
+      .gru-resource-card {
+        margin-bottom: 15px;
+
+        .panel-heading {
+          .header {
+            .resource-info {
+              .search-type-position {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+
+        .title.rubric {
+          display: inline-block;
+          width: 79%;
+          color: $blue-400;
+          font-size: 16px;
+          line-height: 1.2;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-height: 40px;
+          margin: 2px 0 5px 13px;
+          background: $white;
+        }
+      }
+
+      .new-cards.gru-standard-card {
+        margin: 10px;
+        height: auto;
+        padding-top: 12px;
+        width: 250px;
+
+        .panel {
+          margin-bottom: 23px;
+        }
+
+        .panel .panel-heading {
+          background-color: $table-bg;
+          height: 168px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          padding: 0;
+          position: relative;
+
+          .info {
+            .question-resources {
+              visibility: hidden;
+            }
+
+            .title-section {
+              margin: 50px 0 10px;
+
+              .title {
+                width: 209px;
+                height: 38px;
+                font-weight: bold;
+                text-align: $tab-float-dir;
+                $line-height: 1.5;
+                $lines-to-show: 2;
+                @include ellipsis(
+                  $font-size: 13px,
+                  $line-height: $line-height,
+                  $lines-to-show: 2
+                );
+              }
+            }
+          }
+
+          &:after {
+            margin-top: 67px !important;
+            height: 60%;
+          }
+        }
+
+        .panel {
+          .panel-body {
+            border-top: 1px solid $gray-lighter;
+
+            .standards {
+              margin: 3px 0;
+
+              .gru-taxonomy-tag-list {
+                .gru-taxonomy-tag {
+                  width: auto;
+                  height: 36px;
+                  object-fit: contain;
+                  border-radius: 3px;
+                  background-color: $light-300;
+                  div {
+                    > b {
+                      color: $font-white-dark-400;
+                    }
+
+                    > span {
+                      color: $font-white-dark-400;
+                    }
+                  }
+
+                  .content {
+                    margin: 0;
+                  }
+                }
+              }
+            }
+
+            .remixed-by {
+              span.title {
+                width: 65px;
+                line-height: 1.69;
+                font-style: italic;
+              }
+
+              .owner {
+                margin-left: 4px;
+                max-width: 85px;
+              }
+            }
+
+            .description {
+              width: auto;
+              height: 75px;
+              font-size: 13px;
+              line-height: 1.15;
+              text-align: $tab-float-dir;
+              color: $gray;
+
+              .truncate {
+                $line-height: 1.5;
+                $lines-to-show: 3;
+                @include ellipsis(
+                  $font-size: 13px,
+                  $line-height: $line-height,
+                  $lines-to-show: 3,
+                  $excerpt-bg: $white
+                );
+              }
+            }
+
+            .cca-icon-btn {
+              .units-icon {
+                float: $tab-float-dir;
+                margin-top: 5px;
+
+                i {
+                  background: url("gooru/images/units-gray.svg");
+                  width: 15px;
+                  height: 15px;
+                  display: block;
+                }
+              }
+
+              .unit-text {
+                margin-left: 25px;
+                line-height: 25px;
+              }
+            }
+
+            .publish-icon {
+              width: 30px;
+              float: $menu-float-dir;
+
+              .badge-icon {
+                margin-top: 5px;
+                margin-right: 9px;
+              }
+            }
+
+            .visibility {
+              float: $menu-float-dir;
+
+              .cca-eye-icon {
+                margin-top: 2px;
+              }
+            }
+          }
+
+          .cca-first {
+            padding: 4px 15px;
+            height: 35px;
+
+            .visible_false {
+              color: $font-lite-gray-medium-gray;
+              float: $menu-float-dir;
+            }
+          }
+
+          .panel-footer {
+            padding: 0;
+
+            .actions {
+              width: auto;
+
+              .course-icon-btn {
+                border-left: solid 1px $gray-ultra-light;
+                width: 45px;
+                text-align: center;
+                display: block;
+
+                > a {
+                  color: $dark-gray-4c;
+                  display: block;
+                  margin-top: 12px;
+                }
+
+                .course-mode-edit > i {
+                  font-size: 21px;
+                }
+              }
+            }
+
+            .options {
+              width: 100%;
+              padding: 0;
+
+              .preview-btn {
+                width: 74px;
+                height: 44px;
+                background-color: $blue-400;
+              }
+
+              .course-icon-btn {
+                border-right: solid 1px $gray-ultra-light;
+                width: auto;
+                text-align: center;
+                display: block;
+
+                .course-mode-edit > i {
+                  font-size: 21px;
+                }
+              }
+
+              .play-btn {
+                color: $blue-400;
+                padding: 6px 6px 0 0;
+                margin: 3px 10px;
+              }
+
+              .course-add-btn {
+                font-size: 21px;
+              }
+            }
+          }
+
+          .cca-description {
+            height: 100px;
+            padding-bottom: 2px;
+          }
+
+          .cca-standards {
+            height: 52px;
+          }
+        }
+      }
+    }
+  }
+}

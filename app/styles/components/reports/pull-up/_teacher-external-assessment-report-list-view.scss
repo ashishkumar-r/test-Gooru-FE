@@ -1,0 +1,284 @@
+.teacher-external-assessment-list-view {
+  position: relative;
+
+  .list-view-container {
+    .table-fixed-left {
+      border-collapse: collapse;
+      width: 356px;
+      float: left;
+      overflow-x: auto;
+      white-space: nowrap;
+      text-align: left;
+      z-index: 2;
+
+      table {
+        width: 100%;
+        table-layout: fixed;
+        word-break: break-all;
+
+        th {
+          font-weight: normal;
+          border-right: 1px dashed $gray-80;
+          border-left: 1px solid $gray-80;
+          height: 40px;
+          border-bottom: 1px solid $gray-80;
+          overflow: hidden;
+
+          &.tabular-header {
+            position: relative;
+            background-color: $white;
+            border-bottom: 0;
+          }
+
+          .header-filters {
+            height: 40px;
+            display: flex;
+            border-bottom: 1px solid $gray-80;
+
+            .name-filter {
+              height: 40px;
+              width: 305px;
+              padding-top: 9px;
+              display: flex;
+              margin-left: 45px;
+
+              .first-header,
+              .last-header,
+              .name-header {
+                margin-right: 10px;
+              }
+
+              .first-header,
+              .last-header {
+                display: flex;
+                opacity: 0.5;
+                cursor: pointer;
+
+                &.active {
+                  opacity: 1;
+                }
+              }
+            }
+
+            .score {
+              width: 70px;
+              height: 40px;
+              padding-top: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              opacity: 0.5;
+              &.active {
+                opacity: 1;
+              }
+              i {
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+
+        .user-profile-summary {
+          display: flex;
+          height: 45px;
+
+          .selected-user-for-suggestion {
+            width: 29px;
+            background: $tan-hide;
+            border-radius: 50%;
+            line-height: 19px;
+            box-shadow: 0 0 7px 0 $box-shadow-bg-color;
+            color: $white;
+            height: 29px;
+            margin-left: 6px;
+            margin-top: 29px;
+
+            .done_all {
+              position: relative;
+              top: 3px;
+              left: 3px;
+            }
+
+            .de-select-user {
+              position: relative;
+              top: -29px;
+              width: 29px;
+              height: 29px;
+              background: $box-shadow-bg-color;
+              border-radius: 50%;
+              line-height: 19px;
+              visibility: hidden;
+              opacity: 0;
+              transition: opacity 0.3s, visibility 0.3s;
+
+              .close {
+                font-size: 16px;
+                margin-right: 6px;
+                margin-top: 3px;
+              }
+            }
+
+            &:hover {
+              .de-select-user {
+                visibility: visible;
+                opacity: 1;
+                transition: opacity 0.3s, visibility 0.3s;
+              }
+            }
+          }
+
+          .user-profile-details {
+            width: 305px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &.not-started {
+              pointer-events: none;
+            }
+
+            .user-profile-img {
+              width: 43px;
+
+              img {
+                width: 29px;
+                border-radius: 50%;
+                margin-left: 7px;
+                border-color: $table-bg;
+                height: 29px;
+
+                &.selected {
+                  visibility: hidden;
+                }
+              }
+            }
+
+            .username {
+              width: 200px;
+              @include ellipsis(
+                $font-size: 13px,
+                $line-height: 1.2,
+                $lines-to-show: 1
+              );
+            }
+          }
+        }
+
+        .score-details {
+          width: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .suggest-bar {
+    width: 100%;
+    height: 40px;
+    background: $orange-49;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .suggest-bar-container {
+      display: flex;
+
+      .close-all-suggestion {
+        width: 50px;
+        height: 40px;
+
+        .close {
+          font-size: 24px;
+          color: $white;
+          margin-top: 9px;
+          opacity: 1;
+          font-weight: 600;
+        }
+      }
+
+      .no-of-student-selected {
+        width: 527px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        margin-left: 31px;
+        font-size: 16px;
+        color: $white;
+        font-weight: 600;
+      }
+
+      .suggestion-count-container {
+        width: 145px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        span {
+          text-transform: uppercase;
+          color: $white;
+          font-size: 12px;
+          font-weight: 600;
+          margin-right: 10px;
+        }
+
+        .suggestion-explore {
+          width: 20px;
+          border-radius: 50%;
+          background: $suggestion-explore-bg;
+          height: 20px;
+          box-shadow: 0 0 5px 1px $explore-box-shadow;
+          margin-top: 2px;
+          color: $white;
+          position: relative;
+
+          .explore {
+            transform: rotate(90deg);
+            margin-top: -2px;
+            margin-left: -2px;
+          }
+
+          .suggestion-count {
+            width: 16px;
+            border-radius: 50%;
+            background: $white;
+            position: absolute;
+            line-height: 14px;
+            top: -5px;
+            height: 16px;
+            left: 14px;
+            color: $gray-4a;
+            border: 1px solid $gray-4a;
+            font-size: 9px;
+            text-indent: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  .external-assessment-link {
+    text-align: left;
+    width: 360px;
+    font-size: 15px;
+    margin: 60px 0;
+    float: right;
+    color: $dark-400;
+    .note {
+      margin-bottom: 8px;
+    }
+    .link {
+      color: $link-blue-color;
+    }
+  }
+}

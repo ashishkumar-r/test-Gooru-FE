@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <span class="modal-title">
+    {{#if isOA}}
+      {{t 'gru-add-to.add-OA-to-lesson'}}
+    {{else}}
+      {{#if isCollection}}
+        {{t 'gru-add-to.add-collection-to-lesson'}}
+      {{else}}
+        {{t 'gru-add-to.add-assessment-to-lesson'}}
+      {{/if}}
+    {{/if}}
+  </span>
+</div>
+<div class="modal-body">
+  <div class="description">
+    <span>
+      {{#if isOA}}
+        {{t 'gru-add-to.add-oa-to-lesson-lead'}}
+      {{else}}
+        {{#if isCollection}}
+          {{t 'gru-add-to.add-collection-to-lesson-lead'}}
+        {{else}}
+          {{t 'gru-add-to.add-assessment-to-lesson-lead'}}
+        {{/if}}
+      {{/if}}
+    </span>
+    <div class="search">
+      {{gru-icon name='search'}}
+      {{validation/gru-input model=searchObject valuePath='term' placeholder=(t "common.search-placeholder") hasClearButton=true onEnter=(action "updateContent" value=term) onClearContent='clearContent'}}
+    </div>
+  </div>
+  <div class="info">
+    {{gru-icon name='info'}}
+    <span>
+      {{#if isOA}}
+        {{t 'gru-add-to.OA-info'}}
+      {{else}}
+        {{#if isCollection}}
+          {{t 'gru-add-to.collections-info'}}
+        {{else}}
+          {{t 'gru-add-to.assessments-info'}}
+        {{/if}}
+      {{/if}}
+    </span>
+  </div>
+  <div class="list">
+    {{#each filteredCollections as |collection|}}
+      <div class="{{collection.id}} collection" {{action "selectCollection" collection}}>
+        {{cards/gru-collection-card
+        collection=collection
+        isSmall=true}}
+      </div>
+    {{/each}}
+    {{#if showMoreResultsButton}}
+      <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+    {{/if}}
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="btn-group visible-xs">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+      <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    <button type="button" class="btn btn-primary add-to" {{action "addTo"}} disabled={{if (and hasSelectedCollection isCollectionOrAssesment) '' 'true'}}>{{t 'common.add'}}</button>
+  </div>
+  <div class="hidden-xs">
+    <button type="button" class="btn btn-empty cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+      <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    <button disabled={{if (and hasSelectedCollection isCollectionOrAssesment) '' 'true'}} type="button" class="btn btn-primary add-to" {{action "addTo"}}>{{t 'common.add'}}</button>
+  </div>
+</div>

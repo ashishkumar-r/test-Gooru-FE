@@ -1,0 +1,261 @@
+<div class="students-progress-report-container">
+  <div class="student-basic-details">
+    <div class="student-details-section">
+      <div class="student-profile-section">
+        <span class="profile-icon">
+          <img src="{{studentProfile.thumbnailUrl}}" alt="profile-icon">
+        </span>
+        <div class="student-grade-name">
+          <span class="name">{{studentProfile.lastName}} {{studentProfile.firstName}}</span>
+          <span class="grade"><b>{{class.title}}</b> / {{class.owner.fullName}}</span>
+        </div>
+      </div>
+      <div class="student-external-options">
+        {{gru-icon name="calendar_today"}}
+        <div class="student-time-period">
+          <span class="title">{{t 'student-landing.my-performance.time-period'}}</span>
+          <span class="date">
+            {{#if startDate}}{{format-date startDate 'DD MMMM YYYY'}} - {{/if}} {{format-date endDate 'DD MMMM YYYY'}}
+            <button class="btn btn-success print-preview submit-btn date-wise-report-button" {{action 'showDateWisereport' }}>{{unless dateWiseReport (t 'common-date-wise-report') (t
+              'common-overview-report')}}</button>
+          </span>
+        </div>
+        <div class="dropdown show print-preview">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{gru-icon name="download_for_offline"}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#" onclick={{action 'onDownloadCSV' }} onkeypress={{action 'onDownloadCSV' }}> {{t "common-csv-label"}} </a>
+            <a class="dropdown-item" href="#" onclick={{action 'onPrintStudentData' }} onkeypress={{action 'onPrintStudentData' }}> {{t "common-pdf-label"}} </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="student-performance-section">
+      <div class="student-competency-status-panel">
+        <div class="count-card mastered">
+          {{gru-icon name="remove_circle"}}
+          <div class="card-titles">
+            <span class="title">{{t 'common.mastery'}}</span>
+            <span class="count">{{totalMasteryCount}} {{t 'common.competencies'}} ( {{reportData.diagnosticGainedStatus}} {{t 'domain-diagnostics'}} )</span>
+          </div>
+        </div>
+        <div class="count-card inprogress">
+          {{gru-icon name="remove_circle"}}
+          <div class="card-titles">
+            <span class="title">{{t 'profile.proficiency.in-progress'}}</span>
+            <span class="count">{{reportData.inprogressCompetenciesCount}} {{t 'common.competencies'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="student-timespent-activties-panel">
+        <div class="count-card">
+          {{gru-icon name="update"}}
+          <div class="card-titles">
+            <span class="title">{{t 'common.timeSpent'}}</span>
+            <span class="count">{{if reportData.totalTimespent (format-time reportData.totalTimespent) '--'}}</span>
+          </div>
+        </div>
+        <div class="activites-counts">
+          <div class="count-card">
+            <span class="assessments-icon"> <img src="/assets/gooru/images/assessment-gray.svg" alt="assessment">
+            </span>
+            <div class="card-titles">
+              <span class="title">{{t 'common.assessment'}}</span>
+              <span class="count">{{if reportData.assessmentTimespent (format-time reportData.assessmentTimespent)
+                '--'}}</span>
+            </div>
+          </div>
+          <div class="count-card">
+            <span class="collections-icon"> <img src="/assets/gooru/images/collection_gray.svg" alt="collection">
+            </span>
+            <div class="card-titles">
+              <span class="title">{{t 'common.collection'}}</span>
+              <span class="count">{{if reportData.collectionTimespent (format-time reportData.collectionTimespent)
+                '--'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="student-analytic-report">
+    <div class="analytic-panel">
+      <span class="analytic-icons mastered-icon">
+        <img src="/assets/gooru/images/mastered-icon.svg" alt="mastered">
+      </span>
+      <span class="title">{{t 'profile.proficiency.mastered'}}</span>
+      <span class="description">{{if reportData.masteryChallengeCount reportData.masteryChallengeCount 0}} {{t
+        'common.challenges'}}</span>
+    </div>
+    {{#unless streakStats.streakCompetencies}}
+      <div class="analytic-panel">
+        <div>
+          <span class="analytic-icons">
+            <img src="/assets/gooru/images/lesson-blue.svg" alt="lesson">
+          </span>
+          <span class="title">{{t 'cp.longest-mastery-streak'}}</span>
+          <span class="description">{{if streakStats.streakCompetencies streakStats.streakCompetencies 0}} {{t
+          'cp.lesson-in-row'}}</span>
+        </div>
+      </div>
+    {{/unless}}
+    {{#unless masteredStats.totalMastered}}
+      <div class="analytic-panel">
+        <div>
+          <span class="analytic-icons">
+            <img src="/assets/gooru/images/assessment-dark-blue.svg" alt="mastered">
+          </span>
+          <span class="title">{{t 'cp.score-at-90'}}</span>
+          <span class="description">{{if masteredStats.totalMastered masteredStats.totalMastered 0}} {{t
+          'common.assessments'}}</span>
+        </div>
+      </div>
+    {{/unless}}
+    <div class="analytic-panel">
+      <span class="analytic-icons suggest-icon">
+        {{gru-icon name="explore"}}
+      </span>
+      <span class="title">{{t 'common.suggestions'}}</span>
+      <span class="description">{{if performanceData.acceptedSuggestions performanceData.acceptedSuggestions 0}} {{t
+        'common.taken'}}</span>
+    </div>
+  </div>
+  {{#if dateWiseReport}}
+    <div class="activity-content-list-container-datewise">
+      <div class="competencies-mastered-list-panel">
+        {{#if studentCompetenciesReport.length}}
+          {{#each studentCompetenciesReport as |datewiseList index|}}
+            <div class="student-competency-info">
+              <div data-toggle="collapse" class="report-date" data-target="#date-{{index}}" data-parent="#competency-group" onclick={{action "onToggleCollapse" index}} onkeypress={{action "onToggleCollapse" index}} tabindex={{tabindex}}>
+                <span> {{gru-icon name=(if (eq expandIndex index) 'keyboard_arrow_up' 'keyboard_arrow_down') }} </span>
+                <span> {{format-date datewiseList.reportDate 'DD MMM YYYY'}} </span>
+              </div>
+              <div id="date-{{index}}" class="collapse">
+                <div class="competency-info">
+                  {{#each datewiseList.competency as |competency|}}
+                    {{#each competency.activities as |item|}}
+                      {{proficiency/inspect/gru-cp-activity-card
+            content=item
+            showDateWiseReport = true
+            onShowReport="onShowReport"
+            isHideScore=(if (and competency.source (eq competency.source 'diagnostic')) true false)
+            }}
+                    {{/each}}
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    </div>
+  {{else}}
+    <div class="activity-content-list-container">
+      <div class="competencies-progress-list">
+        <div class="competencies-target-list">
+          <div class="title-head">{{t 'class-progress-report.individual-report.competencies-mastery-new'}}</div>
+          {{#if masteredList.length}}
+            {{#each masteredList as |content|}}
+              {{proficiency/inspect/gru-cp-activity-card
+              content=content
+              showDateWiseReport = false
+              onShowReport="onShowReport"
+              }}
+            {{/each}}
+          {{else}}
+            <div class="no-content-message">{{t 'class-progress-report.individual-report.competencies-mastery-message'}}
+              <b>{{#if startDate}}{{format-date startDate 'DD MMMM YYYY'}} - {{/if}} {{format-date endDate 'DD MMMM
+            YYYY'}}</b>
+            </div>
+          {{/if}}
+        </div>
+        <div class="competencies-target-list">
+          <div class="title-head">{{t 'class-progress-report.individual-report.gained-from-diagnostics'}}</div>
+          {{#if diagnosticsMastery.length}}
+            {{#each diagnosticsMastery as |content|}}
+              {{proficiency/inspect/gru-cp-activity-card
+        content=content
+        showDateWiseReport = false
+        onShowReport="onShowReport"
+        isDisableScore=true
+        isHideScore=true
+        }}
+            {{/each}}
+          {{else}}
+            <div class="no-content-message">{{t 'cp.diagnostic-message'}}
+              <b>{{#if startDate}}{{format-date startDate 'DD MMMM YYYY'}} - {{/if}} {{format-date endDate 'DD MMMM
+            YYYY'}}</b>
+            </div>
+          {{/if}}
+        </div>
+        <div class="competencies-target-list">
+          <div class="title-head">{{t 'reinforced-gains'}}</div>
+          {{#if reinforcedGains.length}}
+            {{#each reinforcedGains as |content|}}
+              {{proficiency/inspect/gru-cp-activity-card
+              content=content
+              showDateWiseReport = false
+              onShowReport="onShowReport"
+              }}
+            {{/each}}
+          {{else}}
+            <div class="no-content-message">{{t 'cp.reinforced-message'}}
+              <b>{{#if startDate}}{{format-date startDate 'DD MMMM YYYY'}} - {{/if}} {{format-date endDate 'DD MMMM
+            YYYY'}}</b>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="competencies-progress-list">
+        <div class="competencies-target-list">
+          <div class="title-head">{{t 'cp.target-of-growth'}}</div>
+          {{#if growthList.length}}
+            {{#each growthList as |content|}}
+              {{proficiency/inspect/gru-cp-activity-card
+        content=content
+        showDateWiseReport = false
+        onShowReport="onShowReport"
+        }}
+            {{/each}}
+          {{else}}
+            <div class="no-content-message">{{t 'cp.target-of-growth-message'}} <b>{{#if startDate}}{{format-date startDate
+            'DD MMMM YYYY'}} - {{/if}} {{format-date endDate 'DD MMMM YYYY'}}</b> </div>
+          {{/if}}
+
+        </div>
+        <div class="competencies-areas-concern">
+          <div class="title-head">{{t 'cp.area-of-concern'}}</div>
+          {{#if concernList.length}}
+            {{#each concernList as |content|}}
+              {{proficiency/inspect/gru-cp-activity-card
+        content=content
+        showDateWiseReport = false
+        onShowReport="onShowReport"
+        }}
+            {{/each}}
+          {{else}}
+            <div class="no-content-message">{{t 'cp.area-of-concern-message'}} <b>{{#if startDate}}{{format-date startDate
+            'DD MMMM YYYY'}} - {{/if}} {{format-date endDate 'DD MMMM YYYY'}}</b> </div>
+          {{/if}}
+        </div>
+        <div class="competencies-target-list">
+          <div class="title-head">{{t 'incomplete-competencies'}}</div>
+          {{#if assessmentInProgress.length}}
+            {{#each assessmentInProgress as |content|}}
+              {{proficiency/inspect/gru-cp-activity-card
+        content=content
+        showDateWiseReport = false
+        onShowReport="onShowReport"
+        isDisableScore=true
+        }}
+            {{/each}}
+          {{else}}
+            <div class="no-content-message">{{t 'cp.in-progress-message'}} <b>{{#if startDate}}{{format-date startDate
+            'DD MMMM YYYY'}} - {{/if}} {{format-date endDate 'DD MMMM YYYY'}}</b> </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</div>

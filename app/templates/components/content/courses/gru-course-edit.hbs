@@ -1,0 +1,187 @@
+<header>
+  <a {{action "courseEditBackButton"}} class="back-to">
+    <div>
+      {{gru-icon name="keyboard_arrow_left"}}
+      {{#if isLibraryContent}}
+        {{t 'common.back'}}
+      {{else}}
+        {{t 'common.course'}}: {{course.title}}
+      {{/if}}
+    </div>
+  </a>
+  <h1>{{t "common.edit-course"}}</h1>
+  <div class="actions">
+    <button class="btn btn-default btn-icon" title="{{t 'common.delete'}}" onclick={{action "deleteCourse"}} onkeypress={{action "deleteCourse"}} tabindex={{tabindex}}>{{gru-icon name="delete"}}</button>
+    <button class="btn btn-default btn-icon out-of-scope" title="{{t 'common.add-collaborator'}}" tabindex={{tabindex}}>{{gru-icon name="person_add"}}</button>
+    {{#gru-share-pop-over tagName="button" type="course"}}
+      {{gru-icon name="insert_link"}}
+    {{/gru-share-pop-over}}
+    <button class="btn btn-default out-of-scope" tabindex={{tabindex}}>{{t "content.courses.edit.assign-to-class"}}</button>
+    {{#link-to 'content.courses.play' course.id class="btn btn-default preview" tagName="button"}}{{t "common.preview"}}{{/link-to}}
+  </div>
+  <nav>
+    {{#gru-scroll to="#information" class="selected" offset='article > header'}}{{t "common.information"}}{{/gru-scroll}}
+    {{#gru-scroll to="#builder" offset='article > header'}}{{t "common.builder"}}{{/gru-scroll}}
+    {{#gru-scroll to="#settings" offset='article > header'}}{{t "common.settings"}}{{/gru-scroll}}
+    {{#gru-scroll to="#collaborators" offset='article > header'}}{{t "common.add-collaborator"}}{{/gru-scroll}}
+  </nav>
+</header>
+<section id="information">
+  <div class="header">
+    <h2>{{t "common.information"}}</h2>
+    {{partial 'content/partials/information-actions'}}
+  </div>
+  <div class="content">
+    {{content/gru-image isEditing=isEditing model=tempCourse  srcImage=course.thumbnailUrl editImage=tempCourse.thumbnailUrl showAltText=true}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="title">
+          <label for="course title">
+            <span class="required">{{t "content.courses.edit.information.course-title"}}</span>
+            {{#if isEditing}}
+              {{validation/gru-input inputId='course title' model=tempCourse valuePath='title' maxLength=50 didValidate=didValidate tabindex=tabindex}}
+            {{else}}
+              <b>{{course.title}}</b>
+            {{/if}}
+          </label>
+        </div>
+        <div class="description">
+          <label>
+            <span>{{t "content.courses.edit.information.description"}}</span>
+            {{#if isEditing}}
+              {{gru-rich-text-editor content=tempCourse.description model=tempCourse valuePath='description' tabindex=tabindex}}
+            {{else}}
+              {{#if course.description}}
+                <div class="text-description">{{safe-html course.description}}</div>
+                {{else}}
+                 <b>{{t 'common.not-provided'}}</b>
+              {{/if}}
+            {{/if}}
+          </label>
+        </div>
+
+        <div class="summary description">
+          <label for="information summary">
+            <span>{{t "content.courses.edit.information.summary"}}</span>
+            {{#if isEditing}}
+              {{validation/gru-textarea title='information summary' rawTextareaValue=tempCourse.summary model=tempCourse valuePath='summary' rows=5 tabindex=tabindex}}
+            {{else}}
+              {{#if course.summary}}
+                <div class="text-description">{{safe-html course.summary}}</div>
+                {{else}}
+                  <b>{{t 'common.not-provided'}}</b>
+              {{/if}}
+            {{/if}}
+          </label>
+        </div>
+
+        {{taxonomy/gru-taxonomy-selector
+          isEditing=isEditing
+          onSubjectSelected="selectSubject"
+          onTaxonomySelected="selectTaxonomy"
+          selectedSubject=(if isEditing tempCourse.mainSubject course.mainSubject)
+          selectedTaxonomy=(if isEditing tempCourse.taxonomy course.taxonomy)
+          showCourses=true
+          tabindex=tabindex
+        }}
+        {{content/gru-audience isEditing=isEditing srcSelectedAudiences=course.audience editSelectedAudiences=tempCourse.audience tabindex=tabindex}}
+        <div class="use-case">
+          <label for="useCase">
+            <span>{{t "common.use-case"}}</span>
+            {{#if isEditing}}
+              {{validation/gru-textarea title='useCase' rawTextareaValue=tempCourse.useCase model=tempCourse valuePath='useCase' maxLength=500 rows=2 didValidate=didValidate tabindex=tabindex}}
+            {{else}}
+              {{#if course.useCase}}
+                {{textarea class="text-useCase" id='useCase' value=course.useCase class="form-control" rows=2 readonly=true tabindex=tabindex}}
+              {{/if}}
+            {{/if}}
+          </label>
+        </div>
+        <div class="dropdown publish-head">
+          <div>
+            <span>{{t "common.publisher"}}</span>
+          </div>
+          {{#if isEditing}}
+            <button class="dropbtn publish-btn" type="button" data-toggle="dropdown">
+             + Add <span class="caret"></span>
+            </button>
+            {{#if selectedPublisher}}
+              <button type="button" onclick={{action 'removePublish'}} onkeypress={{action 'removePublish'}} class="btn-audience btn-info btn btn-sm" tabindex={{tabindex}}>
+                        <span class="btn-label">{{selectedPublisher.name}}</span>
+                        <span class="remove-audience">{{gru-icon name="clear"}}</span>
+                      </button>
+            {{/if}}
+            <ul class="dropdown-menu publish-list">
+              {{#each publisherAll as | publish index|}}
+               <li class='publish-name'>
+                 <label for="radio-{{index}}">
+                 <input type="radio" name='radio' id="radio-{{index}}" value="{{publish.id}}" onchange={{action 'onSelected' publish}}/>
+                 <span>{{publish.name}}</span>
+                 </label>
+                 </li>
+              {{/each}}
+            </ul>
+          {{else}}
+        <div>
+          {{#if tempCourse.publisherId}}
+                <div class="btn-empty btn btn-sm">{{selectedPublisher.name}}</div>
+          {{else}}
+            <span>{{t "common.not-specified"}}</span>
+          {{/if}}
+        </div>
+      {{/if}}
+</div>
+      {{content/etl/gru-etl-second isEditing=isEditing tempData=tempCourse isComputedEtl=true  modalvalue=course valueHours='hours' valueMins='minutes'estimatedHours=course.hours estimatedMinutes=course.minutes labelText=(t 'common-estimate-time-learn-title') tabindex=tabindex}}
+      </div>
+    </div>
+  </div>
+</section>
+<section id="builder">
+  {{content/courses/edit/gru-accordion-course
+  model=course
+  items=course.children
+  selectedLessonId=selectedLessonId
+  onLocationChange='setLocation'
+  tabindex=tabindex
+  hasCollaborator=hasCollaborator
+  }}
+</section>
+{{content/gru-settings-edit id="settings" action='publishToProfile' model=course tabindex=tabindex}}
+<section id="collaborators">
+  <div class="header">
+    <h2>{{t "common.add-collaborator"}}</h2>
+    <div class="actions">
+      <button tabindex={{tabindex}} class="btn btn-primary add-collaborator {{if (not-eq selfId course.creatorId) 'disable-event disable-color' }} " {{action 'onToggleAddCollaborator'}}>{{gru-icon name="add"}}</button>
+    </div>
+  </div>
+  <div class="content panel">
+    <div class='sub-sec-coteach'>
+      <div class="add-collaborator-panel">
+        {{teacher/class/gru-add-collaborator
+          onAddCollaborators = "onAddCollaborators"
+          onToggleAddCollaborator = "onToggleAddCollaborator" class=course
+          tabindex=tabindex}}
+      </div>
+      {{#if collaborators}}
+        <div class='sub-sec-head'>{{t 'common.collaborators'}}</div>
+        {{#each collaborators as |coteacher|}}
+          <div class='sub-sec-row'>
+            <div class='teacher-icon' style="background-image: url({{coteacher.avatarUrl}})"></div>
+            <div class='co-teacher-label'> {{coteacher.lastName}}, {{coteacher.firstName}}
+              {{#if (eq coteacher.id course.creatorId)}}
+                <span class='font-bold'>
+                  ( {{t 'common.content-owner'}} )
+                </span>
+              {{/if}}
+            </div>
+            {{#unless (eq coteacher.id course.creatorId)}}
+              <div class="delete-co-teacher {{if (not-eq selfId course.creatorId) 'disable-event disable-color' }}" onclick={{action 'removeCoteacher' coteacher}} onkeypress={{action 'removeCoteacher' coteacher}} tabindex={{tabindex}} title="{{t 'common.remove'}}" data-toggle="tooltip"> {{gru-icon name='delete'}}</div>
+            {{/unless}}
+          </div>
+        {{/each}}
+      {{else}}
+        <div class="no-collaborators">{{t 'common.no-collaborators'}}</div>
+      {{/if}}
+    </div>
+  </div>
+</section>

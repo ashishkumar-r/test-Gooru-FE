@@ -1,0 +1,36 @@
+<div class="controller guest-sign-in row">
+  <div class="sign-in-wrapper col-md-12 col-sm-12 col-xs-12">
+    <div class="sign-in-header">
+      <div class="guest-logo"></div>
+      <div class="title">{{t 'guest.title'}}</div>
+      <div class="description">
+        <span class="info">{{t 'guest.title-description'}}</span>
+        <span class="link">{{t 'guest.download'}}  <a href="../../assets/Navigator-Exploration-Guide.pdf" download="Navigator Exploration Guide.pdf" target="_blank">{{t 'guest.download-link'}}</a></span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="role-sign-in">
+      <div class="teacher-sign-in">
+        <div class="role">{{t 'common.teacher'}}</div>
+        <div class="details">{{t "guest.teacher-details"}}</div>
+        <div class="log-in-button form-group text-center">
+          <button class="btn btn-success submit-sign-in" {{action "authenticate" 'teacher'}}>{{t "guest.login-teacher"}} <span>{{gru-icon name='keyboard_arrow_right'}}</span></button>
+        </div>
+      </div>
+      <div class="student-sign-in">
+        <div class="role">{{t 'common.student'}}</div>
+        <div class="details">{{t "guest.student-details"}}</div>
+        <div class="log-in-button form-group text-center">
+          <button class="btn btn-success submit-sign-in" {{action "authenticate"}}>{{t "guest.login-student"}} <span>{{gru-icon name='keyboard_arrow_right'}}</span></button>
+        </div>
+      </div>
+      <div class="admin-sign-in">
+        <div class="role">{{t 'guest.leadership'}}</div>
+        <div class="details">{{t "guest.admin-description"}}</div>
+        <div class="log-in-button form-group text-center">
+          <button class="btn btn-success submit-sign-in" {{action "adminLogin"}}>{{t "guest.admin-login-btn"}} <span>{{gru-icon name='keyboard_arrow_right'}}</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

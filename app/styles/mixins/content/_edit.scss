@@ -1,0 +1,711 @@
+.account-settings .app-container,
+.content_assessments_edit .app-container,
+.content_collections_edit .app-container,
+.content_courses_edit .app-container,
+.content_courses_play .app-container,
+.content_questions_edit .app-container,
+.content_questions_play .app-container,
+.content_resources_edit .app-container,
+.content_resources_play .app-container,
+.content_rubric_edit .app-container {
+  padding-left: 0;
+  padding-right: 0;
+
+  > .controller {
+    display: block;
+  }
+}
+
+.content.rubric.preview,
+.controller.account-settings,
+.controller.content.assessments.edit,
+.controller.content.collections.edit,
+.controller.content.courses.edit,
+.controller.content.courses.play,
+.controller.content.questions.edit,
+.controller.content.questions.play,
+.controller.content.resources.edit,
+.controller.content.resources.play {
+  $aside-padding: 25px;
+
+  .gru-image {
+    &.picker-error {
+      margin-bottom: 70px;
+    }
+
+    .validation {
+      bottom: -55px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+      object-fit: cover;
+      margin: 0;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .file-picker {
+      width: 210px;
+      height: 185px;
+
+      .file-picker__preview > img {
+        width: 100%;
+        height: 185px;
+        padding: 5px;
+        object-fit: cover;
+        margin: 0;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+  @include flexbox();
+
+  > article {
+    @include flex();
+    padding-bottom: 50px;
+    min-width: 730px;
+
+    > header {
+      z-index: $zindex-navbar-fixed;
+      background-color: $dark-400;
+      padding: 20px 20px 0 5%;
+
+      h1,
+      nav > a {
+        color: $white;
+        display: inline-block;
+      }
+
+      h1 {
+        font-size: $font-size-h3;
+        margin: 0;
+      }
+
+      button.toggle {
+        float: $menu-float-dir;
+        color: $white;
+        border: 0 none;
+        background-color: $dark-400;
+        padding: 20px 15px 0;
+      }
+
+      .actions {
+        margin-top: 15px;
+        text-align: center;
+        /**
+         * Required to prevent actions menu breaking up nav layout in phones,
+         * it's below sm breakpoint so it must not be a problem
+         */
+        @media (min-width: 600px) {
+          float: $menu-float-dir;
+          text-align: $tab-float-dir;
+          margin-top: 5px;
+        }
+
+        .btn-icon {
+          padding: 5px 8px;
+
+          > i {
+            font-size: $font-size-h5;
+            line-height: 1.1;
+          }
+        }
+
+        .disable-button {
+          &:hover {
+            color: $btn-default-color;
+          }
+        }
+      }
+
+      nav {
+        padding-top: 15px;
+        white-space: nowrap;
+
+        a {
+          vertical-align: middle;
+          opacity: 0.6;
+          font-size: $font-size-h6;
+          padding: 5px;
+          margin-right: 5px;
+          border-bottom: 3px solid $dark-400;
+          @media (min-width: $screen-sm-min) {
+            padding: 5px 10px;
+            margin-right: 20px;
+          }
+
+          &.selected {
+            opacity: 1;
+            border-bottom-color: $white;
+          }
+        }
+      }
+
+      .back-to {
+        color: $white;
+        font-size: $font-size-large;
+
+        div {
+          margin-left: -12px;
+
+          i {
+            vertical-align: text-top;
+          }
+        }
+      }
+    }
+
+    > section {
+      padding-left: 5%;
+      padding-right: 5%;
+
+      h2 {
+        display: inline-block;
+        font-size: $font-size-h4;
+        padding: 0;
+        margin: 0;
+        line-height: 34px; // height of the buttons
+      }
+
+      .feedback_section {
+        .feedback_details {
+          width: 50px;
+        }
+      }
+
+      h3 {
+        font-size: $font-size-large;
+      }
+
+      .header {
+        border-bottom: 1px solid $gray-light;
+        margin-bottom: 25px;
+        padding: 40px 0 20px;
+
+        .detail {
+          float: $menu-float-dir;
+
+          > span:last-of-type {
+            display: inline-block;
+            padding-right: 20px;
+            border-right: 1px solid $gray-light;
+            line-height: 2.2;
+          }
+
+          .actions {
+            display: inline-block;
+            padding-left: 20px;
+
+            button {
+              font-size: 24px;
+              line-height: 1;
+              padding: 5px 7px;
+            }
+          }
+        }
+      }
+
+      .detail {
+        &.external-assessment,
+        &.external-collection {
+          display: grid;
+
+          .gru-file-picker {
+            input[type="text"][readonly] {
+              display: none;
+            }
+          }
+        }
+
+        .type {
+          display: flex;
+          column-gap: 20px;
+          align-items: center;
+          padding-bottom: 10px;
+
+          .select-type {
+            width: 100px;
+            height: 30px;
+          }
+
+          .dropdown {
+            ul {
+              padding-left: 15px;
+
+              li {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .error {
+          color: $brand-danger;
+          display: inline-block;
+          font-size: 12px;
+          margin-top: 4px;
+          width: fit-content;
+        }
+
+        .gru-file-picker {
+          width: fit-content;
+        }
+
+        .loading-spinner {
+          width: fit-content;
+          position: absolute;
+          padding-top: 45px;
+          padding-left: 85px;
+        }
+      }
+
+      .panel {
+        margin-bottom: 0;
+
+        .panel-body,
+        .panel-heading {
+          padding-left: 25px;
+          padding-right: 25px;
+        }
+
+        .panel-heading {
+          background-color: $white;
+          padding-top: 10px;
+          padding-bottom: 0;
+        }
+
+        .panel-body {
+          padding-bottom: 25px;
+
+          .answer-details {
+            display: flex;
+            align-items: center;
+            height: 33px;
+            font-size: 13px;
+
+            &.hints {
+              text-transform: capitalize;
+            }
+
+            label {
+              width: 10%;
+            }
+
+            .answer-text {
+              width: 90%;
+            }
+          }
+
+          .exemplar-answer {
+            clear: both;
+
+            &.hints {
+              h3,
+              label {
+                text-transform: capitalize;
+                font-size: 17px;
+              }
+              box-shadow: none;
+              padding-left: 0;
+
+              .gru-rich-text-editor .rich-editor {
+                min-height: 100px;
+              }
+            }
+          }
+        }
+
+        label span.required:after,
+        span.label.required:after {
+          content: " *";
+        }
+      }
+    }
+  }
+
+  > aside {
+    background-color: $white;
+    width: 18%;
+    padding: ($aside-padding - 10) 0 0 $aside-padding;
+
+    > div {
+      position: fixed;
+      margin-right: $aside-padding - 5;
+
+      h4 {
+        color: $gray;
+      }
+
+      p {
+        line-height: 1.5;
+        margin-bottom: 0.6em;
+      }
+    }
+  }
+
+  button.add-prefix {
+    padding: 5px 15px;
+  }
+
+  .add-prefix:before {
+    content: "+ ";
+  }
+
+  article.fixed-header {
+    > header {
+      padding-top: 5px;
+      position: fixed;
+
+      h1 {
+        display: none;
+      }
+
+      nav {
+        padding-top: 10px;
+      }
+    }
+
+    #information {
+      padding-top: 115px;
+    }
+  }
+
+  #accountInformation,
+  #information,
+  #privateInformation {
+    > .header {
+      .actions {
+        float: $menu-float-dir;
+      }
+    }
+
+    > .content {
+      @include flexbox();
+
+      .gru-image {
+        float: $tab-float-dir;
+        margin-right: 20px;
+      }
+
+      .panel {
+        border-radius: 6px;
+        @include flex();
+
+        .panel-body {
+          padding-top: 10px;
+
+          > div {
+            margin-top: 10px;
+
+            &:first-child {
+              margin: 0;
+            }
+
+            > label {
+              margin: 0;
+
+              b,
+              input {
+                display: block;
+              }
+
+              input {
+                outline: 0;
+              }
+
+              b {
+                font-size: $font-size-large;
+                font-weight: normal;
+              }
+
+              .form-group {
+                margin-bottom: 5px;
+              }
+
+              textarea {
+                line-height: $font-size-large;
+              }
+            }
+
+            > span.label,
+            > label > span {
+              color: $gray;
+              display: block;
+              font-size: 100%;
+              font-weight: normal;
+              text-align: $tab-float-dir;
+            }
+
+            .btn-empty {
+              margin-top: 5px;
+              border: 1px solid $gray-light;
+              background-color: $white;
+              cursor: auto;
+            }
+          }
+
+          .description {
+            p {
+              height: auto;
+              overflow: auto;
+              max-height: 118px;
+            }
+          }
+
+          .learning-objectives {
+            label {
+              width: 100%;
+
+              textarea {
+                width: 100%;
+                outline: none;
+                resize: none;
+              }
+            }
+          }
+          .read-activity {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            .read-action {
+              .read-dropdown {
+                margin-top: 15px;
+                .dropdown {
+                  .dropdown-menu {
+                    padding: 5px 5px;
+                    li {
+                      cursor: pointer;
+                      padding: 10px;
+                      border-bottom: 1px solid $gray-cf;
+                      line-height: 1.5;
+                    }
+                  }
+                  &.open {
+                    button {
+                      background-color: $blue-400;
+                    }
+                    .dropdown-menu {
+                      max-height: 300px;
+                      overflow-y: auto;
+                    }
+                  }
+                  button {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 310px;
+                  }
+                }
+              }
+              .errorMsg {
+                color: $red-400;
+              }
+              .selected-check-boxes {
+                display: grid;
+                grid-template-columns: 50% 50%;
+
+                .read-checkbox {
+                  height: 20px;
+                  cursor: pointer;
+                  float: left;
+                  margin-right: 10px;
+                  margin-top: 1px;
+
+                  i {
+                    font-size: 25px;
+                  }
+
+                  &.checked {
+                    background: url("/assets/gooru/images/check-circle-1.svg")
+                      no-repeat center;
+                    background-size: contain;
+                    border: none;
+                    display: block;
+                    height: 20px;
+
+                    i {
+                      visibility: hidden;
+                    }
+                  }
+                }
+              }
+            }
+            &.create-read-activity {
+              .read-action {
+                pointer-events: none;
+              }
+            }
+          }
+          .create-mode {
+            margin-top: -90px;
+          }
+        }
+      }
+    }
+  }
+
+  #settings {
+    .panel {
+      border-radius: 6px;
+      margin-bottom: 30px;
+
+      .panel-heading {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+
+        h3 {
+          padding-bottom: 15px;
+          border-bottom: 1px solid $gray-light;
+          margin-bottom: 0;
+          margin-top: 15px;
+        }
+      }
+
+      .panel-body {
+        .setting {
+          margin-top: 10px;
+
+          > span,
+          > i {
+            margin-right: 10px;
+          }
+
+          > i {
+            vertical-align: -6px;
+          }
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content.rubric,
+.content.rubric.preview,
+.controller.content.assessments.edit,
+.controller.content.collections.edit,
+.controller.content.courses.edit,
+.controller.content.courses.play {
+  #information .title > label {
+    display: block;
+    @media (min-width: $screen-lg) {
+      max-width: 500px;
+    }
+  }
+
+  #collaborators {
+    .header {
+      display: flex;
+      justify-content: space-between;
+
+      .actions {
+        .add-collaborator {
+          font-size: 24px;
+          line-height: 1;
+          padding: 5px 7px;
+        }
+      }
+    }
+
+    .content.panel {
+      .sub-sec-coteach {
+        padding: 20px 25px;
+
+        .add-collaborator-panel {
+          display: none;
+
+          .gru-add-collaborator {
+            .add-collaborator-container {
+              width: 100%;
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+
+        .sub-sec-head {
+          height: 14px;
+          font-size: 12px;
+          font-weight: bold;
+          line-height: normal;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+          margin-top: 12px;
+        }
+
+        .no-collaborators {
+          font-size: 16px;
+        }
+
+        .sub-sec-row {
+          border-top: 1px solid $sep-border-color;
+          display: flex;
+          align-items: center;
+          padding-top: 5px;
+          padding-bottom: 5px;
+
+          .teacher-icon {
+            display: inline;
+            width: 30px;
+            height: 30px;
+            background-size: contain;
+            border-radius: 50%;
+          }
+
+          .co-teacher-label,
+          .teacher-label {
+            width: 97px;
+            height: 15px;
+            font-family: Lato;
+            font-size: 15px;
+            line-height: 1;
+            display: inline;
+            flex: 1;
+            margin-left: 10px;
+            text-transform: capitalize;
+          }
+
+          .delete-co-teacher {
+            width: 14px;
+            height: 18px;
+            opacity: $opacity-lighter;
+            display: inline;
+            cursor: pointer;
+            margin-right: 15px;
+          }
+          /*  .row-add-another-teacher { */
+          /* This may be floating  */
+          .add-co-teacher-icon {
+            @extend .teacher-icon;
+            box-shadow: 0 0 7px 0 $box-shadow-bg-color;
+            background-color: $gray-harder;
+            cursor: pointer;
+            color: $dark-400;
+            margin: 0;
+
+            > i {
+              padding: 3px;
+            }
+          }
+
+          .add-co-teacher-label {
+            width: 126px;
+            height: 15px;
+            font-family: Lato;
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1;
+            margin-left: 10px;
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}

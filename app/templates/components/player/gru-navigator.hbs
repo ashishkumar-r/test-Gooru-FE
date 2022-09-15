@@ -1,0 +1,60 @@
+<div class="navigator-header {{unless (or showBackLink showRemixButton) 'hidden'}}">
+  {{#if showBackLink}}
+    <div class="pull-left" {{action 'closePlayer'}}>
+      {{#if lessonTitle}}
+        <span class="lesson-title"> {{gru-icon name='keyboard_arrow_left'}}{{t 'common.lesson'}}:&nbsp; {{lessonTitle}}</span>
+      {{else}}
+        <span class="lesson-title"> {{gru-icon name='keyboard_arrow_left'}}{{t 'common.back'}}</span>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{#if showRemixButton}}
+    <div class="pull-right hidden-sm hidden-xs">
+      <button class="remix-btn btn btn-success btn-sm " {{action "remixCollection"}}>{{t "common.remix"}}</button>
+    </div>
+  {{/if}}
+  <div class="pull-right close-navigator {{unless collapsedMenu 'hidden-md hidden-lg'}}">
+    <button class="btn btn-link hamburger-icon"{{action 'closeNavigator'}}>{{gru-icon name='menu'}}</button>
+  </div>
+</div>
+{{#if showCollectionName}}
+<div class="navigator-subheader">
+  <p class="collection-type">{{#if collection.isAssessment}}{{t 'common.assessment'}}{{else}}{{t 'common.collection'}}{{/if}}:</p>
+  <p class="collection-title">{{collection.title}}</p>
+</div>
+{{/if}}
+<ul class="list-group resources {{if isNavigationDisabled 'disabled' }}">
+  {{#each resourceItems as |item index|}}
+    <li class="list-group-item {{if item.started 'started'}} {{if item.selected 'selected'}}"
+        {{action 'selectItem' item}}>
+      <div class="resources-info">
+        {{#if showResourceNumber}}
+          <span class="number">{{plus-one index}}</span>
+        {{/if}}
+        <i class="bubble-type {{item.resource.resourceFormat}}"></i>
+          <h6 class="title hidden-sm hidden-md">
+            {{truncate text=(no-tags text=item.resource.title) type='medium'}}
+          </h6>
+          <h6 class="title visible-sm visible-md">
+            {{truncate text=(no-tags text=item.resource.title) type='player-nav-sm'}}
+          </h6>
+      </div>
+    </li>
+  {{/each}}
+</ul>
+{{#if showReportLink}}
+  {{#if collection.isCollection}}
+    <div class="navigator-subheader">
+      <div class="see-usage-report" {{action 'seeUsageReport'}}>
+        <span class="see-usage-report-msg"> {{t 'player.gru-navigator.see-usage-report'}} </span>
+        {{gru-icon name='keyboard_arrow_right'}}
+      </div>
+    </div>
+  {{else}}
+    <div class="submit-all">
+      {{#unless submitted}}
+        <button tabindex=-1 class="btn btn-success finish-collection" {{action "finishCollection"}}>{{t "common.submit-all"}}</button>
+      {{/unless}}
+    </div>
+  {{/if}}
+{{/if}}

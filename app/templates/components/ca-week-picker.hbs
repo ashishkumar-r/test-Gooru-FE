@@ -1,0 +1,9 @@
+<div class="backdrop" {{action "onCloseDatePicker"}}></div>
+<div class="ca-week-nav-container">
+  <div class="prev-cal-arrow" onclick={{action 'showPreviousMonth'}} onkeypress={{action 'showPreviousMonth'}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_left"}}</div>
+  <div class="cal-mm-yyyy">{{format-date firstDateOfMonth 'MMMM YYYY'}} {{gru-icon name="arrow_drop_down"}}{{gru-icon name="arrow_drop_up"}}</div>
+  <div class="next-cal-arrow" onclick={{action 'showNextMonth'}} onkeypress={{action 'showNextMonth'}} tabindex={{tabindex}}>{{gru-icon name="keyboard_arrow_right"}}</div>
+</div>
+<div class="ca-weekpicker-container">
+  <div id="ca-weekpicker" class="weekly"></div>
+</div>

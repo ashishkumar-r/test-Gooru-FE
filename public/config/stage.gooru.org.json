@@ -1,0 +1,115 @@
+{
+  "endpoint": {
+    "url": "",
+    "secureUrl": "https://stage.gooru.org",
+    "tenantUrl": "https://s3-us-west-1.amazonaws.com/nile-tenants/prod"
+  },
+  "realTime": {
+    "webServiceUrl": "",
+    "webServiceUri": "/nucleus/realtime",
+    "webSocketUrl": "https://stage.gooru.org",
+    "webSocketUri": "/ws/realtime"
+  },
+  "teams": {
+    "url": "http://teams.gooru.org"
+  },
+
+  "quizzes-addon": {
+    "endpoint": {
+      "url": "",
+      "secureUrl": "",
+      "providerUrl": ""
+    },
+
+    "realTime": {
+      "webServiceUrl": "",
+      "webServiceUri": "/",
+      "webSocketUrl": "https://stage.gooru.org",
+      "webSocketUri": "/ws/quizzes-realtime"
+    }
+  },
+
+  "exploreFeaturedCourses": {
+    "firstCourseId": "1d91657f-694b-43dc-9306-bca17b107c7d",
+    "secondCourseId": "3def51be-bd91-48fd-b747-9c86339b571a",
+    "thirdCourseId": "d9b7c359-adff-486d-a2cf-bbbbc66c2ba5",
+    "fourthCourseId": "781c3e76-a382-4652-86ae-079b92f57a9d"
+  },
+
+  "languageSetting": {
+    "defaultLang": "en",
+    "showDropMenu": true
+  },
+
+  "researcher": {
+    "redirectURL": "/research",
+    "userIds": ["df956d5f-b7b2-43ae-98a1-c90a12eacaf9"]
+  },
+
+  "demoClass": {
+    "code": "DGNTIKN",
+    "id": "71bfbc07-1b87-4e8e-a98a-1839e834cd20"
+  },
+
+  "GRU_FEATURE_FLAG": {
+    "searchFilter": true,
+    "i2dFlow": true,
+    "enableCollectionLiveLearning": false,
+    "isLessonPlanShow": true,
+    "isShowSecondaryClass": true,
+    "isShowFeaturedCourses": false,
+    "isShowGuardianInvite": true,
+    "isGuestDemoTenant": true,
+    "isShowH5PCreation": true,
+    "isShowAppSwitcher": true,
+    "disabledUnit0": true,
+    "sendSignupInviteMail": false
+  },
+
+  "marketingSiteUrl": "/about",
+
+  "REDIRECT_CHECK": true,
+
+  "FILE_UPLOAD": {
+    "MAX_SIZE_IN_MB": 12
+  },
+  "DEMO_TENANT_AUTH": {
+    "clientId": "811b024d-57a5-4931-92eb-0d514cbffe34",
+    "clientKey": "XFR/JsGbaYkOqkQ3oSQT4NC6Pc4="
+  },
+
+  "GUEST_TEACHER_ACCOUNT": "Ym1ndWVzdDpnb29ydTEyMw==",
+  "GUEST_STUDENT_ACCOUNT": "bWpvaG5zb25AZ29vcnUub3JnOjEyMzQ1",
+  "OAUTH_LOGIN_LANUCH_URL":
+  "https://stage.gooru.org/api/nucleus-auth-idp/v1/oauth2",
+  "SHOW_DEMO_CLASS":false,
+  "TENANT_SIGNUP_URL": "https://schools.stage.gooru.org/",
+  "TENANT_URL": "https://tl.stage.gooru.org/",
+  "TENANT_DOMAIN_NAME": "tl.stage.gooru.org",
+  "visibility_content_types":{
+      "learning_skills":{
+        "serp_encoding_assessment_question": true,
+        "serp_decoding_assessment_question": true,
+        "serp_lang_say_out_loud_question": true,
+        "serp_lang_identify_digraph_question": true,
+        "serp_reading_passage": true,
+        "serp_lang_activities_for_comprehension_question": true,
+        "serp_lang_identify_base_word_question": true,
+        "serp_lang_vowel_teams_question": true,
+        "serp_lang_counting_syllables_question": true,
+        "serp_lang_syllable_division_question": true,
+        "serp_classic_question": true,
+        "serp_choose_one_question": true,
+        "serp_pick_n_choose_question": true,
+        "serp_sorting_question": true,
+        "serp_multi_choice_question": true,
+        "serp_identify_vowel_sound_activity_question": true
+      },
+      "interactive_resources":{
+        "h5p_interactive_video": true,
+        "h5p_interactive_slide": true,
+        "h5p_interactive_personality_quiz": true,
+        "h5p_drag_and_drop_resource":true
+      }
+    }
+}

@@ -1,0 +1,32 @@
+.reports.pull-up-course-report {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .course-report-container {
+      width: 100%;
+      @media only screen and (max-width: $screen-720) {
+        .report-content {
+          .report-carousel {
+            .report-carousel-content-container {
+              .report-carousel-content {
+                .performance-display-container {
+                  margin: auto;
+                }
+
+                .course-report-chart {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      table {
+        th.tabular-header {
+          position: static;
+        }
+      }
+    }
+  }
+}

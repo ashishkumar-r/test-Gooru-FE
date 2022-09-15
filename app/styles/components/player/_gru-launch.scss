@@ -1,0 +1,8 @@
+.iframe-contaier {
+  margin: 20px 15px;
+  height: calc(100vh - 95px);
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}

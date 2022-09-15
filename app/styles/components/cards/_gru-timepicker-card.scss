@@ -1,0 +1,67 @@
+.cards.gru-timepicker-card {
+  .timepicker-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    column-gap: 20px;
+    justify-content: center;
+
+    .hour-picker,
+    .minute-picker {
+      display: grid;
+      .arrow-container {
+        justify-self: center;
+      }
+      .placeholder {
+        text-align: center;
+        color: $font-place-holder-bg-dark-400;
+        font-size: 25px;
+      }
+    }
+
+    .value-container {
+      height: 120px;
+      line-height: 120px;
+      input.time-value {
+        outline: none;
+        border: none;
+        font-size: 100px;
+        font-weight: bold;
+        color: $picker-color;
+        text-align: center;
+        max-width: 120px;
+        &:focus,
+        &:active {
+          outline: none;
+          border: none;
+        }
+      }
+    }
+
+    .picker-separator {
+      height: 88%;
+    }
+
+    .picker-separator {
+      font-size: 100px;
+      font-weight: bold;
+      color: $picker-color;
+    }
+    .arrow-container {
+      cursor: pointer;
+      i {
+        font-size: 50px;
+        color: $font-place-holder-bg-dark-400;
+      }
+
+      &:focus,
+      &:active {
+        -webkit-tap-highlight-color: $table-bg;
+        -moz-tap-highlight-color: $table-bg;
+        -o-tap-highlight-color: $table-bg;
+        tap-highlight-color: $table-bg;
+        outline: none;
+      }
+    }
+  }
+}

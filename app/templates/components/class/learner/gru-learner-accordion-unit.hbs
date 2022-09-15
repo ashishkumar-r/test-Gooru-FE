@@ -1,0 +1,87 @@
+<div class="unit  {{if (not model.visible) 'disabled'}}" role="tab" id="{{elementId}}-heading">
+  <div class="panel-title">
+    <a class="collapsed title" role="button" data-toggle="collapse" href="#{{elementId}}-content" aria-expanded="false" aria-controls="{{elementId}}-content" onclick={{action "selectUnit" model}} onkeypress={{action "selectUnit" model}} tabindex={{tabindex}}>
+      <div class="title ellipsis">
+        <span class="prefix">{{course-sections-prefix index=(unless isHideLessonNumber index)  type='unit' longName=true}}</span>{{model.title}}
+      </div>
+    </a>
+    {{#if isShowLessonPlan}}
+        <div class="unit-plan-view">
+          {{#if (or model.bigIdeas model.essentialQuestions)}}
+          <div class="unitPlan">
+            <div class="description">{{safe-html model.bigIdeas}}</div>
+            {{#if model.essentialQuestions}}
+              <div class="guiding-lable">{{t "common.essential-questions"}}:</div>
+            {{/if}}
+            <div class="quidingQuestion">{{safe-html model.essentialQuestions}}</div>
+          </div>
+          {{else}}
+          <div class="unavailable-content">{{t "common.information-unavailable"}}</div>
+        {{/if}}
+        </div>
+    {{/if}}
+  </div>
+   {{#if isExpanded}}
+    <div class="class-info {{unless (or model.bigIdeas model.essentialQuestions) 'disable-tag'}}">
+      <a role="tab" data-toggle="tooltip" onclick={{action "showUnitPlan" 'unit-plan-view'}} onkeypress={{action "showUnitPlan" 'unit-plan-view'}} tabindex={{tabindex}}>
+        {{gru-icon name="info" style='material-icons-outlined'}}
+      </a>
+    </div>
+  {{/if}}
+
+<div class="performance-container pull-right {{if (not (gte scoreVal 0)) 'not-started'}}" onclick={{action 'onOpenStudentUnitLevelReport'}} onkeypress={{action 'onOpenStudentUnitLevelReport'}} tabindex={{tabindex}}>
+  <div class="container-box" title="{{scoreText}}" style="background-color:{{ if (and (not model.performance.isCollectionPerformance) model.performance.timeSpent) grade-color (if scoreVal scoreVal 'NA')}}">
+
+    {{#if (and model.performance.isCollectionPerformance model.performance.timeSpent)}}
+    <div class="timespend">
+    <span>{{format-time model.performance.timeSpent}}</span>
+    <div><span class="total-time-spent">{{t 'common.total-time-spent' }}</span></div>
+    {{#if (gt model.performance.numberOfStudents 0)}}
+    <div class="students-count">
+    <div class="avatar">{{gru-icon name="account_circle"}}</div>
+    <div class="count">{{model.performance.numberOfStudents}}</div>
+    </div>
+    {{/if}}
+    </div>
+    {{else}}
+    {{charts/gru-students-performance-chart performanceSummary=model.performance hasStarted=true isTeacher=isTeacher assessmentCount=model.assessmentCount tabindex=(plus-one tabindex)}}
+    {{/if}}
+
+  </div>
+</div>
+</div>
+
+<div id="{{elementId}}-content" data-index="{{componentIndex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{elementId}}-heading">
+
+  <div class="panel-body">
+    <ol class="panel-group" role="tablist" aria-multiselectable="true">
+      {{#if loading}}
+        {{three-bounce-spinner}}
+      {{else}}
+        {{#each items as |lesson index|}}
+          {{class/learner/gru-learner-accordion-lesson
+          currentClass=currentClass
+          currentCourse=currentCourse
+          studentId=studentId
+          classMembers=classMembers
+          unitId=model.id
+          model=lesson
+          index=index
+          lessons=items
+          unit=model
+          collectionReport="collectionReport"
+          onSelectLesson=(action 'updateLesson')
+          isTeacher=isTeacher
+          toggleLocation=toggleLocation
+          onSelectItem="onSelectItem"
+          onOpenStudentLessonReport="onOpenStudentLessonReport"
+          contentVisibility=contentVisibility
+          tabindex=tabindex
+        }}
+      {{else}}
+        <li>{{t "common.contentUnavailable"}}</li>
+        {{/each}}
+      {{/if}}
+    </ol>
+  </div>
+</div>

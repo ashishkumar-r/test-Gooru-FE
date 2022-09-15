@@ -1,0 +1,425 @@
+.new-cards.gru-teacher-class-cards {
+  width: 300px;
+  height: 300px;
+  float: $tab-float-dir;
+  margin: 0 10px 10px;
+
+  .panel {
+    @include border-top-radius(4px);
+    @include border-bottom-radius(4px);
+    box-shadow: none;
+    margin: 0;
+
+    .panel-heading {
+      background-color: $white;
+      @include flexbox;
+      width: 100%;
+      padding: 0 0 0 10px;
+      height: 40px;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      border-bottom: 1px solid $dark-600;
+
+      > .title {
+        width: 85%;
+        padding: 6px;
+        color: $dark-600;
+        margin: 0;
+        font-size: $font-size-h6;
+        $line-height: 1.3;
+        $lines-to-show: 1;
+
+        .truncate {
+          @include ellipsis(
+            $font-size: $font-size-base,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show,
+            $excerpt-bg: $white
+          );
+        }
+      }
+
+      .class-settings {
+        padding: 10px;
+
+        i {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+          cursor: pointer;
+          color: $dark-600;
+        }
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+      height: 248px;
+
+      .information {
+        height: 167px;
+        width: 100%;
+        color: $white;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 103px 0 0;
+        font-weight: bold;
+        position: relative;
+        cursor: pointer;
+        background-color: $close-color;
+        background-size: cover;
+
+        &.has-course {
+          &:after {
+            display: block;
+            position: absolute;
+            z-index: 9;
+            background-image: linear-gradient(
+              to bottom,
+              $bg-left-box-shadow 0,
+              #333 100%
+            );
+            margin-top: -3px;
+            height: 40%;
+            width: 100%;
+            content: "";
+          }
+        }
+
+        &.has-no-course {
+          display: grid;
+          align-items: center;
+          justify-items: center;
+          padding: 0;
+          font-family: Lato;
+          font-weight: 300;
+          font-style: italic;
+          text-align: center;
+          color: $dark-600;
+          background-color: $close-color;
+
+          p {
+            font-size: 23px;
+            line-height: 1;
+            font-weight: normal;
+            padding: 0;
+            margin: 0;
+          }
+        }
+
+        .current-activity {
+          position: absolute;
+          z-index: 10;
+          font-size: 12px;
+          padding: 0 10px;
+          font-weight: bold;
+
+          span {
+            margin-top: 10px;
+            display: block;
+          }
+        }
+
+        .title-section {
+          $line-height: 0.5;
+          $lines-to-show: 2;
+          margin: 33px 0 0;
+          padding: 0 10px;
+          position: absolute;
+          z-index: 10;
+          width: 100%;
+
+          .title {
+            line-height: $font-size-base;
+            vertical-align: top;
+            display: inline-block;
+            width: 86%;
+            font-weight: bold;
+          }
+
+          .truncate {
+            @include ellipsis(
+              $font-size: $font-size-base,
+              $line-height: $line-height,
+              $lines-to-show: $lines-to-show,
+              $excerpt-bg: $white
+            );
+          }
+
+          i {
+            margin: 0 2px 0 0;
+            width: 22px;
+            height: 17px;
+            vertical-align: top;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: inline-block;
+
+            &.collection {
+              background-image: url("gooru/images/navigation_collection.svg");
+            }
+
+            &.assessment {
+              background-image: url("gooru/images/navigation_assessment.svg");
+            }
+          }
+        }
+      }
+
+      .card-action-container {
+        display: grid;
+        grid-template-columns: 100px 100px 50px 50px;
+        justify-items: center;
+        height: 50px;
+        box-shadow: 1px 0 4px 0 $navbar-default-toggle-icon-bar-bg;
+
+        &.premium-class {
+          grid-template-columns: 50px 50px 50px 50px 100px;
+
+          .class-activities,
+          .course-map {
+            grid-template-columns: 50px;
+          }
+
+          .course-map-icon {
+            border-right: 1px solid $icon-bg-color;
+          }
+
+          .class-activities-icon {
+            border-right: 1px solid $icon-bg-color;
+          }
+
+          .student-proficiency {
+            border-right: 1px solid $icon-bg-color;
+          }
+        }
+
+        .completion-score {
+          text-align: center;
+          color: $dark-600;
+
+          &:not(.has-competency-stats) {
+            pointer-events: none;
+          }
+
+          &.has-competency-stats {
+            background-color: $bg-sky-600-sky-400;
+            color: $white;
+            position: relative;
+            display: unset !important;
+          }
+          width: 100px;
+          padding-top: 10px;
+
+          span {
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+          }
+
+          .showHelpIcon {
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            padding: 0;
+          }
+        }
+
+        .atc-view {
+          border-right: 1px solid $icon-bg-color;
+          cursor: pointer;
+          padding-top: 16px;
+          width: 50px;
+
+          i.icon {
+            background: url("gooru/images/atc-view-black.png");
+            width: 20px;
+            height: 20px;
+            display: block;
+            object-fit: contain;
+            background-size: 20px 20px;
+            margin: 0 auto;
+          }
+        }
+
+        .grade-range-90-100 {
+          div i {
+            color: $white !important;
+          }
+        }
+
+        .course-map {
+          display: grid;
+          grid-template-columns: 50px 50px;
+          justify-items: center;
+
+          .course-map-icon {
+            cursor: pointer;
+            padding-top: 13px;
+            width: 50px;
+            text-align: center;
+          }
+
+          .course-map-score {
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            padding-top: 10px;
+            width: 50px;
+            text-align: center;
+            border-right: 1px solid $icon-bg-color;
+
+            &.not-started {
+              pointer-events: none;
+            }
+          }
+
+          i {
+            color: $dark-600;
+          }
+
+          &.grade-range-not-started {
+            .course-map-score {
+              color: $dark-600;
+            }
+          }
+        }
+
+        .class-activities {
+          display: grid;
+          grid-template-columns: 50px 50px;
+          justify-items: center;
+          font-weight: bold;
+
+          .class-activities-icon {
+            cursor: pointer;
+            padding-top: 18px;
+            width: 50px;
+            text-align: center;
+          }
+
+          .class-activities-score {
+            border-right: 1px solid $icon-bg-color;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            padding-top: 10px;
+            width: 50px;
+            text-align: center;
+
+            &.not-started {
+              pointer-events: none;
+            }
+          }
+
+          &.grade-range-not-started {
+            .class-activities-score {
+              color: $dark-600;
+            }
+          }
+
+          i.icon {
+            background: url("gooru/images/teacher-landing-class-activities.svg");
+            width: 10.2px;
+            height: 15.8px;
+            display: block;
+            object-fit: contain;
+            margin: 0 auto;
+          }
+        }
+
+        .student-proficiency {
+          cursor: pointer;
+          padding-top: 13px;
+          width: 50px;
+          text-align: center;
+          border-right: 1px solid $icon-bg-color;
+
+          i {
+            color: $dark-600;
+          }
+        }
+      }
+
+      .card-class-code {
+        display: flex;
+        justify-content: end;
+        margin-left: 12px;
+        cursor: pointer;
+
+        grid-template-columns: 1fr auto;
+        height: 37px;
+        align-items: center;
+        justify-items: end;
+        color: $dark-600;
+        grid-gap: 10px;
+
+        &.active-classes {
+          justify-content: space-between;
+        }
+
+        .class-code {
+          font-weight: bold;
+          justify-self: center;
+          padding-right: 10px;
+        }
+
+        .checked-img {
+          background-image: url("../assets/gooru/images/icon-verified-green.svg");
+          width: 16px;
+          height: 16px;
+          display: block;
+          background-size: cover;
+          margin: 4px;
+          cursor: pointer;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  &.pending-setup {
+    .panel {
+      .panel-body {
+        .information {
+          background-image: linear-gradient(
+            45deg,
+            $orange-b00,
+            $yellow-f00
+          ) !important;
+          padding: 0;
+          opacity: 1;
+
+          &:after {
+            display: none;
+          }
+
+          .current-activity {
+            color: $dark-400;
+            font-size: 26px;
+            position: relative;
+            font-weight: normal;
+            height: inherit;
+            line-height: 1.5;
+            display: grid;
+            text-align: center;
+            grid-template-rows: 60px;
+
+            span {
+              font-size: 16px;
+              line-height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.gru-new-class-card {
+  float: $tab-float-dir;
+  margin: 0 10px 10px;
+}

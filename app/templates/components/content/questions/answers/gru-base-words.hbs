@@ -1,0 +1,21 @@
+<div class="gru-base-words-container">
+    <div class="gru-base-words-section">
+          {{#each answers as |answer index|}}
+              <div class="gru-base-words-answer-item">
+                    <h3>{{answer-letter index}}</h3>
+                    {{validation/gru-input content=answer.text disabled=(not editMode) model=answer valuePath='text' }}
+                    <div class="base-answer-container text-edit base-word-edit-{{index}}" data-answer-index="{{index}}">
+                      {{answer.text}}
+                    </div>
+                  {{#if (and (gt index 0) editMode)}}
+                    <span {{action "onDeleteAnswer" answer}} class="material-icons close-icon">delete</span>
+                  {{/if}}
+              </div>
+          {{/each}}
+    </div>
+  <div class="gru-add-excercise {{unless editMode 'disabled-btn'}}">
+    <span {{action (optional (if editMode (action "onAddExcercise") null))}}>
+      {{t 'content.questions.edit.builder.add-base-word'}}
+    </span>
+  </div>
+</div>

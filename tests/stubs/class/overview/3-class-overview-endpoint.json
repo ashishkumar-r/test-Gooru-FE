@@ -1,0 +1,17 @@
+[
+  {
+    "description": "Gets units for any class or course",
+    "request": {
+      "url": "^/gooruapi/rest/v3/class/(.*)/course/(.*)/unit",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "any-class-units-200-response.json"
+    }
+  }
+]

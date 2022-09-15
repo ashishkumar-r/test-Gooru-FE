@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <span class="modal-title">
+    {{#if areFeatured}}
+      {{t 'gru-quick-course-search.view-featured-courses'}}
+    {{else}}
+      {{t 'gru-quick-course-search.add-from-course'}}
+    {{/if}}
+  </span>
+</div>
+<div class="modal-body">
+  {{#each orderedCourses as |courseStack|}}
+    {{#each courseStack as |course|}}
+      <div class="{{course.id}}" {{action "selectCourse" course.id}}>
+          {{cards/gru-course-card course=course isEditEnabled=true isEyeVisible=false isRemixEnabled=false}}
+      </div>
+    {{/each}}
+  {{/each}}
+</div>
+<div class="modal-footer">
+  <div class="btn-group visible-xs">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    <button type="button" class="btn btn-primary assign"{{action "assignCourse"}} disabled={{if hasSelectedCourse '' 'true'}}>{{t 'gru-quick-course-search.assign'}}</button>
+  </div>
+  <div class="hidden-xs">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+
+    <button disabled={{if hasSelectedCourse '' 'true'}} type="button" class="btn btn-primary assign" {{action "assignCourse"}}>{{t 'gru-quick-course-search.assign'}}</button>
+  </div>
+</div>

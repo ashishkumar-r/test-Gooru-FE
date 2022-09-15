@@ -1,0 +1,38 @@
+<div class="competency-content-container">
+  <div class="content-count-container {{if isInstructionalCoache 'disable'}}">
+    {{#each contentCounts as |content|}}
+      <div class="{{content.type}} content-count {{if (lt content.count 1) 'default-click'}}" title="{{content.type}}" data-toggle="tooltip" onclick={{action "onSelectActivityContent" content}} onkeypress={{action "onSelectActivityContent" content}} tabindex={{tabindex}}>
+        <div class="icon"><i class="{{content.type}}"></i></div>
+        <div class="count">{{content.count}}</div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="signature-content-container signature-assessments">
+    {{#if signatureAssessments}}
+      <div class="title">{{t 'report.competency-report.signature-assessments'}}</div>
+      {{#each signatureAssessments as |signatureAssessment|}}
+        <div class="signature-assessment signature-item">
+            <div class="signature-assessment-thumbnail thumbnail-container" style="background-image: url({{signatureAssessment.thumbnail}});">
+            </div>
+            <div class="signature-assessment-title title-container ellipsis">
+              {{signatureAssessment.title}}
+            </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  <div class="signature-content-container signature-collections">
+    {{#if signatureCollections}}
+      <div class="title">{{t 'report.competency-report.signature-collections'}}</div>
+      {{#each signatureCollections as |signatureCollection|}}
+        <div class="signature-collection signature-item">
+            <div class="signature-collection-thumbnail thumbnail-container" style="background-image: url({{signatureCollection.thumbnail}});">
+            </div>
+            <div class="signature-collection-title title-container ellipsis">
+              {{signatureCollection.title}}
+            </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>

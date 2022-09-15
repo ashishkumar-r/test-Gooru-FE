@@ -1,0 +1,163 @@
+.gru-join-class-card {
+  width: 300px;
+  height: 300px;
+
+  .panel {
+    @include border-top-radius(4px);
+    @include border-bottom-radius(4px);
+    margin: 0;
+    position: relative;
+
+    &.guest-account {
+      &::before {
+        display: flex;
+        align-items: flex-end;
+        position: absolute;
+        background-color: $join-class-room-bg-color;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        color: $gray-base;
+        top: 0;
+        content: attr(data-before);
+        justify-content: center;
+        padding-bottom: 7px;
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      background-color: $white;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+
+      .image {
+        background-image: url("gooru/class-bg.png");
+        background-color: $bg-sky-600-sky-400;
+        background-position: 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 163px;
+        width: 300px;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          text-transform: uppercase;
+          font-size: 34px;
+          font-weight: bold;
+          margin: 0;
+          padding: 0;
+          line-height: 1.09;
+          text-align: center;
+          font-family: "Open Sans";
+          color: $white;
+        }
+      }
+
+      .info-form {
+        color: $font-dark-400-gray-base;
+        font-weight: bold;
+        height: 88px;
+
+        .form-group {
+          text-align: center;
+          margin: 0;
+
+          .gru-input {
+            input {
+              font-size: $font-size-lead;
+              font-weight: bold;
+              width: 240px;
+              margin: 0 auto;
+              height: 24px;
+              @include box-shadow(inset 0 -1px 0 $sky-600);
+              text-align: center;
+              color: $sky-600;
+
+              &::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: $sky-600;
+              }
+
+              &::-moz-placeholder {
+                /* Firefox 19+ */
+                color: $sky-600;
+              }
+
+              &:-ms-input-placeholder {
+                /* IE 10+ */
+                color: $sky-600;
+              }
+
+              &:-moz-placeholder {
+                /* Firefox 18- */
+                color: $sky-600;
+              }
+            }
+
+            .error-messages {
+              height: 9px;
+
+              span.error {
+                vertical-align: top;
+                margin: 0;
+                font-size: $font-size-xxsmall;
+                position: relative;
+                padding-left: 5px;
+                padding-right: 5px;
+                background: $white;
+                height: 62px;
+                z-index: 1;
+                padding-top: 5px;
+                line-height: 1.3;
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .terms-and-conditions {
+          font-size: $font-size-small;
+          line-height: $font-size-small;
+          padding: 0 17px;
+          margin: 0;
+          opacity: $opacity-light;
+        }
+      }
+    }
+
+    .panel-footer {
+      height: 38px;
+      padding: 0;
+
+      .gru-spinner-button {
+        display: block;
+        height: inherit;
+        background-color: $dark-600;
+
+        button {
+          border: none;
+        }
+
+        .join-class-btn {
+          height: inherit;
+          color: $white;
+          text-align: center;
+          width: 100%;
+          font-size: $font-size-small;
+          font-weight: bold;
+          text-transform: uppercase;
+          background-color: $blue-400;
+          padding: 8px 0;
+          border-bottom-right-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+      }
+    }
+  }
+}

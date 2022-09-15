@@ -1,0 +1,41 @@
+{
+  "unit_id": "first-unit-id",
+  "course_id": "14a7ad67-6bbc-474c-8cc2-0cf15fa7e806",
+  "title": "Food",
+  "created_at": "2016-06-16T22:40:18Z",
+  "updated_at": "2016-06-16T23:28:58Z",
+  "owner_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "modifier_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "original_creator_id": null,
+  "original_unit_id": null,
+  "big_ideas": "",
+  "essential_questions": "",
+  "metadata": null,
+  "taxonomy": null,
+  "sequence_id": 1,
+  "creator_system": null,
+  "lesson_summary": [
+    {
+      "lesson_id": "3740fc5a-7eeb-45bf-8d8b-e33b0f4ff747",
+      "title": "Fruit",
+      "sequence_id": 1,
+      "collection_count": 2,
+      "assessment_count": 2
+    },
+    {
+      "lesson_id": "c902330f-530b-4cfb-bf27-f23329f3be16",
+      "title": "Vegetables",
+      "sequence_id": 2,
+      "collection_count": 0,
+      "assessment_count": 1
+    },
+    {
+      "lesson_id": "first-lesson-id",
+      "title": "Release Day Quiz",
+      "sequence_id": 3,
+      "collection_count": 0,
+      "assessment_count": 1
+    }
+  ]
+}

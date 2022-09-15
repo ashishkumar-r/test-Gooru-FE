@@ -1,0 +1,100 @@
+.gru-grade-items {
+  width: 311px;
+  max-height: 370px;
+  overflow-y: auto;
+  background-color: $white;
+  box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+
+  .item {
+    cursor: pointer;
+
+    &.sub-list {
+      border-left: 10px solid $border-box-shadow;
+      cursor: unset;
+
+      .grade-item {
+        display: grid;
+        margin-left: 10px;
+        grid-template-columns: 1fr 35px;
+        height: 36px;
+      }
+    }
+
+    .grade-item {
+      height: 40px;
+      line-height: 36px;
+      border-bottom: 1px solid $sep-border-color;
+      display: grid;
+      margin-left: 10px;
+      grid-template-columns: 35px 1fr 40px;
+
+      .icon {
+        i {
+          &.assessment-icon,
+          &.collection-icon {
+            background-image: url("gooru/images/add_rubric.svg");
+            width: 36px;
+            height: 36px;
+            background-size: 24px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+
+          &.offline-activity-icon {
+            background-image: url("gooru/images/offline.svg");
+            width: 36px;
+            height: 36px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+
+          &.assessment-icons {
+            background-image: url("gooru/assessment-default.png");
+            width: 40px;
+            height: 40px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+          }
+
+          &.collection-icons {
+            background-image: url("gooru/collection-default.png");
+            width: 40px;
+            height: 40px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+          }
+
+          &.offline-activity-icons {
+            background-image: url("gooru/offline-activity-default.png");
+            width: 40px;
+            height: 40px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+          }
+        }
+      }
+
+      .question-name {
+        font-size: 13px;
+        text-transform: capitalize;
+        color: $gray-dove;
+      }
+
+      a {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    &.disabled-item {
+      pointer-events: none;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.gru-accordion-course {
+  padding: 20px 0 0;
+  ol.accordion-course {
+    background-color: $white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+  }
+  .panel {
+    background-color: $table-bg;
+    border: 0 none;
+    border-radius: 0;
+  }
+  .panel-heading {
+    position: relative;
+    .panel-title {
+      > a {
+        display: inline-block;
+        max-width: 54%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        @media (min-width: $screen-sm) {
+          max-width: 95%;
+        }
+        &.disabled {
+          font-style: italic;
+          color: $dark-100;
+        }
+      }
+    }
+  }
+  .gru-user-icons {
+    &.visible-xs {
+      margin-top: 8px;
+    }
+  }
+}

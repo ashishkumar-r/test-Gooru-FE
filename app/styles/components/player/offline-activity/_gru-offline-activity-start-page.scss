@@ -1,0 +1,298 @@
+.offline-activity-player.gru-offline-activity-start-page {
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .rubric-file-preview-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 5%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    visibility: hidden;
+
+    .rubric-file-preview {
+      max-width: 768px;
+      height: 80vh;
+      margin: 0 auto;
+      background: $white;
+      text-align: center;
+      margin-top: 80px;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        padding: 20px 20px 70px;
+      }
+
+      .rubric-file-preview-close {
+        height: 20px;
+
+        .close {
+          margin-right: 20px;
+          font-size: 24px;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  .player-start-page-container {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    column-gap: 15px;
+    padding: 30px;
+    row-gap: 15px;
+
+    .project-container {
+      .project-thumbnail-container {
+        position: relative;
+        width: 360px;
+        height: 230px;
+        background-size: contain;
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: $white;
+
+        .project-standards {
+          position: absolute;
+          bottom: 44px;
+          padding-left: 15px;
+        }
+
+        .project-etc {
+          position: absolute;
+          bottom: 44px;
+          right: 0;
+          height: 32px;
+          border-top-left-radius: 16px;
+          border-bottom-left-radius: 16px;
+          background-color: $sky-400;
+          color: $white;
+          line-height: 32px;
+          font-size: 12px;
+          font-weight: bold;
+          padding: 0 8px;
+
+          .label-container {
+            text-transform: uppercase;
+          }
+        }
+
+        .project-type {
+          position: absolute;
+          bottom: 8px;
+          color: $white;
+          font-size: 12px;
+          z-index: 1;
+          width: 100%;
+          padding-left: 30px;
+        }
+
+        &:after {
+          display: block;
+          position: absolute;
+          background-image: linear-gradient(
+            to bottom,
+            $bg-left-box-shadow 0,
+            $gray-base 100%
+          );
+          bottom: 0;
+          height: 60px;
+          width: 100%;
+          content: "";
+        }
+      }
+
+      .project-description-container {
+        max-height: 183px;
+        padding: 15px;
+        background-color: $white;
+
+        .description-label {
+          font-size: 14px;
+          font-weight: bold;
+          color: $placeholder-color;
+        }
+
+        .description-text {
+          color: $dark-400;
+          @include ellipsis(
+            $font-size: 12px,
+            $line-height: 1.33,
+            $lines-to-show: 9
+          );
+        }
+      }
+
+      .project-references-container {
+        margin-top: 15px;
+        box-shadow: 0 0 1px 0 $navbar-box-shadow;
+        background-color: $white;
+        padding: 15px;
+      }
+    }
+
+    .task-rubric-container {
+      .tasks-container {
+        max-height: 490px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          height: 6px;
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $gray-light;
+          border: 1px solid $gray-light;
+          border-radius: 5px;
+        }
+
+        .gru-offline-activity-task-submission {
+          .task-submission-container {
+            box-shadow: none;
+          }
+
+          &:first-child {
+            .task-submission-container {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+
+      .student-rubrics-container,
+      .teacher-rubrics-container {
+        background-color: $white;
+        padding: 15px;
+
+        .label-container {
+          display: grid;
+          grid-template-columns: 1fr 30px;
+          align-items: center;
+          cursor: pointer;
+
+          .label-type {
+            color: $dark-400;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+
+            .rubric-attachment {
+              color: $blue-text;
+              cursor: pointer;
+              margin-left: 10px;
+              display: flex;
+            }
+          }
+        }
+
+        .categories-container {
+          display: none;
+
+          textarea {
+            pointer-events: none;
+          }
+
+          .rubric-category-container {
+            .grade-rubric-categories {
+              .grade-rubric-category {
+                .grade-rubric-level-container {
+                  .grade-rubric-category-info,
+                  p {
+                    color: $dark-400;
+                  }
+
+                  .grade-comment {
+                    display: none;
+                  }
+
+                  .grade-rubric-levels {
+                    margin: auto;
+                    width: 90%;
+                  }
+                }
+
+                .grade-rubric-category-info,
+                p {
+                  width: 90%;
+                  color: $dark-400;
+                }
+
+                .no-progress {
+                  background-color: $frq-gray;
+                  border-radius: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .student-rubrics-container {
+        margin-bottom: 15px;
+      }
+    }
+
+    .teacher-rubrics-container {
+      grid-column: 2;
+    }
+
+    .actions-container {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: right;
+      column-gap: 15px;
+
+      .action-btn {
+        width: 120px;
+        height: 48px;
+        color: $white;
+        line-height: 48px;
+        text-align: center;
+        cursor: pointer;
+
+        &.cancel-action {
+          background-color: $cancel-action;
+        }
+
+        &.start-action {
+          background-color: $blue-400;
+        }
+      }
+    }
+    @media screen and (max-width: $screen-sm) {
+      grid-template-columns: auto;
+      padding: 8px;
+
+      .project-container {
+        .project-thumbnail-container {
+          width: 100%;
+          background-size: 100% 230px;
+        }
+      }
+
+      .actions-container {
+        grid-column-start: 1;
+        grid-column-end: 1;
+      }
+    }
+  }
+}

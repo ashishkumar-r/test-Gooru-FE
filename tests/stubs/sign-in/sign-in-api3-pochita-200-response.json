@@ -1,0 +1,17 @@
+{
+  "user_id": "id-for-pochita",
+  "username": "pochita",
+  "client_id": "ba956a97-ae15-11e5-a302-f8a963065976",
+  "provided_at": 1458244961366,
+  "user_category": "teacher",
+  "prefs": {
+    "standard_preference": {
+      "K12.LA": "CCSS",
+      "K12.SC": "CCSS"
+    }
+  },
+  "cdn_urls": {
+    "profile.cdn": "//profile.gooru.org.com"
+  },
+  "access_token": "MTQ1ODI0NDk2MTM2NjpmNWUxNjkxYi03NTRhLTQ3ZmYtOThkYi1mY2MwYjVjMDMwZTY6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2"
+}

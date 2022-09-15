@@ -1,0 +1,378 @@
+.player-offline-activity {
+  .app-container {
+    padding: 0;
+    overflow-y: none;
+  }
+
+  .gru-header {
+    display: none !important;
+  }
+
+  .offline-activity-player-container {
+    height: 100vh;
+
+    a {
+      text-decoration: none;
+      @media screen and (max-width: 400px) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .header-container {
+      width: 100%;
+      color: $white;
+      height: 64px;
+      background-color: $blue-400;
+      display: grid;
+      grid-template-columns: 64px 1fr 100px;
+      position: relative;
+
+      .action {
+        width: 68px;
+        height: 64px;
+        border-right: 2px solid $light-200;
+        cursor: pointer;
+
+        .close-icon {
+          padding: 21px;
+
+          i {
+            font-size: 25px;
+            color: $white;
+          }
+        }
+      }
+
+      .content-title {
+        height: 64px;
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        align-items: center;
+
+        i.icon {
+          justify-self: center;
+          width: 20px;
+          height: 20px;
+          background-size: 20px;
+          display: block;
+          background-image: url("gooru/images/offline-activity-white.svg");
+          background-repeat: no-repeat;
+          background-color: $table-bg;
+        }
+
+        .title {
+          position: relative;
+        }
+      }
+
+      &.capture-feedback {
+        .gru-activity-feedback {
+          .backdrop-close {
+            z-index: 1;
+          }
+
+          .feedback-content-tab {
+            position: absolute;
+            top: 6px;
+            bottom: 10px;
+
+            .tab-info {
+              padding: 19px;
+            }
+          }
+
+          .feedback-content-body {
+            top: 60px;
+            position: absolute;
+
+            .feedback-content-tab {
+              .tab-info {
+                display: none;
+              }
+
+              .feedback-content-tab-box {
+                &.pull-up {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+      .remix {
+        width: 125px;
+        height: 64px;
+        border-left: 2px solid $light-200;
+        cursor: pointer;
+
+        .nav-icon-container {
+          i {
+            margin-left: -53px;
+            margin-top: 20px;
+          }
+          span {
+            padding-left: 4px;
+            padding-top: 21px;
+          }
+        }
+      }
+    }
+
+    .body-container {
+      height: calc(100% - 110px);
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 370px 1fr;
+      width: 100%;
+      background-image: url("gooru/study-player-kangaroos.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      @media screen and (max-width: $screen-sm - 1) {
+        display: flex;
+        max-height: calc(100vh - 140px);
+        flex-wrap: wrap;
+        overflow-x: hidden;
+      }
+
+      &.player-full-view {
+        grid-template-columns: 1fr;
+
+        .gru-oa-stater-page {
+          display: none;
+          transition: 0.3s ease-in;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray;
+        border: 1px solid $gray;
+        border-radius: 5px;
+      }
+
+      .gru-offline-activity-submission {
+        .offline-activity-submission-container {
+          padding: 10px;
+          @media screen and (max-width: $screen-sm - 1) {
+            padding: 0px;
+          }
+          &.grading-enabled {
+            @media screen and (min-width: $screen-md - 1) {
+              max-height: calc(100vh - 125px);
+
+              > .right-panel,
+              > .left-panel {
+                max-height: calc(100vh - 125px);
+              }
+            }
+          }
+        }
+      }
+    }
+    .oa-footer-section {
+      padding: 10px;
+      background-color: white;
+      box-shadow: 0 -3px 4px $light-200;
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      @media screen and (max-width: $screen-sm - 1) {
+        grid-template-columns: auto;
+      }
+
+      .oa-footer-title {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-column-gap: 10px;
+        align-items: center;
+        font-weight: bold;
+
+        .title-name {
+          display: grid;
+          grid-template-columns: 40px 1fr;
+          align-items: center;
+
+          .article-icon {
+            text-align: center;
+          }
+        }
+
+        .close-icon {
+          display: flex;
+          align-items: center;
+          padding: 0;
+          i {
+            font-size: 25px;
+          }
+        }
+      }
+
+      .oa-action-btns {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        a {
+          display: block;
+          margin-left: 20px;
+          border-radius: 20px;
+          padding: 2px 5px;
+          font-weight: bold;
+          text-align: center;
+          display: grid;
+          align-items: center;
+          width: inherit;
+
+          span {
+            padding: 0 5px;
+            @media screen and (max-width: $screen-sm - 1) {
+              display: none;
+            }
+          }
+          i {
+            font-size: 20px;
+          }
+
+          &.timespent-btn {
+            grid-template-columns: 1fr auto;
+            grid-column-gap: 5px;
+            border: 1px solid $light-200;
+            padding: 2px 20px;
+            font-weight: bold;
+            background-color: $dark-300;
+            color: $white;
+            i {
+              font-size: 15px;
+              color: $red-200;
+            }
+          }
+
+          &.cancel-btn {
+            background-color: $dark-300;
+            grid-template-columns: auto 1fr;
+            color: $white;
+            @media screen and (max-width: $screen-sm - 1) {
+              padding: 2px 20px;
+              margin: 0 auto;
+              height: 28px;
+            }
+          }
+          &.start-btn {
+            background-color: $gooru-green;
+            color: $white;
+            grid-template-columns: auto 1fr;
+            @media screen and (max-width: $screen-sm - 1) {
+              padding: 2px 20px;
+              margin: 0 auto;
+              height: 28px;
+            }
+          }
+        }
+        .time-spent-btn-with-popup {
+          margin: 0 auto;
+          a {
+            span {
+              display: block;
+            }
+          }
+          .show-div {
+            @media screen and (max-width: $screen-sm - 1) {
+              display: none;
+            }
+          }
+          .hide-div {
+            @media screen and (min-width: $screen-sm) {
+              display: none;
+            }
+          }
+          .study-timer-popup-box {
+            position: absolute;
+            bottom: 55px;
+            @media screen and (max-width: 768px) {
+              bottom: 75px;
+            }
+
+            .gru-study-timer {
+              box-shadow: 0 0 5px $light-200;
+            }
+          }
+        }
+        .complete-btn-with-popup {
+          @media screen and (max-width: $screen-sm - 1) {
+            margin: 0 auto;
+          }
+          .start-btn {
+            @media screen and (max-width: $screen-sm - 1) {
+              padding: 2px 20px;
+              height: 28px;
+            }
+            &.disable-event {
+              opacity: 0.3;
+            }
+          }
+          .completion-confirmation-popup {
+            background-color: $white;
+            max-width: 300px;
+            margin: auto;
+            display: grid;
+            padding: 15px;
+            row-gap: 8px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 55px;
+            right: 10px;
+            box-shadow: 0 0 4px $light-200;
+
+            .action-container {
+              display: grid;
+              grid-template-columns: auto auto;
+              justify-content: right;
+              column-gap: 8px;
+
+              .action-btn {
+                width: 50px;
+                cursor: pointer;
+                line-height: 1.4;
+                border-radius: 15px;
+                padding: 3px 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.confirm-btn {
+                  background-color: $blue-400;
+                  color: $white;
+                }
+
+                &.cancel-btn {
+                  border: solid 1px $nobel-gray;
+                  color: $elephant-dark;
+                }
+              }
+            }
+            @media screen and (max-width: $screen-sm) {
+              left: unset;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .loading-progress-spinner {
+    position: absolute;
+    top: 50vh;
+    left: 48vw;
+  }
+}

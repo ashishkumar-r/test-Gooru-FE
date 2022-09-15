@@ -1,0 +1,56 @@
+.content.rubric.gru-preview-url {
+  .external-link {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+
+    .panel {
+      margin-bottom: 0;
+      margin-top: 2em;
+      min-height: 250px;
+      width: 60vw;
+
+      .panel-body {
+        .external-https {
+          @include flexbox;
+          @include flex-direction(column);
+          @include align-items(center);
+          @include justify-content(center);
+          padding: 2em;
+
+          p {
+            line-height: 2em;
+            text-align: center;
+          }
+
+          a {
+            font-size: $font-size-h4;
+            margin-top: 1em;
+            text-align: center;
+            width: 90%;
+            word-wrap: break-word;
+          }
+        }
+      }
+    }
+  }
+
+  .preview {
+    width: 100%;
+    height: 75px;
+    &.show-legend {
+      @include flexbox;
+      @include justify-content(center);
+      @include align-items(center);
+      color: $font-gray-light-dark-400;
+      border: 2px dashed $gray-light;
+    }
+    &.show-url {
+      height: 500px;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

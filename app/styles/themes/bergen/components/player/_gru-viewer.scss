@@ -1,0 +1,13 @@
+.player .gru-viewer {
+  .narration {
+    span {
+      color: $dark-300;
+    }
+  }
+  .not-iframe {
+    p.description,
+    p.title {
+      color: $dark-300;
+    }
+  }
+}

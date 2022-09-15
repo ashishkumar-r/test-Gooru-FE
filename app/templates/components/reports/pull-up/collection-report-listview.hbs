@@ -1,0 +1,282 @@
+<div class="table-fixed-left">
+  <table>
+    <tbody>
+      <tr>
+        <th class="tabular-header on-scroll-fixed">
+          <div class="header-filters">
+            <div class="name-filter">
+              <span class="name-header">{{t 'common.name'}}</span>
+              <span class="first-header {{if sortByFirstnameEnabled 'active'}}" onclick={{action 'sortByFirstName'}} onkeypress={{action 'sortByFirstName'}} tabindex={{tabindex}}>
+                <span>{{t 'common.first'}}</span>
+              {{#if sortByFirstnameEnabled}}
+                {{gru-icon name="keyboard_arrow_up"}}
+              {{else}}
+                {{gru-icon name="keyboard_arrow_down"}}
+              {{/if}}
+              </span>
+              <span class="last-header {{if sortByLastnameEnabled 'active'}}" onclick={{action 'sortByLastName'}} onkeypress={{action 'sortByLastName'}} tabindex={{tabindex}}>
+                <span>{{t 'common.last'}}</span>
+              {{#if sortByLastnameEnabled}}
+                {{gru-icon name="keyboard_arrow_up"}}
+              {{else}}
+                {{gru-icon name="keyboard_arrow_down"}}
+              {{/if}}
+              </span>
+            </div>
+            {{#if (eq selectedCollection.format 'assessment')}}
+              <div class="score-timespent {{if sortByScoreEnabled 'active'}}" onclick={{action 'sortByScore'}} onkeypress={{action 'sortByScore'}} tabindex={{tabindex}}>
+                <span>{{t 'common.avg-score'}}</span>
+                {{#if sortByScoreEnabled}}
+                  {{gru-icon name="keyboard_arrow_up"}}
+                {{else}}
+                  {{gru-icon name="keyboard_arrow_down"}}
+                {{/if}}
+              </div>
+            {{else}}
+              <div class="score-timespent {{if sortByTimeSpentEnabled 'active'}}" onclick={{action 'sortByTimeSpent'}} onkeypress={{action 'sortByTimeSpent'}} tabindex={{tabindex}}>
+                <span>{{t 'gru-performance-summary.time-spent'}}</span>
+                {{#if sortByTimeSpentEnabled}}
+                  {{gru-icon name="keyboard_arrow_up"}}
+                {{else}}
+                  {{gru-icon name="keyboard_arrow_down"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+        </th>
+      </tr>
+      {{#each studentReportData as |student|}}
+        {{#if student.totalTimeSpent}}
+          <tr>
+            <th>
+              <div class="user-profile-summary">
+                <div class="user-profile-details">
+                  <div class="user-profile-img {{if isArchivedClass 'disable-event'}}">
+                    {{#if student.selectedForSuggestion}}
+                      <div class="selected-user-for-suggestion">
+                        {{gru-icon name="done_all"}}
+                        <div class="de-select-user" onclick={{action 'onDeSelectUser' student}} onkeypress={{action 'onDeSelectUser' student}} tabindex={{tabindex}}>
+                          {{gru-icon name="close"}}
+                        </div>
+                      </div>
+                    {{/if}}
+                    <img src="{{student.avatarUrl}}" alt="student avatar" class="{{if student.selectedForSuggestion 'selected'}}" onclick={{action 'onSelectUser' student}} onkeypress={{action 'onSelectUser' student}} tabindex={{tabindex}}/>
+                  </div>
+                  <div class="username" onclick={{action 'studentReport' selectedCollection student.id}} onkeypress={{action 'studentReport' selectedCollection student.id}} tabindex={{tabindex}}>
+                    <span>{{student.lastName}},</span>
+                    <span>{{student.firstName}}</span>
+                  </div>
+                </div>
+                <div class="score-details">
+                  {{#if student.hasStarted}}
+                    {{#if (eq selectedCollection.format 'assessment')}}
+                      {{#unless student.isGraded}}
+                        <div class="not-graded">{{gru-icon name="visibility"}}</div>
+                    {{else}}
+                      <span class="{{concat 'grade-range-text-' (grade-range student.score)}}">{{student.score}}%</span>
+                      {{/unless}}
+                    {{else}}
+                      <span>{{format-time student.totalTimeSpent}}</span>
+                    {{/if}}
+                  {{else}}
+                    <span>--</span>
+                  {{/if}}
+                </div>
+              </div>
+            </th>
+          </tr>
+        {{/if}}
+        <tr class="hidden">
+          <div class="table-fixed-right">
+            <table>
+              <tbody>
+                <tr>
+                  {{#each contents as | content |}}
+                    <th class="tabular-header on-scroll-fixed">
+                      <div class="content-header {{unless (eq content.format 'question') 'not-question'}}" onclick={{action 'openQuestionReport' content contents}} onkeypress={{action 'openQuestionReport' content contents}} tabindex={{tabindex}}>
+                        <div class="resource-icon">
+                          <i class="{{content.format}}"></i>
+                        </div>
+                        <div class="content-title">
+                          <p>{{safe-html content.title}}</p>
+                        </div>
+                      </div>
+                    </th>
+                  {{/each}}
+                </tr>
+                <tr>
+                  {{#each student.userPerformanceData as |userPerformanceData|}}
+                    {{#if userPerformanceData.timeSpent}}
+                      <td>
+                        <div class="perf-time-react-container">
+                          {{#if (eq userPerformanceData.format 'question')}}
+                            {{#unless userPerformanceData.isGraded}}
+                              <div class="not-graded">{{gru-icon name="visibility"}}</div>
+                          {{else}}
+                            {{#if userPerformanceData.hasStarted}}
+                              <div class="content-score-value">
+                                {{#if userPerformanceData.isSkipped}}
+                                  <div class="skipped">
+                                    <span>{{userPerformanceData.sequence}}</span> {{gru-icon name="not_interested"}}
+                                  </div>
+                                {{else}}
+                                  <div class="{{if userPerformanceData.correct 'correct' 'wrong'}} {{concat 'grade-range-text-' (grade-range userPerformanceData.score)}}">{{userPerformanceData.sequence}}</div>
+                                {{/if}}
+                              </div>
+                            {{else}}
+                              <div class="not-started">--</div>
+                            {{/if}}
+                            {{/unless}}
+                          {{/if}}
+                          {{#if isTimeSpentFltApplied}}
+                            <div class="timespent-value">
+                              {{#if userPerformanceData.timeSpent}}
+                                <span>{{format-time userPerformanceData.timeSpent}}</span>
+                              {{else}}
+                                <span>--</span>
+                              {{/if}}
+                            </div>
+                          {{/if}}
+                          {{#if isReactionFltApplied}}
+                            <div class="reaction-value">
+                              <div class="selected-reaction">
+                                {{#if userPerformanceData.reaction_unicode}}
+                                  <svg>
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/emoji-one/emoji.svg#{{userPerformanceData.reaction_unicode}}"></use>
+                                  </svg>
+                                {{else}}
+                                  <span>--</span>
+                                {{/if}}
+                              </div>
+                            </div>
+                          {{/if}}
+                        </div>
+                      </td>
+                    {{/if}}
+                  {{/each}}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div id="table-fixed-right-xs" class="table-fixed-right">
+  <table>
+    <tbody>
+      <tr>
+        {{#each contents as | content |}}
+          <th class="tabular-header on-scroll-fixed">
+            <div class="content-header {{unless (eq content.format 'question') 'not-question'}}" onclick={{action 'openQuestionReport' content contents}} onkeypress={{action 'openQuestionReport' content contents}} tabindex={{tabindex}}>
+              <div class="resource-icon">
+                {{#if (eq content.type 'LS')}}
+                <div class="likert-question" onclick={{action 'likertQuestionReport' content contents}}>
+                <img src = "/assets/gooru/chart.png" class='likert-chart-icon' />
+                </div>
+                {{else}}
+                <i class="{{content.format}}"></i>
+                {{/if}}
+              </div>
+              <div class="content-title">
+                <p>{{safe-html content.title}}</p>
+              </div>
+            </div>
+          </th>
+        {{/each}}
+      </tr>
+      {{#each studentReportData as |student|}}
+        <tr>
+          {{#each student.userPerformanceData as |userPerformanceData|}}
+            {{#if userPerformanceData.hasStarted}}
+            <td>
+              <div class="perf-time-react-container">
+                {{#if (eq userPerformanceData.format 'question')}}
+                  {{#unless userPerformanceData.isGraded}}
+                    <div class="not-graded">{{gru-icon name="visibility"}}</div>
+                {{else}}
+                  {{#if userPerformanceData.hasStarted}}
+                    <div class="content-score-value">
+                      {{#if userPerformanceData.isSkipped}}
+                        <div class="skipped">
+                          <span>{{userPerformanceData.sequence}}</span> {{gru-icon name="not_interested"}}
+                        </div>
+                      {{else}}
+                        <div class="{{if userPerformanceData.correct 'correct' 'wrong'}} {{concat 'grade-range-text-' (grade-range userPerformanceData.score)}}">{{userPerformanceData.sequence}}</div>
+                      {{/if}}
+                    </div>
+                  {{else}}
+                    <div class="not-started">--</div>
+                  {{/if}}
+                  {{/unless}}
+                {{/if}}
+                {{#if isTimeSpentFltApplied}}
+                  <div class="timespent-value">
+                    {{#if userPerformanceData.timeSpent}}
+                      <span>{{format-time userPerformanceData.timeSpent}}</span>
+                    {{else}}
+                      <span>--</span>
+                    {{/if}}
+                  </div>
+                {{/if}}
+                {{#if isReactionFltApplied}}
+                  <div class="reaction-value">
+                    <div class="selected-reaction">
+                      {{#if userPerformanceData.reaction_unicode}}
+                        <svg>
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/emoji-one/emoji.svg#{{userPerformanceData.reaction_unicode}}"></use>
+                        </svg>
+                      {{else}}
+                        <span>--</span>
+                      {{/if}}
+                    </div>
+                  </div>
+                {{/if}}
+              </div>
+            </td>
+            {{/if}}
+          {{/each}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{#if (gt contents.length 2)}}
+  <span class="scroll-left-arrow scroll-arrow on-scroll-fixed" onclick={{action 'onClickScrollLeftArrow'}} onkeypress={{action 'onClickScrollLeftArrow'}} tabindex={{tabindex}}>
+    {{gru-icon name="keyboard_arrow_left"}}
+  </span>
+  <span class="scroll-right-arrow scroll-arrow on-scroll-fixed" onclick={{action 'onClickScrollRightArrow'}} onkeypress={{action 'onClickScrollRightArrow'}} tabindex={{tabindex}}>
+    {{gru-icon name="keyboard_arrow_right"}}
+  </span>
+{{/if}}
+
+<div class="suggest-bar on-scroll-fixed {{if (gt studentsSelectedForSuggest.length 0) 'active'}}">
+  <div class="suggest-bar-container">
+    <div class="close-all-suggestion" onclick={{action 'onCloseSuggest'}} onkeypress={{action 'onCloseSuggest'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+    <div class="no-of-student-selected">
+      <span>{{studentsSelectedForSuggest.length}} {{t 'common.student-selected'}}</span>
+    </div>
+    <div class="suggestion-count-container" onclick={{action 'onOpenSuggestionPullup'}} onkeypress={{action 'onOpenSuggestionPullup'}} tabindex={{tabindex}}>
+      <span>{{t 'common.suggestion'}}</span>
+      <div class="suggestion-explore">
+        {{gru-icon name="explore"}}
+        <div class="suggestion-count">{{suggestResultCount}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{{#if showSuggestionPullup}}
+  {{teacher/suggestion-pull-up
+    showPullUp=showSuggestionPullup
+    students=studentsSelectedForSuggest
+    onCloseSuggest="onCloseSuggest"
+    context=contextParams
+    collection=collection
+    defaultSuggestContentType=defaultSuggestContentType
+    tabindex=tabindex
+    class=class
+  }}
+{{/if}}

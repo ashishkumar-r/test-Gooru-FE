@@ -1,0 +1,53 @@
+.content.modals.gru-add-to-classroom {
+  .modal-header {
+    text-align: $tab-float-dir;
+  }
+  .modal-body {
+    padding: 30px;
+  }
+  .list {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(flex-start);
+    padding: 0 5px;
+
+    max-height: 460px;
+    overflow-y: auto;
+
+    .panel {
+      width: 46%;
+      border-radius: 6px;
+      margin-right: 16px;
+      .panel-heading {
+        padding: 5px 15px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        background-color: $sky-300;
+        color: $white;
+      }
+      &.active {
+        border: 3px solid $blue-400;
+      }
+      .panel-body {
+        @include flexbox;
+        @include align-items(center);
+
+        i {
+          margin: 0 10px;
+        }
+
+        .class-code-container {
+          .class-code-value {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  .lead {
+    font-size: $font-size-large;
+  }
+  .warning-text {
+    color: $yellow-300;
+  }
+}

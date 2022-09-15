@@ -1,0 +1,79 @@
+<div class="gut-selector-container">
+  <div class="category-selector">
+    <div class="category-header-container">
+      Category
+    </div>
+    <div class="categories-container">
+      {{#each categories as |category|}}
+        <div class="category-container {{if (eq category.id activeCategory.id) 'active'}}" onclick={{action "onSelectCategory" category}} onkeypress={{action "onSelectCategory" category}} tabindex={{tabindex}}>{{category.title}}</div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="slide-level-selector">
+    {{#if subjects.length}}
+      <div class="subject-selector level-selector level-1">
+        <div class="level-header-container">
+          Subjects
+        </div>
+        <div class="subjects-container level-items-container">
+          {{#each subjects as |subject|}}
+            <div class="subject-container level-item ellipsis {{if (eq activeSubject.id subject.id) 'active'}}" onclick={{action "onSelectSubject" subject}} onkeypress={{action "onSelectSubject" subject}} tabindex={{tabindex}}>
+              {{subject.title}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{else if activeCategory}}
+      <div class="no-subjects-available">No Subjects Available</div>
+    {{/if}}
+
+    {{#if domains.length}}
+      <div class="domain-selector level-selector level-2">
+        <div class="level-header-container">
+          Domains
+        </div>
+        <div class="domains-container level-items-container">
+          {{#each domains as |domain|}}
+            <div class="domain-container level-item ellipsis {{if (eq activeDomain.domainCode domain.domainCode) 'active'}}" onclick={{action "onSelectDomain" domain}} onkeypress={{action "onSelectDomain" domain}} tabindex={{tabindex}}>
+              {{domain-gut-to-fw-transform
+                 fwDomains
+                 domain.domainCode
+                 domain.domainName
+                'fwDomainName'
+                true
+              }}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if competencies.length}}
+      <div class="gut-selector level-selector level-3">
+        <div class="level-header-container">
+          Competencies
+        </div>
+        <div class="competencies-container level-items-container">
+          {{#each competencies as |competency|}}
+            <div class="competency-container level-item ellipsis {{if (eq activeCompetency.competencyCode competency.competencyCode) 'active'}}" onclick={{action "onSelectCompetency" competency}} onkeypress={{action "onSelectCompetency" competency}} tabindex={{tabindex}}>
+              {{competency-gut-to-fw-transform
+                fwCompetencies
+                competency.competencyCode
+                competency.competencyCode
+                'frameworkCompetencyDisplayCode'
+                false
+                true
+                }}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if isLoading}}
+      <div class="loading-spinner">
+        {{three-bounce-spinner}}
+      </div>
+    {{/if}}
+  </div>
+</div>

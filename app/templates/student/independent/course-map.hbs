@@ -1,0 +1,33 @@
+{{#if course.id}}
+  <div class="controller student course-map">
+    {{class/overview/gru-accordion-course
+      currentCourse=course
+      onSelectResource="playResource"
+      onStudyNow="studyPlayer"
+      onLocationUpdate=(action 'updateLocation')
+      userLocation=userLocation
+      location=openingLocation
+      units=units
+      contentVisibility=contentVisibility
+      showLocation=showLocation
+      isTeacher=false
+      isStudent=true
+    }}
+  </div>
+{{else}}
+  <div class="no-content">This course has no content</div>
+{{/if}}
+
+{{#if showCourseReport}}
+  {{reports/pull-up/student-course-report context=studentCourseReportContext showPullUp=showCourseReport}}
+{{/if}}
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

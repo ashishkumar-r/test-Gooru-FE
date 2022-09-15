@@ -1,0 +1,61 @@
+.player .gru-hs-image {
+  .answer-choices {
+    max-width: 400px;
+
+    ul {
+      li.answer {
+        float: $tab-float-dir;
+        padding: 0;
+        margin: 5px;
+        cursor: default;
+        width: 126px;
+        height: 126px;
+        text-align: center;
+        border-bottom: 3px solid #535e67;
+        position: relative;
+        border-radius: 0;
+        word-wrap: break-word;
+        overflow: auto;
+
+        img {
+          border: 0 none;
+          width: auto;
+          max-height: 100%;
+        }
+
+        &.disabled {
+          cursor: $cursor-disabled;
+        }
+
+        &:not(.disabled):hover {
+          border-color: $dark-300;
+        }
+        &.selected {
+          border-color: $blue-400;
+          div {
+            display: block;
+          }
+        }
+        .img-thumbnail {
+          padding: 0px;
+          border-radius: 0px;
+        }
+        div {
+          display: none;
+          position: absolute;
+          top: 35%;
+          left: 35%;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: $white;
+          i {
+            font-size: 42px;
+            margin: -5px 0px 0px -5px;
+            color: $dark-300;
+          }
+        }
+      }
+    }
+  }
+}

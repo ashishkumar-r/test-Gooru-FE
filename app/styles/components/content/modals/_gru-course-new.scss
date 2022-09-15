@@ -1,0 +1,22 @@
+.publish-head {
+  margin-bottom: 20px;
+  cursor: pointer;
+  .publish-btn {
+    width: 85px;
+    padding: 5px;
+    background-color: $blue-400;
+    color: $white;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+  }
+  .publish-list {
+    padding: 5px;
+    max-height: 348px;
+    overflow: scroll;
+  }
+  .select-name {
+    padding: 10px;
+    cursor: pointer;
+  }
+}

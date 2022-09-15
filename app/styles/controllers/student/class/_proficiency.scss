@@ -1,0 +1,105 @@
+.student_class_proficiency {
+  background-color: $white;
+  .student.class {
+    width: 100%;
+  }
+  .gru-study-navbar {
+    .course-map {
+      pointer-events: none;
+    }
+  }
+
+  .student.proficiency {
+    height: 100%;
+    @media screen and (min-width: $screen-md) {
+      .student-inspect-destination.proficiency {
+        .inspect-destination-container {
+          .competency-level-container {
+            position: relative;
+
+            .show-destination {
+              position: absolute;
+              bottom: 10px;
+            }
+          }
+        }
+      }
+
+      .student-inspect-destination.destination {
+        .inspect-destination-container {
+          .grade-data-container {
+            position: relative;
+
+            .grade-description {
+              height: 480px;
+            }
+
+            .next-route {
+              position: absolute;
+              bottom: 10px;
+            }
+          }
+        }
+      }
+
+      .student-inspect-destination.route {
+        .inspect-destination-container {
+          .course-container {
+            .route0-container {
+              .route0-body {
+                .route0-accordion-container {
+                  .gru-accordion-course {
+                    .gru-accordion-unit {
+                      .panel-collapse {
+                        padding: 5px;
+                        max-height: 300px;
+                        overflow-y: auto;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .study-course {
+              margin: 15px 0;
+              position: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#toast-container.toast-top-full-width.student-class-proficiency {
+  top: 55px;
+  width: 100%;
+  position: fixed;
+  @media (min-width: $screen-md) {
+    top: 63px;
+  }
+
+  > div.toast-error {
+    width: inherit;
+    background-image: none !important;
+    background-color: $red-400;
+    opacity: 1;
+    @media (max-width: $screen-xs-min) {
+      padding: 10px;
+      margin: 0;
+    }
+
+    .toast-message {
+      text-align: center;
+    }
+  }
+}
+
+body.student_class_proficiency {
+  @media only screen and (max-width: $screen-xs) {
+    .app-container {
+      padding-top: 102px;
+    }
+  }
+}

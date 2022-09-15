@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Gets lesson paths",
+    "request": {
+      "url": "^/api/nucleus/v2/course-map/(.+)/units/(.+)/lessons/(.+)",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "get-lesson-response.json"
+    }
+  }
+]

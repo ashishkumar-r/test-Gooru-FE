@@ -1,0 +1,26 @@
+.gru-multiple-answer {
+  .answer-choices {
+    .answer-text {
+      @include flexbox;
+      word-wrap: break-word;
+      overflow: auto;
+      max-width: 12em;
+      @media (min-width: $screen-sm-min) {
+        max-width: 16em;
+      }
+      @media (min-width: $screen-lg-min) {
+        max-width: 25em;
+      }
+      > * {
+        @include inline-flex;
+        margin-right: 0.5em;
+      }
+    }
+    .table > thead > tr > th {
+      border-bottom: 1px solid $table-border-color;
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+}

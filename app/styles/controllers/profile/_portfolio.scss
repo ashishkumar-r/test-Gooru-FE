@@ -1,0 +1,104 @@
+.profile.profile_portfolio {
+  .controller.profile {
+    .content {
+      // max-width: unset;
+      // width: 100%;
+      .profile.gru-navigation-tabs,
+      .user-profile-container {
+        // max-width: 1017px;
+        // margin: auto;
+      }
+    }
+  }
+}
+
+.profile {
+  .profile-portfolio-container {
+    display: block;
+
+    .learning-activities-container {
+      margin-bottom: 20px;
+      max-width: 33.3%;
+
+      .portfolio.gru-contents-panel .portfolio-contents-container {
+        margin-right: 10px;
+      }
+
+      .portfolio.gru-contents-panel
+        .portfolio-contents-container
+        .body-container {
+        max-height: calc(100vh - 260px);
+      }
+    }
+    @media screen and (max-width: $screen-md) {
+      display: block;
+      width: 100%;
+      overflow: auto;
+      .learning-activities-container {
+        max-width: 100%;
+      }
+    }
+
+    .profile-header {
+      display: grid;
+      grid-template-columns: 50px 1fr 50px;
+      color: $gray-base;
+      cursor: pointer;
+      border-bottom: 1px solid $light-200;
+      height: 48px;
+      background: $white;
+      box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+
+      img {
+        width: 25px;
+        height: 25px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin: auto;
+      }
+
+      .name {
+        font-size: 15px;
+        align-self: center;
+      }
+
+      .toggle-panel {
+        margin: auto;
+
+        .keyboard_arrow_down {
+          display: none;
+        }
+
+        .keyboard_arrow_up {
+          display: block;
+        }
+      }
+
+      &.collapsed {
+        box-shadow: none;
+
+        .toggle-panel {
+          .keyboard_arrow_down {
+            display: block;
+          }
+
+          .keyboard_arrow_up {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .panel-container {
+      display: flex;
+      padding-top: 20px;
+    }
+
+    .no-data {
+      color: $dark-400;
+      font-size: 15px;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+  }
+}

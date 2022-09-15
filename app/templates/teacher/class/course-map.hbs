@@ -1,0 +1,399 @@
+{{#if isShowGoLive}}
+  <div class="go-live-panel">
+    {{class/activities/go-live
+    goLiveUrl = goLiveUrl
+    isShowGoLive = isShowGoLive
+    tabindex='101'
+  }}
+  </div>
+{{/if}}
+{{#if class.courseId}}
+  <div class="controller teacher class course-map {{unless isOwner 'not-owner'}} {{if isShowGoLive 'hide'}}">
+    {{#if isOwner}}
+      <div class="actions">
+        <button tabindex='101' {{action "editContent" course.id class.id}} class="btn btn-primary edit-content">
+          {{t "common.edit-course"}} {{gru-icon name='edit'}}
+        </button>
+      </div>
+    {{/if}}
+    <div class="panel panel-default panel-primary welcome {{if showWelcome 'visible' 'hidden'}}">
+      <div class="panel-body {{if isPremiumClass 'premium-class'}}">
+        {{#if isPremiumClass}}
+          <div class="description">{{t "teacher-landing.welcome-premium-course-map"}}</div>
+        {{else}}
+          <div class="description">{{t "teacher-landing.welcome-course-map"}}</div>
+        {{/if}}
+        <div class="close">
+          <a onclick={{action 'toggleHeader'}} onkeypress={{action 'toggleHeader'}} tabindex='101'>X</a>
+        </div>
+      </div>
+    </div>
+    <div class="course-map-container">
+      {{#if isStudentCourseMap}}
+        <div class="active-student {{if activeStudentId 'has-back-btn'}}">
+          {{#if activeStudentId}}
+            <a href="javascript:void(0)" {{action "onGoBack"}} class="back-btn" aria-label="go back">{{gru-icon name="arrow_back"}}</a>
+          {{/if}}
+          <div class="student-thumbnail pull-left" style="background-image: url({{activeStudent.avatarUrl}})"></div>
+          <div class="student-name pull-left">{{activeStudent.fullName}} {{if (not activeStudent.isShowLearnerData) '*'}}</div>
+          <div class="student-close pull-right" onclick={{action "onSelectAll"}} onkeypress={{action "onSelectAll"}} tabindex='101'>
+            {{gru-icon name="clear"}}
+          </div>
+          <div class="performance-container pull-right {{if (not (gte studentClassScore 0)) 'not-started'}}" onclick={{action "onOpenStudentCourseReport" activeStudent}} onkeypress={{action "onOpenStudentCourseReport" activeStudent}} tabindex='101'>
+            {{charts/gru-performance-chart performanceSummary=activeStudent.performance isTeacher=session.role}}
+          </div>
+        </div>
+      {{/if}}
+
+      <div class="course-map-body {{unless isStudentCourseMap 'teacher-cm'}}">
+        {{#if ( or (and class.milestoneViewApplicable  isMilestoneView) (not class.milestoneViewApplicable  isMilestoneView) (and class.milestoneViewApplicable  (not isMilestoneViewEnabledForTenant)))}}
+          <div class="students">
+            <div class="header hidden-xs">
+              {{t 'class.info.students'}}
+            </div>
+            <div class="header hidden visible-xs" onclick={{action 'toggleStudentList'}} onkeypress={{action 'toggleStudentList'}} tabindex='101'>
+              <div class="title">{{t 'class.info.students'}}</div>
+              <div class="icon">
+                {{gru-icon name="arrow_drop_down" class="arrow-down"}}
+                {{gru-icon name="arrow_drop_up" class="arrow-up"}}
+              </div>
+            </div>
+            <div class="students-list">
+              {{#each sortedStudents as |student index|}}
+                <div class="student list student-{{index}}" onclick={{action "onSelectStudent" student index}} onkeypress={{action "onSelectStudent" student index}} tabindex='101'>
+                  <div class="thumbnail" data-toggle="tooltip" style="background-image: url({{student.avatarUrl}})">
+                  </div>
+                  <div class="student-name">{{student.fullName}} ({{if student.totalTimespent (format-time student.totalTimespent) '--'}}) {{if (not student.isShowLearnerData) '*'}}</div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+
+        <div class="render-course-map {{if (and (not isStudentCourseMap) questionItems) 'sm-course-map'}}">
+          {{#if (or (and class.milestoneViewApplicable hasMilestoneViewReady (not isStudentCourseMap)) isPremiumClass)}}
+            <div class="ms-cm-view-switcher-ctn-container">
+              <div class="ms-cm-view-switcher-ctn {{if (not isLessonPlanShow) 'switch-not-show-lesson-plan'}}">
+                {{#unless isLessonPlanShow}}
+                  <div class="show-title-head">
+                    {{#if isMilestoneView}}
+                      <span>{{t 'milestones'}}</span>
+                    {{else}}
+                      <span>{{t 'common.course-map'}}</span>
+                    {{/if}}
+                  </div>
+                  <div class=""></div>
+                {{/unless}}
+                {{#if hasMilestoneViewReady}}
+                  <div class="view-switcher" onclick={{action 'viewSwitcher' 'milestone-course'}} onkeypress={{action 'viewSwitcher' 'milestone-course'}} tabindex='101'>
+                    <span>{{t 'common.show'}}</span><br>
+                    {{#if isMilestoneView}}
+                      <span>{{t 'common.course-map'}}</span>
+                    {{else}}
+                      <span>{{t 'milestones'}}</span>
+                    {{/if}}
+                  </div>
+                {{else}}
+                  <span class="premium-no-milestone">{{t 'common.course-map'}}</span>
+                {{/if}}
+                {{#if isLessonPlanShow}}
+                  <div class="current-class-view">
+
+                  </div>
+                  <div class="ms-cm-view-lesson-plan" onclick={{action 'viewSwitcher' 'lesson-plan'}} onkeypress={{action 'viewSwitcher' 'lesson-plan'}} tabindex='101'>
+                    {{t 'common.show'}} <br>
+                    {{#if isLessonPlanView}}
+                      {{t 'common.lessonObj.zero'}}
+                    {{else}}
+                      {{t 'common.lesson-plan'}}
+                    {{/if}}
+                  </div>
+                {{/if}}
+              </div>
+            </div>
+          {{/if}}
+          {{#if isLoading}}
+            {{three-bounce-spinner}}
+          {{else}}
+            {{#unless (or (and class.milestoneViewApplicable hasMilestoneViewReady) isPremiumClass)}}
+              <div class="header title">
+                {{t 'common.course-map'}}
+              </div>
+            {{else if isStudentCourseMap}}
+              <div class="header title">
+                {{t 'milestones'}}
+              </div>
+            {{/unless}}
+            {{#if isStudentCourseMap}}
+              <div class="student-coursemap">
+                {{#if (and isShowRoute0Suggestion (not isMilestoneView))}}
+                  <h5 class="pre-study-title hidden-xs">{{t 'pre-study'}}</h5>
+                  {{class/overview/routesuggestion-coursemap route0=route0
+                       onLocationUpdate=(action 'updateUserLocation')
+                      userLocation=userLocation
+                      location=openingLocation
+                      class=class
+                      course=course
+                      routeSuggestAction=(action 'courseRouteSuggestAction')
+                      onStudyNow=(action 'studyCoursePlayer' )
+                      studentId=activeStudent.id}}
+                {{/if}}
+
+                {{#unless (and class.milestoneViewApplicable isMilestoneView)}}
+                  {{#each units as |unit index|}}
+                    {{class/learner/gru-learner-accordion-unit
+                    currentClass=class
+                    studentId=activeStudent.id
+                    currentCourse=course
+                    classMembers=classMembers
+                    collectionReport="collectionReport"
+                    onOpenStudentUnitLevelReport="onOpenStudentUnitLevelReport"
+                    onOpenStudentLessonReport="onOpenStudentLessonReport"
+                    model=unit
+                    units=units
+                    index=index
+                    isTeacher=false
+                    isStudent=true
+                    toggleLocation=toggleLocation
+                    onSelectItem="onSelectItem"
+                    contentVisibility=contentVisibility
+                    tabindex=101
+                  }}
+                  {{else}}
+                    <li>
+                      {{t "common.contentUnavailable"}}
+                    </li>
+                  {{/each}}
+                {{else}}
+                  {{student/class/milestone-course-map
+                    class=class
+                    studentId=activeStudent.id
+                    allowToPlay=false
+                    gradeSubject=gradeSubject
+                    locateLastPlayedItem=false
+                    contentVisibility=contentVisibility
+                    showToggleButtonToViewFullCourse=true
+                    classMilestones = studentMilestones
+                    route0Milestones=route0Contents
+                    isTeacher=true
+                    location=location
+                    showAllRescopedContent=showAllRescopedContent
+                    showLocationReport=tab
+                    checkAllContentsAreRescoped = "checkAllContentsAreRescoped"
+                    isAllContentsAreRescoped = isAllContentsAreRescoped
+                    tabindex=101
+                    isDefaultShowFW = isDefaultShowFW
+                    classFramework = classFramework
+                  }}
+                {{/unless}}
+              </div>
+            {{else}}
+              <div class="teacher-coursemap">
+                {{#unless (or (and class.milestoneViewApplicable isMilestoneView) isLessonPlanView ) }}
+                  {{class/overview/gru-accordion-course
+                currentClass=class
+                currentCourse=course
+                classMembers=classMembers
+                onSelectResource="onPreviewContent"
+                onLocationUpdate=(action 'updateLocation')
+                onLaunchOnAir="launchOnAir"
+                location=location
+                units=units
+                contentVisibility=contentVisibility
+                onUpdateContentVisibility="updateContentVisibility"
+                isTeacher=true
+                isStudent=false
+                isNUCourse=isNUCourse
+                onOpenUnitLevelReport="onOpenUnitLevelReport"
+                onOpenLessonReport="onOpenLessonReport"
+                teacherCollectionReport="teacherCollectionReport"
+                isPremiumClass=isPremiumClass
+                showLocationReport= tab
+                tabindex=101
+                selectedUserId=selectedUserId
+                selectedQuestionId=selectedQuestionId
+                selectedCollectionId=selectedCollectionId
+              }}
+                {{else}}
+                  {{#if isLessonPlanView}}
+                    {{teacher/class/lesson-plan
+                  class=class
+                  gradeSubject=gradeSubject
+                  milestones=teacherMilestones
+                  classMembers=classMembers
+                  onOpenTeacherMilestoneReport = "onOpenTeacherMilestoneReport"
+                  onOpenTeacherMilestoneLessonReport = "onOpenTeacherMilestoneLessonReport"
+                  onOpenTeacherMilestoneCollectionReport = "onOpenTeacherMilestoneCollectionReport"
+                  location=location
+                  showLocationReport= tab
+                  tabindex=101
+                }}
+                  {{else}}
+                    {{teacher/class/milestone-course-map
+                    class=class
+                    gradeSubject=gradeSubject
+                    onPreviewContent='onPreviewContent'
+                    onGoLive="goLive"
+                    milestones=teacherMilestones
+                    classMembers=classMembers
+                    onOpenTeacherMilestoneReport = "onOpenTeacherMilestoneReport"
+                    onOpenTeacherMilestoneLessonReport = "onOpenTeacherMilestoneLessonReport"
+                    onOpenTeacherMilestoneCollectionReport = "onOpenTeacherMilestoneCollectionReport"
+                    location=location
+                    showLocationReport= tab
+                    tabindex=101
+                    contentVisibility=contentVisibility
+                    isTeacher = true
+                  }}
+                  {{/if}}
+                {{/unless}}
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
+        {{#unless isStudentCourseMap}}
+          <div class="items-to-grade">
+            <div class="header hidden-xs">
+              {{t 'class.analytics.performance.grade-items'}}
+            </div>
+            <div class="header hidden visible-xs" onclick={{action 'toggleItemsToGrade'}} onkeypress={{action 'toggleItemsToGrade'}} tabindex='101'>
+              <div class="title">{{t 'class.analytics.performance.grade-items'}} </div>
+              <div class="icon">
+                {{gru-icon name="arrow_drop_down" class="arrow-down"}}
+                {{gru-icon name="arrow_drop_up" class="arrow-up"}}
+              </div>
+            </div>
+            {{#if isGradeLoading}}
+              {{three-bounce-spinner}}
+            {{else}}
+              {{#if itemsToGradeList}}
+                {{gru-grade-items
+                  openReportGrade='onOpenReportGrade'
+                  gradeableItems=groupedGradingItems
+                  primaryClass=class
+                  tabindex=102}}
+              {{else}}
+                <div class="no-grade-items">
+                  <i></i>
+                  <span>
+                    {{t 'class.analytics.performance.no-grade-items'}}
+                  </span>
+                </div>
+              {{/if}}
+            {{/if}}
+          </div>
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="no-content">This classroom does not have a related course and it has no content</div>
+{{/if}}
+{{#if showStudentUnitReport}}
+  {{reports/pull-up/student-unit-report onClosePullUp="onClosePullUp" context=studentUnitReportContext showPullUp=showStudentUnitReport tabindex="101" isDefaultShowFW = isDefaultShowFW classFramework = classFramework}}
+{{/if}}
+{{#if showStudentLessonReport}}
+  {{reports/pull-up/student-lesson-report onClosePullUp="onClosePullUp" context=studentLessonReportContext showPullUp=showStudentLessonReport tabindex="101" isDefaultShowFW = isDefaultShowFW classFramework = classFramework }}
+{{/if}}
+{{#if isShowStudentReport}}
+  {{class/gru-report-panel showPullUp=isShowStudentReport reportData=studentReportContextData model=studentReportContextData.lesson isStudent=false activeStudent=activeStudent onClosePullUp="onClosePullUp" tabindex="101" class=class isDefaultShowFW = isDefaultShowFW classFramework = classFramework}}
+{{/if}}
+{{#if isShowStudentExternalAssessmentReport}}
+  {{
+    reports/pull-up/student-external-assessment-report
+    reportData=studentReportContextData
+    showPullUp=isShowStudentExternalAssessmentReport
+    isStudent=studentReportContextData.isStudent
+    onClosePullUp="onClosePullUp"
+    showPullUp=isShowStudentExternalAssessmentReport
+    primaryClass=class
+    tabindex=101
+  }}
+{{/if}}
+{{#if showCourseReport}}
+  {{reports/pull-up/student-course-report onClosePullUp="onClosePullUp=" context=studentCourseReportContext showPullUp=showCourseReport tabindex="101"}}
+{{/if}}
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    previewContentId=previewContent.id
+    previewContentType=previewContentType
+    playerContext=previewPlayerContext
+    primaryClass=class
+    class=class
+    tabindex=101
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isShowStudentMilestoneReport}}
+  {{#reports/pull-up/milestone/milestone-report
+    showPullUp = isShowStudentMilestoneReport
+    title = course.title
+    onClosePullUp = 'closeMilestoneReport'
+    tabindex="101"
+  }}
+    {{reports/pull-up/milestone/student-milestone-performance-report
+      class = studentClassData
+      userId = activeStudent.id
+      tabindex="101"
+      isDefaultShowFW = isDefaultShowFW
+      classFramework = classFramework
+    }}
+  {{/reports/pull-up/milestone/milestone-report}}
+{{/if}}
+
+{{#if showFRQuestionGrade}}
+  {{grade/pull-up/free-response-question-grade
+    isDCAContext=false
+    showPullUp=showFRQuestionGrade
+    context=itemToGradeContext
+    itemsToGrade=questionItems
+    allContext=itemToGradeContextData
+    getGradeListItem = "getGradeListItem"
+    refreshItem="getGradeListItem"
+    primaryClass=class
+    tabindex=101
+  }}
+{{/if}}
+
+{{#if isShowOfflineActivityPreview}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityPreview
+    oaId=previewContent.id
+    classId=classId
+    isReportView=false
+    primaryClass=class
+    tabindex=101
+    isDefaultShowFW=isDefaultShowFW
+    classFramework = classFramework
+  }}
+{{/if}}
+
+
+{{#if isShowOaGrading}}
+  {{activity/offline/grading-report
+    showPullUp=isShowOaGrading
+    context=itemToGradeContextData
+    itemsToGrade=itemsToGradeList
+    isTeacher=true
+    refreshItem="getGradeListItem"
+    isCourseMapGrading = true
+    tabindex=101
+  }}
+{{/if}}
+
+{{#if isShowStudentOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowStudentOfflineActivityReport
+    oaId=studentReportContextData.collection.id
+    isReportView=true
+    classId=class.id
+    isCmReport = true
+    reportContext = studentReportContextData
+    primaryClass=class
+    tabindex=101
+    isDefaultShowFW=isDefaultShowFW
+    classFramework = classFramework
+  }}
+{{/if}}

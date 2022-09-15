@@ -1,0 +1,32 @@
+<div class="chart-container">
+  <div class="graded-chart-container">
+    <div class="domain-chart">
+      <div class="scrollable-chart">
+        <div id="student-inspect-competency-chart" class="{{if isProficiency 'proficiency'}}">
+            <div id="popover">
+              <div class="custom-transform">
+                <span class="title">{{t "student-first-experience.competency.popover.title" title=title}}</span>
+                <span class="content">{{t "student-first-experience.competency.popover.content"}}</span>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="domain-sequence">
+        {{#each proficiencyChartData as |domain index |}}
+          <li class="domain-counts"
+          title="{{locale-translation (t (concat 'domain-code.' domain.domainCode)) domain.domainName}}"
+          data-toggle="tooltip"
+          style="width:{{cellWidth}}px"
+          >
+            {{domain.domainSeq}}
+          </li>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}

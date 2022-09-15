@@ -1,0 +1,17 @@
+<div class="emotion-picker">
+  <span class="legend hidden-xs">{{t "gru-emotion-picker.react-to-resource"}}</span>
+  <ul class="emotions-list">
+    {{#each emotionValues as |emotion|}}
+      <li>
+        <div title="{{t (concat 'common.emotions.emotion-' emotion.value) }}"
+             data-toggle="tooltip"
+             data-placement="bottom"
+             class="emotion emotion-{{emotion.value}}" {{action 'setEmotion' emotion.value}}>
+             <svg>
+               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{appRootPath}}assets/quizzes-addon/emoji-one/emoji.svg#{{emotion.unicode}}-inactive"></use>
+             </svg>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</div>

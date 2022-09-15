@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{t "gru-submit-confirmation.title"}}</h3>
+</div>
+<div class="modal-body">
+  <p class="lead description">{{t 'gru-submit-confirmation.description'}}</p>
+  <p class="lead description">{{t 'gru-submit-confirmation.finish-description'}}</p>
+  <div class="actions">
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'gru-submit-confirmation.cancel'}}" {{action 'cancel'}}>
+      <span aria-hidden="true">{{t 'gru-submit-confirmation.cancel'}}</span>
+    </button>
+    {{#gru-spinner-button classes='btn btn-success submit' text=(t 'common.loading') isLoading=isLoading}}
+      <button type="button" class="btn btn-success submit" data-dismiss="modal" {{action 'confirm'}}>{{t 'gru-submit-confirmation.confirm'}}</button>
+    {{/gru-spinner-button}}
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Gooru Navigator</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=12, minimum-scale=.001, user-scalable=1">
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="homescreen.svg" />
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic|Playfair+Display:400,300,300italic,400italic,700,700italic|Open+Sans:400,300,300italic,400italic,700,700italic|Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+  {{content-for 'head'}}
+
+  <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+  <link integrity="" rel="stylesheet" href="{{rootURL}}assets/gooru-web.css">
+  <!-- Responsive Web Design Styles -->
+  <!-- Styles will be applied to small and medium size screens -->
+  <link integrity="" rel="stylesheet" id="highContrastCssFile" href="">
+  <link integrity="" rel="stylesheet" media="screen and (max-width: 992px)" href="{{rootURL}}assets/gooru-rwd.css"> {{content-for 'head-footer'}}
+  <link integrity="" rel="stylesheet" media="print" href="{{rootURL}}assets/gooru-print.css">
+</head>
+
+<body id="gooru-application-container">
+  <div class="row-fluid network-progress-indicator">
+  </div>
+  {{content-for 'body'}}
+  <script integrity="" src="{{rootURL}}assets/vendor.js"></script>
+ <script integrity="" src="{{rootURL}}assets/libs/ckeditor/ckeditor.js"></script>
+  <script integrity="" src="{{rootURL}}assets/gooru-web.js"></script>
+
+  {{content-for 'body-footer'}}
+</body>
+
+</html>

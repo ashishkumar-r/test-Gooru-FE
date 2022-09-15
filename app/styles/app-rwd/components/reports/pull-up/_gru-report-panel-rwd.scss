@@ -1,0 +1,51 @@
+.class.gru-report-panel {
+  @media screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .report-panel-container {
+      width: 100%;
+      @media only screen and (max-width: $screen-720) {
+        .pullup-close,
+        .teacher-suggestion {
+          width: 60px;
+          height: 50px;
+
+          .suggestion-count-container {
+            font-size: 12px;
+          }
+        }
+
+        .user-course-info {
+          .user-profile-info {
+            display: none;
+          }
+          @media only screen and (max-width: $screen-481) {
+            .performance {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .reports.assessment.gru-questions {
+        .summary-report-questions {
+          .questions-header {
+            margin-right: 0;
+            text-align: center;
+
+            .title {
+              float: none;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .reports.gru-assessment-report {
+    .gru-assessment-summary {
+      overflow-x: hidden;
+    }
+  }
+}

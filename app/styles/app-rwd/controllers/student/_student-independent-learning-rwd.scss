@@ -1,0 +1,57 @@
+.student-independent-learning {
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: $sm-width-max) {
+    .container-fluid {
+      .student-independent {
+        .greetings {
+          .featured-courses {
+            float: none !important;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .independent-content {
+      .assessments,
+      .collections,
+      .courses {
+        .assessment-content,
+        .collection-content,
+        .course-content {
+          .content-results.not-expanded {
+            max-height: 1150px;
+          }
+        }
+      }
+
+      .bookmark-content {
+        .content-results.not-expanded {
+          max-height: 1000px;
+        }
+      }
+    }
+  }
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: $lg-width-min) {
+    .independent-content {
+      .assessments,
+      .collections,
+      .courses {
+        .assessment-content,
+        .collection-content,
+        .course-content {
+          .content-results.not-expanded {
+            max-height: 575px;
+          }
+        }
+      }
+
+      .bookmark-content {
+        .content-results.not-expanded {
+          max-height: 495px;
+        }
+      }
+    }
+  }
+}

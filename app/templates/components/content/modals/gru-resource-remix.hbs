@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{t "common.remix-resource"}}</h4>
+</div>
+<div class="modal-body">
+    <p class="lead">{{t 'common.remix-resource-lead'}}</p>
+  <form {{action "remix" on="submit"}}>
+
+    <label>
+      <span class="required">{{t 'common.resource-title'}}</span>
+      {{validation/gru-input model=contentModel valuePath='title' maxLength=50}}
+    </label>
+
+    <div class="actions">
+      <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+      </button>
+      <button type="submit" class="btn btn-primary">{{t 'common.remix'}}</button>
+    </div>
+
+  </form>
+</div>

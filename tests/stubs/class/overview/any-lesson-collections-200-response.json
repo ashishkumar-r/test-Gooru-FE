@@ -1,0 +1,30 @@
+[
+  {
+    "collectionType": "assessment",
+    "title": "Creating properties assessment",
+    "gooruOid": "all-question-types-assessment-id",
+    "collectionId": 24413362,
+    "visibility": true
+  },
+  {
+    "collectionType": "collection",
+    "title": "Properties resource collection",
+    "gooruOid": "all-question-types-collection-id",
+    "collectionId": 24413363,
+    "visibility": true
+  },
+  {
+    "collectionType": "assessment",
+    "title": "Drawing parallel lines",
+    "gooruOid": "third-assessment-id",
+    "collectionId": 24413365,
+    "visibility": true
+  },
+  {
+    "collectionType": "collection",
+    "title": "Introduction to equations",
+    "gooruOid": "fourth-assessment-id",
+    "collectionId": 24413366,
+    "visibility": true
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "id": "123",
+  "title": "Introduction to financial learning",
+  "url": "http://economictimes.indiatimes.com/magazines/etwealth",
+  "creator_id": "de006fed-b5c3-4968-a582-2f606d36d128",
+  "modifier_id": "de006fed-b5c3-4968-a582-2f606d36d128",
+  "original_creator_id": "de006fed-b5c3-4968-a582-2f606d36d128",
+  "original_content_id": null,
+  "publish_date": null,
+  "narration": "This is very useful resource to understand the basic of fina",
+  "description": "This resource contain information about Math",
+  "content_subformat": "webpage_resource",
+  "metadata": {
+    "educational_use": [
+      20,
+      24
+    ]
+  },
+  "taxonomy": [
+    "K12.MA",
+    "K12.LA",
+    "K12.SC-SC1"
+  ],
+  "depth_of_knowledge": [
+    123,
+    124
+  ],
+  "thumbnail": "3b11d618-6091-4c3b-8eba-badcd6f4dfa3.png",
+  "info": null,
+  "is_copyright_owner": null,
+  "copyright_owner": null,
+  "visible_on_profile": true,
+  "display_guide": null,
+  "accessibility": null,
+  "course_id": null,
+  "unit_id": null,
+  "lesson_id": null,
+  "collection_id": null
+}

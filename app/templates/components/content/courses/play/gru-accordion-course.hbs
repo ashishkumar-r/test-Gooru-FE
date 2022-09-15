@@ -1,0 +1,17 @@
+<ol class="accordion-course" role="tablist" aria-multiselectable="true">
+
+  {{#each items as |item index|}}
+
+    {{content/courses/play/gru-accordion-unit
+    course=model
+    model=item
+    index=index
+    selectedLessonId=selectedLessonId
+    onExpandUnit=(action 'expandUnit')
+    onExpandLesson=(action 'expandLesson')}}
+
+  {{/each}}
+
+</ol>
+
+

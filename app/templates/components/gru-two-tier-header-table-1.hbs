@@ -1,0 +1,75 @@
+<div class=''>
+  <table>
+    <col>
+    <tr class="second-tier">
+      {{#if rowHeadersHeader}}
+        <th scope="col" class="row-header fixed" {{action "updateSortCriteria" 0 -1}}>
+          <span>
+            {{ t 'common.students'}}
+            {{gru-icon name='swap_vert'}}
+            {{gru-icon name='arrow_upward'}}
+            {{gru-icon name='arrow_downward'}}
+          </span>
+        </th>
+      {{/if}}
+      {{#each firstTierHeaders as |firstTierHeader firstTierIndex|}}
+        {{#each secondTierHeaders as |secondTierHeader secondTierIndex|}}
+          <th scope="col" class="{{secondTierHeader.value}} hidden" >
+            {{#if isCollectionType}}
+              <span {{action "updateSortCriteria" 0 1}}>
+                {{!-- data-container="body" --}}
+                <i class="{{firstTierHeader.type}}-icon" data-toggle="tooltip" data-html="true" title="{{firstTierHeader.title}}" data-placement="auto" />
+                <div class="col-label hidden ">{{firstTierHeader.type}}</div>
+                <div class='sortIcn hidden'>
+                  {{gru-icon name='swap_vert' }}
+                  {{gru-icon name='arrow_upward' }}
+                  {{gru-icon name='arrow_downward' }}
+                </div>
+              </span>
+            {{else}}
+              <span {{action "updateSortCriteria" 0 0}}>
+                <i class="material-icons help_outline" data-toggle="tooltip" data-html="true" title="{{firstTierHeader.title}}" data-placement="auto">help_outline</i>
+                <div class="col-label hidden">{{secondTierHeader.label}} </div>
+                <div class='sortIcn hidden'>
+                  {{gru-icon name='swap_vert' }}
+                  {{gru-icon name='arrow_upward' }}
+                  {{gru-icon name='arrow_downward' }}
+                </div>
+              </span>
+            {{/if}}
+          </th>
+        {{/each}}
+      {{/each}}
+    </tr>
+    {{#each sortedData as |row|}}
+      <tr class="data">
+        <th scope="row" class="fixed" {{action "selectRowHeader" row.id}}>
+          {{#if anonymous}}
+            <img class='student-circle' alt="student circle"/>
+          {{else}}
+            <img class='student-circle' src={{row.avatarUrl}} alt="{{row.id}} circle" />
+          {{/if}}
+          <span class='student-name'>{{row.lastFirstName}}</span>
+        </th>
+        {{#each row.content as |content index|}}
+          <td class="hidden">
+            <span class="{{if content.label 'pointer'}}" title="{{content.label}}" data-toggle="tooltip" data-placement="auto">{{{content.output}}}</span>
+          </td>
+        {{/each}}
+      </tr>
+    {{/each}}
+    {{#if isCollectionType}}
+    {{else}}
+      <tr class="data avg-row">
+        <th scope="row avg-row" class="fixed">
+          <span>
+            <div class='class-avg'>{{t 'class.analytics.performance.teacher.metricsTable.class-average'}}</div>
+          </span>
+        </th>
+        <td class='avg-row' colspan="100%">
+          <div class="avg-score {{if content.label 'pointer'}}" title="{{content.label}}" data-toggle="tooltip" data-placement="auto" style='display: inline-block;width:99%'>{{averageScore}}%</div>
+        </td>
+      </tr>
+    {{/if}}
+  </table>
+</div>

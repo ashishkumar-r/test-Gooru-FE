@@ -1,0 +1,101 @@
+.search-filter {
+  display: table;
+  height: 51px;
+  width: 100%;
+  .search-filter-options {
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    height: inherit;
+    margin: 0;
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 10px;
+      @media (max-width: $screen-sm) {
+        margin: 0 0 0 10px;
+      }
+      .btn-search-filter {
+        background-color: $dark-400;
+        color: $white;
+        padding: 10px 10px 12px;
+        border-radius: 0;
+        border-bottom: $dark-400 3px solid;
+        height: 51px;
+        @media (max-width: $screen-xs) {
+          padding: 5px 0 0 0;
+        }
+        span {
+          vertical-align: middle;
+          display: inline-block;
+          opacity: 0.6;
+          font-size: $font-size-h6;
+          i {
+            font-size: $font-size-h5;
+            line-height: 26px;
+          }
+          &.text {
+            @media (max-width: $screen-xs) {
+              display: block;
+              font-size: $font-size-base;
+            }
+          }
+        }
+        &.questions {
+          .icon {
+            line-height: 18px;
+            height: 22px;
+          }
+        }
+      }
+      .btn-search-filter.selected {
+        border-bottom-color: $white;
+        span {
+          opacity: 1;
+        }
+      }
+      .collections {
+        .icon {
+          background: url("gooru/images/navigation_collection.svg");
+          width: 20px;
+          height: 15px;
+        }
+        &.selected {
+          .icon {
+            background: url("gooru/images/navigation_collection_selected.svg");
+          }
+        }
+      }
+      .assessments {
+        .icon {
+          background: url("gooru/images/navigation_assessment.svg");
+          width: 20px;
+          height: 15px;
+        }
+        &.selected {
+          .icon {
+            background: url("gooru/images/navigation_assessment_selected.svg");
+          }
+        }
+      }
+      .resources {
+        .icon {
+          background: url("gooru/images/navigation_resource.svg");
+          width: 23px;
+          height: 21px;
+        }
+        &.selected {
+          .icon {
+            background: url("gooru/images/navigation_resource_selected.svg");
+          }
+        }
+      }
+    }
+  }
+  .standards {
+    display: table-cell;
+    float: none;
+    text-align: $menu-float-dir;
+    vertical-align: middle;
+  }
+}

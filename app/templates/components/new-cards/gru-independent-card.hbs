@@ -1,0 +1,134 @@
+<div class="panel">
+  <div class="panel-heading">
+    {{#if isCourse}}
+      {{#link-to 'student.independent.course-map' location.courseId}}
+        <div class="title pointer" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="{{content.title}}" style="background-color:{{grade-color performance.scoreInPercentage}}" >
+          {{content.title}}
+        </div>
+      {{/link-to}}
+    {{else}}
+      <a {{action 'openPlayerContent'}}>
+        <div class="title pointer {{if isCollection 'collection'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="{{content.title}}" style="background-color:{{grade-color performance.scoreInPercentage}}" >
+          {{content.title}}
+        </div>
+      </a>
+    {{/if}}
+    <div class="card-heading" style="background-image: url({{content.thumbnailUrl}})">
+      <div class="current-activity">
+        <span class="resume">{{t "student-landing.resume-current-activity"}}</span>
+        {{#if isCourse}}
+          {{#if location.currentTitle}}
+            <div class="title">
+              <a {{action 'openCoursePlayer'}}>
+                {{location.currentTitle}}
+              </a>
+            </div>
+          {{else}}
+            <div class="not-applicable">{{t 'common.not-applicable'}}</div>
+          {{/if}}
+        {{else}}
+          {{#if location.isCompleted}}
+            <div class="usage-summary">
+              <a {{action 'toReport'}}>
+                {{t 'student-landing.course.to-report'}}
+              </a>
+            </div>
+          {{else}}
+            <div class="not-applicable">{{t 'common.not-applicable'}}</div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="items-icon">
+      {{#if isCourse}}
+        {{#if (gt content.unitCount 0)}}
+          <span><i data-toggle="tooltip" data-placement="auto" data-trigger="hover" class="units" title="{{t 'common.unit'}}"></i> {{content.unitCount}}</span>
+        {{/if}}
+      {{else}}
+        {{#if (gt content.resourceCount 0)}}
+          <span><i data-toggle="tooltip" data-placement="auto" data-trigger="hover" class="resources" title="{{t 'common.resource'}}"></i> {{content.resourceCount}}</span>
+        {{/if}}
+        {{#if (gt content.questionCount 0)}}
+          <span><i data-toggle="tooltip" data-placement="auto" data-trigger="hover" class="questions" title="{{t 'common.question'}}"></i> {{content.questionCount}}</span>
+        {{/if}}
+      {{/if}}
+    </div>
+    <div class="timestamp">
+      <span class="pull-right">
+        {{#if location.lastAccessed}}
+          {{format-date location.lastAccessed 'MMM d, YYYY h:mm A'}}
+        {{/if}}</span>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="first-half {{if isCollection 'collection'}}" style="background-color:{{grade-color performance.scoreInPercentage}}">
+      {{#unless isCourse}}
+        <span>
+          <i class="{{location.type}}"></i>
+        </span>
+      {{/unless}}
+      {{#if isCollection}}
+        <div class="time-spent">
+          <div class="total-time">
+            {{#if performance.timeSpent}}
+              {{format-time performance.timeSpent}}
+            {{else}}
+              {{gru-icon name="remove"}}
+            {{/if}}
+          </div>
+          <div class="time-spent-text">{{t 'common.timeSpent'}}</div>
+        </div>
+      {{else}}
+        <div class="performance">
+          <div class="percentage {{if isCourse 'course'}}">{{percentageToShow}}</div>
+          {{#if isCourse}}
+            <div class="completion-bar">
+              {{charts/gru-x-bar-chart data=barChartData }}
+            </div>
+          {{else}}
+            <div class="performance-text">{{t 'student-landing.class.performance'}}</div>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+    <div class="second-half">
+      {{#if isCourse}}
+        {{#if location.currentTitle}}
+          <div class="report {{unless hasStarted 'not-started'}}">
+            {{#link-to 'student.independent.course-map' location.courseId (query-params tab='report' )}}
+              <div class="usage-report" style="background-color:{{grade-color performance.scoreInPercentage}}">
+                {{gru-icon name="subject"}}
+              </div>
+              <div class="report-text" style="color:{{grade-color performance.scoreInPercentage}}">{{t 'student-landing.class.report'}}</div>
+            {{/link-to}}
+            </div>
+        {{else}}
+          <div class="not-applicable">{{t 'common.not-applicable'}}</div>
+        {{/if}}
+      {{else}}
+        {{#if location.isCompleted}}
+          <div class="report {{if isCollection 'collection-report'}}" {{action 'toReport'}}>
+            <div class="usage-report" style="background-color:{{grade-color performance.scoreInPercentage}}">
+              {{gru-icon name="subject"}}
+            </div>
+            <div class="report-text" style="color:{{grade-color performance.scoreInPercentage}}">{{t 'student-landing.class.report'}}</div>
+          </div>
+        {{else}}
+          <div class="not-applicable">{{t 'common.not-applicable'}}</div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

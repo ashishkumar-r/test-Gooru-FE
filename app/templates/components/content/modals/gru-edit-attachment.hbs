@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{t "common.edit-upload"}}</h4>
+</div>
+<div class="modal-body">
+    <form autocomplete="off" {{action "updateContent" on="submit"}}>
+        <label>
+            <span class="required">{{t 'common.edit-file-name'}}</span>
+          {{validation/gru-input model=model rawInputValue=fileName valuePath='fileName' maxLength=50 }}
+        </label>
+        <div class="actions">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+                <span aria-hidden="true">{{t 'common.cancel'}}</span>
+            </button>
+          {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+              <button type="submit" class="btn btn-primary add">{{t 'common.save'}}</button>
+          {{/gru-spinner-button}}
+        </div>
+    </form>
+</div>

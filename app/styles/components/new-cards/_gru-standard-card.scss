@@ -1,0 +1,322 @@
+.new-cards.gru-standard-card {
+  width: 220px;
+  height: 225px;
+  margin: 10px;
+  .dark-bg {
+    background-color: $gray-base !important;
+  }
+  .panel {
+    border-radius: 4px;
+    width: 100%;
+    margin: 0;
+    .panel-heading {
+      background-color: $table-bg;
+      height: 131px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0;
+      position: relative;
+      .info {
+        color: $white;
+        position: absolute;
+        z-index: 10;
+        padding: 10px;
+        .question-resources {
+          height: 22px;
+          margin: 45px 0 10px;
+          i,
+          span {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 0 5px 0 0;
+          }
+          i {
+            font-size: $font-size-lead;
+          }
+        }
+        .title-section {
+          display: flex;
+
+          .collection-external-icon,
+          .assessment-external-icon {
+            background-image: url("../assets/gooru/share.png");
+            width: 22px;
+            height: 16px;
+            display: block;
+            background-size: cover;
+          }
+
+          h3.title {
+            color: $white;
+            font-size: $font-size-h6;
+            margin: 0;
+          }
+          $line-height: 1.3;
+          $lines-to-show: 2;
+          .truncate {
+            @include ellipsis(
+              $font-size: $font-size-base,
+              $line-height: $line-height,
+              $lines-to-show: $lines-to-show,
+              $excerpt-bg: $white
+            );
+          }
+        }
+      }
+      .publish-icon {
+        display: inline-block;
+        float: $menu-float-dir;
+        vertical-align: top;
+        margin-top: 2px;
+        background: url("gooru/badge-01.png");
+        -webkit-background-size: 17px 17px;
+        background-size: 17px 17px;
+        height: 17px;
+        width: 17px;
+      }
+      &:after {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        background-image: linear-gradient(
+          to bottom,
+          $bg-left-box-shadow 0,
+          $gray-base 100%
+        );
+        margin-top: 52px;
+        height: 60%;
+        width: 100%;
+        content: "";
+      }
+    }
+    .panel-body {
+      @include flex-direction(column);
+      @include justify-content(space-between);
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      padding: 5px 15px;
+      height: 40px;
+      .standards {
+        .gru-taxonomy-tag-list {
+          .gru-taxonomy-tag {
+            max-width: 88%;
+            .content {
+              margin: 0;
+            }
+          }
+        }
+        .popover-content {
+          .gru-taxonomy-tag {
+            max-width: 100%;
+          }
+        }
+      }
+      .author,
+      .remixed-by {
+        display: inline-block;
+        img {
+          width: 20px;
+          height: 20px;
+          border-radius: 50px;
+          cursor: pointer;
+        }
+        div > * {
+          display: inline-block;
+        }
+        span {
+          cursor: pointer;
+        }
+        span.title {
+          margin: 2px 5px 10px 0;
+          cursor: auto;
+          font-style: italic;
+        }
+        .owner {
+          color: $font-blue-400-dark-400;
+          max-width: 160px;
+          @include text-overflow;
+          vertical-align: middle;
+        }
+      }
+
+      .badge-icon {
+        display: inline-block;
+        float: $menu-float-dir;
+        vertical-align: top;
+        margin-top: 6px;
+        background: url("gooru/badge-01.png");
+        -webkit-background-size: 17px 17px;
+        background-size: 17px 17px;
+        height: 17px;
+        width: 17px;
+      }
+
+      .description {
+        height: 51px;
+        $line-height: 1.3;
+        $lines-to-show: 3;
+        margin: 0 0 14px;
+        p.truncate {
+          @include ellipsis(
+            $font-size: $font-size-base,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show,
+            $excerpt-bg: $white
+          );
+        }
+      }
+    }
+    .cca-first {
+      .visibility {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .pull-left {
+        .visibility {
+          display: block;
+        }
+      }
+      .resource-icon,
+      .question-icon {
+        .icon {
+          width: 25px;
+          height: 25px;
+          display: block;
+          background-size: 20px;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+      .resource-icon {
+        .icon {
+          background-image: url("gooru/images/collections_resource_icon.svg");
+        }
+      }
+      .question-icon {
+        .icon {
+          background-image: url("gooru/images/add_question.svg");
+        }
+      }
+    }
+    .panel-footer {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      background-color: $white;
+      border-top: 1px solid $gray-lighter;
+      padding: 0 0 10px 0;
+      width: 100%;
+      @include flexbox;
+      .options {
+        width: 64%;
+        @include inline-flex;
+        padding: 10px 0 0 10px;
+        button {
+          margin: 0 10px 0 0;
+        }
+      }
+      .checked-img {
+        background-image: url("../assets/gooru/images/icon-verified-green.svg");
+        width: 16px;
+        height: 16px;
+        display: block;
+        background-size: cover;
+        margin: 15px;
+        cursor: pointer;
+      }
+
+      .add-icon {
+        margin: 11px;
+        cursor: pointer;
+      }
+
+      .actions {
+        width: 35%;
+        @include inline-flex;
+        .visibility {
+          @include align-items(center);
+          padding: 7px 5px;
+        }
+        .btn {
+          border-left: 1px solid $gray-lighter;
+          margin: 0;
+          font-size: $font-size-small;
+          padding: 0 8px;
+
+          &.btn-default {
+            color: $white;
+            background-color: $dark-300;
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .no-bgd {
+          background-color: $table-bg;
+          font-size: $font-size-h4;
+          line-height: 1;
+          padding: 7px;
+          i {
+            color: $gray;
+          }
+        }
+        .bookmark-btn {
+          cursor: pointer;
+          display: inline-block;
+          &:hover {
+            cursor: pointer;
+          }
+          &.btn-disabled {
+            cursor: default;
+            &:hover {
+              cursor: default;
+            }
+          }
+        }
+        .share-btn.gru-share-pop-over {
+          cursor: pointer;
+          background-color: $table-bg;
+          display: inline-block;
+        }
+        .gru-share-pop-over-window {
+          .gru-share-pop-over-content {
+            .share-actions {
+              .btn-primary.btn.copy-btn {
+                border: none;
+                padding: 6px 16px;
+              }
+            }
+          }
+        }
+        .dropdown {
+          border-left: solid 1px $gray-ultra-light;
+          width: 45px;
+          text-align: center;
+          display: block;
+          padding: 10px;
+
+          .present {
+            display: contents;
+            .present-btn {
+              background-image: url("../assets/gooru/images/cf_btn.png");
+              height: 23px;
+              max-width: 23px;
+              display: block;
+              background-repeat: no-repeat;
+              background-size: 100%;
+              background-position: center;
+              cursor: pointer;
+            }
+          }
+          .present-toggle {
+            text-align: left;
+            .dropdown-item {
+              padding: 6px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

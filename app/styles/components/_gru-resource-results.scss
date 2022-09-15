@@ -1,0 +1,51 @@
+.resource-results {
+  @include flexbox;
+  @include justify-content(center);
+  .search-results {
+    height: 35px;
+  }
+  .label a {
+    text-decoration: none;
+    color: $white;
+  }
+  .results {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(left);
+    @media (max-width: $screen-sm) {
+      margin-left: 14%;
+    }
+  }
+  .gru-resource-card {
+    display: inline-block;
+    margin: 10px 10px 28px 16px;
+    text-align: $tab-float-dir;
+  }
+  .no-results-found {
+    width: 292px;
+    height: 362px;
+    display: inline-block;
+    border-radius: 6px;
+    .panel-body {
+      height: inherit;
+      @include flexbox;
+      @include align-items(center);
+    }
+    .no-results-content {
+      margin: 0 auto;
+      text-align: center;
+      vertical-align: middle;
+      > * {
+        display: block;
+      }
+      i {
+        font-size: 86px;
+        color: $gray-dark;
+        margin: 25px 0;
+      }
+      .title {
+        font-size: 18px;
+      }
+    }
+  }
+}

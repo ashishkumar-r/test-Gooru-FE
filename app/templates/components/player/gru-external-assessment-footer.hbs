@@ -1,0 +1,31 @@
+<div class="nav-player-container">
+  <div class="footer-section">
+    <div class="footer-title">
+    <div class="title-name">
+        <span class="material-icons-outlined article-icon" aria-hidden="true">
+          article
+        </span>
+        <span>{{assessment.title}}</span>
+    </div>
+      <a href="javascript:void(0)" {{action "toggleDetailPullup"}} aria-label="{{if isFullView 'show' 'hide'}}" class="close-icon">{{gru-icon name=(if isFullView 'list' 'clear')}}</a>
+    </div>
+    <div class="action-btns {{if isLUContent 'disable-event' ''}}">
+        <a href="javascript:void(0)" {{action "showTimer"}} class="timespent-btn hide-div {{if enableTimeSpent 'not-visible'}} {{if (eq assessment.format 'offline-activity') 'no-feedback'}}" aria-label="timespent">{{t 'gru-performance-metrics.study-time'}} {{gru-icon name="fiber_manual_record"}}</a>
+        <a href="javascript:void(0)" {{action "showTimer"}} class="timespent-btn show-div {{if enableTimeSpent 'not-visible'}} {{if (eq assessment.format 'offline-activity') 'no-feedback'}}"><span class="timespent-btn material-icons-two-tone">av_timer</span></a>
+        {{#if (or hideContinue (not-eq assessment.format 'offline-activity'))}}
+          {{#unless (eq assessment.format 'offline-activity')}}
+            <a href="javascript:void(0)" class="feedback-btn hide-div" {{action "onShowFeedback"}} aria-label="feedback">{{t 'common.give-feedback'}}</a>
+            <a href="javascript:void(0)" class="feedback-btn show-div" {{action 'onShowFeedback'}}><span class="material-icons-outlined">thumbs_up_down</span></a>
+          {{/unless}}
+          <a href="javascript:void(0)" class="cancel-btn disable-event" {{action "onClosePlayer"}} aria-label="previous">{{gru-icon name="arrow_back"}} <span>{{t "qz-question-viewer.previous"}}</span>  </a>
+          {{#if isDone}}
+          <a href="javascript:void(0)" {{action "onExit" (if classId 'student.class.course-map' 'student.independent.course-map') (if classId classId courseId) }} class="start-btn" {{action 'playNext'}} aria-label="exit"><span>{{t 'common.exit'}}</span> {{gru-icon name="arrow_forward"}}</a>
+          {{else}}
+          <a href="javascript:void(0)" class="start-btn" {{action 'playNext'}} aria-label="next"><span>{{t 'common.next'}}</span> {{gru-icon name="arrow_forward"}}</a>
+          {{/if}}
+        {{else}}
+          <a href="javascript:void(0)" class="continue-btn" {{action "onStartPlayer"}} aria-label="start"><span>{{t "qz-assessment-confirmation.start"}}</span> {{gru-icon name="arrow_forward"}} </a>
+        {{/if}}
+    </div>
+  </div>
+</div>

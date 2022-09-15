@@ -1,0 +1,286 @@
+<div class="individual-report-container">
+  <div class="print-preview" title="{{t 'common.download'}}" data-toggle="tooltip" onclick={{action "onPrintPreview"}} onkeypress={{action "onPrintPreview"}} tabIndex={{tabIndex}}>
+    {{gru-icon name="get_app"}}
+  </div>
+  <div class="report-container">
+    <table>
+      <thead class="header-penal">
+        <div class="header-info">
+          <div class="student-details">
+            <div class="thumbnail-container" style="background-image: url({{studentProfile.thumbnailUrl}}) !important;"></div>
+            <div class="student-name">
+              {{studentProfile.lastName}}, {{studentProfile.firstName}}
+            </div>
+          </div>
+          <div class="report-info">
+            <span class="tenant-name">{{tenantName}}</span>
+            <span>{{t 'common.view-class-course-map'}}: {{class.title}}</span>
+            <span>{{t 'common.teacher'}}: {{teacher.lastName}}, {{teacher.firstName}}</span>
+            {{#if reportStartDate}}
+              <span class="date">{{format-date reportStartDate 'DD MMMM, YYYY'}} - {{format-date reportEndDate 'DD MMMM, YYYY'}}</span>
+            {{else}}
+              <span class="date">{{t 'beginning-till-now'}}</span>
+            {{/if}}
+          </div>
+          <div class="tenan-info">
+            <img src="{{tenantLogoUrl}}" class="tenant-logo" alt="tenantLogo">
+          </div>
+        </div>
+      </thead>
+      <tbody class="body-penal">
+        <div class="report-overview">
+          <div class="title">{{t 'class-progress-report.individual-report.overview'}}:</div>
+          <div class="student-report">
+            <table class="class-progress-report-table">
+              <thead>
+                <tr>
+                  <th colspan="3">{{t 'common.competencies'}}</th>
+                  <th colspan="3">{{t 'gru-data-picker.time-spent'}}</th>
+                  <th rowspan="2">{{t 'badges-earned'}}</th>
+                  <th rowspan="2">{{t 'common.averageScore'}}</th>
+                  <th rowspan="2">{{t 'suggestion-taken'}}</th>
+                </tr>
+                <tr>
+                  <th>{{t 'common.gained'}}</th>
+                  <th>{{t 'common.inferred'}}</th>
+                  <th>{{t 'profile.proficiency.in-progress'}}</th>
+                  <th>{{t 'common.collections'}}</th>
+                  <th>{{t 'common.assessments'}}</th>
+                  <th>{{t 'reports.gru-table-view.totals'}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                      {{#if reportData.masteredCompetenciesCount}}
+                        <span class="competency-count">{{reportData.masteredCompetenciesCount}}</span>
+                      {{else}}
+                        --
+                      {{/if}}
+                    </td>
+                    <td>
+                      {{#if reportData.inferredCompetenciesCount}}
+                        <span class="competency-count">{{reportData.inferredCompetenciesCount}}</span>
+                      {{else}}
+                        --
+                      {{/if}}
+                    </td>
+                    <td>
+                      {{#if reportData.inprogressCompetenciesCount}}
+                        <span class="competency-count">{{reportData.inprogressCompetenciesCount}}</span>
+                      {{else}}
+                        --
+                      {{/if}}
+                    </td>
+                    <td>
+                      <span class="time-spent">
+                        {{#if reportData.collectionTimespent}}
+                          {{format-time reportData.collectionTimespent}}
+                        {{else}}
+                          --
+                        {{/if}}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="time-spent">
+                        {{#if reportData.assessmentTimespent}}
+                          {{format-time reportData.assessmentTimespent}}
+                        {{else}}
+                          --
+                        {{/if}}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="time-spent">
+                        {{#if reportData.totalTimespent}}
+                          {{format-time reportData.totalTimespent}}
+                        {{else}}
+                          --
+                        {{/if}}
+                      </span>
+                    </td>
+                    <td>
+                      {{#if reportData.badgeEarned}}
+                        <span class="badge-count">{{reportData.badgeEarned}}</span>
+                      {{else}}
+                        --
+                      {{/if}}
+                    </td>
+                    <td>
+                      {{#unless reportData.isNotStarted}}
+                        <span class="score score-range-{{grade-range reportData.averageScore}}">{{reportData.averageScore}}</span>
+                      {{else}}
+                        --
+                      {{/unless}}
+                    </td>
+                    <td>
+                      {{#if reportData.suggestionTaken}}
+                        <span class="suggestion-count">{{reportData.suggestionTaken}}</span>
+                      {{else}}
+                        --
+                      {{/if}}
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="competencies-report">
+            <table class="class-progress-report-table">
+              <thead>
+                <tr>
+                  <th>{{t 'class-progress-report.individual-report.competencies-mastery'}}</th>
+                  <th>{{t 'class-progress-report.individual-report.competencies-inprogress'}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each studentCompetencies as | competency|}}
+                  <tr>
+                    <td>{{competency.masteredCompetencyData}}</td>
+                    <td>{{competency.inprogressCompetencyData}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="report-data-by-date">
+          <div class="title">{{t 'common.data-by-date'}}:</div>
+          {{#each studentCompetenciesReport as |competencyReport index|}}
+            <div class="student-competency-report">
+              <div class="report-date">{{format-date competencyReport.reportDate 'DD MMM YYYY'}}</div>
+              <div class="competency-info">
+                {{#each competencyReport.competency as |competency competencyIndex|}}
+                  <div class="competency-card-panel">
+                    <div class="code-info">
+                      <div class="display-code">
+                        <div class="code">
+                          {{#if competency.groupCompetency}}
+                            {{#each competency.groupCompetency as |data|}}
+                              <div class="group-competency">
+                                <span class="competency-code">{{data.code}}</span>
+                                <span class="spliter">,</span>
+                              </div>
+                            {{/each}}
+                          {{else}}
+                            <span>{{if (eq competency.code 'NTC') '' competency.code}}</span>
+                          {{/if}}
+                        </div>
+                        {{#if competency.title}}
+                          <span class="title ellipsis">
+                            {{competency.title}}
+                          </span>
+                        {{/if}}
+                      </div>
+                    </div>
+                    {{#each competency.activities as |activity activityIndex|}}
+                      <div class="activity-row">
+                        <div class="icon-container">
+                          <div class="type {{activity.format}}"></div>
+                        </div>
+                        <div class="title">
+                          <span class="title-text">{{activity.title}}</span>
+                        </div>
+                        <div class="resource-count">
+                          <span class="icon resource"></span>
+                          <span>{{activity.resourceCount}}</span>
+                        </div>
+                        <div class="question-count">
+                          <span class="icon question"></span>
+                          <span>{{activity.questionCount}}</span>
+                        </div>
+                        <div class="timespent">
+                          {{if activity.totalTimespent (format-time activity.totalTimespent) '--'}}
+                        </div>
+                        <div class="percentage">
+                          {{if (and (not activity.isCollection) (or activity.score (eq activity.score 0))) (concat (round-number activity.score) '%') '--' }}
+                        </div>
+                      </div>
+                    {{/each}}
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        <div class="skyline-report">
+          <div class="skyline-summery">
+            <span class="date">{{t 'class-progress-report.individual-report.skyline-title'}}: {{currentDate}}</span>
+          </div>
+          <div class="skyline-overview">
+            <div class="chart">
+              <div class="proficiency-chart">
+                {{proficiency/learner-proficiency-domain-matrix
+                  subjectBucket=subjectBucket
+                  timeLine=timeLine
+                  userId=studentProfile.id
+                  subject=activeSubject
+                  studentDestination = studentDestination
+                  class=class
+                  competencyMatrixDomains=competencyMatrixDomains
+                  competencyMatrixCoordinates=competencyMatrixCoordinates
+                  isSelectBaseLine=isSelectBaseLine
+                  userProficiencyBaseLine=userProficiencyBaseLine
+                  isShowMatrixChart=isShowMatrixChart
+                  selectedDomain=selectedDomain
+                  taxonomyGrades=taxonomyGrades
+                  showGutCompetency=showGutCompetency
+                  hideGutCompetencyButton=hideGutCompetencyButton
+                  classGrade=classGrade
+                  subjectCode=subjectCode
+                  selectedCompetency=selectedCompetency
+                  fwCompetencies=fwCompetencies
+                  isPlayerProficiency = isPlayerProficiency
+                  proficiencyChartData=proficiencyChartData
+                  skylinePoints=skylinePoints
+                  onSelectTopic="onSelectTopic"
+                  selectedCompetency=selectedCompetency
+                  totalTopics=totalTopics
+                  maxWidth = maxWidth
+                  studentProfile=studentProfile
+                  isShowLoaderSet="isShowLoaderSet"
+                }}
+              </div>
+              <div class="competencies-list">
+                <div class="subject-name">{{subject.title}} {{t 'common.domains'}}</div>
+                {{#each competencyMatrixCoordinates.domains as |domain index|}}
+                  <div class="domain-name">
+                    <span>{{plus-one index}}.</span>
+                    <span>{{domain.domainName}}</span>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+            <div class="proficiency-tags">
+              <div class="proficiency-legends">
+                <div class="mastered legend">
+                  <span class="box"></span>
+                  <span class="title">{{t 'profile.proficiency.mastered'}}</span>
+                </div>
+                <div class="in-progress legend">
+                  <span class="box"></span>
+                  <span class="title">{{t 'profile.proficiency.in-progress'}}</span>
+                </div>
+                <div class="not-started legend">
+                  <span class="box"></span>
+                  <span class="title">{{t 'profile.proficiency.not-started'}}</span>
+                </div>
+                <div class="show-gut legend">
+                  <span class="box"></span>
+                  <span class="title">{{t 'competencies-not-in-framework'}}</span>
+                </div>
+                <div class="skyline legend">
+                  <span class="box-skyline"></span>
+                  <span class="title">{{t 'profile.proficiency.skyline'}}</span>
+                </div>
+                <div class="class-grade-line legend">
+                  <span class="box-class-grade-line"></span>
+                  <span class="title">{{t 'grade-selector.placeholder'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tbody>
+    </table>
+  </div>
+</div>

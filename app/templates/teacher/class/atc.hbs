@@ -1,0 +1,54 @@
+<div class="controller teacher class atc">
+  <div class="{{unless isReportView 'show' 'hide'}}">
+    {{#unless isShowSecondaryClass}}
+      {{teacher/class/class-atc-view
+      classId = classId
+      fwCompetencies=fwCompetencies
+      isPrimaryClass = (if isMultiClassEnabled true)
+      isMultiClassView = isMultiClassEnabled
+      secondaryClassToBeShownList = secondaryClassToBeShownList
+      onSelectSecondaryClass = "onSelectSecondaryClass"
+      onGoDataDashboard="onGoDataDashboard"
+      onGoBack="onGoBack"
+      class = class
+      course = course
+      classFramework = classFramework
+      isDefaultShowFW = isDefaultShowFW
+
+    }}
+    {{else}}
+      {{teacher/class/class-atc-view
+      fwCompetencies=fwCompetencies
+      classId = selectedSecondary.id
+      onSelectSecondaryClass="onSelectSecondaryClass"
+      classInfo = selectedSecondary
+      class= selectedSecondary
+      onRemoveClassView = "onRemoveClassView"
+      isMultiClassView = isMultiClassEnabled
+      onGoDataDashboard="onGoDataDashboard"
+      onGoBack="onGoBack"
+      classFramework = classFramework
+      isDefaultShowFW = isDefaultShowFW
+    }}
+    {{/unless}}
+  </div>
+  {{#if isPremiumClass}}
+  <div class="{{if (and isReportView isMilestoneReport) 'show' 'hide'}}">
+    {{teacher/class/milestone-report
+        currentClass=class
+        course=course
+        onGoBack="onGoBack"
+        classFramework = classFramework
+        isDefaultShowFW = isDefaultShowFW
+      }}
+  </div>
+  <div class="{{if (and isReportView (not isMilestoneReport)) 'show' 'hide'}}">
+    {{teacher/class/diagnostic-report
+        currentClass=class
+        onGoBack="onGoBack"
+        classFramework = classFramework
+        isDefaultShowFW = isDefaultShowFW
+      }}
+  </div>
+  {{/if}}
+</div>

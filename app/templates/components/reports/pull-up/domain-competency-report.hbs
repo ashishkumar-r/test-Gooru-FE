@@ -1,0 +1,71 @@
+<div class="individual-domain-competency-report">
+  <div class="student-competencies">
+    <div class="students {{if (gt domainSet.domainData.competencies.length 10) 'competency-slider-visible'}}">
+      <div class="name-filter">
+        <div class="last-header {{if sortByLastnameEnabled 'active'}}" {{action 'sortByLastName'}}>
+          <div>{{t 'common.lastName'}}</div>
+          <div>
+            {{#if sortByLastnameEnabled}}
+              {{gru-icon name="keyboard_arrow_up"}}
+            {{else}}
+              {{gru-icon name="keyboard_arrow_down"}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="first-header {{if sortByFirstnameEnabled 'active'}}" {{action 'sortByFirstName'}}>
+          <div>{{t 'common.firstName'}}</div>
+          <div>
+            {{#if sortByFirstnameEnabled}}
+              {{gru-icon name="keyboard_arrow_up"}}
+            {{else}}
+              {{gru-icon name="keyboard_arrow_down"}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{#each studentCompetencyData as |student|}}
+        <div class="student-info">
+          <div class="thumbnail" style="background-image: url({{student.thumbnail}})">
+          </div>
+          <div class="name">
+            {{student.fullName}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class="student-competencies-list">
+      <div class="competencies-list {{if (gt domainSet.domainData.competencies.length 10) 'competency-slider-visible'}}">
+        <div class="competency-codes">
+          {{#each domainSet.domainData.competencies as |competency|}}
+            <div class="rotate-vertical">
+              {{#if competency.competencyStudentDesc}}
+                <div class="desc" title="{{competency.competencyCode}}">{{competency.competencyStudentDesc}}</div>
+              {{else}}
+                <div class="desc">{{competency.competencyCode}}</div>
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+        {{#each studentCompetencyData as |studentCompetency|}}
+          <div class="competencies">
+            {{#each studentCompetency.competencies as |competency|}}
+              <div class="competency">
+                <svg width="30" height="30">
+                    <rect fill="{{competency-color competency.status}}" {{action 'onSelectCompetency' competency studentCompetency.userId}} width="30" height="30"></rect>
+                  </svg>
+              </div>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+      {{#if (gt domainSet.domainData.competencies.length 10)}}
+        <div class="previous" {{action "onClickArrow" 'previous'}}>
+          {{gru-icon name="keyboard_arrow_left"}}
+        </div>
+        <div class="next" {{action "onClickArrow" 'next'}}>
+          {{gru-icon name="keyboard_arrow_right"}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

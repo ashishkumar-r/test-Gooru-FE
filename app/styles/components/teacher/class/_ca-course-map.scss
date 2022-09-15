@@ -1,0 +1,406 @@
+.teacher-class-ca-course-map {
+  .loading-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: $loading-spinner-bg-color;
+  }
+
+  .dca-course-map-unit-container {
+    max-height: calc(90vh - 50px);
+    overflow-y: auto;
+    height: 90vh;
+    width: 100%;
+    padding: 20px;
+    background: #f1f3f7;
+
+    .dca-course-map-unit {
+      &:first-child {
+        .dca-course-map-unit-panel {
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+        }
+      }
+
+      &:last-child {
+        .dca-course-map-unit-panel {
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+          border-bottom: none;
+        }
+      }
+
+      .dca-course-map-unit-panel {
+        height: 67px;
+        background: $white;
+        display: inline-grid;
+        width: 100%;
+        grid-template-columns: 130px 1fr;
+        align-items: center;
+        border-bottom: 1px solid $light-200;
+        cursor: pointer;
+        position: relative;
+
+        &.active {
+          box-shadow: 0 2px 4px 0 $disabled-bg-color;
+        }
+
+        .unit-name-sequence {
+          font-family: "Lato";
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 1;
+          letter-spacing: normal;
+          text-align: center;
+          color: #3c4452;
+          border-right: 1px solid $sep-border-color;
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
+
+        .unit-title {
+          p {
+            margin: 0;
+            padding: 0 20px;
+            font-family: "Lato";
+            color: $gray-dove;
+            @include ellipsis(
+              $font-size: 18px,
+              $line-height: 1.5,
+              $lines-to-show: 1
+            );
+            width: 100%;
+          }
+        }
+      }
+
+      .dca-course-map-lesson-container {
+        display: none;
+        padding: 20px;
+        background-image: linear-gradient(to top, $gray-e7, $gray-cf);
+
+        .no-lesson {
+          text-align: center;
+          font-size: 15px;
+        }
+
+        .lesson-load-spinner {
+          height: 60px;
+          display: inline-flex;
+          align-items: center;
+          width: 100%;
+
+          .three-bounce-spinner {
+            margin: 0 auto;
+          }
+        }
+
+        .dca-course-map-lesson {
+          &.active {
+            .dca-course-map-lesson-panel {
+              border-bottom-left-radius: 0 !important;
+              border-bottom-right-radius: 0 !important;
+              box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+              position: relative;
+            }
+          }
+
+          &:first-child {
+            .dca-course-map-lesson-panel {
+              border-top-left-radius: 4px;
+              border-top-right-radius: 4px;
+            }
+          }
+
+          &:last-child {
+            .dca-course-map-lesson-panel {
+              border-bottom-left-radius: 4px;
+              border-bottom-right-radius: 4px;
+              border-bottom: none;
+            }
+
+            .dca-course-map-collection-container {
+              .no-collection {
+                padding-bottom: 0;
+              }
+            }
+          }
+
+          .dca-course-map-lesson-panel {
+            height: 60px;
+            background: $white;
+            display: inline-grid;
+            width: 100%;
+            grid-template-columns: 130px 1fr;
+            align-items: center;
+            border-bottom: 1px solid $light-200;
+            cursor: pointer;
+
+            .lesson-name-sequence {
+              font-family: "Lato";
+              font-size: 18px;
+              font-weight: bold;
+              line-height: 1;
+              letter-spacing: normal;
+              text-align: center;
+              color: #3c4452;
+              border-right: 1px solid $sep-border-color;
+              padding-top: 8px;
+              padding-bottom: 8px;
+            }
+
+            .lesson-title {
+              p {
+                margin: 0;
+                padding: 0 20px;
+                font-family: "Lato";
+                color: $gray-dove;
+                @include ellipsis(
+                  $font-size: 18px,
+                  $line-height: 1.5,
+                  $lines-to-show: 1
+                );
+                width: 100%;
+              }
+            }
+          }
+
+          .dca-course-map-collection-container {
+            display: none;
+
+            .no-collection {
+              text-align: center;
+              font-size: 15px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+            }
+
+            .collection-load-spinner {
+              height: 50px;
+              display: inline-flex;
+              align-items: center;
+              width: 100%;
+
+              .three-bounce-spinner {
+                margin: 0 auto;
+              }
+            }
+
+            .dca-course-map-collection {
+              &:last-child {
+                .dca-course-map-collection-panel {
+                  border-bottom: 1px solid $light-200;
+                }
+              }
+
+              .dca-course-map-collection-panel {
+                height: 50px;
+                background: $white;
+                display: inline-grid;
+                width: 100%;
+                grid-template-columns: 120px 1fr 90px 80px;
+                align-items: center;
+
+                .collection-img-container {
+                  padding-left: 30px;
+                  cursor: pointer;
+                  img {
+                    padding-top: 5px;
+                    width: 70px;
+                    height: 50px;
+                    padding-bottom: 5px;
+                  }
+                }
+
+                .collection-title-container {
+                  display: inline-flex;
+                  align-items: center;
+                  cursor: pointer;
+
+                  i {
+                    width: 20px;
+                    height: 20px;
+                    background-repeat: no-repeat;
+                    background-size: 20px 20px;
+                    padding-left: 20px;
+                    opacity: 0.8;
+                  }
+
+                  .collection-external-icon,
+                  .collection-icon {
+                    background-image: url("../assets/gooru/images/add_collection.svg");
+                  }
+
+                  .assessment-external-icon,
+                  .assessment-icon {
+                    background-image: url("../assets/gooru/images/add_assessment.svg");
+                  }
+
+                  .offline-activity-icon {
+                    background-image: url("../assets/gooru/images/offline.svg");
+                  }
+
+                  p {
+                    margin: 0;
+                    padding: 0 20px;
+                    font-family: "Open Sans";
+                    color: #545e66;
+                    @include ellipsis(
+                      $font-size: 15px,
+                      $line-height: 2,
+                      $lines-to-show: 1
+                    );
+                    width: 100%;
+                  }
+                }
+
+                .collection-content-counts {
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: space-evenly;
+
+                  .resource-count {
+                    width: 40px;
+                    display: inline-grid;
+                    align-items: center;
+                    grid-template-columns: 50% 50%;
+                    justify-items: center;
+
+                    .resource-icon {
+                      width: 20px;
+                      height: 20px;
+                      background-repeat: no-repeat;
+                      background-size: 20px 20px;
+                      background-image: url("../assets/gooru/images/add_resource_icon.svg");
+                      opacity: 0.8;
+                    }
+                  }
+
+                  .question-count {
+                    width: 40px;
+                    display: inline-grid;
+                    align-items: center;
+                    grid-template-columns: 50% 50%;
+                    justify-items: center;
+
+                    .question-icon {
+                      width: 20px;
+                      height: 20px;
+                      background-repeat: no-repeat;
+                      background-size: 20px 20px;
+                      background-image: url("../assets/gooru/images/add_question.svg");
+                      opacity: 0.8;
+                    }
+                  }
+
+                  .external-icon {
+                    width: 20px;
+                    height: 20px;
+                    background-repeat: no-repeat;
+                    background-size: 20px 20px;
+                    background-image: url("../assets/gooru/share.png");
+                  }
+                }
+
+                .collection-action-btns {
+                  display: inline-flex;
+                  align-items: center;
+                  height: 100%;
+
+                  .schedule-dca-content {
+                    border-left: 1px solid $light-200;
+                    height: 100%;
+                    display: inline-flex;
+                    border-right: 1px solid $light-200;
+                    width: 40px;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    &.has-scheduled {
+                      color: #4d9840;
+                    }
+
+                    .schedule-dca-datepicker {
+                      margin-left: 8px;
+                    }
+
+                    .update {
+                      font-size: 20px;
+                      pointer-events: none;
+                    }
+                  }
+
+                  .add-dca-content {
+                    height: 100%;
+                    display: inline-flex;
+                    border-right: 1px solid $light-200;
+                    width: 40px;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    position: relative;
+
+                    .add {
+                      font-size: 20px;
+                      position: absolute;
+                    }
+
+                    .done {
+                      visibility: hidden;
+                      opacity: 0;
+                      transition: visibility 0s 0.5s, opacity 0.5s linear;
+                      color: #4d9840;
+                      font-size: 20px;
+                      position: absolute;
+                    }
+
+                    &.added {
+                      pointer-events: none;
+
+                      .add {
+                        visibility: hidden;
+                        opacity: 0;
+                      }
+
+                      .done {
+                        visibility: visible;
+                        opacity: 1;
+                        transition: opacity 0.5s linear;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .schedule-ca-datepicker-container {
+    background: $white;
+    position: absolute;
+    z-index: 1;
+    width: inherit;
+    box-shadow: 0 13px 16px 0 $date-picker-box-shadow;
+    top: 50px;
+    width: 250px;
+    display: none;
+
+    #schedule-ca-datepicker {
+      .datepicker {
+        width: 100%;
+
+        .table-condensed {
+          width: 100%;
+
+          thead tr:first-child {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

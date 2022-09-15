@@ -1,0 +1,116 @@
+.independent-results {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  width: 100%;
+  margin: 15px 0;
+
+  .gru-independent-card {
+    @include flex-basis(100%);
+    @media (min-width: $screen-sm-max) {
+      @include flex-basis(50%);
+    }
+  }
+
+  .show-more-results {
+    width: 100%;
+  }
+
+  .no-results-content {
+    margin: 15px 0 50px;
+  }
+
+  &::after {
+    content: "";
+    @include flex-basis(0);
+    @media (min-width: $screen-sm-max) {
+      @include flex-basis(50%);
+    }
+  }
+}
+
+.independent-content {
+  .assessments,
+  .collections,
+  .courses {
+    margin-top: 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px 1px $table-box-shadow-07;
+    padding: 0;
+
+    .assessment-content,
+    .collection-content,
+    .course-content {
+      background-color: $white;
+
+      .title {
+        border-bottom: solid 1px $light-200;
+        height: 40px;
+        line-height: 40px;
+
+        .section-header {
+          color: $dark-500;
+          font-size: 16px;
+          font-weight: bold;
+          margin-left: 15px;
+        }
+
+        .show-more {
+          float: $menu-float-dir;
+          margin-right: 15px;
+          color: $sky-400;
+          font-size: 13px;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+      }
+
+      .content-results {
+        &.not-expanded {
+          max-height: 288px;
+          overflow: hidden;
+        }
+
+        &.expanded {
+          overflow-y: auto;
+          max-height: 620px;
+        }
+
+        .show-more-results {
+          width: 30%;
+          padding: 5px;
+          margin-left: 35%;
+        }
+
+        .no-content {
+          font-size: 19.5px;
+          color: $gray;
+          text-align: center;
+          padding: 15px;
+          font-weight: 300;
+        }
+      }
+
+      .expanded::-webkit-scrollbar {
+        width: 4px;
+        border-radius: 3px;
+      }
+
+      .expanded::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .assessments {
+    margin-bottom: 30px;
+  }
+
+  .new-gru-independent-card {
+    display: grid;
+    justify-content: center;
+    margin: 15px 0 0;
+  }
+}

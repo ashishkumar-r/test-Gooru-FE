@@ -1,0 +1,164 @@
+.activities-reminders {
+  .activities-reminders-container {
+    background-color: $white;
+    border-radius: 10px;
+    overflow: hidden;
+
+    a {
+      text-decoration: none;
+      color: $dark-200;
+    }
+
+    .reminder-panel {
+      .reminder-panel-header {
+        display: grid;
+        grid-template-columns: 40px 1fr 40px;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid $light-200;
+        box-shadow: 0 2px 5px $light-200;
+        background: $green-light;
+
+        i {
+          text-align: center;
+          font-size: 21px;
+          color: $white;
+
+          &.push_pin {
+            position: relative;
+          }
+        }
+
+        .reminder-title {
+          line-height: 1.4;
+          display: grid !important;
+          grid-template-columns: auto 30px;
+          color: $white;
+
+          .reminder-title-session {
+            display: grid;
+            cursor: pointer;
+
+            span {
+              display: block;
+
+              &.reminder-count {
+                font-weight: bold;
+                font-size: 12px;
+              }
+            }
+          }
+
+          .showHelpIcon {
+            padding-top: 5px;
+          }
+        }
+
+        .action-buton {
+          text-align: center;
+          color: $white;
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .reminder-panel-body {
+        .reminder-card-panel {
+          max-height: 500px;
+          overflow: hidden;
+          overflow-y: auto;
+          @media screen and (max-width: 750px) {
+            max-height: inherit;
+          }
+
+          &::-webkit-scrollbar {
+            width: 10px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: $light-200;
+            outline: 1px solid $light-300;
+          }
+
+          .card-content-section {
+            display: grid;
+            grid-template-columns: 40px 1fr 40px 40px;
+            align-items: center;
+            padding: 10px;
+
+            .content-icon {
+              width: 20px;
+              height: 20px;
+              background-position: center;
+              background-size: 100% 100%;
+              margin: 0 auto;
+
+              &.assessment,
+              &.assessment-external {
+                background-image: url("gooru/images/assessment-gray.svg");
+              }
+
+              &.collection,
+              &.collection-external {
+                background-image: url("gooru/images/collection_gray.svg");
+              }
+
+              &.offline-activity {
+                background-image: url("gooru/images/offline.svg");
+              }
+
+              &.meeting {
+                background-image: url("gooru/video-conference-ico.png");
+                transform: scale(3.5);
+              }
+            }
+
+            .collection-external-icons,
+            .assessment-external-icons {
+              width: 18px;
+              height: 18px;
+              background-position: center;
+              background-size: 100% 100%;
+              margin: 0 auto;
+              background-image: url("../assets/gooru/share.png");
+            }
+
+            .future-activity {
+              pointer-events: none;
+            }
+
+            .activities-details {
+              line-height: 1.4;
+              cursor: pointer;
+
+              span {
+                display: block;
+
+                &.recommender {
+                  font-weight: bold;
+                }
+
+                &.competency-name {
+                  font-size: 16px;
+                  @include ellipsis(
+                    $font-size: 16px,
+                    $line-height: 1.4,
+                    $lines-to-show: 1
+                  );
+                }
+              }
+            }
+            &.impersonate-card-section {
+              pointer-events: none;
+            }
+          }
+
+          .no-reminder-msg {
+            padding: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

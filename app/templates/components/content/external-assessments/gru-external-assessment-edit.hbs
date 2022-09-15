@@ -1,0 +1,182 @@
+<header xmlns="http://www.w3.org/1999/html">
+  {{#if (or isLibraryContent (not course.id))}}
+    <a href="#" class="back-to" {{action "onClickBack"}}>
+      <div>
+        {{gru-icon name="keyboard_arrow_left"}}{{t 'common.back'}}
+      </div>
+    </a>
+  {{else}}
+    {{#link-to 'content.courses.edit' course.id (query-params unitId=collection.unitId lessonId=collection.lessonId) class="back-to"}}
+      <div>
+        {{gru-icon name="keyboard_arrow_left"}}{{t 'common.course'}}: {{course.title}}
+      </div>
+    {{/link-to}}
+  {{/if}}
+  <h1>{{t "common.edit-external-assessment"}}</h1>
+  {{partial 'content/partials/collections-header-actions'}}
+  <nav>
+    {{#gru-scroll to="#information" class="selected" offset='article > header'}}{{t "common.information"}}{{/gru-scroll}}
+    {{#gru-scroll to="#builder" offset='article > header'}}{{t "common.builder"}}{{/gru-scroll}}
+    {{#gru-scroll to="#settings" offset='article > header'}}{{t "common.settings"}}{{/gru-scroll}}
+  </nav>
+</header>
+<section id="information">
+  <div class="header">
+    <h2>{{t "common.information"}}</h2>
+    {{partial 'content/partials/information-actions'}}
+  </div>
+  <div class="content">
+    {{content/gru-image isEditing=isEditing srcImage=collection.thumbnailUrl editImage=tempCollection.thumbnailUrl showAltText=true}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="title">
+          <label>
+            <span class="required">{{t "common.assessment-title"}}</span>
+            {{#if isEditing}}
+              {{validation/gru-input model=tempCollection valuePath='title' maxLength=50 didValidate=didValidate}}
+            {{else}}
+              <b>{{collection.title}}</b>
+            {{/if}}
+          </label>
+        </div>
+        <div class="learning-objectives">
+          <label>
+            <span>{{t "common.learning-objectives"}}</span>
+            {{#if isEditing}}
+              {{validation/gru-textarea model=tempCollection valuePath='learningObjectives' rows=2 maxLength=500 didValidate=didValidate}}
+            {{else}}
+              <b>{{collection.learningObjectives}}</b>
+            {{/if}}
+          </label>
+        </div>
+        {{#if isEditing}}
+          {{taxonomy/gru-taxonomy-selector
+          isEditing=isEditing
+          onSubjectSelected="selectSubject"
+          onCategorySelected="selectCategory"
+          selectedSubject=selectedSubject
+          selectedCategory=selectedCategory
+          subjectLabelKey='common.subject-and-framework'
+          onlySubjectsWithStandards=true
+          }}
+        {{/if}}
+        <div class="standards 123">
+          <label>
+            <span>{{t standardLabelKey}}</span>
+            {{#if isEditing}}
+              <button type="button" class="btn btn-primary" {{action 'openTaxonomyModal'}} disabled={{standardDisabled}}>
+                {{gru-icon name="open_in_new"}} {{t "common.select"}}
+              </button>
+              <div class="tags">
+                {{taxonomy/gru-taxonomy-tag-list tags=tempCollection.standards isEditing=isEditing onRemove=(action 'removeTag')}}
+              </div>
+            {{else}}
+              <div class="tags">
+                {{#if tags.length}}
+                  {{taxonomy/gru-taxonomy-tag-list isEditing=isEditing tags=collection.standards}}
+                {{else}}
+                  {{t "common.not-specified"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </label>
+        </div>
+        {{#if isEditing}}
+          {{#if aggregatedTags.length}}
+            <div class="standards">
+              <div>Suggested standards based on questions in this assessment</div>
+              <label>
+                <div class="tags">
+                  {{taxonomy/gru-taxonomy-tag-list tags=tempCollection.aggregatedTag isEditing=isEditing onAdd=(action 'addTag')}}
+                </div>
+              </label>
+            </div>
+          {{/if}}
+        {{/if}}
+        {{content/gru-audience isEditing=isEditing srcSelectedAudiences=collection.audience editSelectedAudiences=tempCollection.audience}}
+        {{content/gru-depth-of-knowledge isEditing=isEditing srcSelectedKnowledge=collection.depthOfknowledge editSelectedKnowledge=tempCollection.depthOfknowledge}}
+        <div class="century-skills">
+          <label>
+            <span>{{t "common.century-skills"}}</span>
+            {{#if isEditing}}
+              <button type="button" class="btn btn-primary choose" {{action 'openSkillsModal'}}>
+                {{gru-icon name="open_in_new"}} {{t "common.choose"}}
+              </button>
+              <div class="skills-buttons">
+                {{#each tempSelectedSkills as |skill|}}
+                  {{century-skills/gru-century-skill-tag skill=skill isReadOnly=false onRemove=(action 'removeSkill')}}
+                {{/each}}
+              </div>
+            {{else}}
+              <div class="skills">
+                {{#if selectedSkills.length}}
+                  {{#each selectedSkills as |skill|}}
+                    {{century-skills/gru-century-skill-tag skill=skill}}
+                  {{/each}}
+                {{else}}
+                  {{t "common.not-specified"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </label>
+        </div>
+        {{content/etl/gru-etl-second isEditing=isEditing tempData=tempCollection isComputedEtl=true modalvalue=collection valueHours='hours' valueMins='minutes' estimatedHours=collection.hours estimatedMinutes=collection.minutes labelText=(t 'oa.info.duration-hrs')}}
+      </div>
+    </div>
+  </div>
+</section>
+<section id="builder">
+  <div class="header">
+    <h2>{{t "common.builder"}}</h2>
+  </div>
+  <div class="detail external-assessment">
+    {{#if isEditing}}
+      <div class="type">
+        <span class="required" aria-label="Select Type">{{t 'select-type'}}</span>
+        <div class="dropdown pull-left">
+          <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-label="Select Types">
+            <span class="button-text"> {{t (if (eq selectedType 1) 'common.resource-format.webpage' 'scorm')}}</span>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li {{action 'selectType' 1}}> {{t 'common.resource-format.webpage'}} </li>
+            <li {{action 'selectType' 2}}> {{t 'scorm'}} </li>
+          </ul>
+        </div>
+      </div>
+    {{/if}}
+    <label>
+      <span class="required">{{t (if (eq selectedType 1) 'gru-rubric-creation.url' (if isEditing 'upload-your-scorm' 'scorm'))}}</span>
+    </label>
+    {{#if isEditing}}
+      {{#if (eq selectedType 1)}}
+        {{validation/gru-input model=tempCollection valuePath='url' didValidate=didValidate}}
+      {{else}}
+        {{content/gru-file-picker validMimeType='.zip' onSelectFile=(action 'selectFile')}}
+        {{#if isLoading}}
+          <div class="loading-spinner">
+            {{three-bounce-spinner}}
+          </div>
+        {{else}}
+          {{#if tempCollection.url}}
+            <label>{{t 'the-uploaded-scorm'}} {{if (and tempCollection.metadata tempCollection.metadata.scorm) tempCollection.metadata.scorm.fileName}}</label>
+          {{/if}}
+        {{/if}}
+        {{#if isErrorScormFile}}
+          <span class="error">{{t 'invalid-file'}}</span>
+        {{/if}}
+      {{/if}}
+    {{else}}
+      <label>
+        {{#if (eq selectedType 1)}}
+          <a href="{{collection.url}}" target="_blank">{{collection.url}}</a>
+        {{else}}
+          {{#if collection.url}}
+            {{t 'the-uploaded-scorm'}} {{if (and collection.metadata collection.metadata.scorm) collection.metadata.scorm.fileName}}
+          {{/if}}
+        {{/if}}
+      </label>
+    {{/if}}
+  </div>
+</section>
+{{content/gru-settings-edit id="settings" action='publishToProfile' model=collection}}

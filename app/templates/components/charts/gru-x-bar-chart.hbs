@@ -1,0 +1,6 @@
+
+{{#each styles as |style|}}
+  <div class="segment {{if isFull 'full'}}" style= {{style}} {{action 'mshandler'}} >
+  </div>
+    <div class='applyms {{msaddonclass}}' style= {{msstyles}}  {{action 'mshandler'}}></div>
+{{/each}}

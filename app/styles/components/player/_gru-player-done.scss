@@ -1,0 +1,16 @@
+.gru-player-done {
+  .panel {
+    box-shadow: none;
+    margin: 0;
+    border-radius: 5px;
+    .panel-body {
+      padding: 25px 20px 25px 25px;
+    }
+    .actions {
+      margin: 20px 0 0 auto;
+      .btn-next {
+        padding: 6px 40px;
+      }
+    }
+  }
+}

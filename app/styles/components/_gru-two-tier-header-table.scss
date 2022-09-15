@@ -1,0 +1,171 @@
+.gru-two-tier-header-table {
+  $table-cell-width: 55px;
+  width: 89%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1px;
+  margin-left: 111px;
+  display: inline-block;
+
+  .table-wrapper {
+    width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1px;
+    margin-left: 111px;
+    display: inline-block;
+  }
+
+  table {
+    font-size: $font-size-h6;
+    background: $white;
+    box-shadow: 0px 2px 5px 0px $table-box-shadow-07;
+    border-top: 15px solid $dark-400;
+    border-radius: 0 5px 5px 0;
+    border-collapse: inherit;
+
+    th,
+    td {
+      border: none;
+      font-weight: normal;
+      padding: 0 2px;
+      height: 32px;
+    }
+
+    .first-tier,
+    .second-tier {
+      th,
+      td {
+        background-color: $dark-300;
+        color: $white;
+        border-color: $dark-400;
+      }
+    }
+
+    > .first-tier {
+      td,
+      th {
+        border-bottom: 1px solid $dark-200;
+      }
+      > td {
+        border-top: 15px solid $dark-400 !important;
+        border-radius: 5px 0 0 0;
+        top: 76px;
+        height: 47px !important;
+        @-moz-document url-prefix() {
+          top: 78px;
+        }
+      }
+    }
+
+    > .second-tier {
+      th {
+        line-height: 23px;
+        > span {
+          display: block;
+          font-weight: normal;
+          opacity: 0.6;
+          min-width: $table-cell-width;
+          white-space: nowrap;
+          &:after {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 60px;
+          }
+        }
+
+        i.gru-icon {
+          font-size: 13px;
+        }
+        i.gru-icon.arrow_upward,
+        i.gru-icon.arrow_downward {
+          display: none;
+        }
+
+        &.row-header {
+          text-align: $tab-float-dir;
+          padding: 4px;
+
+          > span {
+            width: auto;
+          }
+        }
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.ascending {
+          i.gru-icon.arrow_upward {
+            display: inline-block;
+          }
+          i.gru-icon.arrow_downward,
+          i.gru-icon.swap_vert {
+            display: none;
+          }
+        }
+        &.descending {
+          i.gru-icon.arrow_downward {
+            display: inline-block;
+          }
+          i.gru-icon.arrow_upward,
+          i.gru-icon.swap_vert {
+            display: none;
+          }
+        }
+      }
+
+      + .data {
+        th,
+        td {
+          &.fixed {
+            height: 32px;
+          }
+        }
+      }
+    }
+
+    > .data {
+      th {
+        border-left: 0;
+        border-bottom: 1px solid $gray-lighter;
+        font-weight: normal;
+        &:hover {
+          cursor: pointer;
+        }
+        &.fixed {
+          background-color: $white;
+          border-left: 1px solid $light-300;
+        }
+      }
+      td {
+        border-width: 0 0 1px 0;
+        border-color: $gray-lighter;
+        border-style: solid;
+        width: $table-cell-width;
+      }
+    }
+    .fixed {
+      position: absolute;
+      left: 0 !important;
+      width: 111px;
+    }
+    .emotion {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .top-header > th:nth-child(2) {
+      pointer-events: none;
+    }
+  }
+}
+
+.analytics-performance-teacher-collection .gru-two-tier-header-table {
+  .table-wrapper {
+    margin-left: 111px;
+    @media (max-width: $screen-xs-max) {
+      margin-left: 105px;
+    }
+  }
+}

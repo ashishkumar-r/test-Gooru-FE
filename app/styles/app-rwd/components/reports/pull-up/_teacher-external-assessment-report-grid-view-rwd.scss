@@ -1,0 +1,21 @@
+.teacher-external-assessment-report-grid-view {
+  .grid-view-container {
+    @media only screen and (max-width: $screen-sm - 1) {
+      .external-assessment-link {
+        width: 100%;
+      }
+
+      .cards-container {
+        display: grid;
+        justify-content: center;
+        @media only screen and (max-width: $screen-465) {
+          grid-template-rows: auto;
+        }
+        @media only screen and (min-width: $screen-465 + 1) and (max-width: $screen-705 - 1) {
+          grid-template-columns: auto auto;
+          grid-template-rows: none;
+        }
+      }
+    }
+  }
+}

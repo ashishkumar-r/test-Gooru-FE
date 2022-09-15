@@ -1,0 +1,65 @@
+<div class="class-activities-ctrl-container {{if isShowGoLive 'go-live-page-active'}} {{if class.isArchived 'archived-class'}}">
+  <div class="left-panel {{if isShowGoLive 'hidden'}}">
+    {{class/activities/gru-class-activities-listing
+      secondaryClasses = secondaryClasses
+      secondaryClassList = secondaryClassList
+      isSecondaryClass=isSecondaryClass
+      isPremiumClass = isPremiumClass
+      primaryClass = class
+      onGoLive='goLive'
+      onShowConfirmPullup = "onShowConfirmPullup"
+      newlyAddedActivity = newlyAddedActivity
+      todayActivities = todayActivities
+      secondaryClassesData = secondaryClassesData
+      onRefreshData=onRefreshData
+      tabindex= 15
+      courseId = courseId
+      course = course
+      classPreference = classPreference
+      classFramework = classFramework
+      isDefaultShowFW = isDefaultShowFW
+    }}
+
+  </div>
+  <div class="right-panel {{if isShowGoLive 'hidden'}}">
+    {{class/activities/gru-class-activities-adding-layout
+      classPreference = classPreference
+      todayActivities = todayActivities
+      secondaryClasses = secondaryClasses
+      primaryClass = class
+      activityAdded = "activityAdded"
+      onRefreshData="onRefreshData"
+      tabindex= 16
+      classFramework = classFramework
+      isDefaultShowFW = isDefaultShowFW
+    }}
+  </div>
+  {{#if isShowGoLive}}
+    <div class="go-live-panel">
+      {{class/activities/go-live
+      goLiveUrl = goLiveUrl
+      isShowGoLive = isShowGoLive
+      tabindex= 17
+    }}
+    </div>
+  {{/if}}
+  {{#if isShowConfirmPullup}}
+    <div class="back-drop" aria-label="close popup" onclick={{action 'closeConfirmPullup'}} onkeypress={{action 'closeConfirmPullup'}} tabindex={{tabindex}}></div>
+    <div class="ca-pullup-container">
+      <div class="section-container">
+        <div class="title">{{t 'publish-to-google-classroom'}}</div>
+        {{#if isLoading}}
+        <div class="description"> {{t 'publishing-to' activityTitle=activityTitle classroomName=classroomName}}</div>
+          <div class="loading-spinner">
+            {{three-bounce-spinner}}
+          </div>
+        {{else}}
+        <div class="description"> {{t 'successfully-published' classroomName=classroomName}}</div>
+          <div class="close-btn">
+            <button type="button" name="button" aria-label="close popup" {{action 'closeConfirmPullup'}} tabindex="101">{{t 'common.close'}}</button>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+</div>

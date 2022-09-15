@@ -1,0 +1,150 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="student-lesson-report-container">
+  <div class="report-header">
+    <div class="report-breadcrumb  hidden-xs">
+      <div class="unit-title">
+        <i class="unit-icon"></i>
+        <p>{{t 'common.unit'}} {{unless isHideLessonNumber unit.sequence ''}} : {{unit.title}}</p>
+      </div>
+      <div class="lesson-title">
+        {{gru-icon name="keyboard_arrow_right"}}
+        <i class="lesson-icon"></i>
+        <p>{{t 'common.lesson'}} {{unless isHideLessonNumber lesson.sequence ''}} : {{lesson.title}}</p>
+      </div>
+    </div>
+    <div class="report-title hidden visible-xs">
+      <div class="title">
+        <p>{{t 'common.unit'}} {{unit.sequence}} / {{t 'common.lesson'}} {{lesson.sequence}} :</p>
+        <p class="ellipsis">{{lesson.title}}</p>
+      </div>
+    </div>
+    <div aria-label="close" class="report-close-pullup" onclick={{action 'reportClose'}} onkeypress={{action 'reportClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+  {{#if lessonsHasPerformance.length}}
+    <div class="report-carousel-tags">
+      <div class="report-carousel">
+        <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            {{#each lessonsHasPerformance as |lessonItem index|}}
+              <div data-item-index="{{index}}" class="item {{if (eq index 0) 'active'}}">
+                <div class="lesson-background-cover" />
+              </div>
+            {{/each}}
+          </div>
+          <!-- Left and right controls -->
+          <a class="left carousel-control" data-slide="prev" onclick={{action 'onClickPrev'}} onkeypress={{action 'onClickPrev'}} tabindex={{tabindex}}>
+          <i class="arrow-left"></i>
+        </a>
+          <a class="right carousel-control" data-slide="next" onclick={{action 'onClickNext'}} onkeypress={{action 'onClickNext'}} tabindex={{tabindex}}>
+          <i class="arrow-right"></i>
+        </a>
+        </div>
+        <div class="report-carousel-content-container">
+          <div class="report-carousel-content">
+            <div class="performance-display-container">
+              <div class="lesson-performance-average {{concat 'grade-range-' (grade-range selectedLesson.performance.score)}}">
+                {{#if (gt selectedLesson.performance.score -1) }}
+                  {{#if (eq selectedLesson.performance.score null)}}
+                    --
+                  {{else}}
+                    {{concat selectedLesson.performance.score '%'}}
+                  {{/if}}
+                {{else}}
+                  --
+                {{/if}}
+              </div>
+            </div>
+            <div class="lesson-description">
+              <p class="header-desc">{{t 'common.description'}}</p>
+              <p class="text-desc">
+                {{#if lesson.description}}
+                  {{lesson.description}}
+                {{else}}
+                  {{lesson.title}}
+                {{/if}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+    <div class="report-performance-tabular">
+      <div class="report-performance-header on-scroll-fixed">
+        <div class="content-name">
+          <span>{{t 'common.content-name'}}</span>
+        </div>
+        <div class="score">
+          <span>{{t 'gru-performance-metrics.score'}} / {{t 'gru-performance-metrics.study-time'}}</span>
+        </div>
+      </div>
+      {{#each collections as |collection|}}
+        <div class="report-performance-list">
+          <div role="button" aria-label="{{collection.title}}" class="content-name {{collection.format}} {{unless collection.performance.hasStarted 'not-started'}} {{if collection.isSuggestedContent 'suggested-content'}}" onclick={{action 'openCollectionReport' collection}} onkeypress={{action 'openCollectionReport' collection}} tabindex={{tabindex}}>
+            <i class="{{collection.format}}-icon"></i>
+            <span title="{{collection.title}}" data-toggle="tooltip" data-placement="top" data-trigger="hover">{{collection.title}}</span>
+            {{#if collection.isSuggestedContent}}
+              {{gru-icon name="explore"}}
+            {{/if}}
+          </div>
+          <div class="score">
+            {{#if (or collection.performance.hasStarted collection.performance.isCompleted)}}
+              {{#if (not-eq collection.format 'collection')}}
+                <span class="{{concat 'grade-range-text-' (grade-range collection.performance.score)}}">{{collection.performance.score}}%</span>
+              {{else}}
+                <span class="report-student-time-spent">{{format-time collection.performance.timeSpent}}</span>
+              {{/if}}
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+          <div class="completion">
+            {{#if (and collection.performance.hasStarted (not-eq collection.format 'collection'))}}
+              <div class="completion-bar">
+                <div class="segment {{if (eq collection.performance.score 100) 'completed'}}" style="width:{{collection.performance.score}}%; {{safe-html (concat "background-color:" (grade-color collection.performance.score))}}"></div>
+              </div>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+          <i class="{{collection.format}}-icons"></i>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+
+{{#if showCollectionReport}}
+  {{class/gru-report-panel showPullUp=showCollectionReport  reportData=studentCollectionReportContext model=studentCollectionReportContext.lesson isStudent=studentCollectionReportContext.isStudent onClosePullUp="onClosePullUp" tabindex=tabindex isDefaultShowFW = isDefaultShowFW classFramework = classFramework}}
+{{/if}}
+
+{{#if isShowStudentExternalAssessmentReport}}
+  {{
+    reports/pull-up/student-external-assessment-report
+    showPullUp=isShowStudentExternalAssessmentReport
+    reportData=studentCollectionReportContext
+    showPullUp=isShowStudentExternalAssessmentReport
+    isStudent=studentCollectionReportContext.isStudent
+    onClosePullUp="onClosePullUp"
+    tabindex=tabindex
+  }}
+{{/if}}
+
+{{#if isShowStudentOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowStudentOfflineActivityReport
+    oaId=studentCollectionReportContext.collection.id
+    isReportView=true
+    classId=classId
+    isCmReport = true
+    reportContext = studentCollectionReportContext
+  }}
+{{/if}}

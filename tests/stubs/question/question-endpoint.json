@@ -1,0 +1,70 @@
+[
+  {
+    "description": "API 3.0 Endpoint to update a question info",
+    "request": {
+      "url": "^/api/nucleus/v2/questions/(.+)$",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  },
+  {
+    "description": "Delete question",
+    "request": {
+      "url": "^/api/nucleus/v2/questions/(.+)$",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "description": "Get a question",
+    "request": {
+      "url": "^/api/nucleus/v2/questions/(.+)",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "fetch-question-200-response.json"
+    }
+  },
+  {
+    "description": "Save a question",
+    "request": {
+      "url": "^/api/nucleus/v2/questions",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 201,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Location": "all-question-types-assessment-id"
+      }
+  }
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "aboutMe": "I'm a teacher",
+  "dateOfBirth": 649728000000,
+  "profileId": "profile-teacher-123",
+  "user": {
+    "firstName": "John",
+    "lastName": "Smith",
+    "gooruUId": "teacher-123",
+    "meta": {
+      "taxonomyPreference": {
+        "codeId": [
+          "24146",
+          "27787",
+          "30424",
+          "42236",
+          "42237",
+          "79622"
+        ],
+        "code": [
+          "CCSSM",
+          "CCSS",
+          "CA",
+          "CASK5",
+          "CAS612",
+          "C3"
+        ]
+      }
+    }
+  }
+}

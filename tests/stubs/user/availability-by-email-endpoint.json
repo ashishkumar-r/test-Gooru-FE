@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/user/emailId/availability$",
+      "query": {
+        "sessionToken": "(.+)",
+        "keyword": "^gooruTest@test.com$"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "availability-by-email-already-exist-200-response.json"
+    }
+  },
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/user/emailId/availability$",
+      "query": {
+        "sessionToken": "(.+)",
+        "keyword": "(.+)"
+      },
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "availability-by-username-does-not-exist-200-response.json"
+    }
+  }
+]

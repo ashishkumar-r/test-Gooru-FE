@@ -1,0 +1,13 @@
+{
+  "content": [
+    {
+      "courseId": "first-course-id",
+      "unitId": "first-unit-id",
+      "lessonId": "first-lesson-id",
+      "collectionId": "first-collection-id",
+      "collectionTitle": "Collection title"
+    }
+  ],
+  "message": null,
+  "paginate": null
+}

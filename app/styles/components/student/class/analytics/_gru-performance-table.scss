@@ -1,0 +1,153 @@
+.gru-performance-table {
+  min-width: 475px;
+
+  @media (max-width: $screen-xs-max) {
+    overflow-x: auto;
+  }
+
+  .table {
+    margin: 0;
+    font-size: 13px;
+    background: $white;
+    -webkit-box-shadow: 0 3px 6px 1px $table-box-shadow;
+    -moz-box-shadow: 0 3px 6px 1px $table-box-shadow;
+    box-shadow: 0 3px 6px 1px $table-box-shadow;
+    border-top: 2px solid $white;
+    thead {
+      background-color: $white;
+      tr {
+        th {
+          border: 0;
+          vertical-align: top;
+          padding: 5px 0 0 10px;
+          height: 32px;
+          text-align: center;
+          border-right: 2px solid $light-300;
+          width: 180px;
+          a,
+          i {
+            color: $dark-400;
+            vertical-align: top;
+            font-weight: normal;
+            &.arrow_upward,
+            &.arrow_downward {
+              font-weight: bold;
+              font-size: 13px;
+              padding: 3px 0 0 0;
+            }
+          }
+          &:first-child {
+            padding: 5px 17px;
+            text-align: $tab-float-dir;
+          }
+          &.score {
+            width: 33px;
+          }
+          &.completion {
+            width: 112px;
+          }
+          &.study-time {
+            width: 60px;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        td,
+        th {
+          border: 0;
+          height: 35px;
+          padding: 0 0px;
+          vertical-align: middle;
+        }
+        th {
+          border-right: 2px solid $light-300;
+          padding: 2px 17px;
+          font-weight: normal;
+          vertical-align: middle;
+          line-height: $font-size-h6;
+        }
+        &:nth-of-type(odd) {
+          background-color: $light-100;
+        }
+        .firstrow {
+          border-bottom: 2px solid $light-300;
+          border-top: 2px solid $light-300;
+          background-color: $white;
+          td,
+          th {
+            height: 40px;
+          }
+          th {
+            font-size: 13px;
+          }
+          td {
+            .radial-svg {
+              height: inherit;
+              width: inherit;
+            }
+          }
+        }
+        td {
+          text-align: center;
+          border-right: 2px solid $light-300;
+          &.performance-info {
+            .score {
+              border-radius: 4px;
+              width: 37px;
+              height: 32px;
+              display: inline-table;
+              color: $white;
+              text-align: center;
+              margin-left: 28%;
+              span {
+                vertical-align: middle;
+                font-size: 15px;
+              }
+            }
+            .gru-radial-chart {
+              width: 38px;
+              margin: 2px auto 0;
+            }
+            &.performance-completion {
+              .completion {
+                i {
+                  color: $blue-400;
+                  font-size: $expand-arrow-size;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+          &.performance-report {
+            a {
+              color: $gray-icon;
+            }
+          }
+        }
+      }
+    }
+    .reportIcon {
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
+      right: 11%;
+    }
+  }
+  .nodataimg {
+    align: center;
+    display: block;
+    margin: auto;
+    width: 40%;
+  }
+  .firstrow {
+    border-bottom: 2px solid $light-300;
+    border-top: 2px solid $light-300;
+    background-color: $white;
+  }
+  .no-contentcss {
+    text-align: center;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,26 @@
+{{#each answers as |answer index|}}
+<div class="panel panel-default">
+  <div class="answer-content">
+    <div class="text-area-container">
+      {{#if editMode}}
+      {{gru-rich-text-editor content=answer.text model=answer valuePath='text'}}
+      {{else}}
+      <p>{{{gru-math-text text=answer.text}}}</p>
+      {{/if}}
+    </div>
+    {{#if editMode}}
+    {{#unless showAdvancedEditor}}
+    <button class="delete" {{action 'removeChoice' answer}}>{{gru-icon name="delete"}}</button>
+    {{/unless}}
+    {{/if}}
+  </div>
+</div>
+{{/each}}
+{{#if editMode}}
+{{#if (eq answers.length 1)}}
+{{else}}
+<div class="add-answer">
+  <a {{action 'addNewChoice'}}>{{t 'content.questions.edit.builder.add-words-per-minute'}}</a>
+</div>
+{{/if}}
+{{/if}}

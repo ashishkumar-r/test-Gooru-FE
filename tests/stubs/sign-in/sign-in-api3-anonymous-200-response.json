@@ -1,0 +1,15 @@
+{
+  "user_id": "anonymous",
+  "client_id": "ba956a97-ae15-11e5-a302-f8a963065976",
+  "provided_at": 1458249686682,
+  "cdn_urls": {
+    "profile.cdn": "//profile.gooru.org.com"
+  },
+  "prefs": {
+    "standard_preference": {
+      "K12.LA": "CCSS",
+      "K12.SC": "CCSS"
+    }
+  },
+  "access_token": "MTQ1ODI0OTY4NjY4Mjphbm9ueW1vdXM6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2"
+}

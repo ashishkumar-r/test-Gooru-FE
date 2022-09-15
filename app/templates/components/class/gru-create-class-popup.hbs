@@ -1,0 +1,39 @@
+<div class="gru-create-class-container" tabindex={{tabindex}}>
+  <div class="gru-create-class-panel">
+    <div class="gru-create-class-panel-header">
+      <div class="panel-title">
+        <span>{{newClass.title}}</span>
+      </div>
+      <span class="close-panel" onclick={{action "onClosePopup"}} onkeypress={{action "onClosePopup"}} tabindex={{tabindex}}>{{gru-icon name="close"}}</span>
+    </div>
+    <div class="gru-create-class-panel-body">
+      {{#if (and currentIndex activePanelTitle)}}
+        <div class="panel-list-heading">
+          <span class="back-btn" onclick={{action "onSelectback" item}} onkeypress={{action "onSelectback" item}} tabindex={{tabindex}}>{{gru-icon name="arrow_back"}}</span> <span>{{activePanelTitle}}</span>
+        </div>
+      {{/if}}
+      {{#if (and activeLevel  activeLevel.levelData.length)}}
+        <ul class="list-blk {{if (and currentIndex activePanelTitle) 'second-header'}}">
+          {{#each activeLevel.levelData as |item itemIndex|}}
+            <li onkeypress={{action "onSelectLevel" item}} onclick={{action "onSelectLevel" item}} tabindex={{tabindex}}>{{if (eq activeLevel.level 'grade') item.grade item.title}}</li>
+          {{/each}}
+          <li onclick={{action "onConfirmation"}} onkeypress={{action "onConfirmation"}} tabindex={{tabindex}}> {{t 'common.other'}} </li>
+        </ul>
+      {{/if}}
+    </div>
+  </div>
+  {{#unless isShowConfirmationPopup}}
+    <div class="help-text">
+      <span class="title">{{t 'common.help-text'}}</span>
+    </div>
+  {{/unless}}
+  {{#if isShowConfirmationPopup}}
+    <div class="comfirmation-panel">
+      <span class="title">{{t 'student-public-class.within-grade-confirmation-message' grade=selectedGrade.grade}}</span>
+      <div class="actions">
+        <span onclick={{action "onCloseConfirmation"}} onkeypress={{action "onCloseConfirmation"}} tabindex={{tabindex}}>{{t 'common.cancel'}}</span>
+        <span onclick={{action "onConfirmation"}} onkeypress={{action "onConfirmation"}} tabindex={{tabindex}}>{{t 'common.confirm'}}</span>
+      </div>
+    </div>
+  {{/if}}
+</div>

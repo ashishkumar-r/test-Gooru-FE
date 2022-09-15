@@ -1,0 +1,399 @@
+[
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/user/param-123$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "param-profile-ok-response.json"
+    }
+  },
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/user/teacher-123$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "teacher-user-ok-response.json"
+    }
+  },
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/user/pochita",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "pochita-profile-ok-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to return current user Profile info",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search",
+      "method": "GET",
+      "query": {
+        "userids": "id-for-pochita"
+      },
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-multiple-pochita-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to return another user Profile info",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search",
+      "method": "GET",
+      "query": {
+        "userids": "param-123"
+      },
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-multiple-param-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to return other user Profile info",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search",
+      "method": "GET",
+      "query": {
+        "userids": "other-123"
+      },
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-multiple-other-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to create user",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/signup$",
+      "post": "(.+)\"username\":\"testtest\"(.+)",
+      "method": "POST",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 400,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-pochita-400-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get user by username",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search",
+      "method": "GET",
+      "query": {
+        "username": "param-123"
+      },
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-param-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to initiate forgot password by email",
+    "request": {
+      "url": "^/api/nucleus-auth/v1/users/password-reset$",
+      "method": "POST",
+      "headers": {
+        "authorization": "Token forgot-password-token"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to initiate forgot password by email fail",
+    "request": {
+      "url": "^/api/nucleus-auth/v1/users/password-reset$",
+      "method": "POST",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 404,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get user by username",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search",
+      "method": "GET",
+      "query": {
+        "username": "(.+)"
+      },
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-pochita-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get Multiple Profiles by IDs",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search",
+      "method": "GET",
+      "query": {
+        "userids": "(.+)"
+      },
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-multiple-profiles-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to update current user Profile info",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/users$",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token edit-token"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-pochita-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint fail to update current user Profile info",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/users$",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token fail-token"
+      }
+    },
+    "response": {
+      "status": 400,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-pochita-400-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to update current user Profile info",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/users$",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-pochita-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to follow a profile",
+    "request": {
+      "url": "^/api/nucleus/v1/profiles/follow",
+      "method": "POST",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to unfollow a profile",
+    "request": {
+      "url": "^/api/nucleus/v1/profiles/param-123/unfollow",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get user resources",
+    "request": {
+      "url": "^/api/nucleus/v1/profiles/(.*)/resources",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-resources-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get user questions",
+    "request": {
+      "url": "^/api/nucleus/v1/profiles/(.*)/questions",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-questions-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get user collections",
+    "request": {
+      "url": "^/api/nucleus/v1/profiles/(.*)/collections",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-collections-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get user assessments",
+    "request": {
+      "url": "^/api/nucleus/v1/profiles/(.*)/assessments",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "profile-api3-assessments-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to get a profile's courses",
+    "request": {
+      "url": "^/api/nucleus/v1/profiles/(.+)/courses",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "",
+      "file": "profile-api3-courses-pochita-ok-response.json"
+    }
+  }
+]

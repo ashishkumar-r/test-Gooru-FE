@@ -1,0 +1,63 @@
+.route-suggestion-proficiency-matrix {
+  .matrix-chart {
+    overflow: auto;
+    margin: 8px;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $gray-light;
+      border: 1px solid $gray-light;
+      border-radius: 5px;
+    }
+
+    .scrollable-chart {
+      height: 370px;
+      overflow-y: auto;
+      width: max-content;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+      #route-suggestion-chart {
+        margin-bottom: 20px;
+        position: relative;
+        transform: rotateX(180deg);
+        -webkit-transition: -webkit-transform 0.6s ease-in;
+        transition: transform 0.6s ease-in;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+
+        .competency {
+          stroke: $snow-gray;
+          stroke-width: 1;
+          shape-rendering: crispedges;
+          stroke-opacity: 0.4;
+        }
+      }
+    }
+
+    .domain-sequence {
+      display: inline-block;
+
+      .domain-counts {
+        float: left;
+        display: inline-block;
+        width: 30px;
+        text-align: center;
+        margin-top: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}

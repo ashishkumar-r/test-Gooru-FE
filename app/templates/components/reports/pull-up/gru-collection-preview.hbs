@@ -1,0 +1,225 @@
+<div class="backdrop" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}></div>
+<div class="preview-container">
+  <div class="header-container">
+    <div aria-label="close" class="close-pullup" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+      {{gru-icon name="arrow_downward"}}
+    </div>
+    <div aria-label="preview title" class="preview-title {{previewContentType}}-preview">
+      {{t (concat 'common.' previewContentType)}} {{t (if isReportView 'common.report' 'common.preview')}}
+    </div>
+
+    {{#if (and showAssessmentCode allowAssessmentTemplateToDownload)}}
+      <div class="assessment-code">{{assessmentCode}}</div>
+    {{/if}}
+    {{#unless (not playContent) }}
+      <div aria-label="play" class="content-player {{if isReportView 'hidden'}} {{if (or primaryClass.isArchived isInstructionalCoache) 'disabled'}}" title="{{t 'common.play'}}" data-toggle="tooltip" onclick={{action "onPlayContent"}} onkeypress={{action "onPlayContent"}}
+        tabindex={{tabindex}}>
+        {{gru-icon name="play_arrow"}}
+      </div>
+    {{/unless}}
+    {{#if (and isRemixableContent (or isTeacher isAnonymous))}}
+      <div class="content-remix {{if isReportView 'hidden'}}" title="{{t 'common.remix'}}" data-toggle="tooltip" onclick={{action "onRemixContent"}} onkeypress={{action "onRemixContent"}} tabindex={{tabindex}}>
+        {{gru-icon name="content_copy"}}
+      </div>
+    {{/if}}
+    {{#if (and (not isAnonymous) showPrintPreview (not isReportView))}}
+      <div class="print-preview {{if isInstructionalCoache 'disabled'}}" title="{{t 'common.download-print'}}" data-toggle="tooltip" onclick={{action "onPrintPreview"}} onkeypress={{action "onPrintPreview"}} tabindex={{tabindex}}>
+        {{gru-icon name="get_app"}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="body-container">
+    <div class="content-info-container">
+      <div class="title-info-container {{if isDiagnosticReport 'diagnostic-report-title'}}">
+        <div class="thumbnail-container" style="background-image: url({{previewContent.thumbnailUrl}}) !important;"></div>
+        <div class="content-icon {{previewContentType}}"></div>
+        <div aria-label="preview title" class="content-title ellipsis">{{titleName}}</div>
+        <div class="content-icon {{previewContentType}}-icon"></div>
+      </div>
+    </div>
+    <div class="content-details-container {{if (lt taxonomyTags.length 1) 'single-container'}}">
+      {{#if taxonomyTags.length}}
+        <div class="taxonomy-container">
+          {{taxonomy/gru-taxonomy-tag-list tags=taxonomyTags tagsVisible=2 isInCard=true}}
+        </div>
+      {{/if}}
+      {{#if isReportView}}
+        <div class="activity-performance-container {{if isCollection 'collection-performance'}} {{if isShowdownloadSubmission 'download-option'}}">
+
+          {{#if isShowdownloadSubmission}}
+            <div class="download">
+              <a class="download-icon" onclick={{action 'onClickDownload'}} onkeypress={{action 'onClickDownload'}}>{{gru-icon name='file_download'}}</a>
+              <span>{{t 'oa.task.submissions.label'}}</span>
+            </div>
+          {{/if}}
+          <div class="timespent-container">
+            <div class="timespent-icon">
+              {{gru-icon name="query_builder"}}
+            </div>
+            <div class="timespent-data">
+              <div class="timespent-label">{{t 'locateme.timespent'}}</div>
+              <div class="timespent-value">
+                {{#if (or activeAttempt.timespent isDiagnosticReport)}}
+                  {{format-time (if isDiagnosticReport diagnosticTimespent activeAttempt.timespent)}}
+                {{else}}
+                  --
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          {{#if (and isAssessment (not isDiagnosticReport))}}
+            {{#if (and isGraded (not isTeacher) isDefaultGrade (eq activeAttempt.score null))}}
+              <div class="grading-icon" data-toggle="tooltip" title="{{t 'teacher-not-graded'}}"></div>
+            {{else}}
+              <div class="activity-score-container grade-range-{{grade-range activeAttempt.score}}">
+                {{#if (eq activeAttempt.score null)}}
+                  --
+                {{else}}
+                  {{concat activeAttempt.score '%'}}
+                {{/if}}
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+    {{#if (and isReportView (not isDiagnosticReport))}}
+      <div class="activity-attempts-container">
+        {{#if (and isClassProgressReport (gt totalNumberOfAttempts 1) otherAttempts otherAttempts.length)}}
+          <div class="common-container">
+            <div class="current-attempt">
+              <span>{{t 'attempts-between-selected-time'}}</span>
+              <div class="latest-attempt" onclick={{action "onSelectAttempt" currentAttempt}} onkeypress={{action "onSelectAttempt" currentAttempt}} tabindex={{tabindex}}>
+                {{format-date currentAttempt.updatedAt 'DD MMM YYYY HH:mm'}} -
+                <span class="attempt-label">
+                  {{#if isAssessment}}
+                    {{t 'common.latest-attempt'}}
+                  {{else}}
+                    {{t 'locateme.lastAcessesed'}}
+                  {{/if}}</span>
+              </div>
+              {{#if (and (gt currentAttempts.length 1) (not isNotShowListAttempt))}}
+                <div class="toggle-current-attempts" onclick={{action "onToggleCurrentAttemptsList"}} onkeypress={{action "onToggleCurrentAttemptsList"}} tabindex={{tabindex}}>{{t 'reports.gru-table-view.totals'}} {{currentAttempts.length}}
+                  {{t 'assignment-details.attempts'}} ({{t 'common.show'}})
+                </div>
+                <div class="current-attempts">
+                  {{#each currentAttempts as |attempt index|}}
+                    {{#if (not-eq index 0)}}
+                      <div class="attempt-info {{if (eq attempt.updatedAt activeAttempt.updatedAt) 'active-attempt'}}" onclick={{action "onSelectAttempt" attempt}} onkeypress={{action "onSelectAttempt" attempt}} tabindex={{tabindex}}>
+                        {{format-date attempt.updatedAt 'DD MMM YYYY HH:mm'}}
+                      </div>
+                    {{/if}}
+                  {{/each}}
+                </div>
+              {{/if}}
+            </div>
+            {{#if (and otherAttempts otherAttempts.length)}}
+              <div class="other-attempt">
+                <div class="other-attempt">
+                  {{t 'common.other'}} {{t 'assignment-details.attempts'}}
+                </div>
+                {{#if (and (gt otherAttempts.length 1) (not isNotShowListAttempt))}}
+                  <div class="toggle-other-attempts" onclick={{action "onToggleOtherAttemptsList"}} onkeypress={{action "onToggleOtherAttemptsList"}} tabindex={{tabindex}}>{{t 'reports.gru-table-view.totals'}} {{otherAttempts.length}}
+                    {{t 'assignment-details.attempts'}} ({{t 'common.show'}})
+                  </div>
+                  <div class="other-attempts">
+                    {{#each otherAttempts as |attempt index|}}
+                      <div class="attempt-info {{if (eq attempt.updatedAt activeAttempt.updatedAt) 'active-attempt'}}" onclick={{action "onSelectAttempt" attempt}} onkeypress={{action "onSelectAttempt" attempt}} tabindex={{tabindex}}>
+                        {{format-date attempt.updatedAt 'DD MMM YYYY HH:mm'}}
+                      </div>
+                    {{/each}}
+                  </div>
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+        {{else}}
+          <div class="latest-attempt" onclick={{action "onSelectAttempt" latestAttempt}} onkeypress={{action "onSelectAttempt" latestAttempt}} tabindex={{tabindex}}>
+            {{format-date latestAttempt.updatedAt 'DD MMM YYYY HH:mm'}} -
+            <span class="attempt-label">
+              {{#if isAssessment}}
+                {{t 'common.latest-attempt'}}
+              {{else}}
+                {{t 'locateme.lastAcessesed'}}
+              {{/if}}</span>
+          </div>
+          {{#if (and (gt totalNumberOfAttempts 1) (not isNotShowListAttempt))}}
+            <div class="toggle-all-attempts" onclick={{action "onToggleAttemptsList"}} onkeypress={{action "onToggleAttemptsList"}} tabindex={{tabindex}}>{{t 'reports.gru-table-view.totals'}} {{totalNumberOfAttempts}}
+              {{t 'assignment-details.attempts'}} ({{t 'common.show'}})
+            </div>
+            <div class="all-attempts">
+              {{#each activityAttempts as |attempt index|}}
+                {{#if (not-eq index 0)}}
+                  <div class="attempt-info {{if (eq attempt.updatedAt activeAttempt.updatedAt) 'active-attempt'}}" onclick={{action "onSelectAttempt" attempt}} onkeypress={{action "onSelectAttempt" attempt}} tabindex={{tabindex}}>
+                    {{format-date attempt.updatedAt 'DD MMM YYYY HH:mm'}}
+                  </div>
+                {{/if}}
+              {{/each}}
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    {{/if}}
+    <div class="content-items-container">
+
+      {{#if isExternalContent}}
+        <div class="external-content">
+          {{#if previewContent.learningObjectives}}
+            <div class="content-description">
+              {{safe-html previewContent.learningObjectives}}
+            </div>
+
+          {{/if}}
+          {{#if previewContent.url}}
+            <div class="content-url">
+              <span class="url-label">{{t 'gru-rubric-creation.url'}}: </span><span class="url-content"><a href="{{previewContent.url}}" target="_blank">{{previewContent.url}}</a></span>
+            </div>
+          {{/if}}
+        </div>
+      {{else}}
+        {{#each previewContent.children as |content seq|}}
+          {{#if (or (eq previewContentType 'assessment') (eq content.content_format 'question'))}}
+            {{cards/question-preview-card
+              question=content
+              isShowCorrectAnswer=isShowCorrectAnswer
+              contentSeq=(plus-one seq)
+              isReportView = isReportView
+              previewContentType = previewContentType
+              isShowReportCorrectAnswer = isShowReportCorrectAnswer
+              tabindex=tabindex
+              classData = class
+              collection = previewContent
+              isStudent = isStudent}}
+          {{else}}
+            {{cards/resource-preview-card
+              resource=content
+              contentSeq=(plus-one seq)
+              tabindex=tabindex
+              isReportView = isReportView}}
+          {{/if}}
+        {{/each}}
+      {{/if}}
+    </div>
+
+    {{#if isLoading}}
+      <div class="loading-spinner">
+        {{three-bounce-spinner}}
+      </div>
+    {{/if}}
+  </div>
+  {{#if (and isEnableToggleAnswer (not isReportView))}}
+    <div class="footer-container" {{action "onToggleAnswer"}}>
+      {{t (if isShowCorrectAnswer 'common.hide-correct-answer'  'common.show-correct-answer')}}
+    </div>
+  {{/if}}
+</div>
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

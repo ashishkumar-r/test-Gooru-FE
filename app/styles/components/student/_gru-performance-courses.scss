@@ -1,0 +1,45 @@
+.student.gru-performance-courses {
+  .item {
+    height: 25px;
+    input[type="radio"] {
+      &:checked {
+        &:after {
+          border-color: $blue-400;
+        }
+      }
+      &:before {
+        width: 15px;
+        height: 15px;
+      }
+      &:after {
+        border-color: $light-500;
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+  .search-navigation {
+    margin: 0 0 10px;
+    width: 100%;
+    .search-keyword {
+      @include flexbox;
+      @include flex-direction(row-reverse);
+      position: relative;
+      input {
+        font-size: $font-size-small;
+        width: 100%;
+        height: 23px;
+        outline: none;
+        background-color: $dark-500;
+        border-radius: 2px;
+        box-shadow: none;
+        padding: 0 0 0 10px;
+        border: 1px solid $dark-200;
+      }
+      .search-icon {
+        position: absolute;
+        right: 3px;
+      }
+    }
+  }
+}

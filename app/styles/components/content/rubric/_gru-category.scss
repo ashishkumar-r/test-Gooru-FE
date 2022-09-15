@@ -1,0 +1,144 @@
+.content.rubric.gru-category {
+  margin: 0 0 10px 0;
+
+  .required {
+    &:after {
+      content: " *";
+    }
+  }
+
+  > .panel {
+    margin: 0;
+    > .panel-heading {
+      padding: 12px 10px 10px 25px;
+      border-radius: 6px;
+      h3 {
+        display: inline-block;
+        margin: 0;
+        padding: 0 10px 0 10px;
+        line-height: 2.5;
+        vertical-align: top;
+      }
+      .title {
+        cursor: default;
+      }
+    }
+    &.expanded {
+      > .panel-heading {
+        border-bottom: 1px solid $gray-lighter;
+        i {
+          display: inline-block;
+          margin: 12px 0;
+          vertical-align: top;
+        }
+      }
+    }
+  }
+
+  > .panel.collapsed > .panel-body {
+    display: none;
+  }
+
+  .title,
+  .edit-title {
+    > div {
+      border-left: 1px solid $gray-light;
+      display: inline-block;
+      margin-left: 10px;
+      line-height: 1.4;
+      max-width: 35%;
+
+      h2 {
+        display: inline-block;
+        margin: 0;
+        padding: 0 10px 0 10px;
+        line-height: 2.5;
+        font-size: 16px;
+        vertical-align: text-top;
+        color: $dark-300;
+      }
+
+      @media (min-width: $screen-lg) {
+        max-width: 40%;
+      }
+    }
+  }
+
+  .edit-title {
+    display: inline-block;
+    width: 50%;
+    @media (min-width: $screen-lg) {
+      width: 55%;
+    }
+    .input {
+      border-left: 1px solid $gray-light;
+      display: inline-block;
+      margin-left: 10px;
+      line-height: 1.4;
+      width: 85%;
+      max-width: 85%;
+      .gru-input {
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        .form-group {
+          width: 100%;
+          max-width: 100%;
+          border: 0;
+          margin-bottom: 10px;
+          input {
+            color: $gray-light;
+          }
+        }
+      }
+    }
+  }
+
+  .detail {
+    float: $menu-float-dir;
+    &.btn {
+      margin: 0;
+      font-size: $font-size-small;
+      padding: 0 8px;
+
+      &.btn-default {
+        color: $white;
+        background-color: $dark-300;
+      }
+
+      &:hover {
+        cursor: default;
+      }
+    }
+
+    button.no-bgd {
+      background-color: $table-bg;
+      font-size: 24px;
+      line-height: 1;
+      padding: 7px 5px;
+
+      i {
+        color: $gray;
+      }
+    }
+
+    div {
+      display: inline-block;
+    }
+
+    .actions {
+      margin-left: 5px;
+      .item-actions.border {
+        border-left: 1px solid $gray-light;
+      }
+    }
+  }
+  .feedback {
+    label {
+      width: 100%;
+      textarea {
+        font-size: $font-size-base;
+      }
+    }
+  }
+}

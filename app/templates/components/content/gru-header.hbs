@@ -1,0 +1,34 @@
+<header xmlns="http://www.w3.org/1999/html">
+
+    {{#if backButton.visible}}
+      <div onclick={{action 'clickAction' backButton.action}} onkeypress={{action 'clickAction' backButton.action}} class="{{backButton.class}}" tabindex="1">
+        <div>
+          {{gru-icon name="keyboard_arrow_left"}} {{backButton.text}}
+        </div>
+      </div>
+    {{/if}}
+
+    <h1>{{title}}</h1>
+
+    <nav class="{{if useScroll 'scrolling-tabs'}}">
+      {{#each options as |option|}}
+        {{#if useScroll}}
+          {{#gru-scroll class=(if (eq selected option.name) 'selected') to=(concat '#' option.name) offset='.content.gru-header' scrollSection=scrollSection}}{{option.text}}{{/gru-scroll}}
+        {{else}}
+          <a href="#" class="tab {{option.name}} {{if (eq selected option.name) 'selected'}}" tabindex="3" onclick={{action 'select' option.name}} onkeypress={{action 'select' option.name}}>{{option.text}}</a>
+        {{/if}}
+      {{/each}}
+    </nav>
+
+    <div class="actions">
+      {{#each headerActions as |option|}}
+        {{#if option.isShare}}
+          {{#gru-share-pop-over tagName="button" type=option.type}}
+            {{gru-icon name=option.icon}}
+          {{/gru-share-pop-over}}
+        {{else}}
+          <button class="btn btn-default btn-icon {{option.name}}" title="{{option.text}}" onclick={{action 'clickAction' option.action}} onkeypress={{action 'clickAction' option.action}} tabindex="5">{{gru-icon name=option.icon}} {{option.text}}</button>
+        {{/if}}
+      {{/each}}
+    </div>
+</header>

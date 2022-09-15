@@ -1,0 +1,59 @@
+{{#if showPullUp}}
+  <div class="backdrop" {{action 'onPullUpClose'}}></div>
+{{/if}}
+<div class="oca-report-container {{if (and isMultiClassEnabled activeClass) 'multi-class'}}">
+  <div class="report-header">
+    <div class="title">
+      <span>{{t 'teacher-landing.class.offline-class-report.class-report'}}</span>
+      {{#if activeClass}}
+        <span>{{activeClass.code}}</span>
+      {{/if}}
+    </div>
+    {{#if isMultiClassEnabled}}
+      <div class="secondary-classes">
+        <div class="active-class" onclick={{action "onToggleClassListContainer"}} onkeypress={{action "onToggleClassListContainer"}} tabindex={{tabindex}}>
+          {{activeClass.title}} {{gru-icon name="arrow_drop_down"}}
+        </div>
+        <div class="class-container">
+          {{#each secondaryClasses as |secondaryClass|}}
+            <div class="secondary-class {{if (eq activeClass.code secondaryClass.code) 'active'}}" {{action "onSelectClass" secondaryClass}}>
+              {{secondaryClass.title}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+    <div class="close" onclick={{action 'onPullUpClose'}} onkeypress={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="performance-summary" style="background-color:{{if classPerformanceSummary (grade-color classPerformanceSummary.performance.scoreInPercentage)}}">
+    <div class="performance">
+      <span class="score">
+        {{#if (eq classPerformanceSummary.performance.scoreInPercentage null)}}
+          --
+        {{else}}
+          {{concat classPerformanceSummary.performance.scoreInPercentage '%'}}
+        {{/if}}
+      </span>
+      <span class="time-spent">{{if timeSpent (format-time timeSpent) '--'}}</span>
+    </div>
+    <div class="performance-img" style="height: {{classPerformanceSummary.performance.scoreInPercentage}}% ;background-color:{{if classPerformanceSummary (grade-color classPerformanceSummary.performance.scoreInPercentage)}}">
+    </div>
+  </div>
+
+  <div class="report-summary-container">
+    {{#each reportData as |summary|}}
+      <div class="summary-row-container" onclick={{action 'onSelectMonth' summary}} onkeypress={{action 'onSelectMonth' summary}} tabindex={{tabindex}}>
+        <div class="summary-info">
+          <span class="time-spent">{{if summary.timeSpent (format-time summary.timeSpent) '--'}}</span>
+          <span class="period">{{format-date (concat summary.month '/' 01 '/' summary.year) 'MMMM YYYY'}}</span> </div>
+        <div class="performance" style="background-color:{{if summary (grade-color summary.scoreInPercentage)}}">{{summary.scoreInPercentage}}%</div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+{{#if isShowOCAMonthReportPullUp}}
+  {{teacher/offline-class/oca-month-report-pull-up allSummaryData=reportData primaryClass=primaryClass classId=classId context=selectedMonthSummary secondaryClasses=secondaryClasses onClosePullUp="closePullUp" onOpenPerformanceEntry="onOpenPerformanceEntry" tabindex=tabindex classFramework = classFramework isDefaultShowFW = isDefaultShowFW }}
+{{/if}}

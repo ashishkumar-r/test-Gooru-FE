@@ -1,0 +1,285 @@
+.profile-courses .course-content {
+  .new-cards.gru-standard-card {
+    width: 304px;
+    margin: 10px;
+    height: auto;
+    padding-top: 12px;
+
+    .panel {
+      margin-bottom: 23px;
+    }
+
+    .panel .panel-heading {
+      background-color: $table-bg;
+      height: 168px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0;
+      position: relative;
+
+      .info {
+        .question-resources {
+          visibility: hidden;
+        }
+
+        .title-section {
+          margin: 50px 0 10px;
+
+          .title {
+            width: 209px;
+            height: 38px;
+            font-weight: bold;
+            text-align: $tab-float-dir;
+            $line-height: 1.5;
+            $lines-to-show: 2;
+            @include ellipsis(
+              $font-size: 13px,
+              $line-height: $line-height,
+              $lines-to-show: 2
+            );
+          }
+        }
+      }
+
+      &:after {
+        margin-top: 67px !important;
+        height: 60%;
+      }
+    }
+
+    .panel {
+      .panel-body {
+        border-top: 1px solid $gray-lighter;
+
+        .standards {
+          margin: 3px 0;
+
+          .gru-taxonomy-tag-list {
+            .gru-taxonomy-tag {
+              width: 75px;
+              height: 36px;
+              object-fit: contain;
+              border-radius: 3px;
+              background-color: $light-300;
+
+              .content {
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        .remixed-by {
+          span.title {
+            width: 65px;
+            line-height: 1.69;
+            font-style: italic;
+          }
+
+          .owner {
+            margin-left: 4px;
+          }
+        }
+
+        .description {
+          width: 260px;
+          height: 75px;
+          font-size: 13px;
+          line-height: 1.15;
+          text-align: $tab-float-dir;
+          color: $gray;
+
+          .truncate {
+            $line-height: 1.5;
+            $lines-to-show: 3;
+            @include ellipsis(
+              $font-size: 13px,
+              $line-height: $line-height,
+              $lines-to-show: 3,
+              $excerpt-bg: $white
+            );
+          }
+        }
+
+        .cca-icon-btn {
+          .units-icon {
+            float: $tab-float-dir;
+            margin-top: 5px;
+
+            i {
+              background: url("gooru/images/units-gray.svg");
+              width: 15px;
+              height: 15px;
+              display: block;
+            }
+          }
+
+          .unit-text {
+            margin-left: 25px;
+            line-height: 25px;
+          }
+        }
+
+        .publish-icon {
+          width: 30px;
+          float: $menu-float-dir;
+
+          .badge-icon {
+            margin-top: 5px;
+            margin-right: 9px;
+          }
+        }
+
+        .visibility {
+          float: $menu-float-dir;
+
+          .cca-eye-icon {
+            margin-top: 2px;
+          }
+        }
+      }
+
+      .cca-first {
+        padding: 4px 15px;
+        height: 35px;
+
+        .visible_false {
+          color: $lite-gray-medium;
+          float: $menu-float-dir;
+        }
+      }
+
+      .panel-footer {
+        padding: 3px;
+
+        .actions {
+          width: auto;
+
+          .course-icon-btn {
+            border-left: solid 1px $gray-ultra-light;
+            width: 45px;
+            text-align: center;
+            display: block;
+
+            > a {
+              color: $dark-gray-4c;
+              display: block;
+              margin-top: 12px;
+            }
+
+            .course-mode-edit > i {
+              font-size: 21px;
+            }
+          }
+        }
+
+        .options {
+          width: 100%;
+          padding: 0;
+
+          .course-icon-btn {
+            border-right: solid 1px $gray-ultra-light;
+            width: 45px;
+            text-align: center;
+            display: block;
+
+            > a {
+              color: $blue-400;
+              display: block;
+              margin-top: 7px;
+            }
+
+            .course-mode-edit > i {
+              font-size: 21px;
+            }
+          }
+
+          .course-add-btn {
+            font-size: 21px;
+          }
+        }
+      }
+
+      .cca-description {
+        height: 100px;
+        padding-bottom: 2px;
+      }
+
+      .cca-standards {
+        height: 52px;
+      }
+    }
+  }
+}
+
+.profile-courses {
+  .category-menu {
+    padding: 0;
+  }
+
+  .btn-category {
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include align-items(initial);
+
+    .active {
+      -webkit-box-shadow: inset 0 -3px 0 $green-400;
+      box-shadow: inset 0 -3px 0 $green-400;
+    }
+
+    span {
+      color: $green-400;
+    }
+  }
+
+  .course-content {
+    padding-left: 25px;
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(initial);
+
+    .cards {
+      margin: 5px;
+    }
+
+    .new-cards.gru-collection-card {
+      .panel-heading {
+        .collection-info {
+          width: 58%;
+          color: $white;
+          position: absolute;
+          z-index: 10;
+          padding: 10px;
+        }
+      }
+    }
+
+    .no-content {
+      margin-top: 25px;
+
+      .panel-body {
+        @include flexbox;
+        @include flex-direction(row);
+        @include justify-content(space-between);
+
+        p {
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .gru-standard-card {
+      .panel .panel-footer {
+        padding: 0 !important;
+
+        .options {
+          .preview-btn {
+            height: 44px;
+            background-color: $blue-400;
+          }
+        }
+      }
+    }
+  }
+}

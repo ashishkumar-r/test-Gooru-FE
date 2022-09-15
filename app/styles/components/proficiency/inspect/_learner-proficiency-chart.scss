@@ -1,0 +1,280 @@
+.learner-proficiency-chart {
+  .learner-proficiency-standard-chart-container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    grid-column-gap: 10px;
+    max-width: 1300px;
+    width: 98%;
+    margin: 0 auto;
+    @media print {
+      grid-template-columns: 550px 400px;
+    }
+    @media screen and (max-width: 800px) {
+      grid-template-columns: 1fr;
+      grid-row-gap: 10px;
+
+      .learner-proficiency-standard-chart-panel {
+        width: 93%;
+        margin: 0 auto;
+        overflow-x: auto;
+      }
+    }
+
+    .learner-proficiency-standard-chart-panel {
+      background-color: $gray-97;
+      padding: 10px;
+      display: grid;
+      align-items: center;
+
+      .standard-chart {
+        display: flex;
+        align-items: center;
+
+        .go-back {
+          background-color: $white;
+          height: 40px;
+          border-radius: 50%;
+          width: 40px;
+          text-align: center;
+          padding-top: 8px;
+          margin-bottom: 5px;
+
+          i {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .data-standard-chart-header-container {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $gray-4b;
+
+        .left-panel {
+          display: flex;
+        }
+
+        .standard-header-title {
+          color: $dark-700;
+          font-size: 18px;
+          margin-left: 15px;
+          position: relative;
+          top: -4px;
+          display: grid;
+
+          .title {
+            height: auto;
+            font-size: 17px;
+          }
+
+          .competencies {
+            text-transform: uppercase;
+            font-size: 14px;
+          }
+        }
+
+        .panel-header {
+          .taxonomy-info {
+            display: grid;
+            width: 100%;
+            justify-content: end;
+            padding-right: 10px;
+
+            .col-1 {
+              .dropdown-menu {
+                max-height: 400px;
+                overflow: auto;
+              }
+
+              .dropdown-menu > li {
+                padding: 3px 25px;
+              }
+
+              .dropdown {
+                .dropbtn {
+                  margin: 0;
+                  height: 30px;
+                  background-color: $table-bg;
+                  color: $black-bold;
+                  padding: 3px;
+                  font-size: 16px;
+                  text-transform: capitalize;
+                  border: none;
+                  align-items: center;
+                  display: flex !important;
+                }
+              }
+
+              .label {
+                font-size: 17px;
+                font-weight: bold;
+                color: $charcoal-grey;
+                padding: 0;
+                text-align: left;
+                margin-right: 10px;
+              }
+
+              .dropdown {
+                position: relative;
+                display: inline-block;
+                width: max-content;
+
+                .dropbtn {
+                  display: flex !important;
+                }
+
+                .active-item {
+                  display: flex;
+                  cursor: pointer;
+                  height: 25px;
+
+                  .label {
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: $charcoal-grey;
+                    padding: 0;
+                    text-align: left;
+                  }
+
+                  .icon {
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: $charcoal-grey;
+                  }
+
+                  &.active-subject {
+                    .label {
+                      min-width: 0;
+                    }
+
+                    .icon {
+                      i {
+                        line-height: 0;
+                      }
+                    }
+                  }
+                }
+              }
+              /* Dropdown Content (Hidden by Default) */
+              .dropdown-menu > li {
+                font-weight: bold;
+                text-align: left;
+                white-space: nowrap;
+                cursor: pointer;
+              }
+
+              .dropdown-menu > li.active {
+                background-color: $gray-light;
+              }
+
+              .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: $white;
+                min-width: 187px;
+                box-shadow: 0 8px 16px 0 $box-shadow-bg-color;
+                max-height: 150px;
+                overflow-y: auto;
+                z-index: 1;
+                border-top: 1px solid;
+
+                .list-item {
+                  height: 30px;
+                  line-height: 30px;
+                  padding-left: 15px;
+                  cursor: pointer;
+
+                  &.active,
+                  &:hover {
+                    background-color: $light-200;
+                  }
+                }
+
+                li.active i {
+                  font-size: 20px;
+                  color: $black-bold;
+                }
+
+                li.active > a > span {
+                  color: $black-bold;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .standard-title {
+        font-size: 16px;
+        font-weight: bold;
+        height: max-content;
+        margin-left: 21px;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $dark-700;
+        display: flex;
+        margin: 0 auto;
+
+        &.legend {
+          .box {
+            display: block;
+            width: 16.6px;
+            height: 16.6px;
+            transform: rotate(90deg);
+            margin-right: 8.4px;
+            background-color: $blue-in-progress;
+            margin-top: 2px;
+          }
+        }
+      }
+
+      .learner-proficiency-domain-matrix {
+        display: grid;
+        align-items: center;
+        background-color: $gray-97;
+
+        .actions {
+          display: none;
+        }
+
+        .chart-area
+          .matrix-chart
+          .chart-container
+          .domain-chart-container
+          .scrollable-chart {
+          height: calc(100vh - 270px);
+
+          svg {
+            #topic-group {
+              .competency-cell {
+                fill: $gray-no-started;
+
+                &.class-grade-competency {
+                  fill: $blue-mastery;
+                }
+              }
+            }
+
+            #competencies-group {
+              .competency-cell {
+                fill: $gray-no-started;
+
+                &.class-grade-domain-competency {
+                  fill: $blue-mastery;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .domain-panel-list-component {
+      .gru-standard-domain-panel {
+        .domain-list {
+          height: calc(90vh - 140px);
+        }
+      }
+    }
+  }
+}

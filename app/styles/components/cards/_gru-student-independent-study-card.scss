@@ -1,0 +1,142 @@
+.gru-student-independent-study-card {
+  .gru-student-independent-study-container {
+    width: 325px;
+    margin: 10px;
+    @media screen and (max-width: 500px) {
+      width: fit-content;
+      margin: auto;
+    }
+    .gru-student-independent-study-panel {
+      background-color: $white;
+      width: 325px;
+      display: block;
+      text-decoration: none;
+      border-radius: 5px;
+
+      @media screen and (max-width: 500px) {
+        width: 300px;
+        margin: 0;
+      }
+
+      .student-independent-study-head {
+        padding: 10px;
+        height: 60px;
+
+        span {
+          display: block;
+          line-height: 1.4;
+          &.class-name {
+            color: $blue-400;
+            font-weight: bold;
+          }
+          &.class-title {
+            font-size: 15px;
+            text-overflow: ellipsis;
+            width: 215px;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        }
+      }
+      .card-image-back {
+        height: 210px;
+        width: 100%;
+        background-image: url("gooru/class-default.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+
+        &::before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 210px;
+          top: 0;
+          left: 0;
+          background-color: $disabled-color;
+        }
+        @media screen and (max-width: 500px) {
+          height: 200px;
+          &::before {
+            height: 200px;
+          }
+        }
+      }
+      .independent-study-footer-section {
+        box-shadow: 0 -3px 5px $light-200;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        padding: 10px;
+        font-weight: bold;
+        grid-column-gap: 10px;
+
+        .flag-icons {
+          border-radius: 50%;
+          background-color: $green-light;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          box-shadow: 0 0 10px $light-400;
+
+          i {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 1px solid $white;
+            padding: 5px;
+            color: $white;
+            font-size: 20px;
+          }
+        }
+        .percentage-card {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          padding: 1px 0;
+
+          span {
+            &.time-spent {
+              text-align: right;
+            }
+            &.percentage-score {
+              color: $green-light;
+            }
+          }
+        }
+        .progress {
+          height: 10px;
+          margin: 0;
+          border-radius: 10px;
+        }
+      }
+      .halfCircleBottom {
+        height: 40px;
+        width: 80px;
+        border-radius: 0 0 90px 90px;
+        background: #ffffff;
+        margin-left: 70%;
+        z-index: 1;
+        opacity: 0.9;
+        text-align: center;
+        font-size: large;
+      }
+
+      .header-text-img {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .header-text {
+        margin-top: 4px;
+      }
+
+      .header-img {
+        margin-right: 35px;
+      }
+    }
+  }
+}

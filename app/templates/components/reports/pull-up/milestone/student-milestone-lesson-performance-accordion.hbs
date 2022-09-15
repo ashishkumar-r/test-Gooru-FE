@@ -1,0 +1,115 @@
+<div class="student-milestone-lesson-performance-container {{if lesson.isDiagnostic 'disable-event'}} {{if isRescopedLesson 'hidden'}}">
+  <div class="lesson-info-container" onclick={{action "onToggleLesson"}} onkeypress={{action "onToggleLesson"}} tabindex={{tabindex}}>
+    <div class="lesson-icon {{if (or lesson.performance lesson.isPerformed) 'started'}} first-path-{{lesson.firstCollHasSuggsType}} prev-col-path-{{lesson.prevLeCollHasSuggsType}}">
+      <div class="lesson-icon-upward-line {{if isPrevLessonExpanded 'prev-expanded'}}">
+        <svg width="20" height="32">
+          <line class="lesson-connector" x1="10" y1="0" x2="10" y2="32" />
+          <path class="path-right" d="M 0 0  t 8 17 -5 60" />
+          <path class="path-left" d="M 15 0  t -8 17 5 60" />
+        </svg>
+      </div>
+      <i class="icon"></i>
+    </div>
+    <div class="title-container">
+      <div class="domain-name">
+        {{#if isRoute0MileStone}}
+          {{lesson.unitTitle}}
+        {{else}}
+          {{lesson.tx_domain_name}}
+        {{/if}}
+      </div>
+      <div class="lesson-title">
+        {{lesson.lesson_title}}
+      </div>
+    </div>
+  </div>
+  <div class="lesson-performance-container grade-range-{{grade-range lesson.performance.scoreInPercentage}}"
+    onclick={{action "onToggleLesson"}} onkeypress={{action "onToggleLesson"}} tabindex={{tabindex}}>
+
+      {{#if (and lesson.performance.scoreInPercentage (gte lesson.performance.scoreInPercentage 0)) }}
+      {{concat lesson.performance.scoreInPercentage '%' }}
+
+      {{else if lesson.performance.timeSpent}}
+      {{format-time lesson.performance.timeSpent}}
+
+      {{else}}
+         --
+      {{/if}}
+    
+  </div>
+</div>
+<div class="collections-info-container {{if isExpanded 'expanded' 'collapsed'}}" aria-expanded= {{if isExpanded true false}}>
+  {{#if isLoading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    {{#each collections as |collection index|}}
+      <div class="collection-info-container {{if (and collection.isRescopedCollection (not collection.performance)) 'hidden'}}">
+        <div
+          class="collection-icon {{if collection.performance 'started'}} {{if collection.isSuggestedContent 'suggestion'}} path-{{collection.pathType}} prev-coll-path-{{collection.prevCollHasSuggsType}} next-coll-path-{{collection.nextCollHasSuggsType}}">
+          <div class="collecions-icon-upward-line">
+            <svg width="20" height="35">
+              <line class="collection-connector" x1="10" y1="0" x2="10" y2="35" />
+              <path class="path-right" d="M 0 0  t 8 17 -5 60" />
+              <path class="path-left" d="M 15 0  t -8 17 5 60" />
+            </svg>
+          </div>
+          <i class="icon {{collection.format}} {{collection.collectionType}}"></i>
+        </div>
+        <div class="collection-title-container">
+          {{collection.title}}
+        </div>
+        {{#if collection.performance}}
+          <div
+            class="collection-performance-container {{collection.format}}  {{collection.collectionType}} {{if (or collection.isAssessment collection.isOfflineActivity) (concat 'grade-range-'(if isTeacher (if (or collection.performance.scoreInPercentage collection.performance.timeSpent) (grade-range collection.performance.scoreInPercentage) 'not-started') (grade-range collection.performance.scoreInPercentage)))}}"
+            onclick={{action "onOpenCollectionReport" collection}} onkeypress={{action "onOpenCollectionReport" collection}} tabindex={{tabindex}}>
+            {{#if (or collection.isAssessment collection.isOfflineActivity)}}
+              {{if isTeacher (if (gte collection.performance.scoreInPercentage 0) (concat collection.performance.scoreInPercentage '%') '--') (concat collection.performance.scoreInPercentage '%')}}
+            {{else}}
+              {{if isTeacher (if collection.performance.timeSpent (format-time collection.performance.timeSpent) '--') (format-time collection.performance.timeSpent)}}
+            {{/if}}
+          </div>
+        {{else}}
+          <div class="collection-thumbnail-container" style="background-image: url({{collection.thumbnailUrl}});">
+          </div>
+        {{/if}}
+
+      </div>
+    {{/each}}
+  {{/if}}
+
+</div>
+
+{{#if isShowCollectionReport}}
+  {{
+    class/gru-report-panel
+    showPullUp=isShowCollectionReport
+    reportData=collectionReportContext
+    model=studentCollectionReportContext.lesson
+    isStudent=isStudent
+    isRoute0MileStone = isRoute0MileStone
+    tabindex=tabindex
+    isDefaultShowFW = isDefaultShowFW
+    classFramework = classFramework
+  }}
+{{/if}}
+
+{{#if isShowExternalAssessmentReport}}
+  {{
+    reports/pull-up/student-external-assessment-report
+    showPullUp=isShowExternalAssessmentReport
+    reportData=collectionReportContext
+    showPullUp=isShowExternalAssessmentReport
+    isStudent=isStudent
+  }}
+{{/if}}
+
+{{#if isShowStudentOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowStudentOfflineActivityReport
+    oaId=collectionReportContext.collection.id
+    isReportView=true
+    classId=classId
+    isCmReport = true
+    reportContext = collectionReportContext
+  }}
+{{/if}}

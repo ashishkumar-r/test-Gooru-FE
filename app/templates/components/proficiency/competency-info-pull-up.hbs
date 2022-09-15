@@ -1,0 +1,80 @@
+{{#if (and isInspectCompetency isExpand)}}
+  <div class="backdrop" onclick={{action 'closePullUp' bubbles=false}} onkeypress={{action 'closePullUp' bubbles=false}} tabindex={{tabindex}}></div>
+{{/if}}
+<div class="competency-info-pull-up-container">
+  <div class="competency-panel-header">
+    <div class="competency-status status-{{if competency.isMappedWithFramework competency.status 'color-1'}}"></div>
+    <div class="competency-title" onclick={{action 'expandPullUp' bubbles=false}} onkeypress={{action 'expandPullUp' bubbles=false}} tabindex={{tabindex}}>
+      <div class="competency-domain">
+        {{domain-gut-to-fw-transform
+          fwDomains
+          competency.domainCode
+          competency.domainName
+          'fwDomainName'
+          (not showGutCompetency)
+        }}
+        {{#if isTeacherReport}}
+          | {{competency.topicName}}
+        {{/if}}
+      </div>
+      <div class="competency-name">
+        {{competency-gut-to-fw-transform
+           fwCompetencies
+           competency.competencyCode
+           competency.competencyDisplayCode
+           'frameworkCompetencyDisplayCode'
+           showGutCompetency
+           true
+        }}
+        <div class="content lo-content">
+          {{competency-lo-transform
+            fwCompetencies
+            competency.competencyCode
+            'loCode'
+            false
+            '|'
+          }}
+          <span class="tag-tooltip {{competency}}">
+            {{competency-lo-transform
+              fwCompetencies
+              competency.competencyCode
+              'loName'
+              false
+              ''
+            }}
+          </span>
+        </div>
+
+      </div>
+    </div>
+      <div class="status">
+        {{#unless isClassActivity}}
+          {{competencyStatus}}
+        {{/unless}}
+      </div>
+    <span class="close" aria-label="close" onclick={{action 'closePullUp' bubbles=false}} onkeypress={{action 'closePullUp' bubbles=false}} tabindex={{tabindex}}>{{gru-icon name="close"}}</span>
+  </div>
+  <div class="body">
+    {{#if isInspectCompetency}}
+      {{reports/pull-up/competency-content-report
+         fwCompetencies=fwCompetencies
+         showGutCompetency=showGutCompetency
+         classFramework=framework
+         class=class
+         domainCompetencyList=domainCompetencyList
+         proficiencyChartData=proficiencyChartData
+         competency=competency
+         userId=studentId
+         studentListForSuggestion=studentListForSuggestion
+         student=studentProfile
+         isStudent=isStudent
+         isPlayerProficiency=isPlayerProficiency
+         playContent="playContent"
+         tabindex=tabindex
+         isClassActivity=isClassActivity
+         classFrameworkCode = classFrameworkCode
+         isDefaultShowFW = isDefaultShowFW
+       }}
+    {{/if}}
+  </div>
+</div>

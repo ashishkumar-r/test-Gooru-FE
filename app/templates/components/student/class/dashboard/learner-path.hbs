@@ -1,0 +1,81 @@
+<div class="learner-path-container">
+  {{#unless isStudyPlayer}}
+    <div class="learner-path-header">
+      {{gru-icon name="sort"}}
+      <div class="path-panel-head">
+        <div class="panel-head" onclick={{action "goCourseMap"}} onkeypress={{action "goCourseMap"}} href="javascript:void(0)" tabindex={{tabindex}}>
+          <span class="sub-title">{{t 'student-dashboard.learner-path-sub'}}</span>
+          <span class="student-name">{{t 'student-landing.class.course-map'}}</span>
+        </div>
+      </div>
+      <a class="action-buton" onclick={{action "goCourseMap"}} onkeypress={{action "goCourseMap"}} href="javascript:void(0)" aria-label="show course map" tabindex={{tabindex}}>
+        {{gru-icon name="arrow_forward"}}
+      </a>
+    </div>
+  {{/unless}}
+  <div class="learner-path-panel">
+    {{#if (and (not isLoading) hasLocation)}}
+      {{#if (and isPremiumCourse currentClass.milestoneViewApplicable isMilestoneView)}}
+        {{student/class/milestone-course-map
+       class=currentClass
+       milestones=milestones
+       currentLocation=userLocation
+       route0Milestones=milestoneRoute0
+       isStudentDashboard=true
+       contentVisibility=contentVisibility
+       checkAllContentsAreRescoped = "checkAllContentsAreRescoped"
+       isAllContentsAreRescoped = isAllContentsAreRescoped
+       tabindex=tabindex
+       isStudyPlayer=isStudyPlayer
+       isDiagnosticEnd=isDiagnosticEnd
+       diagnosticDetails=diagnosticDetails
+      }}
+      {{else}}
+        {{#if hasRouteSuggestion}}
+          <h5 class="pre-study-title hidden-xs">{{t 'class.overview.pre-study-title'}}</h5>
+          {{class/overview/routesuggestion-preview route0=courseMapRoute0 routeSuggestAction=(action 'courseRouteSuggestAction' ) class=currentClass course=course }}
+        {{/if}}
+        {{#if showRoute0Suggestion}}
+          <h5 class="pre-study-title hidden-xs">{{t 'class.overview.pre-study-title'}}</h5>
+          {{class/overview/routesuggestion-coursemap route0=courseMapRoute0
+               onLocationUpdate=(action 'onLocationUpdate')
+              userLocation=courseMapLocation
+              location=courseMapLocation
+              class=currentClass
+              course=course
+              isStudentDashboard = true
+              routeSuggestAction=(action 'courseRouteSuggestAction')
+              onStudyNow=(action 'studyPlayer' )
+             }}
+        {{/if}}
+        {{#if isSkippedAllUnits}}
+          <div>{{t 'mastered-dashboard-message'}}</div>
+        {{/if}}
+        {{class/overview/gru-accordion-course
+         currentClass=currentClass
+         userLocation=courseMapLocation
+         location=courseMapLocation
+         dashboardLocation = courseMapLocation
+         onLocationUpdate=(action "onLocationUpdate")
+         onStudyNow="studyPlayer"
+         classMembers=currentClass.members
+         contentVisibility=contentVisibility
+         units=units
+         isTeacher=false
+         isStudent=true
+         showLocation=true
+         isStudentDashboard = true
+         resetPerformance = true
+         tabindex=tabindex
+         isStudyPlayer=isStudyPlayer
+         resetPerformance=resetPerformance
+         onSelectItem = "onSelectItem"
+       }}
+      {{/if}}
+    {{else }}
+      {{#if inCompleteClass}}
+        {{t 'student-landing.class.waiting-establish-skyline'}}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

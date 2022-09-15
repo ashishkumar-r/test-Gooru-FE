@@ -1,0 +1,35 @@
+{
+  "usageData":[
+    {
+      "activity": [
+        {
+          "date": "2017-03-14",
+          "collectionId":"all-question-types-assessment-id",
+          "timeSpent":123456,
+          "scoreInPercentage":20,
+          "attempts":10,
+          "status": "complete"
+        },
+        {
+          "date": "2017-03-14",
+          "collectionId":"all-resource-types-collection-id",
+          "timeSpent":428342,
+          "scoreInPercentage":50,
+          "attempts":10,
+          "status": "complete"
+
+        },
+        {
+          "date": "2017-03-14",
+          "collectionId":"aaa5e73a-2372-46a5-8344-4feeab1c9f1d",
+          "timeSpent":42423,
+          "scoreInPercentage":60,
+          "attempts":10,
+          "status": "complete"
+
+        }
+      ],
+      "userId": 10
+    }
+  ]
+}

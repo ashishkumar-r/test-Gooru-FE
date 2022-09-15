@@ -1,0 +1,20 @@
+{{#if isShowPlay}}
+<p class="instructions">
+  {{t "gru-multiple-choice.instructions" action=(t instructionsActionTextKey)}}
+</p>
+<div class="answer-choices">
+    <div id="serp-encoding-answer-container"></div>
+</div>
+{{else}}
+ <ul>
+     {{#if showCorrect}}
+    {{#each answers as |answer index|}}
+  <li>
+    <div class="answer-container">
+      {{answer.text}}
+    </div>
+  </li>
+    {{/each}}
+{{/if}}
+</ul>
+{{/if}}

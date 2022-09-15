@@ -1,0 +1,366 @@
+.ca-daterange-picker {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  background-color: $navbar-default-toggle-icon-bar-bg;
+  overflow-y: auto;
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: -9;
+  }
+
+  .ca-datepicker-body {
+    background: $white;
+    position: absolute;
+    z-index: 1031;
+    width: auto;
+    box-shadow: 0 13px 16px 0 $date-picker-box-shadow;
+    height: auto;
+    left: 50%;
+    top: 50%;
+
+    @media only screen and (max-width: 365px) {
+      width: inherit;
+    }
+
+    @media only screen and (max-height: 800px) {
+      top: 55%;
+    }
+
+    transform: translate(-50%, -50%);
+
+    .content-thumbnail {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      background-color: $bg-table-bg-black;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0;
+      position: relative;
+      background-position: center center;
+      cursor: pointer;
+
+      .icon {
+        display: none;
+      }
+
+      &:after {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        background-image: linear-gradient(
+          to bottom,
+          $bg-left-box-shadow 0,
+          $gray-base 100%
+        );
+        margin-top: 6px;
+        height: 73%;
+        width: 100%;
+        content: "";
+      }
+
+      .content-title {
+        position: absolute;
+        bottom: 5px;
+        padding: 0px 8px;
+        color: $white;
+        z-index: 10;
+        font-weight: 700;
+        line-height: 1.2;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        width: 100%;
+        $font-size: 13px;
+        $line-height: 1.2;
+        $lines-to-show: 2;
+
+        .assessment-external-icons,
+        .collection-external-icons {
+          width: 18px;
+          height: 18px;
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-position: center;
+          display: block;
+          background-image: url("/assets/gooru/share.png");
+        }
+
+        span {
+          @-moz-document url-prefix() {
+            &::before,
+            &::after {
+              content: "" !important;
+            }
+          }
+          @include ellipsis(
+            $font-size: $font-size,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show
+          );
+        }
+      }
+
+      &.enable-video-conference-thumbnail {
+        height: 90px;
+
+        &:after {
+          height: 60%;
+        }
+      }
+    }
+
+    .card-top-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+
+      .content-icon {
+        border-radius: 8px;
+        padding: 5px;
+        display: block;
+        width: 28px;
+        height: 28px;
+        background-color: $dark-500;
+        i {
+          width: 18px;
+          height: 18px;
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-position: center;
+          display: block;
+          &.offline-activity-icon {
+            background-image: url("../assets/gooru/images/offline-white.svg");
+          }
+
+          &.collection-external-icon,
+          &.collection-icon {
+            background-image: url("../assets/gooru/images/collection-white.svg");
+          }
+
+          &.assessment-external-icon,
+          &.assessment-icon {
+            background-image: url("../assets/gooru/images/assessment-white.svg");
+          }
+          &.meeting-icon {
+            background-image: url("../assets/gooru/video-conference-white-icon.png");
+          }
+        }
+      }
+
+      .taxonomy-container {
+        height: 35px;
+        display: grid;
+        align-items: center;
+        text-align: end;
+        cursor: pointer;
+        margin: auto 0 auto auto;
+
+        .gru-taxonomy-tag-list {
+          .gru-taxonomy-tag {
+            min-width: fit-content;
+            max-width: 100px;
+            height: 23px;
+            border-radius: 12px;
+            background-color: $dark-500;
+
+            .standard-tag {
+              text-align: center;
+              padding: 0;
+
+              .tag-label {
+                font-size: 12px;
+                font-weight: bold;
+                color: $white;
+                line-height: 21px;
+              }
+
+              .tag-caption {
+                display: none;
+              }
+            }
+          }
+
+          .non-visible-tags {
+            color: $font-non-visible-tag-white;
+            padding: 0;
+
+            span {
+              font-weight: 700;
+              font-size: 14px;
+              padding-left: 5px;
+              padding-right: 5px;
+              height: 26px;
+            }
+          }
+        }
+      }
+      &.taxonomy-container {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        justify-content: flex-end;
+        cursor: pointer;
+      }
+    }
+    .header-section {
+      display: none;
+      width: 100%;
+      height: 50px;
+      align-items: center;
+      grid-template-columns: 40px auto;
+      box-shadow: 0 0 4px 0 $navbar-default-toggle-icon-bar-bg;
+      background-color: $white-bold;
+
+      .back {
+        display: flex;
+
+        i {
+          width: max-content;
+          height: max-content;
+          margin: auto;
+        }
+      }
+
+      .title {
+        font-size: 16px;
+      }
+    }
+
+    .submit-btn {
+      background-color: $has-active-color;
+      width: 100%;
+      height: 48px;
+      color: $white;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      display: flex;
+
+      &.disable {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+
+    .calendar {
+      display: flex;
+      padding: 0 10px 10px;
+
+      @media only screen and (max-width: 365px) {
+        padding: 0 0px 10px;
+      }
+
+      &.enabled-conference {
+        justify-content: center;
+
+        @media only screen and (max-width: 365px) {
+          justify-content: none;
+        }
+
+        .start-date-picker {
+          width: 100%;
+          table {
+            thead {
+              tr {
+                .dow {
+                  justify-self: center;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .backdrop {
+        display: none;
+      }
+
+      .end-date-picker {
+        margin-left: 10px;
+        width: 100%;
+
+        @media only screen and (max-width: 365px) {
+          margin-left: 0px;
+        }
+      }
+
+      .ca-date-picker-container {
+        box-shadow: none;
+
+        .ca-date-nav-container {
+          height: 40px;
+          box-shadow: 0 1px 1px 0 $date-picker-box-shadow;
+        }
+      }
+    }
+
+    .date-info {
+      display: grid;
+      grid-template-columns: auto auto;
+      height: auto;
+      margin-bottom: 5px;
+      box-shadow: 0 1px 1px 0 $date-picker-box-shadow;
+
+      .end-date-info,
+      .start-date-info {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+
+        &.active {
+          color: $blue-400;
+        }
+
+        .date-container {
+          display: grid;
+          grid-template-areas: "doy my my" "doy day day";
+          text-transform: uppercase;
+
+          .date {
+            grid-area: doy;
+            font-size: 20px;
+            color: $gray-base;
+          }
+
+          .month-year {
+            grid-area: my;
+            font-size: 11px;
+            font-weight: 400;
+          }
+
+          .day {
+            grid-area: day;
+            font-size: 11px;
+            font-weight: 400;
+          }
+
+          .not-selected {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
+    .month-picker {
+      padding-bottom: 10px;
+      .backdrop {
+        display: none;
+      }
+    }
+  }
+}

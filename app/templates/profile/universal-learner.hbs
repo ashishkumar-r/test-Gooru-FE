@@ -1,0 +1,196 @@
+{{#if isShowSearchResults}}
+  <div class="back-drop" onclick={{action 'onCloseSearchResult'}} onkeypress={{action 'onCloseSearchResult'}} tabindex="101"></div>
+  <div class="search-results">
+    <div class="back">
+      <span class="material-icons clear" aria-label="close" onclick={{action 'onCloseSearchResult'}} onkeypress={{action 'onCloseSearchResult'}} tabindex="101">arrow_back</span>
+      <div class="details">
+        <div class="email">{{if profile.email profile.email (if profile.username profile.username profile.fullName)}}</div>
+        <div class="name">{{t 'identify-your-account'}}</div>
+      </div>
+    </div>
+    <div class="no-result {{if searchResults 'hide'}}">{{t 'common.no-record-found'}}!</div>
+    <div class="title {{unless searchResults 'hide'}}">{{t 'are-any-of-those'}}</div>
+    <div class="accounts-list">
+      {{#each searchResults as | searchResult |}}
+        <div class="list-accounts {{if searchResult.isChecked 'visible' 'not-visible'}}">
+          <div class="profile">
+            {{#if (eq searchResult.status 'complete')}}
+              <img class="img-responsive" src="{{searchResult.avatarUrl}}" alt="profileImage">
+            {{else}}
+              <img class="img-responsive" src="/assets/gooru/profile.png" alt="profileImage">
+            {{/if}}
+          </div>
+          <div class="details">
+            <div class="name">{{searchResult.firstName}} {{searchResult.lastName}}</div>
+            <div class="email">{{searchResult.email}}</div>
+          </div>
+          <div class="tenant-name">{{searchResult.tenantName}}</div>
+          <div class="icons">
+            <i class="gru-icon-blue {{if searchResult.isChecked 'show' 'hide'}}" aria-label="remove user profile" onclick={{action 'onClickRemoveUserProfile' searchResult}} onkeypress={{action 'onClickRemoveUserProfile' searchResult}}
+              tabindex="101"></i>
+            <i class="gru-icon-circle {{if searchResult.isChecked 'hide' 'show'}}" aria-label="user profile" onclick={{action 'onClickUserProfile' searchResult}} onkeypress={{action 'onClickUserProfile' searchResult}} tabindex="101"></i>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class="next-btn">
+      <button type="button" name="button" class="try-again" aria-label="close" {{action 'onCloseSearchResult'}} tabindex="101">{{t 'try-again'}}</button>
+      <button type="button" name="button" class="link-accounts {{unless isSelected 'disable-events'}}" aria-label="merge user profile" {{action 'onMergeUserProfile'}} tabindex="101">{{t 'yes-link-account'}}</button>
+    </div>
+  </div>
+{{/if}}
+{{#if isShowSearch}}
+  <div class="back-drop" onclick={{action 'onCloseSearch'}} onkeypress={{action 'onCloseSearch'}} tabindex="101"></div>
+  <div class="identify-your-account">
+    <div class="identify-my-account">
+      <span class="material-icons clear" aria-label="close search" onclick={{action 'onCloseSearch'}} onkeypress={{action 'onCloseSearch'}} tabindex="101">clear</span>
+      <div class="details">
+        <div class="email">{{if profile.email profile.email (if profile.username profile.username profile.fullName)}}</div>
+        <div class="name">{{t 'identify-your-account'}}</div>
+      </div>
+    </div>
+    <div class="msg">{{t 'identify-your-account-msg'}}</div>
+    <div class="search-for">
+      <span for="search for">{{t 'search-for'}}</span>
+      <div class="search-content">
+        <input type="text" title="userValue" aria-label="search" value="{{userEnteredValue}}" onkeyup={{action 'onSearch'}} tabindex="101" class="search-text-box">
+        <i class="material-icons" onclick={{action 'onClearSearch'}} aria-label="clear search" onkeypress={{action 'onClearSearch'}} tabindex="101">delete_outline</i>
+      </div>
+    </div>
+    {{#if isLoading}}
+      <div class="loading-spinner loading">
+        {{three-bounce-spinner}}
+      </div>
+    {{else}}
+      <div class="next-btn">
+        <button type="button" name="button" aria-label="student profile" class="{{unless userEnteredValue 'disable-button'}}" {{action 'onStudentProfiles'}} tabindex="101">{{t 'identify-my-account'}}</button>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}
+{{#if isShowCode}}
+  <div class="back-drop" aria-label="View Code" onclick={{action 'onDismissViewCode'}} onkeypress={{action 'onDismissViewCode'}} tabindex="101"></div>
+  <div class="link-your-account">
+    <div class="title">{{t 'verification-code'}}</div>
+    <div class="text">{{t 'log-in-as'}} <a href="#" class="disable-event">{{if currentProfile.email currentProfile.email (if currentProfile.username currentProfile.username currentProfile.fullName)}}</a> {{t 'and-enter-this-verificationcode'}}</div>
+    <div class="code-view">
+      <span class="view-code">{{currentProfile.code}}</span>
+    </div>
+    <div class="next-btn">
+      <button type="button" aria-label="View Code" name="button" {{action 'onDismissViewCode'}} tabindex="101">{{t 'common.dismiss'}}</button>
+    </div>
+  </div>
+{{/if}}
+
+{{#if isShowEnterCode}}
+  <div class="back-drop" aria-label="Enter Code" onclick={{action 'onCloseEnterCode'}} onkeypress={{action 'onCloseEnterCode'}} tabindex="101"></div>
+  <div class="link-your-account">
+    <div class="title">{{t 'link-your-account'}}</div>
+    <div class="text">{{t 'verification-code-shared-by'}} <a href="#"
+        class="disable-event">{{if currentProfile.originatorEmail currentProfile.originatorEmail (if currentProfile.originatorUsername currentProfile.originatorUsername currentProfile.originatorFullName)}}</a>
+    </div>
+    <div class="code">
+      <div class="userInput">
+        <input type="text" id='first' maxlength="1" onkeyup={{action "clickEvent" this 'second' 'first'}} tabindex="101">
+        <input type="text" id="second" maxlength="1" onkeyup={{action "clickEvent" this 'third' 'second'}} tabindex="101">
+        <input type="text" id="third" maxlength="1" onkeyup={{action "clickEvent" this 'fourth' 'third'}} tabindex="101">
+        <input type="text" id="fourth" maxlength="1" onkeyup={{action "clickEvent" this 'fifth' 'fourth'}} tabindex="101">
+        <input type="text" id="fifth" maxlength="1" onkeyup={{action "clickEvent" this 'sixth' 'fifth'}} tabindex="101">
+        <input type="text" id="sixth" maxlength="1" onkeyup={{action "clickEvents"}}>
+      </div>
+    </div>
+    {{#if isLoading}}
+      <div class="loading-spinner loading">
+        {{three-bounce-spinner}}
+      </div>
+    {{else}}
+      <div class="next-btn">
+        <button type="button" aria-label="Verify Code" name="button" class="{{unless isShowVerifyButton 'disable-events'}}" {{action 'onVerifyCode'}} tabindex="101">{{t 'common.next'}}</button>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}
+{{#if isShowConfirmPullup}}
+  <div class="back-drop" aria-label="close popup" onclick={{action 'closeConfirmPullup'}} onkeypress={{action 'closeConfirmPullup'}} tabindex="101"></div>
+  <div class="acknowledgement">
+    <div class="title">{{t 'thanks-for-confirming'}}</div>
+    <div class="para-one">{{t 'acknowledgement-msg-one'}}</div>
+    <div class="next-btn">
+      <button type="button" name="button" aria-label="close popup" {{action 'closeConfirmPullup'}} tabindex="101">{{t 'common.dismiss'}}</button>
+    </div>
+  </div>
+{{/if}}
+<div class="universal-learner">
+  {{#if consolidateUserProfiles.length}}
+    <div class="linked-accounts">
+      <div class="title">{{t 'linked-accounts'}}</div>
+      {{#each consolidateUserProfiles as | consolidateUserProfile |}}
+        <div class="list-accounts">
+          <div class="profile">
+            {{#if (eq consolidateUserProfile.status 'complete')}}
+              <img class="img-responsive" src="{{consolidateUserProfile.thumbnail}}" alt="profileImage">
+            {{else}}
+              <img class="img-responsive" src="/assets/gooru/profile.png" alt="profileImage">
+            {{/if}}
+          </div>
+          <div class="details">
+            {{#if (eq consolidateUserProfile.status 'complete')}}
+              <div class="email">{{consolidateUserProfile.email}}</div>
+              <div class="name">{{consolidateUserProfile.firstName}} {{consolidateUserProfile.lastName}}</div>
+            {{else}}
+              {{#if (and (eq consolidateUserProfile.mode 'email') (eq consolidateUserProfile.status 'requested'))}}
+                <div class="email">{{consolidateUserProfile.email}}</div>
+                <div class="name">{{consolidateUserProfile.firstName}} {{consolidateUserProfile.lastName}}</div>
+              {{/if}}
+              {{#if (eq consolidateUserProfile.mode 'code')}}
+                {{#if (and (eq consolidateUserProfile.originatorId session.userId) (eq consolidateUserProfile.status 'requested'))}}
+                  <div class="email">{{consolidateUserProfile.email}}</div>
+                  <div class="name">{{consolidateUserProfile.firstName}} {{consolidateUserProfile.lastName}}</div>
+                {{else}}
+                  <div class="email">{{consolidateUserProfile.originatorEmail}}</div>
+                  <div class="name">{{consolidateUserProfile.originatorFirstName}} {{consolidateUserProfile.originatorLastName}}</div>
+                {{/if}}
+              {{/if}}
+            {{/if}}
+          </div>
+          <div class="tenant-name">
+            <span>{{consolidateUserProfile.tenantName}}</span>
+          </div>
+          <div class="actions">
+            <span class="unlink hide">{{t 'unlink'}}</span>
+            {{#if (eq consolidateUserProfile.status 'complete')}}
+              <span class="Verified">{{t 'common.verified'}}</span>
+            {{else}}
+              {{#if (and (eq consolidateUserProfile.mode 'email') (eq consolidateUserProfile.status 'requested'))}}
+                <span class="resend-mail" aria-label="resend mail" onclick={{action 'onResendMail' consolidateUserProfile.id}} onkeypress={{action 'onResendMail' consolidateUserProfile.id}} tabindex="101">{{t "resend-email"}}</span>
+                <span class="cancel-request" aria-label="cancel request" onclick={{action 'onCancelRequest' consolidateUserProfile.id}} onkeypress={{action 'onCancelRequest' consolidateUserProfile.id}} tabindex="101">{{t 'cancel-request'}}</span>
+              {{/if}}
+              {{#if (eq consolidateUserProfile.mode 'code')}}
+                {{#if (and (eq consolidateUserProfile.originatorId session.userId) (eq consolidateUserProfile.status 'requested'))}}
+                  <span class="view-code" aria-label="view code" onclick={{action 'onViewCode' consolidateUserProfile}} onkeypress={{action 'onViewCode' consolidateUserProfile}} tabindex="101">{{t 'view-code'}}</span>
+                  <span class="cancel-request" aria-label="cancel request" onclick={{action 'onCancelRequest' consolidateUserProfile.id}} onkeypress={{action 'onCancelRequest' consolidateUserProfile.id}} tabindex="101">{{t 'cancel-request'}}</span>
+                {{else}}
+                  <span class="view-code" aria-label="Enter code" onclick={{action 'onEnterCode' consolidateUserProfile}} onkeypress={{action 'onEnterCode' consolidateUserProfile}} tabindex="101">{{t 'enter-code'}}</span>
+                  <span class="cancel-request" aria-label="cancel request" onclick={{action 'onCancelRequest' consolidateUserProfile.id}} onkeypress={{action 'onCancelRequest' consolidateUserProfile.id}} tabindex="101">{{t 'cancel-request'}}</span>
+                {{/if}}
+              {{/if}}
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class="add-another">
+      <div class="title">{{t 'add-another-id'}}</div>
+      <div class="add-icon" aria-label="show search" onclick={{action 'onShowSearch'}} onkeypress={{action 'onShowSearch'}} tabindex="101"><span class="material-icons">add</span></div>
+    </div>
+  {{else}}
+    <div class="link-account">
+      <div class="title">{{t 'linked-accounts'}}</div>
+      <div class="add-accounts {{if isGuestAccount 'disable-event'}}">
+        <div class="profile"><img class="img-responsive" src="/assets/gooru/profile.png" alt="profileImage"></div>
+        <div class="link-title">{{t 'link-an-account'}}</div>
+        <div class="icons {{if isShowImpersonate 'impersonate-icon'}}" aria-label="show search" onclick={{action 'onShowSearch'}} onkeypress={{action 'onShowSearch'}} tabindex="101"><span class="material-icons">add</span></div>
+      </div>
+    </div>
+  {{/if}}
+</div>

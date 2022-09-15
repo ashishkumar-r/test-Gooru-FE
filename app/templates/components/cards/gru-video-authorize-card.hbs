@@ -1,0 +1,23 @@
+<div class="backdrop1"></div>
+<div class="gru-video-authorize-card-container">
+    {{#if (eq meetingTool 'zoom')}}
+      <i class="zoom-meet-icon"></i>
+    {{else}}
+      {{{gru-icon name="calendar_today"}}}
+    {{/if}}
+    <div class="gru-video-authorize-content">
+        <div class="auth-header">
+          {{#if (eq meetingTool 'zoom')}}
+            {{t 'zoom.conference.header'}}
+          {{else}}
+            {{t 'conference.header'}}
+          {{/if}}
+        </div>
+        <span>{{t 'conference.body'}}</span>
+        <div class="auth-btn">
+              <span class="auth-deny" {{action 'onDeny'}}>{{t 'common.deny'}}</span>
+              <span class="auth-allow" {{action 'onAllow'}}>{{t 'common.allow'}}</span>
+        </div>
+        <span class="no-auth-btn">{{t 'conference.footer'}}</span>
+    </div>
+</div>

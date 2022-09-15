@@ -1,0 +1,31 @@
+.controller.sign-in {
+  @media screen and (max-width: $screen-568 - 1) {
+    .sign-in-wrapper {
+      .sign-in-header h1 {
+        margin: 0;
+      }
+
+      .divider {
+        margin: 8px 0;
+      }
+
+      .sign-in-form .form-group.username {
+        margin-bottom: 0;
+      }
+      min-height: 0 !important;
+      margin: 11px auto;
+
+      .sign-in-header {
+        padding: 15px 0 0;
+
+        .back {
+          padding-top: 35px;
+
+          .icon {
+            padding-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "id": "first-assessment-id",
+  "title": "How well do you know 3.0?",
+  "owner_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+  "original_creator_id": null,
+  "original_collection_id": null,
+  "publish_date": null,
+  "thumbnail": null,
+  "learning_objective": null,
+  "license": 271,
+  "metadata": null,
+  "taxonomy": null,
+  "setting": null,
+  "grading": "system",
+  "visible_on_profile": false,
+  "course_id": "14a7ad67-6bbc-474c-8cc2-0cf15fa7e806",
+  "unit_id": "48d4c12b-716c-4f40-b9f4-d8ea83a7d691",
+  "lesson_id": "e853d39d-f9ec-4a1c-9021-9b78149a8305",
+  "question": [
+    {
+      "id": "9f53dfc1-4057-4cb9-94d5-d0b67efb84fc",
+      "title": "The following features are now available on gooru.",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "hot_spot_text_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 1,
+          "answer_text": "Remix courses",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 2,
+          "is_correct": 1,
+          "answer_text": "Go live dashboards",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 3,
+          "is_correct": 1,
+          "answer_text": "Profiles",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 4,
+          "is_correct": 0,
+          "answer_text": "Collaborator",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 5,
+          "is_correct": 0,
+          "answer_text": "User search",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 6,
+          "is_correct": 1,
+          "answer_text": "Featured Courses",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": {
+        "CCSS.K12.MA-5-MD-A.01": {
+          "code": "5.MD.1",
+          "title": "Convert among different-sized standard measurement units within a given measurement system (e.g., convert 5 cm to 0.05 m), and use these conversions in solving multi-step, real world problems.",
+          "description": "",
+          "parent_title": "Math",
+          "framework_code": "CCSS"
+        }
+      },
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 1,
+      "visible_on_profile": false,
+      "description": "The following features are now available on gooru.org:"
+    },
+    {
+      "id": "70c48ffe-405c-4cb3-a1d8-ae0fb3ff1bb4",
+      "title": "Which of the following represents the &nbsp;course",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "hot_spot_image_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 0,
+          "answer_text": "d0016d5e-0fce-4af2-b8b0-77a31014a84c.png",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 2,
+          "is_correct": 0,
+          "answer_text": "5dc2d7f5-769d-4852-ad7f-9be984873dc0.jpg",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 3,
+          "is_correct": 1,
+          "answer_text": "b95ef8b0-c8ea-4d96-9576-1b44e65f73ff.png",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": null,
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 2,
+      "visible_on_profile": false,
+      "description": "Which of the following represents the &nbsp;course image for \"NavMath\""
+    },
+    {
+      "id": "e053d779-7772-47d3-a842-6f7b156792ee",
+      "title": "If you are having trouble using the new Gooru, or ",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "fill_in_the_blank_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 1,
+          "answer_text": "support",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": null,
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 3,
+      "visible_on_profile": false,
+      "description": "If you are having trouble using the new Gooru, or just want a friendly person to talk to....you can contact us at [support]@gooru.org.&nbsp;"
+    },
+    {
+      "id": "1afe0ff1-051b-42e3-9b08-95444fe6da7d",
+      "title": "The switch happened &nbsp;on time, at exactly 3pm ",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "true_false_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 1,
+          "answer_text": "True",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 2,
+          "is_correct": 0,
+          "answer_text": "False",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": null,
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 4,
+      "visible_on_profile": false,
+      "description": "The switch happened &nbsp;on time, at exactly 3pm IST.&nbsp;"
+    },
+    {
+      "id": "ac533753-1873-4ede-bb00-353c5b855de0",
+      "title": "Highlight the sentence that was not sent in our ne",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "hot_text_highlight_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 1,
+          "answer_text": "Today we present: Gooru’s learning navigator! We are excited to share the news major updates to Gooru are finally here! Read on to see what’s new and how to find the resources that will help you get started. [It's been a long-time coming and you can't wait to stop talking about Cassandra.] Remix and customize quality courses developed and implemented at innovative schools, districts, and charters. These courses are educator-curated, built in classrooms, and studied by students over the past nine months.",
+          "answer_type": "text",
+          "highlight_type": "sentence"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": {
+        "CCSS.K12.MA-5-MD-A.01": {
+          "code": "5.MD.1",
+          "title": "Convert among different-sized standard measurement units within a given measurement system (e.g., convert 5 cm to 0.05 m), and use these conversions in solving multi-step, real world problems.",
+          "description": "",
+          "parent_title": "Math",
+          "framework_code": "CCSS"
+        },
+        "CCSS.K12.MA-5-MD-B.01": {
+          "code": "5.MD.2",
+          "title": "Make a line plot to display a data set of measurements in fractions of a unit (1/2, 1/4, 1/8). Use operations on fractions for this grade to solve problems involving information presented in line plots. For example, given different measurements of liquid in identical beakers, find the amount of liquid each beaker would contain if the total amount in all the beakers were redistributed equally.",
+          "description": "",
+          "parent_title": "Math",
+          "framework_code": "CCSS"
+        }
+      },
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 5,
+      "visible_on_profile": false,
+      "description": "Highlight the sentence that was not sent in our newsletter.&nbsp;"
+    },
+    {
+      "id": "0faecb80-f6b6-4268-acc9-fdb8b14fe5e2",
+      "title": "Order the following features in the sequence they ",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "hot_text_reorder_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 1,
+          "answer_text": "Search",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 2,
+          "is_correct": 1,
+          "answer_text": "Real-time",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 3,
+          "is_correct": 1,
+          "answer_text": "Content Editor",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 4,
+          "is_correct": 1,
+          "answer_text": "Teams",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 5,
+          "is_correct": 1,
+          "answer_text": "Featured Courses",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": {
+        "CCSS.K12.MA-5-MD-A.01": {
+          "code": "5.MD.1",
+          "title": "Convert among different-sized standard measurement units within a given measurement system (e.g., convert 5 cm to 0.05 m), and use these conversions in solving multi-step, real world problems.",
+          "description": "",
+          "parent_title": "Math",
+          "framework_code": "CCSS"
+        }
+      },
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 6,
+      "visible_on_profile": false,
+      "description": "Order the following features in the sequence they were built and released on Alpha, Beta, and Gamma.&nbsp;"
+    },
+    {
+      "id": "14d6a650-fefb-479b-9142-315ddb483830",
+      "title": "The following team members traveled for this relea",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "multiple_answer_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 1,
+          "answer_text": "June",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 2,
+          "is_correct": 1,
+          "answer_text": "Sachin",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 3,
+          "is_correct": 1,
+          "answer_text": "Sheeban",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 4,
+          "is_correct": 1,
+          "answer_text": "Daniel",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 5,
+          "is_correct": 1,
+          "answer_text": "Jeffrey",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 6,
+          "is_correct": 1,
+          "answer_text": "David",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 7,
+          "is_correct": 1,
+          "answer_text": "Renuka",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 8,
+          "is_correct": 1,
+          "answer_text": "Mike",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": null,
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 7,
+      "visible_on_profile": false,
+      "description": "The following team members traveled for this release:"
+    },
+    {
+      "id": "a3efb13b-4dbe-4346-954a-a7c52d2286dd",
+      "title": "This release is known as the:",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "multiple_choice_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 0,
+          "answer_text": "Learning Coordinate System",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 2,
+          "is_correct": 0,
+          "answer_text": "GPS for learning",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 3,
+          "is_correct": 0,
+          "answer_text": "Search engine for learning",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 4,
+          "is_correct": 1,
+          "answer_text": "Learning navigator",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": null,
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 8,
+      "visible_on_profile": false,
+      "description": "This release is known as the:"
+    },
+    {
+      "id": "5764071d-dae0-46a6-9779-d2f7a52db177",
+      "title": "Release coordination happened across the following",
+      "creator_id": "d76575bc-8892-40b4-94dc-f5782a276194",
+      "original_creator_id": null,
+      "publish_date": null,
+      "content_subformat": "multiple_answer_question",
+      "answer": [
+        {
+          "sequence": 1,
+          "is_correct": 0,
+          "answer_text": "Canada",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 2,
+          "is_correct": 1,
+          "answer_text": "UK",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 3,
+          "is_correct": 1,
+          "answer_text": "India",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 4,
+          "is_correct": 0,
+          "answer_text": "Norway",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 5,
+          "is_correct": 1,
+          "answer_text": "Costa Rica",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 6,
+          "is_correct": 1,
+          "answer_text": "Venezela",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 7,
+          "is_correct": 1,
+          "answer_text": "United States",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 8,
+          "is_correct": 1,
+          "answer_text": "Peru",
+          "answer_type": "text"
+        },
+        {
+          "sequence": 9,
+          "is_correct": 1,
+          "answer_text": "Germany",
+          "answer_type": "text"
+        }
+      ],
+      "metadata": null,
+      "taxonomy": {
+        "CCSS.K12.MA-5-MD-B.01": {
+          "code": "5.MD.2",
+          "title": "Make a line plot to display a data set of measurements in fractions of a unit (1/2, 1/4, 1/8). Use operations on fractions for this grade to solve problems involving information presented in line plots. For example, given different measurements of liquid in identical beakers, find the amount of liquid each beaker would contain if the total amount in all the beakers were redistributed equally.",
+          "description": "",
+          "parent_title": "Math",
+          "framework_code": "CCSS"
+        }
+      },
+      "narration": null,
+      "hint_explanation_detail": null,
+      "thumbnail": null,
+      "sequence_id": 9,
+      "visible_on_profile": false,
+      "description": "Release coordination happened across the following countries:&nbsp;"
+    }
+  ],
+  "collaborator": []
+}

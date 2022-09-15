@@ -1,0 +1,964 @@
+<div class="controller teacher class class-settings {{if isGuestAccount 'disable-guest-event'}} {{if class.isArchived 'archived-class'}}">
+  <div class='sec-col-layout'>
+    <div class='sec-rows-layout left-panel'>
+      <div class="class-layout">
+        <div class='class-sec-cont'>
+          <div class='class-settings-label'>
+            {{t 'teacher-landing.class.class-settings.class-settings-sec.class-settings-sec-head'}}
+          </div>
+          <div class='class-settings-sec'>
+            <div class='class-head-row-wrap {{if (and gradeSubjectFWK.title frameworks) ' header-wrap'}}'>
+              <div class='sec-head-class-name'>
+                {{#unless editingTitle}}
+                <span class='class-title ellipsis'>{{class.title}}</span>
+                <span title="{{t 'teacher-landing.class.class-management-tab.edit'}}" data-toggle="tooltip"
+                  class='edit-icon {{if isInstructionalCoache 'disabled'}}' onclick={{action "editTitle" true}} onkeypress={{action "editTitle" true}} tabindex="15">{{gru-icon name='edit'}}</span>
+                <div class='sec-head-sep'></div>
+                {{else}}
+                <label for="editTitle" class="marginBottom0">
+                  {{validation/gru-input model=tempClass valuePath='title' inputId='editTitle' didValidate=didValidate
+                  onFocusOut="editTitle"
+                  autofocus=true maxLength=25
+                  tabindex="15"}}
+                </label>
+                {{/unless}}
+                <div class='class-code'>
+                  <div class='class-code-wrap'>
+                    <div class='label-class-code'> {{t
+                      'teacher-landing.class.class-settings.class-settings-sec.class-code'}}</div>
+                    <div class='value-class-code'>
+                      {{gru-copy-value value=class.code tooltipCode="teacher-landing.class.click-to-copy"}}
+                      {{class.code}}
+                    </div>
+                  </div>
+                </div>
+                {{!-- sub, fwk, grade level --}}
+                {{#if gradeSubjectFWK.title}}
+                <div class='sub-sec-row subject'>
+                  <div class='field-dropdown-caps-label'> {{t
+                    'teacher-landing.class.class-settings.class-settings-sec.subject'}}</div>
+                  <div class='student-field field-drop-down '>
+                    <span class='subject-label'>
+                      {{gradeSubjectFWK.title}}
+                    </span>
+                  </div>
+                </div>
+                {{/if}}
+                {{#if frameworks}}
+                <div class='sub-sec-row framework'>
+                  <div class='field-dropdown-caps-label'> {{t
+                    'teacher-landing.class.class-settings.class-settings-sec.framework'}}</div>
+                  <div class="field-drop-down">
+                    {{gru-dropdown
+                    itemKey='code'
+                    selectedItemId=class.preference.framework
+                    placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                    items=frameworks
+                    displayLabelFieldKey="title"
+                    onChangeAction="updateFwkSettings"
+                    btn-group-size=btn-group-size
+                    allowEdit=(if ( or class.preference.framework class.gradeLowerBound) false true )
+                    tabindex="15"}}
+                  </div>
+                </div>
+                {{/if}}
+                {{#if (and (and course subject subjectFWK) isPremiumClass) }}
+                <div class='sub-sec-row class-grade'>
+                  <div class='field-dropdown-caps-label'> {{t
+                    'teacher-landing.class.class-settings.class-settings-sec.class-grade'}}</div>
+                  <div class="field-drop-down {{if tempClass.gradeCurrent 'in-active'}}">
+                    {{gru-dropdown
+                    selectedItemId=tempClass.gradeCurrent
+                    rangeStartItemId=tempClass.gradeLowerBound
+                    allowItemsRangeSelection=true
+                    rangeBound='upper'
+                    placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                    items=subjectTaxonomyGrades displayLabelFieldKey="grade"
+                    onChangeAction="updateClassGradeLevel"
+                    allowEdit=(if class.gradeCurrent false true )
+                    btn-group-size=btn-group-size
+                    tabindex="15"}}
+                  </div>
+                </div>
+                {{/if}}
+              </div>
+              <div class="cover-image {{if isInstructionalCoache 'disabled'}}">
+                {{content/gru-image updateCoverImage="updateCoverImage" inputId='updateCoverImage' isEditing=isEditing showAltText=false
+                srcImage=thumbnailImage editImage=thumbnailImage}}
+                <div class="dimensions">{{t 'image-dimension'}}</div>
+              </div>
+            </div>
+            {{!-- language --}}
+            {{#if (and (and course subject) isPremiumClass) }}
+            {{#if course.id}}
+            <div class='sub-sec-row hidden'>
+              <div class='field-dropdown-caps-label'>
+                {{t 'teacher-landing.class.class-settings.origin'}}
+              </div>
+              <div class='gradelevel-info'>
+                {{gru-icon tooltipTitle= "teacher-landing.class.class-settings.course-settings-sec.origin-info"
+                name='info_outline'}}
+              </div>
+              <div class='field-drop-down'>
+                {{gru-dropdown
+                selectedItemId=tempClass.gradeLowerBound
+                rangeStartItemId=class.gradeLowerBound
+                allowItemsRangeSelection=true
+                placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                items=subjectTaxonomyGrades
+                displayLabelFieldKey="grade"
+                onChangeAction="updateClassGradeOrigin"
+                btn-group-size=btn-group-size
+                tabindex="15"
+                }}
+              </div>
+            </div>
+            {{/if}}
+
+            {{/if}}
+            <div class="min-score-container">
+              <div class='sec-desc-min-perf'>
+                {{t 'teacher-landing.class.class-settings.class-settings-complete-score'}}
+              </div>
+              <div class='minscoresec'>
+                {{#unless editingScore}}
+                <div class='sec-dec-value disabled'>{{competencyScore}} %
+
+                </div>
+                {{else}}
+                <div class="colscoreedit">
+                  {{validation/gru-input-number model=tempClass title='editScore' valuePath='minScore' min=1 max=100
+                  step=1
+                  didValidate=didValidate onFocusOut="saveScore" onFocusIn="editScore" autofocus=true}}
+                </div>
+                {{/unless}}
+              </div>
+            </div>
+
+            <div class='language-row'>
+              <div class='row-label'> {{t
+                'teacher-landing.class.class-settings.class-settings-sec.language'}}
+              </div>
+              <div class='row-value {{if isInstructionalCoache 'disabled'}}'>
+                {{gru-dropdown
+                selectedItemId=class.primaryLanguage
+                placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                items=languages
+                displayLabelFieldKey="display_name"
+                onChangeAction="updateLanguage"
+                btn-group-size=btn-group-size
+                tabindex="15"}}
+              </div>
+            </div>
+            {{!-- language ends--}}
+            <div class="sub-sec language-row">
+              <div class='row-label'>
+                {{t 'class.setting.mastery'}}
+              </div>
+              <div class="row-value">
+                <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+                  {{gru-switch switchOptions=switchOptionsMastery inputId='updateMastery' onOptionSwitch='updateMastery'
+                  isChecked=(if isMasteryApplicable true false) tabindex="15"}}
+                </div>
+              </div>
+            </div>
+            {{#if showContentVisibility}}
+              <div class="sub-sec language-row">
+                <div class='row-label'>
+                  {{t 'content-visibility'}}
+                </div>
+                <div class="row-value">
+                  <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+                    {{gru-switch
+                    isChecked = getContentVisibility
+                    switchOptions = switchOptionsContentVisibility
+                    inputId='updateContentVisibility'
+                    onOptionSwitch = 'updateContentVisibility'
+                    tabindex="15"}}
+                  </div>
+                </div>
+              </div>
+            {{/if}}
+
+            {{#if showCommunity}}
+            <div class="sub-sec language-row community">
+              <div class='row-label community'>
+                {{t 'community-collaboration'}}
+                <span>{{t 'community-collaboration-sub-text'}}</span>
+              </div>
+              <div class="row-value community">
+                <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+                  {{gru-switch
+                  isChecked = getCommunityCollaboration
+                  switchOptions = switchOptionsCommunityCollaboration
+                  inputId='updateCommunityCollaboration'
+                  onOptionSwitch = 'updateCommunityCollaboration'
+                  tabindex="15"}}
+                </div>
+              </div>
+            </div>
+            {{/if}}
+            {{#if (and (and course subject) isPremiumClass) }}
+            {{#if (and course course.id tenantSettings.show_present_diagnostic_setting_in_class (eq
+            tenantSettings.show_present_diagnostic_setting_in_class 'true') )}}
+            <div class='force-calculate-ilp-class-setting sub-sec-row'>
+              <div class='force-calculate-ilp-class-icon'></div>
+              <div class='force-calculate-ilp-class-label'>
+                <p>{{t 'present.diagnostic.determine.not.know'}}</p>
+                <p>{{t 'present.diagnostic.determine.know' subject=gradeSubjectFWK.title}}</p>
+              </div>
+              <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+                {{gru-switch switchOptions=switchOptions onOptionSwitch='updateClassForceCalculateILPSetting'
+                inputId='updateClassForceCalculateILPSetting'
+                isChecked=(if (not tempClass.forceCalculateILP) true false)
+                 tabindex="15" }}
+              </div>
+            </div>
+
+            {{/if}}
+            {{/if}}
+            {{#if isShowRoster}}
+            <div class="sub-sec language-row">
+              <div class='row-label'>
+                {{t 'settings.tenant-roster'}}
+              </div>
+              <div class="row-value">
+                <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+                  {{gru-switch switchOptions=switchOptions onOptionSwitch='updateClassRosterSetting'
+                  inputId='updateClassRosterSetting'
+                  isChecked=isEnableRosterSync
+                  tabindex="15"}}
+                </div>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{#if showGoogleClassroomButton}}
+      <div class="class-layout">
+        <div class='class-sec-cont'>
+          <div class='class-settings-label'>
+            {{t 'google-classroom-settings'}}
+          </div>
+          <div class='google-classroom-sec'>
+            {{#unless hasConnectAlready}}
+            <div class="google-classroom-connect">
+              <button class="btn btn-primary" aria-label="google-classroom-connect" {{action 'connectGoogleClassroom'
+                }}>{{t 'google-classroom-connect'}}</button>
+            </div>
+            <label class="connect-label">
+              {{t 'connect-google-classroom'}} {{tempClass.title}}
+            </label>
+            {{else}}
+            <div class="disconnect-google-classroom">
+              <button class="btn btn-primary" aria-label="disconnect-google-classroom"
+                onclick={{action 'disconnectGoogleClassroom' }} onkeypress={{action 'disconnectGoogleClassroom' }} tabindex="15">{{t 'disconnect-google-classroom'}}</button>
+            </div>
+            <label class="disconnect-label">
+              {{t 'disconnect-from-google-classroom'}} {{tempClass.title}}
+            </label>
+              {{#if hasClassList}}
+                <div class="classroom-list">
+                  <div class="label-title"> {{t 'select-google-classroom'}}</div>
+                  <div class="dropdown pull-left class-list {{if selectedClassList 'disable-event'}}">
+                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                      aria-haspopup="true" tabindex="15" aria-expanded="true" aria-label="select-google-classroom">
+                      <span class="button-text"> {{if selectedClassList selectedClassList.name (t 'common.select')}} </span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      {{#each hasClassList as |classList|}}
+                      <li> <a data-item={{classList}} {{ action 'updateClassRoomSettings' classList}}>{{classList.name}}
+                        </a> </li>
+                      {{else}}
+                      <li></li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                </div>
+              {{else}}
+                <div class="no-classroom">{{t 'no-google-classroom'}}</div>
+              {{/if}}
+            {{/unless}}
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      {{#if (and scopeAndSequences isPremiumClass (gt scopeList.length 1) )}}
+      <div class="class-layout">
+        <div class='scope-seq-cont'>
+          <div class='scope-seq-label'>
+            {{t 'class.setting.scope.sequence'}}
+          </div>
+          <div class='scope-seq-sec'>
+            <div class="sub-sec default-scope-seq-tab">
+              <div class="default-tab-label">
+                {{t 'scope.sequence-applicable'}}
+              </div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle  panel-header {{if isInstructionalCoache 'disabled'}}" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="ellipsis">{{#if activeScopeAndSequence.scopeName}}{{activeScopeAndSequence.scopeName}}
+                    -{{else}}{{t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one"}} {{/if}}
+                    {{activeScopeAndSequence.grade}}</span>
+                  {{gru-icon name="arrow_drop_down"}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  {{#each scopeAndSequences as |scope|}}
+                  <span class="{{if (eq scope.id activeScopeAndSequence.grade_master_id) 'active'}}
+                      dropdown-item" {{action "updateScopeSequence" scope}}>
+                    {{#if scope.scopeName}}
+                    <p class="tool" data-placement="top" data-container="body"> <span class="scope-name">
+                        {{scope.scopeName}}</span> <span class="scope-grade"> {{scope.grade}} </span> </p>
+                    {{/if}}
+                  </span>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+
+      <div class="class-layout">
+        <div class='class-sec-cont'>
+          <div class='class-settings-label'>
+            {{t 'class.setting.assessment'}}
+          </div>
+          <div class='assessment-settings-sec'>
+
+            <div class="sub-sec assessment-row">
+              <div class='row-label'>
+                {{t 'class.setting.show-correct-answer'}}
+              </div>
+              <div class="row-value">
+                <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+                  {{gru-switch switchOptions=switchOptions onOptionSwitch='updateCorrectAnswer'
+                  inputId='updateCorrectAnswer'
+                  isChecked=(if showCorrectAnswer true false)
+                   tabindex="15"}}
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-sec assessment-row">
+            <div class='row-label'>
+            {{t 'common.show.evidence'}}
+            </div>
+            <div class="row-value">
+            <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+            {{gru-switch switchOptions=switchOptionsEvidence inputId='updateEvidence' onOptionSwitch='updateEvidence'
+             isChecked=(if showEvidence true false) tabindex="15"}}
+            </div>
+            </div>
+            </div>
+
+            {{#if allowAssessmentTemplateToDownload}}
+            <div class="assessment-template-sec">
+              <div class="sec-title">
+                {{t 'common.assessment'}} {{t 'common.template'}}
+              </div>
+              {{gru-i2d-template classCode=class.code students=sortedMembers tabindex=15}}
+              <div class="info-msg">
+                {{t 'assessment-template-msg'}}
+              </div>
+            </div>
+            {{/if}}
+
+            {{#if isShowAssignContent}}
+              <div class="sub-sec assessment-row">
+                <div class='row-label'>
+                {{t 'common.auto-assign'}}
+                </div>
+                <div class="row-value">
+                  <div class='action-button-slide-yes {{if isInstructionalCoache 'disabled'}}'>
+                  {{gru-switch switchOptions=switchOptionAutoAssign inputId='updateAssignContent' onOptionSwitch='updateAssignContent'
+                   isChecked=(if assignAutoContent true false) tabindex="15"}}
+                  </div>
+                </div>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{#if (and (and isPremiumClass (gt multipleClassList.length 0)) (eq tenantSettings.class_setting_show_multi_grade
+      'true'))}}
+      <div class="view-mulitple-class-layout">
+        <div class="view-multiple-class-label">
+          {{t 'common.multi-grade-class-setting'}}
+        </div>
+        <div class="view-mulitple-class-panel">
+          <div class="multiple-class-panel-header">
+            <div class="class-panel-header-title">
+              {{t 'common.select-your-other-classes-from-below'}}
+            </div>
+            <div class="class-panel-header-action">
+              <div class="class-save-btn {{if isEnableSave '' 'disabled'}} {{if isInstructionalCoache 'disabled'}}" {{action 'saveMultipleClass' }}>
+                {{t 'common.save'}}
+              </div>
+            </div>
+          </div>
+          <div class="multiple-class-section">
+            <div class="class-section-header">
+              <div class="class-action-header">
+              </div>
+              <div class="class-code-header">
+                {{t 'student-landing.class-code'}}
+              </div>
+              <div class="class-name-header">
+                {{t 'common.class-name'}}
+              </div>
+            </div>
+            <div class="class-section-body">
+              {{#each multipleClassList as | class classIndex |}}
+              <div class="class-section-content">
+                <div class="class-action-content class-{{if class.isChecked " checked" "unchecked" }}"
+                  {{action 'toggleCheckbox' class}}>
+                  {{gru-icon name=(if class.isChecked 'radio_button_checked' 'radio_button_unchecked')}}
+                </div>
+                <div class="class-code-content">
+                  {{class.code}}
+                </div>
+                <div class="class-name-content">
+                  {{class.title}}
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      {{#if (eq selfId class.owner.id)}}
+      <div class="class-layout-btn">
+        <div class="btn-panel">
+          <div class='class-btn delete-btn {{if (or class.isArchived isInstructionalCoache) 'disabled'}}' onclick={{action 'deleteClass' }} onkeypress={{action 'deleteClass' }} tabindex="15">
+            {{t 'class.info.delete'}} {{gru-icon name='delete'}}
+          </div>
+          <div class='class-btn archive-btn {{if (or class.isArchived isInstructionalCoache) 'disabled'}}' onclick={{action 'archiveClass' }} onkeypress={{action 'archiveClass' }} tabindex="15">
+            {{t 'teacher-landing.class.class-management-tab.archive-classroom'}} {{gru-icon name="archive"}}
+          </div>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+    {{!-- two col layout ends --}}
+    <div class='sec-rows-layout right-panel'>
+      <div class='teacher-sec-cont'>
+        <div class="teacher-sec-label-container">
+          <div class='teacher-settings-label'> {{t
+            'teacher-landing.class.class-settings.teacher-settings-sec.teacher-settings-sec-head'}}</div>
+        </div>
+        <div class="teacher-settings-sec">
+          <div class="sub-sec-teach">
+              <div class="apply-setting">
+                <div class='apply-member-setting-btn {{if isInstructionalCoache 'disabled'}} {{unless selectedCoteacher "disabled"}}' {{action 'applyTeacherSettings'}}>
+                  {{t 'teacher-landing.class.class-settings.course-settings-sec.apply-settings'}}
+                </div>
+              </div>
+            <div class='sub-sec-head'>{{t 'class.info.teachers'}}</div>
+            <div class="sub-sec-row">
+              <div class='teacher-icon' style="background-image: url({{class.owner.avatarUrl}})"></div>
+              {{#if (and class.owner.lastName class.owner.firstName)}}
+              <div class='teacher-label'> {{class.owner.lastName}} {{class.owner.firstName}}</div>
+              {{else}}
+              <div class='teacher-label'> {{class.owner.username}}</div>
+              {{/if}}
+            </div>
+          </div>
+          <div class='sub-sec-coteach'>
+            {{#if class.collaborators}}
+            <div class='sub-sec-head'>{{t 'teacher-landing.class.class-settings.class-settings-sec.co-teachers'}}</div>
+            {{#each collaborators as |coteacher|}}
+            <div class='sub-sec-row'>
+              <div class='teacher-icon' style="background-image: url({{coteacher.avatarUrl}})"></div>
+              <div class='co-teacher-label'> {{coteacher.lastName}} {{coteacher.firstName}}</div>
+              {{#if (or (eq selfId class.owner.id) isInstructionalCoache)}}
+                <div class="read-checkbox {{if (eq coteacher.id selectedCoteacher.id) 'checked'}} {{if isInstructionalCoache 'disabled'}}"
+                  onclick={{action "onSelectTeacher" coteacher}} onkeypress={{action "onSelectTeacher" coteacher}}>
+                    {{gru-icon name=(if (eq coteacher.id selectedCoteacher.id) 'task_alt' 'radio_button_unchecked')}}
+                </div>
+                <div class='delete-co-teacher' onclick={{action 'removeCoteacher' coteacher}} onkeypress={{action 'removeCoteacher' coteacher}} title="{{t 'common.remove'}}"
+                  data-toggle="tooltip" tabindex="15"> {{gru-icon name='delete'}}</div>
+              {{/if}}
+            </div>
+            {{/each}}
+            {{/if}}
+            {{#if (or (eq selfId class.owner.id) isInstructionalCoache)}}
+            <div class="trigger-add-coteacher" onclick={{action "onToggleAddCollaborator" }} onkeypress={{action "onToggleAddCollaborator" }} tabindex="15">
+              <div class="add-co-teacher-icon">
+                {{gru-icon name="add_circle_outline"}}
+              </div>
+              <div class="add-co-teacher-label">
+                {{t 'common.add'}}
+              </div>
+            </div>
+            {{/if}}
+            <div class="add-collaborator-panel">
+              {{teacher/class/gru-add-collaborator
+              onAddCollaborators = "onAddCollaborators"
+              onToggleAddCollaborator = "onToggleAddCollaborator" class=class
+              tabindex="15"}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='student-sec-cont'>
+        <div class="student-sec-label-container">
+          <div class='student-settings-label'> {{t 'teacher-landing.class.class-settings.student-settings-sec.student-settings-sec-head'}}</div>
+          <div class="toggle-add-student {{if (or isInstructionalCoache isGuestAccount) 'disabled'}}" onclick={{action "onToggleAddStudent" }} onkeypress={{action "onToggleAddStudent" }} tabindex="15">
+            {{gru-icon name="add_circle_outline"}} <span>{{t 'class.info.add-students'}}</span>
+          </div>
+        </div>
+
+        {{#if (eq sortedMembers.length 0)}}
+        <div class='no-students-message'>
+        {{t 'teacher-landing.class.class-management-tab.students-instructions'}}
+        </div>
+        {{/if}}
+
+        <div class="add-students-sec">
+          <div class="add-students-title">{{t 'class-setting.add-student-individual'}}</div>
+          {{search/gru-search-student
+          onAddStudents = "onAddStudents"
+          classMembers = sortedMembers
+          tabindex=15}}
+          <div class="add-students-title">{{t 'class-setting.add-student-bulk'}}</div>
+          <div class="multiple-student">
+            <div class="bulk-student-title">
+               {{search/gru-search-student
+                 onAddMultiStudents = "onAddMultiStudents"
+                 isMulitAddStud = true
+                tabindex=15}}
+              <div class="title">
+              {{t (if (eq multiSelectedBy 'email') 'class-setting.add-bulk-student-by-email' 'class-setting.add-bulk-student-by-username')}}
+              </div>
+              </div>
+              <hr>
+            {{textarea
+              value=bulkStudentIds
+              class="form-control add-bulk-student"
+              rows=5
+              placeholder=(t (if (eq multiSelectedBy 'email') 'class-setting.add-bulk-student-by-email' 'class-setting.add-bulk-student-by-username'))
+              tabindex=16}}
+          </div>
+          <div class="search-btn">
+            <div class="search-student-btn {{if (lt bulkStudentIds.length 3) 'disable-event'}}" onclick={{action "getStudentDetails"}} onkeypress={{action "getStudentDetails"}} > {{t 'common.search'}} </div>
+          </div>
+          {{#if bulkStudentList}}
+            <div class="student-availability-status">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="student-name">{{t 'class-setting.header-name'}}</th>
+                    <th class="email-username">{{if (eq multiSelectedBy 'email') (t 'class-setting.header-email-id') (t 'class-setting.header-username') }}</th>
+                    <th class="student-status">{{t 'class-setting.header-status'}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each bulkStudentList as | studentList |}}
+                    <tr>
+                      <td>
+                        {{#if studentList.status}}
+                          {{studentList.firstName}} {{studentList.lastName}}
+                        {{else}}
+                          --
+                        {{/if}}
+                      </td>
+                      <td>{{if (eq multiSelectedBy 'email') (if studentList.email studentList.email '--') (if studentList.userName studentList.userName '--')}}</td>
+                      <td>{{t (if studentList.status 'class-setting.available' 'class-setting.not-on-navigator')}}</td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="button-penal">
+                <div class="message">
+                  {{t (if isAddStundentByEmail 'class-setting.message-by-email' 'class-setting.message-by-username') url=tenantSignupURL}}
+                </div>
+                <div class="button">
+                  <div class="cancel-btn" onclick={{action "onClear"}} onkeypress={{action "onClear"}}>{{t 'common.cancel'}}</div>
+                  <div class="add-btn" onclick={{action "onAddBulkStudent"}} onkeypress={{action "onAddBulkStudent"}}> {{t 'class-setting.add'}} </div>
+                </div>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+        {{#if (gt sortedMembers.length 0)}}
+          <div class="student-settings-sec">
+            {{#if (or isPremiumClass enableButton) }}
+              <div class="apply-setting">
+                <div class='apply-member-setting-btn {{if isInstructionalCoache 'disabled'}} {{if (or studentsLevelSetting enableButton) "" "disabled"}}' {{action 'applyClassMembersSettings'}}>
+                  {{t 'teacher-landing.class.class-settings.course-settings-sec.apply-settings'}}
+            </div>
+          </div>
+          {{/if}}
+
+            <div class="apply-setting-filter">
+            <div class="search-student-container">
+              <div class="search-input-container">
+                {{input type="text"
+                placeholder=(t "common.search-students-placeholder")
+                spellcheck="true"
+                id="studentSearchLocal"
+                key-up=(action "onSearchStudentsLocal" searchTermLocal)
+                value=searchTermLocal
+                }}
+                <label for="studentSearchLocal" id="search-student" class="custom-search-icon">
+                  {{gru-icon name="search"}}
+                </label>
+              </div>
+            </div>
+            <div class="columns columns-right btn-group pull-right" onkeypress={{action 'settingColumn' }} tabindex="15">
+              <button class="btn btn-default dropdown-toggle column-table custom-dropdown-filter" type="button" data-toggle="dropdown"
+                aria-label="Columns" title="Columns" aria-expanded="false">
+                {{t 'teacher-landing.class.class-settings.course-settings-sec.choose-columns'}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                {{#each chooseDefaultValues as | defalutValue |}}
+                  {{#if defalutValue.isShow}}
+                    <li class="column-table">
+                      <label>
+                        <input onclick = {{action 'applyColumns' defalutValue}} onkeypress = {{action 'applyColumns' defalutValue}} tabindex="15" name="table" value={{defalutValue.value}} checked={{defalutValue.checked}} type="checkbox"  aria-label={{defalutValue.ariaLabel}} aria-checked="false">
+                        <span>{{defalutValue.name}}</span>
+                      </label>
+                    </li>
+                    {{/if}}
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+
+          <div class="fixed_header">
+            <table>
+              <thead>
+                <tr>
+                  {{#if enableStudentName }}
+                    <th class="student-info">{{t 'teacher-landing.class.class-settings.students'}}</th>
+                  {{/if}}
+
+                  {{#if (and course course.id isPremiumClass class.gradeLowerBound class.gradeCurrent) }}
+                    {{#if tempClass.forceCalculateILP}}
+                      <th class="grade-level"><span class="text-width">{{gradeSubjectFWK.title}} {{t 'grading-player.level'}}</span></th>
+                    {{/if}}
+                    <th class="destination {{unless enableDestination 'hide-row'}}">{{t 'teacher-landing.class.class-settings.destination'}}</th>
+                  {{/if}}
+                  {{#if enableStudentId }}
+                    <th>{{t 'teacher-landing.class.class-settings.student-id'}}</th>
+                  {{/if}}
+
+                  {{#if (and hasStudentList enableGoogleUserId)}}
+                    <th>{{t 'google-user-id'}}</th>
+                  {{/if}}
+
+                  {{#if enableEmailUsername }}
+                    <th class="email-username">{{t 'teacher-landing.class.class-settings.email-username'}}</th>
+                  {{/if}}
+
+                  {{#if (and enableFluencyLevel isShowFluencyLevel fluencyDropdownValue.length)}}
+                    <th class="fluency-level">{{t 'common.fluency'}}</th>
+                  {{/if}}
+                    {{#if enableActive }}
+                  <th class="student-actions"><span>{{t
+                      'teacher-landing.class.class-settings.student-settings-sec.col-head-active'}}</span></th>
+                  {{/if}}
+                </tr>
+              </thead>
+              <tbody>
+                {{#each filteredStudentsLocal as |student index|}}
+
+                <tr class="{{if (eq (plus-one index) studentsWithoutGradeBoundaries.length) 'end-no-boundary-sec'}}">
+
+                  {{#if enableStudentName }}
+                  <td class="student-infos">
+                    <div class="student-info-container">
+                      <div class='student-icon-col hidden-xs'>
+                        <div class='student-icon' style="background-image: url({{student.avatarUrl}})"></div>
+                      </div>
+                      <div class="student-name  {{if student.isActive "" " inActiveRow"}} ">
+                      {{#if student.fullName}}
+                      <span>{{student.fullName}} {{if (not student.isShowLearnerData) '*'}}</span>
+                      {{else}}
+                      <span>{{student.username}} {{if (not student.isShowLearnerData) '*'}}</span>
+                      {{/if}}
+                      </div>
+                    </div>
+                  </td>
+                   {{/if}}
+
+                  {{#if (and course course.id isPremiumClass class.gradeLowerBound class.gradeCurrent) }}
+                    {{#if tempClass.forceCalculateILP}}
+                      <td class=" {{if student.tempGradeLowerBound 'updated' }}">
+                        <div class="origin {{if student.isActive "" " inActiveRow"}} ">
+                          <div class='grade-info'>
+                            {{gru-dropdown
+                            selectedItemId=(if isLevelDropdown student.gradeLowerBound student.gradeLevel)
+                            rangeStartItemId=(if mathLevelStartRange.levelId mathLevelStartRange.levelId mathLevelStartRange.id)
+                            rangeEndItemId= class.gradeCurrent
+                            rangeBound='between'
+                            allowItemsRangeSelection=true
+                            placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                            itemKey = (if isLevelDropdown 'id' 'levelId')
+                            additionalFilterKey = (unless isLevelDropdown 'id')
+                          items=(if isLevelDropdown subjectTaxonomyGrades levelItems) displayLabelFieldKey=(if isLevelDropdown 'grade'  'label')
+                          onChangeAction="updateClassStudentGradeOrigin" selectedItemAssocId=student.id
+                          btn-group-size=btn-group-size allowEdit=(if (eq student.diagAsmtState 2) false true) }} </div>
+                        </div>
+                  </td>
+                  {{/if}}
+                  {{#if enableDestination}}
+                  <td class="{{if student.tempGradeUpperBound 'updated'}}">
+                    <div class='destinations {{if isInstructionalCoache 'disabled'}} {{if student.isActive "" "inActiveRow"}}'>
+                      <div class='grade-info'>
+                        {{gru-dropdown
+                        selectedItemId=student.gradeUpperBound
+                        rangeStartItemId=class.gradeCurrent
+                        allowItemsRangeSelection=true
+                        rangeBound='upper'
+                        placeholder=(t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                        items=subjectTaxonomyGrades
+                        displayLabelFieldKey="grade"
+                        onChangeAction="updateClassStudentGradeDestination"
+                        selectedItemAssocId=student.id
+                        btn-group-size=btn-group-size
+                        allowEdit= (if (eq student.diagAsmtState 2) false true)
+                        }}
+                      </div>
+                    </div>
+                  </td>
+                  {{/if}}
+                  {{/if}}
+                  {{#if enableStudentId }}
+                  <td>
+                    <div class="student-id ellipsis {{if student.isActive "" " inActiveRow"}} ">
+                      <span> {{student.studentId}}</span>
+                    </div>
+                  </td>
+                 {{/if}}
+                  {{#if (and hasStudentList enableGoogleUserId)}}
+                    <td>
+                      <div class="dropdown google-id {{if student.userExist 'disable-event'}}">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="true" id="dlDropDown" aria-label="select-student-for-mapping">
+                          <span class="button-text ellipsis"> {{if student.userExist
+                            student.classRoomStudent.profile.name.fullName (t 'common.select')}} </span>
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          {{#each hasStudentList as |studentList|}}
+                          {{#unless studentList.hasSelected}}
+                          <li> <a data-item={{studentList}} {{action 'updateGoogleUserId' student
+                              studentList}}>{{studentList.profile.name.fullName}} </a> </li>
+                          {{/unless}}
+                          {{else}}
+                          <li></li>
+                          {{/each}}
+                        </ul>
+                      </div>
+                  </td>
+                  {{/if}}
+
+                  {{#if enableEmailUsername }}
+                  <td>
+
+                    {{#if (or (eq student.show_email true) (eq student.show_email false) (eq student.show_email null) (eq student.show_email ' ')) }}
+
+                        {{#if (eq student.show_email true)}}
+
+                          {{#if student.email}}
+                          <span class="stu-email ellipsis" data-toggle="tooltip" title="{{student.email}}">
+                          {{student.email}}
+                          </span>
+                          {{else}}
+                          <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                          {{student.username}}
+                          </span>
+                          {{/if}}
+
+                        {{else if (or (eq student.show_email false) (eq student.show_email null) (eq student.show_email ' ')) }}
+
+                          {{#if student.username}}
+                          <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                          {{student.username}}
+                          </span>
+                          {{else}}
+                          <span class="stu-email ellipsis" data-toggle="tooltip" title="{{student.email}}">
+                          {{student.email}}
+                          </span>
+                          {{/if}}
+
+                        {{else if (and tenantClassSettings (or (eq student.show_email null) (eq student.show_email ' ') ))}}
+
+                        {{#if (eq tenantClassSettings 'username')}}
+                        <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                          {{student.username}}
+                        </span>
+
+                        {{else if (eq tenantClassSettings 'email')}}
+                        <span class="stu-email ellipsis" data-toggle="tooltip" title="{{student.email}}">
+                          {{student.email}}
+                        </span>
+                        {{/if}}
+
+                    {{else}}
+
+                    <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                      {{student.username}}
+                    </span>
+
+                    {{/if}}
+
+                    {{else if tenantClassSettings}}
+
+                    {{#if (eq tenantClassSettings 'username')}}
+                    <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                      {{student.username}}
+                    </span>
+
+                    {{else if (eq tenantClassSettings 'email')}}
+                    <span class="stu-email ellipsis" data-toggle="tooltip" title="{{student.email}}">
+                      {{student.email}}
+                    </span>
+                    {{/if}}
+
+
+                    {{else if (and (not tenantClassSettings) (or (eq student.show_email null) (eq student.show_email '
+                    ')) )}}
+                    <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                      {{student.username}}
+                    </span>
+
+                    {{else if (and (not tenantClassSettings) (not (or (eq student.show_email true) (eq
+                    student.show_email false) (eq student.show_email null) (eq student.show_email ' ') ) ) )}}
+                    <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                      {{student.username}}
+                    </span>
+
+                    {{else}}
+                    <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                      {{student.username}}
+                    </span>
+                    {{/if}}
+
+                  </td>
+                  {{/if}}
+
+                  {{#if (and enableFluencyLevel isShowFluencyLevel fluencyDropdownValue.length)}}
+                    <td>
+                      <div class="fluency btn-group">
+                        <div class='flu-info {{if student.fluency.fluency_display_title 'selected-flu-btn'}}'>
+                          {{#if student.fluency.fluency_display_code}}
+                            <div class="selected-flu-btn">{{student.fluency.fluency_display_code}} - {{student.fluency.fluency_description}}</div>
+                          {{else}}
+                            {{gru-dropdown
+                              selectedItemId=student.fluency.fluency_display_title
+                              placeholder= (t "teacher-landing.class.class-settings.class-settings-sec.option-choose-one")
+                              items=fluencyDropdownValue
+                              displayLabelFieldKey="fluency_display_title"
+                              onChangeAction="updateFluency"
+                              btn-group-size=btn-group-size
+                              allowEdit=true
+                              itemKey="fluency_display_title"
+                              selectedItemAssocId=student.id
+                            }}
+                          {{/if}}
+                        </div>
+                      </div>
+                    </td>
+                  {{/if}}
+
+                  {{#if enableActive }}
+                    <td class="actions-container">
+                      <span class="menu-icon" onclick={{action 'showActionButton' }} onkeypress={{action 'showActionButton' }} tabindex="15">
+                        {{gru-icon name='more_vert'}}
+                      </span>
+                      <div class="actions-btn">
+                        <div class="student-action-col {{if isInstructionalCoache 'disabled'}}">
+                          {{gru-switch
+                          switchOptions=switchOptions
+                          onOptionSwitch='classMembersToggle'
+                          item=student data-toggle="tooltip"
+                          inputId=student.id
+                          isChecked=(if student.isActive true false)
+                          tabindex="15"
+                          }}
+                        </div>
+                        <div class='student-action-col {{if isInstructionalCoache 'disabled'}}'>
+                          <div class='student-delete' onclick={{action "onRemoveStudent" student}} onkeypress={{action "onRemoveStudent" student}} title="{{t 'common.remove'}}"
+                            data-toggle="tooltip" tabindex="15">
+                            {{gru-icon name='delete'}}
+                          </div>
+                        </div>
+                        {{#if isShowStudentView}}
+                        <div class='student-action-col  {{if (or isInstructionalCoache (not student.isActive)) 'disabled'}}'>
+                          <div class='student-impersonate-icon' onclick={{action 'onstudentView' student}} onkeypress={{action 'onstudentView' student}} tabindex="15">
+                            {{gru-icon name='supervised_user_circle'}}
+                          </div>
+                        </div>
+                        {{/if}}
+                      </div>
+                    </td>
+                  {{/if}}
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+{{#if rosterPopup}}
+<div class='warning-popup'>
+  <div class='backdrop'>
+  </div>
+  <div class='warning-content'>
+    <div>
+      {{gru-icon name='error'}}
+      <span class="warning-text">{{t 'warning'}}</span>
+    </div>
+    <div class='warning-contains'>
+      {{t 'setting.roater-Warning'}}
+    </div>
+    <div class='warning-btn'>
+      <span class='warning-no-btn' onclick={{action 'rosterConformationPopup' }} onkeypress={{action 'rosterConformationPopup' }} tabindex="15">{{t 'common.no'}}</span>
+      <span class='warning-yes-btn' onclick={{action 'rosterConformationPopup' 'true' }} onkeypress={{action 'rosterConformationPopup' 'true' }} tabindex="15">{{t 'common.yes'}}</span>
+    </div>
+  </div>
+</div>
+{{/if}}
+{{#if studentImpersonateFrame}}
+  <div class='backdrop'></div>
+  <div class='student-panel'>
+    {{impersonate/student-impersonate impersonateUrl=impersonateUrl
+    student=impersonateStudent
+    studentImpersonateFrame=studentImpersonateFrame
+    tabindex="15"}}
+  </div>
+{{/if}}
+
+{{#if  isConfirmationVisibility}}
+<div class='backdrop' {{action 'onPullUpClose'}}></div>
+<div class='confiration-panel'>
+  <div class="close" onclick={{action 'onPullUpClose'}} onkeypress={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+    {{gru-icon name="close"}}
+  </div>
+  <div class="body">
+    <div class="confirmation-text">
+      {{#if isVisibility}}
+        {{t 'content-visibility-on'}}
+      {{else}}
+        {{t 'content-visibility-off'}}
+      {{/if}}
+    </div>
+    <div class="button-container">
+      <button class="btn btn-primary no" aria-label="no" onclick={{action 'confirmUpdateVisibility' false}} onkeypress={{action 'confirmUpdateVisibility' false}}>{{t 'common.no'}}</button>
+      <button class="btn btn-primary yes" aria-label="yes" onclick={{action 'confirmUpdateVisibility' true}} onkeypress={{action 'confirmUpdateVisibility' true}}>{{t 'common.yes'}}</button>
+    </div>
+  </div>
+</div>
+{{/if}}

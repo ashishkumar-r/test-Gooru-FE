@@ -1,0 +1,117 @@
+<div class="activities-performance-container">
+  <div class="performance-panel">
+    <div class="performance-panel-header">
+      <i class="material-icons-outlined">article</i>
+      <div class="performance-panel-title">
+        <div class="panel-title" onclick={{action "onGoPerformance"}} onkeypress={{action "onGoPerformance"}} href="javascript:void(0)" tabindex={{tabindex}}>
+          <span class="sub-title">{{t 'student-dashboard.performance-sub'}}</span>
+          <span class="name">{{t 'teacher-landing.class.performance-overview'}}</span>
+        </div>
+      </div>
+      <a class="action-buton" href="javascript:void(0)" {{action "onGoPerformance"}} aria-label="show performance" tabindex={{tabindex}}>
+        {{gru-icon name="arrow_forward"}}
+      </a>
+    </div>
+    <div class="performance-panel-body">
+      <div class="performance-chart-list">
+        <span class="performance-title">{{t 'student-dashboard.your-performance'}}</span>
+        <span class="overall-score">{{t 'student-open-ended-summary.overall-score'}}
+          <span style={{safe-html (if (not-eq overallScore 0) (concat "color:" (grade-color overallScore)))}}>{{if (and (eq activityScore null) (eq journeyScore null))   ' --' (concat overallScore '%')}}</span>
+        </span>
+        <div class="chart-list-container {{if currentClass.isPublic 'disable-class-activity'}}">
+          {{#unless currentClass.isPublic}}
+            <div class="class-activities-performance">
+              {{charts/gru-dount-chart
+                    data=activityPerformance
+                    totalScore = activityScore
+                    width=150
+                    height=150
+                    innerRadius=50
+                    outerRadius = 70
+                  }}
+              <span>{{t 'teacher-landing.class.class-activities'}}</span>
+            </div>
+          {{/unless}}
+          <div class="jounery-performance">
+            {{charts/gru-dount-chart
+                    data=journeyPerformance
+                    totalScore = journeyScore
+                    width=150
+                    height=150
+                    innerRadius= 50
+                    outerRadius = 70
+                  }}
+            <span>{{t 'student-dashboard.jounery'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-container">
+        <span class="progress-title">{{t 'student-dashboard.your-progress'}}</span>
+        <div class="progress-section-list">
+          <div class="lesson-timespent">
+            <div class="lesson-mastered">
+          
+             {{#if lessonStats.totalLessons}}
+
+              <span class="detail">{{if lessonStats.completedLessons  lessonStats.completedLessons 0}}/{{if lessonStats.totalLessons lessonStats.totalLessons 0}}</span>
+        
+              {{else}}
+              <span class="detail">--/--</span>
+            {{/if}}
+
+              <span class="title">{{t 'student-dashboard.lesson-mastered'}}</span> 
+            </div>
+            <div class="timespent">
+              {{#if performanceData.totalTimespent}}
+              <span class="detail">{{format-time performanceData.totalTimespent}}</span>
+              {{else}}
+              <span class="detail">--/--</span>
+              {{/if}}
+              <span class="title">{{t 'student-dashboard.timespent'}}</span>
+            </div>
+          </div>
+          <div class="estimated-timespent">
+            {{#if performanceData.destinationETA}}
+              <span class="detail">{{if performanceData.destinationETA (format-time performanceData.destinationETA) '0'}}</span>
+              <span class="title">{{t 'student-dashboard.eta-destination'}}</span>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="suggestion-card-section">
+      <div class="suggestion-icon">
+        {{gru-icon name="explore"}}
+      </div>
+      <div class="suggestion-content">
+        <p>
+          {{#if performanceData.acceptedSuggestions}}
+            {{t 'student-dashboard.suggestion-description' accepted=performanceData.acceptedSuggestions total=performanceData.totalSuggestions}}
+          {{else}}
+            {{t 'stundet-dashboard-no-suggestion'}}
+          {{/if}}
+        </p>
+      </div>
+    </div>
+    <div class="activities-listing-container">
+      <div class="activities-card-section">
+        {{#if (and masteredStats masteredStats.totalMastered)}}
+          <div class="card-panel-item">
+            <span class="trophy activity-icon"></span>
+            <div class="activity-status">
+              <span>{{t 'student-dashboard.mastered-stats-description' mastered=masteredStats.totalMastered }}</span>
+            </div>
+          </div>
+        {{/if}}
+        {{#if (and streakStats streakStats.streakCompetencies)}}
+          <div class="card-panel-item">
+            <span class="badge-icon activity-icon"></span>
+            <div class="activity-badge-status">
+              <span>{{t 'student-dashboard.streak-stats-description' total=streakStats.streakCompetencies}}</span>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

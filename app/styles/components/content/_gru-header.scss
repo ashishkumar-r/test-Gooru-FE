@@ -1,0 +1,52 @@
+.header.content.gru-header {
+  height: auto;
+  header {
+    display: block;
+    background-color: $dark-400;
+    h1 {
+      font-size: 34px;
+      margin: 0;
+      color: $white;
+      display: block;
+    }
+  }
+  .actions {
+    float: $menu-float-dir;
+    display: inline-block;
+    font-size: 14px;
+    button {
+      padding: 6px 8px;
+      margin-left: 2px;
+    }
+    i {
+      font-size: 18px;
+    }
+  }
+  nav {
+    padding-top: 15px;
+    white-space: nowrap;
+    display: inline-block;
+    a {
+      display: inline-block;
+      vertical-align: middle;
+      opacity: 0.6;
+      font-size: 14px;
+      border-bottom: 3px solid $dark-400;
+      padding: 5px;
+      margin-right: 5px;
+      color: $white;
+      text-decoration: none;
+      @media (min-width: 768px) {
+        padding: 5px 10px;
+        margin-right: 20px;
+      }
+      &.introjs-showElement {
+        color: $dark-400;
+      }
+    }
+    .selected {
+      opacity: 1;
+      border-bottom-color: $white;
+    }
+  }
+}

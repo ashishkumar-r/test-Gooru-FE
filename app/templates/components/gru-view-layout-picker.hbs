@@ -1,0 +1,16 @@
+<div class="view-layout-list">
+  {{#each viewLayouts as |viewLayout|}}
+    <div class="view-option {{viewLayout.view}} {{if viewLayout.isActive 'active' ''}}">
+      <a {{action 'setLayout' viewLayout}}>
+        <div>{{gru-icon name=viewLayout.icon}}</div>
+        <div class='nav-title'>
+          {{#if (eq viewLayout.icon 'view_module' ) }}
+            {{t 'common.grid' }}
+          {{else}}
+            {{t 'common.list' }}
+          {{/if}}
+        </div>
+      </a>
+    </div>
+  {{/each}}
+</div>

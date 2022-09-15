@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Gooru</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+
+  <link rel="icon" type="image/png" href="../favicon.png" />
+</head>
+<body>
+
+  <div id="gooru-application-container"></div>
+
+  <script src="../application-widget.js"></script>
+
+  <script type="text/javascript">
+    (function () {
+      var aw = new ApplicationWidget('#gooru-application-container', {
+        "environment" : "qa",
+        "transition": [ 'player', 'b6170219-5841-46b8-9c6a-d684bc457538', { queryParams: { type: 'collection', role: 'student' }}]
+      });
+    })();
+  </script>
+</body>
+</html>

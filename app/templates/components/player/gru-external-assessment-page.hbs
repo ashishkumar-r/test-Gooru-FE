@@ -1,0 +1,99 @@
+<div class="external-assessment-landing-page {{if isShowFullView 'full-page-view'}}">
+  <div class="external-assessment-card">
+  <div class="card-container">
+    <div class="header-panel" style="background-image: url({{assessment.thumbnailUrl}})">
+      <div class="header-content">
+        <div class="title">{{assessment.title}}</div>
+        <div class="author-name">{{assessment.owner.fullName}}</div>
+      </div>
+    </div>
+    <div class="body-panel">
+      <div class="body-content">
+        <div class="description-panel">
+          <div class="description {{if assessment.learningObjectives 'show' 'hidden'}}"><p>{{assessment.learningObjectives}}</p></div>
+          <div class="details">
+            <div class="taxonomy">
+              {{#if tags.length}}
+                {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+                {{else}}
+                  <div class="no-competency"  data-toggle="tooltip" data-html="true" data-placement="bottom" title="{{t 'common.no-competency'}}" > -- </div>
+                {{/if}}
+            </div>
+            <div class="start-button">
+              {{#if (not isScoreEntered)}}
+                {{#if isDisableScoreEditor}}
+                  <div class="start" {{action "onStart"}}>
+                    {{t 'gru-assessment-confirmation.continue'}}
+                  </div>
+                {{else}}
+                  <div class="start {{unless isValidScore 'disabled'}}" {{action "onSubmit"}}>
+                    {{t 'gru-assessment-confirmation.submit'}}
+                  </div>
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        <div class="content-panel">
+          {{#if isScoreEntered}}
+            {{#if score}}
+              <div class="score-entered">
+                <div class="score">
+                  {{score}}
+                </div>
+                <div class="score-label">
+                  {{t 'self-report.your-score'}}
+                </div>
+              </div>
+            {{else}}
+              {{three-bounce-spinner}}
+              <div class="not-updated">{{t 'self-report.update-error'}}</div>
+            {{/if}}
+          {{else}}
+            {{#if isDisableScoreEditor}}
+              <div class="message">
+                {{t 'common.external-assessment.index-message'}}
+              </div>
+            {{else}}
+              <div class="score-type-selector">
+                <div class="percentage">
+                  <span> <input type="radio" class="score-type" name="score-type" id="percentage-selector" checked="checked" onchange={{action "onChangeScoreType" 'percentage'}} /> <span> Percentage </span></span>
+                </div>
+                <div class="fraction">
+                  <span> <input type="radio" class="score-type" name="score-type" id="fraction-selector" onchange={{action "onChangeScoreType" 'fraction'}} /> <span> Fraction </span></span>
+                </div>
+              </div>
+              <div class="score-editor">
+                {{#if (eq defaultScoreType 'percentage')}}
+                  <div class="percentage-editor">
+                    <span>
+                      <input class="score-value" type="text" id="percentage-score" value=""/>
+                    </span>
+                    <span class="percentage-symbol">%</span>
+                  </div>
+                {{else}}
+                  <div class="fraction-editor">
+                    <span>
+                      <input class="score-value" type="text" id="fraction-score" value=""/>
+                    </span>
+                    <span class="fraction-of">of</span>
+                    <span>
+                      <input class="score-value" type="text" id="fraction-max-score" value=""/>
+                    </span>
+                  </div>
+                {{/if}}
+                {{#if (and isTyping (not isValidScore))}}
+                  <div class="error">{{t 'self-report.validation-error'}}</div>
+                {{/if}}
+                <div class="score-label">
+                  {{t 'self-report.enter-score'}}
+                </div>
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

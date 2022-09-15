@@ -1,0 +1,15 @@
+// General styles
+
+input[type="radio"] {
+  &:before {
+    background-color: $dark-200;
+  }
+  &:checked:after {
+    border-color: $dark-200;
+  }
+}
+
+.btn.btn-success {
+  background-color: $green-400;
+  color: $white !important;
+}

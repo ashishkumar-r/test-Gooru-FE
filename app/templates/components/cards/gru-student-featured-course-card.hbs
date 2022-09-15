@@ -1,0 +1,23 @@
+<div class="panel" tabIndex={{tabIndex}}>
+  <div class="panel-heading">
+    <div aria-label="{{course.title}}" class="title ellipsis" data-placement="bottom" data-toggle="tooltip" title="{{course.title}}">
+        {{truncate text=course.title maxLength=25}}
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="information" style="background-image: url({{course.thumbnailUrl}})">
+      {{#if course.learnerCount}}
+        <div aria-label="collaborator count" class="collaborator-count"> {{course.learnerCount}} {{gru-icon name='people'}}</div>
+      {{/if}}
+      <div tabIndex={{tabIndex}} role="button" aria-label="study now" class="study-btn {{if course.hasJoined 'studying'}}" onclick={{action "studyNow"}} onkeypress={{action "studyNow"}}> {{t (if course.hasJoined 'common.currently-studying' 'common.study-now')}} </div>
+    </div>
+    {{#if course.summary}}
+      <div aria-label="course description" class="description {{unless isExpand 'content-collapse'}}">
+        {{course.summary}}
+      </div>
+    {{/if}}
+    <div aria-expanded="{{unless isExpand false true}}" class="expand" onclick={{action "toggleContent"}} onkeypress={{action "toggleContent"}} tabIndex={{tabIndex}}>
+      <i class="expand-icon"></i>
+    </div>
+  </div>
+</div>

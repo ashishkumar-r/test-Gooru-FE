@@ -1,0 +1,21 @@
+<div class="modal-body">
+  <p class="personal-info">
+    {{#unless isConfirm}}
+      <span>{{t "sign-up.personal-info"}}</span>
+    {{else}}
+      <span>{{t "sign-up.anonymous-info"}}</span>
+    {{/unless}}
+  </p>
+</div>
+<div class="user-agree">
+  {{#unless isConfirm}}
+    <div class="confirm-msg">
+      <div class="confirm-btn proceed-btn" {{action 'confirmMessage'}}>{{t 'sign-in.conformation-text'}}</div>
+    </div>
+  {{else}}
+    <div class="proceed-msg">
+        <div class="proceed-btn not-agree" {{action "updateUserProfile" false}}>{{t 'sign-in.existing-user.not-agree'}}</div>
+        <div class="proceed-btn agree" {{action "updateUserProfile" true}}>{{t 'sign-in.existing-user.agree'}}</div>
+    </div>
+  {{/unless}}
+</div>

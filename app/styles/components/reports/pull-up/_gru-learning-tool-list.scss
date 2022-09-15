@@ -1,0 +1,108 @@
+.gru-learning-tool-list {
+  position: absolute;
+  right: 2px;
+  top: 50px;
+
+  .back-drops {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background-color: transparent;
+    z-index: 10;
+    cursor: pointer;
+  }
+  .gru-learning-tool-list-container {
+    position: relative;
+    width: 365px;
+    background: $white;
+    border-radius: 5px;
+    z-index: 22;
+
+    .gru-learning-panel-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      border-bottom: 1px solid $light-100;
+      padding: 10px;
+      padding-left: 20px;
+      font-size: 17px;
+      font-weight: bold;
+      color: $dark-300;
+      .material-icons {
+        cursor: pointer;
+      }
+    }
+    .gru-learning-panel-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 15px;
+      min-height: 200px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+
+      .tool-panel {
+        margin: 5px;
+        border-radius: 10px;
+        border: 1px solid $light-300;
+        padding: 10px;
+        width: 150px;
+        height: 125px;
+        box-shadow: 0 0 10px $light-300;
+
+        .link {
+          display: grid !important;
+          align-items: center;
+          .tool-image {
+            width: 60px;
+            margin: 0 auto;
+            img {
+              width: 100%;
+              object-fit: contain;
+            }
+          }
+          .tool-head {
+            padding: 10px;
+            text-align: center;
+            line-height: 1.2;
+            .tool-title {
+              font-size: 14px;
+              font-style: italic;
+              color: $dark-200;
+              margin: 0;
+            }
+            .tool-sub-title {
+              font-size: 14px;
+              font-style: italic;
+            }
+          }
+          .tool-description {
+            text-align: center;
+            p {
+              color: $dark-300;
+            }
+          }
+
+          @media screen and (max-width: 475px) {
+            margin: 5px;
+          }
+        }
+      }
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
+      @media screen and (max-width: 450px) {
+        justify-content: center;
+      }
+    }
+    @media screen and (max-width: 320px) {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    top: 102px;
+    right: 1px;
+  }
+}

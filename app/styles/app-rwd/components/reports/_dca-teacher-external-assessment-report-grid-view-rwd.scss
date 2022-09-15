@@ -1,0 +1,27 @@
+.dca-teacher-external-assessment-report-grid-view {
+  @media only screen and (max-width: $screen-568) {
+    .grid-view-container {
+      .cards-container {
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+      }
+    }
+  }
+  @media only screen and (min-width: $screen-568) and (max-width: $screen-824) {
+    .grid-view-container {
+      .cards-container {
+        grid-template-columns: auto auto;
+        display: grid;
+        justify-content: center;
+      }
+    }
+  }
+  @media only screen and (min-width: $screen-800) and (max-width: $screen-824) {
+    .grid-view-container {
+      .cards-container {
+        grid-template-columns: auto auto auto;
+      }
+    }
+  }
+}

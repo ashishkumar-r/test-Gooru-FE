@@ -1,0 +1,112 @@
+{
+  "collections": [
+    {
+      "id": "all-resource-types-collection-id",
+      "title": "oops poly basics",
+      "course_id": "ac8f267c-f3f1-4395-acab-b86c959453be",
+      "publish_status": "published",
+      "thumbnail": "74266efb-74eb-45de-a6a8-4052710af82c.png",
+      "taxonomy": [
+        "K12.MA"
+      ],
+      "collaborator": null,
+      "visible_on_profile": false,
+      "learning_objective": "This is important collection",
+      "owner_id": "852f9814-0eb4-461d-bd3b-aca9c2500595",
+      "original_creator_id": null,
+      "course_title": "mathematics course 101",
+      "resource_count": 5,
+      "question_count": 3
+    },
+    {
+      "id": "617f284e-3dcb-4ca0-b354-a95bc868eed0",
+      "title": "Physics Brief",
+      "course_id": null,
+      "publish_status": "unpublished",
+      "thumbnail": "74266efb-74eb-45de-a6a8-4052710af82c.png",
+      "taxonomy": [
+        "K12.SC-SC2"
+      ],
+      "collaborator": null,
+      "visible_on_profile": true,
+      "learning_objective": null,
+      "owner_id": "852f9814-0eb4-461d-bd3b-aca9c2500595",
+      "original_creator_id": null,
+      "course_title": null,
+      "resource_count": null,
+      "question_count": null
+    },
+    {
+      "id": "3",
+      "title": "Math Brief",
+      "course_id": null,
+      "publish_status": "published",
+      "thumbnail": "74266efb-74eb-45de-a6a8-4052710af82c.png",
+      "taxonomy": [
+        "K12.SC-SC2"
+      ],
+      "collaborator": null,
+      "visible_on_profile": true,
+      "learning_objective": null,
+      "owner_id": "852f9814-0eb4-461d-bd3b-aca9c2500595",
+      "original_creator_id": null,
+      "course_title": null,
+      "resource_count": null,
+      "question_count": null
+    },
+    {
+      "id": "4",
+      "title": "Science Brief",
+      "course_id": null,
+      "publish_status": "published",
+      "thumbnail": "74266efb-74eb-45de-a6a8-4052710af82c.png",
+      "taxonomy": [
+        "K12.SC-SC2"
+      ],
+      "collaborator": null,
+      "visible_on_profile": true,
+      "learning_objective": null,
+      "owner_id": "852f9814-0eb4-461d-bd3b-aca9c2500595",
+      "original_creator_id": null,
+      "course_title": null,
+      "resource_count": null,
+      "question_count": null
+    },
+    {
+      "id": "5",
+      "title": "History Brief",
+      "course_id": null,
+      "publish_status": "published",
+      "thumbnail": "74266efb-74eb-45de-a6a8-4052710af82c.png",
+      "taxonomy": [
+        "K12.SC-SC2"
+      ],
+      "collaborator": null,
+      "visible_on_profile": true,
+      "learning_objective": null,
+      "owner_id": "852f9814-0eb4-461d-bd3b-aca9c2500595",
+      "original_creator_id": null,
+      "course_title": null,
+      "resource_count": null,
+      "question_count": null
+    }
+  ],
+  "owner_details": [
+    {
+      "id": "852f9814-0eb4-461d-bd3b-aca9c2500595",
+      "first_name": "Sachin",
+      "last_name": "Zope",
+      "thumbnail": null,
+      "school_district_id": null
+    }
+  ],
+
+  "filters": {
+    "standard": null,
+    "filterBy": null,
+    "sortOn": "updated_at",
+    "order": "desc",
+    "limit": 2,
+    "offset": 0
+  }
+}

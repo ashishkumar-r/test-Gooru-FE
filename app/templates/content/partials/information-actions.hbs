@@ -1,0 +1,8 @@
+<div class="actions">
+  {{#if isEditing}}
+    <button class="cancel btn btn-info"  {{action 'cancelEdit'}}>{{t "common.cancel"}}</button>
+    <button class="save btn btn-success" {{action 'updateContent'}}>{{t "common.save"}}</button>
+  {{else}}
+    <button class="edit btn btn-primary" {{action 'editContent'}}>{{t "common.edit"}}</button>
+  {{/if}}
+</div>

@@ -1,0 +1,50 @@
+{{#if isEditing}}
+  <div>
+    {{#if editImage}}
+      {{#if isFileInputEmpty}}
+        <img class="img-responsive" src="{{editImage}}" alt="userThumbnail"/>
+      {{/if}}
+    {{else}}
+      {{gru-icon name="library_add"}}
+    {{/if}}
+  </div>
+  <div class="image-edit-actions {{if isShowImpersonate 'impersonate-image-edit'}}">
+    {{#file-picker
+    accept=".jpg,.jpeg,.gif,.png"
+    dropzone=false
+    fileLoaded=(action 'prepareForSubmission')
+    readAs="readAsFile"
+    errors=filePickerErrors
+    onRemoveFile=(action 'resetImage')
+    removePreview=isFileInputEmpty }}
+
+      {{#if editImage}}
+        {{t 'common.update-photo'}}
+      {{else}}
+        {{t 'common.upload-photo'}}
+      {{/if}}
+
+    {{/file-picker}}
+
+    {{#if editImage}}
+      <div class="remove-photo">
+        <span class="delete" {{action 'resetImage'}}>{{t 'common.remove-photo'}}</span>
+      </div>
+    {{/if}}
+
+    <div class="validation">
+      {{#each filePickerErrors as |error|}}
+        <span class="error">{{error}}</span>
+      {{/each}}
+    </div>
+  </div>
+
+{{else}}
+
+  {{#if srcImage}}
+    <img class="img-responsive" src="{{srcImage}}" alt="image-logo"/>
+  {{else}}
+    {{gru-icon name="library_add"}}
+  {{/if}}
+
+{{/if}}

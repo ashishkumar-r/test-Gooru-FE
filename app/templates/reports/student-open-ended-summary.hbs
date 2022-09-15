@@ -1,0 +1,77 @@
+<div class="student-open-ended-summary">
+  <div class="response-panel {{if hideResponse 'hide-response'}}">
+    <div class="row">
+      <div class="col-sm-12 navigation">
+        <button {{action 'goBack'}} class="btn btn-info back">
+        <span>
+          {{gru-icon name='keyboard_arrow_left'}}{{t 'common.back'}}
+        </span>
+        </button>
+      </div>
+    </div>
+    <div class="header clearfix">
+      <div class="summary-container">
+        <div class="overall-score">
+          <span class="title">{{t 'student-open-ended-summary.overall-score'}}</span>
+            <span class="scores">
+              {{#if hasScore}}
+                {{questionSummary.learnerScore}}/{{questionSummary.maxScore}}
+              {{else}}
+                &dash;&dash;
+              {{/if}}
+          </span>
+        </div>
+        {{#if categoriesScore.length}}
+          <div class="panel panel-default rubric-categories">
+            <div class="panel-body">
+              <div class="categories-list">
+              {{#each categoriesScore as |category|}}
+                <div class="category">
+                  <span class="title ellipsis">{{category.title}}</span>
+                  {{#unless (eq category.levelMaxScore 0)}}
+                    <span class="score">({{#if category.levelScore}}{{category.levelScore}}{{else}}0{{/if}}/{{category.levelMaxScore}})</span>
+                  {{/unless}}
+                </div>
+              {{/each}}
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+      {{grading/gru-task-header promptTitle=(t 'student-open-ended-summary.prompt') promptText=questionText promptThumbnail=questionThumbnail }}
+    </div>
+    {{#if (or categoriesScore.length questionSummary.comment)}}
+      <div class="panel panel-default rubric-categories-desc">
+        <div class="panel-body">
+          {{#each categoriesScore as |category|}}
+            <div class="category">
+              <div class="content">
+                <div>
+                  <span class="title ellipsis">{{category.title}}</span>
+                  {{#unless (eq category.levelMaxScore 0)}}
+                    <span class="score">({{#if category.levelScore}}{{category.levelScore}}{{else}}0{{/if}}/{{category.levelMaxScore}})</span>
+                  {{/unless}}
+                </div>
+              </div>
+              <div class="comment">{{category.levelComment}}</div>
+            </div>
+          {{/each}}
+          <div class="category">
+            <div class="content">
+              <span class="title ellipsis">{{t 'student-open-ended-summary.overall-comment'}}</span>
+            </div>
+            <div class="comment">{{questionSummary.comment}}</div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  {{#if (or questionResult.userAnswer rubric.categories.length)}}
+    {{grading/gru-rubric-panel
+      answer=questionResult.userAnswer
+      rubric=rubric
+      showFullRubric=hideResponse
+      showNavigation=false
+    }}
+  {{/if}}
+</div>

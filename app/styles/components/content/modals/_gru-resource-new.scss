@@ -1,0 +1,241 @@
+.content.modals.gru-resource-new {
+  $active-border: $blue-290;
+
+  &.h5p-container {
+    max-width: 100%;
+    width: 960px;
+  }
+  .modal-header {
+    display: flex;
+    .modal-title {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .modal-body {
+    padding-top: 15px;
+
+    iframe {
+      height: 80vh;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form .resource-types > .panel {
+      height: auto;
+
+      .panel-body {
+        padding: 7px 12px;
+        border-color: $blue-400;
+        border-style: solid;
+        border-width: 4px 4px 0 4px;
+      }
+      .panel-footer {
+        padding: 2px 12px;
+        border-color: $blue-500;
+        border-style: solid;
+        border-width: 0px 4px 4px 4px;
+      }
+      &.hideResourceCard {
+        display: none;
+      }
+      &.active {
+        opacity: 0.7;
+
+        .panel-body {
+          border-color: $blue-600;
+        }
+        .panel-footer {
+          border-color: $blue-600;
+        }
+      }
+      &.disabled {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  .header {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    color: $font-blue-8e7-blue-dark;
+    &.desktop-view {
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
+    }
+    &.h5p-content {
+      grid-template-columns: auto auto auto auto;
+    }
+
+    button {
+      float: $menu-float-dir;
+      border: 0 none;
+      background-color: $table-bg;
+      color: $bg-blue-300-blue-500;
+      font-size: 17px;
+      padding: 0;
+      margin-left: 10px;
+
+      &:hover {
+        color: $blue-500;
+      }
+    }
+  }
+  .mobile-view {
+    margin: 10px;
+    align-items: center;
+    display: flex;
+    .btn-group {
+      margin: auto;
+      .btn-primary {
+        background-color: $blue-400 !important;
+      }
+    }
+    @media screen and (min-width: 601px) {
+      display: none;
+    }
+  }
+
+  span.title {
+    font-size: $font-size-large;
+  }
+  .back-icon {
+    display: flex;
+    float: left;
+    color: $font-white-gray-base;
+    cursor: pointer;
+  }
+  .icon {
+    margin-right: 5px;
+    color: $font-light-300-dark-400;
+    i {
+      vertical-align: -6px;
+    }
+  }
+  .url-label,
+  .title-label,
+  .description-label,
+  .type {
+    margin-left: 10px;
+    .gru-input {
+      width: 100%;
+    }
+  }
+  .title-label-html {
+    .type {
+      margin-left: 10px;
+      .gru-input {
+        width: 100% !important;
+      }
+    }
+  }
+  .description-label {
+    .form-control {
+      box-shadow: inset 0 -1px 0 #ddd;
+    }
+  }
+
+  .form-field {
+    padding-left: 0px;
+    .etl-seconds {
+      label {
+        span {
+          margin-left: 10px;
+        }
+        .etl-label {
+          margin-bottom: 0px;
+          .title-label {
+            span {
+              padding-left: 0px;
+              margin-left: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .filename-label {
+    margin-left: 10px;
+    margin-bottom: 15px;
+
+    > small {
+      display: block;
+      line-height: 1.3;
+      font-style: italic;
+    }
+
+    .gru-file-picker {
+      > div {
+        @include flexbox();
+
+        input {
+          width: 80%;
+          border-bottom: 1px solid $table-border-color;
+        }
+        .file-picker {
+          @include flex();
+
+          .upload.btn {
+            margin-left: 5px;
+
+            .fa-upload {
+              font-size: $font-size-large;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+
+      & + .validation {
+        .error {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .validation.error {
+    position: relative;
+    top: -15px;
+  }
+  .validation.error.warning-error {
+    color: $bright-orange;
+  }
+  .lead {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .actions.resource-new {
+    margin-top: 10px;
+  }
+
+  .existing-resource-message {
+    height: 285px;
+    border: 1px solid $light-200;
+    border-radius: 6px;
+    background-color: $light-100;
+    .gru-resource-card {
+      margin: auto;
+      margin-top: 5px;
+    }
+  }
+}
+
+.gru-resource-new {
+  .modal-dialog {
+    width: auto;
+    height: 80vh;
+    .modals {
+      margin: 0 auto;
+      max-width: 700px;
+    }
+  }
+}

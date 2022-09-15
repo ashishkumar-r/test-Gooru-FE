@@ -1,0 +1,439 @@
+{{#if isLoading}}
+  <div class="loading-spinner">{{three-bounce-spinner}}</div>
+{{/if}}
+{{#if isShowAtcView}}
+  {{#if isPremiumClass}}
+    <div class="performance-overview-header">
+      <div class="month-picker {{if isCurrentMonth 'current-month'}} {{if isClassStartMonth 'start-month'}}">
+        {{ca-date-picker
+            showAtcView=true
+            forMonth=activeMonth
+            forYear=activeYear
+            onToggleDatePicker="onToggleDatePicker"
+            forFirstDateOfMonth=selectedMonth
+            showCalendarView=true
+            onSelectMonth="onSelectMonth"
+            showPreviousMonth="onChangeMonth"
+            showNextMonth="onChangeMonth"
+            tabindex=51
+            class=class
+          }}
+      </div>
+    </div>
+
+    <div class="data-view-container navigator-class">
+      <div class="chart-container">
+        <div class="chart-area">
+          {{teacher/class/navigator-atc-view classData=class month=activeMonth year=activeYear tabindex=51}}
+        </div>
+      </div>
+      <div class="data-analysis-cards-container">
+        <div class="competency-card-container learning-challenges">
+          <div class="header-container">
+            <div class="title-container learning-growth-container">{{t 'teacher-landing.class.atc-view.learning-growth'}}</div>
+            <a class="action-buton {{if  (eq gradeCompetencyDomainList.length 0) 'disable-div'}} " aria-label="show learning challenges" onclick={{action "onSelectGrade"}} onkeypress={{action "onSelectGrade"}} tabindex='51'>
+              {{gru-icon name="arrow_forward"}}
+            </a>
+          </div>
+          <div class="competency-card-list">
+            {{#each gradeCompetencyDomainList as |competency domainIndex|}}
+              <div class="competency-struggling-container">
+                <div class="competency-heading" onclick={{action "onSelectGrade" domainIndex bubbles=false}} onkeypress={{action "onSelectGrade" domainIndex bubbles=false}} tabindex='51'>
+                  <ul class="competency-sub-heading">
+                    <li title="{{domain-gut-to-fw-transform
+                    fwDomains
+                    competency.domainCode
+                    competency.domainName
+                    'fwDomainName' true}}" data-toggle="tooltip">
+                      {{domain-gut-to-fw-transform
+                      fwDomains
+                      competency.domainCode
+                      competency.domainName
+                      'fwDomainName' true
+                    }}
+                    </li>
+                    {{#if isDefaultShowFW}}
+                      <li title="{{competency.displayCode}}" data-toggle="tooltip">{{competency.displayCode}}</li>
+                    {{else}}
+                      <li title="{{competency-gut-to-fw-transform
+                     fwCompetencies
+                     competency.code
+                     competency.displayCode
+                     'frameworkCompetencyDisplayCode'
+                     showGutCompetency
+                     true
+                    }}" data-toggle="tooltip">{{competency-gut-to-fw-transform
+                     fwCompetencies
+                     competency.code
+                     competency.displayCode
+                     'frameworkCompetencyDisplayCode'
+                     showGutCompetency
+                     true}}</li>
+                    {{/if}}
+                    <li title="{{competency-lo-transform
+                    fwCompetencies
+                    competency.code
+                    'loName'
+                    false
+                    ''
+                  }}" data-toggle="tooltip" data-placement="bottom">{{competency-lo-transform
+                      fwCompetencies
+                      competency.code
+                      'loCode'
+                      false
+                      '|'
+                    }}</li>
+                  </ul>
+                  <div class="competency-heading-title" title="{{competency-gut-to-fw-transform
+                   fwCompetencies
+                   competency.code
+                   competency.name
+                   'frameworkCompetencyName'
+                   showGutCompetency
+                   true
+                  }}" data-toggle="tooltip" data-placement="bottom">{{competency-gut-to-fw-transform
+                   fwCompetencies
+                   competency.code
+                   competency.name
+                   'frameworkCompetencyName'
+                   showGutCompetency
+                   true
+                  }}</div>
+                </div>
+                <div class="competency-icon" onclick={{action "onSelectCompetency" competency}} onkeypress={{action "onSelectCompetency" competency}} tabindex='51'>
+                  {{gru-icon name="explore"}}
+                </div>
+                <div class="competency-count" onclick={{action "onShowStudentList" competency}} onkeypress={{action "onShowStudentList" competency}} tabindex='51'>
+                  <span class="student-count">
+                    {{competency.studentsCount}}
+                  </span>
+                  {{gru-icon name="account_circle"}}
+                </div>
+              </div>
+            {{else}}
+              <span>{{t 'common.no-struggling-competencies'}}</span>
+            {{/each}}
+          </div>
+        </div>
+        <div class="activities-count-container">
+          <div class="header-container">
+            <div class="header">
+              <span class="title" onclick={{action "onRedirectToCA"}} onkeypress={{action "onRedirectToCA"}}>{{t 'class-activity-progress'}}</span>
+            </div>
+            <a class="action-buton" onclick={{action "onRedirectToCA"}} onkeypress={{action "onRedirectToCA"}} aria-label="show class activities" tabindex='51'>
+              {{gru-icon name="arrow_forward"}}
+            </a>
+          </div>
+          <div class="activities-container completed">
+            <div class="dca-pin"></div>
+            <div class="activities-info">{{t 'teacher-landing.class.atc-view.class-activities-completed'}}</div>
+            <div class="activity-count">{{activitiesCount.scheduled}}</div>
+          </div>
+          <div class="activities-container pending">
+            <div class="dca-pin"></div>
+            <div class="activities-info">{{t 'teacher-landing.class.atc-view.class-activities-pending'}}</div>
+            <div class="activity-count">{{activitiesCount.unscheduled}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="common-container {{unless (or enabledDomainDiagnostic (eq class.forceCalculateILP false)) 'no-diagnostic-card'}}">
+      {{#unless isSelEnabled}}
+        <div class="class-progress-container">
+          <div class="header-container">
+            <div class="header">
+              <span class="title" onclick={{action "showClassProgress"}} onkeypress={{action "showClassProgress"}}>{{t 'class-progress'}}</span>
+            </div>
+            <a class="action-buton" aria-label="show class progress" tabindex='51' onclick={{action "showClassProgress" 'milestone'}} onkeypress={{action "showClassProgress" 'milestone'}}>
+              {{gru-icon name="arrow_forward"}}
+            </a>
+          </div>
+          <div class="list-container">
+            <div class="details-container">
+              <div class="title-container">
+                <span class="text">{{t 'common.average'}}</span>
+                <span class="title">{{t 'class-progress-report.performance-score'}}</span>
+              </div>
+              {{#if (and performanceData performanceData.score)}}
+                <div class="performance" style="background-color:{{if  performanceData.score (grade-color performanceData.score)}}">
+                  <div class="score">
+                    {{#if (or (eq performanceData.score null) (eq performanceData.score undefined))}}
+                      --
+                    {{else}}
+                      {{concat performanceData.score '%'}}
+                    {{/if}}
+                  </div>
+                </div>
+              {{else}}
+                <div class="performance" style="background-color:{{if  performanceData.performance (grade-color performanceData.performance.scoreInPercentage)}}">
+                  <div class="score">
+                    {{#if (or (eq performanceData.performance.scoreInPercentage null) (eq performanceData.performance.scoreInPercentage undefined))}}
+                      --
+                    {{else}}
+                      {{concat performanceData.performance.scoreInPercentage '%'}}
+                    {{/if}}
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+            <div class="details-container time-spent">
+              <div class="title-container">
+                <span class="text">{{t 'common.average'}}</span>
+                <span class="title">{{t 'common.time-spend'}}</span>
+              </div>
+              <div class="performance">
+                <div class="score">
+                  {{if totalTimespent totalTimespent '0'}}
+                </div>
+              </div>
+            </div>
+            <div class="details-container">
+              <div class="title-container">
+                <span class="text">{{t 'common.average'}}</span>
+                <span class="title">{{t 'competencies-gained-student'}}</span>
+              </div>
+              <div class="performance">
+                <div class="score">
+                  {{if gainedData gainedData '0'}}
+                </div>
+              </div>
+            </div>
+            <div class="details-container">
+              <div class="title-container">
+                <span class="text">{{t 'common.average'}}</span>
+                <span class="title">{{t 'competencies-inprogress-student'}}</span>
+              </div>
+              <div class="performance">
+                <div class="score">
+                  {{if inProgressData inProgressData '0'}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <div class="class-progress-container">
+          <div class="header-container {{unless studentSelReportData 'disable-event'}}">
+            <div class="header">
+              <span class="title" onclick={{action "showSelDetailView"}} onkeypress={{action "showSelDetailView"}}>{{t 'common.unit'}} {{t 'common.progress'}}</span>
+            </div>
+            <a class="action-buton" aria-label="show class progress" tabindex='51' onclick={{action "showSelDetailView"}} onkeypress={{action "showSelDetailView"}}>
+              {{gru-icon name="arrow_forward"}}
+            </a>
+          </div>
+          <div class="learning-status {{unless studentSelReportData 'hide'}}">
+            <span class="title">{{t 'learning-status'}}</span>
+          </div>
+          <div class="list-container {{unless studentSelReportData 'hide'}}">
+            <div id="sel_data"></div>
+            <span class="textlbl"></span>
+          </div>
+          <div class="instructions {{unless studentSelReportData 'hide'}}">
+            <div class="list">
+              <span class="box-started"></span>
+              <span class="title">{{t 'students-started-list'}}</span>
+            </div>
+            <div class="list">
+              <span class="box-completed"></span>
+              <span class="title">{{t 'students-completed-list'}}</span>
+            </div>
+          </div>
+          <div class="no-data-section">
+            <span class="no-data {{unless studentSelReportData 'show' 'hide'}}">{{t 'no-data-available'}}</span>
+          </div>
+        </div>
+      {{/unless}}
+      <div class="competencies-container">
+        <div class="header-container">
+          <div class="header">
+            <span class="text" onclick={{action "showStudentProgress"}} onkeypress={{action "showStudentProgress"}}>{{t 'student-progress'}}</span>
+          </div>
+          <a class="action-buton" aria-label="show student progress" tabindex='51' onclick={{action "showStudentProgress" 'milestone'}} onkeypress={{action "showStudentProgress" 'milestone'}}>
+            {{gru-icon name="arrow_forward"}}
+          </a>
+        </div>
+        <div class="total-students">
+          <div class="common-container">
+            <div class="totals">
+              <div class="icons"><span class="user-icon"></span></div>
+              <div class="counts">
+                <span class="total">{{t 'common.students'}}</span>
+                <span class="count">{{t 'common.total'}} <span class="number">{{totalStudents}}</span></span>
+              </div>
+            </div>
+            <div class="competency">
+              <div class="icons"><span class="competency-icon"></span></div>
+              <div class="counts">
+                <span class="total">{{t 'common.competencies'}}</span>
+                <span class="count">{{t 'most-gains'}} <span class="number">{{totalCompetency}}</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="competencies-list-container">
+            <div id="graft_data"></div>
+            <div class="competencies-list">
+              {{#each totalMaxGaind as |competency competencyIndex|}}
+                <div class="list">
+                  <span class="alphabet"> {{t (concat 'common.label-' competencyIndex)}}</span>
+                  <div class="list-details">
+                    <span class="labels"><span class="title">{{competency.label}}</span> <span class="competency-icon"></span></span>
+                    <span class="value"><span class="title">{{competency.value}}</span> <span class="user-icon"></span></span>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="milestone-container">
+        <div class="header-container">
+          <div class="header">
+            <span class="title" onclick={{action "onGoDataDashboard" 'milestone'}} onkeypress={{action "onGoDataDashboard" 'milestone'}}>{{t 'data-by-milestone'}}</span>
+          </div>
+          <a class="action-buton" href="javascript:void(0)" aria-label="show milestone" tabindex='51' onclick={{action "onGoDataDashboard" 'milestone'}} onkeypress={{action "onGoDataDashboard" 'milestone'}}>
+            {{gru-icon name="arrow_forward"}}
+          </a>
+        </div>
+        <div class="sub-title">{{t 'students-at'}}</div>
+        {{#if isShowMilestoneChart}}
+          <div class="milestone-list-container no-data" tabindex="51">
+            <span class="no-milestone-chart">{{t 'no-milestone-chart'}}</span>
+          </div>
+        {{else}}
+          <div class="milestone-list-container" tabindex="51">
+            <svg class="chart"></svg>
+          </div>
+        {{/if}}
+      </div>
+      {{#if (or enabledDomainDiagnostic (not class.forceCalculateILP))}}
+        <div class="diagnostic-container">
+          {{#if (gt diagnosticReportCount 0) }}
+            <div class="header-container" href="javascript:void(0)" {{action "onGoDataDashboard" 'diagnostic'}} aria-label="show diagnostic" tabindex='51'>
+              <div class="diagnostic-header">
+                <span class="title">{{t 'diagnostic-report'}}</span>
+              </div>
+              <a class="action-buton" href="javascript:void(0)" {{action "onGoDataDashboard" 'diagnostic'}} aria-label="show diagnostic" tabindex='51'>
+                {{gru-icon name="arrow_forward"}}
+              </a>
+            </div>
+          {{else}}
+            <div class="header-container">
+              <div class="click-hide">
+                <div class="diagnostic-header">
+                  <span class="title">{{t 'diagnostic-report'}}</span>
+                </div>
+              </div>
+            </div>
+          {{/if}}
+          <div class="list-container">
+            <div class="details-container">
+              <div class="icons"></div>
+              <span class="title">{{t 'students-completed-diagnostic'}}</span>
+              <div class="count">{{diagnosticReportCount}}</div>
+            </div>
+            {{#if (or diagnosticReport.lowest_domain diagnosticReport.highest_domain)}}
+              {{#if diagnosticReport.lowest_domain}}
+                <div class="details-containers">
+                  <div class="icons"></div>
+                  <div class="title-containers">
+                    <span class="text">{{t 'lowest'}}</span>
+                    <span class="title">{{diagnosticReport.lowest_domain.grade}} {{diagnosticReport.lowest_domain.code}}</span>
+                  </div>
+                </div>
+              {{/if}}
+              {{#if diagnosticReport.highest_domain}}
+                <div class="details-containers">
+                  <div class="icons"></div>
+                  <div class="title-containers">
+                    <span class="text">{{t 'highest'}}</span>
+                    <span class="title">{{diagnosticReport.highest_domain.grade}} {{diagnosticReport.highest_domain.code}}</span>
+                  </div>
+                </div>
+              {{/if}}
+            {{else}}
+              <div class="no-list">
+                {{t 'no-diagnostic-data'}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+
+  {{else}}
+    <div class="data-view-container regular-class">
+      <div class="chart-container">
+        {{teacher/class/atc-chart classData=class isPremiumClass=isPremiumClass}}
+      </div>
+    </div>
+  {{/if}}
+{{else}}
+  <div class="data-not-available"> {{t 'teacher-landing.class.students-tab.data-not-available'}}</div>
+{{/if}}
+
+{{#if isShowCompetencyCompletionReport}}
+  {{reports/pull-up/competency-completion-report fwCompetencies=fwCompetencies showPullUp=isShowCompetencyCompletionReport
+  classId=classId activeMonth=activeMonth activeYear=activeYear domainData=selectedDomain competencyCompletionReport=competencyCompletionReport
+  userAgent=userAgent onSuggestAtCompetency="onSuggestAtCompetency" maxLimitToSuggestContent=maxLimitToSuggestContent tabindex='51'}}
+{{/if}}
+{{#if isShowGradeCompetency}}
+  {{reports/pull-up/struggling-competency-domain-level fwCompetencies=fwCompetencies selectCompetency="onSelectCompetency" gradeDomainIndex = gradeDomainIndex
+  gradeDomainsList=gradeCompetencyDomainList closePullUp="onCloseGradePullUp" tabindex='51' isDefaultShowFW=isDefaultShowFW}}
+{{/if}}
+
+{{#if isShowOtherGradeCompetency}}
+  {{reports/pull-up/struggling-competency-other-grade-level fwCompetencies=fwCompetencies selectCompetency="onSelectCompetency" gradeDomainIndex = gradeDomainIndex
+  otherGradeCompetency = otherGradeCompetency closePullUp="onCloseOtherGrade" tabindex='51'}}
+{{/if}}
+
+{{#if isShowStrugglingCompetencyReport}}
+  {{reports/pull-up/struggling-competency-report
+     class=class
+     fwCompetencies=fwCompetencies
+     onPreviewContent='onPreviewContent'
+     onAddContentToDCA ='onAddCollectionToDCA'
+     onScheduleContentToDCA = 'onScheduleContentToDCA'
+     selectedCompetency = selectedCompetency
+     closePullUp="onClosePullUp"
+     isShowCompetencyStudentList = isShowCompetencyStudentList
+     tabindex='51'
+     isDefaultShowFW=isDefaultShowFW
+     classFramework = classFramework
+   }}
+{{/if}}
+
+<!-- Preview -->
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    showAssessmentCode=true
+    previewContentId=previewContent.id
+    previewContentType=previewContentType
+    primaryClass=class
+    tabindex='51'}}
+{{/if}}
+
+{{#if isShowActivitySearchContentPullup}}
+  {{teacher/class/ca-search-content-pull-up
+    showPullUp=isShowActivitySearchContentPullup
+    addedContentToDCA="addedContentToDCA"
+    context=contextParams
+    selectedSearchContentType=selectedContentType
+    classPreference=classPreference
+    classId=classId
+    competencyData=selectedCompetencyData
+    defaultSearchPageSize=maxLimitToSuggestContent
+    isShowMoreEnabled=false
+    tabindex='51'
+  }}
+{{/if}}
+
+<div class="ca-datepicker-schedule-container ca-datepicker-popover-container">
+  {{ca-daterange-datepicker
+      closeDatePicker='onCloseDatePicker'
+      onScheduleForDate='onScheduleDate'
+      onScheduleForMonth='onScheduleForMonth'
+      endDate=endDate
+      allowTwoDateRangePicker=false
+      tabindex='51'}}
+</div>

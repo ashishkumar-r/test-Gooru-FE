@@ -1,0 +1,89 @@
+.content.assessments.edit {
+  .tags {
+    margin: 10px 0px;
+    .gru-taxonomy-tag-list {
+      .gru-taxonomy-tag {
+        max-width: fit-content;
+      }
+    }
+  }
+
+  .century-skills {
+    > label {
+      width: 100%;
+      .choose {
+        float: $tab-float-dir;
+        padding: 4px 16px;
+      }
+      .skills-buttons {
+        width: 75%;
+        float: $tab-float-dir;
+        margin: 0 0 0 5px;
+        @media (min-width: $screen-sm-min) {
+          width: 78%;
+        }
+        @media (min-width: $screen-lg-min) {
+          width: 85%;
+        }
+      }
+    }
+  }
+  .evidence-required {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+
+    .evidence-text {
+      margin-left: 10px;
+    }
+
+    .gru-switch {
+      padding: 0;
+
+      &.assigned {
+        pointer-events: none;
+      }
+
+      .toggle.btn {
+        width: 40px !important;
+        height: 20px !important;
+        border-radius: 20px;
+
+        .toggle-group {
+          .toggle-handle,
+          .toggle-off,
+          .toggle-on {
+            border-radius: 20px;
+          }
+
+          .toggle-on {
+            left: -13px;
+            font-style: italic;
+            font-size: $font-size-xxsmall;
+            line-height: 4px !important;
+          }
+
+          .toggle-off {
+            left: 33px;
+            font-style: italic;
+            line-height: 4px !important;
+            font-size: $font-size-xxsmall;
+          }
+
+          .toggle-handle {
+            top: -5px;
+            left: -2px;
+          }
+        }
+
+        &.off {
+          .toggle-group {
+            .toggle-handle {
+              left: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

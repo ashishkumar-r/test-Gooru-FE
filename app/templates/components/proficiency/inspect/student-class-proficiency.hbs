@@ -1,0 +1,84 @@
+<div class="class-proficiency-container">
+  <div class="class-container">
+    <div class="search-input-container">
+      {{
+      input type="text"
+      placeholder=(t "common.search-students-placeholder")
+      spellcheck="true"
+      id="studentWeeklyLocal"
+      key-up=(action "onSearchWeeklyLocal" searchWeekLocal)
+      value=searchWeekLocal
+      }}
+      <label for="studentWeeklyLocal" id="search-student" class="custom-search-icon">
+        {{gru-icon name="search"}}
+      </label>
+    </div>
+    <div class="student-class-proficiency-download-pdf">
+      <a class="print-preview" href="javascript:void(0)" tabindex="{{tabindex}}" title="{{t 'common.download'}}"
+        data-toggle="tooltip" {{action "onDownloadCSV" }}>
+        {{gru-icon name="download_for_offline"}}
+      </a>
+    </div>
+  </div>
+  <div class="body-container">
+    <div class="proficiency-cards-container">
+      {{#each studentsDomainPerformance as |studentDomainPerformance studentSeq|}}
+      {{#if studentDomainPerformance.isActive}}
+      <div class="proficiency-card-container" onclick={{action "onSelectStudentCard" studentDomainPerformance}}
+        onkeypress={{action "onSelectStudentCard" studentDomainPerformance}} tabindex={{tabindex}}>
+        <div class="card-header">
+          <span>
+            <img class="thumbnail-container" src="{{studentDomainPerformance.thumbnail}}" alt="profile-icon">
+          </span>
+          <div class="student-name">
+            <div class="last-name ellipsis">
+              {{studentDomainPerformance.lastName}},
+            </div>
+            <div class="first-name ellipsis">
+              {{studentDomainPerformance.firstName}} {{if (not studentDomainPerformance.isShowLearnerData) '*'}}
+
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          {{charts/proficiency-view
+          domainBoundariesContainer= domainBoundariesContainer
+          domainDataSet=studentDomainPerformance.domainCompetencies
+          studentSeq=studentSeq
+          maxNumberOfCompetencies=maxNumberOfCompetencies
+          subjectPreference=subjectPreference
+          studentId=studentDomainPerformance.id
+          tabindex=tabindex}}
+        </div>
+      </div>
+      {{/if}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{#if isShowProficiencyPullup}}
+{{#gru-pull-up pullUpType="proficiency-pullup" showPullUp=isShowProficiencyPullup onClosePullUp="onClosePullUp" as
+|pull-up|}}
+{{#if pull-up.isShowHeader}}
+{{proficiency/learner-proficiency-pull-up
+student=activeStudent
+subjectBucket=subjectBucket
+class=class
+course=course
+onSelectCompetency="onSelectCompetency"
+tabindex=tabindex
+}}
+{{/if}}
+{{/gru-pull-up}}
+{{/if}}
+
+{{#if isShowCompetencyContentReport}}
+{{#reports/pull-up/competency-report type=(if selectedCompetency.competencyStudentDesc
+selectedCompetency.competencyStudentDesc selectedCompetency.competencyCode)
+title=selectedCompetency.competencyStudentDesc showPullUp=isShowCompetencyContentReport
+onClosePullUp="onCloseCompetencyReportPullUp" competency=selectedCompetency}}
+{{reports/pull-up/competency-content-report competency=selectedCompetency userId=activeStudent.id
+learningMapData=learningMapData onToggleGlobalCompetencyView="onToggleGlobalCompetencyView"}}
+{{/reports/pull-up/competency-report}}
+{{/if}}

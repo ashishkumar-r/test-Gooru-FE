@@ -1,0 +1,715 @@
+.gru-activity-edit {
+  .offline-activity-icon {
+    background-image: url("../assets/gooru/images/offline.svg");
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+  }
+
+  .no-bgd {
+    background-color: $table-bg;
+    font-size: $font-size-h4;
+    line-height: 1;
+
+    i {
+      color: $gray;
+    }
+  }
+
+  #information {
+    .two-col-info {
+      display: flex;
+      width: 100%;
+      @media (max-width: $screen-sm) {
+        flex-direction: column;
+      }
+
+      .activity-type,
+      .duration-hours,
+      .learning-objectives,
+      .title {
+        flex: 1;
+
+        > label {
+          display: flex !important;
+          flex-direction: column;
+        }
+      }
+      .duration-hours {
+        > article {
+          .etl-seconds {
+            margin-top: 0px;
+            label {
+              margin: 0;
+              b {
+                font-size: 13px;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+      .activity-type,
+      .duration-hours {
+        padding-left: 20px;
+      }
+
+      .duration-hours-input {
+        text-align: center;
+        border: 1px solid $breadcrumb-color;
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .gru-references {
+    .detail {
+      float: right;
+    }
+
+    h3 {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    div.border-bottom {
+      padding-bottom: 0;
+      border-bottom: 1px solid $gray-lighter;
+      margin-bottom: 15px;
+      margin-top: 0;
+    }
+
+    .panel-default {
+      margin-top: 15px;
+    }
+
+    .panelBodyContainer {
+      margin-top: -10px;
+
+      .existing-upload-section {
+        .upload-list-container {
+          display: inline-flex;
+          justify-content: flex-start;
+          width: 100%;
+          flex-wrap: wrap;
+
+          .upload-item-container {
+            width: fit-content;
+            text-align: center;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            padding: 0 10px;
+          }
+
+          .uploaded-item {
+            position: relative;
+
+            .remove-uploaded {
+              padding: 0;
+              width: fit-content;
+              height: fit-content;
+              margin-left: 16px;
+              position: absolute;
+              top: 0;
+              font-size: 20px;
+              z-index: 8;
+            }
+          }
+
+          .text-capitalize {
+            display: flex;
+
+            .edit-uploaded {
+              padding: 0;
+            }
+
+            .edit {
+              height: 36px;
+              margin-left: 10px;
+            }
+          }
+
+          .validation {
+            &.reference {
+              text-align: left;
+            }
+          }
+
+          .image {
+            border: 2px dashed $gray-68;
+            display: block;
+            width: fit-content;
+            padding: 10px;
+            margin: 7px auto 0;
+          }
+        }
+      }
+
+      .upload-section {
+        .upload-list-container {
+          display: inline-flex;
+          justify-content: space-between;
+          width: 100%;
+
+          .uploaded-item {
+            border: 2px dotted $breadcrumb-color;
+            border-style: dashed;
+            padding: 0 10px;
+            margin: 0 7px;
+            position: relative;
+            border-radius: 5px;
+
+            .remove-uploaded {
+              position: absolute;
+              top: 45px;
+              left: 45px;
+              width: 25px;
+              height: 25px;
+              font-size: 20px;
+              z-index: 8;
+              padding: 0;
+            }
+
+            .add-item {
+              position: absolute;
+              top: -15px;
+              left: 45px;
+              width: 25px;
+              height: 25px;
+              font-size: 20px;
+              z-index: 8;
+              padding: 0;
+            }
+
+            .add-file {
+              padding: 8px;
+              font-size: 25px;
+            }
+
+            .countItem {
+              width: 100%;
+              text-align: center;
+              display: block;
+              font-weight: bolder;
+            }
+          }
+
+          .uploaded-item-big {
+            border: 2px blue;
+            border-style: solid;
+            padding: 35px;
+            margin: 0 7px;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 6px;
+
+            .remove-uploaded {
+              position: absolute;
+              top: -30px;
+              left: 32px;
+              width: 0;
+              height: 27px;
+              z-index: 8;
+            }
+          }
+        }
+
+        .add-new-item {
+          font-size: 31px;
+          padding: 0 20px;
+          color: $green-400;
+        }
+      }
+
+      .url-section {
+        .add-url-line {
+          display: flex;
+          font-size: 16px;
+          margin-left: 15px;
+          text-transform: capitalize;
+
+          a {
+            text-decoration: none;
+          }
+        }
+
+        .listItem {
+          width: 100%;
+          font-size: 14px;
+        }
+
+        .addName,
+        .addUrl {
+          display: inline-block;
+          width: 100%;
+        }
+
+        .add-item {
+          font-size: 22px;
+        }
+
+        .disable-event {
+          opacity: $opacity-full;
+        }
+
+        .gru-reference-line-item {
+          display: grid;
+          grid-template-columns: 1fr 93px;
+          align-items: center;
+        }
+
+        .remove-item {
+          font-size: 22px;
+          position: absolute;
+          right: 35px;
+        }
+      }
+
+      .textContainer {
+        display: flex;
+        flex-direction: column;
+        // width: 50vw;
+        .referenceText {
+          display: inline-block;
+        }
+
+        .referenceTextLabel {
+          display: inline-block;
+          border: 1px solid $gray-lighter;
+          height: 200px;
+          overflow: auto;
+        }
+      }
+
+      .referenceArtifacts {
+        display: inline-block;
+
+        .add-item {
+          margin: 5px 0;
+        }
+
+        .separator {
+          margin: 0 15px;
+        }
+
+        .listItem {
+          // max-width: 200px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .gru-edit-reference {
+      display: flex;
+      align-items: baseline;
+
+      .refInfo {
+        width: 40vw;
+        display: inline-block;
+      }
+
+      .gru-file-picker > div {
+        display: flex;
+      }
+    }
+  }
+
+  #rubrics {
+    .actions {
+      float: $menu-float-dir;
+    }
+
+    .rubrics-container {
+      padding-top: 44px;
+    }
+
+    div.border-bottom {
+      padding-bottom: 15px;
+      border-bottom: 1px solid $gray-lighter;
+      margin-bottom: 15px;
+      margin-top: 0;
+    }
+
+    .options-container {
+      .options-label {
+        margin-left: 25px;
+        font-size: 15px;
+      }
+    }
+
+    .head-label {
+      font-size: 15px;
+    }
+
+    .content {
+      .add-rubric-container {
+        border: 2px dashed $gray-light;
+        height: 80px;
+        margin: 0 0 10px;
+        padding: 10px 0 0 14px;
+      }
+
+      .student-section {
+        position: unset;
+      }
+
+      .scoring-option {
+        .maximum-points {
+          max-width: 500px;
+
+          .title {
+            margin-left: 35px;
+          }
+
+          .max-score-input {
+            width: 65px;
+            text-align: center;
+            border: 1px solid $breadcrumb-color;
+            border-bottom: 0;
+          }
+        }
+      }
+
+      .associated-rubric {
+        border: 1px solid $gray-lighter;
+        box-shadow: 0 1px 2px $gray;
+        padding: 12px 10px 8px;
+        margin: 0 0 30px;
+        display: grid;
+        grid-template-columns: 50px 1fr 70px;
+
+        .image {
+          display: inline-block;
+          padding: 5px 10px 0 0;
+
+          img {
+            border-radius: 4px;
+            height: 35px;
+            width: 35px;
+          }
+
+          .rubric-icon {
+            background: url("gooru/images/rubric-green.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            border-radius: 4px;
+            display: block;
+            height: 30px;
+            margin: 0 0 5px;
+            width: 31px;
+          }
+        }
+
+        .info {
+          display: inline-block;
+          vertical-align: top;
+          border-left: 1px solid $gray-light;
+          border-right: 1px solid $gray-light;
+          h3 {
+            margin: 13px 10px 14px;
+          }
+        }
+
+        .actions {
+          display: inline-block;
+          float: initial;
+          padding: 8px 0 0 8px;
+          vertical-align: top;
+
+          button {
+            background-color: $table-bg;
+            font-size: $font-size-h4;
+            line-height: 1;
+            margin: 0 2px 0 1px;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
+  #tasks {
+    .add-item {
+      font-size: 20px;
+      border: 0;
+
+      > i {
+        vertical-align: -3px;
+      }
+      // background-color: $table-bg;
+    }
+
+    .actions {
+      float: $menu-float-dir;
+
+      .add-item {
+        font-size: 16px;
+        padding: 0 9px;
+      }
+    }
+
+    .actions-top {
+      float: initial;
+      display: inline-block;
+      padding: 8px 0 0 8px;
+      vertical-align: top;
+
+      button {
+        background-color: $table-bg;
+        font-size: $font-size-h4;
+        line-height: 1;
+        margin: 0 2px 0 1px;
+        padding: 0;
+      }
+    }
+
+    .upload-section {
+      .upload-list-container {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .uploaded-item {
+          border: 2px dotted $breadcrumb-color;
+          border-style: dashed;
+          padding: 0 10px;
+          margin: 0 7px;
+          position: relative;
+
+          .remove-uploaded {
+            position: absolute;
+            top: 45px;
+            left: 45px;
+            width: 25px;
+            height: 25px;
+            font-size: 20px;
+            z-index: 8;
+            padding: 0;
+          }
+
+          .add-item {
+            position: absolute;
+            top: -15px;
+            left: 45px;
+            width: 15px;
+            height: 22px;
+            font-size: 20px;
+            z-index: 8;
+            padding: 0;
+          }
+
+          .countItem {
+            width: 100%;
+            text-align: center;
+            display: block;
+            font-weight: bolder;
+          }
+        }
+
+        .uploaded-item-big {
+          border: 2px blue;
+          border-style: solid;
+          padding: 35px;
+          margin: 0 7px;
+          position: relative;
+          width: 100px;
+          height: 100px;
+          border-radius: 6px;
+
+          .remove-uploaded {
+            position: absolute;
+            top: -30px;
+            left: 32px;
+            width: 0;
+            height: 27px;
+            z-index: 8;
+          }
+        }
+      }
+
+      .add-new-item {
+        font-size: 31px;
+        padding: 0 20px;
+        color: $green-400;
+      }
+    }
+
+    .url-section {
+      margin-top: 25px;
+    }
+
+    .add-rubric-container {
+      border: 2px dashed $gray-light;
+      height: 80px;
+      margin: 0 0 10px;
+      padding: 10px 0 0 14px;
+    }
+
+    .associated-rubric {
+      border: 1px solid $gray-lighter;
+      box-shadow: 0 1px 2px $gray;
+      padding: 12px 10px 8px;
+      margin: 0 0 30px;
+      display: grid;
+      grid-template-columns: 45px 1fr 60px;
+
+      .image {
+        display: inline-block;
+        padding: 5px 10px 0 0;
+
+        img {
+          border-radius: 4px;
+          height: 35px;
+          width: 35px;
+        }
+
+        .rubric-icon {
+          background: url("gooru/images/twotone-assignment-24px.svg");
+          -webkit-background-size: 31px 30px;
+          background-size: 31px 30px;
+          border-radius: 4px;
+          display: block;
+          height: 30px;
+          margin: 0 0 5px;
+          width: 31px;
+        }
+      }
+
+      .info {
+        display: inline-block;
+        vertical-align: top;
+        border-left: 1px solid $gray-light;
+        border-right: 1px solid $gray-light;
+
+        h3 {
+          margin: 13px 10px 14px;
+        }
+      }
+
+      .actions {
+        display: inline-block;
+        float: initial;
+        padding: 8px 0 0 8px;
+        vertical-align: top;
+
+        button {
+          background-color: $table-bg;
+          font-size: $font-size-h4;
+          line-height: 1;
+          margin: 0 2px 0 1px;
+          padding: 0;
+        }
+      }
+    }
+
+    .scoring-settings {
+      margin-top: 10px;
+
+      .setting {
+        @include flexbox;
+        float: $tab-float-dir;
+        width: 25%;
+
+        .title {
+          margin: 0 15px 0 0;
+          width: auto;
+        }
+
+        .gru-select {
+          padding: 8px 0 0;
+
+          .bootstrap-select {
+            border-bottom: 1px solid $gray;
+            width: 50px;
+
+            span {
+              right: 0;
+              text-align: center;
+            }
+
+            .dropdown-toggle {
+              font-size: $font-size-h6;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .submissionCount {
+    margin: 0 11px;
+  }
+
+  .pdf-icon {
+    background: url("gooru/images/baseline-picture_as_pdf-24px.svg");
+    -webkit-background-size: 31px 30px;
+    background-size: 31px 30px;
+    height: 30px;
+    width: 31px;
+    background-size: 31px 30px;
+    border-radius: 4px;
+    display: block;
+    height: 30px;
+    margin: 0 0 5px;
+    width: 31px;
+  }
+
+  .image-icon {
+    background: url("gooru/images/baseline-add_photo_alternate-24px.svg");
+    -webkit-background-size: 31px 30px;
+    background-size: 31px 30px;
+    height: 30px;
+    width: 31px;
+    background-size: 31px 30px;
+    border-radius: 4px;
+    display: block;
+    height: 30px;
+    margin: 0 0 5px;
+    width: 31px;
+  }
+
+  .presentation-icon {
+    background: url("gooru/images/Microsoft_PowerPoint_2013_logo.svg");
+    -webkit-background-size: 31px 30px;
+    background-size: 31px 30px;
+    height: 30px;
+    width: 31px;
+    background-size: 31px 30px;
+    border-radius: 4px;
+    display: block;
+    height: 30px;
+    margin: 0 0 5px;
+    width: 31px;
+  }
+
+  .document-icon {
+    background: url("gooru/images/Circle-icons-document.svg.png");
+    -webkit-background-size: 31px 30px;
+    background-size: 31px 30px;
+    height: 30px;
+    width: 31px;
+    background-size: 31px 30px;
+    border-radius: 4px;
+    display: block;
+    height: 30px;
+    margin: 0 0 5px;
+    width: 31px;
+  }
+
+  .others-icon {
+    background: url("gooru/images/7-other-svgrepo-com.svg");
+    -webkit-background-size: 31px 30px;
+    background-size: 31px 30px;
+    height: 30px;
+    width: 31px;
+    background-size: 31px 30px;
+    border-radius: 4px;
+    display: block;
+    height: 30px;
+    margin: 0 0 5px;
+    width: 31px;
+  }
+}

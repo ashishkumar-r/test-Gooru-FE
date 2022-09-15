@@ -1,0 +1,38 @@
+<div class="jump-start-container">
+    <div class="jump-start-header-panel">
+        <div class="jump-start-head">
+            <div class="back-button" {{action 'goBack'}}>
+                {{gru-icon name="arrow_back"}}
+            </div>
+            <div class="header-title">
+                <span>{{program.title}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="jump-start-panel-body" style="background-image: url({{program.images.cover_image}});">
+        <div class="jump-start-panel-section">
+        <div class="jump-start-panel-head-message">
+            <div class="jump-start-panel-card">
+                <div class="jump-start-message">
+                    <span>{{t 'common-jump-start-first-message'}}</span> 
+                    <span class="jump-start-title">{{program.title}}</span>
+                    <span>{{t 'common-jump-start-final-message'}}</span>
+                </div>
+                <div class="jump-start-panel-message">
+                    <span>{{t 'jump-start-description'}}</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="jump-start-panel-cards">
+        <div class="jump-start-course-container-panel">
+            <div class="program-course-list-panel">
+                {{#each courses as |course|}}
+                    {{cards/gru-navigator-card course=course}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="divider-line"></div>
+    </div>
+</div>

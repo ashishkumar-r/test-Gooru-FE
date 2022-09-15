@@ -1,0 +1,35 @@
+.signature-content-container {
+  .disable-student-performance {
+    padding: 10px;
+    line-height: 1.5;
+    font-size: 15px;
+  }
+  .signature-content {
+    .competency-content {
+      font-size: 15px;
+      color: $dark-500;
+      padding: 0 5px;
+      margin: auto;
+      border-bottom: dashed 1px $nobel-gray;
+      border-bottom-width: thin;
+      display: grid;
+      grid-template-columns: 70px auto;
+
+      .competency-img {
+        width: 100%;
+        background-image: url("/assets/gooru/gooru-edu-rights-badge.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 54%;
+        opacity: 0.8;
+        height: 100px;
+      }
+
+      .competency-note {
+        font-size: 15px;
+        color: $dark-500;
+        margin: auto;
+      }
+    }
+  }
+}

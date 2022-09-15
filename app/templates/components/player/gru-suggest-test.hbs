@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <span class="lead"><b>{{t  (concat 'gru-suggest-test.' type '-header')}}</b></span>
+        <span class="description">{{t  (concat 'gru-suggest-test.' type '-lead')}}</span>
+        <div class="bottom-info">
+            
+            {{#if (or (or isBackFill isSignatureCollection ) isSignatureAssessment) }}
+                <div class="assessment-info">
+                    <div class="image">
+                        <img class="img-responsive" src="{{suggestion.thumbnail}}" alt="suggestion thumbnail"/>
+                    </div>
+                    <div class="descriptions">
+                        <span class="title">{{suggestion.title}}</span>
+                        <div class="collection-resources">
+                            {{#if suggestion.resourceCount}}
+                                <span class="bars"></span><span class="resource"><b>{{suggestion.resourceCount}}</b> {{t "common.resource-pl" count=resourceCount}}</span>
+                            {{/if}}
+                            {{#if suggestion.questionCount}}
+                                <span class="bars"></span><span class="resource question"><b>{{suggestion.questionCount}}</b> {{t "common.question-pl" count=questionCount}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if isResource}}
+              <div class="resource-info">
+                  <div class="image">
+                    <i class="{{concat suggestion.resourceFormat '-icon'}}"></i>
+                  </div>
+                  <div class="info">
+                    <span class="title">{{{suggestion.title}}}</span>
+                    <div class="format">
+                      <span>{{t (concat "common.resource-format." suggestion.resourceFormat)}}</span>
+                    </div>
+                  </div>
+              </div>
+            {{/if}}
+            <div class="actions">
+                <button class="btn btn-default btn-no" disabled={{disabledButtons}} {{action 'playCollection'}}>{{t 'gru-suggest-test.no'}}</button>
+               {{#if isSignatureAssessment }}
+                <button class="btn btn-primary btn-backfill" disabled={{disabledButtons}} {{action 'playSuggestion'}}>{{t 'gru-suggest-test.take-signature-assessment'}}</button>
+             {{else if isSignatureCollection }}
+                <button class="btn btn-primary btn-backfill" disabled={{disabledButtons}} {{action 'playSuggestion'}}>{{t 'gru-suggest-test.take-signature-collection'}}</button>
+              {{else}}
+                  <button class="btn btn-primary btn-suggestion" disabled={{disabledButtons}} {{action 'playSuggestion'}}>{{t 'gru-suggest-test.take' type=type}}</button>
+              {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

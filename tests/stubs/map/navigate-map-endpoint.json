@@ -1,0 +1,35 @@
+[
+  {
+    "description": "Navigate next, any context",
+    "request": {
+      "url": "^/api/navigate-map/v1/next$",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "navigate-map-next-any-context-200-response.json"
+    }
+  },
+  {
+    "description": "Get Current Map Context",
+    "request": {
+      "url": "^/api/navigate-map/v1/context$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "current-context-200-response.json"
+    }
+  }
+]

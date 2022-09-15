@@ -1,0 +1,33 @@
+.gru-vowel-teams {
+  .vowel-team-item {
+    font-size: 20px;
+    padding: 10px 0;
+    .serp-hl-text-span {
+      border-bottom: 2px solid $blue-400;
+      padding: 3px;
+      position: relative;
+      user-select: none;
+      b {
+        font-weight: normal;
+        position: relative;
+        color: $blue-400;
+
+        &.macron {
+          border-top: 2px solid $blue-400;
+          font-weight: bold;
+        }
+
+        &.cross::before {
+          content: "";
+          position: absolute;
+          right: -3px;
+          width: 15px;
+          height: 2px;
+          transform: rotate(-45deg);
+          background-color: $blue-200;
+          bottom: 9px;
+        }
+      }
+    }
+  }
+}

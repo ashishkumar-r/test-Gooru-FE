@@ -1,0 +1,136 @@
+  <div class="student-proficiency-container">
+    <div class="panel-container">
+      {{proficiency/student-proficiency-panel
+       studentProfile=studentProfile
+       course=course
+       activeSubject=activeSubject
+       timeLine=timeLine
+       class=class
+       isStudent=isStudent
+       competencyMatrixDomains=competencyMatrixDomains
+       userProficiencyBaseLine=userProficiencyBaseLine
+       competencyMatrixCoordinates=competencyMatrixCoordinates
+       subjectBucket=subjectBucket
+       taxonomyCategories=taxonomyCategories
+       taxonomySubjects=taxonomySubjects
+       isShowMatrixChart=isShowMatrixChart
+       isSelectBaseLine=isSelectBaseLine
+       selectedCategory=selectedCategory
+       onSelectMonth="onSelectMonth"
+       onSelectCompetency="onSelectCompetency"
+       onDomainSelect="onDomainSelect"
+       showGutCompetency=showGutCompetency
+       hideGutCompetencyButton=hideGutCompetencyButton
+       onSubjectChange="onSubjectChange"
+       taxonomyGrades=taxonomyGrades
+       classGrade=classGrade
+       subjectCode=subjectCode
+       framework=(if tenantFW tenantFW framework)
+       fwCompetencies=fwCompetencies
+       onSelectCategory="onSelectCategory"
+
+       proficiencyChartData=proficiencyChartData
+       skylinePoints=skylinePoints
+       onSelectTopic="onSelectTopic"
+       selectedCompetency=selectedCompetency
+       selectedDomain=selectedDomain
+       selectedTopic=selectedTopic
+       totalTopics=totalTopics
+       tabIndex="9"
+       isDashboard=isDashboard
+       isEnableNavigatorPrograms=isEnableNavigatorPrograms
+       tenantSettingsObj=tenantSettingsObj
+       isPublic=isPublicClass
+     }}
+      {{#if isMobile}}
+        <div class="inspect-competency">
+          {{proficiency/competency-info-pull-up
+            fwDomains=fwDomains
+            fwCompetencies=fwCompetencies
+            isInspectCompetency=showCompetencyInfo
+            showGutCompetency=showGutCompetency
+            framework=(if tenantFW tenantFW framework)
+            onClosePullUp="onClosePullUp"
+            isStudent=isStudent
+            competency=selectedCompetency
+            studentProfile=studentProfile
+            domainCompetencyList=domainCompetencyList
+            tabindex="10"
+          }}
+        </div>
+      {{/if}}
+    </div>
+    <div class="pull-up-container">
+      {{#if isShowMatrixChart}}
+        {{#proficiency/proficiency-subject-panel
+           fwDomains=fwDomains
+           domains=proficiencyChartData
+           showGutCompetency=showGutCompetency
+           onDomainSelect="onDomainSelect"
+           framework=(if tenantFW tenantFW framework)
+           subject=activeSubject
+           onSelectTopic="onSelectTopic"
+           competencyMatrixCoordinates=competencyMatrixCoordinates
+         }}
+          <!-- {{#if showDomainInfo}}
+            {{proficiency/domain-info-pull-up
+             fwDomains=fwDomains
+             fwCompetencies=fwCompetencies
+             onSelectCompetency="onSelectCompetency"
+             showGutCompetency=showGutCompetency
+             showPullUp=showDomainInfo
+             competencies=selectedDomainCompetencies
+             domain=selectedDomain
+             subject=activeSubject
+             onSelectTopic="onSelectTopic"
+             onClosePullup="onCloseDomainInfoPullup"
+            }}
+          {{/if}} -->
+
+          {{#if isShowTopicInfo}}
+            {{proficiency/topic-info-pull-up
+             showPullUp=isShowTopicInfo
+             topic=selectedTopic
+             subject=activeSubject
+             onSelectCompetency="onSelectCompetency"
+             onCloseTopicInfoPullup="onCloseTopicInfoPullup"
+             fwCompetencies=fwCompetencies
+            }}
+          {{/if}}
+
+          {{proficiency/competency-info-pull-up
+            fwDomains=fwDomains
+            fwCompetencies=fwCompetencies
+            isInspectCompetency=showCompetencyInfo
+            showGutCompetency=showGutCompetency
+            framework=(if tenantFW tenantFW framework)
+            onClosePullUp="onClosePullUp"
+            isStudent=isStudent
+            competency=selectedCompetency
+            studentProfile=studentProfile
+            domainCompetencyList=domainCompetencyList
+            proficiencyChartData=proficiencyChartData
+            playContent="playContent"
+            class=class
+            tabindex="10"
+            classFrameworkCode = classFramework
+            isDefaultShowFW = isDefaultShowFW
+          }}
+        {{/proficiency/proficiency-subject-panel}}
+      {{/if}}
+    </div>
+  </div>
+  {{#if isOpenPlayer}}
+    {{reports/pull-up/player-pull-up
+      showPullUp=isOpenPlayer
+      playerUrl=playerUrl
+      playerContent=playerContent
+      onclosePullUp="closePullUp"
+      tenantSettingBg = tenantSettingBg
+    }}
+  {{/if}}
+{{#if (and isStudent (not isPublicClass) isShowStudyTimerWidget)}}
+  {{gru-study-timer
+      studentTimespentData = studentTimespentData
+  }}
+{{/if}}

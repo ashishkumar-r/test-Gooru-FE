@@ -1,0 +1,65 @@
+<div class="header-action">
+  {{#if isStudent}}
+    <button class="btn bookmark-btn no-bgd" title="{{t 'common.bookmark'}}" data-toggle="tooltip" data-placement="auto" data-trigger="hover" {{action 'bookmarkCourse' content}} disabled={{model.disabledBookmark}}>
+      {{gru-icon name="turned_in_not"}}
+    </button>
+  {{/if}}
+</div>
+<div class="course-information">
+  <div class="image">
+    <img class="img-responsive" src="{{course.thumbnailUrl}}" alt="course thumbnail">
+  </div>
+  <div class="course-info">
+    <div class="title-section">
+      <h3 class="title">{{course.title}}</h3>
+    </div>
+    <div class="standards">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=2 isInCard=true showDescription=true}}
+      {{/if}}
+    </div>
+    <div class="remixed-by">
+      {{#if course.owner}}
+        {{#link-to 'library-search' (query-params type="my-content" profileId=course.owner.id) class="pointer" tagName="div"}}
+          <span class="title">
+            {{t (if course.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}
+          </span>
+          <img class="img-responsive" src="{{course.owner.avatarUrl}}" alt="owner avatar">
+          <span class="owner">{{course.owner.displayName}}</span> {{#if course.remixCount}}+{{course.remixCount}}{{/if}}
+        {{/link-to}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+<div class="description">
+  <p class="content-description">{{truncate text=course.description maxLength=500}}</p>
+</div>
+<div class="units">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each course.children as |unit index|}}
+        <div class="unit">
+          <span class="prefix">
+            <b>{{course-sections-prefix index=(unless isHideLessonNumber index) type='unit' longName=true}}</b>
+          </span>
+          <div class="unit-title ellipsis">
+            {{unit.title}}
+          </div>
+          <div class="detail">
+            <span><b>{{unit.lessonCount}}</b> {{t 'common.lessonObj' count=unit.lessonCount}}</span>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+<div class="actions">
+  <button type="button" class="btn btn-default btn-sm cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+    <span aria-hidden="true">{{t 'common.cancel'}}</span>
+  </button>
+  {{#if (or isTeacher session.isAnonymous)}}
+    <button class="remix-btn btn btn-success btn-sm" {{action 'remixCourse' course}}>{{t 'common.remix'}}</button>
+  {{else}}
+    <button class="study-btn btn btn-success btn-sm" {{action 'playCourse' course}}>{{t 'common.study'}}</button>
+  {{/if}}
+</div>

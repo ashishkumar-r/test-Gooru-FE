@@ -1,0 +1,51 @@
+.student-destination-course-map-container {
+  @media screen and (max-width: $screen-sm - 1) {
+    .units-container {
+      .u-container {
+        .unit-header {
+          grid-template-columns: none;
+        }
+
+        .header .title {
+          padding: 0;
+        }
+
+        .unit-body {
+          .lessons-container {
+            margin: 0;
+            padding: 4px;
+            background-color: $light-300;
+
+            & > div {
+              background-color: $white;
+              border-radius: 4px;
+            }
+
+            .l-container {
+              .lesson-header {
+                padding: 4px;
+                grid-template-columns: none;
+
+                .sequence {
+                  border: none;
+                }
+              }
+
+              .lesson-body {
+                .collections-container {
+                  padding: 4px;
+                  background-color: #cdd2d6;
+
+                  .c-container {
+                    background-color: $white;
+                    border-radius: 4px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

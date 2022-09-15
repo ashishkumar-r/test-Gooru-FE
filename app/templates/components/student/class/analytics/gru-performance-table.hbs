@@ -1,0 +1,108 @@
+<div class="performance-table-wrapper">
+  {{#if performanceData.length}}
+      <table class="table table-striped">
+          <thead>
+          <tr>
+            {{#each metrics as |metric|}}
+            {{#if (and (not (eq metric.value 'score')) (not (eq metric.value 'report')))}}
+                <th class="{{metric.value}}">
+                    <div>
+                        {{#if metric.hasSorting}}
+                            <a {{action 'sort' metric}}>
+                              {{t (concat 'gru-performance-metrics.' metric.value) }}
+                              {{#if metric.sorted}}
+                                {{#if metric.isAsc}}
+                                    <span>{{gru-icon name='arrow_upward'}}</span>
+                                {{else}}
+                                    <span>{{gru-icon name='arrow_downward'}}</span>
+                                {{/if}}
+                              {{else}}
+                                  <span>{{gru-icon name='swap_vert'}}</span>
+                              {{/if}}
+                            </a>
+                          {{else}}
+                          <a>{{t (concat 'gru-performance-metrics.' metric.value) }}</a>
+                        {{/if}}
+                    </div>
+                </th>
+            {{/if}}
+            {{/each}}
+            {{#each metrics as |metric|}}
+            {{#if (eq metric.value 'score')}}
+                <th class="{{metric.value}}">
+                    <div>
+                        {{#if metric.hasSorting}}
+                            <a {{action 'sort' metric}}>
+                              {{t (concat 'gru-performance-metrics.' metric.value) }}
+                              {{#if metric.sorted}}
+                                {{#if metric.isAsc}}
+                                    <span>{{gru-icon name='arrow_upward'}}</span>
+                                {{else}}
+                                    <span>{{gru-icon name='arrow_downward'}}</span>
+                                {{/if}}
+                              {{else}}
+                                  <span>{{gru-icon name='swap_vert'}}</span>
+                              {{/if}}
+                            </a>
+                          {{else}}
+                          <a>{{t (concat 'gru-performance-metrics.' metric.value) }}</a>
+                        {{/if}}
+                    </div>
+                </th>
+            {{/if}}
+            {{/each}}
+          </tr>
+          </thead>
+          <tbody>
+        <tr class="summary out-of-scope">
+              <th class="header assessment-title" scope="row">
+                  <span>{{contentTitle}}</span>
+              </th>
+            <td class="performance-info performance-time">
+                {{format-time aggregatedPerformanceSummary.timeSpent}}
+              </td>
+              <td class="performance-info performance-score" style={{safe-html (concat "background-color:" (grade-color aggregatedPerformanceSummary.score))}}>
+                  <div class="score pull-left">
+                      <span>{{aggregatedPerformanceSummary.score}}%</span>
+                  </div>
+                  <div class="reportIcon">
+                  </div>
+              </td>
+              <td class="performance-info performance-completion out-of-scope">
+                {{charts/gru-radial-chart
+                value=assessmentsCompleted
+                minValue=0
+                maxValue=assessments.length }}
+              </td>
+          </tr>
+          {{#each performanceData as |studentPerformance index|}}
+              <tr class="{{if (eq index 0) 'firstrow' ''}}">
+                  <th class="header assessment-title" scope="row">
+                      <span>{{{studentPerformance.assessment.title}}}</span>
+                  </th>
+                <td class="performance-info performance-time">
+                    {{format-time studentPerformance.performanceData.timeSpent}}
+                  </td>
+                  <td class="performance-info performance-score" style={{safe-html (concat "background-color:" (grade-color studentPerformance.performanceData.score)) }}>
+                      <div class="score pull-left">
+                          <span>{{{studentPerformance.performanceData.score}}}%</span>
+                      </div>
+                        {{#if studentPerformance.performanceData.timeSpent}}
+                          <a class="reportIcon" {{action 'viewReport' studentPerformance.assessment.id}}>
+                              <span class="report-icon"><img src="{{reportIcon}}" alt="reportIcon thumbnail"/></span>
+                          </a>
+                        {{/if}}
+                  </td>
+                  <td class="performance-info performance-completion out-of-scope">
+                    <span class="completion {{if (eq studentPerformance.performanceData.status 'complete') 'visible' 'hidden'}}">
+                      {{gru-icon name='done'}}
+                    </span>
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+  {{else}}
+  <div class="no-contentcss">{{t 'common.no-content-my-report'}}</div>
+  {{/if}}
+</div>

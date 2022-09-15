@@ -1,0 +1,25 @@
+<div class="tenant-login-container">
+  <div class="back">
+    <span class="icon" {{action 'goBack'}}>{{gru-icon name='arrow_back'}}</span>
+    <div class="title">{{t 'login.sign-in-tenant-url'}}</div>
+  </div>
+  <div class="form-container">
+    <div class="img-container">
+      <div class="gooru-logo"></div>
+      <div class="tenant-logo"></div>
+    </div>
+    <form>
+      <div class="form-group emial">
+        <label for="userEmail">
+          <span>{{t "login.enter-tenant-url"}}</span>
+          <div class="tenant-domain">
+            <div class="domain">{{domainName}}/</div>{{validation/gru-input model=tenantUrl valuePath='url' didValidate=didValidate inputId='userEmail'}}
+          </div>
+        </label>
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-success submit-btn" {{action "tenantLogin"}}>{{t "common.submit"}}</button>
+      </div>
+    </form>
+  </div>
+</div>

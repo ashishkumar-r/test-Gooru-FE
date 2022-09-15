@@ -1,0 +1,64 @@
+<div class="card-panel-container">
+  <div class="card-panel-header" style="background-image: url({{course.thumbnailUrl}})">
+    <div class="info">
+      <div class="title">{{course.title}}</div>
+    </div>
+  </div>
+  <div class="unit-count-container">
+    <i class="icon"></i>
+    <span>{{course.unitCount}}</span>
+  </div>
+  <div class="course-info-container">
+    <div class="course-user-info">
+      <div class="created-by">{{t (if course.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}</div>
+      <div class="img-container pull-left">
+        <img class="img-responsive" src="{{course.owner.avatarUrl}}" alt="{{course.title}} owner avatar">
+      </div>
+      <div class="username">{{course.owner.displayName}}</div>
+    </div>
+    <div class="course-description">
+      {{safe-html course.description}}
+    </div>
+    <div class="course-standards ">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1 isInCard=true showDescription=true}}
+      {{/if}}
+    </div>
+
+  </div>
+  {{#if isHideCoursePerf}}
+    <div class="panel-footer-container">
+      <div class="actions-container">
+        <div class="left-aligned">
+          <div class="play-btn action-btn" title="Play" data-toggle="tooltip" data-placement="right" onclick={{action "onPlayCourse" course.id}} onkeypress={{action "onPlayCourse" course.id}} tabindex={{tabindex}}>{{gru-icon name="play_arrow"}}</div>
+        </div>
+        <div class="right-aligned">
+          <div class="edit-btn action-btn" title="Remix" data-toggle="tooltip" data-placement="right" onclick={{action "onRemixCourse" course.id}} onkeypress={{action "onRemixCourse" course.id}} tabindex={{tabindex}}>{{gru-icon name="create"}}</div>
+          <div class="edit-btn action-btn" title="Add" data-toggle="tooltip" data-placement="right" onclick={{action "onAddCourse" course.id}} onkeypress={{action "onAddCourse" course.id}} tabindex={{tabindex}}>{{gru-icon name="add"}}</div>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class="card-panel-footer {{if class.isArchived 'disable-footer'}}">
+      <div class="buttons-container">
+        <div class="play-btn" title="Play" data-toggle="tooltip" data-placement="right" onclick={{action "onPlayCourse" course.id}} onkeypress={{action "onPlayCourse" course.id}} tabindex={{tabindex}}>{{gru-icon name="ic_play_arrow"}}</div>
+      </div>
+      <div class="course-prefs-container">
+        <span class="left-arc"></span>
+        <span class="right-arc"></span>
+        <div class="course-prefs relevance pull-left" style="background-color:rgba(0, 114, 188, {{course.relevance}})">
+          <div class="count">{{course.relevance}}</div>
+          <div class="title">{{t 'common.relevance'}}</div>
+        </div>
+        <div class="course-prefs engagement pull-left" style="background-color:rgba(0, 114, 188, {{course.engagement}})">
+          <div class="count">{{course.engagement}}</div>
+          <div class="title">{{t 'common.engagement'}}</div>
+        </div>
+        <div class="course-prefs efficacy pull-left" style="background-color:rgba(0, 114, 188, {{course.efficacy}})">
+          <div class="count">{{course.efficacy}}</div>
+          <div class="title">{{t 'common.efficacy'}}</div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</div>

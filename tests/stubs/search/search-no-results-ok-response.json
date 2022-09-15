@@ -1,0 +1,15 @@
+{
+  "executionTime":1465,
+  "query":{
+    "rewrittenQueryString":"noResultFound",
+    "userQueryString":"noResultFound"
+  },
+  "resultCount":0,
+  "searchCount":0,
+  "searchResults":[],
+  "stats":{
+    "totalHitCount":0,
+    "pageSize":20
+  },
+  "totalHitCount":0
+}

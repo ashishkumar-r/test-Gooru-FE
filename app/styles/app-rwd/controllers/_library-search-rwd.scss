@@ -1,0 +1,167 @@
+.library-search {
+  .library-search-header {
+    @media screen and (max-width: $screen-sm - 1) {
+      .header-container {
+        .info-section {
+          .search-input-section {
+            width: auto;
+            padding-left: 10px;
+          }
+
+          .profile {
+            display: flex;
+            line-height: 20px;
+            width: auto;
+
+            .my-content-title {
+              text-align: center;
+            }
+
+            .image {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .sub-filters-container {
+        grid-template-columns: none;
+
+        .title {
+          display: none;
+        }
+
+        .filters {
+          width: 100vw;
+
+          .gru-question-options {
+            .options {
+              ul {
+                padding-left: 0;
+
+                li {
+                  .btn-option {
+                    span.text {
+                      text-align: center;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .filters-container,
+      .sub-filters-container {
+        grid-template-columns: none;
+
+        .actions,
+        .title {
+          display: none;
+        }
+
+        .filters {
+          .gru-resource-options {
+            .options {
+              ul {
+                li {
+                  .btn-option {
+                    span.text {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .filters {
+          .list {
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .filters {
+        .search-by-filter {
+          .search-panel {
+            .search-content {
+              .top-panel-container {
+                .standard-container {
+                  .category-standards {
+                    .gru-taxonomy-picker {
+                      .browse-selector {
+                        .gru-browse-selector {
+                          .gru-browser-selector-container {
+                            grid-template-columns: none;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              .bottom-panel-container {
+                flex-direction: column;
+
+                .filter-container {
+                  width: 100%;
+                  padding-right: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .library-content-result-grid {
+    .contents {
+      grid-template-columns: repeat(3, 1fr);
+
+      &.course {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media screen and (max-width: $screen-814) and (min-width: $screen-sm - 1) {
+      .contents {
+        grid-template-columns: repeat(2, 1fr);
+
+        &.course {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        &.question,
+        &.resource,
+        &.rubric {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    }
+    @media screen and (max-width: $screen-sm - 1) {
+      .contents {
+        grid-template-columns: repeat(1, 1fr);
+
+        &.no-content {
+          .panel.add-content.search {
+            width: 100%;
+          }
+        }
+
+        &.course {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    }
+
+    .three-bounce-spinner {
+      grid-column-start: 2;
+    }
+  }
+}

@@ -1,0 +1,228 @@
+<div class="portfolio-contents-container competency-portfolio">
+
+  {{#if masterySourceLabel}}
+    <div class="mastery-source-container">
+      {{t (concat 'competency.mastery.source.' (if isStudent 'student' 'teacher') '-label')}}
+      {{t 'competency.mastery.source-message' source=masterySourceLabel}}
+    </div>
+  {{/if}}
+
+  <div class="competency-status-msg">
+    {{#unless competency.source}}
+      {{#if isInferredCompetency}}
+        {{t (concat 'competency.portfolio.status.inferred-' (if isStudent 'student' 'teacher'))}}
+      {{else if isNotStartedCompetency}}
+        {{t (concat 'competency.portfolio.status.notstarted-' (if isStudent 'student' 'teacher'))}}
+      {{/if}}
+    {{/unless}}
+  </div>
+  {{#if (not-eq competency.status 1)}}
+    {{#if isShowCompetencySourceMsg}}
+
+      <div class="competency-source-msg">{{if (eq isShowCompetencySourceMsg 'datalake-tool-diagnostic') (t isShowCompetencySourceMsg date=(format-date competency.activityTimestamp 'DD MMM YYYY' 'UTC')) (if isDataLake (t isShowCompetencySourceMsg message=sourseMsg)  (t isShowCompetencySourceMsg))}}
+        {{#if (and diagnosticContent (not isDataLake))}}
+          <span>for {{competency.domainName}} on {{format-date diagnosticContent.updatedAt 'DD MMM YYYY' 'UTC'}}</span>
+        {{/if}}
+      </div>
+    {{else if portfolioContentsList}}
+
+      {{#each portfolioContentsList as | portfCont|}}
+
+      {{#if portfCont.diagnostic}}
+      <div class="competency-source-msg">{{t 'proficiency-default-diagnostic'}} <span>{{format-date portfCont.activityTimestamp 'DD MMM YYYY' 'UTC'}}</span></div>
+      {{/if}}
+
+      {{#if portfCont.masteryTools}}
+      <div class="competency-source-msg">{{t 'proficiency-default-mastery' value=portfCont.masteryValue}} </div>
+      {{/if}}
+
+      {{#if portfCont.mastery}}
+      <div class="competency-source-msg">{{t 'proficiency-default-mastery' value='external system'}}</div>
+      {{/if}}
+
+      {{#if (and (not portfCont.diagnostic) (not portfCont.masteryTools) (not portfCont.mastery))}}
+      <div class="competency-source-msg">{{t 'proficiency-default' values=portfCont.contentSource}}</div>
+      {{/if}}
+      {{/each}}
+    {{/if}}
+  {{/if}}
+  {{#each userProfiles as | userProfile index |}}
+    <div class="profile-header {{if (not (eq index 0)) 'collapsed'}} {{if (eq userProfiles.length 1) 'hide'}}" id="profile-header-{{index}}" data-toggle="collapse" data-target="#profile-{{index}}" data-parent="#profile-header"
+      onkeypress={{action 'openPortfolioContainer' index}} tabindex={{tabindex}}>
+      <img class="img-responsive" src="{{userProfile.thumbnail}}" alt="thumbnailImg-{{index}}">
+      <div class="name">{{userProfile.firstName}} {{userProfile.lastName}}</div>
+      <div class="toggle-panel">
+        {{gru-icon name='keyboard_arrow_down'}}
+        {{gru-icon name='keyboard_arrow_up'}}
+      </div>
+    </div>
+    <div id="profile-{{index}}" class="body-container collapse {{if (eq index 0) 'in'}}">
+      {{portfolio/gru-contents-panel
+        contentType = 'offline-activity'
+        userId = userProfile.id
+        competency = competency
+        isDisableFilter = true
+        isExpanded = true
+        isLazyLoadEnabled = true
+        isAllowAutoPagination = false
+        tabindex=tabindex
+        userProfiles=userProfile
+        isStudent=isStudent
+        onPortfolioContents="onPortfolioContents"
+        classFrameworkCode = classFrameworkCode
+        isDefaultShowFW = isDefaultShowFW
+      }}
+
+      {{portfolio/gru-contents-panel
+        contentType = 'collection'
+        userId = userProfile.id
+        competency = competency
+        isDisableFilter = true
+        isExpanded = true
+        isLazyLoadEnabled = true
+        isAllowAutoPagination = false
+        class = class
+        tabindex=tabindex
+        userProfiles=userProfile
+        isStudent=isStudent
+        onPortfolioContents="onPortfolioContents"
+        classFrameworkCode = classFrameworkCode
+        isDefaultShowFW = isDefaultShowFW
+      }}
+
+      {{portfolio/gru-contents-panel
+        contentType = 'assessment'
+        userId = userProfile.id
+        competency = competency
+        isDisableFilter = true
+        isExpanded = true
+        isLazyLoadEnabled = true
+        isAllowAutoPagination = false
+        class = class
+        onDomainDiagnostic="onDomainDiagnostic"
+        onPortfolioContents="onPortfolioContents"
+        tabindex=tabindex
+        userProfiles=userProfile
+        onDiagnosticList="onDiagnosticList"
+        onDomainDiagnosticList="onDomainDiagnosticList"
+        isStudent=isStudent
+        classFrameworkCode = classFrameworkCode
+        isDefaultShowFW = isDefaultShowFW
+      }}
+      {{#if diagnosticList}}
+        {{portfolio/gru-contents-panel
+        contentType = 'diagnostic'
+        userId = userProfile.id
+        competency = competency
+        isDisableFilter = true
+        isExpanded = true
+        isLazyLoadEnabled = true
+        isAllowAutoPagination = false
+        class = class
+        tabindex=tabindex
+        userProfiles=userProfile
+        isDiagnostic=true
+        diagnosticList=diagnosticList
+        isStudent=isStudent
+        classFrameworkCode = classFrameworkCode
+        isDefaultShowFW = isDefaultShowFW
+      }}
+      {{/if}}
+
+      {{#if domainDiagnosticList}}
+        {{portfolio/gru-contents-panel
+        contentType = 'domain-diagnostic'
+        userId = userProfile.id
+        competency = competency
+        isDisableFilter = true
+        isExpanded = true
+        isLazyLoadEnabled = true
+        isAllowAutoPagination = false
+        class = class
+        tabindex=tabindex
+        userProfiles=userProfile
+        isDomainDiagnostic=true
+        domainDiagnosticList=domainDiagnosticList
+        isStudent=isStudent
+        classFrameworkCode = classFrameworkCode
+        isDefaultShowFW = isDefaultShowFW
+      }}
+      {{/if}}
+      {{#unless userProfile.hasContent}}
+        <div class="no-data">{{t 'common.no-record-found'}}</div>
+      {{/unless}}
+    </div>
+  {{/each}}
+</div>
+
+{{#if showCollectionReport}}
+  {{class/gru-report-panel showPullUp=showCollectionReport reportData=studentReportContextData  model=studentReportContextData.lesson isStudent=isStudent onClosePullUp="onClosePullUp" tabindex=tabindex}}
+{{/if}}
+
+{{#if showExternalAssessmentReport}}
+  {{reports/pull-up/student-external-assessment-report
+    showPullUp=showExternalAssessmentReport
+    reportData=studentReportContextData
+    isStudent=isStudent
+    tabindex=tabindex
+    onClosePullUp="onClosePullUp"
+  }}
+{{/if}}
+
+{{#if showStudentDcaReport}}
+  {{reports/pull-up/dca-student-collection-report useSession=true showPullUp=showStudentDcaReport reportData=studentReportContextData isStudent=isStudent onClosePullUp="onClosePullUp" tabindex=tabindex}}
+{{/if}}
+
+{{#if isShowStudentExternalCollectionReport}}
+  {{reports/pull-up/dca-student-external-collection-report showPullUp=isShowStudentExternalCollectionReport reportData=studentReportContextData isStudent=isStudent onClosePullUp="onClosePullUp" tabindex=tabindex}}
+{{/if}}
+
+{{#if isShowStudentExternalAssessmentReport}}
+  {{
+      reports/pull-up/dca-student-external-assessment-report
+      reportData=studentReportContextData
+      showPullUp=isShowStudentExternalAssessmentReport
+      isStudent=isStudent
+      onClosePullUp="onClosePullUp"
+      tabindex=tabindex
+    }}
+{{/if}}
+
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+      showPullUp=isShowContentPreview
+      previewContentId=previewContent.id
+      previewContentType=previewContentType
+      playerContext=previewPlayerContext
+      tabindex=tabindex
+      classFramework = classFrameworkCode
+      isDefaultShowFW = isDefaultShowFW
+    }}
+{{/if}}
+
+
+{{#if isShowStudentOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowStudentOfflineActivityReport
+    oaId=studentReportContextData.collectionId
+    classId=studentReportContextData.classId
+    reportContext=studentReportContextData
+    isReportView=true
+    isCmReport=isCmReport
+    tabindex=tabindex
+    classFramework = classFrameworkCode
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isShowOfflineActivityPreview}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityPreview
+    oaId=previewContent.id
+    classId=previewPlayerContext.classId
+    isReportView=false
+    tabindex=tabindex
+    classFramework = classFrameworkCode
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}

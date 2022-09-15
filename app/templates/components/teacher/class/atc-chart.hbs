@@ -1,0 +1,14 @@
+{{#if isLoading}}
+  {{three-bounce-spinner}}
+{{/if}}
+
+{{#if isZoomInView}}
+  <div class="reset" {{action "onClearZoom"}}>Zoom Out</div>
+{{/if}}
+<div class="header-container">
+  <div class="class-name">{{classData.title}}</div>
+</div>
+{{#if (and (not subjectCode) isPremiumClass)}}
+  <div class="no-subject">{{t 'report.competency-report.no-subject'}}</div>
+{{/if}}
+<!-- Chart will be rendered through JS -->

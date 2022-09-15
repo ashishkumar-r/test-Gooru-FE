@@ -1,0 +1,180 @@
+.struggling-competency-domain-level {
+  background-color: $white;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  width: 50vw;
+  height: calc(100vh - 10vh);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: none;
+  @media screen and (max-width: $screen-md) {
+    width: 70%;
+  }
+  @media screen and (max-width: $screen-sm) {
+    width: 100%;
+  }
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  %scroll-style {
+    &::-webkit-scrollbar {
+      height: 6px;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $gray-light;
+      border: 1px solid $gray-light;
+      border-radius: 5px;
+    }
+  }
+
+  .struggling-competency-domain-level-container {
+    background-color: $white;
+    border-radius: 5px;
+
+    .struggling-competency-title {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 30px 1fr;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border-bottom: 1px solid $breadcrumb-color;
+      box-shadow: 0 0 5px $breadcrumb-color;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .struggling-competency-domain-level-content {
+      height: calc(100vh - 18vh);
+      overflow-y: auto;
+
+      .grade-domain-name-accordion {
+        font-size: 15px;
+        display: grid;
+        grid-template-columns: 1fr 48px;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 1px solid $gray-80;
+        cursor: pointer;
+
+        span {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+
+      .grade-domain-competency-list-container {
+        display: none;
+
+        &.first-child {
+          display: block;
+        }
+
+        .grade-domain-competency-list-panel {
+          display: grid;
+          grid-template-columns: 1fr 50px 50px;
+          align-items: center;
+          padding: 5px 10px;
+          cursor: pointer;
+
+          .grade-domain-competency-heading {
+            display: grid;
+            grid-template-columns: auto;
+
+            span {
+              font-size: 15px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .grade-domain-competency-sub-heading {
+              display: inline-flex;
+              list-style: none;
+              margin: 0;
+              padding: 0;
+              font-size: 12px;
+
+              li {
+                padding-right: 10px;
+                line-height: 1;
+
+                .lo-content {
+                  cursor: pointer;
+                  .tag-tooltip {
+                    display: none;
+                  }
+                }
+
+                &:last-child {
+                  padding-left: 10px;
+                  border: none;
+                }
+              }
+            }
+          }
+
+          .grade-domain-competency-icon {
+            display: grid;
+            align-items: center;
+            text-align: center;
+            color: $orange-500;
+          }
+
+          .grade-domain-competency-count {
+            text-align: center;
+            position: relative;
+
+            .student-count {
+              position: absolute;
+              width: 15px;
+              height: 15px;
+              top: -6px;
+              background-color: $white;
+              border-radius: 50%;
+              border: 1px solid $gray-80;
+              right: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 10px;
+            }
+          }
+        }
+
+        .domain-show-more-btn {
+          text-align: end;
+          padding: 10px 20px;
+
+          span {
+            width: max-content;
+            padding: 5px;
+            color: $blue-700;
+          }
+        }
+      }
+
+      .domain {
+        padding: 10px;
+        height: 10px;
+      }
+    }
+  }
+}

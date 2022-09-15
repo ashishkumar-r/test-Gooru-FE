@@ -1,0 +1,26 @@
+<div class="panel roster-header">
+  <div class="panel-body">
+    <div class="content">
+      <div class="actions">
+        <button type="button" class='btn btn-primary btn-roster' {{action 'openRoster'}}>
+          {{gru-icon name='account_circle'}}
+          {{t 'grading-player.roster'}}
+        </button>
+      </div>
+      <div class="legend">
+        <div class="current-response">
+          {{t 'grading-player.current-response'}}:
+          {{gru-math-text text=currentResponse}}
+        </div>
+        <div class="time-spent">
+          {{t 'grading-player.time-spent'}}:
+          {{format-time timeSpent}}
+        </div>
+      </div>
+    </div>
+    <div class="pull-right submitted-at">
+      {{t 'grading-player.submitted-time'}}:
+      {{format-date submittedAt 'h:mma MM/DD/YY'}}
+    </div>
+  </div>
+</div>

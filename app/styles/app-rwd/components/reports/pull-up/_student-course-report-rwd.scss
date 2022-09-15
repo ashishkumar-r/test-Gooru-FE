@@ -1,0 +1,95 @@
+.reports.pull-up-student-course-report {
+  @media screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .student-course-report-container {
+      width: 100%;
+
+      .report-header {
+        .report-breadcrumb {
+          .course-title {
+            p {
+              max-width: calc(100% - 50px);
+            }
+          }
+        }
+      }
+
+      .report-content {
+        .report-performance-tabular {
+          @media screen and (max-width: $screen-xs) {
+            .report-performance-header {
+              grid-template-columns: auto auto;
+
+              .content-name {
+                padding-left: 50px;
+              }
+
+              .score {
+                padding-right: 10px;
+                text-align: right;
+              }
+            }
+
+            .report-performance-list {
+              grid-template-columns: 90% 10%;
+
+              .completion {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .report-carousel-tags {
+          .report-carousel {
+            #report-carousel-wrapper {
+              .course-background-cover {
+                .report-carousel-content {
+                  width: 100%;
+
+                  .performance-display-container {
+                    margin: 0 auto;
+                  }
+
+                  .course-description {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+
+          .report-standard-tags {
+            .show-description {
+              display: grid;
+              grid-template-columns: auto auto auto auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.reports.pull-up-student-course-report {
+  @media (orientation: landscape) {
+    .student-course-report-container {
+      .report-content {
+        .report-carousel-tags {
+          .report-carousel {
+            #report-carousel-wrapper {
+              .course-background-cover {
+                .report-carousel-content {
+                  .course-description {
+                    display: block;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<div class="gru-likert-start-rating-container">
+    <div class="gru-likert-start-rating">
+        <div class="likert-items">
+            <span class="likert-item-row"></span>
+            {{#each likertItems as |item|}}
+                {{#if item.isShow}}
+                    <div class="likert-item-row gru-likert-start-label">
+                        <span data-toggle="tooltip" data-placement="bottom" title="{{item.label}}">{{item.label}}</span>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+        <div class="likert-labels">
+             <div class="likert-start-rating-level">
+                {{#each likertScalePoints as | scalePoint | }}
+                    <span data-toggle="tooltip" class="likert-item-row" data-placement="bottom" title="{{scalePoint.levelName}}">{{scalePoint.levelName}}</span>
+                {{/each}}
+            </div>
+            <div class="likert-star-rating">
+                {{#each likertItems as |item|}}
+                    {{#if item.isShow}}
+                        <div class="gru-likert-start-points likert-item-row {{if readOnly 'disable-event'}}">
+                            {{rating-stars rating=(if item.selectedRating item.selectedRating 0) onChangeAction=(action "onChangeAction" item) maxRating=maxRating}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

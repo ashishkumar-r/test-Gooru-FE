@@ -1,0 +1,41 @@
+<div class="heading">{{t 'competency-meta-data.heading.micro'}}</div>
+<div class="micro-competencies">
+  {{#if microCompetencies}}
+    {{#each microCompetencies as | microCompetency index|}}
+      <div>
+        <div class="mc-panel-header" data-toggle="collapse" data-target="#collapse-{{index}}" onkeypress={{action 'openMicroCompetencies' index}} tabindex={{tabindex}}>
+          <span class="code">{{microCompetency.code}}</span>
+          <span class="icon arrow_up">{{gru-icon name="arrow_drop_up"}}</span>
+          <span class="icon arrow_down">{{gru-icon name="arrow_drop_down"}}</span>
+        </div>
+        <div class="panel-content collapse" id="collapse-{{index}}">
+          <span class="description">{{microCompetency.title}}</span>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <span class="no-data">{{t 'competency-meta-data.nodata.micro'}}</span>
+  {{/if}}
+</div>
+<div class="heading">{{t 'competency-meta-data.heading.prequisite'}}</div>
+<div class="prequisite-competencies {{unless prequisiteCompetencies 'no-competency'}}">
+  {{#if prequisiteCompetencies}}
+    {{#each prequisiteCompetencies as | prerequisiteCompetency|}}
+      <div class="panel-container">
+        <div class="panel-header">
+          <div class="title ellipsis" data-toggle="tooltip" title="{{prerequisiteCompetency.code}}">{{prerequisiteCompetency.code}}</div>
+          <div class="competency-status status-{{prerequisiteCompetency.status}}"></div>
+        </div>
+        <div class="panel-body">
+          <div class="competency-description">{{prerequisiteCompetency.title}}</div>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <span class="no-data">{{t 'competency-meta-data.nodata.prequisite'}}</span>
+  {{/if}}
+</div>
+<div class="heading">{{t 'competency-meta-data.title'}}</div>
+<div class="alt-concepts">
+  <span class="no-data">{{t 'competency-meta-data.nodata.competency'}}</span>
+</div>

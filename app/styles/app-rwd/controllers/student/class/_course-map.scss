@@ -1,0 +1,454 @@
+.student.class {
+  .alert-player-error {
+    height: max-content;
+    line-height: unset;
+    padding: 10px;
+  }
+}
+
+.student.course-map {
+  width: 100vw;
+  @media only screen and (max-width: $screen-sm - 1) {
+    .actions {
+      span {
+        color: $white;
+      }
+    }
+
+    .assigned-course-title,
+    .pre-study-title {
+      margin: 10px;
+    }
+
+    .rescope-section {
+      .rescope-toggle {
+        .action {
+          span {
+            color: $white;
+          }
+        }
+      }
+
+      .custom-msg {
+        height: 100%;
+        width: 100%;
+
+        span {
+          i {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .assigned-course-title {
+    margin-left: 10px;
+  }
+
+  .rescope-section {
+    width: 100%;
+    margin: auto;
+
+    .rescope-toggle {
+      display: block !important;
+      margin: 10px;
+
+      .info {
+        width: 100% !important;
+      }
+      .action span {
+        color: $white;
+      }
+    }
+  }
+
+  h5.assigned-course-title {
+    margin: 10px;
+  }
+
+  .title-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 10px 15px;
+    @media screen and (max-width: 567px) {
+      margin-top: 45px;
+    }
+    .active-period {
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: right;
+      align-items: center;
+      cursor: pointer;
+      column-gap: 8px;
+      .report-period-text {
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .toggle-icon {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .report-periods {
+      display: none;
+      position: absolute;
+      top: 150px;
+      background-color: $white;
+      z-index: 9;
+      right: 200px;
+      box-shadow: -1px 0 10px 1px $disabled-color;
+      width: 150px;
+      .report-period {
+        cursor: pointer;
+        height: 35px;
+        line-height: 35px;
+        font-size: 14px;
+        font-weight: bold;
+        color: $bg-report-period;
+        padding-left: 15px;
+        border-bottom: 1px solid $white;
+        &.active-report-period,
+        &:hover {
+          background-color: $dark-700;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .student-coursemap-container {
+    .gru-accordion.gru-accordion-course {
+      .gru-accordion-unit {
+        padding: 0;
+
+        .unit.panel-heading {
+          .panel-title {
+            width: calc(100% - 85px) !important;
+            padding-top: 0;
+
+            > a {
+              width: 100% !important;
+              max-width: none;
+              height: auto;
+            }
+
+            .title.ellipsis {
+              display: grid;
+
+              .prefix {
+                border: none;
+                margin-left: 0;
+                font-size: 12px;
+                font-style: bold;
+              }
+
+              .unit-title-text {
+                margin-left: 10px;
+                font-size: 15px;
+                font-style: normal;
+              }
+            }
+          }
+
+          .performance-container {
+            height: 67px;
+            width: 64px;
+            margin-top: 0;
+
+            .charts.gru-performance-chart {
+              height: 67px;
+              min-width: unset;
+
+              .container-box {
+                height: 67px;
+              }
+            }
+          }
+        }
+
+        .panel-collapse {
+          padding: 4px;
+
+          .panel-body {
+            .gru-accordion-lesson {
+              .panel-heading {
+                .panel-title {
+                  width: calc(100% - 225px);
+                  padding: 0;
+                  margin-left: 8px;
+
+                  > a.title {
+                    display: grid;
+                    max-width: none;
+
+                    .lesson-prefix {
+                      border: none;
+                      font-size: 12px;
+                      font-style: bold;
+                    }
+
+                    .lesson-title-text {
+                      font-size: 15px;
+                      font-style: normal;
+                    }
+                  }
+                }
+
+                .info {
+                  max-width: none !important;
+
+                  .content-count {
+                    display: inline-block;
+                    visibility: visible;
+                    margin: 0;
+                    height: inherit;
+                    line-height: 65px;
+
+                    .assessment-count,
+                    .collection-count {
+                      margin: 0 5px 0 0;
+
+                      i {
+                        margin: 0;
+                        width: 16px;
+                        height: 16px;
+                        background-size: 16px 16px;
+                      }
+                    }
+                  }
+
+                  .play-btn {
+                    width: 49px;
+                    padding: 0;
+
+                    button {
+                      padding: 12px;
+                      display: block;
+
+                      &.study-now {
+                        width: 48px;
+                        padding: 11px;
+                      }
+                    }
+                  }
+
+                  .performance-container {
+                    width: 60px;
+
+                    .charts.gru-performance-chart {
+                      min-width: auto;
+                    }
+                  }
+                }
+              }
+
+              .panel-body {
+                .collections {
+                  .assessment,
+                  .collection {
+                    height: 52px;
+
+                    .attempt-head {
+                      height: auto !important;
+                    }
+                    .panel-heading {
+                      height: 50px;
+
+                      .panel-title {
+                        width: calc(100% - 200px) !important;
+                        padding: 0;
+                        margin-left: 0;
+                        display: flex;
+                        align-items: center;
+
+                        &.attempt {
+                          display: grid !important;
+                          width: calc(100% - 60px) !important;
+                          padding: 5px;
+                        }
+
+                        .icon-container {
+                          width: 50px;
+                          height: 50px;
+                        }
+
+                        > a.title {
+                          display: flex;
+                          padding: 0 0 0 5px;
+                          width: 100%;
+
+                          .ellipsis {
+                            font-size: 15px;
+                            line-height: 20px;
+                            width: calc(100% - 30px);
+                          }
+
+                          i {
+                            margin-top: 10px;
+                          }
+                        }
+                      }
+
+                      .info {
+                        max-width: none !important;
+
+                        .content-count {
+                          display: inline-block;
+                          visibility: visible;
+                          margin: 0;
+                          height: inherit;
+                          line-height: 46px;
+
+                          span {
+                            margin: 0;
+
+                            i {
+                              font-size: 20px;
+                              margin: 0 5px 0 0;
+                            }
+                          }
+
+                          .question-count-text,
+                          .resource-count-text {
+                            height: 30px;
+                            margin-top: 5px;
+                            display: inline-block;
+                          }
+                        }
+
+                        .play-btn {
+                          width: 44px;
+                          padding: 0;
+                          height: 50px;
+
+                          button {
+                            display: block;
+                            padding: 0;
+                            height: 50px;
+                            margin: 0;
+                            background: $table-bg;
+
+                            &.study-now {
+                              width: 44px;
+                            }
+                          }
+                        }
+
+                        .performance {
+                          width: 60px;
+                          height: 48px;
+                          line-height: 48px;
+                          padding: 0;
+                          margin-top: 0;
+
+                          .score {
+                            font-size: 14px;
+                          }
+
+                          .charts.gru-performance-chart {
+                            min-width: auto;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              &.expanded .panel-collapse.collapse.in {
+                margin: -9px 0 0;
+              }
+            }
+          }
+          @media screen and (max-width: $screen-376) {
+            .panel-body {
+              .panel-group {
+                .gru-accordion-lesson {
+                  .panel-heading {
+                    .panel-title {
+                      width: calc(100% - 125px) !important;
+                    }
+
+                    .info {
+                      .content-count {
+                        display: none;
+                      }
+                    }
+                  }
+
+                  .panel-collapse {
+                    .panel-body {
+                      .collections {
+                        .assessment,
+                        .collection {
+                          .panel-heading {
+                            height: 50px;
+                            display: flex;
+
+                            .panel-title {
+                              width: calc(100% - 125px) !important;
+                              align-items: center;
+
+                              .title {
+                                padding-left: 10px;
+                              }
+
+                              .icon-container {
+                                display: none;
+                              }
+                            }
+
+                            .info {
+                              .content-count {
+                                display: none;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.student_class_course-map {
+  @media only screen and (max-width: $screen-xs) {
+    .app-container {
+      padding-top: 152px;
+    }
+  }
+}
+
+.student-rangepicker-container {
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 13px 16px 0 $date-picker-box-shadow;
+  top: 50px;
+  width: 100%;
+  display: none;
+  .ca-daterange-picker {
+    background-color: $table-bg;
+    .ca-datepicker-body {
+      right: 3%;
+      left: auto;
+      top: 25%;
+      transform: none;
+    }
+    @media screen and (max-width: $screen-sm) {
+      .ca-datepicker-body {
+        right: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

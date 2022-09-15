@@ -1,0 +1,85 @@
+{{#if isLoading}}
+  {{three-bounce-spinner}}
+{{else}}
+  {{#unless isClassActivity}}
+    <div class="signature-content">
+      {{#each suggestions as |suggestion|}}
+        {{suggestion-panel
+          isStudent=isStudent
+          collectionType=suggestion.suggestedContentType
+          content=suggestion
+          isTeacherSuggestion=true
+          source=source
+          onPreviewContent="onPreviewContent"
+          onSuggestContent="onSuggestContent"
+          playContent="playContent"
+          tabindex=tabindex
+          class = class
+        }}
+      {{else}}
+        {{#if showSignatureAssessment}}
+          <div class="competency-content">
+            <div class="competency-img"></div>
+            <div class="competency-note">{{t 'report.competency-report.note'}}</div>
+          </div>
+        {{/if}}
+        {{#if signatureContent}}
+          <div class="signature-accordion">
+            {{suggestion-panel
+            isStudent=isStudent
+            collectionType=collectionType
+            content=signatureContent
+            isTeacherSuggestion=false
+            source=source
+            class = class
+            onPreviewContent="onPreviewContent"
+            onSuggestContent="onSuggestContent"
+            playContent="playContent"
+            tabindex=tabindex
+          }}
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+  {{/unless}}
+  {{reports/pull-up/competency-info-content
+    userId=userId
+    competency=competency
+    microCompetencies=microCompetencies
+    collectionPerformances=collectionPerformances
+    userId=userId
+    prequisiteCompetencies=prerequisites
+    proficiencyChartData=proficiencyChartData
+    learningMapData=learningMapData
+    onSuggestContent="onSuggestContent"
+    isStudent=isStudent
+    class = class
+    tabindex=tabindex
+    competencyGutCode=competencyGutCode
+    isClassActivity=isClassActivity
+    classFrameworkCode = classFrameworkCode
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+{{#if (and isShowContentPreview (not isStudent))}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    previewContentId=previewContent.id
+    previewContentType=previewContentType
+    playContent=false
+    primaryClass=class
+    tabindex=tabindex
+    classFramework = classFrameworkCode
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+{{#if showSuggestConfirmation}}
+  {{cards/suggest-confirmation
+   collection=suggestedCollection
+   students=students
+   contentType=suggestedCollectionType
+   onCancelSuggest="onCancelSuggest"
+   onConfirmSuggest="onConfirmSuggest"
+   tabindex=tabindex
+ }}
+{{/if}}

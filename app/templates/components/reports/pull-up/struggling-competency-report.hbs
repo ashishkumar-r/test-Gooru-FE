@@ -1,0 +1,267 @@
+<div class="backdrop" {{action "onClosePullUp" true}}></div>
+<div class="struggling-competency-report-container">
+  <div class="struggling-competency-report-header" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+    {{gru-icon name="arrow_back"}}
+    <div class="struggling-competency-report-header-panel">
+      <div class="struggling-competency-report-title" title="{{competency-gut-to-fw-transform
+          fwCompetencies
+          (if selectedCompetency.code selectedCompetency.code selectedCompetency.competencyCode)
+          (if selectedCompetency.name selectedCompetency.name selectedCompetency.competencyName)
+          'frameworkCompetencyName'
+          showGutCompetency
+          true
+         }}" data-toggle="tooltip" data-placement="bottom">
+        <span>{{competency-gut-to-fw-transform
+          fwCompetencies
+          (if selectedCompetency.code selectedCompetency.code selectedCompetency.competencyCode)
+          (if selectedCompetency.name selectedCompetency.name selectedCompetency.competencyName)
+          'frameworkCompetencyName'
+          showGutCompetency
+          true
+         }}</span>
+      </div>
+      <ul class="struggling-competency-report-sub-titles">
+        <li>{{domain-gut-to-fw-transform
+            fwDomains
+            selectedCompetency.domainCode
+            selectedCompetency.domainName
+            'fwDomainName' true}}</li>
+        {{#if isDefaultShowFW}}
+          <li title="{{selectedCompetency.displayCode}}" data-toggle="tooltip" data-placement="bottom">{{selectedCompetency.displayCode}}</li>
+        {{else}}
+          <li>{{competency-gut-to-fw-transform
+            fwCompetencies
+             (if selectedCompetency.code selectedCompetency.code selectedCompetency.competencyCode)
+            selectedCompetency.displayCode
+            'frameworkCompetencyDisplayCode'
+            showGutCompetency
+            true}}</li>
+        {{/if}}
+        <li>
+          <div class="content lo-content" title="{{competency-lo-transform
+              fwCompetencies
+               (if selectedCompetency.code selectedCompetency.code selectedCompetency.competencyCode)
+              'loCode'
+              false
+              '|'
+            }}" data-toggle="tooltip" data-placement="bottom">
+            {{competency-lo-transform
+              fwCompetencies
+               (if selectedCompetency.code selectedCompetency.code selectedCompetency.competencyCode)
+              'loCode'
+              false
+              '|'
+            }}
+            {{competency-lo-transform
+              fwCompetencies
+               (if selectedCompetency.code selectedCompetency.code selectedCompetency.competencyCode)
+              'loName'
+              false
+              '|'
+            }}
+           <span class="tag-tooltip">
+             {{competency-lo-transform
+               fwCompetencies
+                (if selectedCompetency.code selectedCompetency.code selectedCompetency.competencyCode)
+               'loName'
+               false
+               ''
+             }}
+           </span>
+         </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="struggling-competency-report-student-list-container">
+    {{#if (gt studentsPerformanceList.length  1)}}
+      <div class="struggling-competency-report-student-list-panel" onclick={{action "showStudentList"}} onkeypress={{action "showStudentList"}} tabindex={{tabindex}}>
+        <div class="sc-report-student-list">
+          <ul class="sc-report-student-profile">
+            {{#each studentsPerformanceList as |student studentIndex|}}
+              {{#if (lt studentIndex profileCount)}}
+                <li title="{{student.lastName}}, {{student.firstName}}" data-toggle="tooltip" data-placement="bottom">
+                  <img src="{{if student.thumbnail student.thumbnail student.thumbnailUrl}}" alt="student avatar">
+                </li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+        <div class="sc-report-student-count">
+          {{# if (gt studentsPerformanceList.length profileCount)}}
+            {{studentsCount}}+
+    {{/if}}
+  </div>
+  <div class="sc-report-student-list-icon">
+    {{gru-icon name="arrow_drop_down"}}
+  </div>
+</div>
+{{/if}}
+<div class="sc-student-dropdown-list-container {{if (or isShowCompetencyStudentList (eq studentsPerformanceList.length  1)) 'active' ''}}">
+  {{#each studentsPerformanceList as |student|}}
+    <div class="sc-student-dropdown-list">
+      <div class="sc-student-profile-thumbnail-container">
+        <div class="sc-student-thumbnail">
+          <img src="{{if student.thumbnail student.thumbnail student.thumbnailUrl}}" alt="student avatar">
+        </div>
+      </div>
+      <div class="sc-student-name">
+        {{student.lastName}}, {{student.firstName}}
+      </div>
+      <div class="sc-student-performance-container">
+        <div class="sc-student-performance grade-range-{{grade-range (if (or student.performanceScore (eq student.performanceScore 0)) student.performanceScore student.score)}}">
+               {{#if (or student.performanceScore (eq student.performanceScore 0)) }}
+                  {{student.performanceScore}}%
+               {{else}}
+                    {{student.score }}%
+              {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+<div class="sc-student-content-section-container">
+  <div class="suggestion-header">
+    <div class="search-filter-container">
+      <span class="ellipsis" {{action "onSelectDropdown"}} tabindex={{tabindex}}>{{t selectedMenuItem.label }}</span>
+      <span {{action "onSelectDropdown"}} tabindex={{tabindex}}>{{gru-icon name="arrow_drop_down"}}</span>
+      <div class="search-filter-container-list">
+        {{#each menuItems as |item|}}
+          <p class="{{if item.isSelected 'selected'}}" onclick={{action "onSelectMenuItems" item}} onkeypress={{action "onSelectMenuItems" item}} tabindex={{tabindex}}>{{t item.label}}</p>
+        {{/each}}
+      </div>
+    </div>
+
+    {{#if (or showLibraryFilter showSearchFilter)}}
+      <div class="suggestion-right-menu">
+        <div class="search-input-container">
+          {{input type="text"
+        placeholder=(t "common.search-placeholder")
+        spellcheck="true"
+        id="suggestion-search"
+        enter=(action "filterSearch")
+        value=suggestionSearchText
+        tabindex=tabindex
+      }}
+          <div class="filter-items">
+            {{#each filters as |selectedFilter index|}}
+              <div class="filter-item">
+                <span class="name ellipsis" data-toggle="tooltip" title={{selectedFilter.name}}>{{selectedFilter.name}}</span>
+                <span class="clear" onclick={{action 'clearFilter' selectedFilter}} onkeypress={{action 'clearFilter' selectedFilter}} tabindex={{tabindex}}> {{gru-icon name="close"}}</span>
+              </div>
+            {{/each}}
+            {{#if moreFilters}}
+              <span class="more-pointer">+{{moreFilters.length}}</span>
+            {{/if}}
+            <div class="more-filters hidden">
+              {{#each moreFilters as |moreFilter|}}
+                <div class="filter-item">
+                  <span class="name ellipsis" data-toggle="tooltip" title={{moreFilter.name}}>{{moreFilter.name}}</span>
+                  <span class="clear" onclick={{action 'clearFilter' moreFilter}} onkeypress={{action 'clearFilter' moreFilter}} tabindex={{tabindex}}> {{gru-icon name="close"}}</span>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+          <label for="suggestion-search" id="suggest-search" class="search-icon" onclick={{action 'suggestSearchFilter'}} onkeypress={{action 'suggestSearchFilter'}} tabindex={{tabindex}}>
+            {{gru-icon name="search"}}
+          </label>
+        </div>
+        <div class="search-filter-icon" onclick={{action 'toggleSearchFilter'}} onkeypress={{action 'toggleSearchFilter'}} tabindex={{tabindex}}>
+          {{gru-icon name="filter_list"}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  {{#unless showContentTypeFilter}}
+    <div class="suggestion-content-type-filter">
+      <div class="filter-content-types">
+        {{#each filterContentType as |contentType|}}
+          <div class="filter-item {{contentType.format}} {{if (eq contentType.format activeContentType) 'active' }}" onclick={{action 'onSelectFilterBy' contentType.format}} onkeypress={{action 'onSelectFilterBy' contentType.format}} tabindex={{tabindex}}>
+            <i></i>
+            <span>{{t contentType.label}}</span>
+          </div>
+        {{/each}}
+      </div>
+      {{search/search-by-filter
+      isShow=isShow
+      onFilterApply="doSearch"
+      hideAppScroll=false
+      unCheckedItem=unCheckedItem
+      preference=class.preference
+      selectedFilters=selectedFilters
+      tabindex=tabindex
+    }}
+    </div>
+    {{#if showLibraryCollection}}
+      <div class="selected-tenant-library">
+        <div class="back" onclick={{action "backToLibrary"}} onkeypress={{action "backToLibrary"}} tabindex={{tabindex}}>
+          {{gru-icon name="arrow_back"}}
+        </div>
+        <img class="image" src="{{selectedLibrary.image}}" alt="selectedLibrary image"/>
+        <div class="library-name">{{selectedLibrary.name}}</div>
+      </div>
+    {{/if}}
+
+  {{/unless}}
+  <div class="sc-student-content-section-container">
+    <div class="sc-student-content-section {{if  hasCollectionContent 'no-content' }} {{if class.isArchived 'stuggle-archived-class'}} ">
+      {{#unless (and showTenantLibraries (not showLibraryCollection))}}
+        {{#if collectionContents}}
+          {{#each collectionContents as |content|}}
+            {{cards/dca-search-collection-card
+              onPreviewContent="onPlayCollection"
+              onScheduleContentToDCA='onScheduleContentToDCA'
+              collection=content contentType=activeContentType
+              onAddContentToDCA="onAddContentToDCA"
+              onSuggestContent = "onSuggestContent"
+              showSuggestionBtn = true
+              addedScheduleContentToDCA='addedScheduleContentToDCA'
+              classId=classId
+              tabindex=tabindex
+              class=class
+            }}
+          {{/each}}
+        {{else}}
+          {{#unless isLoading}}
+            <div class="suggest-panel panel-default">
+              <div class="panel-body">
+                <div class="no-suggest-result-content">
+                  <div class="icon">{{gru-icon name="remove_circle_outline"}}</div>
+                  <p class="suggest-message">{{t "common.search-no-suggest-results-message"}}</p>
+                </div>
+              </div>
+            </div>
+          {{/unless}}
+        {{/if}}
+      {{/unless}}
+      {{#if (and showTenantLibraries (not showLibraryCollection))}}
+        {{#each libraries as |library|}}
+          {{library/gru-partner-library-card onSelectLibrary='onSelectLibrary' content=library}}
+        {{/each}}
+      {{/if}}
+      {{#if isLoading}}
+        <div class="loading-spinner">
+          {{three-bounce-spinner}}
+        </div>
+      {{/if}}
+    </div>
+    {{#if isShowMoreButton}}
+      <div class="sc-show-more">
+        <span onclick={{action "onShowMore"}} onkeypress={{action "onShowMore"}} tabindex={{tabindex}}>Show More</span>
+      </div>
+    {{/if}}
+  </div>
+</div>
+</div>
+</div>
+
+{{#if showSuggestConfirmation}}
+  {{cards/suggest-confirmation
+   collection=suggestedCollection
+   students = studentsPerformanceList
+   contentType='collection'
+   onCancelSuggest="onCancelSuggest"
+   onConfirmSuggest="onConfirmSuggest"
+   tabindex=tabindex
+ }}
+{{/if}}

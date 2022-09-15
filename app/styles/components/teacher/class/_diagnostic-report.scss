@@ -1,0 +1,483 @@
+.diagnostic-report {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 40px;
+
+  a {
+    color: $dark-200;
+    text-decoration: none;
+  }
+  .diagnostic-report-container {
+    .diagnostic-report-panel {
+      .milestone-by-data {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        align-items: center;
+        padding: 10px;
+        background-color: $white;
+        margin: 10px 0;
+        box-shadow: 0 0 5px $light-200;
+        font-weight: bold;
+        font-size: 15px;
+
+        .back-btn {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .milestone-details-list-panel {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        grid-column-gap: 10px;
+
+        @media screen and (max-width: 768px) {
+          grid-template-columns: 1fr;
+          grid-row-gap: 10px;
+        }
+
+        .content-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          margin: 0 auto;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+
+        .milestone-list-panel {
+          background-color: $white;
+          border-radius: 5px;
+          height: fit-content;
+
+          .list-head {
+            .milestone-list-head {
+              padding: 10px 15px;
+              font-weight: bold;
+              border-right: 1px solid $gray-cf;
+              cursor: pointer;
+              &.active {
+                box-shadow: 0 0 5px $light-200;
+                background-color: $light-100;
+              }
+            }
+            &.ass-list-head {
+              display: grid;
+              grid-template-columns: auto auto;
+            }
+          }
+
+          .milstone-list-body {
+            border-radius: 5px;
+            box-shadow: 0 0 5px $light-200;
+
+            .milestone-card-items {
+              display: grid;
+              grid-template-columns: 40px 1fr;
+              align-items: center;
+              padding: 5px;
+
+              .milestone-item {
+                span {
+                  line-height: 1.4;
+                  display: block;
+                }
+              }
+
+              &.active {
+                box-shadow: 0 0 5px $light-200;
+                background-color: $light-100;
+                .flag-icon {
+                  border: 1px solid $font-green-35-dark-400;
+                  i {
+                    background-color: $font-green-35-dark-400;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .milestone-report-detail-panel {
+          background-color: $white;
+          border-radius: 5px;
+          width: 100%;
+          overflow-x: auto;
+
+          .milestone-report-head {
+            display: grid;
+            align-items: center;
+            padding: 10px;
+            box-shadow: 0 3px 5px $light-200;
+            font-weight: bold;
+            min-width: 600px;
+
+            .flag-icon {
+              border: 1px solid $font-green-35-dark-400;
+              i {
+                background-color: $font-green-35-dark-400;
+              }
+            }
+
+            .milstone-report-head-title {
+              line-height: 1.4;
+              span {
+                display: block;
+              }
+            }
+            .download {
+              .dropdown {
+                .dropdown-toggle {
+                  i {
+                    line-height: 1.6;
+                    align-self: end;
+                    cursor: pointer;
+                  }
+                }
+                .dropdown-menu {
+                  padding: 10px;
+                  .csv-label,
+                  .pdf-label {
+                    label {
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+              line-height: 1.6;
+              align-self: end;
+            }
+            .expand-icon {
+              font-size: 16px;
+              cursor: pointer;
+            }
+            .close-icons {
+              display: grid;
+              grid-template-columns: 1fr;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+            }
+          }
+          .search-students-list {
+            margin: 5px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            input {
+              width: 100%;
+              padding: 5px 20px;
+            }
+            i {
+              position: absolute;
+              right: 10px;
+              color: $light-300;
+            }
+          }
+          .competenct-list {
+            padding: 0px 5px 0px 5px;
+            table {
+              thead {
+                tr {
+                  .comp {
+                    width: 390px;
+                  }
+                  .stud-name {
+                    width: 247px;
+                  }
+                }
+              }
+              .no-content {
+                text-align: center;
+                padding: 30px;
+              }
+              tbody {
+                tr {
+                  td {
+                    .studName {
+                      &:not(:last-child)::after {
+                        content: ",";
+                      }
+                    }
+                  }
+                }
+              }
+              &.default-table {
+                display: block;
+              }
+              &.pdf-default-table {
+                display: none;
+              }
+            }
+          }
+          .milestone-student-list {
+            min-width: 600px;
+            overflow-x: auto;
+            .student-table-head {
+              display: grid;
+              grid-template-columns: 300px repeat(3, 1fr);
+              align-items: center;
+
+              span {
+                font-weight: bold;
+                line-height: 1.4;
+                padding: 10px 0;
+
+                &.profile-head {
+                  padding-left: 50px;
+                }
+              }
+            }
+            .student-table-body,
+            .student-pdf-table-body {
+              .student-table-content-card {
+                display: grid;
+                grid-template-columns: 300px repeat(3, 1fr);
+                align-items: center;
+
+                span {
+                  padding: 10px 0;
+                }
+
+                .student-profile {
+                  display: grid;
+                  grid-template-columns: 40px 1fr;
+                  align-items: center;
+                  padding: 10px;
+
+                  .profile-image {
+                    width: 30px;
+                    height: 30px;
+                    margin: 0 auto;
+                    display: block;
+                    border-radius: 50%;
+                    background-position: center;
+                    background-size: contain;
+                  }
+                }
+
+                .response-btn {
+                  background-color: $green-400;
+                  padding: 5px;
+                  border-radius: 20px;
+                  line-height: 1.2;
+                  text-align: center;
+                  color: $white;
+                  margin: 0 10px;
+                }
+              }
+            }
+            table {
+              thead {
+                tr {
+                  .student-name {
+                    min-width: 190px;
+                  }
+                  .domain-competency {
+                    min-width: 140px;
+                    text-align: center;
+                    &.disable {
+                      pointer-events: none;
+                      cursor: not-allowed;
+                    }
+                    &.enable {
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+              tbody {
+                tr {
+                  .student-row {
+                    min-width: 190px;
+                  }
+                  .com-code {
+                    min-width: 140px;
+                    text-align: center;
+                    .com-cell {
+                      display: flex;
+                      justify-content: center;
+                      .not-answered,
+                      .userAns {
+                        text-align: center;
+                      }
+                      div.correct {
+                        color: $brand-success;
+
+                        i {
+                          background: url("quizzes-addon/quizzes/images/correct-answer.svg");
+                          width: 24px;
+                          height: 14px;
+                          display: inline-flex;
+                        }
+                      }
+
+                      div.incorrect {
+                        color: $brand-incorrect;
+
+                        i {
+                          background: url("quizzes-addon/quizzes/images/wrong-answer.svg");
+                          width: 14px;
+                          height: 14px;
+                          display: inline-flex;
+                        }
+                      }
+
+                      div.partially-correct {
+                        color: $brand-incorrect !important;
+
+                        i {
+                          background: url("quizzes-addon/quizzes/images/done_green.svg");
+                          width: 25px;
+                          height: 20px;
+                          display: inline-flex;
+                          background-repeat: no-repeat;
+                        }
+                      }
+
+                      div {
+                        color: $gray-base;
+                        i {
+                          color: $gray-light;
+                        }
+                      }
+                      .ans-icon {
+                        position: relative;
+                        top: 3px;
+                        left: 7px;
+                      }
+                      .not-answer-icon {
+                        position: relative;
+                        top: 1px;
+                        left: 7px;
+                      }
+                      .option:not(:last-child):after {
+                        content: ", ";
+                      }
+                      .ans-option {
+                        .option {
+                          &.fib {
+                            text-decoration: underline;
+                          }
+                          &.incorrect {
+                            color: $red-800 !important;
+                          }
+                          &.correct {
+                            color: $green-400 !important;
+                          }
+                          &.partially-correct {
+                            color: $brand-incorrect !important;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .student-table-body {
+              display: block;
+            }
+            .student-pdf-table-body {
+              display: none;
+            }
+          }
+          &.milestone-ass-header {
+            overflow-x: hidden;
+            .milestone-report-head {
+              grid-template-columns: 40px 1fr 47px 27px;
+            }
+          }
+          &.milestone-domain-report {
+            .milestone-report-head {
+              &.milestone-competency-head {
+                grid-template-columns: 40px 1fr 150px 27px;
+              }
+              &.milestone-student-head {
+                grid-template-columns: 40px 1fr 110px 27px;
+              }
+              &.disable-competency-head {
+                grid-template-columns: 40px 1fr 50px;
+              }
+            }
+            .view-competencice {
+              text-decoration: underline;
+              &.disable-competency {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media print {
+    .diagnostic-report-container {
+      .diagnostic-report-panel {
+        .milestone-by-data {
+          display: none;
+        }
+        .milestone-details-list-panel {
+          display: block;
+          .milestone-list-panel {
+            display: none;
+          }
+          .milestone-report-detail-panel {
+            .milestone-report-head {
+              .download {
+                display: none;
+              }
+              .view-competencice {
+                display: none;
+              }
+              .expand-icon {
+                display: none;
+              }
+              .milstone-report-head-title,
+              .content-icon {
+                display: none;
+              }
+            }
+            .milestone-student-list {
+              overflow-x: hidden;
+              .student-table-body {
+                display: none;
+                .student-table-content-card {
+                  .response-btn {
+                    display: none;
+                  }
+                }
+              }
+              .student-pdf-table-body {
+                display: block;
+                .student-table-content-card {
+                  .response-btn {
+                    display: none;
+                  }
+                }
+              }
+            }
+            .search-students-list {
+              display: none;
+            }
+            .competenct-list {
+              table {
+                &.default-table {
+                  display: none;
+                }
+                &.pdf-default-table {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

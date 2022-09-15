@@ -1,0 +1,46 @@
+<style type="text/css">
+    {{#if theme.buttons.primary}}
+    .btn-primary, .btn-primary:active {
+        background-color: {{theme.buttons.primary.color}} !important;
+    }
+    {{/if}}
+
+    {{#if theme.buttons.info}}
+    .btn-info, .btn-info:active {
+        background-color: {{theme.buttons.info.color}} !important
+    }
+    {{/if}}
+
+    {{#if theme.buttons.success}}
+    .btn-success, .btn-success:active {
+        background-color: {{theme.buttons.success.color}} !important
+    }
+    {{/if}}
+
+    {{#if theme.header.logo}}
+    .gru-header .container-fluid .navbar-default .navbar-header .navbar-brand {
+        background: url("{{theme.header.logo.url}}");
+        height: 55px;
+        padding: 0;
+        width: 140px;
+        background-size: 140px 55px;
+    }
+
+    .content.modals.gru-welcome-message .modal-body .last-text p .logo {
+        background: url("{{theme.header.logo.url}}") no-repeat;
+        background-size: contain;
+    }
+
+    .gru-study-navbar .header-panel .nav-body .app-brand a {
+      background-image: url("{{theme.header.logo.url}}");
+    }
+
+    .gru-class-navbar .header-panel .nav-body .app-brand a {
+      background-image: url("{{theme.header.logo.url}}");
+    }
+
+    .controller.sign-in .sign-in-wrapper .sign-in-tenant-header .tenant-logo {
+      background-image: url("{{theme.header.logo.url}}");
+    }
+    {{/if}}
+</style>

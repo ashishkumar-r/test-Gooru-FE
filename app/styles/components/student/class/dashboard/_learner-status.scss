@@ -1,0 +1,66 @@
+.learner-status {
+  .learner-status-container {
+    background-color: $white;
+    border-radius: 10px;
+    overflow: hidden;
+
+    a {
+      text-decoration: none;
+    }
+
+    .learner-status-panel {
+      .learner-status-panel-header {
+        display: grid;
+        grid-template-columns: 40px 1fr 40px;
+        align-items: center;
+        border-bottom: 1px solid $light-200;
+        box-shadow: 0 2px 5px $light-200;
+        padding: 10px;
+        background: $green-light;
+
+        i {
+          text-align: center;
+          color: $white;
+        }
+
+        .status-panel-head {
+          line-height: 1.4;
+          display: grid !important;
+          grid-template-columns: auto 30px;
+          color: $white;
+
+          span {
+            display: block;
+          }
+
+          .status-panel-section {
+            display: grid;
+            cursor: pointer;
+
+            .sub-title {
+              font-weight: bold;
+              font-size: 12px;
+            }
+          }
+        }
+
+        .action-buton {
+          text-align: center;
+          color: $white;
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .learner-status-panel-body {
+        padding: 10px;
+        background-color: $light-300;
+        cursor: pointer;
+
+        .proficiency-view {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

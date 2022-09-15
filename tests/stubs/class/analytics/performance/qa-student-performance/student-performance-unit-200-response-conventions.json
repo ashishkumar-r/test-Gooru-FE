@@ -1,0 +1,35 @@
+{
+  "content": [
+    {
+      "userUid": "6f337b1c-0b0d-49b3-8314-e279181aeddf",
+      "usageData": [
+        {
+          "lessonId": "first-lesson-id",
+          "completedCount": 5,
+          "scoreInPercentage": 65,
+          "timeSpent": 89141,
+          "attempts": 12,
+          "totalCount": 10
+        },
+        {
+          "lessonId": "second-lesson-id",
+          "completedCount": 0,
+          "scoreInPercentage": 10,
+          "timeSpent": 32366,
+          "attempts": 4,
+          "totalCount": 0
+        },
+        {
+          "lessonId": "third-lesson-id",
+          "completedCount": 0,
+          "scoreInPercentage": 30,
+          "timeSpent": 32366,
+          "attempts": 4,
+          "totalCount": 0
+        }
+      ]
+    }
+  ],
+  "message": null,
+  "paginate": null
+}

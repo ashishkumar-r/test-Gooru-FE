@@ -1,0 +1,17 @@
+[
+  {
+    "description": "Tenant information",
+    "request": {
+      "url": "^/nile-tenants/(.+)/tenant.json$",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "tenant-200-response.json"
+    }
+  }
+]

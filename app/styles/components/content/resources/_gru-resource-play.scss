@@ -1,0 +1,65 @@
+.controller.content.resources.play {
+  > article > section {
+    iframe {
+      height: 100vh;
+    }
+
+    .header {
+      border-bottom: none;
+      padding: 0;
+
+      i {
+        &.webpage-icon {
+          width: 35px;
+        }
+
+        &.video-icon {
+          width: 35px;
+        }
+
+        &.video-icon {
+          width: 38px;
+        }
+        &.image-icon {
+          width: 36px;
+        }
+        &.text-icon {
+          width: 36px;
+        }
+        &.interactive-icon {
+          width: 40px;
+        }
+      }
+    }
+
+    .panel-footer {
+      margin: 0;
+      text-align: $tab-float-dir;
+      .buttons {
+        padding: 10px;
+        width: 40px;
+      }
+      .resource-icon-btn {
+        width: 40px;
+      }
+    }
+  }
+}
+
+.panel-body {
+  .external-https {
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include justify-content(center);
+    padding: 2em;
+  }
+}
+
+.close-icon {
+  padding: 15px;
+  cursor: pointer;
+  i {
+    font-size: 37px;
+  }
+}

@@ -1,0 +1,17 @@
+.gru-rubric-panel {
+  @media only screen and (max-width: $screen-sm - 1) {
+    width: 100%;
+
+    .rubric-information {
+      .header {
+        .icon {
+          display: none;
+        }
+
+        .separator {
+          display: none;
+        }
+      }
+    }
+  }
+}

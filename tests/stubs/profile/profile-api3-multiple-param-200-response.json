@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "param-123",
+      "first_name": "Student",
+      "last_name": "V",
+      "username": "param",
+      "email": "email@param.com",
+      "gender": "male",
+      "grade": [],
+      "birth_date": "01/01/2000",
+      "user_category": "student",
+      "created_at": "01/01/2000",
+      "updated_at": "01/01/2000",
+      "country_id": null,
+      "country": "CR",
+      "state_id": null,
+      "state": "San Jose",
+      "school_id": null,
+      "school": "Escuela Pochita",
+      "school_district_id": null,
+      "school_district": "school-district",
+      "about_me": "I'm Param",
+      "thumbnail": "",
+      "roster_id": null,
+      "followers": 3,
+      "followings": 2,
+      "isFollowing": false
+    }
+  ]
+}

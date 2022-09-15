@@ -1,0 +1,24 @@
+<div class="grid-view-container">
+  <div class="external-assessment-link">
+    <div class="note">{{t 'report.external-assessment-report.note'}}</div>
+    <div>This external assessment can be accessed <a class="link" target="_blank" href="{{selectedCollection.url}}">here</a></div>
+  </div>
+  <div class="cards-container">
+    {{#each studentReportData as |student|}}
+      <div class="card student">
+          <div class="student-thumbnail" style="background-image:url({{student.avatarUrl}})" />
+          <div class="student-name">
+            <div class="lastname ellipsis">{{student.lastName}},</div>
+            <div class="firstname ellipsis">{{student.firstName}}</div>
+          </div>
+          <div class="student-score">
+            {{#if student.hasStarted}}
+              <span style= {{safe-html (concat "color:" (grade-color student.score))}}>{{student.score}}%</span>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

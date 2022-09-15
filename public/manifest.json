@@ -1,0 +1,14 @@
+{
+    "name": "Gooru Navigator",
+    "icons": [
+      {
+        "src": "homescreen.svg",
+        "sizes": "192x192",
+        "type": "image/png",
+        "density": 4.0
+      }
+    ],
+    "start_url": "/sign-in",
+    "display": "standalone",
+    "orientation": "portrait"
+  }

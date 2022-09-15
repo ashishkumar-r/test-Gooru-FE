@@ -1,0 +1,178 @@
+.summary-report {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("gooru/study-player-kangaroos.png");
+  @media screen and (max-width: $screen-sm - 1) {
+    height: auto;
+  }
+
+  .collection-summary {
+    display: grid;
+    padding: 10px;
+    grid-template-columns: auto 360px;
+    column-gap: 15px;
+    @media screen and (max-width: $screen-sm - 1) {
+      grid-template-columns: auto;
+      width: 100vw;
+    }
+
+    .summary-report-container {
+      height: 100%;
+      background-color: #fff;
+      border-radius: 5px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 100px);
+      @media screen and (max-width: $screen-sm - 1) {
+        width: 100%;
+      }
+
+      .header-panel {
+        .collection-info {
+          height: 56px;
+          display: grid;
+          grid-template-columns: 56px auto 56px 56px;
+
+          .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            &.collection {
+              background-image: url("gooru/images/add_collection.svg");
+            }
+
+            &.assessment {
+              background-image: url("gooru/images/add_assessment.svg");
+            }
+          }
+
+          .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-family: "Montserrat";
+            font-size: 14px;
+            color: $dark-400;
+          }
+
+          .score-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+          }
+
+          .timespent-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .body-panel {
+        box-shadow: 0 -3px 4px rgba(0, 0, 0, 0.2);
+
+        .panal-container {
+          padding: 10px;
+          @media screen and (max-width: $screen-sm - 1) {
+            text-align: center;
+          }
+
+          span {
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .feedback {
+      height: fit-content;
+      margin-bottom: 40px;
+      margin-top: 10px;
+      width: 100%;
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    background: $white;
+    right: 0;
+    z-index: 999;
+    width: 100%;
+    background-color: $white;
+    box-shadow: 0 -1px 4px 0 $navbar-default-toggle-icon-bar-bg;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    @media screen and (max-width: $screen-sm - 1) {
+      height: 50px;
+    }
+
+    .collection-info {
+      height: 40px;
+      display: grid;
+      margin: auto auto auto 0;
+      grid-template-columns: 56px auto;
+
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 25px 25px;
+
+        &.collection {
+          background-image: url("gooru/images/add_collection.svg");
+        }
+
+        &.assessment {
+          background-image: url("gooru/images/add_assessment.svg");
+        }
+      }
+
+      .title-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-family: "Montserrat";
+        font-size: 14px;
+        color: $dark-400;
+      }
+    }
+
+    .close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 88px;
+      height: 25px;
+      border-radius: 20px;
+      margin: auto;
+      background-color: $green-700;
+      color: $white;
+      cursor: pointer;
+      opacity: 1;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+}

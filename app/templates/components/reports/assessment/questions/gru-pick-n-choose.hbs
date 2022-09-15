@@ -1,0 +1,13 @@
+<div class="gru-pick-n-choose-container">
+    <div class="gru-pick-n-choose-panel">
+        <ul class="answer-pick-items">
+          {{#each baseAnswers as | answer index |}}
+             {{#if showCorrect}}
+               <li class="answer-item {{if answer.isCorrect 'correct'}}">{{answer.text}}</li>
+             {{else}}
+               <li class="answer-item {{ answer.userStatus }}">{{answer.text}}</li>
+             {{/if}}
+       {{/each}}
+        </ul>
+    </div>
+</div>

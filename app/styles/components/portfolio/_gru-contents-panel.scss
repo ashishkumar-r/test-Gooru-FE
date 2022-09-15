@@ -1,0 +1,187 @@
+.portfolio.gru-contents-panel {
+  .portfolio-contents-container {
+    position: relative;
+    .header-container {
+      display: grid;
+      grid-template-columns: auto 75px;
+      @media screen and (max-width: 1024px) {
+        grid-template-columns: 222px 75px;
+      }
+      @media screen and (max-width: 320px) {
+        grid-template-columns: 222px 25px;
+      }
+      column-gap: 8px;
+      height: 48px;
+      line-height: 48px;
+      align-content: center;
+      border-bottom: 1px solid;
+      padding: 0 15px;
+      background-color: $header-container;
+      cursor: pointer;
+      .panel-info-container {
+        display: grid;
+        grid-template-columns: auto 1fr 50px;
+        justify-content: left;
+        column-gap: 5px;
+        .icon {
+          width: 25px;
+          height: 48px;
+          background-size: 25px;
+          background-repeat: no-repeat;
+          background-position: center;
+
+          &.assessment,
+          &.diagnostic,
+          &.domain-diagnostic {
+            background-image: url(gooru/images/assessment-white.svg);
+          }
+
+          &.collection {
+            background-image: url(gooru/images/collection-white.svg);
+          }
+
+          &.offline-activity {
+            background-image: url(gooru/images/offline-white.svg);
+          }
+        }
+        .title {
+          color: $white-bold;
+          font-size: 14px;
+          font-weight: bold;
+          margin-right: auto;
+          line-height: initial;
+          align-self: center;
+        }
+      }
+
+      .assessment-external-icons,
+      .collection-external-icons {
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        opacity: 0.8;
+        justify-self: center;
+        background-image: url("gooru/share.png");
+        background-repeat: no-repeat;
+        margin: auto 0 auto auto;
+      }
+
+      .search-items-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-self: right;
+        .filter-search,
+        .toggle-panel {
+          height: 48px;
+          cursor: pointer;
+          transition: transform 1s;
+          i {
+            color: $white;
+            line-height: 55px;
+          }
+        }
+        .input-search {
+          display: grid;
+          grid-template-columns: auto auto;
+        }
+      }
+    }
+    .body-container {
+      padding: 0 15px;
+      background-color: rgb(83, 94, 103);
+      max-height: 325px;
+      overflow-y: auto;
+      display: none;
+
+      .type-level-container {
+        .sub-type-label {
+          color: $white-bold;
+          font-size: 13px;
+          padding-left: 30px;
+          height: 34px;
+          line-height: 34px;
+        }
+      }
+
+      @media screen and (max-width: $screen-360) {
+        padding: 0;
+      }
+
+      .loading-spinner {
+        position: absolute;
+        margin: auto;
+        top: 50%;
+        left: 44%;
+      }
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+
+      .show-more-container {
+        margin: 8px auto;
+        height: 30px;
+        color: #535e67;
+        font-size: 15px;
+        background-color: $white;
+        width: 100px;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+      }
+
+      .no-record {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        color: $white-bold;
+        padding: 5px;
+      }
+    }
+    .portfolio.gru-content-filters {
+      top: 48px;
+    }
+    &.filters-active {
+      .header-container {
+        .search-items-container {
+          .filter-search {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      .body-container {
+        opacity: 0.2;
+      }
+    }
+  }
+
+  &.expanded-panel {
+    .portfolio-contents-container {
+      .body-container {
+        display: block;
+      }
+    }
+  }
+
+  &.lazy-load {
+    .portfolio-contents-container {
+      .body-container {
+        .activities {
+          div.gru-portfolio-content-card:not(:first-child) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

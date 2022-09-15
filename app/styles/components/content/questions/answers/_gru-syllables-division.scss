@@ -1,0 +1,116 @@
+.gru-syllables-division {
+  .gru-syllables-division-container {
+    .gru-syllables-division-answer-item {
+      display: grid;
+      grid-template-columns: 50px 1fr 1fr 40px;
+      align-items: center;
+      column-gap: 10px;
+      margin: 10px 0;
+      box-shadow: 0 0 10px $light-200;
+      height: 90px;
+      padding: 0 10px;
+
+      h3 {
+        margin: 0;
+        border-right: 1px solid $light-200;
+        padding: 10px;
+      }
+
+      .syllables-division-container {
+        font-size: 20px;
+        text-align: center;
+        font-family: monospace;
+        cursor: default;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        b {
+          padding: 0 2px;
+          font-weight: normal;
+          &.selected {
+            position: relative;
+            color: $blue-400;
+            font-weight: bold;
+
+            &::before {
+              content: "";
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              border-bottom: 2px solid $blue-400;
+              position: absolute;
+              left: 30%;
+              top: -10px;
+            }
+          }
+        }
+
+        .serp-hl-text-span {
+          padding: 3px;
+          position: relative;
+          color: $blue-400;
+          text-align: center;
+          height: 40px;
+          display: block;
+
+          b {
+            &:first-child {
+              border-right: 1px solid $blue-400;
+            }
+          }
+
+          &.left-line {
+            b {
+              &:first-child {
+                border-left: 1px solid $blue-400;
+                border-right: none;
+              }
+            }
+          }
+
+          i {
+            position: absolute;
+            top: -6px;
+            right: 0;
+            color: $white;
+            font-size: 12px;
+            border-radius: 20px;
+            background-color: $blue-500;
+            cursor: pointer;
+            user-select: none;
+            -moz-user-select: auto;
+          }
+        }
+
+        &.readonly {
+          b {
+            pointer-events: none;
+          }
+        }
+      }
+      .close-icon {
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+    .gru-add-excercise {
+      margin-top: 20px;
+      span {
+        background-image: linear-gradient(to right, $blue-300, $blue-500);
+        padding: 10px;
+        color: $white;
+        font-weight: bold;
+        box-shadow: 0 0 10px $light-200;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      &.disabled-btn {
+        span {
+          background: $light-200;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}

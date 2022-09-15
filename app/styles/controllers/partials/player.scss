@@ -1,0 +1,98 @@
+.player,
+.context-player,
+.study-player {
+  overflow: hidden;
+
+  .gru-header,
+  .gru-footer {
+    display: none;
+  }
+
+  .app-container {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+    .aside {
+      // temporary for GG-92
+      background: #eeeeee;
+
+      @include translate-hide(-100%);
+      @include position(absolute, 0, null, 0, 0);
+      z-index: 20;
+      width: 260px;
+
+      @media (min-width: $screen-md) {
+        @include translate-show();
+      }
+    }
+
+    &.navigator-on .aside {
+      @include translate-show();
+    }
+  }
+
+  .report-navigation {
+    padding: 10px 15px;
+  }
+  .reports.gru-assessment-report {
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+    float: $menu-float-dir;
+    padding: 10px 15px;
+  }
+
+  &.fullscreen {
+    //Fullscreen mode global styles
+    .gru-study-header,
+    .qz-player-header {
+      display: none;
+    }
+
+    .qz-player {
+      padding: 0;
+      color: $gray-e47 !important;
+
+      .toggle-screen {
+        top: 0;
+      }
+
+      .player {
+        .qz-main {
+          margin: 0;
+          height: 100%;
+
+          .left-panel {
+            display: none !important;
+          }
+
+          iframe {
+            width: 100% !important;
+            height: 100% !important;
+          }
+
+          .right-penal {
+            .resources-info {
+              max-height: 100% !important;
+
+              .qz-viewer {
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .qz-resource-viewer {
+      .qz-youtube-resource {
+        height: 100% !important;
+      }
+    }
+
+    .qz-player-footer {
+      display: none;
+    }
+  }
+}

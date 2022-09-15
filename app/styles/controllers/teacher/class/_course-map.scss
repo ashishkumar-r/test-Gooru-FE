@@ -1,0 +1,635 @@
+.teacher_class_course-map {
+  .classroom-information {
+    max-width: 90%;
+    margin: 0 auto !important;
+    float: none !important;
+  }
+
+  .content {
+    padding-top: 50px;
+  }
+}
+
+.teacher.course-map {
+  max-width: 90%;
+
+  .actions {
+    margin-top: -36px;
+    width: 113px;
+    height: 30px;
+    background-color: $light-100;
+    float: $menu-float-dir;
+
+    button.edit-content {
+      display: inline-block;
+      font-size: $font-size-base;
+      padding: 3px 11px;
+      float: $menu-float-dir;
+
+      i {
+        font-size: $font-size-large;
+        vertical-align: text-top;
+      }
+    }
+  }
+
+  .panel.welcome {
+    height: max-content;
+    border-radius: 5px;
+    line-height: $font-navigator;
+    margin: 0;
+    padding-bottom: 20px;
+    opacity: $opacity-light;
+    font-size: 13px;
+    color: $black-bold;
+
+    .panel-body {
+      padding: 15px 15px 0;
+
+      &.premium-class {
+        .close {
+          font-size: 26px;
+          line-height: 55px;
+        }
+      }
+    }
+
+    .description {
+      display: inline-block;
+      width: 96%;
+      // text-align: justify;
+    }
+
+    .close {
+      display: inline-block;
+      font-size: $font-size-units-icon;
+      font-weight: bold;
+
+      a {
+        color: $dark-100;
+      }
+    }
+  }
+
+  .course-map-container {
+    .student-not-agreed-performance {
+      text-align: center;
+      font-style: italic;
+      font-size: 19px;
+      color: #ff3b30;
+      padding-bottom: 10px;
+    }
+
+    .active-student {
+      background-color: $white;
+      width: 100%;
+      height: 67px;
+      border-radius: 4px;
+      box-shadow: 0 1px 4px $navbar-box-shadow;
+      display: grid;
+      grid-template-columns: max-content auto max-content max-content max-content;
+      margin-top: 15px;
+
+      &.has-back-btn {
+        grid-template-columns: 60px max-content auto max-content max-content max-content;
+
+        .back-btn {
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          i {
+            padding: 5px;
+            font-size: 30px;
+            background-color: $light-100;
+            border-radius: 50%;
+            color: $dark-300;
+          }
+        }
+      }
+
+      .ms-rescope-content-preview {
+        display: flex;
+        align-items: center;
+      }
+
+      .student-thumbnail {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+        border-radius: 50%;
+        margin-left: 12px;
+        margin-top: 10px;
+      }
+
+      .student-name {
+        font-size: 15px;
+        color: $gray-dove;
+        line-height: 67px;
+        margin-left: 12px;
+        text-transform: capitalize;
+        @media screen and (max-width: $screen-360) {
+          line-height: 15px;
+          align-self: center;
+        }
+      }
+
+      .performance-container {
+        .gru-performance-chart {
+          .container-box {
+            height: 67px;
+          }
+        }
+
+        &.not-started {
+          pointer-events: none;
+        }
+      }
+
+      .student-close {
+        margin: 0 12px;
+
+        i {
+          font-size: 30px;
+          opacity: 0.5;
+          color: $dark-600;
+          line-height: 67px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .course-map-body {
+      display: flex;
+
+      &.teacher-cm {
+        .students {
+          margin-top: 0;
+
+          .header {
+            display: flex;
+          }
+        }
+
+        .render-course-map {
+          margin-top: 0;
+          @media only screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+            margin-top: 50px;
+          }
+          .header.title {
+            display: flex;
+          }
+        }
+      }
+
+      .students {
+        min-width: 80px;
+        margin-top: 10px;
+
+        .header {
+          opacity: $opacity-light;
+          font-size: 12px;
+          font-weight: bold;
+          color: $black-bold;
+          text-transform: uppercase;
+          padding: 10px 0;
+          height: 50px;
+          align-items: center;
+          display: none;
+        }
+
+        .students-list {
+          max-width: 61px;
+          min-width: 61px;
+          max-height: calc(100vh - 225px);
+          background-color: $white;
+          transition: 2s;
+          position: absolute;
+          overflow-x: hidden;
+          overflow-y: auto;
+          box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+
+          &::-webkit-scrollbar {
+            height: 6px;
+            width: 8px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: $gray-light;
+            border: 1px solid $gray-light;
+            border-radius: 5px;
+          }
+
+          &:hover {
+            z-index: 9999;
+            box-shadow: 0 5px 5px 0 $box-shadow-bg-color;
+            max-width: 100%;
+
+            .list {
+              &.active {
+                .student-name {
+                  color: $blue-400;
+                }
+              }
+
+              .student-name {
+                display: block;
+              }
+            }
+          }
+
+          .teacher {
+            .thumbnail {
+              background-color: $nobel-gray;
+              border: none;
+            }
+          }
+
+          .list {
+            display: flex;
+            cursor: pointer;
+            width: max-content;
+            margin-left: 16px;
+
+            .thumbnail {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              background-size: contain;
+              margin: 6px 0;
+            }
+
+            .student-name {
+              display: none;
+              margin-left: 40px;
+              margin-top: 7px;
+              padding-right: 10px;
+              font-size: 15px;
+              text-transform: capitalize;
+
+              &:hover {
+                color: $blue-400;
+              }
+            }
+
+            &.active {
+              .thumbnail {
+                border: 3px solid $blue-400;
+              }
+            }
+          }
+        }
+      }
+
+      .render-course-map {
+        width: 98%;
+        margin: 10px 20px auto;
+
+        .header.title {
+          opacity: $opacity-light;
+          font-size: 12px;
+          font-weight: bold;
+          color: $black-bold;
+          text-transform: uppercase;
+          padding: 10px 0;
+          height: 50px;
+          align-items: center;
+          display: none;
+        }
+
+        .ms-cm-view-switcher-ctn {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          align-items: center;
+          height: 50px;
+          border-radius: 4px;
+          margin-bottom: 5px;
+          background-color: $white;
+          box-shadow: 0 0 13px 0 $disabled-color;
+          line-height: 1.4;
+
+          .current-class-view {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 10px;
+
+            .class-selector {
+              position: relative;
+              top: -5px;
+              @media screen and (max-width: $screen-sm) {
+                position: static;
+              }
+
+              .selected-class-name {
+                display: grid;
+                grid-template-columns: auto auto;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                span {
+                  line-height: 1;
+
+                  &.active-class-text {
+                    padding-left: 10px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                  }
+                }
+              }
+
+              .class-list-container {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                z-index: 3;
+                background: $white;
+                border: 1px solid $gray-80;
+                display: none;
+
+                .back-drop {
+                  position: fixed;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                  width: 100%;
+                  z-index: -1;
+                  background-color: $table-bg;
+                }
+
+                .class-name {
+                  padding: 10px;
+                  cursor: pointer;
+                  text-align: left;
+
+                  &.active-class {
+                    background-color: $light-100;
+                    pointer-events: none;
+                  }
+                }
+              }
+            }
+          }
+
+          .ms-cm-view-lesson-plan {
+            padding-right: 10px;
+            text-align: right;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            align-items: center;
+            color: $font-sky-400-blue-dark;
+            cursor: pointer;
+          }
+
+          .view-switcher {
+            padding-left: 10px;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: $font-sky-400-blue-dark;
+            cursor: pointer;
+            font-weight: bold;
+          }
+
+          .premium-no-milestone {
+            padding-left: 10px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+          }
+
+          &.switch-not-show-lesson-plan {
+            .view-switcher {
+              text-align: right;
+              padding-right: 10px;
+            }
+
+            .show-title-head {
+              text-align: left;
+              padding-left: 10px;
+              font-size: 14px;
+              font-weight: bold;
+            }
+          }
+        }
+
+        .routesuggestion-coursemap {
+          margin-bottom: 15px;
+          box-shadow: 0 0 4px 2px $sun-color;
+
+          .gru-accordion-course {
+            padding: 0;
+          }
+        }
+
+        .teacher-coursemap {
+          .gru-accordion-course {
+            padding: 0;
+
+            .gru-accordion-lesson {
+              .panel-body {
+                .collections {
+                  li {
+                    margin-bottom: 10px;
+
+                    .performance.chart {
+                      width: 77px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .student-coursemap {
+          .routesuggestion-coursemap {
+            .container-desktop {
+              .route-suggestions-container {
+                background-color: $white;
+              }
+            }
+          }
+
+          .student-milestone-not-ready {
+            font-size: 18px;
+            line-height: 1.2;
+            border-radius: 4px;
+            background: $white;
+            padding: 15px;
+            box-shadow: $disabled-color 0 0 11px;
+          }
+
+          .student-class-milestone-course-map {
+            .milestone-course-map-container {
+              .ms-rescope-content-preview {
+                display: none;
+              }
+            }
+          }
+
+          .gru-learner-accordion-unit {
+            background-color: $white;
+
+            .gru-learner-accordion-lesson {
+              .panel-heading {
+                .panel-title {
+                  width: 69% !important;
+                }
+              }
+
+              .panel-body {
+                .collections {
+                  .panel-heading {
+                    .panel-title {
+                      display: flex;
+
+                      a .ellipsis {
+                        height: 60px;
+                        line-height: 60px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &.sm-course-map {
+          width: 67%;
+          margin: 0 10px auto;
+
+          .gru-accordion .panel-heading .panel-title {
+            width: 53% !important;
+          }
+
+          .gru-accordion-lesson
+            .collections
+            .panel-heading
+            .panel-title
+            .title {
+            width: 73%;
+          }
+        }
+      }
+
+      .items-to-grade {
+        width: 331px;
+
+        .header {
+          opacity: $opacity-light;
+          font-size: 12px;
+          font-weight: bold;
+          color: $black-bold;
+          text-transform: uppercase;
+          padding: 10px 0;
+          height: 50px;
+          align-items: center;
+          display: flex;
+        }
+
+        .no-grade-items {
+          width: 311px;
+          height: 178px;
+          display: grid;
+          justify-content: center;
+          align-items: center;
+          background-color: $white;
+          box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+          grid-template-rows: 125px 40px;
+
+          i {
+            background-repeat: no-repeat;
+            width: 258px;
+            display: block;
+            height: 54px;
+            background-image: url("gooru/images/group.svg");
+          }
+
+          span {
+            font-size: 13px;
+            color: $font-grey-light-dark-400;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .gru-accordion {
+    .panel-heading {
+      padding: 0;
+      margin: 0;
+      background-color: $white;
+      height: 67px;
+
+      .panel-title {
+        width: calc(59% - 100px) !important;
+      }
+
+      .gru-switch {
+        .toggle.btn {
+          width: 40px !important;
+          height: 20px !important;
+          border-radius: 20px;
+
+          .toggle-group {
+            .toggle-handle,
+            .toggle-off,
+            .toggle-on {
+              border-radius: 20px;
+            }
+
+            .toggle-on {
+              left: -16px;
+              top: -1px;
+              font-style: italic;
+              font-size: $font-size-xxsmall;
+              line-height: 4px !important;
+            }
+
+            .toggle-off {
+              left: 31px;
+              top: -1px;
+              font-style: italic;
+              font-size: $font-size-xxsmall;
+              line-height: 4px !important;
+            }
+
+            .toggle-handle {
+              top: -5px;
+              left: -2px;
+            }
+          }
+
+          &.off {
+            .toggle-group {
+              .toggle-handle {
+                left: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .gru-accordion-lesson {
+      height: 67px;
+
+      &.expanded {
+        height: auto;
+      }
+    }
+  }
+}
+
+.go-live-panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+}

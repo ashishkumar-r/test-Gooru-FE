@@ -1,0 +1,205 @@
+.gru-student-class-current-card {
+  .gru-student-class-current-card-container {
+    .gru-student-class-current-panel {
+      background-color: $white;
+      width: 325px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      display: block;
+      text-decoration: none;
+      border-radius: 5px;
+
+      @media screen and (max-width: 600px) {
+        width: 300px;
+        margin: 0;
+      }
+
+      .student-class-current-head {
+        padding: 10px;
+        height: 60px;
+
+        span {
+          display: block;
+          line-height: 1.4;
+          &.class-name {
+            color: $blue-light;
+            font-weight: bold;
+          }
+          &.class-title {
+            font-size: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 210px;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+      .card-image-back {
+        height: 210px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+
+        &::before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 210px;
+          top: 0;
+          left: 0;
+          background-color: $navigation-box-shadow;
+        }
+
+        @media screen and (max-width: 500px) {
+          height: 200px;
+          &::before {
+            height: 200px;
+          }
+        }
+      }
+      .student-class-analytic-section {
+        padding: 5.5px;
+        .score-card {
+          display: grid;
+          grid-template-columns: 30px 1fr auto;
+          align-items: center;
+          padding: 1px 0;
+
+          .score {
+            font-weight: bold;
+            text-align: right;
+          }
+
+          i {
+            font-size: 20px;
+          }
+
+          &.performance {
+            color: $orange-400;
+          }
+          &.time-spent {
+            color: $green-light;
+          }
+          &.lesssons {
+            color: $blue-light;
+          }
+        }
+      }
+      .current-class-footer-section {
+        box-shadow: 0 -3px 5px $light-200;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        padding: 5px 10px;
+        font-weight: bold;
+      }
+
+      .halfCircleBottom {
+        height: 40px;
+        width: 80px;
+        border-radius: 0 0 90px 90px;
+        background: #ffffff;
+        margin-left: 70%;
+        z-index: 1;
+        opacity: 0.9;
+        text-align: center;
+        font-size: large;
+      }
+
+      .compentency-popup {
+        padding: 10px;
+        border: 1px solid $student-icon;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        position: absolute;
+        background-color: $white;
+        margin-left: 104px;
+        margin-right: 17px;
+        line-height: 1.5;
+        margin-top: 5px;
+      }
+
+      div.compentency-popup a.view-skyline {
+        color: $blue-light;
+        text-decoration: underline;
+      }
+
+      .progress-icon {
+        margin-left: 1px;
+        width: 16px;
+        height: 16px;
+        background-size: 16px 16px;
+        background-repeat: no-repeat;
+        display: block;
+        background-image: url("/assets/gooru/images/noun-flag.png");
+      }
+
+      .preview-btn {
+        padding: 5px 20px;
+        background-color: $green-50;
+        color: $white;
+        border-radius: 20px;
+        font-weight: bold;
+        width: max-content;
+      }
+
+      .expand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        cursor: pointer;
+        .expand-icon {
+          width: 40px;
+          height: 8px;
+          border-radius: 4px;
+          background-color: $light-400;
+        }
+      }
+
+      .assessment-icon {
+        text-align: center;
+      }
+      i {
+        margin: 0 2px 0 0;
+        width: 22px;
+        height: 17px;
+        vertical-align: top;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+
+        &.collection {
+          background-image: url("gooru/images/navigation_collection.svg");
+          margin-top: 4px;
+        }
+
+        &.assessment {
+          background-image: url("gooru/images/navigation_assessment.svg");
+          margin-top: 4px;
+        }
+      }
+
+      .student-landing {
+        justify-content: center;
+        display: flex;
+        background-color: white;
+      }
+
+      .header-text-img {
+        display: grid !important;
+        grid-template-columns: auto 35px 30px;
+      }
+
+      .header-text {
+        margin-top: 4px;
+      }
+
+      .showHelpIcon {
+        padding-bottom: 20px;
+      }
+    }
+  }
+}

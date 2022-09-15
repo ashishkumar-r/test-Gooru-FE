@@ -1,0 +1,71 @@
+<div class="card-panel-container">
+  <div class="card-panel-header" style="background-image: url({{collection.thumbnailUrl}})">
+    <div class="info">
+      <div class="title">{{collection.title}}</div>
+    </div>
+    {{#if isMediumScreen}}
+      <div class="collection-standards">
+        {{#if tags.length}}
+          {{taxonomy.gru-taxonomy-tag-list tags=tags tagsVisible=1  showDescription=true tagPopoverDefaultPosition='top'}}
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="content-count-container">
+    {{#if (eq contentType 'collection') }}
+      <div class="resource" title="{{t 'common.resource'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+        <i class="icon"></i>
+        <span>{{collection.resourceCount}}</span>
+      </div>
+    {{/if}}
+    {{#if ( or (eq contentType 'collection') (eq contentType 'assessment')) }}
+      <div class="question" title="{{t 'common.question'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+        <i class="icon"></i>
+        <span>{{collection.questionCount}}</span>
+      </div>
+    {{/if}}
+    {{#if (eq contentType 'offline-activity') }}
+      <div class="task" title="{{t 'task'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+        <i class="icon"></i>
+        <span>{{collection.taskCount}}</span>
+      </div>
+    {{/if}}
+  </div>
+  <div class="collection-info-container">
+    <div class="collection-user-info">
+      <div class="created-by">{{t "common.created-by"}}</div>
+      <div class="img-container pull-left">
+        <img class="img-responsive" src="{{collection.owner.avatarUrl}}" alt="owner avatar">
+      </div>
+      <div class="username">{{collection.owner.displayName}}</div>
+    </div>
+    <div class="collection-description">
+      {{safe-html collection.learningObjectives}}
+    </div>
+    <div class="collection-standards">
+      {{#if tags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=1  showDescription=true tagPopoverDefaultPosition='top'}}
+      {{/if}}
+    </div>
+
+  </div>
+  <div class="card-panel-footer {{if isInstructionalCoache 'disabled'}}">
+    <div class="buttons-container {{if showSuggestionBtn 'has-suggestion'}}">
+      <div class="play-btn" title="Play" data-toggle="tooltip" data-placement="bottom" onclick={{action "onPlayCollection" collection}} onkeypress={{action "onPlayCollection" collection}} tabindex={{tabindex}}>
+        {{gru-icon name="ic_play_arrow"}}
+      </div>
+      {{#if showSuggestionBtn}}
+        <div class="dca-suggested-content {{if collection.isSuggested 'has-suggested'}}" title="{{t 'common.suggest-to-student'}}" data-toggle="tooltip" data-placement="bottom" onclick={{action "onSuggestContent" collection}} onkeypress={{action "onSuggestContent" collection}} tabindex={{tabindex}}>
+          {{gru-icon name="explore"}}
+        </div>
+      {{/if}}
+      <div class="schedule-dca-content ca-datepicker-popover {{if collection.isScheduled 'has-scheduled'}}" title="{{t 'teacher-landing.schedule-for-later'}}" data-toggle="tooltip" data-placement="bottom"
+        onclick={{action 'onScheduleContentToDCA' collection}} onkeypress={{action 'onScheduleContentToDCA' collection}} tabindex={{tabindex}}>
+        {{gru-icon name="update"}}
+      </div>
+      <div class="dca-add-btn {{if collection.isAdded 'added'}}" title="{{t 'add.to.todays.class'}}" data-toggle="tooltip" data-placement="bottom" onclick={{action "onAddCollectionToDCA" collection}} onkeypress={{action "onAddCollectionToDCA" collection}} tabindex={{tabindex}}>
+        {{gru-icon name="add"}} {{gru-icon name="done"}}
+      </div>
+    </div>
+  </div>
+</div>

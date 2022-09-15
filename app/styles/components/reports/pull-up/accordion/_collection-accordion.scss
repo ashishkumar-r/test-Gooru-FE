@@ -1,0 +1,173 @@
+.collection-accordion {
+  .collection-content {
+    @media screen and (max-width: $screen-568) {
+      margin-left: 0;
+    }
+    margin-left: 15px;
+    .collection-header {
+      margin-top: 15px;
+      display: flex;
+      .assessment {
+        margin: 7px 15px 0 0;
+        i {
+          background: url("gooru/images/assessment-gray.svg");
+          width: 20px;
+          height: 15px;
+          object-fit: contain;
+          display: block;
+        }
+      }
+      .collection {
+        margin: 7px 15px 0 0;
+        i {
+          background: url("gooru/images/collection_gray.svg");
+          width: 20px;
+          height: 15px;
+          object-fit: contain;
+          display: block;
+        }
+      }
+      .collection-info {
+        border-bottom: 1px solid $dark-50;
+        padding-bottom: 8px;
+        width: 98%;
+        display: flex;
+        .title {
+          .clickable {
+            display: flex;
+            width: 100%;
+          }
+
+          width: 77%;
+          font-size: 15px;
+          color: $dark-800;
+          display: flex;
+        }
+        .collection-status {
+          width: calc(100% - 78.2%);
+          display: flex;
+          .score,
+          .time {
+            width: 50%;
+            text-align: center;
+          }
+          .time {
+            font-size: 15px;
+            color: $dark-800;
+          }
+        }
+      }
+    }
+    .collection-body {
+      .resource-content {
+        .resource-header {
+          > div {
+            margin-top: 4px;
+          }
+          margin-left: 30px;
+          display: flex;
+          .resource-info {
+            border-bottom: 1px solid $dark-50;
+            padding-bottom: 8px;
+            margin-top: 7px;
+            width: 100%;
+            display: flex;
+          }
+          .title {
+            font-size: 15px;
+            color: $dark-800;
+            padding-left: 7px;
+            display: flex;
+            width: 57%;
+          }
+          .resource-report {
+            width: calc(100% - 57%);
+            padding-left: 85px;
+            display: flex;
+            .answer {
+              margin-top: 7px;
+              padding-left: 39px;
+              .correct {
+                i {
+                  background: url("../assets/images/tick-green.svg");
+                  width: 21px;
+                  height: 20px;
+                  object-fit: contain;
+                  display: block;
+                  margin-left: -4px;
+                }
+              }
+              .wrong {
+                i {
+                  background: url("../assets/images/wrong-answer.svg") no-repeat;
+                  width: 21px;
+                  height: 20px;
+                  object-fit: contain;
+                  display: block;
+                }
+              }
+            }
+            .answer,
+            .time {
+              width: 50%;
+              text-align: center;
+            }
+            .time {
+              font-size: 15px;
+              color: $dark-800;
+              text-transform: lowercase;
+            }
+          }
+          %content-icon-size {
+            -webkit-background-size: 20px 20px;
+            background-size: 20px 20px !important;
+            height: 20px;
+            width: 20px;
+            display: block;
+            margin: 7px 30px 0 10px;
+          }
+          .video i {
+            background: url("../assets/images/video-resource-green.svg");
+            @extend %content-icon-size;
+          }
+          .webpage i {
+            background: url("../assets/images/website-resource-green.svg");
+            @extend %content-icon-size;
+          }
+          .interactive i {
+            background: url("../assets/images/interactive-resource-green.svg");
+            @extend %content-icon-size;
+          }
+          .text i {
+            background: url("../assets/images/text-resource-green.svg");
+            @extend %content-icon-size;
+          }
+          .audio i {
+            background: url("../assets/images/audio-resource-green.svg");
+            @extend %content-icon-size;
+          }
+          .image i {
+            background: url("../assets/images/image-resource-green.svg");
+            @extend %content-icon-size;
+          }
+          .question i {
+            background: url("../assets/images/question-resource-green.svg");
+            @extend %content-icon-size;
+          }
+        }
+      }
+      .not-found {
+        font-size: 14px;
+        margin-left: 43%;
+        padding: 10px;
+        font-weight: bold;
+      }
+    }
+  }
+  &.expanded .collection-body {
+    display: block;
+  }
+  &.collapsed .collection-body {
+    display: none;
+  }
+}

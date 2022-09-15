@@ -1,0 +1,92 @@
+<div class="gru-student-class-current-card-container">
+  <a class="gru-student-class-current-panel" href="javascript:void(0)"  aria-label="select class">
+
+      <div class="student-class-current-head">
+
+        <div class="header-text-img">
+          <div class="header-text" onclick={{action "onGoDashboardPage"}} onkeypress={{action 'onGoDashboardPage'}} tabindex="3">
+            {{#if (and (not-eq classData.owner.fullName null) (not-eq classData.owner.fullName 'null, null'))}} 
+            <span class="class-name">{{classData.owner.fullName}}</span>
+            {{/if}}
+            <span class="class-title" title= {{classData.title}} data-toggle="tooltip">{{classData.title}}</span>
+          </div>
+          <div class="header-img" onclick={{action "onGoDashboardPage"}} onkeypress={{action 'onGoDashboardPage'}} tabindex="3">
+            <img width="32" src="/assets/gooru/class-card.png">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-image-back" style="background-image:url({{thumbnailUrl}})" onclick={{action "onGoDashboardPage"}} onkeypress={{action 'onGoDashboardPage'}} tabindex="3">
+         <div class="halfCircleBottom" onclick={{action 'showCompentency' classData.id}} onkeypress={{action 'showCompentency' classData.id}}>
+         <div role="tab" aria-label="completion score" class="completion-score {{if classData.competencyStats 'has-competency-stats'}}" {{action 'selectItem' 'profile-prof'}}>
+            {{#if classData.competencyStats}}
+              <span>{{classData.competencyStats.completedCompetencies}}</span>
+            {{else}}
+              <span>0</span>
+            {{/if}}
+          </div>
+      </div>
+      {{#if (and toggleBox (eq classData.id selectedClassId))}}
+      <div class="compentency-popup"> {{t 'student-landing.class.mastered'}} <b>{{#if classData.competencyStats.completedCompetencies}} <span>{{classData.competencyStats.completedCompetencies}}</span> {{else}} <span> 0 </span>{{/if}}</b> {{t 'student-landing.class.class-compentency'}}<br />
+      <a class="view-skyline" href="javascript:void(0)" onclick={{action 'onProficiencyPage'}}>{{t 'student-landing.class.view-skyline'}}</a></div>
+      {{/if}}
+      </div>
+
+      {{#if classData.course}}
+
+      {{#if classData.currentLocation}}
+
+      <div class="student-class-analytic-section" onclick={{action "onGoDashboardPage"}} onkeypress={{action 'onGoDashboardPage'}} tabindex="3">
+      <div class="score-card performance">
+      {{gru-icon name="done_all"}}
+      <span class="title">{{t 'student-landing.class.performance'}}</span>
+      <span class="score">{{if performanceScore (concat performanceScore '%') '--'}}</span>
+      </div>
+      <div class="score-card time-spent">
+      {{gru-icon name="schedule"}}
+      <span class="title">{{t 'student-dashboard.timespent'}}</span>
+      <span class="score">{{if timespent (format-time timespent) '--'}}</span>
+      </div>
+      <div class="score-card lesssons">
+      <div class="progress-icon"></div>
+      <span class="title">{{t 'student-home.lessons-progress'}}</span>
+      <span class="score">{{round-number lessonProgress}} %</span>
+      </div>
+      </div>
+
+      {{else}}
+
+      <br><div class="student-landing">
+      <br><a href="javascript:void(0)" onclick={{action "playCollection"}} onkeypress={{action 'playCollection'}} tabindex="3" class="preview-btn expand" aria-label="preview">{{t 'student-landing.start-studying'}}</a>
+      </div><br>
+      {{/if}}
+
+      {{else}}
+
+      <div class="student-class-analytic-section" onclick={{action "onGoDashboardPage"}} onkeypress={{action 'onGoDashboardPage'}} tabindex="3">
+      <div class="score-card performance">
+      {{gru-icon name="done_all"}}
+      <span class="title">{{t 'student-landing.class.performance'}}</span>
+      <span class="score">{{if performanceScore (concat performanceScore '%') '--'}}</span>
+      </div>
+      <div class="score-card time-spent">
+      {{gru-icon name="schedule"}}
+      <span class="title">{{t 'student-dashboard.timespent'}}</span>
+      <span class="score">{{if timespent (format-time timespent) '--'}}</span>
+      </div>
+      <div class="score-card lesssons">
+      <div class="progress-icon"></div>
+      <span class="title">{{t 'student-home.lessons-progress'}}</span>
+      <span class="score">{{round-number lessonProgress}} %</span>
+      </div>
+      </div>
+
+      {{/if}}
+
+      <div class="current-class-footer-section">
+          <span class="title">{{t 'student-landing.class-code'}}</span>
+          <span class="code">{{classData.code}}</span>
+      </div>
+  </a>
+</div>

@@ -1,0 +1,40 @@
+<div class="student-performance-data-container">
+  {{#if isAsessmentAddData}}
+    {{#if (and (not selectedOption) allowI2D)}}
+      {{reports/pull-up/activity/add-performance-data-choice
+        assessment=collection
+        errorOnConversion=errorOnConversion
+        onSelectOption="onSelectOption"
+        tabindex=tabindex
+      }}
+    {{else}}
+      {{component (concat 'reports.pull-up.activity.assessment-performance-data-by-' selectedOption)
+        course=course
+        activityData=activityData
+        classId=classId
+        assessment=collection
+        classCode=classCode
+        selectedFiles=uploadedFiles
+        imageUploadContext=imageUploadContext
+        students=students
+        showToggle=showToggle
+        showScoreReview=showScoreReview
+        onClosePullUp="onClosePullUp"
+        tabindex=tabindex
+      }}
+    {{/if}}
+  {{else}}
+    {{reports/pull-up/activity/collection-performance-data
+      course=course
+      activityData=activityData
+      classId=classId
+      collection=collection
+      students=students
+      onClosePullUp="onClosePullUp"
+      tabindex=tabindex
+    }}
+  {{/if}}
+</div>
+<div class="loading-spinner {{if isLoading 'active'}}">
+  {{three-bounce-spinner}}
+</div>

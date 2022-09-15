@@ -1,0 +1,9 @@
+{{#if showPullUpEx}}
+    <div class="overlay" {{action 'onPullUpClose'}}></div>
+{{/if}}
+<div class="pull-out-ex">
+    <span class="pull-close" onclick={{action 'onPullUpClose'}} onkeypress={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+        {{gru-icon name='clear'}}
+    </span>
+    {{yield header}}
+</div>

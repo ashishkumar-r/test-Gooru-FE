@@ -1,0 +1,240 @@
+<div class="controller student class class-activities">
+  <div class="loading-spinner {{if isLoading 'active'}}">
+    {{three-bounce-spinner}}
+  </div>
+  <div class="activity-date-range-selector hidden-xs">
+    <div class="date-section" onclick={{action "toggleDatePicker"}} onkeypress={{action "toggleDatePicker"}} tabindex="2">
+      <span class="schedule-date">
+        <span>{{format-date startDate 'DD MMM YYYY'}}</span>
+        <span class="{{if (not endDate) 'hidden'}}"> - {{format-date endDate 'DD MMM YYYY'}}
+        </span>
+      </span>
+    </div>
+    <div class="date-range-picker-container">
+      <div class="date-range-selector">
+        <span tabindex="2" class="{{if isDaily 'active'}}" onclick={{action "onSelectRangeType" 'daily'}} onkeypress={{action "onSelectRangeType" 'daily'}}>{{t 'common.daily'}}</span>
+        <span tabindex="2" class="{{if isWeekly 'active'}}" onclick={{action "onSelectRangeType" 'weekly'}} onkeypress={{action "onSelectRangeType" 'weekly'}}>{{t 'common.weekly'}}</span>
+        <span tabindex="2" class="{{if isMonthly 'active'}}" onclick={{action "onSelectRangeType" 'monthly'}} onkeypress={{action "onSelectRangeType" 'monthly'}}>{{t 'common.monthly'}}</span>
+      </div>
+      {{#if isDaily}}
+        {{ca-date-picker
+          showToday=true
+          forMonth=forMonth
+          allowDateSelectorToggle=false
+          forYear=forYear
+          showPreviousMonth="showPreviousMonth"
+          showNextMonth="showNextMonth"
+          onSelectDate="onSelectDate"
+          highlightFirstDayOfMonth=false
+          onSelectToday="onSelectToday"
+          activities=scheduledClassActivitiesDatewise
+          highlightActivities=true
+          tabindex=2
+        }}
+      {{else if isWeekly}}
+        {{ca-week-picker
+          forMonth=forMonth
+          forYear=forYear
+          onSelectWeek="onSelectWeek"
+          showPreviousMonth="showPreviousMonth"
+          showNextMonth="showNextMonth"
+          selectedWeekDate=selectedWeekDate
+          activities=scheduledClassActivitiesDatewise
+          highlightActivities=true
+          tabindex=3
+          }}
+      {{else}}
+        {{ca-month-picker
+          forMonth=forMonth
+          forYear=forYear
+          showCalendarView=true
+          onSelectMonth="onSelectMonth"
+          selectedMonth=selectedMonth
+          tabindex=4
+        }}
+      {{/if}}
+    </div>
+  </div>
+  <div class="ca-container">
+    <div class="header-container">
+      <div role="tablist" class="activity-tab">
+        <div role="tab" class="schedule-icon {{unless showItemsToGrade 'active'}}" onclick={{action "onShowClassActivities"}} onkeypress={{action "onShowClassActivities"}} aria-label="Class Activities" tabIndex="5">
+          <span>{{t 'class-activity.scheduled-activities'}}</span>
+          {{gru-icon name="event"}}
+        </div>
+        <div role="tab" class="items-to-grade-selector {{if showItemsToGrade 'active'}}" onclick={{action "onShowItemsToGrade"}} onkeypress={{action "onShowItemsToGrade"}} aria-label="Items to Grade" tabIndex="6">
+          <span>{{t 'class-activity.items-to-grade'}} ({{itemsToGrade.length}})</span>
+          <i class="grading-icon"></i>
+        </div>
+      </div>
+      {{#unless showItemsToGrade}}
+        <div class="filters visible-xs">
+          <div class="activity-date-range-selector">
+            {{#if isActive}}
+              <div class="backdrop" onclick={{action 'toggleDatePicker'}} onkeypress={{action 'toggleDatePicker'}} tabindex="2"></div>
+            {{/if}}
+            <div class="date-section" onclick={{action "toggleDatePicker"}} onkeypress={{action "toggleDatePicker"}} tabindex="2">
+              <span class="schedule-date"><span>{{format-date startDate 'DD MMM YYYY'}}</span><span class="{{if isDaily 'hidden'}}"> - {{format-date endDate 'DD MMM YYYY'}}</span></span>
+              <span class="dropdown-icon">{{gru-icon name="arrow_drop_down"}}</span>
+            </div>
+            <div class="date-range-picker-container {{if isActive 'open'}}">
+              <div class="date-range-selector">
+                <span class="{{if isDaily 'active'}}" onclick={{action "onSelectRangeType" 'daily'}} onkeypress={{action "onSelectRangeType" 'daily'}} tabindex="2">Daily</span>
+                <span class="{{if isWeekly 'active'}}" onclick={{action "onSelectRangeType" 'weekly'}} onkeypress={{action "onSelectRangeType" 'weekly'}} tabindex="2">Weekly</span>
+                <span class="{{if isMonthly 'active'}}" onclick={{action "onSelectRangeType" 'monthly'}} onkeypress={{action "onSelectRangeType" 'monthly'}} tabindex="2">Monthly</span>
+              </div>
+              {{#if isDaily}}
+                {{ca-date-picker
+                  showToday=true
+                  forMonth=forMonth
+                  allowDateSelectorToggle=false
+                  forYear=forYear
+                  showPreviousMonth="showPreviousMonth"
+                  showNextMonth="showNextMonth"
+                  onSelectDate="onSelectDate"
+                  highlightFirstDayOfMonth=false
+                  onSelectToday="onSelectToday"
+                  activities=scheduledClassActivitiesDatewise
+                  highlightActivities=true
+                  tabindex=2
+                }}
+              {{else if isWeekly}}
+                {{ca-week-picker
+                  forMonth=forMonth
+                  forYear=forYear
+                  onSelectWeek="onSelectWeek"
+                  showPreviousMonth="showPreviousMonth"
+                  showNextMonth="showNextMonth"
+                  selectedWeekDate=selectedWeekDate
+                  activities=scheduledClassActivitiesDatewise
+                  highlightActivities=true
+                  tabindex=3
+                  }}
+              {{else}}
+                {{ca-month-picker
+                  forMonth=forMonth
+                  forYear=forYear
+                  showCalendarView=true
+                  onSelectMonth="onSelectMonth"
+                  selectedMonth=selectedMonth
+                  tabindex=3
+                }}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      {{/unless}}
+    </div>
+    {{#if showItemsToGrade}}
+      {{#if itemsToGrade}}
+        <div class="items-to-grade-list">
+          {{gru-grade-items
+            openReportGrade='onOpenReportGrade'
+            gradeableItems=itemsToGrade
+            tabindex=2}}
+        </div>
+      {{else}}
+        <div class="no-rubric-content">
+          {{t 'common.all-caught-up'}}
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="dca-content-list-container {{if isToday 'dca-content-list-container-today'}}">
+        {{#each scheduledActivitiesList as |scheduledActivity|}}
+          <div class="added-date {{if (not endDate) 'hidden'}}">{{format-date scheduledActivity.added_date 'DD MMM YYYY'}}
+            {{if (eq scheduleDateBefore scheduledActivity.added_date) (concat ' - ' (format-date endDate 'DD MMM YYYY'))}}
+            <hr />
+          </div>
+          {{#each scheduledActivity.scheduledActivities as |activity|}}
+            {{class/gru-student-class-activity-panel
+             class=class
+             classActivity=activity
+             studentDcaReport='studentDcaReport'
+             onShowSuggestion="onShowSuggestion"
+             activityDate=activity.added_date
+             playContent="playContent"
+             isDefaultGrade=isDefaultGrade
+             tabIndex=7
+            }}
+          {{/each}}
+        {{else if (not isLoading)}}
+          <p class="no-content">{{t 'ca.student.no-content'}}</p>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+{{#if showStudentDcaReport}}
+  {{reports/pull-up/dca-student-collection-report
+    showPullUp=showStudentDcaReport
+    reportData=studentReportContextData
+    isStudent=true
+    useSession=useSession
+    isSuggestedCollection=isSuggestedCollection
+    onClosePullUp="onClosePullUp"
+    tabIndex=2
+    isClassActivityPage = true
+    isDefaultGrade=isDefaultGrade
+    classFramework = classFramework
+    isDefaultShowFW = isDefaultShowFW
+  }}
+{{/if}}
+
+{{#if isShowStudentExternalCollectionReport}}
+  {{reports/pull-up/dca-student-external-collection-report
+    showPullUp=isShowStudentExternalCollectionReport
+    reportData=studentReportContextData
+    isStudent=true
+    onClosePullUp="onClosePullUp"
+    tabindex="2"
+  }}
+{{/if}}
+
+{{#if isShowStudentExternalAssessmentReport}}
+  {{reports/pull-up/dca-student-external-assessment-report
+    reportData=studentReportContextData
+    showPullUp=isShowStudentExternalAssessmentReport
+    isStudent=true
+    onClosePullUp="onClosePullUp"
+    tabindex="2"
+  }}
+{{/if}}
+
+{{#if isShowOfflineActivityReport}}
+  {{reports/pull-up/oa-preview
+    showPullUp=isShowOfflineActivityReport
+    oaId=studentReportContextData.collection.id
+    classActivity=studentReportContextData.classActivity
+    isReportView=true
+    classId=classId
+    users=studentReportContextData.users
+    tabindex="2"
+  }}
+{{/if}}
+
+{{#if showOAGrade}}
+  {{activity/offline/grading-report
+    showPullUp=showOAGrade
+    context=itemToGradeContextData
+    itemsToGrade=itemsToGrade
+    isTeacher=false
+    studentId=studentId
+    tabindex="2"
+  }}
+{{/if}}
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}
+{{#if isShowStudyTimerWidget}}
+{{gru-study-timer
+    studentTimespentData = studentTimespentData
+    tabindex=8
+}}
+{{/if}}

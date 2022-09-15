@@ -1,0 +1,19 @@
+[
+  {
+    "description": "Fetch notifications",
+    "request": {
+      "url": "^/api/notifications/v1/",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{}"
+    }
+  }
+]

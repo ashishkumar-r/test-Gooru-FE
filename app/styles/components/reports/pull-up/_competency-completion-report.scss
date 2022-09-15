@@ -1,0 +1,422 @@
+.pull-up.competency-completion-report {
+  background: $white;
+  position: fixed;
+  top: 100%;
+  z-index: 1000;
+  width: 50vw;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  %scroll-style {
+    &::-webkit-scrollbar {
+      height: 6px;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $gray-light;
+      border: 1px solid $gray-light;
+      border-radius: 5px;
+    }
+  }
+
+  .competency-completion-report-container {
+    background: $white;
+    box-shadow: 0 0 4px 0 $navbar-box-shadow;
+    border-radius: 4px;
+    .competencies-list-container {
+      margin: 0 8px;
+      .title-container {
+        height: 40px;
+        font-size: 15px;
+        font-weight: bold;
+        color: $dark-400;
+        text-transform: uppercase;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        justify-content: left;
+        column-gap: 8px;
+        border-bottom: 1px solid $dark-400;
+        .close-pullup {
+          cursor: pointer;
+          i {
+            line-height: 40px;
+          }
+        }
+      }
+      .competencies-container {
+        height: 83vh;
+        overflow-y: auto;
+        padding-bottom: 35px;
+        padding-right: 5px;
+        @extend %scroll-style;
+        .competency-container {
+          .competency-completion-info-container {
+            border-bottom: 2px solid $navbar-box-shadow;
+            display: grid;
+            grid-template-columns: 70% auto auto;
+            align-items: center;
+            padding: 5px 0;
+            margin-left: 15px;
+            cursor: pointer;
+            .competency-info {
+              .competency-name {
+                font-size: 14px;
+                font-weight: bold;
+                color: $dark-400;
+              }
+              .competency-code {
+                font-size: 10px;
+                font-weight: bold;
+                color: $dark-400;
+              }
+            }
+            .competency-suggestion {
+              width: 20px;
+              height: 20px;
+              background-size: 20px 20px;
+              opacity: 0.8;
+              justify-self: center;
+              background-repeat: no-repeat;
+              display: block;
+              background-image: url("gooru/images/add_collection.svg");
+            }
+            .competency-completion-performance {
+              display: grid;
+              justify-content: right;
+              .completion-percentage {
+                font-size: 15px;
+                font-weight: bold;
+                text-align: right;
+                color: $black-4d;
+              }
+              .completion-box {
+                display: block;
+                height: 10px;
+                width: 100px;
+                background-color: $completion-bg-color;
+                span {
+                  height: inherit;
+                  float: right;
+                }
+              }
+            }
+
+            .competency-toggle {
+              cursor: pointer;
+              justify-self: center;
+            }
+          }
+
+          .users-completion-container {
+            .user-completion-container {
+              display: grid;
+              grid-template-columns: auto auto;
+              .user-info {
+                display: grid;
+                grid-template-columns: 30px auto;
+                column-gap: 8px;
+                height: 40px;
+                align-items: center;
+                .user-thumbnail {
+                  width: 30px;
+                  height: 30px;
+                  background-size: 30px 30px;
+                  display: block;
+                  background-repeat: no-repeat;
+                  border-radius: 50%;
+                  cursor: pointer;
+
+                  i.tick-icon {
+                    display: none;
+                  }
+
+                  &.selected-student {
+                    background-image: unset !important;
+                    background-color: $tan-hide;
+
+                    i.tick-icon {
+                      display: block;
+                      text-align: center;
+                      line-height: 30px;
+                      color: $white;
+                    }
+                  }
+                }
+                .user-name {
+                  border-bottom: 1px solid $navbar-box-shadow;
+                  height: inherit;
+                  line-height: 40px;
+                  text-transform: capitalize;
+                  font-size: 14px;
+                }
+              }
+
+              .user-competency-status {
+                display: grid;
+                justify-content: right;
+                grid-template-columns: auto auto;
+                align-items: center;
+                column-gap: 10px;
+                border-bottom: 1px solid $navbar-box-shadow;
+                .competency-status-text {
+                  font-size: 14px;
+                  text-align: right;
+                  color: $black-4d;
+                }
+                .competency-status-color {
+                  width: 30px;
+                  height: 30px;
+                  display: block;
+                  box-shadow: 0 2px 4px 0 $date-picker-box-shadow;
+                }
+              }
+              .user-completion-performance {
+                display: grid;
+                justify-content: right;
+                grid-template-columns: auto auto;
+                align-items: center;
+                column-gap: 5px;
+                border-bottom: 1px solid $navbar-box-shadow;
+                .completion-percentage {
+                  font-size: 15px;
+                  font-weight: bold;
+                  text-align: right;
+                  color: $black-4d;
+                }
+                .completion-box {
+                  display: block;
+                  height: 10px;
+                  width: 100px;
+                  background-color: $completion-bg-color;
+                  span {
+                    height: inherit;
+                    float: right;
+                  }
+                }
+              }
+            }
+
+            .user-data-not-available {
+              text-align: center;
+            }
+          }
+
+          &.collapsed {
+            .competency-completion-info-container {
+              .competency-toggle {
+                .arrow_drop_up {
+                  display: none;
+                }
+                .arrow_drop_down {
+                  display: block;
+                }
+              }
+            }
+            .users-completion-container {
+              display: none;
+            }
+          }
+          &.expanded {
+            .competency-completion-info-container {
+              .competency-toggle {
+                .arrow_drop_up {
+                  display: block;
+                }
+                .arrow_drop_down {
+                  display: none;
+                }
+              }
+            }
+            .users-completion-container {
+              display: block;
+            }
+          }
+
+          &.empty-suggestion {
+            .users-completion-container {
+              .user-completion-container {
+                .user-info {
+                  .selected-student {
+                    background-color: $selected-student;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .data-not-available {
+          text-align: center;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+
+    .competency-completion-report-container {
+      .competencies-list-container {
+        .competencies-container {
+          .competency-container {
+            .competency-completion-info-container {
+              grid-template-columns: 50% 1fr auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .trigger-suggestion {
+    display: grid;
+    grid-template-columns: 40px auto 1fr auto auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: $white;
+    height: 40px;
+    align-items: center;
+    justify-content: left;
+    padding: 0 23px 0 11px;
+    box-shadow: 1px 15px 20px 20px $date-picker-box-shadow;
+    background-color: $tan-hide;
+
+    .clear-suggestion {
+      color: $white;
+      font-size: 24px;
+      opacity: 1;
+      font-weight: 600;
+      cursor: pointer;
+      height: 40px;
+      i {
+        line-height: 40px;
+      }
+    }
+
+    .selected-all {
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      column-gap: 8px;
+      .selected-icon {
+        width: 30px;
+        height: 30px;
+        display: block;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: $white;
+        text-align: center;
+        display: grid;
+        align-items: center;
+        i {
+          color: $tan-hide;
+        }
+      }
+      .unselect {
+        i {
+          color: gray;
+        }
+      }
+      .selected-all-text {
+        height: 40px;
+        font-size: 16px;
+        color: $white;
+        font-weight: 600;
+        line-height: 40px;
+        text-transform: capitalize;
+      }
+    }
+
+    .selected-student-count {
+      height: 40px;
+      font-size: 16px;
+      color: $white;
+      font-weight: 600;
+      line-height: 40px;
+    }
+
+    .label-text {
+      color: $white;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 30px;
+      justify-self: end;
+    }
+
+    .students-suggestion {
+      height: 40px;
+      justify-self: end;
+      position: relative;
+      cursor: pointer;
+      i.explore {
+        line-height: 40px;
+        color: $white;
+        transform: rotate(90deg);
+      }
+      .suggestion-count {
+        width: 16px;
+        border-radius: 50%;
+        background: $white;
+        position: absolute;
+        line-height: 14px;
+        top: 5px;
+        height: 16px;
+        left: 14px;
+        color: $gray-4a;
+        border: 1px solid $gray-4a;
+        font-size: 9px;
+        text-align: center;
+      }
+    }
+
+    &.empty-suggestion {
+      background-color: $white;
+      .students-suggestion {
+        display: grid;
+        align-items: center;
+        i.collection-icon {
+          width: 20px;
+          height: 20px;
+          background-size: 20px 20px;
+          opacity: 0.8;
+          justify-self: center;
+          background-repeat: no-repeat;
+          display: block;
+          background-image: url("gooru/images/add_collection.svg");
+        }
+      }
+      .clear-suggestion,
+      .selected-student-count,
+      .label-text,
+      .selected-all-text {
+        color: $dark-400;
+      }
+      .selected-all {
+        .selected-icon {
+          background-color: $dark-400;
+          i.tick-icon {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}

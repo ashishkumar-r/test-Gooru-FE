@@ -1,0 +1,144 @@
+.quick-course-search {
+  overflow: hidden;
+
+  &.fade {
+    .modal-dialog {
+      -webkit-transform: translate3d(125%, 0, 0);
+      height: 96%;
+      margin: 0 auto;
+      overflow: visible;
+      transform: translate3d(125%, 0, 0);
+      width: 310px;
+      @media (min-width: $screen-sm-min) {
+        width: 353px;
+      }
+      @media (min-width: $screen-md-min) {
+        float: $menu-float-dir;
+        width: 400px;
+      }
+      @media (min-width: $screen-lg-min) {
+        width: 520px;
+      }
+    }
+
+    &.in {
+      .modal-dialog {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+
+  .gru-quick-course-search {
+    @include flexbox;
+    @include flex-direction(column);
+    border: 0;
+  }
+}
+
+.gru-quick-course-search {
+  height: 100%;
+  margin: 10px auto;
+
+  .modal-header {
+    @include flex-basis(40px);
+    @include flex-shrink(0);
+    background-color: $blue-400;
+    border-radius: 3px;
+    color: $white;
+    padding: 7px 10px;
+    text-align: initial;
+  }
+
+  .search-module {
+    @include flex-basis(130px);
+    @include flex-shrink(0);
+    background-color: $white;
+    border-radius: 3px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .modal-title {
+    font-size: $font-size-h6;
+  }
+
+  .modal-body {
+    @include flex-grow(1);
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    border: 0;
+    margin-right: -17px;
+    margin-top: 10px;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    padding: 0 15px 0 0;
+
+    > div {
+      @include flex-shrink(0);
+      border: 1px $table-bg;
+      margin: 5px 0;
+      padding: 0;
+      width: 300px;
+      @media (min-width: $screen-sm) {
+        width: 336px;
+      }
+      @media (min-width: $screen-lg) {
+        width: 463px;
+      }
+    }
+
+    .panel {
+      box-shadow: 0 0 7px $gray-light;
+      margin: 0;
+    }
+
+    .cards {
+      margin: 0;
+    }
+
+    .selected {
+      .gru-course-card {
+        border: 3px solid $blue-400;
+        border-radius: 6px;
+      }
+    }
+
+    .gru-course-card {
+      > .panel {
+        .panel-body {
+          .card-header {
+            .image-container {
+              width: 140px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    @include flex-basis(44px);
+    @include flex-shrink(0);
+    height: 44px;
+    margin-top: 10px;
+    padding: 0;
+    width: 100%;
+
+    div {
+      &:last-child {
+        margin-right: 25px;
+      }
+    }
+
+    .btn-group {
+      height: 100%;
+
+      > * {
+        height: 100%;
+        width: 50%;
+      }
+    }
+  }
+}

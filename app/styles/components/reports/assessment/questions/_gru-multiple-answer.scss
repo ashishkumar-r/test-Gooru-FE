@@ -1,0 +1,73 @@
+.reports.assessment.questions.gru-multiple-answer {
+  ul {
+    display: inline-block;
+    padding-left: 0;
+    li {
+      list-style: disc;
+      position: relative;
+      padding: 5px 0;
+      &:last-child {
+        border: none;
+      }
+      span.column {
+        width: 35px;
+        min-width: 35px;
+        display: inline-block;
+        text-align: center;
+      }
+      span.correct {
+        color: $brand-success;
+      }
+      span.incorrect {
+        color: $brand-incorrect;
+      }
+      span.anonymous {
+        color: $brand-anonymous;
+      }
+      span.answer-text {
+        margin-left: 0.5em;
+        display: inherit;
+        word-wrap: break-word;
+        overflow: auto;
+        max-width: 7em;
+        @media (min-width: $screen-xs-min) {
+          max-width: 10em;
+        }
+        @media (min-width: $screen-lg-min) {
+          max-width: 100%;
+          display: block;
+          @include ellipsis(
+            $font-size: 15px,
+            $line-height: 1.1,
+            $lines-to-show: 2
+          );
+          max-height: 100%;
+          display: flex;
+          align-items: center;
+        }
+        > span {
+          margin: 0 0 0 5px;
+          width: 100%;
+
+          &.answer-letter {
+            width: auto;
+            line-height: 2;
+          }
+        }
+        p {
+          display: inline-block;
+          margin: 0;
+          padding: 0;
+        }
+        .gru-math-text {
+          line-height: 2;
+        }
+      }
+      &.header {
+        .column {
+          color: $gray-base;
+        }
+      }
+    }
+  }
+}

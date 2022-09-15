@@ -1,0 +1,53 @@
+<div class="controller content rubric preview">
+  <article>
+    <header>
+      <div class="header-content">
+        <button type="button" class="btn-back" {{action "goBack"}}>
+          {{gru-icon name="keyboard_arrow_left"}} {{t 'common.back'}}
+        </button>
+        <div class="heading">
+          <div class="information">
+            <h1 title="{{{rubric.title}}}">{{{rubric.title}}}</h1>
+            <div class="details">
+              <div class="type">
+                <i class="rubric-icon"></i>
+                <span>{{t "common.rubric"}}</span>
+              </div>
+              <div class="tags">
+                {{taxonomy/gru-taxonomy-tag-list tags=tags tagsVisible=3}}
+              </div>
+            </div>
+          </div>
+          <div class="publisher">
+            {{#if rubric.owner}}
+              <span class="created-by">
+                {{t "common.created-by"}}
+              </span>
+              <img class="img-responsive" src="{{rubric.owner.avatarUrl}}" alt="owner avatar">
+              {{#link-to 'library-search' (query-params type="my-content" profileId=rubric.owner.id) class="pointer" tagName="div"}}
+                <span class="owner">{{rubric.owner.displayName}}</span>
+              {{/link-to}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="preview">
+      <div class="panel preview-panel panel-default">
+        <div class="panel-body {{if resource.url 'has-rubric'}}">
+          <div class="header">
+            <h2>{{t "common.rubric"}}</h2>
+          </div>
+          {{#if resource.url}}
+            {{content/rubric/gru-preview-url resource=resource}}
+          {{/if}}
+        </div>
+      </div>
+      <div class="category-panel">
+        {{#each rubric.categories as |category index|}}
+          {{content/rubric/gru-category category=category index=index preview=true}}
+        {{/each}}
+      </div>
+    </div>
+  </article>
+</div>

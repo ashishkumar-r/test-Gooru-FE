@@ -1,0 +1,323 @@
+.cards.suggest-collection-card {
+  .card-panel-container {
+    width: 220px;
+    height: 341px;
+    object-fit: contain;
+    border-radius: 4px;
+    background-color: $white;
+    box-shadow: 0 0 6px 1px $table-box-shadow-07;
+
+    .card-panel-header {
+      width: 220px;
+      height: 130px;
+      object-fit: contain;
+      background-color: $table-bg;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0;
+      position: relative;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+
+      .info {
+        color: $white;
+        position: absolute;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 50px;
+        width: 100%;
+
+        .title {
+          padding-left: 10px;
+          padding-right: 10px;
+          width: 100%;
+          height: 42px;
+          margin-top: 88px;
+          font-weight: bold;
+          $line-height: 1.5;
+          $lines-to-show: 2;
+          @include ellipsis(
+            $font-size: 13px,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show
+          );
+        }
+
+        .assessment-external-icons,
+        .collection-external-icons {
+          width: 20px;
+          height: 20px;
+          background-size: 20px 20px;
+          opacity: 0.8;
+          justify-self: center;
+          background-image: url("../assets/gooru/share.png");
+          background-repeat: no-repeat;
+          margin: auto 10px 15px auto;
+        }
+      }
+
+      &::after {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        background-image: linear-gradient(
+          to bottom,
+          $bg-left-box-shadow 0,
+          $gray-base 100%
+        );
+        margin-top: 52px;
+        height: 60%;
+        width: 100%;
+        content: "";
+      }
+    }
+
+    .content-count-container {
+      height: 25px;
+      width: 100%;
+      border-bottom: 1px solid $gray-ultra-light;
+      display: flex;
+
+      .icon {
+        background-size: 15px 15px;
+        width: 15px;
+        height: 15px;
+        display: block;
+        float: left;
+        margin-right: 6px;
+        margin-top: 5px;
+        margin-left: 10px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+
+      .question {
+        .icon {
+          background-image: url("../assets/gooru/images/add_question.svg");
+        }
+      }
+
+      .resource {
+        .icon {
+          background-image: url("../assets/gooru/images/collections_resource_icon.svg");
+        }
+      }
+    }
+
+    .collection-info-container {
+      height: 150px;
+      border-bottom: 1px solid $gray-ultra-light;
+      padding: 15px;
+
+      .collection-user-info {
+        display: grid;
+        grid-template-columns: 60px 30px 1fr;
+        height: 30px;
+        cursor: default;
+
+        .created-by {
+          font-style: italic;
+          width: 60px;
+          line-height: normal;
+        }
+
+        .img-container {
+          width: 20px;
+          height: 20px;
+          overflow: hidden;
+          border-radius: 50px;
+          margin-left: 5px;
+          margin-right: 5px;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .username {
+          line-height: normal;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
+          color: $blue-400;
+        }
+      }
+
+      .collection-description {
+        $line-height: 1.5;
+        $lines-to-show: 3;
+        @include ellipsis(
+          $font-size: 13px,
+          $line-height: $line-height,
+          $lines-to-show: $lines-to-show
+        );
+      }
+
+      .collection-standards {
+        padding-top: 5px;
+
+        .gru-taxonomy-tag-list {
+          .gru-taxonomy-tag {
+            max-width: max-content;
+            background-color: $dark-400;
+
+            .content {
+              margin: 0;
+            }
+            .standard-tag {
+              b {
+                color: $white;
+              }
+            }
+          }
+
+          .non-visible-tags {
+            width: 30px;
+            height: 29px;
+            background: $dark-400;
+            border-radius: 4px;
+            color: $white;
+            margin-left: 10px;
+            margin-top: 3px;
+          }
+          .popover {
+            background: $white;
+            margin-left: 5px;
+
+            .arrow::after {
+              border-left-color: $white;
+              border-right-color: $white;
+            }
+
+            .popover-content {
+              .gru-taxonomy-tag {
+                max-width: 300px;
+                width: 270px;
+                border-radius: 4px;
+
+                .standard-tag {
+                  width: 270px;
+                }
+              }
+            }
+          }
+        }
+
+        .popover-content {
+          .gru-taxonomy-tag {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+
+    .card-panel-footer {
+      .buttons-container {
+        height: 36px;
+        display: grid;
+        grid-template-columns: auto 45px 45px 45px;
+
+        .play-btn {
+          width: 45px;
+          height: 36px;
+          border-right: 1px solid $gray-ultra-light;
+          cursor: pointer;
+
+          i {
+            margin-left: -62px;
+            margin-top: 7px;
+            color: $blue-400;
+            pointer-events: none;
+          }
+        }
+
+        .dca-suggested-content {
+          width: 45px;
+          height: 36px;
+          cursor: pointer;
+
+          &.has-suggested {
+            pointer-events: none;
+            opacity: 0.6;
+          }
+          i {
+            font-size: 22px;
+            color: $orange-500;
+            padding: 8px 11px;
+          }
+        }
+
+        .schedule-dca-content {
+          width: 45px;
+          height: 36px;
+          border-left: 1px solid $half-white;
+          justify-self: end;
+          cursor: pointer;
+
+          &.has-scheduled {
+            .update {
+              color: $schedule-updated;
+            }
+          }
+
+          .schedule-dca-datepicker {
+            margin-left: 8px;
+          }
+
+          .update {
+            margin-left: 12px;
+            margin-top: 10px;
+            pointer-events: none;
+            font-size: 20px;
+            color: $gray-4a;
+          }
+        }
+
+        .dca-add-btn {
+          width: 45px;
+          height: 36px;
+          border-left: 1px solid $gray-ultra-light;
+          justify-self: end;
+          cursor: pointer;
+
+          .add {
+            margin-left: 8px;
+            margin-top: 6px;
+            pointer-events: none;
+          }
+
+          .done {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 0.5s, opacity 0.5s linear;
+            color: $schedule-updated;
+            font-size: 22px;
+            margin-left: 9px;
+            margin-top: 8px;
+          }
+
+          &.added {
+            pointer-events: none;
+
+            .add {
+              display: none;
+              opacity: 0;
+            }
+
+            .done {
+              visibility: visible;
+              opacity: 1;
+              transition: opacity 0.5s linear;
+            }
+          }
+        }
+        &.disable {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

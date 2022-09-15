@@ -1,0 +1,64 @@
+<div class="controller dashboard dashboard-content-panel">
+  <div class="dashboard-container {{if isShowStudentProgressReport 'hide-content'}} {{if currentClass.isPublic 'disable-reminder-card'}}">
+      <div class="panel-section student-learners-section">
+        {{student/class/dashboard/learner-status
+          currentClass=currentClass
+          tabindex="9"
+          userProfileData=userProfileData
+          }}
+        {{student/class/dashboard/learner-path
+          currentClass=currentClass
+          userLocation=userLocation
+          units=units
+          course=course
+          playContent="playContent"
+          contentVisibility=contentVisibility
+          tabindex="10"
+          resetPerformance=resetPerformance
+          destination=destination
+          onSelectItem = "onSelectItem"
+          isSkippedAllUnits = isSkippedAllUnits
+          skippedContents = skippedContents
+        }}
+      </div>
+      <div class="panel-section student-performance-section">
+        {{student/class/dashboard/activities-performance
+          currentClass=currentClass
+          refreshData=refreshData
+          openProgressReport="openProgressReport"
+          tabindex="11"
+        }}
+      </div>
+
+      {{#unless currentClass.isPublic}}
+      <div class="panel-section student-reminders-section">
+        {{student/class/dashboard/activities-reminders
+            currentClass=currentClass
+            refreshData=refreshData
+            tabindex="12"
+            playContent="playContent"
+        }}
+      </div>
+      {{/unless}}
+  </div>
+
+  {{#if isShowStudentProgressReport}}
+    {{student/class/gru-student-class-progress-report
+    isShowReport = isShowStudentProgressReport
+    userId = userId
+    class = currentClass
+    course = course
+    isDashboardPage=true
+  }}
+  {{/if}}
+</div>
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

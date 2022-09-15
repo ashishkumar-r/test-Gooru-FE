@@ -1,0 +1,94 @@
+.proficiency.subject-item-list {
+  .subject-list {
+    list-style: none;
+    padding: 0 0 20px;
+    position: relative;
+    margin-top: -15px;
+
+    .list-item {
+      cursor: pointer;
+    }
+
+    li:nth-last-child(2) {
+      top: inherit;
+      bottom: 2px !important;
+    }
+
+    .active-item {
+      .title {
+        span {
+          font-size: 13px;
+          color: $dark-400;
+          opacity: 1;
+          font-weight: bold;
+        }
+      }
+
+      .active-badge {
+        width: 25px;
+        height: 25px;
+        right: 14px;
+        top: 22px;
+        background-color: $light-cyan;
+        border: 1px solid $light-cyan;
+      }
+    }
+  }
+
+  .subject-list:before {
+    top: 30px;
+    bottom: 28px;
+    position: absolute;
+    content: " ";
+    width: 1px;
+    background-color: $gray-80;
+    right: 25px;
+  }
+
+  .subject-list > li,
+  .subject-list > li > .title {
+    margin-bottom: 5px;
+    position: relative;
+  }
+
+  .subject-list > li:after,
+  .subject-list > li:before {
+    content: " ";
+    display: table;
+  }
+
+  .subject-list > li:after {
+    clear: both;
+  }
+
+  .subject-list > li > .title {
+    text-align: right;
+    top: 19px;
+    padding: 4px 10px 8px 15px;
+    border-radius: 5px;
+    width: 80%;
+    cursor: pointer;
+
+    span {
+      opacity: 0.3;
+      line-height: normal;
+      text-align: right;
+      color: $dark-400;
+    }
+  }
+
+  .subject-list > li > .active-badge {
+    width: 10px;
+    height: 10px;
+    line-height: 36px;
+    font-size: 1.2em;
+    text-align: center;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    background-color: $gray-80;
+    z-index: 100;
+    border-radius: 50%;
+    border: 1px solid $gray-light;
+  }
+}

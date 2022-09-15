@@ -1,0 +1,326 @@
+.content.modals.gru-archive-class,
+.content.modals.gru-assessment-confirmation,
+.content.modals.gru-assessment-new,
+.content.modals.gru-base-remix,
+.content.modals.gru-collection-new,
+.content.modals.gru-course-new,
+.content.modals.gru-delete-bookmark,
+.content.modals.gru-delete-class,
+.content.modals.gru-delete-content,
+.content.modals.gru-question-new,
+.content.modals.gru-remove-class-activity,
+.content.modals.gru-remove-content,
+.content.modals.gru-remove-student,
+.content.modals.gru-resource-new,
+.content.modals.gru-rubric-new,
+.content.modals.gru-submit-confirmation,
+.content.modals.gru-external-collection-new,
+.content.modals.gru-external-assessment-new {
+  background-color: $table-bg;
+  max-width: 500px;
+
+  .modal-header {
+    border-top-left-radius: $border-radius-base;
+    border-top-right-radius: $border-radius-base;
+    background-color: $blue-400;
+
+    .modal-title {
+      color: $font-white-gray-base;
+      font-size: $font-size-large;
+      line-height: 1;
+      margin-left: 5px;
+      text-align: $tab-float-dir;
+    }
+  }
+
+  .modal-body {
+    background-color: $white;
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    padding: 30px 30px 20px;
+
+    form {
+      label {
+        display: block;
+
+        span.required {
+          &:after {
+            content: " *";
+          }
+        }
+
+        .gru-input {
+          margin-bottom: 25px;
+          width: 80%;
+
+          .error {
+            position: absolute;
+          }
+        }
+        &.visibility-hidden {
+          display: none;
+        }
+      }
+
+      .detail {
+        &.external-assessment,
+        &.external-collection {
+          display: grid;
+
+          .gru-file-picker {
+            input[type="text"][readonly] {
+              display: none;
+            }
+          }
+        }
+
+        .type {
+          display: flex;
+          column-gap: 20px;
+          align-items: center;
+          padding-bottom: 10px;
+
+          .select-type {
+            width: 100px;
+            height: 30px;
+          }
+
+          .dropdown {
+            ul {
+              padding-left: 15px;
+
+              li {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .error {
+          color: $brand-danger;
+          display: inline-block;
+          font-size: 12px;
+          margin-top: 4px;
+          width: fit-content;
+        }
+
+        .gru-file-picker {
+          width: fit-content;
+        }
+
+        .loading-spinner {
+          width: fit-content;
+          position: absolute;
+          padding-top: 45px;
+          padding-left: 85px;
+        }
+      }
+
+      .btn-group {
+        .btn {
+          background-color: $dark-400;
+          color: $white;
+          border-right: 1px solid $white;
+          padding-top: 3px;
+          padding-bottom: 3px;
+
+          &:last-child {
+            border-right: 1px solid $white;
+          }
+
+          &.selected {
+            background-color: $blue-400;
+          }
+        }
+      }
+
+      .question-types,
+      .resource-types {
+        margin-top: 10px;
+        @include flexbox;
+        @include justify-content(center);
+        @include flex-direction(row);
+        @include flex-wrap(wrap);
+
+        .panel {
+          border-radius: 4px;
+          width: 184px;
+          height: 96px;
+          float: $tab-float-dir;
+          margin: 0 10px 40px;
+          cursor: pointer;
+
+          .panel-body {
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            background-color: $blue-400;
+            padding: 10px 15px;
+
+            .question-type-icon {
+              display: inline-block;
+              margin: 0 auto;
+              vertical-align: top;
+              -webkit-background-size: 70px 70px;
+              background-size: 70px 70px;
+              height: 70px;
+              width: 70px;
+            }
+
+            .resource-type-icon {
+              display: inline-block;
+              margin: 10px auto;
+              vertical-align: top;
+              -webkit-background-size: 40px 40px;
+              background-size: 40px 40px;
+              height: 40px;
+              width: 40px;
+            }
+          }
+
+          .panel-footer {
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            background-color: $blue-500;
+            color: $white;
+            padding: 5px 15px;
+          }
+        }
+
+        .question-type-MC {
+          i {
+            background: url("gooru/images/multiple-choice.svg");
+          }
+        }
+
+        .question-type-LS {
+          i {
+            background: url("gooru/images/likert-scale.svg");
+          }
+        }
+
+        .question-type-MA {
+          i {
+            background: url("gooru/images/multiple-answer.svg");
+          }
+        }
+
+        .question-type-OE {
+          i {
+            background: url("gooru/images/free-response.svg");
+          }
+        }
+
+        .question-type-T_F {
+          i {
+            background: url("gooru/images/true-false.svg");
+          }
+        }
+
+        .question-type-FIB {
+          i {
+            background: url("gooru/images/fill-in-the-blank.svg");
+          }
+        }
+
+        .question-type-SE_FIB {
+          i {
+            background: url("gooru/images/fill-in-the-blank.svg");
+          }
+        }
+
+        .question-type-SE_FRQ {
+          i {
+            background: url("gooru/images/free-response.svg");
+          }
+        }
+
+        .question-type-HS_IMG {
+          i {
+            background: url("gooru/images/hs-image.svg");
+          }
+        }
+
+        .question-type-MTF {
+          i {
+            background: url("gooru/images/match-the-following.svg");
+          }
+        }
+
+        .question-type-HS_TXT {
+          i {
+            background: url("gooru/images/hs-text.svg");
+          }
+        }
+
+        .question-type-HT_HL {
+          i {
+            background: url("gooru/images/hot-text.svg");
+          }
+        }
+
+        .question-type-HT_RO {
+          i {
+            background: url("gooru/images/hot-text-reorder.svg");
+          }
+        }
+
+        .resource-type-webpage {
+          i {
+            background: url("gooru/images/website-resource-white.svg");
+          }
+        }
+
+        .resource-type-video {
+          i {
+            background: url("gooru/images/video-resource-white.svg");
+          }
+        }
+
+        .resource-type-text {
+          i {
+            background: url("gooru/images/text-resource-white.svg");
+          }
+        }
+
+        .resource-type-interactive {
+          i {
+            background: url("gooru/images/interactive-resource-white.svg");
+          }
+        }
+
+        .resource-type-image {
+          i {
+            background: url("gooru/images/image-resource-white.svg");
+          }
+        }
+
+        .resource-type-audio {
+          i {
+            background: url("gooru/images/audio-resource-white.svg");
+          }
+        }
+      }
+    }
+
+    .actions {
+      text-align: $menu-float-dir;
+      margin-top: 70px;
+
+      button {
+        padding-left: 24px;
+        padding-right: 24px;
+
+        &.btn-default {
+          border: 1px solid $gray-light;
+        }
+      }
+    }
+  }
+}
+
+.content.modals.gru-course-new {
+  .btn-group a.btn {
+    border-radius: 3px;
+    margin-bottom: 3px;
+  }
+}

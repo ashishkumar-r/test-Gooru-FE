@@ -1,0 +1,125 @@
+[{
+    "description": "Get class scheduled activities by user - any class and any user",
+    "request": {
+      "url": "^/api/nucleus/v2/classes/(.+)/contents$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "find-class-activities-by-user-200-response.json"
+    }
+  },
+  {
+    "description": "Get class active offline activities by user - any class and any user",
+    "request": {
+      "url": "^/api/nucleus/v2/classes/(.+)/contents/offline/active$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "find-class-activities-by-user-200-response.json"
+    }
+  },
+  {
+    "description": "Get class active completed activities by user - any class and any user",
+    "request": {
+      "url": "^/api/nucleus/v2/classes/(.+)/contents/offline/completed$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "find-class-activities-by-user-200-response.json"
+    }
+  },
+  {
+    "description": "Get class scheduled activities by user - any class and any user",
+    "request": {
+      "url": "^/api/nucleus/v2/classes/(.+)/contents/online/scheduled$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "find-class-activities-by-user-200-response.json"
+    }
+  },
+  {
+    "description": "Get items to grade of offline class activities by user - any class and any user",
+    "request": {
+      "url": "^/api/nucleus-insights/v2/rubrics/items$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      },
+      "query": {
+        "classId": "(.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": []
+    }
+  },
+  {
+    "description": "Add content to class",
+    "request": {
+      "url": "^/api/nucleus/v2/classes/(.+)/contents",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 201,
+      "headers": {
+        "Content-Type": "text/plain"
+      }
+    }
+  },
+  {
+    "description": "remove class activity",
+    "request": {
+      "url": "/api/nucleus/v2/classes/(.+)/contents/(.+)",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  }
+]

@@ -1,0 +1,33 @@
+<div class="panel {{if isGuestAccount 'guest-account' ''}}" data-before="{{t 'common.disabled-join-class'}}" tabIndex={{tabIndex}}>
+  <div class="panel-body">
+    <div class="image">
+      <p>{{t 'content.classes.join.join-a-classroom'}}</p>
+    </div>
+    <div class="info-form">
+      <div class="form-group class-code-input-container">
+        {{validation/gru-input model=this valuePath='code' maxlength=50
+          onTyping="onCodeTyping"
+          didValidate=didValidate
+          onFocusOut="onCodeFocusOut"
+          disabled = (if isGuestAccount true false)
+          onChange="onCodeChange"
+          onEnter=(action 'joinClass')
+          placeholder=(t 'content.classes.join.class-code-input')
+          tabindex=tabIndex
+          }}
+      </div>
+      <div class="terms-and-conditions">
+        {{t 'content.classes.join.terms-and-conditions'}}
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    {{#gru-spinner-button classes='join-class-btn' text=(t 'common.loading') isLoading=isLoading}}
+      {{#if allowedButton}}
+        <div class="join-class-btn pointer" onclick={{action "joinClass"}} onkeypress={{action "joinClass"}} tabIndex={{tabIndex}}>{{t 'content.classes.join.join-class'}}</div>
+      {{else}}
+        <div class="join-class-btn" tabIndex={{tabIndex}}>{{t 'content.classes.join.join-class'}}</div>
+      {{/if}}
+    {{/gru-spinner-button}}
+  </div>
+</div>

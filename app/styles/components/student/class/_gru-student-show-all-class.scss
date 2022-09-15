@@ -1,0 +1,84 @@
+.gru-student-show-all-class {
+  .gru-student-show-all-class-container {
+    .student-all-class-panel {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .student-class-panel-head {
+      padding: 0 10px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+
+      .head-titles {
+        display: flex;
+        align-items: center;
+        .back-icons-btn {
+          display: flex;
+          align-items: center;
+          color: $white;
+          margin-right: 10px;
+          text-decoration: none;
+          i {
+            font-size: 30px;
+          }
+        }
+        .class-room-title {
+          font-size: 30px;
+          padding: 10px 0;
+          font-weight: 100;
+          color: $white;
+        }
+      }
+      .head-actions-btns {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        grid-column-gap: 10px;
+        padding: 0 10px;
+
+        .class-search-input {
+          display: grid;
+          align-items: center;
+
+          input {
+            width: 100%;
+            background-color: transparent;
+            color: $white;
+          }
+        }
+        .sorting-btn-actions {
+          display: grid;
+          align-items: center;
+          grid-template-columns: auto auto;
+          grid-column-gap: 2px;
+
+          .alpha-sort-btn,
+          .time-sort-btn {
+            display: grid;
+            align-items: center;
+            color: $white;
+            padding: 5px 15px;
+            background-color: $loading-spinner-bg-color;
+            border-radius: 2px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    .student-class-panel-body {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      width: auto;
+      justify-content: center;
+      align-items: center;
+      justify-content: center;
+      .gru-student-class-current-card {
+        width: 325px;
+        margin: 10px;
+      }
+    }
+  }
+}

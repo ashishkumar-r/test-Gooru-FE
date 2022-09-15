@@ -1,0 +1,110 @@
+<div class="gru-oa-stater-page-container">
+    <div class="oa-starter-panel">
+        <div class="oa-starter-left-section">
+            <div class="oa-header-panel">
+                <div class="oa-banner-section" style="background-image: url({{offlineActivity.thumbnailUrl}})">
+                    <div class="banner-text-content">
+                      <div class="oa-config-details">
+                          <div class="taxonomy-section">
+                            {{#if oaTaxonomies.length}}
+                              {{taxonomy/gru-taxonomy-tag-list tags=oaTaxonomies tagsVisible=1 isInCard=true}}
+                            {{/if}}
+                          </div>
+                          <div class="eta-section">ETC: {{offlineActivity.hours}} {{offlineActivity.minutes}}</div>
+                      </div>
+                      <div class="oa-project">
+                          {{t 'project'}}: {{t offlineActivity.subFormat}}
+                      </div>
+                    </div>
+                </div>
+                <div class="oa-title-section">
+                  <span>  {{offlineActivity.title}}</span>
+                  <p>{{offlineActivity.learningObjectives}}</p>
+                </div>
+            </div>
+            <div class="oa-body-panel">
+              <div class="student-reference-links">
+                {{#if (not isStudent)}}
+               <div class="project-references-container">
+                 {{player/offline-activity/gru-offline-activity-references offlineActivity = teacherActivityReferences userType =teacherTitle}}
+               </div>
+                 {{/if}}
+                  <div class="student-reference-card">
+                    {{player/offline-activity/gru-offline-activity-references
+                      offlineActivity = studentActivityReferences userType =studentTitle
+                    }}
+                  </div>
+              </div>
+              <div class="task-list-panel">
+                <div class="task-list-head">
+                  <span>Tasks</span>
+                </div>
+                {{#each activityTasks as |task|}}
+                  {{player/offline-activity/gru-offline-activity-task-submission
+                    task=task
+                  }}
+                {{else}}
+                  {{t 'no-task-available'}}
+                {{/each}}
+              </div>
+              <div class="teacher-grading-panel">
+                {{#if activityStudentRubric}}
+                  <div class="student-rubrics-container">
+                    <div class="student-label label-container" {{action "onToggleRubricContainer" 'student'}}>
+                      <span class="label-type">{{t 'common.self'}} {{t 'grading-player.grading'}}
+                        {{#if activityStudentRubric.url}}
+                          <span class="rubric-attachment" title="{{t 'rubric-details'}}" data-toggle="tooltip" {{action 'filePreviewOpen' 'student' bubbles=false}}>{{gru-icon name="attachment"}}</span>
+                        {{/if}}
+                      </span>
+                      <span class="toggle-icon">
+                        {{gru-icon name=(if isStudentCategoriesExpanded 'expand_less' 'expand_more')}}
+                      </span>
+                    </div>
+                    <div class="student categories-container">
+                      {{validation/gru-textarea
+                        model=studentRubricCategories
+                        valuePath='comment'
+                        maxLength=500
+                        rows=1
+                        placeholder='General Comments Only'
+                        disabled="disabled"
+                      }}
+                      {{rubric/rubric-category-grades
+                        categories=studentRubricCategories
+                        isReadOnly=true}}
+                    </div>
+                  </div>
+                {{/if}}
+                
+                {{#if activityTeacherRubric}}
+                  <div class="teacher-rubrics-container">
+                    <div class="teacher-label label-container" {{action "onToggleRubricContainer" 'teacher'}}>
+                      <span class="label-type">{{t 'common.teacher'}} {{t 'grading-player.grading'}}
+                        {{#if activityTeacherRubric.url}}
+                          <span class="rubric-attachment" title="{{t 'rubric-details'}}" data-toggle="tooltip" {{action 'filePreviewOpen' 'teacher'  bubbles=false}}>{{gru-icon name="attachment"}}</span>
+                        {{/if}}
+                      </span>
+                      <span class="toggle-icon">
+                        {{gru-icon name=(if isTeacherCategoriesExpanded 'expand_less' 'expand_more')}}
+                      </span>
+                    </div>
+                    <div class="teacher categories-container">
+                      {{validation/gru-textarea
+                        model=activityTeacherRubric
+                        valuePath='comment'
+                        maxLength=500
+                        rows=1
+                        placeholder='General Comments Only'
+                      }}
+                      {{rubric/rubric-category-grades
+                        categories=teacherRubricCategories
+                        isReadOnly=true}}
+                    </div>
+                  </div>
+                {{/if}}
+              </div>
+            </div>
+        </div>
+    </div>
+
+</div>

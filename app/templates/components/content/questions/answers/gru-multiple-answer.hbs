@@ -1,0 +1,53 @@
+{{#if (gt answers.length 0)}}
+  <div class="answer-legend">
+    <span>{{t "common.yes"}}</span><span>{{t "common.no"}}</span>
+  </div>
+{{/if}}
+{{#each answers as |answer index|}}
+  <div class="panel panel-default">
+    <div class="answer-content {{unless editMode 'view-mode'}}">
+      <div class="letter-container">
+        <h3>{{answer-letter index}}</h3>
+      </div>
+      {{#if editMode}}
+        <div class="text-area-container">
+          {{gru-rich-text-editor content=answer.text disableButtons=disableEditorButtons model=answer valuePath='text'}}
+        </div>
+          <button class="delete" {{action 'removeChoice' answer}}>{{gru-icon name="delete"}}</button>
+          <button class="check yes {{if answer.isCorrect 'correct'}}" {{action 'setCorrect' answer true}}>
+            {{gru-icon name="done"}}
+          </button>
+          <button class="check no {{unless answer.isCorrect 'correct'}}" {{action 'setCorrect' answer false}}>
+            {{gru-icon name="done"}}
+          </button>
+      {{else}}
+        <div class="answer-text">
+          {{{gru-math-text text=answer.text}}}
+        </div>
+        <div class="choice-answers">
+          <span>
+            {{#if answer.isCorrect}}
+              {{gru-icon name="done"}}
+            {{/if}}
+          </span>
+          <span>
+            {{#unless answer.isCorrect}}
+              {{gru-icon name="done"}}
+            {{/unless}}
+          </span>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+{{/each}}
+{{#if editMode}}
+  {{#if (eq answers.length 10)}}
+    <div class="max-length-error">
+      <p><small>{{t "common.errors.hotspot-text-max-choices"}}</small></p>
+    </div>
+  {{else}}
+    <div class="add-answer">
+      <a {{action 'addNewChoice'}}>{{t 'content.questions.edit.builder.add-answer-choice'}}</a>
+    </div>
+  {{/if}}
+{{/if}}

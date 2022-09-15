@@ -1,0 +1,21 @@
+{
+  "content":[
+    {
+      "usageData":[
+        {
+          "reaction":0,
+          "attemptStatus":"completed",
+          "timeSpent":25507,
+          "completedCount":1,
+          "totalCount":0,
+          "scoreInPercentage":null,
+          "collectionId":"97c00e69-a9f2-4d53-a3d9-d11c5064b461",
+          "views":4
+        }
+      ],
+      "userUid":"95a744e1-631e-4642-875d-8b07a5e3b421"
+    }
+  ],
+  "message":null,
+  "paginate":null
+}

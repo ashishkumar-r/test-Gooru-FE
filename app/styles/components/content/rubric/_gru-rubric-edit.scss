@@ -1,0 +1,272 @@
+.content_rubric_edit {
+  overflow: hidden;
+}
+
+.rubric.edit {
+  height: 100%;
+
+  .quizzes,
+  > .ember-view {
+    height: 100%;
+  }
+}
+
+.gru-rubric-edit {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  @include flexbox();
+  @include flex-direction(column);
+
+  .gru-image {
+    &.picker-error {
+      margin-bottom: 70px;
+    }
+
+    .validation {
+      bottom: -55px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+      object-fit: cover;
+      margin: 0;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .file-picker {
+      width: 210px;
+      height: 185px;
+
+      .file-picker__preview > img {
+        width: 100%;
+        height: 185px;
+        padding: 5px;
+        object-fit: cover;
+        margin: 0;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .gru-header {
+    z-index: 0;
+
+    header {
+      padding: 20px 20px 0 5%;
+    }
+  }
+
+  > section {
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow: auto;
+
+    .panel {
+      border-radius: 6px;
+      margin-bottom: 30px;
+
+      .panel-heading {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+
+        h3 {
+          color: $gray;
+          display: inline-block;
+        }
+
+        div.border-bottom {
+          padding-bottom: 15px;
+          border-bottom: 1px solid $gray-lighter;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    h2 {
+      display: inline-block;
+      font-size: $font-size-h4;
+      padding: 0;
+      margin: 0;
+      line-height: 34px; // height of the buttons
+    }
+
+    h3 {
+      font-size: $font-size-large;
+    }
+
+    .header {
+      border-bottom: 1px solid $gray-light;
+      margin-bottom: 25px;
+      padding: 40px 0 20px;
+      @include flexbox();
+      @include justify-content(space-between);
+    }
+
+    .panel {
+      .panel-body,
+      .panel-heading {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+
+      .panel-heading {
+        background-color: $white;
+        padding-top: 10px;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  #information {
+    height: auto;
+
+    > .content {
+      @include flexbox;
+
+      .gru-image {
+        float: $tab-float-dir;
+        margin-right: 20px;
+      }
+
+      .panel.information {
+        min-height: 300px;
+        @include flex(1);
+        border-radius: 6px;
+
+        .title {
+          .form-group {
+            width: 300px;
+          }
+
+          label {
+            @include flexbox();
+            @include flex-direction(column);
+            &.visibility-hidden {
+              display: none;
+            }
+          }
+
+          b {
+            font-size: $font-size-large;
+            font-weight: 400;
+          }
+        }
+
+        .standards {
+          label {
+            @include flexbox();
+            @include flex-direction(column);
+
+            button.taxonomy {
+              width: 82px;
+            }
+          }
+        }
+
+        .learning-objective {
+          .form-group {
+            width: 700px;
+          }
+        }
+
+        .content.gru-audience {
+          margin: 10px 0;
+          @include flex-direction(column);
+        }
+      }
+    }
+
+    .tags {
+      margin: 10px 0;
+
+      .gru-taxonomy-tag {
+        .content {
+          @include flex-direction(column);
+
+          b {
+            font-size: $font-size-large;
+            font-weight: $headings-font-weight;
+          }
+        }
+      }
+    }
+
+    .gru-audience {
+      .btn-empty {
+        border: 1px solid $gray-light;
+        margin-top: 5px;
+        cursor: auto;
+      }
+    }
+  }
+
+  #rubric {
+    .header {
+      padding: 0;
+    }
+
+    .overall-score {
+      .panel-body {
+        padding: 0 50px;
+      }
+
+      .feedback {
+        label {
+          @include flexbox;
+          @include flex-direction(column);
+
+          textarea {
+            font-size: $font-size-large;
+            height: 150px;
+          }
+        }
+      }
+    }
+
+    .add-category {
+      margin: 20px 0;
+      display: block;
+      border: 2px dashed $gray-light;
+      padding: 20px;
+      border-radius: 6px;
+      font-size: $font-size-large;
+      color: $gray;
+      text-align: center;
+    }
+
+    .required-feedback {
+      @include flexbox;
+
+      .check_box {
+        color: $blue-500;
+      }
+    }
+
+    .gru-preview-url {
+      margin-bottom: 10px;
+    }
+
+    .category-panel {
+      margin-top: 4em;
+    }
+  }
+
+  .add-prefix:before {
+    content: "+ ";
+  }
+}
+
+.language-sections {
+  .language-section {
+    background-color: $white-bold;
+    padding: 12px 10px 10px 25px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px $navbar-box-shadow;
+    margin-bottom: 20px;
+  }
+}

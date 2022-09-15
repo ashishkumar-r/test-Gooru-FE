@@ -1,0 +1,113 @@
+<div class="performance-container">
+  <div class="performance-header-container">
+    <div class="competency-coverage-container">
+      <div class="course-coverage-container">
+        <div class="title">{{t 'teacher-landing.class.students-tab.class-statistics'}}</div>
+        <div class="course-competency-metrics">
+          <div class="students-metric">{{domainCoverageCount.length}} {{t 'common.domains'}} | {{numberOfStudents}} {{t 'common.students'}}</div>
+            <div class="metrics-title">{{t 'teacher-landing.class.students-tab.course-coverage-label'}}</div>
+            <div class="metrics">
+              <div class="metric-count mastered">{{courseCoverageCount.mastered}} {{t 'teacher-landing.class.students-tab.mastered'}}</div>
+              <div class="metric-count in-progress">{{courseCoverageCount.in-progress}} {{t 'teacher-landing.class.students-tab.in-progress'}}</div>
+              <div class="metric-count not-started">{{courseCoverageCount.not-started}} {{t 'teacher-landing.class.students-tab.not-started'}}</div>
+            </div>
+        </div>
+      </div>
+      {{#unless isMobilePotraitView}}
+        <div class="scroll-controller">
+          {{#if (gt domainCoverageCount.length 5)}}
+            <div class="left" onclick={{action "onClickArrow" 'left'}} {{action "onClickArrow" 'left'}} tabindex={{tabindex}}>
+              {{gru-icon name="keyboard_arrow_left"}}
+            </div>
+            <div class="right" onclick={{action "onClickArrow" 'right'}} onkeypress={{action "onClickArrow" 'right'}} tabindex={{tabindex}}>
+              {{gru-icon name="keyboard_arrow_right"}}
+            </div>
+          {{/if}}
+        </div>
+      {{/unless}}
+
+      <div class="domains-coverage-container scrollable-container">
+        {{#each domainCoverageCount as |domain|}}
+          <div class="domain-coverage-count" onclick={{action "onSelectDomain" domain}} onkeypress={{action "onSelectDomain" domain}} tabindex={{tabindex}}>
+            <div class="domain-name title">
+              {{domain-gut-to-fw-transform fwDomains domain.domainCode domain.domainName 'fwDomainName' true}}
+            </div>
+            <div class="coverage-count">
+              <div class="count-container">
+                <span class="mastered-count" style="width: {{find-percentage domain.total domain.mastered}}%;"></span>
+                <span class="inprogress-count" style="width: {{find-percentage domain.total domain.in-progress}}%;"></span>
+                <span class="notstarted-count" style="width: {{find-percentage domain.total domain.not-started}}%;"></span>
+              </div>
+                <div class="competency-metrics">
+                  <div class="title">{{t 'common.competencies'}}</div>
+                  <div class="metrics">
+                    <div class="metric-count mastered">{{domain.mastered}} {{t 'teacher-landing.class.students-tab.mastered'}}</div>
+                    <div class="metric-count in-progress">{{domain.in-progress}} {{t 'teacher-landing.class.students-tab.in-progress'}}</div>
+                    <div class="metric-count not-started">{{domain.not-started}} {{t 'teacher-landing.class.students-tab.not-started'}}</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        {{/each}}
+        {{#if isMobilePotraitView}}
+          <div class="scroll-controller">
+            {{#if (gt domainCoverageCount.length 5)}}
+              <div class="left" onclick={{action "onClickArrow" 'left'}} {{action "onClickArrow" 'left'}} tabindex={{tabindex}}>
+                {{gru-icon name="keyboard_arrow_left"}}
+              </div>
+              <div class="right" onclick={{action "onClickArrow" 'right'}} onkeypress={{action "onClickArrow" 'right'}} tabindex={{tabindex}}>
+                {{gru-icon name="keyboard_arrow_right"}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+
+    </div>
+  </div>
+  <div class="class-container-report">
+   <div class="search-input-container">
+    {{
+      input type="text"
+      placeholder=(t "common.search-students-placeholder")
+      spellcheck="true"
+      id="studentDomainLocal"
+      key-up=(action "onSearchWeeklyLocal" searchWeekLocal)
+      value=searchWeekLocal
+      tabindex=tabindex
+    }}
+   <label for="studentDomainLocal" id="search-student" class="custom-search-icon">
+    {{gru-icon name="search"}}
+  </label>
+ </div>
+ </div>
+  <div class="performance-body-container students-performance-container">
+    <div class="students-container">
+      {{#each studentsDomainPerformance as |student|}}
+        {{#if student.isActive}}
+          <div class="student-container tab-container" onclick={{action "onSelectStudent" student}} onkeypress={{action "onSelectStudent" student}} tabindex={{tabindex}}>
+            <div class="thumbnail-container" style="background-image: url({{student.thumbnail}});"></div>
+            <div class="student-name">{{student.fullName}} {{if (not student.isShowLearnerData) '*'}}</div>
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+    <div class="domains-performance-container scrollable-container">
+      {{#each studentsDomainPerformance as |studentPerformance studentSeq|}}
+        {{#if studentPerformance.isActive}}
+          <div class="domain-performance-container">
+            {{#each studentPerformance.domainCompetencies as |domainCompetencies|}}
+              <div class="tab-container">
+                <div class="performance-chart-container">
+                  {{charts/student-domain-performance domainSeq=domainCompetencies.domainSeq studentSeq=studentSeq competencies=domainCompetencies.competencies}}
+                </div>
+                  <div class="competency-count-container"><span class="mastered">{{domainCompetencies.mastered}}</span>/<span class="in-progress">{{domainCompetencies.in-progress}}</span>/<span
+                    class="not-started">{{domainCompetencies.not-started}}</span></div>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+</div>

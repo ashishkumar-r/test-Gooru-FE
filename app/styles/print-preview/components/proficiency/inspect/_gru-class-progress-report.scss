@@ -1,0 +1,260 @@
+.students-proficiency-header {
+  display: none !important;
+}
+.weekly-report-container {
+  .report-period-selector {
+    .report-periods,
+    .active-period,
+    .custom-range-shower,
+    .toggle-icon {
+      display: none !important;
+    }
+    .report-download {
+      display: block !important;
+      .print-preview {
+        display: none !important;
+      }
+      .class-progress-report-preview {
+        .class-report-container {
+          .report-container {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            position: absolute !important;
+            left: 0 !important;
+            .report-header {
+              .header-penal {
+                .header-info {
+                  display: grid;
+                  grid-template-columns: auto 80px;
+                  gap: 10px;
+                  margin-bottom: 30px;
+                  border-bottom: 2px solid;
+                  .tenan-info {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    .tenant-logo {
+                      display: block;
+                      width: 65px;
+                      height: 65px;
+                      background-repeat: no-repeat !important;
+                      background-size: contain !important;
+                      background-position: center !important;
+                      border-radius: 25px;
+                    }
+                  }
+
+                  .report-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    line-height: 1.5;
+                    .tenant-name {
+                      text-transform: capitalize !important;
+                      font-weight: bold;
+                      font-size: 16px;
+                    }
+                  }
+                }
+              }
+              .body-penal {
+                .class-progress-report-table {
+                  width: 100%;
+                  tr {
+                    td,
+                    th {
+                      border: 1px solid black;
+                      border-collapse: collapse;
+                      padding: 5px;
+                      text-align: center;
+                      height: 55px;
+                      font-size: 15px;
+
+                      .name {
+                        text-transform: capitalize;
+                        text-align: left !important;
+                        display: flex;
+                      }
+                    }
+                  }
+                }
+                .student-info-container {
+                  .student-report {
+                    padding: 15px;
+                    display: block;
+                    break-before: page;
+                    page-break-before: always;
+                    page-break-inside: avoid;
+                    width: 100%;
+                    min-height: 1300px;
+                    max-height: max-content;
+                    .student-details {
+                      display: grid;
+                      grid-template-columns: 50px auto;
+                      column-gap: 5px;
+                      padding-bottom: 20px;
+                      .thumbnail-container {
+                        width: 47px;
+                        height: 47px;
+                        background-size: 47px 47px !important;
+                        display: block;
+                        border-radius: 50%;
+                        border: none;
+                      }
+                      .student-name {
+                        text-transform: capitalize;
+                        opacity: 0.9;
+                        font-size: 13px;
+                        color: $black-bold;
+                        display: flex;
+                        align-items: center;
+                      }
+                    }
+                    .report-overview {
+                      margin: 20px;
+                    }
+                    .competencies-details {
+                      margin: 30px 20px;
+                      .class-progress-report-table {
+                        page-break-inside: auto;
+                        tbody {
+                          tr {
+                            page-break-after: auto;
+                            border-left: 1px solid;
+                            border-right: 1px solid;
+                            &:last-child {
+                              border-bottom: 1px solid;
+                            }
+                            td {
+                              text-align: left;
+                              font-size: 13px;
+                              border: none !important;
+                              padding: 0 10px;
+                              height: inherit;
+                              &:first-child {
+                                border-right: 1px solid !important;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    .student-chat {
+                      page-break-inside: avoid;
+                      display: grid;
+                      grid-template-columns: auto auto;
+                      column-gap: 10px;
+                      .domain-list {
+                        justify-content: center;
+                        display: flex;
+                        flex-direction: column;
+                        .domain-name {
+                          display: grid;
+                          grid-template-columns: 20px auto;
+                          column-gap: 5px;
+                        }
+                      }
+                    }
+                    .proficiency-tags {
+                      margin: 10px;
+                      .last-updated {
+                        text-align: right;
+                        margin-top: 15px;
+                        margin-right: 30px;
+                        font-size: 12px;
+                      }
+                      .proficiency-legends {
+                        margin: 15px auto auto;
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: repeat(6, 1fr);
+                        justify-content: space-around;
+                        .legend {
+                          display: flex;
+                          justify-content: center;
+                          .box {
+                            display: block;
+                            width: 15.6px;
+                            height: 15.6px;
+                            transform: rotate(90deg);
+                            margin-right: 8.4px;
+                          }
+                          .box-class-grade-line {
+                            width: 18px;
+                            height: 5px;
+                            margin-top: 4px;
+                            box-shadow: 0 2px 4px 0
+                              $navbar-default-toggle-icon-bar-bg !important;
+                            margin-right: 8.4px;
+                          }
+                          .box-skyline {
+                            width: 18px;
+                            height: 10px;
+                            box-shadow: 0 2px 4px 0
+                              $navbar-default-toggle-icon-bar-bg !important;
+                            margin-right: 8.4px;
+                          }
+                          .title {
+                            line-height: 13px;
+                            font-size: 12px;
+                            color: $elephant-dark !important;
+                          }
+                          &.mastered {
+                            .box {
+                              background-color: $blue-mastery !important;
+                            }
+                          }
+                          &.in-progress {
+                            .box {
+                              background-color: $blue-in-progress !important;
+                            }
+                          }
+                          &.not-started {
+                            .box {
+                              background-color: $not-started !important;
+                            }
+                          }
+                          &.show-gut {
+                            .box {
+                              background-image: linear-gradient(
+                                to bottom,
+                                $gray-82,
+                                $dark-400
+                              ) !important;
+                            }
+                          }
+                          &.skyline {
+                            .box-skyline {
+                              background-color: $white !important;
+                            }
+                          }
+                          &.class-grade-line {
+                            .box-class-grade-line {
+                              background-color: #8fd383 !important;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .search-student-container {
+      display: none;
+    }
+    .go-back-to-peformance {
+      display: none !important;
+    }
+  }
+  .header-container,
+  .body-container {
+    display: none !important;
+  }
+}

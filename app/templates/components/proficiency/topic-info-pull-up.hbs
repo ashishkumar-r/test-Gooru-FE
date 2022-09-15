@@ -1,0 +1,58 @@
+<div class="domain-panel-header">
+  <div class="topic-name">
+    <span class="domain-name-with-seq">Domain {{topic.domainSeq}} - {{topic.domainName}}</span>
+    <span class="topic-name-with-seq">Topic {{topic.topicSeq}} - {{topic.topicName}}</span>
+  </div>
+  <span class="close" onclick={{action 'closePullUp'}} onkeypress={{action 'closePullUp'}} tabindex="0">{{gru-icon name="close"}}</span>
+</div>
+
+<div class="competency-container">
+    <div class="title">{{topic.competencies.length}} {{t 'common.competencies'}}</div>
+    <div class="competency-list">
+      {{#each topic.competencies as |competency|}}
+        <div class="competency-info" {{action 'onInspectCompetency' competency}}>
+          <div class="competency">
+            <div class="title">
+              {{competency-gut-to-fw-transform
+                fwCompetencies
+                competency.competencyCode
+                competency.competencyDisplayCode
+                'frameworkCompetencyDisplayCode'
+                showGutCompetency
+                true
+              }}
+              <div class="content lo-content">
+                {{competency-lo-transform
+                  fwCompetencies
+                  competency.competencyCode
+                  'loCode'
+                  false
+                  '|'
+                }}
+                <span class="tag-tooltip">
+                  {{competency-lo-transform
+                    fwCompetencies
+                    competency.competencyCode
+                    'loName'
+                    false
+                    ''
+                  }}
+                </span>
+              </div>
+            </div>
+            <div class="competency-status status-{{competency.competencyStatus}}"></div>
+          </div>
+          <div class="competency-desc"  title="{{if competency.competencyDesc competency.competencyDesc competency.competencyName }}" data-toggle="tooltip" data-placement="bottom">
+            {{competency-gut-to-fw-transform
+              fwCompetencies
+              competency.competencyCode
+              competency.competencyName
+              'frameworkCompetencyName'
+              showGutCompetency
+              true
+            }}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>

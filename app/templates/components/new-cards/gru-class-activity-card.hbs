@@ -1,0 +1,261 @@
+{{#if isVideoConfernce}}
+  <div class="video-card {{if primaryClass.isArchived 'archived-video-card'}}">
+    <div class="videocan"></div>
+    <div>
+      <div>{{videoUpdateContent}}</div>
+      <div>{{activity.collection.title}}</div>
+    </div>
+    {{#if (and isEnabledVideoConferenece (not isActivityPast))}}
+      <div class="video-call {{unless activity.meeting_url 'disabled-meeting'}}" onclick={{action (optional (if activity.meeting_url (action "onConference" activity) (action "onUpdateVideConference" activity)))}} onkeypress={{action (optional (if activity.meeting_url (action "onConference" activity) (action "onUpdateVideConference" activity)))}} tabindex={{tabindex}} data-placement="bottom auto" data-toggle="tooltip" title data-original-title="{{tooltipContent}}">
+        {{gru-icon name="videocam"}}
+        <label>{{t 'common.resource-format.video'}}</label>
+      </div>
+    {{/if}}
+
+    <div class="activate-activity {{if (or isInstructionalCoache activity.isActive) 'disable-event'}}" tabindex={{tabindex}} title="{{t 'common.activate'}}" data-toggle="tooltip" data-placement="bottom auto">
+      {{gru-switch
+          isChecked = activity.isActive
+          switchOptions = switchOptions
+          onOptionSwitch = "onToggleActivityVisibility" tabindex=tabindex}}
+      <label>{{t 'common.activate'}}</label>
+    </div>
+    <div class="activity-action delete-activity {{if isGuestAccount 'disable-delete'}}" tabindex={{tabindex}} onclick={{action 'removeClassActivity' activity.activityClasses 'video-confernce' activity}} onkeypress={{action 'removeClassActivity' activity.activityClasses 'video-confernce' activity}}>
+      {{gru-icon name="delete_outline" class="icon-style"}}
+    </div>
+  </div>
+{{else}}
+  <div class="class-activity-card">
+    <div class="card-top-header taxonomy-container">
+      <div class="taxonomy-section" tabindex={{tabindex}}>
+        <div class="taxonomy-container">
+          {{#if taxonomyTags.length}}
+          {{taxonomy/gru-taxonomy-tag-list tags=taxonomyTags tagsVisible=1 isInCard=true isClassActivity=true onShowProficiency="onShowProficiency"}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="content-thumbnail" style="background-image: url({{activityContent.thumbnailUrl}})" tabindex={{tabindex}} onclick={{action "onShowContentPreview"}}  onkeypress={{action "onShowContentPreview"}}>
+      <div class="card-top-header">
+        <span class="content-icon"> <i class="{{activityContent.format}}-icon"></i> </span>
+      </div>
+      <div class="icon">
+        <i class="{{activityContent.format}}-icon" />
+      </div>
+      <div class="content-title">
+        <span>{{activityContent.title}}</span>
+        {{#if (or (eq activityContent.format 'assessment-external') (eq activityContent.format 'collection-external'))}}
+          <i class="{{activityContent.format}}-icons"></i>
+        {{/if}}
+      </div>
+    </div>
+    <div class="activity-info">
+      <div class="content-counts">
+        {{#if isOfflineActivity}}
+          <div class="task-count count-container">
+            <span class="task-icon icon-style"></span>
+            <span class="count-value">{{activityContent.taskCount}}</span>
+          </div>
+        {{else}}
+          <div class="resource-count count-container {{unless activityContent.resourceCount 'hidden'}} {{if isAssessment 'hidden'}}">
+            <span class="resource-icon icon-style"></span>
+            <span class="count-value">{{activityContent.resourceCount}}</span>
+          </div>
+          <div class="question-count count-container {{unless activityContent.questionCount 'hidden'}}">
+            <span class="question-icon icon-style"></span>
+            <span class="count-value">{{activityContent.questionCount}}</span>
+          </div>
+        {{/if}}
+      </div>
+
+      <div class="activity-date">
+      {{#if (eq activity.added_date activity.end_date)}}
+      {{format-date activity.added_date 'DD MMM'}}
+      {{else}}
+      {{format-date activity.added_date 'DD MMM'}} - {{format-date activity.end_date 'DD MMM'}}
+      {{/if}}
+
+      </div>
+      <div class="taxonomy-container" tabindex={{tabindex}}>
+        {{#if taxonomyTags.length}}
+          {{taxonomy/gru-taxonomy-tag-list tags=taxonomyTags tagsVisible=1 isInCard=true isClassActivity=true onShowProficiency="onShowProficiency"}}
+        {{/if}}
+      </div>
+      <div class="card-thumbnail" style="background-image: url({{activityContent.thumbnailUrl}})"></div>
+    </div>
+    <div class="content content-info">
+      <span class="tag-tooltip">{{contentDescription}}</span>
+    </div>
+    <div class="activity-actions {{if primaryClass.isArchived 'archived-actions'}}">
+      {{#if (and isEnabledVideoConferenece (not isActivityPast))}}
+        <div class="video-call {{unless activity.meeting_url 'disabled-meeting'}}" data-toggle="tooltip" title data-original-title="{{tooltipContent}}"
+          onclick={{action (optional (if activity.meeting_url (action "onConference" activity) (action "onUpdateVideConference" activity)))}}
+          onkeypress={{action (optional (if activity.meeting_url (action "onConference" activity) (action "onUpdateVideConference" activity)))}}
+          tabindex={{tabindex}}>
+          {{gru-icon name="videocam"}}
+          <label>{{t 'common.resource-format.video'}}</label>
+        </div>
+      {{/if}}
+      {{#unless isUnscheduledActivity}}
+        <div class="activate-activity {{if (or isInstructionalCoache activity.isActive) 'disable-event'}}" title="{{t 'common.activate'}}" data-toggle="tooltip">
+          {{gru-switch
+            isChecked = activity.isActive
+            switchOptions = switchOptions
+            onOptionSwitch = "onToggleActivityVisibility"
+            tabindex=tabindex}}
+          <label>{{t 'common.activate'}}</label>
+        </div>
+      {{/unless}}
+      {{#if isShowMasteryAccrual}}
+        <div class="mastery">
+          <div class="mastery-accrual {{if activity.allowMasteryAccrual 'checked'}} {{if (or isInstructionalCoache isActivityPast) 'disable-event'}}" title="Mastery" data-toggle="tooltip" tabindex={{tabindex}}
+          onclick={{action "onEnableMastery"}} onkeypress={{action "onEnableMastery"}}>
+            {{gru-icon name=(if activity.allowMasteryAccrual 'radio_button_checked' 'radio_button_unchecked')}}
+          </div>
+          <label>{{t 'common.mastery'}}</label>
+        </div>
+      {{/if}}
+      {{#if (and isShowPresent (eq activity.ownerId userId))}}
+        <div class="dropdown">
+          <div class="dropdown-toggle present" data-toggle="dropdown">
+            <div class="present-btn dropdown-toggle"></div>
+            <label>{{t 'common.cf-action'}}</label>
+          </div>
+          <div class="dropdown-menu present-toggle">
+            {{#each hovercamUserOptions as |option|}}
+              <div class="dropdown-item" tabindex={{tabindex}} onclick={{action 'onCAPresent' activity option}} onkeypress={{action 'onCAPresent' activity option}}>{{t option}}</div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+      {{#if (and enableCollectionLiveLearning activity.isActive)}}
+        {{#if (and (or (eq activity.contentType 'assessment') (eq activity.contentType 'collection'))) }}
+
+          <div class="{{if isMobileViewTooltip 'isMobileViewTooltip'}}">
+          <div class="go-live {{if isSecondaryClass 'disable'}} {{if isInstructionalCoache 'disabled'}}" onclick={{action 'onMobileViewClick'}} onkeypress={{action 'onMobileViewClick'}}>
+            <i data-toggle="tooltip" data-html="true" data-placement="bottom" title="{{t (if isSecondaryClass "message-go-live-multigrade" "common.launch-on-air")}}" class="golive-icon" tabindex={{tabindex}} onclick={{action 'goLive' activity}} onkeypress={{action 'goLive' activity}}></i>
+            <label>{{t 'common.launch-on-air'}}</label>
+          </div>
+          {{#if isMobileViewTooltip}}
+          <span class="tooltiptext">{{t (if isSecondaryClass "message-go-live-multigrade" "common.launch-on-air")}}</span>
+          {{/if}}
+          </div>
+
+        {{/if}}
+      {{/if}}
+
+      <div class="more-container more-container-{{tabindex}}">
+        <div class="dropdown" onkeypress={{action 'moreContainer' tabindex}} tabindex={{tabindex}}>
+          <span class="dropdown-toggle more-info-icon" data-toggle="dropdown">{{gru-icon name="more_vert"}}</span>
+          <div class="more-container-list dropdown-menu dropdown-menu-right">
+            <div class="mark-completed {{if (or isInstructionalCoache activity.isCompleted) 'in-active'}}" tabindex={{tabindex}} onkeypress={{action "onMarkCompleted"}} onclick={{action "onMarkCompleted"}}
+              title="{{if activity.isCompleted (t 'common.completed') (t 'common.mark-as-completed')}}" data-toggle="tooltip">
+              {{gru-icon name=(if activity.isCompleted 'check_circle' 'check_circle_outline')}}
+              {{#if activity.isCompleted}}
+                <label>{{t 'common.completed'}}</label>
+              {{else}}
+                <label>{{t 'common.mark-as-completed'}}</label>
+              {{/if}}
+            </div>
+            <div class="reschedule-activity {{if (or isInstructionalCoache isGuestAccount) 'in-active'}}" title="{{t 'common.Reschedule'}}" data-toggle="tooltip" tabindex={{tabindex}} onkeypress={{action "onRescheduleActivity"}} onclick={{action "onRescheduleActivity"}}>
+              {{gru-icon name="update"}}
+              <label>{{t 'common.Reschedule'}}</label>
+            </div>
+            {{#if isTagGoogleClassroom}}
+              <div class="classroom-content" title="{{googleClassroomName}}" data-toggle="tooltip" tabindex={{tabindex}} onkeypress={{action "onPostAssignment"}} onclick={{action "onPostAssignment"}}>
+                <div class="classroom">
+                  <i class="classroom-icon"></i>
+                </div>
+                <label>{{t 'publish-google-classroom'}}</label>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="secondary-class-list {{if isShowSecondaryClass 'enabled-view'}} {{if primaryClass.isArchived 'archived-secondary-class'}}">
+      <div class="secondary-class-list-container">
+        <div class="class-info">
+          {{#each activityClasses as |activityClass activityIndex|}}
+            <div class="assigned-class">
+              <div class="class-list">
+                <span>
+                  {{gru-icon name="group"}}
+                </span>
+              </div>
+              <div class="class-title ellipsis" title="{{activityClass.title}}" data-toggle="tooltip">
+                {{activityClass.title}}
+              </div>
+              <div class="activity-action delete-activity {{if (or isGuestAccount isInstructionalCoache) 'disable-delete'}}" tabindex={{tabindex}} onclick={{action 'removeClassActivity' activityClass}} onkeypress={{action 'removeClassActivity' activityClass}}>
+                {{gru-icon name="delete_outline" class="icon-style"}}
+              </div>
+              <div class="activity-action student-count {{if isUnscheduledActivity 'hidden'}}" tabindex={{tabindex}} onclick={{action 'onShowStudentsList' activityClass}} onkeypress={{action 'onShowStudentsList' activityClass}}>
+                {{gru-icon name="account_circle" class="icon-style"}}
+                {{#if (eq activityClass.activity.usersCount -1)}}
+                  <span class="hidden-xs">{{t 'common.all'}}</span>
+                {{else if (eq activityClass.activity.usersCount 0)}}
+                  <span class="hidden-xs">{{t 'common.none'}}</span>
+                {{else}}
+                  <span class="hidden-xs"> {{activityClass.activity.usersCount}}</span>
+                {{/if}}
+              </div>
+              <div class="activity-action suggestion-count hidden" tabindex={{tabindex}} onclick={{action "onShowSuggestionList" activityClass}} onkeypress={{action "onShowSuggestionList" activityClass}}>
+                {{gru-icon name="check_circle" class="icon-style"}}
+              </div>
+              {{#unless isUnscheduledActivity}}
+                {{#if activityClass.content.performance.hasStarted}}
+                  <div
+                    class="add-data performed-activity {{unless activityClass.content.performance.timeSpent 'only-score'}} {{if (or isCollection isExternalCollection) 'collection-performance'}} grade-range-{{grade-range activityClass.content.performance.score}}"
+                    onclick={{action "onShowContentReport" activityClass}} onkeypress={{action "onShowContentReport" activityClass}} tabindex={{tabindex}}>
+                    <span class="activity-score">
+                      {{#if (eq activityClass.content.performance.score null)}}
+                        --
+                      {{else}}
+                        {{concat activityClass.content.performance.score '%'}}
+                      {{/if}}
+                    </span>
+                    <span class="activity-timespent">
+                      {{format-time activityClass.content.performance.averageTimespent}}
+                    </span>
+                  </div>
+                {{else}}
+                  {{#if isOfflineActivity}}
+                    <div class="oa-grading {{unless activity.isCompleted 'not-completed'}}" title={{t 'rubric-hover-message'}} data-toggle="tooltip" tabindex={{tabindex}} onclick={{action "onEnableOaGrading" activityClass}} onkeypress={{action "onEnableOaGrading" activityClass}}>
+                      <span class="rubric-icon" />
+                    </div>
+                  {{else}}
+                    <div class="add-data not-started {{unless isCheckFutureActivity 'disable-performance'}} {{if (and activityClass.memberCount (not isGuestAccount)) '' 'no-student'}} {{if isInstructionalCoache 'disable-performance'}}" tabindex={{tabindex}} onclick={{action "onOpenPerformanceEntry" activityClass}} onkeypress={{action "onOpenPerformanceEntry" activityClass}}>
+                      {{t 'common.add-data'}}
+                    </div>
+                  {{/if}}
+                {{/if}}
+              {{/unless}}
+            </div>
+          {{/each}}
+        </div>
+        {{#if (gt activityClasses.length 1)}}
+          <div class="view-more-botton" tabindex={{tabindex}} onclick={{action "onShowSecondaryClass"}} onkeypress={{action "onShowSecondaryClass"}}>
+            {{gru-icon name=(if isShowSecondaryClass 'keyboard_arrow_up' 'keyboard_arrow_down')}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+{{#if isShowDaterangePicker}}
+  <div class="ca-datepicker-schedule-container ca-datepicker-popover-container">
+    {{ca-daterange-datepicker
+      closeDatePicker='onCloseDaterangePicker'
+      onScheduleForDate='onScheduleByDate'
+      onScheduleForMonth='onScheduleByMonth'
+      endDate=endDate
+      enableVideoConference=enableVideoConference
+      allowTwoDateRangePicker=allowTwoDateRangePicker
+      activitiesList = activitiesList
+      activityId = activityId
+      primaryClass = primaryClass
+      selectedClassActivity = selectedClassActivity
+      tabindex=tabindex
+    }}
+  </div>
+{{/if}}

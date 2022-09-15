@@ -1,0 +1,248 @@
+[{
+    "description": "Create a class",
+    "request": {
+      "url": "^/api/nucleus/v1/classes$",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Location": "2d84ab6c-10ee-4578-b89a-6b41c87dc9fc"
+      }
+    }
+  },
+  {
+    "description": "API 3.0: Get the Members for Pochita As Teacher",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/class-for-pochita-as-teacher(.*)/members",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "members-for-pochita-as-teacher-api3-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0: Get the Members of a specific class",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/(.+)/members",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "members-class-api3-200-response.json"
+    }
+  },
+  {
+    "description": "Fetch user classes",
+    "request": {
+      "url": "^/api/nucleus/v1/classes$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "user-classes-api3-ok-response.json"
+    }
+  },
+  {
+    "description": "Join class",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/(.*)/members$",
+      "method": "PUT",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Location": "2d84ab6c-10ee-4578-b89a-6b41c87dc9fc"
+      }
+    }
+  },
+  {
+    "description": "Get a specific class where pochita is a teacher",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/class-for-pochita-as-teacher$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-for-pochita-as-teacher-200-response.json"
+    }
+  },
+  {
+    "description": "Get a specific class visibility where pochita is a teacher",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/class-for-pochita-as-teacher/courses$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-for-pochita-as-teacher-visibility-200-response.json"
+    }
+  },
+  {
+    "description": "Get a specific class visibility where pochita is a student",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/class-for-pochita-as-student/courses$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-for-pochita-as-student-visibility-200-response.json"
+    }
+  },
+  {
+    "description": "Get a specific class where pochita is a student",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/class-for-pochita-as-student$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-for-pochita-as-student-200-response.json"
+    }
+  },
+  {
+    "description": "Class PochitaAsTeacher-NoCourse",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/class-for-pochita-as-teacher-no-course$",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-for-pochita-no-course-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0: Get the Information of a specific class",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/(.+)",
+      "method": "GET",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-info-api3-200-response.json"
+    }
+  },
+  {
+    "description": "API 3.0: move an existing course to a class",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/(.+)",
+      "method": "PUT",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "class-info-api3-200-response.json"
+    }
+  },
+  {
+    "description": "Delete member",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/(.+)/members/(.+)",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "description": "Archive class",
+    "request": {
+      "url": "^/api/nucleus/v1/classes/(.*)/archive$",
+      "method": "PUT",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 204,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Location": "2d84ab6c-10ee-4578-b89a-6b41c87dc9fc"
+      }
+    }
+  }
+]

@@ -1,0 +1,171 @@
+{{#if model.isEditing}}
+  <div class="panel panel-default edit">
+    <div class="panel-heading etl-view">
+      <h3>{{if lessonLabelCourseMap lessonLabelCourseMap (t 'common.lesson')}} {{unless isHideLessonNumber (plus-one index) ''}}</h3>
+      {{validation/gru-input model=tempLesson valuePath='title' class="title" maxLength=150 didValidate=didValidate tabindex=tabindex}}
+    </div>
+    <div class="panel-inner-body">
+      <div class="panel-input">
+        <div class="description-input">
+          {{gru-rich-text-editor content=tempLesson.description model=tempLesson placeholder="Text" valuePath='description' lableValue="Description" class="description" checkFocus="true" isAutoFocusDisabled="true"  onChange = "updateDescription"}}
+          <div class="validation {{if (gte tempLesson.description.length  1 )'in-active'}}">
+            {{#if editDescriptionErrMsg}}
+              <span class="error">
+                {{t 'error.add-description'}}
+              </span>
+            {{/if}}
+          </div>
+        </div>
+        <div class="question-input">
+          {{gru-rich-text-editor content=tempLesson.guiding_question model=tempLesson placeholder="Text" valuePath='guiding_question' lableValue="Guiding Questions"  class="guiding-question" checkFocus="true" isAutoFocusDisabled="true"}}
+        </div>
+      </div>
+      <div class="col-sm-12 lesson-label etl-label">
+        {{content/etl/gru-etl-second isEditing=true  tempData=tempLesson isComputedEtl=false modalvalue=tempLesson   valueHours='etlHrs' valueMins='etlMins' labelText=(t 'common-estimate-time-learn-title') tabindex=tabindex}}
+      </div>
+    </div>
+    <div class="actions-btn">
+      <button class="cancel btn btn-info" onclick={{action 'cancelEdit'}} onkeypress={{action 'cancelEdit'}} tabindex={{tabindex}}>{{t "common.cancel"}}</button>
+      <button class="save btn btn-success" onclick={{action 'saveLesson'}} onkeypress={{action 'saveLesson'}} tabindex={{tabindex}}>{{t "common.save"}}</button>
+    </div>
+
+    {{!-- <div class="actions">
+        <button class="cancel btn btn-info" {{action 'cancelEdit'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" {{action 'saveLesson'}}>{{t "common.save"}}</button>
+      </div>
+    </div> --}}
+  </div>
+{{/if}}
+<div class="panel panel-default view {{if model.isExpanded 'expanded' 'collapsed'}}">
+  <div class="panel-heading {{if model.isExpandEdit 'edit-input-box'}}">
+    {{#if isSorting}}
+      <span class="drag-icon">
+        {{gru-icon name="drag_handle"}}
+      </span>
+    {{/if}}
+    {{#if model.isExpandEdit}}
+      <h3>{{if lessonLabelCourseMap lessonLabelCourseMap (t 'common.lesson')}} {{unless isHideLessonNumber (plus-one index) ''}}</h3>
+      {{validation/gru-input model=tempLesson valuePath='title' class="title" maxLength=150 didValidate=didValidate tabindex=tabindex}}
+    {{else}}
+      <a role="link" href="javascript:void(0)" aria-label={{t "common.lesson"}} onclick={{action 'toggle'}} onkeypress={{action 'toggle'}} tabindex={{tabindex}}>
+        <div class="title">
+          <h3>{{if lessonLabelCourseMap lessonLabelCourseMap (t 'common.lesson')}} {{unless isHideLessonNumber (plus-one index) ''}}</h3>
+          <strong data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title={{lesson.title}}>{{lesson.title}}</strong>
+        </div>
+      </a>
+    {{/if}}
+    {{#unless model.isExpandEdit}}
+      <div class="detail">
+        {{#if model.isSorting}}
+          <div class="actions">
+            <button role="button" class="btn sort-items" onclick={{action 'sortLessonItems'}} onkeypress={{action 'sortLessonItems'}} tabindex={{tabindex}} title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+            <div class="drag-options">
+              <button role="button" class="cancel btn btn-info" onclick={{action 'cancelSort'}} onkeypress={{action 'cancelSort'}} tabindex={{tabindex}}>{{t "common.cancel"}}</button>
+              <button role="button" class="save btn btn-success" onclick={{action 'saveLessonItemsOrder'}} onkeypress={{action 'saveLessonItemsOrder'}} tabindex={{tabindex}}>{{t "common.save"}}</button>
+            </div>
+          </div>
+        {{else}}
+          {{#if (or lesson.assessmentCount lesson.collectionCount)}}
+            <div class="{{if (and lesson.assessmentCount lesson.collectionCount) 'mixed'}}">
+              {{#if lesson.assessmentCount}}
+                <span><b>{{lesson.assessmentCount}}</b> {{t "common.assessment-pl" count=lesson.assessmentCount}}</span>
+              {{/if}}
+              {{#if lesson.collectionCount}}
+                <span dir="ltr"><b>{{lesson.collectionCount}}</b> {{t "common.collection-pl" count=lesson.collectionCount}}</span>
+              {{/if}}
+            </div>
+          {{else}}
+            <span>{{t "common.add"}}</span>
+          {{/if}}
+          <div class="actions">
+            <div class="dropdown">
+              <button class="btn add-item dropdown-toggle" title="{{t 'common.create'}}" type="button" data-toggle="dropdown">{{gru-icon name="add"}}</button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#" aria-label={{t "common.from-my-collections"}} {{action "fromMyCollections"}}>{{t "common.from-my-collections"}}</a></li>
+                <li><a href="#" aria-label={{t "common.from-my-assessments"}}  {{action "fromMyAssessments"}}>{{t "common.from-my-assessments"}}</a></li>
+                <li><a href="#" aria-label="From My Activities" {{action "fromMyActivities"}}>From My Activities</a></li>
+                <li><a href="#" aria-label={{t "common.new-collection"}} {{action "showModal" "content.modals.gru-collection-new" newCollectionModel}}>{{t "common.new-collection"}}</a></li>
+                <li><a href="#" aria-label={{t "common.new-assessment"}} {{action "showModal" "content.modals.gru-assessment-new" newCollectionModel}}>{{t "common.new-assessment"}}</a></li>
+                <li><a href="#" aria-label={{t "student-landing.my-performance.activity"}} {{action "newActivity" newCollectionModel }}> {{t "student-landing.my-performance.activity"}}</a></li>
+              </ul>
+            </div>
+            <button class="btn sort-items" onclick={{action 'sortLessonItems'}} onkeypress={{action 'sortLessonItems'}} tabindex={{tabindex}} title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+            <div class="item-actions">
+              {{partial 'content/partials/item-actions'}}
+              <button class="btn edit-item" title="{{t 'common.edit'}}" onclick={{action 'edit' model}} onkeypress={{action 'edit' model}} tabindex={{tabindex}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="edit"}}</button>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    {{/unless}}
+  </div>
+  {{#if model.isExpandEdit}}
+    <div class="panel-inner-body">
+      <div class="panel-input">
+        <div class="description-input">
+          {{gru-rich-text-editor content=tempLesson.description model=tempLesson value=lessonPlan.description valuePath='description' courseLessonDesc=true lableValue="Description" class="description" checkFocus="true" isAutoFocusDisabled="true" didValidate=didValidate}}
+          <div class="validation {{if (gte tempLesson.description.length  1 )'in-active'}}">
+            {{#if editDescriptionErrMsg}}
+              <span class="error">
+                {{t 'error.add-description'}}
+              </span>
+            {{/if}}
+          </div>
+        </div>
+        <div class="question-input">
+          {{gru-rich-text-editor content=tempLesson.guiding_question model=tempLesson value=lessonPlan.guidingQuestions valuePath='guiding_question' courseLessonDesc=true lableValue="Guiding Questions"  class="guiding-question" checkFocus="true" isAutoFocusDisabled="true"}}
+          <div class="validation {{if (gte tempLesson.guiding_question.length  1 )'in-active'}}">
+            {{#if editquestionErrMsg}}
+              <span class="error">
+                {{t 'error.add-guiding-question'}}
+              </span>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{#if isLessonLoaded}}
+        <div class="col-sm-12 lesson-label etl-label">
+          {{content/etl/gru-etl-second isEditing=true tempData=tempLesson isComputedEtl=false modalvalue=lesson  valueHours='etlHrs' valueMins='etlMins' labelText=(t 'common-estimate-time-learn-title')}}
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{#if model.isExpandEdit}}
+    <div class="edit-actions-btn">
+      <button class="cancel btn btn-info" {{action 'cancelEdit'}}>{{t "common.cancel"}}</button>
+      <button class="save btn btn-success" {{action 'saveLesson'}}>{{t "common.save"}}</button>
+    </div>
+  {{/if}}
+  <div class="panel-body {{if model.isExpandEdit 'edit-panel-body'}}">
+    <ol class="accordion-lesson sortable" role="tablist" aria-multiselectable="true">
+      {{#each items as |item index|}}
+        {{content/courses/edit/gru-accordion-lesson-item
+          model=item
+          course=course
+          index=index
+          isSorting=model.isSorting
+          lessonId=lesson.id
+          unitId=unitId
+          courseId=course.id
+          lessonTitle=lesson.title
+          onRemoveLessonItem=(action 'removeLessonItem')
+          onDeleteLessonItem=(action 'removeLessonItem')
+          onRemixLessonItem=(action 'remixLessonItem')
+          tabindex=tabindex
+          hasCollaborator=hasCollaborator
+          }}
+      {{/each}}
+    </ol>
+    <div>
+      <button class="btn btn-success add-prefix" {{action "fromMyCollections"}}>{{t "common.from-my-collections"}}</button>
+      <button class="btn btn-success add-prefix" {{action "fromMyAssessments"}}>{{t "common.from-my-assessments"}}</button>
+      <button class="btn btn-success add-prefix" {{action "fromMyActivities"}}> From My Activities </button>
+      <button class="btn btn-success add-prefix" {{action "showModal" "content.modals.gru-collection-new" newCollectionModel}}>{{t "common.new-collection"}}</button>
+      <button class="btn btn-success add-prefix" {{action "showModal" "content.modals.gru-assessment-new" newCollectionModel}}>{{t "common.new-assessment"}}</button>
+      {{!--  <button class="btn btn-success add-prefix" {{action "showModal" "content.modals.gru-activity-new" newCollectionModel}}>{{t "student-landing.my-performance.activity"}}</button>
+      --}}
+      <button class="btn btn-success add-prefix" {{action "newActivity" newCollectionModel }}>
+        {{t "student-landing.my-performance.activity"}}</button>
+    </div>
+  </div>
+</div>

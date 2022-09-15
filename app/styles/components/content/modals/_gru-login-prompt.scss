@@ -1,0 +1,109 @@
+.gru-login-prompt {
+  margin: 0 auto;
+  max-height: 305px;
+  max-width: 500px;
+
+  .img-container {
+    display: inline-block;
+    height: 30px;
+    margin-top: 15px;
+    width: 70px;
+
+    .brand-image {
+      @include scale(0.6, 0.6);
+      background: url("gooru/images/gooru-logo.svg");
+      display: block;
+      height: 32px;
+      margin-left: -20px;
+      padding: 0;
+      width: 111px;
+    }
+  }
+
+  .modal-header {
+    @include flexbox;
+    background-color: $white;
+    border: 0;
+    height: 125px;
+    padding: 30px 15px 0;
+    text-align: $tab-float-dir;
+
+    @media (min-width: $screen-sm-min) {
+      padding: 30px 30px 0;
+    }
+
+    .header-content {
+      padding-left: 30px;
+    }
+
+    .lead {
+      color: $dark-400;
+      font-size: $font-size-h5;
+      display: inline-block;
+      line-height: 20px;
+      margin: 0 0 5px;
+    }
+
+    p {
+      line-height: 15px;
+    }
+  }
+
+  .modal-body {
+    @include flexbox;
+    @include align-items(center);
+
+    background-color: $blue-400;
+    border: 0;
+    height: 130px;
+    padding: 0;
+
+    > * {
+      height: 75px;
+      text-align: center;
+      width: 50%;
+
+      &:first-child {
+        border-right: 1px solid $blue-300;
+
+        div {
+          padding: 0 15px;
+        }
+      }
+
+      > div {
+        &:first-child {
+          @include flexbox;
+          @include flex-direction(column);
+          @include justify-content(center);
+          @include align-items(center);
+          height: 41px;
+        }
+      }
+
+      p {
+        color: $white;
+        line-height: 13px;
+        margin: 0;
+      }
+
+      .action-container {
+        button {
+          color: $blue-300;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    border: 0;
+    height: 50px;
+    padding: 0;
+
+    button {
+      color: $blue-300;
+      font-weight: bold;
+      height: 100%;
+    }
+  }
+}

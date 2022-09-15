@@ -1,0 +1,83 @@
+.monthly-time-series-chart {
+  display: contents;
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    width: max-content;
+    margin: auto;
+
+    &.open {
+      .dropdown-menu {
+        display: grid;
+        grid-template-columns: auto auto auto;
+      }
+    }
+
+    .btn-dropdown {
+      background-color: $white;
+      color: $gray-base;
+      padding: 3px;
+      font-size: 16px;
+      text-transform: capitalize;
+      border: none;
+    }
+
+    .date-list {
+      min-width: max-content;
+      left: 50%;
+      transform: translate(-50%, -125%);
+      padding: 0;
+
+      .list-item {
+        padding: 10px;
+
+        &.active {
+          background-color: $light-200;
+        }
+      }
+    }
+  }
+
+  svg {
+    margin: auto;
+    width: 700px;
+    height: 65px;
+  }
+
+  .axis line,
+  .axis path {
+    fill: none;
+    stroke: $charcoal-grey;
+  }
+
+  .line {
+    fill: none;
+    stroke: blue;
+    stroke-width: 2px;
+  }
+
+  circle {
+    fill: $soft-blue;
+    stroke: $white;
+    stroke-width: 3px;
+  }
+
+  .tick {
+    cursor: pointer;
+
+    text {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: $charcoal-grey;
+      opacity: 0.8;
+      font-weight: bold;
+    }
+
+    &.gray-out {
+      opacity: 0.5 !important;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+}

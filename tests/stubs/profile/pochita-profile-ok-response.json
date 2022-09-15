@@ -1,0 +1,31 @@
+{
+  "aboutMe": "I'm a teacher",
+  "dateOfBirth": 649728000000,
+  "profileId": "id-for-pochita",
+  "user": {
+    "username": "pochita",
+    "firstName": "Niña",
+    "lastName": "Pochita",
+    "gooruUId": "id-for-pochita",
+    "meta": {
+      "taxonomyPreference": {
+        "codeId": [
+          "24146",
+          "27787",
+          "30424",
+          "42236",
+          "42237",
+          "79622"
+        ],
+        "code": [
+          "CCSSM",
+          "CCSS",
+          "CA",
+          "CASK5",
+          "CAS612",
+          "C3"
+        ]
+      }
+    }
+  }
+}

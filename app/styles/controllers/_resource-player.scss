@@ -1,0 +1,33 @@
+.resource-player {
+  .gru-header {
+    display: none;
+  }
+  .app-container {
+    padding-top: 0px;
+  }
+  .player-container {
+    overflow: auto;
+    height: 100vh;
+    .player {
+      @include flexbox;
+      @include flex-direction(row);
+      @include align-content(flex-start);
+      height: 100%;
+      padding-top: 104px;
+
+      &.iframe-player {
+        padding-top: 40px;
+      }
+    }
+
+    .qz-main {
+      @include flexbox;
+      @include flex-direction(column);
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+}

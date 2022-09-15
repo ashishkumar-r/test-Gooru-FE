@@ -1,0 +1,6 @@
+<div class="gru-toggle-button">
+  <label onkeypress={{action 'onToggleButton'}} tabindex={{tabindex}} aria-label="show complete course" class="switch"><span class="disable">toggle button</span>
+    {{input type="checkbox" title=title checked=isChecked click=(action 'onToggleButton') key-press=(action 'onToggleButton') aria-checked="false"}}
+    <span class="slider round"></span>
+  </label>
+</div>

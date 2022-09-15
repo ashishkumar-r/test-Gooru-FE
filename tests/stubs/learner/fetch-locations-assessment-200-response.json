@@ -1,0 +1,21 @@
+{
+  "usageData":[
+    {
+      "unitId": "unit-id1",
+      "lessonId": "lesson-id1",
+      "collectionId": "assessment-id1",
+      "collectionTitle": "assessment-title1",
+      "collectionType": "assessment",
+      "status": "complete",
+      "lastAccessed": "2017-03-07 18:44:04.798"
+    }, {
+      "unitId": "unit-id2",
+      "lessonId": "lesson-id2",
+      "collectionId": "assessment-id2",
+      "collectionTitle": "assessment-title2",
+      "collectionType": "assessment",
+      "status": "complete",
+      "lastAccessed": "2017-03-07 18:44:04.798"
+    }
+  ]
+}

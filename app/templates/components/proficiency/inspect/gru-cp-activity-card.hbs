@@ -1,0 +1,42 @@
+<div class="cp-activity-container">
+	<div class="cp-card-panel {{if isHideScore 'hide-score'}} {{if content.isSuggestion 'signature-content'}} {{if content.isCollection 'cp-collection-card'}}">
+		{{#if showDateWiseReport}}
+			<span class="type {{content.format}}"></span>
+		{{else}}
+			<div class="date-section">
+				<span>{{format-date content.activityDate 'DD'}}</span>
+				<span>{{format-date content.activityDate 'MMM'}}</span>
+			</div>
+		{{/if}}
+		<div class="competency-title">
+			<span class="title" title="{{content.title}}" data-toggle="tooltip" data-placement="bottom">{{content.title}}</span>
+			<span class="code">
+				<span class="display-code">{{content.code}}</span>
+				{{#if (and content.loCode content.loName)}}
+				<span title="{{content.loName}}" data-toggle="tooltip">
+					 | {{ content.loCode}} |  {{ content.loName}}
+				</span>
+				{{/if}}
+			</span>
+		</div>
+		<span class="{{content.format}}-icons"></span>
+		{{#unless (or content.isCollection (eq content.format 'collection-external'))}}
+			<div class="attempts-count {{if isHideScore 'hide'}}">
+				{{#if (or content.attempts content.sessions)}}
+					<span class="count">{{if content.attempts content.attempts content.sessions.length}}</span>
+					<span>{{t 'common.tries'}}</span>
+				{{else}}
+					<span class="count">{{if content.tries content.tries ''}}</span>
+					<span>{{t 'common.tries'}}</span>
+				{{/if}}
+			</div>
+		{{/unless}}
+		<a href="javascript:void(0)" {{action "onShowReport"}} class="performance-score {{if isHideScore 'hide'}}  grade-range-{{unless (or (eq content.format 'collection') (eq content.format 'collection-external')) (grade-range content.score)}} {{if isDisableScore 'disable-event'}}">
+			{{#unless (or (eq content.format 'collection') (eq content.format 'collection-external'))}}
+				{{if (not-eq content.score null) (concat (round-number content.score) '%') '--'}}
+			{{else}}
+				{{if content.totalTimespent (format-time content.totalTimespent) '--'}}
+			{{/unless}}
+		</a>
+	</div>
+</div>

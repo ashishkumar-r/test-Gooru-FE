@@ -1,0 +1,26 @@
+<ul class="nav nav-tabs" role="tablist">
+  {{#unless class.isArchived}}
+    <li class="active class-activities tab">
+      <a {{action 'selectItem' 'class-activities'}} role="tab" data-toggle="tab">
+        <span class="lead">{{t 'teacher-landing.class.class-activities'}}</span>
+      </a>
+    </li>
+    <li class="course-map tab">
+      <a {{action 'selectItem' 'course-map'}} role="tab" data-toggle="tab">
+        <span class="lead">{{t 'teacher-landing.class.course-map'}}</span>
+      </a>
+    </li>
+  {{/unless}}
+  <li class="performance tab">
+    <a {{action 'selectItem' 'performance'}} role="tab" data-toggle="tab">
+      <span class="lead">{{t 'teacher-landing.class.report'}}</span>
+    </a>
+  </li>
+  {{#unless class.isArchived}}
+    <li class="class-management tab">
+      <a {{action 'selectItem' 'class-management'}} role="tab" data-toggle="tab">
+        <span class="lead">{{t 'teacher-landing.class.class-management'}}</span>
+      </a>
+    </li>
+  {{/unless}}
+</ul>

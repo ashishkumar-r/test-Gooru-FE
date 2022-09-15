@@ -1,0 +1,64 @@
+{
+  "libraries": [
+    {
+      "id": "841b7edk-9678-4819-bf8c-ad4c6e8g670",
+      "name": "discoverable library",
+      "thumbnail": null,
+      "tenant": "31e8d608-8ed8-42e7-96e9-a1a1a3170d4d",
+      "tenant_root": null,
+      "course_count": 1,
+      "assessment_count": 4,
+      "collection_count": 5,
+      "resource_count": 23,
+      "question_count": 12,
+      "rubric_count": 2,
+      "sequence_id": 1,
+      "taxonomy": null
+    },
+    {
+      "id": 1,
+      "name": "default library",
+      "thumbnail": "ba956a97-ae15-11e5-a302-f8a963065976.png",
+      "tenant": "ba956a97-ae15-11e5-a302-f8a963065976",
+      "tenant_root": null,
+      "course_count": 5,
+      "assessment_count": 12,
+      "collection_count": 15,
+      "resource_count": 56,
+      "question_count": 45,
+      "rubric_count": 12,
+      "sequence_id": 1,
+      "taxonomy": null
+    },
+    {
+      "id": "841b7edk-9648-4819-bf8c-ad4c6e8g670",
+      "name": "Maths",
+      "thumbnail": null,
+      "tenant": "ba956a97-ae15-11e5-a302-f8a963065976",
+      "tenant_root": null,
+      "course_count": 0,
+      "assessment_count": 0,
+      "collection_count": 0,
+      "resource_count": 0,
+      "question_count": 0,
+      "rubric_count": 0,
+      "sequence_id": 2,
+      "taxonomy": null
+    },
+    {
+      "id": "841b7edk-9638-4816-bf8c-ad4c6e8g670",
+      "name": "global library",
+      "thumbnail": null,
+      "tenant": "d2b96c0a-4be6-4764-b97e-a0d2341aa3b3",
+      "tenant_root": null,
+      "course_count": 5,
+      "assessment_count": 11,
+      "collection_count": 9,
+      "resource_count": 34,
+      "question_count": 45,
+      "rubric_count": 5,
+      "sequence_id": 1,
+      "taxonomy": null
+    }
+  ]
+}

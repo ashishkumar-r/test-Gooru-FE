@@ -1,0 +1,124 @@
+<div class="panel-header">
+  <div class="subject-details">
+    <div class="subject-name">{{subject.title}}</div>
+    <div class="framework-title">{{framework}}</div>
+  </div>
+  <div class="portfolio-selector data-model-selector out-of-scope">
+    <div class="proficiency {{if isShowDomainList 'active'}}" tabindex={{tabindex}} onclick={{action "onSelectDatamodel" 'proficiency'}} onkeypress={{action "onSelectDatamodel" 'proficiency'}}>Proficiency</div>
+    <span>|</span>
+    <div class="portfolio {{unless isShowDomainList 'active'}}" tabindex={{tabindex}} onclick={{action "onSelectDatamodel" 'portfolio'}} onkeypress={{action "onSelectDatamodel" 'portfolio'}}>Portfolio</div>
+  </div>
+</div>
+{{#if isShowDomainList}}
+  <div class="domain-list" tabindex="0">
+    <div class="title">{{t 'common.domains'}}</div>
+    {{#unless showGutCompetency}}
+      <div class="desc">{{t 'counts-based-on-gut'}}</div>
+    {{/unless}}
+
+    {{#if isLoading}}
+    {{three-bounce-spinner}}
+    {{/if}}
+
+    <ol>
+      {{#each domains as |domain|}}
+        <li>
+          <span class="domain-title" id="scroll-domain-{{domain.domainSeq}}" tabindex={{tabindex}} onclick={{action 'onDomainSelect' domain }} onkeypress={{action 'onDomainSelect' domain }}>
+            {{domain-gut-to-fw-transform
+               fwDomains
+               domain.domainCode
+               domain.domainName
+              'fwDomainName'
+              (not showGutCompetency)
+            }}
+          </span>
+          <div class="competency-sec">
+            <div class="competency-status">
+              <div class="mastered">
+                <div class="count">{{domain.masteredCompetencies}}</div>
+                <div class="status-label" title="{{t 'profile.proficiency.mastered'}}" data-toggle="tooltip"></div>
+              </div>
+              <div class="in-progress">
+                <div class="count">{{domain.inprogressCompetencies}}</div>
+                <div class="status-label" title="{{t 'profile.proficiency.in-progress'}}" data-toggle="tooltip"></div>
+              </div>
+              <div class="not-started">
+                <div class="count">{{domain.notstartedCompetencies}}</div>
+                <div class="status-label" title="{{t 'profile.proficiency.not-started'}}" data-toggle="tooltip"></div>
+              </div>
+            </div>
+            <div>
+              <span class="competency-count"><span>|</span> {{domain.topics.length}} Topics </span>
+              <span class="competency-count">({{domain.totalCompetencies}} {{t 'common.competencies'}})</span>
+            </div>
+          </div>
+          {{#if domain.isExpanded}}
+          <div class="competency-container">
+             <ol>
+                {{#each domain.topics as |topic|}}
+                  <li tabindex={{tabindex}} onclick={{action 'onSelectTopic' topic }} onkeypress={{action 'onSelectTopic' topic }}>
+                    <span class="topic-title">
+                      <span>{{domain.domainSeq}}.{{topic.topicSeq}}</span> <span class="topic-name">{{topic.topicName}}</span>
+                    </span>
+                    <div class="competency-sec">
+                      <div class="competency-status">
+                        <div class="mastered">
+                          <div class="count">{{topic.masteredCompetencies}}</div>
+                          <div class="status-label" title="{{t 'profile.proficiency.mastered'}}" data-toggle="tooltip"></div>
+                        </div>
+                        <div class="in-progress">
+                          <div class="count">{{topic.inprogressCompetencies}}</div>
+                          <div class="status-label" title="{{t 'profile.proficiency.in-progress'}}" data-toggle="tooltip"></div>
+                        </div>
+                        <div class="not-started">
+                          <div class="count">{{topic.notstartedCompetencies}}</div>
+                          <div class="status-label" title="{{t 'profile.proficiency.not-started'}}" data-toggle="tooltip"></div>
+                        </div>
+                      </div>
+                      <span class="competency-count"><span>|</span> {{topic.competencies.length}} {{t 'common.competencies'}}</span>
+                    </div>
+                  </li>
+                {{/each}}
+              </ol>
+
+            </div>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ol>
+  </div>
+{{else}}
+  <div class="portfolio-items-container">
+    <div class="offline-activities-panel">
+      {{portfolio/gru-contents-panel
+        contentType = 'offline-activity'
+        userProfile = userProfile
+        userPreference = userPreference
+        subject = subject
+        isDisableFilter = true
+        isStudent=isStudent
+        isExpanded = true}}
+    </div>
+    <div class="assessments-panel">
+      {{portfolio/gru-contents-panel
+        contentType = 'collection'
+        userProfile = userProfile
+        userPreference = userPreference
+        subject = subject
+        isDisableFilter = true
+        isStudent=isStudent
+        isExpanded = false}}
+    </div>
+    <div class="collections-panel">
+      {{portfolio/gru-contents-panel
+        contentType = 'assessment'
+        userProfile = userProfile
+        userPreference = userPreference
+        subject = subject
+        isDisableFilter = true
+        isStudent=isStudent
+        isExpanded = false}}
+    </div>
+  </div>
+{{/if}}
+{{yield}}

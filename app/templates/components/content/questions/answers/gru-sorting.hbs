@@ -1,0 +1,104 @@
+<div class="gru-sorting-container">
+    <div class="sorting-panel">
+                <div class="panel-section">
+                    <div class="panel-content-header">
+                        <span>{{validation/gru-input content=tempModel.softText disabled=(not editMode) model=tempModel valuePath='softText' }}</span>
+                        <span>{{validation/gru-input content=tempModel.hardText disabled=(not editMode) model=tempModel valuePath='hardText' }}</span>
+                    </div>
+                    <div class="panel-body-section">
+                      <div class="list-item-panel list-item-left">
+                        <ul class="list-item-blk column-soft-list">
+                          {{#each softAnswers as |answer answerIndex|}}
+                            {{#if (eq answer.type 'soft')}}
+                                {{#if (not-eq softAnswers.length (plus-one answerIndex))}}
+                                  <li data-index={{answerIndex}}>{{answer.text}}
+                                    {{#if editMode}}
+                                      <span class="material-icons" {{action "removeItem" answer}}>clear</span>
+                                    {{/if}}
+                                  </li>
+                                {{else}}
+                                  <li>{{validation/gru-input content=answer.text autofocus=true disabled=(not editMode) model=answer valuePath='text' }}
+                                    {{#if editMode}}
+                                      <span class="material-icons" {{action "removeItem" answer}}>clear</span>
+                                    {{/if}}
+                                  </li>
+                                {{/if}}
+                            {{/if}}
+                          {{/each}}
+                        </ul>
+                        {{#if editMode}}
+                          <div class="input-field-section">
+                            <!-- {{input
+                              type='text'
+                              id="sorting-list-data-soft"
+                              enter=(action "addNewItem" 'soft')
+                              disabled = (not editMode)
+                              autofocus=true
+                              placeholder=(t 'common.word')
+                            }} -->
+                            <span class="add-item material-icons" {{action "addNewItem" 'soft'}}>add</span>
+                          </div>
+                        {{/if}}
+                      </div>
+
+                      <div class="list-item-panel list-item-right">
+                        <ul class="list-item-blk column-hard-list">
+                          {{#each hardAnswers as |answer answerIndex|}}
+                            {{#if (eq answer.type 'hard')}}
+                              {{#if (not-eq hardAnswers.length (plus-one answerIndex))}}
+                                <li data-index={{answerIndex}}>{{answer.text}}
+                                  {{#if editMode}}
+                                    <span class="material-icons" {{action "removeItem" answer}}>clear</span>
+                                  {{/if}}
+                                </li>
+                              {{else}}
+                                <li>{{validation/gru-input autofocus=true content=answer.text disabled=(not editMode) model=answer valuePath='text' }}
+                                  {{#if editMode}}
+                                    <span class="material-icons" {{action "removeItem" answer}}>clear</span>
+                                  {{/if}}
+                                </li>
+                              {{/if}}
+                            {{/if}}
+                          {{/each}}
+                        </ul>
+                        {{#if editMode}}
+                          <div class="input-field-section">
+                            <!-- {{input
+                              type='text'
+                              id="sorting-list-data-hard"
+                              enter=(action "addNewItem" 'hard')
+                              disabled = (not editMode)
+                              autofocus=true
+                              placeholder=(t 'common.word')
+                            }} -->
+                            <span class="add-item material-icons" {{action "addNewItem" 'hard'}}>add</span>
+                          </div>
+                        {{/if}}
+                      </div>
+
+                      <!-- <div class="list-item-panel">
+                        <ul class="list-item-blk column-center-list">
+                          {{#each answers as |answer answerIndex|}}
+                              {{#unless answer.type}}
+                                  <li class="answer-list-item" data-answer-index={{answerIndex}}>{{answer.text}}</li>
+                              {{/unless}}
+                          {{/each}}
+                        </ul>
+                          {{#if editMode}}
+                            <div class="input-field-section">
+                              {{input
+                                type='text'
+                                id="sorting-list-data"
+                                enter="addNewItem"
+                                disabled = (not editMode)
+                                autofocus=true
+                                placeholder=(t 'common.word')
+                              }}
+                              <span class="add-item material-icons" {{action "addNewItem"}}>add</span>
+                            </div>
+                          {{/if}}
+                      </div> -->
+                    </div>
+                </div>
+    </div>
+</div>

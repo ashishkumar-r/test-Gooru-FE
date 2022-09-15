@@ -1,0 +1,44 @@
+<div class="search-filter-container">
+  <div class="search-filter-section">
+    <ul class="content-type-blk" role="menu">
+      {{#each contentTypes as |content|}}
+        <li onclick={{action "onChangeContent" content}} onkeypress={{action "onChangeContent" content}}  tabindex={{tabindex}} class="{{if (and (eq content.format activeContentType.format) (not activeVideoConference) ) 'active'}} {{content.format}}" title="{{t (concat 'common.' content.format)}}"
+          data-toggle="tooltip" data-placement="bottom auto"  role="menuitem" aria-label={{t (concat 'common.' content.format)}} data-trigger="hover"></li>
+      {{/each}}
+      {{#if isShowVideoConference}}
+        {{#if primaryClass.members.length}}
+          <div class="videocam {{if (or isInstructionalCoache primaryClass.isArchived) 'video-archived'}} {{if activeVideoConference 'video-active'}}" tabindex={{tabindex}} title="{{t 'ca.video-conference'}}" data-toggle="tooltip" data-placement="bottom auto" data-trigger="hover" onclick={{action "onToggleFilter" 'create-video-conference'}} onkeypress={{action "onToggleFilter" 'create-video-conference'}}></div>
+          {{else}}
+            <div tabindex={{tabindex}} class="videocam {{unless primaryClass.members.length 'videoDisable'}}"  title="{{t 'common.add-student' action="create"}}" data-toggle="tooltip" data-placement="bottom auto" data-trigger="hover"></div>
+        {{/if}}
+      {{/if}}
+      <div class="search-box">
+      {{input tabindex=tabindex type="text" title="searchBox" role="search" value=searchTerms enter=(action 'onSearchContent' searchTerms) placeholder=(t 'common.search')}}
+    </div>
+    </ul>
+    <span tabindex={{tabindex}} onclick={{action 'onSearchContent' '' preventDefault=(eq searchTerms '')}} onkeypress={{action 'onSearchContent' '' preventDefault=(eq searchTerms '')}}> {{gru-icon name=(unless (eq searchTerms '') 'clear')}}</span>
+    <span tabindex={{tabindex}} onclick={{action 'onSearchContent' searchTerms}} onkeypress={{action 'onSearchContent' searchTerms}}>{{gru-icon name="search"}}</span>
+    <span tabindex={{tabindex}} onclick={{action "onToggleFilter" 'content-resource-filter'}} onkeypress={{action "onToggleFilter" 'content-resource-filter'}} class="filter-dropdown {{if  isFilterApplied 'active'}}">{{gru-icon name="filter_list"}}</span>
+  </div>
+    <div class="create-video-conference">
+      {{#if isMeetingPanel}}
+        {{gru-video-conference
+        primaryClass= primaryClass
+        members=primaryClass.members
+        onRefreshData=(action "onRefreshData")
+        tabindex=tabindex
+        }}
+      {{/if}}
+      {{#if isConferenceAllow}}
+          {{cards/gru-video-authorize-card onDeny="onDeny" onAllow="onAllow" tabindex=tabindex}}
+     {{/if}}
+    </div>
+  <div class="content-resource-filter">
+    {{class/activities/gru-content-resource-filter
+      primaryClass=primaryClass
+      applyFilter=(action "applyFilter")
+      activeContentType=activeContentType
+      tabindex=tabindex
+    }}
+  </div>
+</div>

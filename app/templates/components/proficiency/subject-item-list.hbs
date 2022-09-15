@@ -1,0 +1,10 @@
+<ul class="subject-list">
+  {{#each taxonomySubjects as |subject|}}
+    <li class="list-item {{if (eq subject.id selectedItem.id) 'active-item'}}" {{action "onSelectItem" subject}}>
+      <div class="title" >
+        <span>{{subject.subjectTitle}} </span>
+      </div>
+      <div class="active-badge"></div>
+    </li>
+  {{/each}}
+</ul>

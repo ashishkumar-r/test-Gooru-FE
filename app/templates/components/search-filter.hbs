@@ -1,0 +1,33 @@
+<section class="search-filter">
+  <ul class="col-md-10 col-sm-12 col-xs-12 search-filter-options">
+    <li>
+      <button class="btn collections btn-search-filter {{if collectionFilterSelected 'selected'}}" {{action 'searchFilter' 'collection'}}>
+       <span class="icon"></span>
+       <span class="text">{{t "search-filter.collections"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn assessments btn-search-filter {{if assessmentFilterSelected 'selected'}}" {{action 'searchFilter' 'assessment'}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.assessments"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn resources btn-search-filter {{if resourcesFilterSelected 'selected'}}" {{action 'searchFilter' 'resources'}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.resources"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn questions btn-search-filter {{if questionsFilterSelected 'selected'}}" {{action 'searchFilter' 'questions'}}>
+        <span class="icon">{{gru-icon name='help_outline'}}</span>
+        <span class="text">{{t "search-filter.questions"}}</span>
+      </button>
+    </li>
+  </ul>
+  <span class="col-md-2 standards hidden-sm hidden-xs">
+    <button class="btn btn-primary">
+     <span>{{t "common.standards"}}</span>
+    </button>
+  </span>
+</section>

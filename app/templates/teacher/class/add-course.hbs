@@ -1,0 +1,57 @@
+<div class="add-course-ctrl">
+  {{#if isLoading}}
+    {{three-bounce-spinner}}
+  {{else}}
+    <div class="course-main-container">
+      <div class="add-course-header">{{t 'common.add-coruse-to-class'}}</div>
+      <div class="featured-courses-container">
+        {{#each featuredCourses as |course index|}}
+          <div class="featured-course {{if class.isArchived 'archived-class'}}">
+            {{cards/gru-add-course-card course=course  tabindex=(plus-any index 105) onAddCourse="onAddCourse" onRemixCourse="onRemixCourse"}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="browse-content">{{t 'class.quick-start.browse-content'}}</div>
+    <div class="content-catalogs-container">
+      {{#each catalogListToShow as |catalog index|}}
+        <div class="catalog-card {{if class.isArchived 'archived-catalog'}}">
+          <div class="catalog-name" tabindex={{plus-any index 1001}} onclick={{action "onSelectCatalog" catalog  (plus-any index 1001)}} onkeypress={{action "onSelectCatalog" catalog}}>{{catalog.name}}</div>
+          <div class="catalog-image {{unless catalog.image 'gooru-logo'}}" tabindex={{plus-any index 1001}} style="background-image: url({{catalog.image}})" onclick={{action "onSelectCatalog" catalog (plus-any index 1001)}} onkeypress={{action "onSelectCatalog" catalog}}></div>
+        </div>
+      {{/each}}
+    </div>
+    {{#if isShowMoreCatalogs}}
+        <span class="show-more-results" tabindex="10001" onclick={{action 'showMoreResults'}} onkeypress={{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+    {{/if}}
+  {{/if}}
+</div>
+
+
+{{#if isShowSearchCoursePullUp}}
+  {{teacher/class/course-search-pull-up
+    showPullUp=isShowSearchCoursePullUp
+    courses=libraryCourses
+    contentCatalogs=contentCatalogs
+    activeCatalog=selectedCatalog
+    onAddCourse="onAddCourse"
+    onRemixCourse="onRemixCourse"
+    onSelectCatalog="onSelectCatalog"
+    onSearchCourse="onSearchCourse"
+    paginateNext="paginateNext"
+    tabindex=actionTabIndex
+  }}
+{{/if}}
+
+{{#if isShowpopup}}
+    <div class="warning-message-popup">
+      <div class="backdrop" onclick={{action 'onShowPop'}} onkeypress={{action 'onShowPop'}} tabindex={{popupTabIndex}}></div>
+        <div class="content-container">
+          <div class="close-btn" onclick={{action 'onShowPop'}} onkeypress={{action 'onShowPop'}} tabindex={{popupTabIndex}}>
+              {{gru-icon name="clear"}}
+          </div>
+          <span class="title">{{t 'common.unmapped-course-class-assigned'}}</span>
+        </div>
+    </div>
+{{/if}}

@@ -1,0 +1,53 @@
+<div class="gru-student-show-all-class-container">
+    <div class="student-all-class-panel">
+        <div class="student-class-panel-head">
+            <div class="head-titles">
+              <a href="javascript:void(0)" {{action "onGoBack"}} class="back-icons-btn" aria-label="back">{{gru-icon name="arrow_back"}}</a>
+           
+            <span class="class-room-title">{{t (if (eq contentItem 'activeClassList') "student-home.all-class-rooms" "student-home.all-independent-study")}}</span>
+
+            </div>
+            <!-- NOTE : Future implementation -->
+            <!-- <div class="head-actions-btns">
+                <div class="class-search-input">
+                    {{input type="text" placeholder=(t 'common.search-placeholder-text') title="search classes" name="class-search"}}
+                </div>
+                <div class="sorting-btn-actions">
+                  <a href="javascript:void(0)" class="time-sort-btn" aria-label="sort classes">
+                    {{gru-icon name="schedule"}}
+                  </a>
+                  <a href="javascript:void(0)" class="alpha-sort-btn" aria-label="sort classes">
+                    {{gru-icon name="sort_by_alpha"}}
+                  </a>
+                </div>
+            </div> -->
+        </div>
+        <div class="student-class-panel-body">
+          {{#each pageContent as |class|}}
+            {{#if (eq contentItem 'activeClassList')}}
+              {{cards/gru-student-class-current-card
+                classData=class
+              }}
+            {{else if (eq contentItem 'archivedClassList')}}
+              {{cards/gru-student-class-current-card
+                classData=class
+              }}
+
+                {{else if (eq contentItem 'independedCourses')}} 
+                  {{cards/gru-student-independent-study-card 
+                    course=class
+                    percentage = coursePercentage
+                    timeEta = timeDuration  
+                  }}
+
+            {{else}}
+              {{cards/gru-student-featured-card
+                course=class
+                percentage = coursePercentage
+                timeEta = timeDuration  
+              }}
+            {{/if}}
+          {{/each}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "usageData":[
+    {
+      "collectionId":"f3c93681-f82e-4096-bef7-08ae33312a70",
+      "timeSpent":123456,
+      "scoreInPercentage":20,
+      "attempts":10,
+      "status": "complete"
+
+    },
+    {
+      "collectionId":"ec2a9b12-93b1-4daf-9c35-3ee86547aada",
+      "timeSpent":428342,
+      "scoreInPercentage":50,
+      "attempts":10,
+      "status": "complete"
+
+    },
+    {
+      "collectionId":"30e9837a-1a2f-4e73-8fa5-36f619d8dcf8",
+      "timeSpent":42423,
+      "scoreInPercentage":60,
+      "attempts":10,
+      "status": "complete"
+
+    }
+  ],
+  "userId":"95a744e1-631e-4642-875d-8b07a5e3b421"
+}

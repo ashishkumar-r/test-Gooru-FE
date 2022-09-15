@@ -1,0 +1,16 @@
+<div class="add-performance-data-container">
+  <div class="add-data-header-container">
+    <div class="icon-container {{contentType}}"></div>
+    <div class="activity-info-container">
+      <span class="activity-title-container ellipsis">{{activityTitle}}</span>
+      <span class="date-container">{{activityDate}}</span>
+    </div>
+    <div class="icon-container {{contentType}}-icon"></div>
+    <div class="close-container" onclick={{action "onClosePullUp"}} onkeypress={{action "onClosePullUp"}} tabindex={{tabindex}}>
+      {{gru-icon name="clear"}}
+    </div>
+  </div>
+  <div class="add-data-body-container">
+    {{yield}}
+  </div>
+</div>

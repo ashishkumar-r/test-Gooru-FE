@@ -1,0 +1,74 @@
+{
+  "owner": [
+    "id-for-pochita"
+  ],
+  "collaborator": [],
+  "member": [
+    "c4176d77-2507-4bd0-b1a1-308ad98526e5",
+    "f67a2f33-09a5-4a48-bf20-8f3b1d5bb583",
+    "d038b0ea-7e4f-44ce-898c-78474295bfa9",
+    "66d29979-c91f-47a1-a385-93c0df686d2d",
+    "df956d5f-b7b2-43ae-98a1-c90a12eacaf9",
+    "b84b56bd-76ac-494b-87a1-e399b4947024",
+    "55a93b0e-599e-4484-9bbe-addf53943110"
+  ],
+  "invitees": [],
+  "details": [
+    {
+      "id": "55a93b0e-599e-4484-9bbe-addf53943110",
+      "first_name": "Priti",
+      "last_name": "Jadhav",
+      "thumbnail": null,
+      "roster_global_userid": null
+    },
+    {
+      "id": "66d29979-c91f-47a1-a385-93c0df686d2d",
+      "first_name": "Yalu",
+      "last_name": "Ye",
+      "thumbnail": null,
+      "roster_global_userid": null
+    },
+    {
+      "id": "b84b56bd-76ac-494b-87a1-e399b4947024",
+      "first_name": "Nikhil",
+      "last_name": "Yadav",
+      "thumbnail": "",
+      "roster_global_userid": null
+    },
+    {
+      "id": "c4176d77-2507-4bd0-b1a1-308ad98526e5",
+      "first_name": "Gina",
+      "last_name": "Morris",
+      "thumbnail": null,
+      "roster_global_userid": null
+    },
+    {
+      "id": "d038b0ea-7e4f-44ce-898c-78474295bfa9",
+      "first_name": "Ashish",
+      "last_name": "Ashish",
+      "thumbnail": "",
+      "roster_global_userid": null
+    },
+    {
+      "id": "id-for-pochita",
+      "first_name": "Nina",
+      "last_name": "Pochita",
+      "thumbnail": "837872e8-c757-40ba-91ad-5ff9f6930bf0.png",
+      "roster_global_userid": null
+    },
+    {
+      "id": "df956d5f-b7b2-43ae-98a1-c90a12eacaf9",
+      "first_name": "June",
+      "last_name": "Wang",
+      "thumbnail": "7f1cab3e-642d-460e-bb73-c6efa4a1720d.gif",
+      "roster_global_userid": "GC88888888888888888888888"
+    },
+    {
+      "id": "f67a2f33-09a5-4a48-bf20-8f3b1d5bb583",
+      "first_name": "Donna",
+      "last_name": "Park",
+      "thumbnail": "19299cdf-fcd3-4c7e-8fa1-42ba8810ecc4.jpg",
+      "roster_global_userid": ""
+    }
+  ]
+}

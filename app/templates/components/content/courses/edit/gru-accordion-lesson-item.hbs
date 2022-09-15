@@ -1,0 +1,92 @@
+<div class="panel panel-default view collapsed">
+  <div class="panel-heading">
+    {{#if isSorting}}
+    <span class="drag-icon">
+      {{gru-icon name="drag_handle"}}
+    </span>
+    {{/if}}
+    <h3>{{plus-one index}}</h3>
+    {{#if (eq model.collectionType 'offline-activity')}}
+    {{#link-to 'content.activity.edit' model.id (query-params courseId=course.id allowBackToCourse=true unitId=unitId
+    lessonId=lessonId editingContent=true) class="title" tabindex=tabindex}}
+    <img class="img-rounded" src="{{model.thumbnailUrl}}" alt="model thumbnail" />
+    <div class="resource-title-container">
+      <strong>{{model.title}}</strong>
+      <span>{{model.collectionType}}</span>
+    </div>
+    {{/link-to}}
+    {{else if model.isExternalAssessment}}
+    <a href="{{model.url}}" target="_blank" class="title">
+      <img class="img-rounded" src="{{model.thumbnailUrl}}" alt="model thumbnail" />
+      <div class="resource-title-container">
+        <strong>{{model.title}}</strong>
+        <span>
+          {{t 'common.external-assessment'}}
+        </span>
+      </div>
+    </a>
+    {{else}}
+    <a class="title pointer" {{action 'edit' model}} href="#">
+      <img class="img-rounded" src="{{model.thumbnailUrl}}" alt="model thumbnail" />
+      <div class="resource-title-container">
+        <strong data-toggle="tooltip" data-trigger="hover" title="{{model.title}}">{{model.title}}</strong>
+        <span>
+          {{#if (eq model.collectionType 'collection-external')}}
+          {{t 'common.external-collection'}}
+          {{else}}
+          {{model.collectionType}}
+          {{/if}}
+        </span>
+      </div>
+    </a>
+    {{/if}}
+    <div class="detail">
+      {{#if model.isCollection}}
+      <div class="{{if model.questionCount 'mixed'}}">
+        {{#if (eq model.format 'collection-external')}}
+        <span class="icons"></span>
+        {{else}}
+        {{#if model.computedResourceCount}}
+        <span dir="ltr"><b>{{model.computedResourceCount}}</b> {{t "common.resource-pl"
+          count=model.computedResourceCount}}</span>
+        {{else}}
+        <span dir="ltr"><b>{{model.resourceCount}}</b> {{t "common.resource-pl" count=model.resourceCount}}</span>
+        {{/if}}
+        {{#if model.computedQuestionCount}}
+        <span dir="ltr"><b>{{model.computedQuestionCount}}</b> {{t "common.question-pl"
+          count=model.computedQuestionCount}}</span>
+        {{else}}
+        {{#if model.questionCount}}
+        <span dir="ltr"><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+        {{/if}}
+        {{/if}}
+        {{/if}}
+
+      </div>
+      {{else}}
+      <div>
+        {{#unless (eq model.collectionType 'offline-activity')}}
+        {{#if model.computedQuestionCount}}
+        <span dir="ltr"><b>{{model.computedQuestionCount}}</b> {{t "common.question-pl"
+          count=model.computedQuestionCount}}</span>
+        {{else}}
+        {{#unless (or (eq model.format 'collection-external') model.isExternalAssessment)}}
+        <span dir="ltr"><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+        {{else}}
+        <span class="icons"></span>
+        {{/unless}}
+        {{/if}}
+        {{/unless}}
+      </div>
+      {{/if}}
+      <div class="actions">
+        <div class="item-actions">
+          {{partial 'content/partials/item-actions'}}
+          <button class="btn edit-item" title="{{t 'common.edit'}}" onclick={{action 'edit' model}}
+            onkeypress={{action 'edit' model}} tabindex={{tabindex}} data-toggle="tooltip"
+            data-placement="auto">{{gru-icon name="edit"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

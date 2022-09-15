@@ -1,0 +1,37 @@
+[
+  {
+    "collectionType": "collection",
+    "title": "Numbers in Science",
+    "gooruOid": "56739a6655ba5741e58ab50c",
+    "collectionId": 503947661,
+    "visibility": true
+  },
+  {
+    "collectionType": "collection",
+    "title": "Matter, Change and Energy",
+    "gooruOid": "56739a662cba7ee6764f08a9",
+    "collectionId": 739375410,
+    "visibility": true
+  },
+  {
+    "collectionType": "assessment",
+    "title": "The Electromagnetic Spectrum",
+    "gooruOid": "56739a66fa35658a97c3b5f1",
+    "collectionId": 475161308,
+    "visibility": true
+  },
+  {
+    "collectionType": "collection",
+    "title": "Ionic and Metallic Bonding",
+    "gooruOid": "56739a66213b802a97ec072c",
+    "collectionId": 84362283,
+    "visibility": true
+  },
+  {
+    "collectionType": "assessment",
+    "title": "The Behavior of Gases",
+    "gooruOid": "56739a661fa25681ce0c9f7c",
+    "collectionId": 103686911,
+    "visibility": true
+  }
+]

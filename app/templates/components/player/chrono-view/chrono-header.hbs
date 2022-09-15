@@ -1,0 +1,25 @@
+<div class="timeline-container">
+  <div class="start-date">
+    <span class="loader">
+    {{#if isLoading}}<i></i>{{/if}}
+  </span>{{ activityDate.year  }}<span>'</span>{{ activityDate.mon  }}</div>
+  <div class="student-activities">
+    <div class="left-timeline-activities" id="left-activities"></div>
+    <div class="active-timeline-resource" id="active-resource"></div>
+    <div class="right-timeline-activities" id="right-activities"></div>
+  </div>
+  <div class="end-date">{{ activityEndDate.mon  }} <span>'</span>{{ activityEndDate.year  }}</div>
+</div>
+<div class="performance" {{action "onOpenCourseReport"}} style="background-color:{{if performanceSummary (grade-color performanceSummary.score) defaultBarColor}}">
+  <span class="score">
+    {{#if performanceSummary}}
+      {{#if performanceSummary.score}}
+        {{performanceSummary.score}}%
+      {{else}}
+        0%
+      {{/if}}
+    {{else}}
+      --
+    {{/if}}
+  </span>
+</div>

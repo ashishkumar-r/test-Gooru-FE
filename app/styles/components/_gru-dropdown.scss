@@ -1,0 +1,63 @@
+.gru-dropdown {
+  .selected-item-label {
+    padding: 16px;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    width: max-content;
+
+    .active-item {
+      display: flex;
+      cursor: pointer;
+      height: 25px;
+
+      .label {
+        min-width: max-content;
+        font-size: 13px;
+        font-weight: normal;
+        font-style: italic;
+        color: $charcoal-grey;
+        padding: 5px;
+        text-align: left;
+      }
+
+      .icon {
+        font-size: 13px;
+        font-weight: bold;
+        color: $charcoal-grey;
+      }
+    }
+  }
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: $white;
+    min-width: 94px;
+    width: auto;
+    max-width: max-content;
+    box-shadow: 0 8px 16px 0 $box-shadow-bg-color;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1;
+    border-top: 1px solid;
+
+    .list-item {
+      height: 30px;
+      width: max-content;
+      line-height: 30px;
+      padding-left: 15px;
+      cursor: pointer;
+
+      &.active,
+      &:hover {
+        background-color: $light-200;
+      }
+    }
+  }
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+}

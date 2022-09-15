@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+    <span aria-hidden="true">×</span>
+  </button>
+  <h4 class="modal-title">{{t "gru-user-sign-up-cancel.title"}}</h4>
+</div>
+<div class="modal-body">
+  <div class="wrapper">
+    <div class="main">
+        <div class="row text-center cancel-signup-confirmation-section">
+            <div class="col-md-10 col-center-block col-sm-10 pa-md-20 pa-sm-20">
+                <h3 class="title">{{t "gru-user-sign-up-cancel.exit?"}}</h3>
+                <p class="description">{{t "gru-user-sign-up-cancel.registration_incomplete"}}</p>
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-sm-9 col-center-block pa-md-10 pa-sm-10">
+                    <button type="submit" class="btn leave-registration-submit ma-md-right-5" data-dismiss="modal">{{t "gru-user-sign-up-cancel.leave"}}</button>
+                    <button type="submit" class="btn btn-primary continue-registration-submit ma-md-left-5" {{action "showModal" "gru-user-sign-up"}}>{{t "gru-user-sign-up-cancel.continue"}}</button>
+                </div>
+            </div>
+            <div class="row text-center footer">
+                <div class="col-md-10 col-sm-10 col-center-block">
+                    <span class="footer-description">{{t "forgot-password-popup.footer"}}</span> <a class="support-mail" href="mailto:support@goorulearning.org" target="_top">{{t "forgot-password-popup.mail"}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

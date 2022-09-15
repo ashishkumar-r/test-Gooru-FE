@@ -1,0 +1,40 @@
+.student-featured-courses {
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: $sm-width-max) {
+    .courses {
+      grid-template-columns: auto;
+
+      .gru-standard-card {
+        margin: 0;
+      }
+
+      > * {
+        display: none !important;
+      }
+
+      div.gru-standard-card:nth-child(1) {
+        display: block !important;
+      }
+    }
+  }
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: $lg-width-min) {
+    .courses {
+      grid-template-columns: auto auto auto;
+
+      > * {
+        display: none !important;
+      }
+
+      .gru-standard-card:nth-child(3) {
+        margin: 0;
+      }
+
+      div.gru-standard-card:nth-child(1),
+      div.gru-standard-card:nth-child(2),
+      div.gru-standard-card:nth-child(3) {
+        display: block !important;
+      }
+    }
+  }
+}

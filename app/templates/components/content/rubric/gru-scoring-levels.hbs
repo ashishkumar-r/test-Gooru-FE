@@ -1,0 +1,84 @@
+{{#unless preview}}
+  <div class="score-section level">
+    <span>{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.levels'}}</span>
+    {{gru-switch switchOptions=switchOptions onOptionSwitch='onLevelChange' isChecked=showLevel}}
+    {{#if showLevel}}
+      <div class="levels">
+        <div class="scale">
+          <span class="best">{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.best'}}</span>
+          <div class="line"></div>
+          <div class="arrow-down"></div>
+          <span class="worst">{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.worst'}}</span>
+        </div>
+        <div class="level-list">
+          {{#each scoringLevels as |level index|}}
+            <div class="name-input {{index}}">
+              {{validation/gru-input model=level valuePath='name' maxLength=50  placeholder=(if (lt index 5)(t  (concat 'gru-rubric-creation.gru-category.gru-scoring-levels.' index)))}}
+              <span class="name-error">
+                {{t 'gru-rubric-creation.gru-category.gru-scoring-levels.name-error'}}
+              </span>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <button class="btn btn-primary btn-new-level" {{action 'addLevel'}}>{{gru-icon name='add'}}{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.new-level'}}</button>
+      {{#if showNoLevelsError}}<span class="no-levels-error">{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.no-levels-error'}}</span>{{/if}}
+    {{/if}}
+  </div>
+  <div class="score-section points">
+    <span>{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.scoring'}}</span>
+    {{#if disabledScoring}}
+      {{gru-switch switchOptions=switchOptions onOptionSwitch='onScoringChange' isChecked=showScore disabled=true}}
+    {{else}}
+      {{gru-switch switchOptions=switchOptions onOptionSwitch='onScoringChange' isChecked=showScore}}
+    {{/if}}
+    <div class="point-list">
+      {{#each scoringLevels as |level index|}}
+        <div>
+          {{#if showScore}}
+            <div class="score-input {{index}}" aria-label="enter score">
+              {{validation/gru-input-number model=level title='score' valuePath='score' min=0 max=200  didValidate=didValidate placeholder=(if (lt index 5) (concat (t 'common.example') (sub 4 index)))}}
+              <span class="score-error">
+                {{t 'gru-rubric-creation.gru-category.gru-scoring-levels.score-error'}}
+              </span>
+            </div>
+          {{/if}}
+          {{#if showLevel}}
+            <button title="{{t 'common.delete'}}" class="btn no-bgd delete" {{action 'deleteLevel' level}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="delete"}}</button>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{else}}
+  {{#if showLevel}}
+    <div class="score-section preview level">
+      <div class="levels">
+        <div class="legend">{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.levels'}}</div>
+        <div class="scale">
+          <span class="best legend">{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.best'}}</span>
+          <div class="line"></div>
+          <div class="arrow-down"></div>
+          <span class="worst legend">{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.worst'}}</span>
+        </div>
+        <div class="level-list">
+          {{#each scoringLevels as |level index|}}
+            <div class="value">{{level.name}}</div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  {{#if showScore}}
+    <div class="score-section preview points">
+      <div class="scores">
+        <div class="legend">{{t 'gru-rubric-creation.gru-category.gru-scoring-levels.scoring'}}</div>
+        <div class="point-list">
+          {{#each scoringLevels as |level index|}}
+            <div class="value">{{level.score}}</div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+{{/unless}}

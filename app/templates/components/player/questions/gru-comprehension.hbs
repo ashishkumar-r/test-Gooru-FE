@@ -1,0 +1,17 @@
+<div class="gru-comprehension-player">
+  <div class="gru-comprehension-container">
+    {{#each subQuestionList as | subQuestion index |}}
+    <div class="gru-comprehension-panel">
+        {{player/gru-question-viewer
+        submitted=false
+        question=subQuestion.playerQuestion
+        questionResult=subQuestion.questionResult
+        baseQuestion=subQuestion
+        onSubmitQuestion="submitQuestion"
+        isComprehension=true
+        compIndex = (plus-one index)
+        }}
+    </div>
+    {{/each}}
+  </div>
+</div>

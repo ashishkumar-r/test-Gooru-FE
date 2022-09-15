@@ -1,0 +1,28 @@
+<div class="grid-view-container">
+  <div class="external-collection-link">
+    <div class="note">{{t 'report.external-collection-report.note'}}</div>
+    {{#if collection.url}}
+    <div>{{t 'report.external-collection-report.reference'}}
+      <a class="link" target="_blank" href="{{selectedCollection.url}}">here</a>
+    </div>
+    {{/if}}
+  </div>
+  <div class="cards-container">
+    {{#each studentReportData as |student|}}
+      <div class="card student">
+          <div class="student-thumbnail" style="background-image:url({{student.avatarUrl}})" />
+          <div class="student-name">
+            <div class="lastname ellipsis">{{student.lastName}},</div>
+            <div class="firstname ellipsis">{{student.firstName}}</div>
+          </div>
+          <div class="student-timeSpent">
+            {{#if student.hasStarted}}
+              <span style= {{safe-html (concat "color:" (grade-color student.timeSpent))}}>{{format-time student.timeSpent}}</span>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,150 @@
+<header>
+  {{#if (or isLibraryContent (not course.id))}}
+    <a href="#" class="back-to" {{action "onClickBack"}}>
+      <div>
+        {{gru-icon name="keyboard_arrow_left"}}{{t 'common.back'}}
+      </div>
+    </a>
+  {{else}}
+    {{#link-to 'content.courses.edit' course.id (query-params unitId=collection.unitId lessonId=collection.lessonId) class="back-to"}}
+      <div>
+        {{gru-icon name="keyboard_arrow_left"}}{{t 'common.course'}}: {{course.title}}
+      </div>
+    {{/link-to}}
+  {{/if}}
+  <h1>{{t "common.edit-collection"}}</h1>
+  {{partial 'content/partials/collections-header-actions'}}
+  <nav>
+    {{#gru-scroll to="#information" class="selected" offset='article > header'}}{{t "common.information"}}{{/gru-scroll}}
+    {{#gru-scroll to="#builder" offset='article > header'}}{{t "common.builder"}}{{/gru-scroll}}
+    {{#gru-scroll to="#settings" offset='article > header'}}{{t "common.settings"}}{{/gru-scroll}}
+  </nav>
+</header>
+<section id="information">
+  <div class="header">
+    <h2>{{t "common.information"}}</h2>
+    {{partial 'content/partials/information-actions'}}
+  </div>
+  <div class="content">
+{{content/gru-image isEditing=isEditing model=tempCollection  srcImage=collection.thumbnailUrl editImage=tempCollection.thumbnailUrl showAltText=true}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="title">
+          <label>
+            <span class="required">{{t "common.collection-title"}}</span>
+            {{#if isEditing}}
+              {{validation/gru-input model=tempCollection valuePath='title' maxLength=50 didValidate=didValidate}}
+            {{else}}
+              <b>{{collection.title}}</b>
+            {{/if}}
+          </label>
+        </div>
+        <div class="learning-objectives">
+          <label>
+            <span>{{t "common.learning-objectives"}}</span>
+            {{#if isEditing}}
+              {{validation/gru-textarea model=tempCollection valuePath='learningObjectives' rows=2 maxLength=500 didValidate=didValidate}}
+            {{else}}
+              <b>{{collection.learningObjectives}}</b>
+            {{/if}}
+          </label>
+        </div>
+        {{#if isEditing}}
+          {{taxonomy/gru-taxonomy-selector
+            isEditing=isEditing
+            onCategorySelected="selectCategory"
+            onSubjectSelected="selectSubject"
+            selectedSubject=selectedSubject
+            selectedCategory=selectedCategory
+            subjectLabelKey='common.subject-and-framework'
+            onlySubjectsWithStandards=true
+          }}
+        {{/if}}
+        <div class="standards">
+          <label>
+            <span>{{t standardLabelKey}}</span>
+            {{#if isEditing}}
+              <button type="button" class="btn btn-primary" {{action 'openTaxonomyModal'}} disabled={{standardDisabled}}>
+                {{gru-icon name="open_in_new"}} {{t "common.select"}}
+              </button>
+              <div class="tags">
+                {{taxonomy/gru-taxonomy-tag-list tags=tempCollection.standards remove=remove isEditing=isEditing onRemove=(action 'removeTag')}}
+              </div>
+            {{else}}
+              <div class="tags">
+                {{#if tags.length}}
+                  {{taxonomy/gru-taxonomy-tag-list isEditing=isEditing tags=collection.standards}}
+                {{else}}
+                  {{t "common.not-specified"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </label>
+        </div>
+        {{#if isEditing}}
+          {{#if aggregatedTags.length}}
+            <div class="standards">
+              <div>Suggested standards based on resources in this collection</div>
+              <label>
+                <div class="tags">
+                  {{taxonomy/gru-taxonomy-tag-list tags=tempCollection.aggregatedTag isEditing=isEditing onAdd=(action 'addTag')}}
+                </div>
+              </label>
+            </div>
+          {{/if}}
+        {{/if}}
+        {{!content/gru-audience isEditing=isEditing srcSelectedAudiences=collection.audience editSelectedAudiences=tempCollection.audience}}
+        <div class="century-skills">
+          <label>
+            <span>{{t "common.century-skills"}}</span>
+            {{#if isEditing}}
+              <button type="button" class="btn btn-primary choose" {{action 'openSkillsModal'}}>
+                {{gru-icon name="open_in_new"}} {{t "common.choose"}}
+              </button>
+              <div class="skills-buttons">
+                {{#each tempSelectedSkills as |skill|}}
+                  {{century-skills/gru-century-skill-tag skill=skill isReadOnly=false onRemove=(action 'removeSkill')}}
+                {{/each}}
+              </div>
+            {{else}}
+              <div class="skills">
+                {{#if selectedSkills.length}}
+                  {{#each selectedSkills as |skill|}}
+                    {{century-skills/gru-century-skill-tag skill=skill}}
+                  {{/each}}
+                {{else}}
+                  {{t "common.not-specified"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </label>
+        </div>
+       {{content/etl/gru-etl-second isEditing=isEditing tempData=tempCollection isComputedEtl=true modalvalue=collection valueHours='hours' valueMins='minutes' estimatedHours=collection.hours estimatedMinutes=collection.minutes labelText=(t 'common-estimate-time-learn-title') isFluency=isShowFluency selectedFluency="selectedFluency" fluencyData=fluencyData}}
+      {{#unless isEditing}}
+        {{#if (and isCheckFluency collection collection.metadata collection.metadata.fluency)}}
+          <div>
+            <label>
+              <span>{{t 'common.fluency'}}</span>
+              <b>{{collection.metadata.fluency.fluency_display_code}} - {{collection.metadata.fluency.fluency_description}}</b>
+            </label>
+          </div>
+        {{/if}}
+      {{/unless}}
+
+      </div>
+    </div>
+  </div>
+</section>
+<section id="builder">
+  {{content/collections/gru-collection-list
+    model=collection
+    items=collection.children
+    editingContent=editingContent
+    editingSubContent=editingSubContent
+    isPreviewReferrer=isPreviewReferrer
+    hasCollaborator=hasCollaborator
+    course=course
+    updateContent ='updateContent'
+  }}
+</section>
+{{content/gru-settings-edit id="settings" action='publishToProfile' model=collection primaryLanguage=course.primaryLanguage}}

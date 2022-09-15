@@ -1,0 +1,76 @@
+<div class="collection-performance-container  {{if isMobileView 'mobile-view' 'desktop-view'}} {{if isCollection 'collection-performance' 'external-collection-performance'}}">
+  {{#if isCollection}}
+    <div class="resource-list-container">
+      <div class="search-resource">
+        {{#if isShowClearSearchResources}}
+          <span class="clear-search-resource" onclick={{action "onClearSearchResources"}} onkeypress={{action "onClearSearchResources"}} tabindex={{tabindex}}>
+            {{gru-icon name="clear"}}
+          </span>
+        {{/if}}
+        {{input
+          class = "search-resource-input"
+          type = "text"
+          key-up = "onSearchResource"
+          value = resourceSearchPattern
+          placeholder = (t 'search-resource-question')
+          title="Search Resource"
+          tabindex=tabindex
+          }}
+        <span class="search-icon">{{gru-icon name="search"}}</span>
+      </div>
+      <div class="resources-container">
+        {{#each resourceList as |resource seq|}}
+          <div class="resource-details {{if (eq resource.id activeResource.id) 'active-resource'}}">
+            <div class="resource-container" onclick={{action "onSelectResource" resource}} onkeypress={{action "onSelectResource" resource}} data-toggle="tooltip" title="{{resource.title}}" tabindex={{tabindex}}>
+              <div class="resource-title ellipsis"><span class="resource-seq">{{plus-one seq}}. </span>{{resource.title}}</div>
+              {{#if resource.timeSpent}}
+                <div class="resource-timespent">{{format-time resource.timeSpent}}</div>
+              {{/if}}
+            </div>
+            <div class="resource-timespent-details">
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="timespent-container">
+      <div class="timespent-card">
+        <div class="timespent-title">
+          {{t 'enter-resource-timespent'}}
+        </div>
+        <div class="timespent-selector">
+          {{cards/gru-timepicker-card hour=maxHour minute=maxMinute tabindex=tabindex}}
+        </div>
+        <div class="timespent-action-container">
+          <div class="next-action {{unless isValidTimeSpent 'disable-event'}}" onclick={{action "onSaveTimeSpent"}} onkeypress={{action "onSaveTimeSpent"}} tabindex={{tabindex}}>
+            {{#if isLastResource}}
+              {{#if isOverwritePerformance}}
+                {{t 'goals.manage.update'}} {{t 'common.timeSpent'}}
+              {{else}}
+                {{t 'common.save-submit'}}
+              {{/if}}
+            {{else}}
+              {{t 'common.save-next'}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class="external-collection-timespent-container">
+      <div class="external-timespent-card">
+        <div class="timespent-title">
+          {{t 'enter-collection-timespent'}}
+        </div>
+        <div class="timespent-selector">
+          {{cards/gru-timepicker-card hour=maxHour minute=maxMinute tabindex=tabindex}}
+        </div>
+        <div class="timespent-action-container">
+          <div class="next-action {{unless isValidTimeSpent 'disable-event'}}" onclick={{action "onSubmitExternalCollectionTimeSpent"}} onkeypress={{action "onSubmitExternalCollectionTimeSpent"}} tabindex={{tabindex}}>
+            {{t 'common.save-submit'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</div>

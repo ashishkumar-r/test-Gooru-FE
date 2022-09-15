@@ -1,0 +1,39 @@
+<div class="competency-items" role="tab" id="{{elementId}}-heading">
+  <div class="{{collection.collectionType}}">
+    <i class="icon"></i>
+  </div>
+
+  <div class="panel-title">
+    <a class="collapsed title" role="button" data-toggle="collapse" href="#{{elementId}}-content" aria-expanded="false" aria-controls="{{elementId}}-content" {{action 'selectCompetencyItems' collection}}>
+      <div class="title ellipsis"> {{collection.title}} </div>
+      {{gru-icon name="arrow_drop_up" class="caret-arrow"}}
+    </a>
+  </div>
+  <div class="panel-info">
+    <span class="status"  style= {{safe-html (concat "color:" (grade-color collection.score))}}> {{collection.score}}%</span>
+    <span class="time"> {{format-time collection.timeSpent}}</span>
+  </div>
+
+</div>
+
+<div id="{{elementId}}-content" data-index="{{componentIndex}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{elementId}}-heading">
+  <div class="panel-body">
+    <ol class="panel-group" role="tablist" aria-multiselectable="true">
+      {{#if loading}}
+        {{three-bounce-spinner}}
+      {{else}}
+        {{#each resources as | resource |}}
+          <div class="resource-icon {{if (eq resource.type 'question') resource.type resource.contentType}}">
+            <i></i>
+          </div>
+          <div class="items">
+            <span class="title"> {{safe-html resource.title}}</span>
+            <div class="panel-info">
+              <span class="time"> {{format-time resource.timeSpent}}</span>
+            </div>
+          </div>
+        {{/each}}
+      {{/if}}
+    </ol>
+  </div>
+</div>

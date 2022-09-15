@@ -1,0 +1,75 @@
+{{#unless isStudent}}
+  {{proficiency/competency-content-info class=class learningMapData=learningMapData onSelectActivityContent="onSelectActivityContent" tabindex=tabindex}}
+{{else}}
+  <div class="student-learning-map">
+    <div class="practice-question">
+      <div class="title">{{t 'learning-map.practice-question'}}</div>
+      {{#if learningMapData.learningMapsContent.practiceProblems}}
+      {{#each learningMapData.learningMapsContent.practiceProblems as |practiceProblems|}}
+       {{new-cards/activities/gru-learning-content-card
+          content=practiceProblems
+          onAddActivityPop="onAddActivityPop"
+          onAddActivity="onAddActivity"
+          onShowContentPreview = "onShowContentPreview"
+           tabindex=tabindex
+        }}
+      {{/each}}
+      {{else}}
+      <div class="no-data">{{t 'learning-map.no-practice-questions'}}</div>
+      {{/if}}
+    </div>
+    <div class="solved-examples">
+      <div class="title">{{t 'learning-map.solved-examples'}}</div>
+      {{#if learningMapData.learningMapsContent.solvedExample}}
+      {{#each learningMapData.learningMapsContent.solvedExample as |solvedExample|}}
+       {{new-cards/activities/gru-learning-content-card
+          content=solvedExample
+          onAddActivityPop="onAddActivityPop"
+          onAddActivity="onAddActivity"
+          onShowContentPreview = "onShowContentPreview"
+           tabindex=tabindex
+        }}
+      {{/each}}
+      {{else}}
+      <div class="no-data">{{t 'learning-map.no-solved-examples'}}</div>
+      {{/if}}
+    </div>
+    <div class="challenging-questions">
+      <div class="title">{{t 'learning-map.challenging-questions'}}</div>
+      {{#if learningMapData.learningMapsContent.challengingQuestion}}
+      {{#each learningMapData.learningMapsContent.challengingQuestion as |challengingQuestion|}}
+       {{new-cards/activities/gru-learning-content-card
+          content=challengingQuestion
+          onAddActivityPop="onAddActivityPop"
+          onAddActivity="onAddActivity"
+          onShowContentPreview = "onShowContentPreview"
+           tabindex=tabindex
+        }}
+      {{/each}}
+      {{else}}
+      <div class="no-data">{{t 'learning-map.no-challenging-questions'}}</div>
+      {{/if}}
+    </div>
+  </div>
+{{/unless}}
+{{#if isShowActivityPullup}}
+  {{reports/pull-up/activity-list
+    activityContents=activityContents
+    activityContentType=activityContentType
+    activityTotalHitCount=activityTotalHitCount
+    offsetCount=offsetCount
+    onSuggestContent="onSuggestContent"
+    showPullUp=isShowActivityPullup
+    onResetPullUpData="onResetPullUpData"
+    onClickShowMoreActivity="onClickShowMoreActivity"
+    class=class
+    tabindex=tabindex
+  }}
+{{/if}}
+{{#if isShowContentPreview}}
+  {{reports/pull-up/gru-collection-preview
+    showPullUp=isShowContentPreview
+    previewContentId=previewContent.id
+    previewContentType=previewContent.format
+    tabindex=tabindex}}
+{{/if}}

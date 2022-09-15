@@ -1,0 +1,36 @@
+.reports {
+  .gru-header {
+    display: none;
+  }
+
+  .container-fluid {
+    &.app-container {
+      padding-top: 0;
+      overflow: auto;
+      .controller.reports.collection {
+        max-height: calc(100% - 70px);
+        min-height: auto;
+      }
+    }
+  }
+
+  .teacher_class_course-map .content {
+    padding-top: 0;
+  }
+}
+
+.content {
+  .class-activities-ctrl-container {
+    .go-live-panel {
+      margin-top: 0;
+    }
+  }
+}
+
+.go-live-panel {
+  height: 100%;
+
+  .iframe-panel {
+    height: 100%;
+  }
+}

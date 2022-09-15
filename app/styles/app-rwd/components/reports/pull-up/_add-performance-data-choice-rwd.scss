@@ -1,0 +1,28 @@
+.add-performance-data-by-choice {
+  @media only screen and (max-width: $screen-sm - 1) {
+    padding: 0;
+
+    .panels {
+      flex-direction: column;
+
+      .right-panel {
+        .choice-title {
+          background-color: $light-100;
+          padding-top: 0;
+        }
+
+        .choice-list {
+          box-shadow: 0 0 1px 0 $navbar-box-shadow;
+        }
+      }
+
+      .left-panel {
+        width: 100%;
+        margin: 0;
+        height: auto;
+        box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

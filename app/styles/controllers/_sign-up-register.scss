@@ -1,0 +1,92 @@
+.controller.sign-up-register {
+  display: block;
+  .modal {
+    margin: 15px auto auto;
+    overflow: visible;
+    max-width: 552px;
+    box-shadow: 0 11px 15px $navbar-default-toggle-icon-bar-bg;
+    border-radius: 4px;
+    z-index: 0;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    height: fit-content;
+    .modal-dialog {
+      width: 100%;
+      margin: 0;
+      .modal-content {
+        border: 0;
+        box-shadow: none;
+      }
+      .modal-header {
+        text-align: center;
+        padding: 5px 0 0 0;
+        h3 {
+          font-size: 38px;
+          font-weight: 700;
+          margin-top: 25px;
+          margin-bottom: 15.5px;
+        }
+        .description {
+          font-size: 22px;
+          font-weight: 300;
+          color: $gray-oslo;
+          padding: 5px 20px 10px;
+        }
+        .suggest-message {
+          font-size: 13px;
+          color: $gray-oslo;
+          padding: 0px 0px 24px;
+        }
+      }
+      .modal-body {
+        padding: 0;
+        .sign-up-form,
+        .sign-up-register-form {
+          background-color: $white;
+          form {
+            padding-top: 1px;
+          }
+          .signUpRegisterForm {
+            height: 100%;
+            width: 90%;
+            margin: auto;
+            @media (min-width: $screen-md) {
+              width: 69%;
+              margin: auto;
+            }
+          }
+          .form-group {
+            margin: 5px 0 10px 0;
+            a.btn-link {
+              padding: 0;
+              text-transform: none;
+              color: $blue-200;
+              font-size: $font-size-base;
+            }
+            &.sign-up-button {
+              margin: 0 -15px -5px;
+              button {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                width: 100%;
+                font-size: 16px;
+                font-weight: 600;
+                position: relative;
+                text-transform: uppercase;
+                i {
+                  position: absolute;
+                  font-size: 28px;
+                  line-height: 33px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

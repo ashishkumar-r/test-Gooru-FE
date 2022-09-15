@@ -1,0 +1,158 @@
+<div class="student-search-container">
+  <div class="header-container">
+    <div class="search-type-selector-container">
+      <div class="active-search-criteria" {{action "onToggleSearchCriteria"}} tabindex={{tabindex}}>
+        <span class="search-by">
+          {{t 'search-by'}}
+          {{gru-icon name=(if isSearchCriteriaExpanded 'arrow_drop_up' 'arrow_drop_down')}}
+        </span>
+        <span class="search-type">
+          {{activeCriteria.label}}
+        </span>
+      </div>
+      <div class="search-type-list-container">
+        {{#each searchCriterias as |searchCriteria|}}
+          <div class="search-type {{if searchCriteria.isActive 'active-criteria'}}" onclick={{action "onSelectSearchCriteria" searchCriteria}} onkeypress={{action "onSelectSearchCriteria" searchCriteria}}  tabindex={{tabindex}}>
+            {{searchCriteria.label}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    {{#if (not isMulitAddStud)}}
+      <div class="search-student-input-container">
+       <label for="studentSearch" class="marginBottom0">
+        {{input
+          type="text"
+          placeholder=(concat (t 'common.search') ' ' (t 'common.students'))
+          class="search-student"
+          id='studentSearch'
+          value=searchTerm
+          tabindex=tabindex}}
+          <span class="search-icon {{if (lt searchTerm.length 3) 'disable-event'}}" onclick={{action "onSearchStudents"}} onkeypress={{action "onSearchStudents"}} tabindex={{tabindex}}>
+            {{gru-icon name="search" }}
+          </span>
+        </label>
+      </div>
+    <div class="apply-settings-container {{unless isEnableAdd 'disable-event'}}" onclick={{action "onAddStudents"}} onkeypress={{action "onAddStudents"}} tabindex={{plus-one tabindex}}>
+      {{t 'common.add'}}
+    </div>
+  {{/if}}
+  </div>
+  {{#if filteredStudents.length}}
+    <div class="body-container">
+      <div class="filtered-students-list-container">
+        <div class="students-list-header-container {{if (gt filteredStudents.length 7) 'dummy-scroll'}}">
+          <div class="student-name student-info-header">
+            {{t 'common.students'}}
+          </div>
+          <div class="student-username student-info-header">
+            {{t 'sign-up.username'}}/{{t 'sign-up.email'}}
+          </div>
+          <div class="student-id student-info-header">
+            {{t 'teacher-landing.class.class-management-tab.student-id'}}
+          </div>
+
+          <div class="student-reference-id student-info-header">
+            {{t 'teacher-landing.class.class-management-tab.reference-id'}}
+          </div>
+        </div>
+        <div class="filtered-students-container">
+          {{#each filteredStudents as |student|}}
+            <div class="student-info-row">
+              <div class="student-thumbnail {{if student.isSelected 'selected-student'}}" style="background-image: url({{student.avatarUrl}});"  onclick={{action "onSelectStudent" student}} onkeypress={{action "onSelectStudent" student}} tabindex={{tabindex}}>
+                {{#if student.isSelected}}
+                  {{gru-icon name="done_all" class="tick-icon"}}
+                {{/if}}
+              </div>
+              <div class="student-name student-info-column ellipsis"  data-toggle="tooltip" title="{{student.fullName}}" onclick={{action "onSelectStudent" student}} onkeypress={{action "onSelectStudent" student}} tabindex={{tabindex}}>{{student.fullName}}</div>
+              <div class="student-username student-info-column">
+
+
+                {{#if (or (eq student.show_email true) (eq student.show_email false) (eq student.show_email null) (eq student.show_email ' ')) }}
+
+                {{#if (eq student.show_email true)}}
+                <span class="stu-email ellipsis" data-toggle="tooltip" title="{{student.email}}">
+                {{student.email}}
+                </span>
+
+                {{else if (eq student.show_email false)}}
+                <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                {{student.username}}
+                </span>
+
+                {{else if (and tenantClassSettings  (or (eq student.show_email null) (eq student.show_email ' ') ) )}}
+
+                {{#if (eq tenantClassSettings 'username')}}
+                <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                {{student.username}}
+                </span>
+
+                {{else if (eq tenantClassSettings 'email')}}
+                <span class="stu-email ellipsis" data-toggle="tooltip" title="{{student.email}}">
+                {{student.email}}
+                </span>
+                {{/if}}
+
+                {{else}}
+
+                <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                {{student.username}}
+                </span>
+
+                {{/if}}
+
+
+                {{else if tenantClassSettings}}
+
+                {{#if (eq tenantClassSettings 'username')}}
+                <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                {{student.username}}
+                </span>
+
+                {{else if (eq tenantClassSettings 'email')}}
+                <span class="stu-email ellipsis" data-toggle="tooltip" title="{{student.email}}">
+                {{student.email}}
+                </span>
+                {{/if}}
+
+
+                {{else if (and (not tenantClassSettings)  (or (eq student.show_email null) (eq student.show_email ' ')) )}}
+                <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                {{student.username}}
+                </span>
+
+                {{else if (and (not tenantClassSettings)  (not (or (eq student.show_email true) (eq student.show_email false) (eq student.show_email null) (eq student.show_email ' ') ) )  )}}
+                <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                {{student.username}}
+                </span>
+
+
+                {{else}}
+                <span class="stu-username ellipsis" data-toggle="tooltip" title="{{student.username}}">
+                {{student.username}}
+                </span>
+
+
+                {{/if}}
+
+
+              </div>
+              <div class="student-id student-info-column ellipsis" data-toggle="tooltip" title="{{student.studentId}}">{{student.studentId}}</div>
+              <div class="student-reference-id student-info-column ellipsis" data-toggle="tooltip" title="{{student.referenceId}}">{{student.referenceId}}</div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  {{#if isLoading}}
+    <div class="loading-spinner">
+      {{three-bounce-spinner}}
+    </div>
+  {{/if}}
+  {{#if isNoStudentsFound}}
+    <div class="no-students-found">
+      No Students Found
+    </div>
+  {{/if}}
+</div>

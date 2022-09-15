@@ -1,0 +1,210 @@
+.reports.dca-student-external-collection-report {
+  position: fixed;
+  top: 100%;
+  z-index: 1031;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+
+  .backdrop {
+    background-color: $backdrop-color;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .backdrop-pull-ups {
+    .backdrop {
+      background: none !important;
+    }
+  }
+
+  .report-container {
+    background: $white;
+    width: 768px;
+    max-height: 90vh;
+    height: 90vh;
+
+    .report-header {
+      height: 135px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      grid-gap: 10px;
+      box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+
+      .collection-container {
+        width: 100%;
+        display: flex;
+        padding: 15px;
+        height: 135px;
+
+        .collection-thumbnail {
+          width: 106px;
+          height: 106px;
+          border-radius: 50%;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+
+        .collection-info {
+          width: 100%;
+          margin-left: 15px;
+
+          .title {
+            font-size: 15px;
+            color: $dark-400;
+          }
+
+          .student-name {
+            font-size: 13px;
+            font-weight: bold;
+            color: $dark-400;
+            text-transform: capitalize;
+          }
+
+          .performance-bar {
+            height: 30px;
+            display: flex;
+
+            .progress-bar {
+              border-top-right-radius: 11px;
+              border-bottom-right-radius: 11px;
+              height: 11px;
+            }
+          }
+
+          .score-text {
+            margin-top: -6px;
+            margin-left: 10px;
+            width: 60px;
+          }
+        }
+      }
+
+      .collection-external-icons {
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        opacity: 0.8;
+        justify-self: center;
+        background-image: url("gooru/share.png");
+        background-repeat: no-repeat;
+        margin: auto 10px auto auto;
+      }
+
+      .pullup-close {
+        display: grid;
+        grid-template-rows: 30px 30px;
+        width: 65px;
+        align-self: center;
+        cursor: pointer;
+        text-align: center;
+
+        i {
+          opacity: 0.2;
+          color: $black-bold;
+          font-size: 32px;
+        }
+
+        span {
+          text-transform: uppercase;
+          margin-top: 5px;
+        }
+      }
+
+      .teacher-suggestion {
+        display: grid;
+        align-items: center;
+        width: 65px;
+
+        .suggestion-count-container {
+          cursor: pointer;
+
+          .suggestion-explore {
+            position: relative;
+            width: 35px;
+            height: 31px;
+            margin-left: 15px;
+            color: $orange-49;
+
+            .explore {
+              font-size: 35px;
+              transform: rotate(90deg);
+            }
+
+            .suggestion-count {
+              position: absolute;
+              width: 16px;
+              height: 16px;
+              border-radius: 50%;
+              color: $gray-4a;
+              top: 0;
+              right: 0;
+              border: 1px solid $gray-4a;
+              background: $white;
+              font-size: 10px;
+              line-height: 13px;
+              text-align: center;
+            }
+          }
+
+          span {
+            color: $orange-49;
+          }
+        }
+      }
+    }
+
+    .report-body {
+      height: 60vh;
+      width: 768px;
+      overflow-y: auto;
+
+      .external-collection-container {
+        .taxonomy-container {
+          padding: 15px;
+
+          .gru-taxonomy-tag {
+            background-color: $dark-400;
+          }
+        }
+
+        .reference {
+          text-align: center;
+          border-bottom: 1px solid $light-200;
+          margin-top: 15px;
+          font-size: 15px;
+          color: $dark-400;
+
+          .link {
+            color: $link-blue-color;
+          }
+        }
+
+        .wish {
+          text-align: center;
+          font-size: 15px;
+          color: $dark-400;
+          margin: 30px 0;
+        }
+
+        .student-timeSpent {
+          font-size: 100px;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

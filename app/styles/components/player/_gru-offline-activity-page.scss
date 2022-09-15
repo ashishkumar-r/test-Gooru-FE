@@ -1,0 +1,25 @@
+.player-container.offline-activity {
+  .player {
+    padding-top: 0;
+    .oa-study-player.gru-offline-activity-page {
+      height: 100%;
+      .oa-study-player-container {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 370px 1fr;
+        @media screen and (max-width: $screen-sm - 1) {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        &.full-view-player {
+          grid-template-columns: 1fr;
+
+          .gru-oa-stater-page {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

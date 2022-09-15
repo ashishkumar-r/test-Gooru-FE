@@ -1,0 +1,122 @@
+<div class="header">
+  <div class="title">{{t 'student-landing.my-performance.filter'}}</div>
+</div>
+<div class="body">
+    <div class="filter-type activity">
+        <span class="filter-category">
+            {{#if showActivitySubcategory}}
+              {{t (concat 'student-landing.my-performance.activities.' activityFilter)}}
+            {{else}}
+              {{t 'student-landing.my-performance.activity'}}
+            {{/if}}
+        </span>
+        <a class="arrow" {{action 'expandPanel' 'activity'}}>
+          {{#if isActivityFiltersExpanded}}
+            {{gru-icon name='arrow_drop_up'}}
+          {{else}}
+            {{gru-icon name='arrow_drop_down'}}
+          {{/if}}
+        </a>
+    </div>
+    <div class="content-panel activity {{if isActivityFiltersExpanded 'visible' 'hidden'}}">
+        <div class="items">
+          {{#each activities as |activity|}}
+             <div class="activity-option study {{if (eq activityFilter 'study') 'active'}}" {{action 'selectActivity' 'study'}}>
+                 {{gru-icon name='school'}}
+                 <span>{{t 'student-landing.my-performance.activities.study'}}</span>
+             </div>
+          {{else}}
+            {{t 'common.no-content'}}
+          {{/each}}
+        </div>
+    </div>
+    <div class="filter-type time-period">
+        <span class="filter-category">{{t 'student-landing.my-performance.time-period'}}</span>
+        <a class="arrow" {{action 'expandPanel' 'time-period'}}>
+          {{#if isTimePeriodFiltersExpanded}}
+            {{gru-icon name='arrow_drop_up'}}
+          {{else}}
+            {{gru-icon name='arrow_drop_down'}}
+          {{/if}}
+        </a>
+    </div>
+    <div class="filter-type subject">
+        <span class="filter-category">{{t 'student-landing.my-performance.subject'}}</span>
+        <a class="arrow" {{action 'expandPanel' 'subject'}}>
+          {{#if isSubjectFiltersExpanded}}
+            {{gru-icon name='arrow_drop_up'}}
+          {{else}}
+            {{gru-icon name='arrow_drop_down'}}
+          {{/if}}
+        </a>
+    </div>
+    <div class="filter-buttons">
+        <button class="btn btn-default course selected">
+            <span>{{t 'common.course'}}</span>
+        </button>
+    </div>
+    <div class="filter-type course">
+        <span>{{t 'common.course'}}</span>
+        <a class="arrow" {{action 'expandPanel' 'course'}}>
+          {{#if isCourseFiltersExpanded}}
+            {{gru-icon name='arrow_drop_up'}}
+          {{else}}
+            {{gru-icon name='arrow_drop_down'}}
+          {{/if}}
+        </a>
+    </div>
+    <div class="content-panel course {{if isCourseFiltersExpanded 'visible' 'hidden'}}">
+        <div class="items">
+         {{student/gru-performance-courses courses=courses courseId=courseId onSelectCourse='selectCourse'}}
+        </div>
+    </div>
+    <div class="filter-type unit">
+        <span>{{t 'common.unit'}}</span>
+        <a class="arrow" {{action 'expandPanel' 'unit'}}>
+          {{#if isUnitFiltersExpanded}}
+            {{gru-icon name='arrow_drop_up'}}
+          {{else}}
+            {{gru-icon name='arrow_drop_down'}}
+          {{/if}}
+        </a>
+    </div>
+    <div class="content-panel unit {{if isUnitFiltersExpanded 'visible' 'hidden'}}">
+        <div class="items">
+          {{#each units as |unit|}}
+              <div class="item ellipsis">
+                  <input type="radio" name="unitOption" checked="{{if (eq unit.id unitId) 'checked'}}"
+                    {{action 'selectUnit' unit.id preventDefault=false}}/> {{unit.title}}</div>
+                     <div class="content-panel lesson {{if isLessonFiltersExpanded 'visible' 'hidden'}}">
+                      <div class="items">
+                        {{#each lessons as |lesson|}}
+                            <div class="item ellipsis">
+                                <input type="radio" name="lessonOption" checked="{{if (eq lesson.id lessonId) 'checked'}}"
+                                  {{action 'selectLesson' lesson.id preventDefault=false}}/> {{lesson.title}}</div>
+                        {{else}}
+                          {{t 'common.no-content'}}
+                        {{/each}}
+                      </div>
+                  </div>
+          {{else}}
+            {{t 'common.no-content'}}
+          {{/each}}
+        </div>
+    </div>
+    <div class="filter-type lesson">
+        <span>{{t 'common.lesson'}}</span>
+        <a class="arrow" {{action 'expandPanel' 'lesson'}}>
+          {{#if isLessonFiltersExpanded}}
+            {{gru-icon name='arrow_drop_up'}}
+          {{else}}
+            {{gru-icon name='arrow_drop_down'}}
+          {{/if}}
+        </a>
+    </div>
+   
+    <div class="actions">
+        <button class="btn btn-primary update-report" {{action 'updateReport'}}>
+          {{gru-icon name='trending_up'}}
+            <span>{{t 'student-landing.my-performance.update-report'}}</span>
+        </button>
+    </div>
+</div>

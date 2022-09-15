@@ -1,0 +1,182 @@
+<div class="user-proficiency">
+  <div class="panel left-panel">
+    <div class="panel-header">
+      <div class="title ellipsis">
+        {{selectedSubject.title}}<br>
+      </div>
+      <div class="taxonomy-info">
+        <div class="col-1">
+          <div class="dropdown categories">
+            <button class="dropbtn btn-dropdown" type="button" data-toggle="dropdown">
+              <div class="ellipsis">{{selectedCategory.title}}</div>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu category-list">
+              {{#each categories as |category|}}
+                <li class="list-item category {{if (eq selectedCategory.id category.id) 'active'}}" onclick={{action "onSelectCategory" category}} onkeypress={{action "onSelectCategory" category}} tabindex="101">{{category.title}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          <div class="dropdown subjects">
+            <button class="dropbtn btn-dropdown" type="button" data-toggle="dropdown">
+              <div class="ellipsis">{{selectedSubject.title}}</div>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu subject-list">
+              {{#each taxonomySubjects as |subject|}}
+                <li class="list-item subject {{if (eq selectedSubject.id subject.id) 'active'}}" onclick={{action "onSelectItem" subject}} onkeypress={{action "onSelectItem" subject}} tabindex="101">{{subject.title}}</li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div class="col-2">
+          {{if tenantFW tenantFW framework}}
+        </div>
+      </div>
+    </div>
+    <div class="panel-body matrix">
+      {{#if showProficiencyChart}}
+        {{proficiency/learner-proficiency-domain-matrix
+          timeLine=timeLine
+          userId=userId
+          subject=selectedSubject
+          competencyMatrixDomains=competencyMatrixDomains
+          competencyMatrixCoordinates=competencyMatrixCoordinates
+          isShowMatrixChart=true
+          showGutCompetency=showGutCompetency
+          subjectCode=subjectCode
+          showBaseLine=false
+          onSelectCompetency="onSelectCompetency"
+          fwCompetencies=fwCompetencies
+          taxonomyGrades=taxonomyGrades
+          proficiencyChartData=proficiencyChartData
+          skylinePoints=skylinePoints
+          onDomainSelect="onDomainSelect"
+          onSelectTopic="onSelectTopic"
+          selectedCompetency=selectedCompetency
+          selectedDomain=selectedDomain
+          selectedTopic=selectedTopic
+          totalTopics=totalTopics
+          tabindex="101"
+          studentProfile=profile
+          isShowLoaderSet="isShowLoaderSet"
+        }}
+      {{/if}}
+      {{#if isMobile}}
+        <div class="inspect-competency">
+          {{proficiency/competency-info-pull-up
+            fwDomains=fwDomains
+            fwCompetencies=fwCompetencies
+            isInspectCompetency=showCompetencyInfo
+            showGutCompetency=showGutCompetency
+            classFramework=(if tenantFW tenantFW framework)
+            onClosePullUp="onClosePullUp"
+            isStudent=true
+            competency=selectedCompetency
+            studentProfile=profile
+            domainCompetencyList=domainCompetencyList
+            tabindex="101"
+          }}
+        </div>
+      {{/if}}
+      <div class="proficiency-tags">
+        <div class="proficiency-legends">
+          <div class="mastered legend">
+            <span class="box"></span>
+            <span class="title">{{t 'profile.proficiency.mastered'}}</span>
+          </div>
+          <div class="in-progress legend">
+            <span class="box"></span>
+            <span class="title">{{t 'profile.proficiency.in-progress'}}</span>
+          </div>
+          <div class="not-started legend">
+            <span class="box"></span>
+            <span class="title">{{t 'profile.proficiency.not-started'}}</span>
+          </div>
+          <div class="show-gut legend">
+            <span class="box"></span>
+            <span class="title">{{t 'competencies-not-in-framework'}}</span>
+          </div>
+          <div class="skyline legend">
+            <span class="box-skyline"></span>
+            <span class="title">{{t 'profile.proficiency.skyline'}}</span>
+          </div>
+          <div class="class-grade-line legend">
+          <span class="box-class-grade-line"></span>
+          <span class="title">{{t 'grade-selector.placeholder'}}</span>
+        </div>
+        </div>
+      </div>
+
+      <div class="time-series">
+        {{charts/monthly-time-series-chart onSelectMonth="onSelectMonth"}}
+      </div>
+
+    </div>
+  </div>
+  <div class="panel right-panel">
+    {{#proficiency/proficiency-subject-panel
+         fwDomains=fwDomains
+         domains=proficiencyChartData
+         showGutCompetency=showGutCompetency
+         onDomainSelect="onDomainSelect"
+         framework=(if tenantFW tenantFW framework)
+         subject=selectedSubject
+         competencyMatrixCoordinates=competencyMatrixCoordinates
+         tabindex="101"
+         isStudent=isStudent
+       }}
+      {{#if showDomainInfo}}
+        {{proficiency/domain-info-pull-up
+           fwDomains=fwDomains
+           fwCompetencies=fwCompetencies
+           onSelectCompetency="onSelectCompetency"
+           showGutCompetency=showGutCompetency
+           showPullUp=showDomainInfo
+           competencies=selectedDomainCompetencies
+           domain=selectedDomain
+           onSelectTopic="onSelectTopic"
+           onClosePullup="onCloseDomainInfoPullup"
+           tabindex="101"
+          }}
+      {{/if}}
+
+      {{#if isShowTopicInfo}}
+        {{proficiency/topic-info-pull-up
+          showPullUp=isShowTopicInfo
+          topic=selectedTopic
+          subject=activeSubject
+          onSelectCompetency="onSelectCompetency"
+          onCloseTopicInfoPullup="onCloseTopicInfoPullup"
+          fwCompetencies=fwCompetencies
+          tabindex="101"
+        }}
+      {{/if}}
+
+      {{proficiency/competency-info-pull-up
+          fwDomains=fwDomains
+          fwCompetencies=fwCompetencies
+          isInspectCompetency=showCompetencyInfo
+          showGutCompetency=showGutCompetency
+          framework=(if tenantFW tenantFW framework)
+          onClosePullUp="onClosePullUp"
+          isStudent=true
+          competency=selectedCompetency
+          studentProfile=profile
+          domainCompetencyList=domainCompetencyList
+          playContent="playContent"
+          tabindex="101"
+        }}
+    {{/proficiency/proficiency-subject-panel}}
+  </div>
+</div>
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tabindex="101"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

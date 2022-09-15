@@ -1,0 +1,47 @@
+<div class="no-framework-message">
+  {{competency-gut-to-fw-transform
+    fwCompetencies
+    competency.competencyCode
+    competency.competencyName
+    'frameworkCompetencyName'
+    showGutCompetency
+    false
+    (t 'not-covered-in-fw-msg' framework=classFramework)
+   }}
+</div>
+<div class="competency-performance">
+  <div class="competency-name">
+    {{competency-gut-to-fw-transform
+      fwCompetencies
+      competency.competencyCode
+      competency.competencyName
+      'frameworkCompetencyName'
+      showGutCompetency
+      true
+     }}
+  </div>
+  {{#if (and competency (not isPlayerProficiency))}}
+    <div class="signature-content">
+      {{reports/pull-up/signature-content-report
+         showGutCompetency=showGutCompetency
+         classFramework=classFramework
+         userId=userId
+         student=student
+         studentListForSuggestion=studentListForSuggestion
+         onConfirmSuggest="onConfirmSuggest"
+         domainCompetencyList=domainCompetencyList
+         proficiencyChartData=proficiencyChartData
+         collectionPerformances=collectionPerformances
+         showSignatureAssessment=showSignatureAssessment
+         competency=competency
+         isStudent=isStudent
+         playContent="playContent"
+         class = class
+         tabindex=tabindex
+         isClassActivity=isClassActivity
+         classFrameworkCode = classFrameworkCode
+         isDefaultShowFW = isDefaultShowFW
+       }}
+    </div>
+  {{/if}}
+</div>

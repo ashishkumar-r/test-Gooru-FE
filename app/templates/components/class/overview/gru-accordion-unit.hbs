@@ -1,0 +1,137 @@
+<div class="unit panel-heading {{if isStudentDashboard 'disable-event'}} {{if (and (not isTeacher) (not model.visible) isShowContentVisibility  (not model.isUnit0) (not model.isRoute0) (not currentClass.isArchived)) 'disable'}}" id="{{elementId}}-heading" aria-labelledby="{{elementId}}-heading">
+  {{#if isTeacher}}
+    <div class="performance-container pull-right {{unless (gte model.performance.score 0) 'not-started'}}" onclick={{action 'onOpenUnitLevelReport' model}} onkeypress={{action 'onOpenUnitLevelReport' model}} tabindex={{plus-one tabindex}}>
+
+  {{#if (and model.performance.isCollectionPerformance model.performance.timeSpent)}}
+    <div class="timespend">
+    <span>{{format-time model.performance.timeSpent}}</span>
+    <div><span class="total-time-spent">{{t 'common.total-time-spent' }}</span></div>
+
+    {{#if (gt model.performance.numberOfStudents 0)}}
+    <div class="students-count">
+    <div class="avatar">{{gru-icon name="account_circle"}}</div>
+    <div class="count">{{model.performance.numberOfStudents}}</div>
+    </div>
+    {{/if}}
+    </div>
+
+    {{else}}
+    {{charts/gru-students-performance-chart performanceSummary=model.performance hasStarted=true isTeacher=isTeacher assessmentCount=model.assessmentCount tabindex=(plus-one tabindex)}}
+    {{/if}}
+    </div>
+  {{else}}
+    <div aria-label="performance score" class="performance-container pull-right {{if isStudentDashboard 'disable-event'}} {{unless model.performance.hasStarted 'not-started'}}" onclick={{action 'onOpenUnitLevelReport' model}} onkeypress={{action 'onOpenUnitLevelReport' model}} tabindex={{plus-one tabindex}}>
+      {{#if inProgress }}
+      <span class="in-progress">--</span>
+      {{else if model.performance.isCollection }}
+      <div class="timespend">
+      <span>{{format-time model.performance.timeSpent}}</span>
+      <div><span class="total-time-spent">{{t 'common.total-time-spent' }}</span></div>
+      </div>
+      {{else}}
+      {{charts/gru-performance-chart performanceSummary=model.performance hasStarted=true isTeacher=isTeacher assessmentCount=model.assessmentCount tabindex=(plus-one tabindex)}}
+      {{/if}}
+      </div>
+  {{/if}}
+  <!-- -->
+ {{#if (and isTeacher isShowContentVisibility (not model.isUnit0) (not model.isRoute0) (not currentClass.isArchived))}}
+   <span class="visiblity-switch" data-toggle="tooltip" data-html="true" data-placement="top" title="{{t "common.assign"}}">
+     {{gru-switch
+       switchOptions=switchOptions
+       onOptionSwitch='changeVisibility'
+       isChecked=model.visible
+       item=model
+       tabindex=tabindex }}
+   </span>
+ {{/if}}
+
+  <div class="panel-title">
+    <a class="collapsed title" role="button" data-toggle="collapse" href="#{{elementId}}-content"
+       aria-expanded="false" aria-label="unit title" aria-controls="{{elementId}}-content" onclick={{action "selectUnit" model elementId}}  onkeypress={{action "selectUnit" model elementId}} tabindex={{tabindex}}>
+      <div class="title ellipsis">
+        <span class="prefix">{{course-sections-prefix index=(unless isHideLessonNumber (if hasUnit0Content (minus-one index) index)) type='unit' longName=true}}</span>
+          <span class="unit-title-text ellipsis" title="{{model.title}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">{{model.title}}</span>
+      </div>
+    </a>
+  </div>
+  {{#if showUnitPlan}}
+    <div class="unit-plan-view">
+      {{#if (or model.bigIdeas model.essentialQuestions)}}
+      <div class="unitPlan">
+        <div class="bigIdeas">{{safe-html model.bigIdeas}}</div>
+        {{#if model.essentialQuestions}}
+        <div class="essentialQuestions-lable">{{t "common.essential-questions"}}:</div>
+        {{/if}}
+        <div class="essentialQuestions">{{safe-html model.essentialQuestions}}</div>
+      </div>
+      {{else}}
+        <div class="unavailable-content">{{t "common.information-unavailable"}}</div>
+    {{/if}}
+    </div>
+  {{/if}}
+  {{#if (and isExpanded (not isStudentDashboard))}}
+  <div role="button" class="unit-class-info {{unless (or model.bigIdeas model.essentialQuestions) 'disable-tag'}}" {{action "showUnitPlan" 'unit-plan-view' elementId}}>
+      <a role="link" aria-label="unit information" data-toggle="tooltip">
+        {{gru-icon name="info" style='material-icons-outlined'}}
+      </a>
+    </div>
+  {{/if}}
+</div>
+<div id="{{elementId}}-content"
+     data-index="{{componentIndex}}"
+     class="panel-collapse collapse"
+     role="tabpanel"
+     aria-labelledby="{{elementId}}-heading">
+
+  <div class="panel-body">
+    <ol class="panel-group {{if (and isShowContentVisibility (not model.visible) (not model.isUnit0) (not model.isRoute0) (not currentClass.isArchived)) 'disable'}}" role="list">
+    {{#if loading}}
+      {{three-bounce-spinner}}
+    {{else}}
+      {{#each items as |lesson index|}}
+        {{class/overview/gru-accordion-lesson
+          currentClass=currentClass
+          currentCourse=currentCourse
+          classMembers=classMembers
+          unitId=model.id
+          model=lesson
+          unit=model
+          lessons=items
+          index=index
+          onSelectResource=(action 'selectResource')
+          onStudyNow=(action 'studyNow')
+          onSelectLesson=(action 'updateLesson')
+          onLaunchOnAir=(action 'launchOnAir')
+          currentResource=currentResource
+          showLocation=showLocation
+          parsedLocation=parsedLocation
+          contentVisibility=contentVisibility
+          onUpdateContentVisibility="updateContentVisibility"
+          isTeacher=isTeacher
+          isFromDCA=isFromDCA
+          toggleLocation=toggleLocation
+          onSelectItem="onSelectItem"
+          isPremiumClass=isPremiumClass
+          onOpenLessonReport="onOpenLessonReport"
+          teacherCollectionReport="teacherCollectionReport"
+          studentReport="studentReport"
+          onOpenStudentLessonReport="onOpenStudentLessonReport"
+          showLocationReport=showLocationReport
+          resetPerformance=resetPerformance
+          tabindex=(plus-one tabindex)
+          isStudentDashboard=isStudentDashboard
+          isStudyPlayer=isStudyPlayer
+          isTagGoogleClassroom=isTagGoogleClassroom
+          googleClassroomName=googleClassroomName
+          selectedUserId=selectedUserId
+          selectedQuestionId=selectedQuestionId
+          selectedCollectionId=selectedCollectionId
+          isUnit0 = model.isUnit0
+        }}
+        {{else}}
+          <li>{{t "common.contentUnavailable"}}</li>
+        {{/each}}
+      {{/if}}
+    </ol>
+  </div>
+</div>

@@ -1,0 +1,299 @@
+.reports.assessment.gru-summary {
+  padding-bottom: 10px;
+
+  .summary-container {
+    display: block;
+    width: auto;
+    height: 106px;
+    padding: 0 0 0 13px;
+    object-fit: contain;
+    background-color: $white;
+    box-shadow: 0 6px 7px 0 $box-shadow-bg-color;
+    @media (min-width: $screen-xs) {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: 88px;
+      padding: 0;
+      box-shadow: 0 2px 5px 0 $disabled-bg-color;
+      -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+      -webkit-align-self: auto;
+      -ms-flex-item-align: auto;
+      align-self: auto;
+      background-image: url("quizzes-addon/quizzes/collection-default.png");
+      background-color: #3671b5;
+      background-position: 0;
+      background-repeat: no-repeat;
+      background-size: contain;
+      text-align: center;
+      color: $white;
+      @media (min-width: $screen-xs) {
+        width: 112px;
+        height: 106px;
+      }
+      @media (min-width: $screen-lg-min) {
+        height: 106px;
+        width: 112px;
+      }
+
+      span {
+        &.title {
+          display: block;
+          font-size: $font-size-h6;
+          padding-top: 10px;
+          @media (min-width: $screen-xs) {
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+        }
+
+        &.time-spent {
+          span {
+            font-size: 20px;
+            line-height: $font-size-h4;
+          }
+
+          i {
+            font-size: 20px;
+            line-height: 64px;
+            vertical-align: middle;
+            margin-bottom: 6px;
+          }
+        }
+      }
+    }
+
+    .profile-image {
+      width: 115px;
+      height: 68px;
+      padding: 0;
+      margin-top: 18px;
+      -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+      -webkit-align-self: auto;
+      -ms-flex-item-align: auto;
+      align-self: auto;
+      text-align: center;
+      color: $white;
+      @media (min-width: $screen-xs) {
+        width: 115px;
+        height: 68px;
+      }
+      @media (min-width: $screen-lg-min) {
+        height: 68px;
+      }
+
+      .img-responsive {
+        height: 100%;
+      }
+    }
+
+    .grade {
+      width: 160px;
+      height: 106px;
+      padding: 18px 15px 0 4px;
+      text-align: $tab-float-dir;
+      border-left: 2px solid;
+      color: $white;
+      -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+      -webkit-align-self: auto;
+      -ms-flex-item-align: auto;
+      align-self: auto;
+      @media (min-width: $screen-xs) {
+        width: 143px;
+        height: 106px;
+        padding: 20px 6 0;
+        text-align: center;
+      }
+      @media (min-width: $screen-lg-min) {
+        height: 106px;
+      }
+
+      span {
+        &.percentage {
+          font-size: $font-size-h3;
+          line-height: $font-size-h3;
+          @media (min-width: $screen-xs) {
+            display: inline-block;
+            font-size: $font-size-h2;
+            line-height: $font-size-h2;
+          }
+        }
+
+        &.attempts {
+          font-size: $font-size-h6;
+          display: inline-block;
+          margin: 0 0 0 15px;
+          text-align: center;
+
+          .fractional {
+            width: 25px;
+            margin: 0 10px 0 0;
+
+            .bottom {
+              border-color: $white;
+            }
+          }
+
+          .text {
+            font-size: 12px;
+            line-height: $font-size-h6;
+          }
+          @media (min-width: $screen-xs) {
+            display: table;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+
+    .overview {
+      -ms-flex: 1 1 auto;
+      -webkit-align-self: auto;
+      -ms-flex-item-align: auto;
+      align-self: auto;
+      padding: 8px 0 8px 11px;
+      margin: 0;
+      min-height: 133px;
+      @media (min-width: $screen-xs) {
+        margin: 0;
+        width: 550px;
+        height: 164px;
+      }
+      @media (min-width: $screen-lg-min) {
+        height: 133px;
+        width: 550px;
+      }
+
+      h5 {
+        margin: 0;
+        width: 450px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 2.25;
+        color: $blue-400;
+      }
+
+      .information {
+        margin: 10px 0 0;
+        height: 30px;
+        font-size: $font-size-h6;
+        display: table;
+
+        i {
+          vertical-align: middle;
+          margin: 0 5px 0 0;
+        }
+
+        span {
+          font-size: 13px;
+        }
+
+        .attempt {
+          margin: 0 3px 0 0;
+
+          .attempt-selector {
+            display: inline-block;
+
+            .current-attempt {
+              display: inline-block;
+
+              button {
+                line-height: 1;
+
+                .caret {
+                  margin-left: 10px;
+                }
+                color: $gray;
+              }
+            }
+          }
+        }
+
+        .date {
+          margin: 0 2px 0 0;
+        }
+
+        .time {
+          margin: 0 5px 0 0;
+        }
+
+        .attempt,
+        .date,
+        .reaction,
+        .time {
+          @media (max-width: $screen-xs) {
+            display: block;
+            margin: 0 0 10px;
+          }
+          @media (max-width: $screen-md) {
+            margin: 0 10px 0 0;
+          }
+        }
+      }
+    }
+
+    .reactions {
+      width: 110px;
+      text-align: center;
+      margin-top: 18px;
+
+      .reaction {
+        .emotion {
+          width: 55px;
+          height: 55px;
+          text-align: center;
+        }
+        .align-center {
+          font-size: 30px;
+        }
+      }
+    }
+
+    .bubbles {
+      width: 405px;
+      height: 85px;
+      max-height: 85px;
+      overflow: auto;
+
+      .gru-bubbles {
+        margin-top: 3px;
+
+        .bubbles-list {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          list-style: none;
+          padding: 10px 0 0;
+          margin: 0;
+
+          li {
+            display: inline-block;
+            padding: 0;
+            margin: 0 4px 10px 0;
+          }
+        }
+      }
+    }
+
+    .bubbles::-webkit-scrollbar {
+      height: 6px;
+      width: 8px;
+    }
+
+    .bubbles::-webkit-scrollbar-thumb {
+      background: $gray-light;
+      border: 1px solid $gray-light;
+      border-radius: 5px;
+    }
+  }
+}

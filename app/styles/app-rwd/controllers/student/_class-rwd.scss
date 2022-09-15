@@ -1,0 +1,45 @@
+.student.class {
+  width: 100vw;
+
+  .no-course-content {
+    color: $gray;
+  }
+  @media only screen and (max-width: $screen-sm - 1) {
+    .header {
+      .panel.classroom-information {
+        .panel-body {
+          grid-template-columns: 50px 1fr max-content 200px 100px;
+
+          &.no-taxomony {
+            grid-template-columns: 50px 1fr max-content 100px;
+          }
+
+          .course-image {
+            img {
+              width: 50px;
+            }
+          }
+
+          .performance-container,
+          .teacher-profile,
+          .share-class-data {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: $sm-width-max) {
+    .header {
+      .panel.classroom-information {
+        .panel-body {
+          grid-template-columns: 50px 1fr max-content 100px;
+
+          .taxonomy-standards {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

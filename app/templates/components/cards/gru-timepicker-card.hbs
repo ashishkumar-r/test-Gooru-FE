@@ -1,0 +1,33 @@
+<div class="timepicker-container">
+  <div class="hour-picker">
+    <div class="up-arrow arrow-container" onclick={{action "onIncrementHour"}} onkeypress={{action "onIncrementHour"}} tabindex={{tabindex}}>
+      {{gru-icon name="expand_less"}}
+    </div>
+    <div class="hour-value value-container">
+      {{input type="text" maxlength="2" value=hour class="time-value hour-value" title="hours"}}
+    </div>
+    <div class="down-arrow arrow-container" onclick={{action "onDecrementHour"}} onkeypress={{action "onDecrementHour"}} tabindex={{tabindex}}>
+      {{gru-icon name="expand_more"}}
+    </div>
+    <div class="placeholder hour-placeholder">
+      HH
+    </div>
+  </div>
+  <div class="picker-separator">
+    :
+  </div>
+  <div class="minute-picker">
+    <div class="up-arrow arrow-container" onclick={{action "onIncrementMinute"}} onkeypress={{action "onIncrementMinute"}} tabindex={{tabindex}}>
+      {{gru-icon name="expand_less"}}
+    </div>
+    <div class="minute-value value-container">
+      {{input type="text" maxlength="2" value=minute class="time-value min-value" title="minute"}}
+    </div>
+    <div class="down-arrow arrow-container" onclick={{action "onDecrementMinute"}} onkeypress={{action "onDecrementMinute"}} tabindex={{tabindex}}>
+      {{gru-icon name="expand_more"}}
+    </div>
+    <div class="placeholder minute-placeholder">
+      MM
+    </div>
+  </div>
+</div>

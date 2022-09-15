@@ -1,0 +1,50 @@
+<div class="gru-student-independent-study-container">
+  <a class="gru-student-independent-study-panel" href="javascript:void(0)" {{action "studyNow"}} aria-label="select class">
+    <div class="student-independent-study-head">
+
+      <div class="header-text-img">
+        <div class="header-text">
+          <span class="class-name">{{t 'student-home.independent-course'}}</span>
+            <span class="class-title"  title="{{course.title}}" data-toggle="tooltip" data-placement="top">{{course.title}}</span> 
+        </div>
+
+        <div class="header-img">
+          <img width="32" src="/assets/gooru/class-card.png">
+        </div>
+      </div>
+
+    </div>
+    <div class="card-image-back" style="background-image:url({{thumbnailUrl}})">
+      <div class="halfCircleBottom"> <span>
+          {{#if course.totalCompetencyStats}}
+            <span>{{course.totalCompetencyStats}}</span>
+          {{else}}
+            <span>0</span>
+          {{/if}}
+        </span></div>
+    </div>
+    <div class="independent-study-footer-section">
+      <span class="flag-icons">{{gru-icon name="flag"}}</span>
+
+      <div class="independent-title-section">
+        <div class="percentage-card">
+
+          {{#if course.totalPercentage }}
+            <span class="percentage-score">{{course.totalPercentage}}{{t 'student-home-course-percentage'}}</span>
+          {{else}}
+            <span class="percentage-score">{{0}}{{t 'student-home-course-percentage'}}</span>
+          {{/if}}
+
+          {{#if timeEta }}
+            <span class="time-spent">ETL {{timeEta}} </span>
+          {{/if}}
+        </div>
+        <div class="progress">
+
+          <div class="progress-bar" role="progressbar" style="width: {{course.totalPercentage}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

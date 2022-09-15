@@ -1,0 +1,77 @@
+<div class="panel {{if hasStarted 'has-course' 'no-course'}}" tabIndex={{tabIndex}}>
+  <div class="panel-heading">
+    <div tabIndex={{tabIndex}} role="link" class="title ellipsis" data-placement="bottom" data-toggle="tooltip" title="{{class.title}}" aria-label="{{class.title}}">
+      {{#link-to 'student.class.course-map' class.id}}
+        {{truncate text=class.title maxLength=25}}
+      {{/link-to}}
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="information {{if course 'has-course' 'has-no-course'}} {{if class.isNotAbleToStartPlayer 'no-play'}}" {{action "playCollection"}} style="background-image: url({{cardBackgroundImage}})">
+      <div class="current-activity">
+        {{#if course}}
+          {{#if class.currentLocation}}
+            <span>{{t (if isCompleted "student-landing.last-activity" "student-landing.resume-current-activity")}}</span>
+          {{else}}
+            <span class="start-studying">{{t "student-landing.start-studying"}}</span>
+          {{/if}}
+        {{/if}}
+      </div>
+      {{#if class.currentLocation}}
+        <div class="title-section">
+          <i class="{{collectionType}}"></i>
+          <div class="title pointer" alt="{{class.currentLocation.collectionTitle}}" {{action "playCollection"}}>
+            {{truncate text=currentLocationTitle maxLength=90}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    {{#unless class.isNotAbleToStartPlayer}}
+      <div role="menu" class="card-action-container {{if isPremiumClass 'premium-class'}} {{if isPublicClass 'public-class'}}">
+        {{#unless isPublicClass}}
+          <div role="menuitem"  aria-label="class activity" class="class-activities  {{if (not isPremiumClass) (concat 'grade-range-' (grade-range class.performanceSummaryForDCA.scoreInPercentage))}}">
+            <div class="class-activities-icon" tabIndex={{tabIndex}} onclick={{action 'selectItem' 'class-activities'}} onkeypress={{action 'selectItem' 'class-activities'}} data-placement="bottom" data-toggle="tooltip" title="{{t 'student-landing.class.class-activities'}}" data-trigger="hover">
+              <i class="icon" />
+            </div>
+            {{#if (not isPremiumClass)}}
+              <div class="class-activities-score {{if (not hasCAStarted) 'not-started'}}" {{action 'selectItem' 'ca-report'}}>
+                {{if hasCAStarted (concat class.performanceSummaryForDCA.scoreInPercentage '%') '--' }}
+              </div>
+            {{/if}}
+          </div>
+        {{/unless}}
+        <div role="menuitem" aria-label="learning journey" class="course-map {{if (not isPremiumClass) (concat 'grade-range-' (grade-range class.performanceSummary.score))}}">
+          <div class="course-map-icon" tabIndex={{tabIndex}} onclick={{action 'selectItem' 'course-map'}} onkeypress={{action 'selectItem' 'course-map'}}  data-placement="bottom" data-toggle="tooltip" title="{{t 'teacher-landing.class.learning-journey'}}" data-trigger="hover">
+            {{gru-icon name="sort"}}
+          </div>
+          {{#if (not isPremiumClass)}}
+            <div class="course-map-score {{if (not hasCMStarted) 'not-started'}}" {{action 'selectItem' 'cm-report'}}>
+              {{if hasCMStarted (concat class.performanceSummary.score '%') '--' }}
+            </div>
+          {{/if}}
+        </div>
+        <div role="menuitem" tabIndex={{tabIndex}} aria-label="my proficiency" class="my-proficiency" onclick={{action 'selectItem' 'profile-prof'}}  onkeypress={{action 'selectItem' 'profile-prof'}} data-placement="bottom" data-toggle="tooltip" title="{{t 'student-landing.class.my-proficiency'}}" data-trigger="hover">
+          {{gru-icon name="school"}}
+        </div>
+        {{#if isPremiumClass}}
+          <div role="menuitem" tabIndex={{tabIndex}} aria-label="completion score" class="completion-score {{if class.competencyStats 'has-competency-stats'}}" onclick={{action 'selectItem' 'profile-prof'}} onkeypress={{action 'selectItem' 'profile-prof'}}>
+            {{#if class.competencyStats}}
+              <span>{{plus-any class.competencyStats.completedCompetencies class.competencyStats.masteredCompetencies}}/{{class.competencyStats.totalCompetencies}}</span>
+            {{else}}
+              <span>--</span>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+      <div class="card-class-code">
+        <span>{{t 'teacher-landing.class.class-management-tab.class-code'}}</span>
+        <span aria-label="class code-{{class.code}}" class="class-code">{{class.code}}</span>
+      </div>
+    {{else}}
+      <div class="alert-player-error">
+        <span class="clear-alert" {{action 'onClearAlert'}}>{{gru-icon name="clear"}}</span>
+        <div class="alert-status">{{t 'common.errors.no-studymaterial'}}</div>
+      </div>
+    {{/unless}}
+  </div>
+</div>

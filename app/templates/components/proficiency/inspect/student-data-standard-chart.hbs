@@ -1,0 +1,81 @@
+<div class="student-data-standard-chart-container">
+    <div class="student-data-standard-chart-panel">
+    <div class="data-standard-chart-header-container">
+      <div class="standard-chart">
+        {{#if isShowBackBtn}}
+          <span aria-label="go back" class="go-back" onclick={{action 'goBack'}} onkeypress={{action 'goBack'}}>{{gru-icon name="arrow_back"}}</span>
+        {{/if}}
+      </div>
+      <div class="standard-header-title">
+        <span>{{t 'student-progress-by-comp'}}</span>
+      </div>
+    </div>
+      {{proficiency/learner-proficiency-domain-matrix
+        class=class
+        isSelectBaseLine=isSelectBaseLine
+        onDomainSelect="onDomainSelect"
+        selectedDomain=selectedDomain
+        showGutCompetency=showGutCompetency
+        hideGutCompetencyButton=hideGutCompetencyButton
+        subjectCode=class.preference.subject
+        onSelectCompetency="onSelectCompetency"
+        fwCompetencies=fwCompetencies
+        isPlayerProficiency = isPlayerProficiency
+        proficiencyChartData=chartData
+        onSelectTopic="onSelectTopic"
+        selectedCompetency=selectedCompetency
+        totalTopics=totalTopics
+        disableSkyline = true
+        classGradesList=classGradesList
+        studentProfile=studentProfile
+        isShowLoaderSet="isShowLoaderSet"
+      }}
+      <div class="standard-title legend">
+        <span class="box"></span>
+        <span>{{t 'competency-title'}}</span>
+      </div>
+    </div>
+    <div class="domain-panel-list-component">
+      {{#cards/gru-standard-domain-panel
+         fwDomains=fwDomains
+         domains=proficiencyChartData
+         showGutCompetency=showGutCompetency
+         onDomainSelect="onDomainSelect"
+          onSelectTopic="onSelectTopic"
+         framework=framework
+         subject=activeSubject
+         class = class
+         isStandardCard=true
+       }}
+
+       {{#if isShowTopicInfo}}
+         {{proficiency/topic-info-pull-up
+          showPullUp=isShowTopicInfo
+          topic=selectedTopic
+          subject=activeSubject
+          onSelectCompetency="onSelectCompetency"
+          onCloseTopicInfoPullup="onCloseTopicInfoPullup"
+          class = class
+          fwCompetencies=fwCompetencies
+          selectedDomain=selectedDomain
+          proficiencyChartData=chartData
+         }}
+       {{/if}}
+       {{#if showCompetencyInfo}}
+       {{proficiency/inspect/student-standard-list-pull-up
+         showCompetencyInfo=showCompetencyInfo
+         selectedCompetency=selectedCompetency
+         class= class
+         fwCompetencies=fwCompetencies
+         framework=framework
+         subject=activeSubject
+         onClosePullUp="onClosePullUp"
+         classFramework = classFramework
+         isDefaultShowFW = isDefaultShowFW
+       }}
+       {{/if}}
+
+
+      {{/cards/gru-standard-domain-panel}}
+    </div>
+</div>

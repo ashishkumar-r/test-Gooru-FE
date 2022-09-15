@@ -1,0 +1,31 @@
+<div class="audio-player {{if recorder 'enable'}} {{if isRecording 'recording'}} {{if audioUrl.audio_file_url 'enable'}}">
+    {{#if isRecord}}
+        <span class="record-actions">
+            <span class="record-icon" {{action "onRecord"}}>
+                {{gru-icon name="mic"}}
+            </span>
+        </span>
+    {{/if}}
+    <span class="audio-progress">
+        <span class="progress-filling">
+            <span class="progress-pointer"></span>
+             <span class="audio-wave">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+        </span>
+    </span>
+                {{#if isPause}}
+                <span class="audio-play" {{action 'onPauseAudio'}}>
+                    {{gru-icon name="pause_arrow"}}
+                </span>
+                {{else}}
+                <span class="audio-play" data-audio-url="{{url}}" {{action "onPlayAudio"}}>
+                    {{gru-icon name="play_arrow"}}
+                </span>
+                {{/if}}
+
+</div>

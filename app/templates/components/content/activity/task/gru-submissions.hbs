@@ -1,0 +1,20 @@
+
+<div class="panel-default">
+    <span>{{t 'oa.task.submissions.head' }}</span>
+    <div class="panel panel-body">
+
+        <div class="upload-section">
+            <div class="upload-list-container">
+                {{#each parsedSubmissions as |submission|}}
+                    <div class="text-center">
+                        {{content/activity/task/submission/gru-submission-line-item submission=submission  removeLineItem=(action 'removeLineItem') updateSubmissionCollection=(action 'updateContent')  }}
+                        <span class="countItem text-capitalize">
+                            {{submission.taskSubmissionSubType}}
+                        </span>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+</div>

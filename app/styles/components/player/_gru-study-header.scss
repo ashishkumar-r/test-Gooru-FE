@@ -1,0 +1,191 @@
+.gru-study-header {
+  width: 100%;
+  position: fixed;
+  height: 104px;
+  color: $white;
+  z-index: 100;
+  //Study player header will not be clickable, if show confirmation popup is active
+  .msaddonTop {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    background: url("gooru/images/hover-show-up.svg");
+    background-size: 100%;
+  }
+
+  .msaddonTop:hover {
+    background: url("gooru/images/close-down.svg");
+    cursor: pointer;
+  }
+
+  .completion-chart:hover .msaddonTop {
+    background: url("gooru/images/close-down.svg");
+    cursor: pointer;
+  }
+
+  .completion-chart {
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    height: 40px;
+    grid-template-columns: 22px 1fr 22px;
+    cursor: pointer;
+
+    .destination-point {
+      i {
+        float: right;
+      }
+    }
+
+    .start-point {
+      i {
+        float: left;
+      }
+    }
+
+    .destination-point,
+    .start-point {
+      height: 24px;
+
+      i {
+        color: $blue-400;
+      }
+    }
+  }
+
+  &.non-clickable {
+    .gru-study-navbar {
+      pointer-events: none;
+
+      .header-panel {
+        .nav-body {
+          .app-close,
+          .class-activities,
+          .course-map,
+          .notification-tab,
+          .performance-summary,
+          .profile-prof,
+          .study-player {
+            &.grade-range-70-79,
+            &.grade-range-80-89 {
+              a i,
+              span {
+                color: $gray-88;
+              }
+            }
+
+            a i,
+            i.close,
+            i.arrow_back,
+            span {
+              color: $breadcrumb-color;
+              border-color: $breadcrumb-color;
+
+              .dca-pin {
+                background-image: url("gooru/pin-gray.svg");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .popover {
+    color: $dark-400;
+  }
+
+  .bar-charts {
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    padding: 0 5px;
+    top: 52px;
+    @media only screen and (max-width: $screen-xs) {
+      top: 102px;
+    }
+    background-color: $white;
+    display: inline-block;
+    box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+
+    .charts.gru-x-bar-chart {
+      background-color: $light-300;
+      height: 10px;
+    }
+  }
+
+  &.iframe-mode {
+    height: 40px;
+    .back-to-collection {
+      width: 55px;
+      height: 40px;
+      border-right: 2px solid $light-200;
+      cursor: pointer;
+      padding: 10px;
+      background: $white;
+      color: $gray-base;
+      position: fixed;
+      left: 0;
+
+      .nav-icon-container {
+        i {
+          margin-left: -67px;
+          margin-top: -2px;
+        }
+      }
+    }
+    .bar-charts {
+      width: 96%;
+      top: 0;
+      right: 0;
+      box-shadow: none;
+      @media screen and (min-width: $screen-sm) and(max-width: $screen-1024) {
+        width: 95%;
+      }
+      @media screen and (min-width: $screen-568) and(max-width: $screen-sm) {
+        width: 93%;
+      }
+      @media screen and (min-width: $screen-411) and(max-width: $screen-568) {
+        width: 87%;
+      }
+      @media screen and (max-width: $screen-411 - 1) {
+        width: 86%;
+      }
+    }
+
+    .tools {
+      width: 55px;
+      height: 40px;
+      cursor: pointer;
+      padding: 10px;
+      background: #fff;
+      color: #000;
+      position: fixed;
+      right: 0;
+      &.active {
+        color: $blue-400;
+      }
+    }
+
+    @media screen and (min-width: $screen-320) and(max-width: ($screen-411 - 1)) {
+      .back-to-collection {
+        width: 57px;
+      }
+    }
+  }
+  .show-learning-tool {
+    .bar-charts {
+      width: calc(100% - 112px);
+      right: 56px;
+    }
+  }
+  .gru-learning-tool-list {
+    top: 41px;
+    right: 1px;
+
+    .back-drops {
+      z-index: -1;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="gru-pick-n-choose-container">
+    <div class="gru-pick-n-choose-panel">
+        {{#each answers as | answer index |}}
+          <div class="answer-panel">
+            <h3>{{answer-letter index}}</h3>
+            {{validation/gru-input autofocus=true content=answer.text disabled=(not editMode) model=answer valuePath='text' }}
+            {{#if editMode}}
+              <span class="material-icons delete-action" {{action "removeAnswer" answer}} >delete</span>
+            {{/if}}
+              <span class="material-icons answer-selection {{unless editMode 'disabled'}} {{if answer.isCorrect 'active'}}" {{action 'selectCorrect' answer}}>check</span>
+          </div>
+        {{/each}}
+
+        <div class="gru-add-excercise {{unless editMode 'disabled-btn'}}">
+          <span {{action (optional (if editMode (action "onAddExcercise") null))}}>
+            {{t 'content.questions.edit.builder.add-vowel-teams'}}
+          </span>
+        </div>
+    </div>
+</div>

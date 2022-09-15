@@ -1,0 +1,77 @@
+[
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/user$",
+      "post": "{\"user\":{\"firstName\":([^,]+),\"lastName\":([^,]+),\"username\":([^,]+),\"emailId\":([^,]+),\"organization\":{\"organizationCode\":([^}]+)}},\"gender\":\"male\",\"dateOfBirth\":([^,]+),\"role\":([^,]+),\"password\":([^,]+)}",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "sign-up-ok-response.json"
+    }
+  },
+  {
+    "description": "API 3.0 Endpoint to support account creation",
+    "post": "(.+)\"username\":\"anyusername\"(.+)",
+    "request": {
+      "url": "^/api/nucleus-auth/v2/signup$",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "sign-up-api3-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0 Endpoint verifies username Availability. Username exists",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search$",
+      "method": "GET",
+      "query": {
+        "username": "JeffTeach01"
+      },
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "username-availability-api3-200-response.json"
+    }
+  },
+
+  {
+    "description": "API 3.0 Endpoint verifies username Availability. Username DOES NOT exist",
+    "request": {
+      "url": "^/api/nucleus/v2/profiles/search$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 404,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": ""
+    }
+  }
+]
+

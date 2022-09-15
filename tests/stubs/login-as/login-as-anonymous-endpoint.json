@@ -1,0 +1,20 @@
+[
+  {
+    "request": {
+      "url": "^/gooruapi/rest/v2/account/loginas/anonymous$",
+      "query": {
+        "apiKey": "ASERTYUIOMNHBGFDXSDWERT123RTGHYT"
+      },
+      "post": "",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "login-as-anonymous-ok-response.json"
+    }
+  }
+]

@@ -1,0 +1,90 @@
+.teacher-class-ca-course-map {
+  @media screen and (min-width: $screen-568) and (max-width: $screen-600) {
+    .dca-course-map-unit-container {
+      .dca-course-map-unit {
+        .dca-course-map-lesson-container {
+          .dca-course-map-lesson {
+            .dca-course-map-collection-container {
+              .dca-course-map-collection {
+                .dca-course-map-collection-panel {
+                  grid-template-columns: 1fr 85px 61px !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $screen-568) {
+    width: 100%;
+
+    .dca-course-map-unit-container {
+      padding: 6px;
+
+      .dca-course-map-unit {
+        .dca-course-map-lesson-container {
+          padding: 6px;
+
+          .dca-course-map-lesson {
+            .dca-course-map-lesson-panel .lesson-title p {
+              font-size: 14px;
+            }
+
+            .dca-course-map-lesson-panel .lesson-name-sequence {
+              font-size: 14px;
+            }
+
+            .dca-course-map-lesson-panel {
+              grid-template-columns: 125px 1fr;
+            }
+
+            .dca-course-map-collection-container {
+              .dca-course-map-collection {
+                .dca-course-map-collection-panel {
+                  grid-template-columns: 174px 1fr 80px 2px;
+
+                  .lesson-title p {
+                    font-size: 14px;
+                  }
+
+                  .collection-img-container {
+                    display: none;
+                  }
+
+                  .collection-title-container i {
+                    padding-left: 20px;
+                    margin-left: 10px;
+                  }
+
+                  .collection-title-container p {
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $screen-360 - 1) {
+    .dca-course-map-unit-container {
+      .dca-course-map-unit {
+        .dca-course-map-lesson-container {
+          .dca-course-map-lesson {
+            .dca-course-map-collection-container {
+              .dca-course-map-collection {
+                .dca-course-map-collection-panel {
+                  .collection-content-counts .resource-count {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.gru-milestone-student-proficiency {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 200;
+
+  .back-drop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: $navbar-default-toggle-icon-bar-bg;
+    z-index: -1;
+  }
+
+  .milestone-proficiency-chart-container {
+    width: 90%;
+    margin: 0 auto;
+    background-color: $white;
+    box-shadow: 0 0 4px $light-300;
+    margin-top: 30px;
+
+    .milestone-proficiency-chart-panel {
+      display: grid;
+      grid-template-columns: auto 400px;
+      grid-column-gap: 10px;
+    }
+  }
+}

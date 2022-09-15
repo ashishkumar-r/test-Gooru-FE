@@ -1,0 +1,35 @@
+{{#each visibleTags as |taxonomyTag|}}
+  {{taxonomy/gru-taxonomy-tag isShowcompetency=isShowcompetency tabindex=tabindex model=taxonomyTag isEditing=isEditing hasTooltip=hasTooltips tagPopoverDefaultPosition=tagPopoverDefaultPosition onRemove=(action 'removeTag' taxonomyTag) onAdd=(action 'addTag' taxonomyTag) isClassActivity=isClassActivity onClickTag='onClickTag'}}
+{{/each}}
+
+{{#if nonVisibleTags}}
+  <div class="non-visible-tags-container {{if isShowcompetency 'tag-container'}}" aria-label="tabList">
+    <button class="non-visible-tags" onclick={{action 'nonVisibleDropdown'}} onkeypress={{action 'nonVisibleDropdown'}} tabindex={{tabindex}}>
+      <span>+ {{nonVisibleTags}}</span>
+    </button>
+    <div class="all-tags">
+    <span class="close" onclick={{action 'nonVisibleDropdown'}} onkeypress={{action 'nonVisibleDropdown'}} tabindex={{tabindex}}>{{gru-icon name="close"}}</span>
+      {{#each tags as |taxonomyTag|}}
+        {{taxonomy/gru-taxonomy-tag
+        isShowcompetency=isShowcompetency
+        model=taxonomyTag
+        isEditing=isEditing
+        hasTooltip=true
+        onRemove=(action 'removeTag' taxonomyTag)
+        onAdd=(action 'addTag' taxonomyTag)
+        tabindex=tabindex
+        isClassActivity=isClassActivity
+        onClickTag='onClickTag'
+        }}
+        {{#if showDescription}}
+        <!-- NOTE we used Bootstrap tooptip so no need description support -->
+          <div class="panel panel-default description-tag out-of-scope">
+            <div class="panel-body">
+              {{truncate text=taxonomyTag.data.title maxLength=80}}
+            </div>
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+{{/if}}

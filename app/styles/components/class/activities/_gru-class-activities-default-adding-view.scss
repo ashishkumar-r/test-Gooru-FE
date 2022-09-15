@@ -1,0 +1,38 @@
+.gru-class-activities-default-adding-view {
+  .default-adding-view-container {
+    height: calc(100vh - 210px);
+    overflow: hidden;
+    overflow-y: auto;
+    margin-left: 10px;
+
+    @media screen and (max-width: 768px) {
+      height: calc(100vh - 250px);
+    }
+
+    .source-header {
+      padding: 5px;
+      background-color: rgb(230, 235, 236);
+      font-size: 12px;
+      margin: 2px 0;
+      align-items: center;
+      font-weight: bold;
+    }
+    .load-more-btn {
+      padding: 10px;
+
+      span {
+        padding: 10px;
+        color: $dark-500;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    .no-result {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

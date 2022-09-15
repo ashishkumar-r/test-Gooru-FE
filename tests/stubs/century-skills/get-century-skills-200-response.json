@@ -1,0 +1,48 @@
+{
+  "21_century_skills": {
+    "categories": [
+      "Hewlett Deep Learning Model",
+      "Conley Four Key",
+      "P21 Framework",
+      "National Research Center for Life and Work"
+    ],
+    "Key Cognitive Skills and Strategies": [
+      {
+      "id": 1,
+      "label": "Problem Formulation",
+      "hewlett_deep_learning_model": false,
+      "conley_four_keys_model": true,
+      "p21_framework_model": false,
+      "national_research_center_model": false
+      }
+    ],
+    "Key Content Knowledge": [
+      {
+      "id": 2,
+      "label": "Master Core Academic Content",
+      "hewlett_deep_learning_model": true,
+      "conley_four_keys_model": true,
+      "p21_framework_model": true,
+      "national_research_center_model": false
+      },
+      {
+      "id": 3,
+      "label": "Global Awareness",
+      "hewlett_deep_learning_model": false,
+      "conley_four_keys_model": false,
+      "p21_framework_model": true,
+      "national_research_center_model": false
+      }
+    ],
+    "Key Learning Skills and Techniques": [
+      {
+      "id": 4,
+      "label": "Goal Setting & Progress Monitoring",
+      "hewlett_deep_learning_model": true,
+      "conley_four_keys_model": true,
+      "p21_framework_model": true,
+      "national_research_center_model": true
+      }
+    ]
+  }
+}

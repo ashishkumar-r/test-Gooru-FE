@@ -1,0 +1,307 @@
+.student-proficiency-panel {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+  background-color: $white-bold;
+  display: grid;
+  grid-template-rows: 82px 1fr;
+
+  .panel-content {
+    width: 100%;
+
+    .proficiency-tags {
+      .last-updated {
+        text-align: right;
+        margin-top: 15px;
+        margin-right: 30px;
+        font-size: 12px;
+      }
+
+      .proficiency-legends {
+        margin: 15px auto auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        justify-content: space-around;
+
+        .legend {
+          display: flex;
+          justify-content: center;
+
+          .box {
+            display: block;
+            width: 15.6px;
+            height: 15.6px;
+            transform: rotate(90deg);
+            margin-right: 8.4px;
+          }
+
+          .box-class-grade-line {
+            width: 18px;
+            height: 5px;
+            margin-top: 4px;
+            box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+            margin-right: 8.4px;
+          }
+
+          .box-skyline {
+            width: 18px;
+            height: 10px;
+            box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+            margin-right: 8.4px;
+          }
+
+          .title {
+            line-height: 13px;
+            font-size: 12px;
+            color: $elephant-dark;
+          }
+
+          &.mastered {
+            .box {
+              background-color: $blue-mastery;
+            }
+          }
+
+          &.in-progress {
+            @media screen and (max-width: $screen-568) {
+              margin-left: 3px;
+            }
+            .box {
+              background-color: $blue-in-progress;
+            }
+          }
+
+          &.not-started {
+            .box {
+              background-color: $not-started;
+            }
+          }
+
+          &.show-gut {
+            .box {
+              background-color: $not-in-framework;
+            }
+          }
+
+          &.skyline {
+            .box-skyline {
+              background-color: $white;
+            }
+          }
+
+          &.class-grade-line {
+            .box-class-grade-line {
+              background-color: #8fd383;
+            }
+          }
+        }
+      }
+      @media screen and (max-width: $screen-sm - 1) {
+        display: none;
+      }
+    }
+  }
+
+  .panel-header {
+    height: 83px;
+    width: 95%;
+    border-bottom: 2px solid $nobel-gray;
+    display: grid;
+    grid-template-columns: 30px 1fr auto;
+    grid-gap: 15px;
+    padding: 0;
+    margin: auto;
+    align-items: center;
+
+    .back,
+    .go-back-dashbord {
+      cursor: pointer;
+      margin: auto;
+      display: flex;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      width: max-content;
+      justify-self: end;
+    }
+
+    .student-profile {
+      display: flex;
+
+      .label {
+        font-size: 17px;
+        font-weight: bold;
+        color: $charcoal-grey;
+        padding: 0;
+        text-align: left;
+        margin-right: 10px;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        width: max-content;
+        align-items: center;
+        display: flex;
+        margin: auto;
+
+        .dropbtn {
+          display: block;
+          width: max-content;
+        }
+      }
+
+      .taxonomy-grades-container {
+        width: max-content;
+        display: flex;
+        margin: auto;
+      }
+
+      .profile-img {
+        width: 48px;
+        height: 48px;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+
+      .username {
+        font-size: 16px;
+        font-weight: bold;
+        height: max-content;
+        align-self: center;
+        text-transform: capitalize;
+        margin-left: 10px;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $dark-700;
+      }
+    }
+    .go-back {
+      display: none;
+    }
+  }
+
+  .taxonomy-info {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto;
+    margin: auto;
+
+    .framework {
+      font-style: italic;
+      align-self: center;
+      text-align: right;
+      grid-column-start: 2;
+      grid-row-start: 2;
+      padding-right: 5px;
+      width: 100px;
+      @media screen and (max-width: $screen-sm) {
+        width: 100%;
+      }
+    }
+
+    .dropdown-menu > li {
+      padding: 3px 25px;
+    }
+
+    .dropdown {
+      .dropbtn {
+        background-color: $white;
+        color: $black-bold;
+        padding: 3px;
+        font-size: 16px;
+        text-transform: capitalize;
+        border: none;
+        display: flex;
+        align-items: center;
+
+        .category-header-title {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          @media screen and (max-width: $screen-sm) {
+            width: 150px;
+            text-align: right;
+          }
+          @media screen and (max-width: $screen-xs) {
+            width: 50px;
+          }
+        }
+      }
+    }
+
+    .label {
+      font-size: 17px;
+      font-weight: bold;
+      color: $charcoal-grey;
+      padding: 0;
+      text-align: left;
+      margin-right: 10px;
+    }
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-menu > li {
+      font-weight: bold;
+      text-align: left;
+      white-space: nowrap;
+      cursor: pointer;
+
+      &.active,
+      &:hover {
+        background-color: $light-200;
+      }
+    }
+
+    .dropdown-menu > li.active {
+      background-color: $light-200;
+    }
+
+    .dropdown-menu > li.active {
+      background-color: $light-200;
+    }
+  }
+}
+
+.time-series-container {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  position: relative;
+
+  .left-arrow-ctn {
+    width: 50px;
+    justify-self: right;
+    position: relative;
+  }
+
+  .right-arrow-ctn {
+    width: 50px;
+    justify-self: left;
+    position: relative;
+  }
+
+  .left_arrow {
+    a {
+      background: $white;
+      top: -19px;
+      left: 10px;
+
+      .keyboard_arrow_left {
+        color: $black-bold;
+      }
+    }
+  }
+
+  .right_arrow {
+    a {
+      background: $white;
+      top: -19px;
+      left: 10px;
+      .keyboard_arrow_right {
+        color: $black-bold;
+      }
+    }
+  }
+}

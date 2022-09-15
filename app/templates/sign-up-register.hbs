@@ -1,0 +1,30 @@
+<div class="controller sign-up-register  finish row col-md-6 col-md-offset-3">
+  <div class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="step-title">{{t "email-verification.welcome-message"}}</h3>
+          <div class="description">
+            {{t "email-verification.invitation-message"}}
+          </div>
+          <div class="suggest-message">
+            {{t "email-verification.suggest-message"}}
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="wrapper">
+            <div class="main">
+              <div class="sign-up-register-form col-sm-12">
+                <form id="signUpRegisterForm" {{action "userLogin" on="submit"}}>
+                  <div class="sign-up-button sign-up-finish-btn form-group text-center">
+                    <button type="submit" class="btn btn-success submit-sign-up">{{t "email-verification.login"}}{{gru-icon name="keyboard_arrow_right"}}</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

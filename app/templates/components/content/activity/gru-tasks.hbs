@@ -1,0 +1,35 @@
+<div class="header">
+  <h2>{{t 'oa.tasks.label'}}</h2>
+</div>
+<div class="panel-default">
+  <div class="panel-heading">
+    <div class="detail">
+    </div>
+  </div>
+  <div class="panel panel-body">
+    <div class="panel-group" id="accordion" aria-multiselectable="false">
+      {{#each tasks as |task|}}
+        {{content/activity/gru-tasks-edit
+          oaId=activityModel.id
+          updateParent=(action 'updateTaskCollection')
+          isExpanded=isExpanded
+          model=task
+          removeLineItem=(action 'removeLineItem')
+          updateExpanded=(action 'updateExpanded')
+          cancelTask= (action 'cancelTask')
+          }}
+      {{/each}}
+      {{#if task }}
+        {{content/activity/gru-tasks-edit
+          oaId=activityModel.id
+          updateParent=(action 'updateTaskCollection')
+          model=task removeLineItem=(action 'removeLineItem')
+          cancelTask= (action 'cancelTask')
+        }}
+      {{/if}}
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary add-item dropdown-toggle" title="{{t 'common.create'}}" data-toggle="dropdown" {{action 'addNewTask'}}>{{gru-icon name="add"}}Add Task</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.player .gru-hs-image {
+  .answer-choices {
+    ul {
+      li.answer {
+        &.selected {
+          border-color: $green-400;
+        }
+      }
+    }
+  }
+}

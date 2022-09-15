@@ -1,0 +1,124 @@
+.gru-content-search-filter {
+  .search-filter-container {
+    position: relative;
+    box-shadow: 0 4px 10px $light-300;
+    background-color: $white;
+    height: 48px;
+    .search-filter-section {
+      display: grid;
+      grid-template-columns: auto 1fr 40px 30px 20px;
+      align-items: center;
+      border-bottom: 2px solid $table-bg;
+      padding: 5px;
+      &:focus-within {
+        transition: 0.2s ease-in-out;
+        border-bottom: 2px solid $blue-400;
+      }
+
+      .content-type-blk {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        list-style: none;
+        align-items: center;
+        li {
+          padding-right: 5px;
+          cursor: pointer;
+          width: 20px;
+          height: 16px;
+          mask-size: 100%;
+          -webkit-mask-size: 100%;
+          margin: 10px;
+          background-color: $light-200;
+          mask-repeat: no-repeat;
+          -webkit-mask-repeat: no-repeat;
+          &.active {
+            background-color: $blue-500;
+          }
+          &.assessment {
+            -webkit-mask-image: url("../assets/gooru/images/assessment-gray.svg");
+            mask-image: url("../assets/gooru/images/assessment-gray.svg");
+          }
+          &.collection {
+            -webkit-mask-image: url("../assets/gooru/images/collection_gray.svg");
+            mask-image: url("../assets/gooru/images/collection_gray.svg");
+          }
+          &.offline-activity {
+            -webkit-mask-image: url("../assets/gooru/images/offline.svg");
+            mask-image: url("../assets/gooru/images/offline.svg");
+          }
+          &.video-conference {
+            -webkit-mask-image: url("../assets/gooru/images/offline.svg");
+            mask-image: url("../assets/gooru/images/offline.svg");
+          }
+        }
+        .videocam {
+          background: url("../assets/gooru/video-conference-ico.png");
+          height: 42px;
+          width: 63px;
+          background-size: cover;
+          position: relative;
+          bottom: 10px;
+          right: 10px;
+          cursor: pointer;
+          opacity: 0.1;
+
+          @media screen and (max-width: 500px) {
+            bottom: 4px;
+          }
+
+          i {
+            padding: 7px 7px 7px 6px;
+            cursor: pointer;
+          }
+          &.videoDisable {
+            opacity: 0.5;
+          }
+          &.video-archived {
+            pointer-events: none;
+            opacity: 0.5;
+          }
+          &.video-active {
+            opacity: 1;
+          }
+        }
+      }
+      .search-box {
+        input {
+          outline: none;
+          box-shadow: none;
+          padding: 5px;
+          width: 100%;
+        }
+      }
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        cursor: pointer;
+
+        &.active {
+          .filter_list {
+            color: $sky-400;
+          }
+        }
+      }
+    }
+    .content-resource-filter,
+    .create-video-conference {
+      display: none;
+      position: absolute;
+      width: 100%;
+      background-color: $white;
+      z-index: 100;
+      top: 51px;
+    }
+    .create-video-conference {
+      .gru-video-authorize-card {
+        .backdrop1 {
+          left: initial;
+        }
+      }
+    }
+  }
+}

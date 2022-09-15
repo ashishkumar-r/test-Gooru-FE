@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{t "common.add-external-collection"}}</h4>
+</div>
+<div class="modal-body">
+  <form {{action "create" on="submit"}}>
+    <label>
+      <span class="required">{{t 'common.external-collection-title'}}</span>
+      {{validation/gru-input model=collection valuePath='title' maxLength=50 didValidate=didValidate}}
+    </label>
+    <div class="detail external-collection">
+      <div class="type">
+        <span class="required" aria-label="Select Type">{{t 'select-type'}}</span>
+        <div class="dropdown pull-left">
+          <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-label="Select Types">
+            <span class="button-text"> {{t (if (eq selectedType 1) 'common.resource-format.webpage' 'scorm')}}</span>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li {{action 'selectType' 1}}> {{t 'common.resource-format.webpage'}} </li>
+            <li {{action 'selectType' 2}}> {{t 'scorm'}} </li>
+          </ul>
+        </div>
+      </div>
+      <label>
+        <span class="required">{{t (if (eq selectedType 1) 'gru-rubric-creation.url' 'upload-your-scorm')}}</span>
+      </label>
+      {{#if (eq selectedType 1)}}
+        {{validation/gru-input model=collection valuePath='url' didValidate=didValidate}}
+      {{else}}
+        {{content/gru-file-picker validMimeType='.zip' onSelectFile=(action 'selectFile')}}
+        {{#if isLoadings}}
+          <div class="loading-spinner">
+            {{three-bounce-spinner}}
+          </div>
+        {{else}}
+          {{#if collection.url}}
+            <label>
+              {{t 'the-uploaded-scorm'}} {{if (and collection.metadata collection.metadata.scorm) collection.metadata.scorm.fileName}}
+            </label>
+          {{/if}}
+        {{/if}}
+        {{#if (eq selectedType 2)}}
+          {{#unless collection.url }}
+            {{#unless isErrorScormFile}}
+              <div class="error-messages">
+                <span class="error">{{t 'select-scorm-file'}}</span>
+              </div>
+            {{/unless}}
+          {{/unless}}
+        {{/if}}
+        {{#if isErrorScormFile}}
+          <div class="error-messages">
+            <span class="error">{{t 'invalid-file'}}</span>
+          </div>
+        {{/if}}
+      {{/if}}
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+      </button>
+      {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+        <button type="submit" class="btn btn-primary add">{{t 'common.create'}}</button>
+      {{/gru-spinner-button}}
+    </div>
+  </form>
+</div>

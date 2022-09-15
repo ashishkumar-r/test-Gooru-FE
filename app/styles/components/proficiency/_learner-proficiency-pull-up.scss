@@ -1,0 +1,203 @@
+.learner-proficiency-pull-up {
+  background-color: $white;
+
+  .proficiency-pull-up {
+    .header {
+      height: 97px;
+      background-color: $white;
+      display: flex;
+      border-bottom: 1px solid;
+      padding: 9px 0 9px 20px;
+
+      .left-panel {
+        .avatar {
+          width: 75px;
+          height: 75px;
+          border-radius: 50%;
+          background-size: cover;
+        }
+        margin-right: 24px;
+      }
+
+      .right-panel {
+        width: calc(100% - 185px);
+
+        .student-info {
+          width: 100%;
+          font-size: 18px;
+          color: $dark-400;
+          text-transform: capitalize;
+        }
+
+        .taxonomy-info {
+          display: grid;
+          .active-category {
+            cursor: default;
+          }
+          /* The container <div> - needed to position the dropdown content */
+          .dropdown {
+            position: relative;
+            display: inline-block;
+            width: max-content;
+
+            .active-item {
+              display: flex;
+              cursor: pointer;
+              height: 25px;
+
+              .label {
+                min-width: 170px;
+                font-size: 17px;
+                font-weight: bold;
+                color: $charcoal-grey;
+                padding: 0;
+                text-align: left;
+              }
+
+              .icon {
+                font-size: 17px;
+                font-weight: bold;
+                color: $charcoal-grey;
+              }
+            }
+          }
+          /* Dropdown Content (Hidden by Default) */
+          .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: $white;
+            min-width: 187px;
+            box-shadow: 0 8px 16px 0 $box-shadow-bg-color;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 1;
+            border-top: 1px solid;
+
+            .list-item {
+              height: 30px;
+              line-height: 30px;
+              padding-left: 15px;
+              cursor: pointer;
+
+              &.active,
+              &:hover {
+                background-color: $light-200;
+              }
+            }
+          }
+          /* Show the dropdown menu on hover */
+          .dropdown:hover .dropdown-content {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .body {
+      padding: 10px 30px 0;
+      background-color: #f7f7f7;
+      height: calc(90vh - 100px);
+      overflow: auto;
+
+      .proficiency-chart {
+        .learner-proficiency-domain-matrix .chart-area {
+          width: 100%;
+        }
+      }
+
+      .not-tagged {
+        font-size: 15px;
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      .proficiency-tags {
+        .last-updated {
+          text-align: right;
+          margin-top: 15px;
+          margin-right: 30px;
+          font-size: 12px;
+        }
+
+        .proficiency-legends {
+          margin: 15px auto auto;
+          width: max-content;
+          display: grid;
+          grid-template-columns: auto auto auto auto auto auto;
+          justify-content: space-around;
+
+          .legend {
+            display: flex;
+            margin-right: 30px;
+
+            .box {
+              display: block;
+              width: 15.6px;
+              height: 15.6px;
+              transform: rotate(90deg);
+              margin-right: 8.4px;
+            }
+
+            .box-baseline,
+            .box-grade-line {
+              width: 18px;
+              height: 5px;
+              margin-top: 4px;
+              box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+              margin-right: 8.4px;
+            }
+
+            .box-skyline {
+              width: 18px;
+              height: 10px;
+              box-shadow: 0 2px 4px 0 $navbar-default-toggle-icon-bar-bg;
+              margin-right: 8.4px;
+            }
+
+            .title {
+              line-height: 13px;
+              font-size: 12px;
+              color: $elephant-dark;
+            }
+
+            &.mastered {
+              .box {
+                background-color: $blue-400;
+              }
+            }
+
+            &.in-progress {
+              .box {
+                background-color: $in-progress;
+              }
+            }
+
+            &.not-started {
+              .box {
+                background-color: $not-started;
+              }
+            }
+
+            &.skyline {
+              .box-skyline {
+                background-color: $white;
+              }
+            }
+
+            &.baseline {
+              .box-baseline {
+                background-color: $dark-400;
+              }
+            }
+
+            &.grade-line {
+              .box-grade-line {
+                background-color: #c77;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

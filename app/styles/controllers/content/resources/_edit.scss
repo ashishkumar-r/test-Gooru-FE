@@ -1,0 +1,184 @@
+.controller.content.resources.edit {
+  > article {
+    > section {
+      .panel {
+        &.placeholder {
+          background-color: $blue-400;
+
+          .panel-body {
+            padding: 25px;
+
+            .resource-message {
+              background: url("/assets/gooru/images/multiple-answer-blue.svg")
+                no-repeat center top;
+              display: block;
+              padding-top: 45px;
+              margin: 65px 0;
+              text-align: center;
+              color: $blue-200;
+
+              span {
+                font-weight: lighter;
+                display: block;
+              }
+            }
+
+            .gru-vimeo-resource,
+            .gru-youtube-resource {
+              @extend .embed-responsive;
+              @extend .embed-responsive-16by9;
+            }
+
+            .gru-image-resource,
+            .gru-pdf-resource,
+            .gru-url-resource {
+              iframe {
+                height: 300px;
+              }
+            }
+          }
+        }
+
+        &.preview {
+          background-color: $white;
+        }
+
+        .form-field {
+          label {
+            display: block;
+
+            span {
+              display: block;
+              margin-bottom: 10px;
+            }
+
+            b {
+              display: inline-block;
+              font-size: $font-size-large;
+              font-weight: normal;
+              word-break: break-all;
+            }
+
+            input[type="text"],
+            textarea {
+              outline: 0;
+              display: block;
+            }
+
+            textarea {
+              width: 100%;
+            }
+
+            select {
+              padding: 6px 16px 6px 4px;
+              outline: 0;
+              background-color: $white;
+            }
+
+            .form-group {
+              margin-bottom: 5px;
+            }
+
+            .inline {
+              display: inline-block;
+            }
+
+            .checkbox-inline {
+              padding-left: 25px;
+
+              label {
+                display: inline;
+                padding-left: 0;
+              }
+            }
+
+            .btn-group {
+              display: block;
+
+              .dropdown-toggle {
+                background-color: $blue-300;
+
+                .caret {
+                  display: inline-block;
+                  margin: 0;
+                }
+              }
+            }
+            &.visibility-hidden {
+              display: none;
+            }
+          }
+
+          &.publisher {
+            .form-group.inline {
+              width: 100%;
+              @media (min-width: $screen-sm-min) {
+                width: 70%;
+              }
+              @media (min-width: $screen-md-min) {
+                width: 55%;
+              }
+              @media (min-width: $screen-lg-min) {
+                width: 68%;
+              }
+            }
+          }
+
+          .video-timeline-competencies {
+            font-size: 20px;
+          }
+
+          .video-timeline {
+            .timeline {
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+
+              label {
+                width: 25%;
+
+                &.add {
+                  margin: auto 0;
+                }
+              }
+            }
+          }
+
+          .list-timeline {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          .list-timeline td {
+            border: 1px solid $table-border-color;
+            padding: 8px;
+
+            &.delete {
+              width: 20px;
+              cursor: pointer;
+            }
+          }
+
+          .list-timeline tr:nth-child(even) {
+            background-color: $gray-ultra-light;
+          }
+        }
+      }
+
+      .panel + .panel {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  article.fixed-header {
+    #resource {
+      padding-top: 115px;
+    }
+
+    #information {
+      padding-top: 0;
+    }
+  }
+}

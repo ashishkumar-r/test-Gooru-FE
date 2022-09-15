@@ -1,0 +1,104 @@
+.container-fluid {
+  .teacher-landing {
+    margin-left: 0;
+
+    .teacher-panel {
+      width: 100%;
+
+      .teacher-navigator {
+        margin-left: 10px;
+        margin-right: 10px;
+
+        &.atc-view {
+          margin: 0;
+        }
+
+        .nav {
+          li {
+            a {
+              .lead {
+                font-size: 13.5px;
+                @media screen and (max-width: 492px) {
+                  line-height: 1.2;
+                }
+                @media only screen and (max-width: $screen-320) {
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+        }
+
+        .atc-class-performance {
+          width: 50px;
+        }
+      }
+
+      .tab-content {
+        .tab-pane.active {
+          display: grid;
+          @media only screen and (min-width: $sm-width-max) and (max-width: $screen-md) {
+            grid-template-columns: auto auto;
+            justify-content: center;
+          }
+          @media only screen and (max-width: $sm-width-max) {
+            grid-template-rows: auto;
+            grid-template-columns: none;
+            justify-content: center;
+          }
+        }
+      }
+
+      @media only screen and(max-width: $screen-sm - 1) {
+        padding-top: 20px;
+
+        .tab-content {
+          padding: 0;
+        }
+
+        .teacher-navigator {
+          margin-left: 10px;
+          margin-right: 10px;
+          box-shadow: none;
+
+          .toggle-view {
+            top: 0;
+          }
+
+          .heading {
+            width: 100%;
+            height: auto;
+            font-family: Cambria;
+            font-size: 30px;
+            line-height: normal;
+            letter-spacing: normal;
+            padding-left: 10px;
+            text-align: left;
+            color: $white-bold;
+          }
+          .sort {
+            width: 100%;
+            display: grid;
+            justify-content: space-around;
+            .filter-date-asc {
+              width: 300px;
+              display: grid;
+              grid-template-columns: max-content max-content;
+              justify-content: right;
+            }
+          }
+        }
+      }
+
+      @media screen and (min-width: $screen-sm) {
+        .teacher-navigator {
+          .sort {
+            .filter-date-asc {
+              margin-right: 58px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

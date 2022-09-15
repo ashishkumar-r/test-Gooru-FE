@@ -1,0 +1,44 @@
+<div class="modal-header archive">
+  <h4 class="modal-title">{{t "content.modals.archive-class.title"}}</h4>
+</div>
+<div class="modal-body">
+  <form>
+    <p class="legend">{{t "content.modals.archive-class.legend"}}
+      <b>{{model.content.title}}</b>
+    </p>
+    <div class="archive-info">
+      <ul>
+        <li>
+          <label>
+            {{input type="checkbox" checked=validator.check1 aria-checked="false" tabindex="1"}}
+            <span>{{t "content.modals.archive-class.links-not-accessible"}}</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            {{input type="checkbox" checked=validator.check2  aria-checked="false" tabindex="1"}}
+            <span>{{t "content.modals.archive-class.students-no-access"}}</span>
+          </label>
+        </li>
+       {{#unless hasNoWarning}}
+        <li>
+          <label>
+            {{input type="checkbox" checked=validator.check3  aria-checked="false" tabindex="1"}}
+            <span>{{t "content.modals.archive-class.not-add-students"}}</span>
+          </label>
+        </li>
+       {{/unless}}
+      </ul>
+    </div>
+    <p class="confirmation">{{t "content.modals.archive-class.confirmation"}}</p>
+
+    <div class="actions archive">
+      <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}" tabindex="1">
+        <span aria-hidden="true">{{t 'common.cancel'}}</span>
+      </button>
+      <button type="button" class="btn btn-warning archive" disabled={{isDisabled}} onclick={{action "archiveClass" model}} onkeypress={{action "archiveClass" model}} tabindex="1">
+        {{t 'common.archive'}}
+      </button>
+    </div>
+  </form>
+</div>

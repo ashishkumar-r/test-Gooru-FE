@@ -1,0 +1,221 @@
+<div class="milestone-course-map-route0-container">
+    <div class="milestone-course-map-route0">
+      {{#each milestones as |milestone milestoneIndex|}}
+      <div class="milestone-course-map-route0-panel {{if milestone.isActive 'active'}}">
+        <div class="milestone-info-container" {{action 'toggleMilestoneItems' milestone }}>
+          <div class="milestone-flag-icon">
+            {{gru-icon name="flag"}}
+          </div>
+          <div class="milestone-title">
+            {{#if isStudent}}
+            <p> {{t 'common.milestone'}} {{milestone.milestoneSequence}}</p>
+            {{else}}
+            <p> {{t 'common.milestone'}} {{milestone.milestoneSequence}} - {{milestone.milestoneTitle}}
+            </p>
+            {{/if}}
+          </div>
+          <div class="milestone-caret">
+            {{#if milestone.isActive}}
+              {{gru-icon name="arrow_drop_up"}}
+            {{else}}
+              {{gru-icon name="arrow_drop_down"}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="performance">
+          {{#if (and showPerformance (not milestone.showLessons))}}
+            <div class="milestone-peformance grade-range-{{grade-range milestone.performance.scoreInPercentage}}" {{action "onShowMilestoneReport" milestone}}>
+              {{#if milestone.performance.hasStarted}}
+                {{#if (eq milestone.performance.scoreInPercentage null)}}
+                  --
+                {{else}}
+                  {{concat milestone.performance.scoreInPercentage '%'}}
+                {{/if}}
+              {{else}}
+                --
+              {{/if}}
+            </div>
+          {{else}}
+            --
+          {{/if}}
+        </div>
+      </div>
+      <div class="milestone-course-map-route0-lesson-container" id="milestone-{{milestone.milestoneId}}">
+        {{#if milestone.hasLessonFetched}}
+          {{#if milestone.lessons}}
+            {{#each milestone.lessons as | lesson lessonIndex |}}
+              <div class="milestone-course-map-route0-lesson {{if lesson.isActive 'active'}}">
+                <div class="milestone-course-map-route0-lesson-panel" {{action 'toggleLessonItems'  lesson lessonIndex }}>
+                  <div class="lesson-icon-container">
+                    <div class="lesson-icon-upward-line">
+                      <svg height="15" width="20">
+                          <line x1="0" y1="0" x2="0" y2="25" />
+                        </svg>
+                    </div>
+                    <i class="lesson-icon"></i>
+                    <div class="lesson-icon-downward-line">
+                      <svg height="15" width="20">
+                          <line x1="0" y1="0" x2="0" y2="25" />
+                        </svg>
+                    </div>
+                  </div>
+                  <div class="domain-lesson-title">
+                    <p class="domain-name">{{lesson.unitTitle}}</p>
+                    <p>{{lesson.lessonTitle}}</p>
+                  </div>
+                  {{#if showPerformance}}
+                    <div class="lesson-peformance grade-range-{{grade-range lesson.performance.scoreInPercentage}}">
+                      {{#if (gte lesson.performance.scoreInPercentage 0)}}
+                        {{lesson.performance.scoreInPercentage}}%
+                      {{else}}
+                        --
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                </div>
+                <div class="milestone-course-map-route0-collection-container" id="milestone-lesson-{{lesson.unitId}}-{{lesson.lessonId}}-{{lessonIndex}}">
+                  {{#if lesson.hasCollectionFetched}}
+                    {{#if lesson.collections}}
+                      {{#each lesson.collections as | collection |}}
+                        <div class="milestone-course-map-route0-collection">
+                          <div class="milestone-course-map-route0-collection-panel {{if collection.has-activity 'has-activity'}} {{if collection.last-played-collection 'last-played-collection'}}">
+                            <div class="collection-icon-container">
+                              <div class="collection-icon-upward-line">
+                                <svg height="17" width="20">
+                                    <line x1="0" y1="0" x2="0" y2="25" />
+                                </svg>
+                              </div>
+                              <i class="collection-icon format-{{collection.collectionType}}"></i>
+                              <div class="collection-icon-downward-line">
+                                <svg height="17" width="20">
+                                    <line x1="0" y1="0" x2="0" y2="25" />
+                                </svg>
+                              </div>
+                            </div>
+                            <div class="collection-title-container">
+                              <p>{{collection.title}}</p>
+                            </div>
+                            <div class="colllection-play-btn {{unless allowToPlay 'not-allowed-to-play'}}" {{action 'studyPlayer' 'collection'  lesson.unitId lesson.lessonId collection}}>
+                              {{gru-icon style="material-icons-outlined" name="play_circle_filled_white"}}
+                            </div>
+
+                            <div class="collection-content-counts">
+                              <div class="resource-count" title="{{t 'common.resource'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+                                {{#if (gt collection.resourceCount 0)}}
+                                  <i class="resource-icon"></i>
+                                  <span>{{collection.resourceCount}}</span>
+                                {{/if}}
+                              </div>
+                              <div class="question-count" title="{{t 'common.question'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+                                {{#if (gt collection.questionCount 0)}}
+                                  <i class="question-icon"></i>
+                                  <span>{{collection.questionCount}}</span>
+                                {{/if}}
+                              </div>
+                              {{#if (or (eq collection.collectionType 'assessment-external') (eq collection.collectionType 'collection-external'))}}
+                                <i class="external-icon" title="{{t 'common.assessment-external'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"></i>
+                              {{/if}}
+                            </div>
+                            {{#if (and showPerformance collection.performance) }}
+                              <div class="collection-peformance {{unless collection.performance 'disable-event'}} format-{{collection.collectionType}} grade-range-{{grade-range collection.performance.scoreInPercentage}}" {{action "onOpenRoute0CollectionReport" lesson.unitId lesson collection}}>
+                                {{#if collection.performance}}
+                                  {{#if (or (eq collection.collectionType 'assessment') (eq collection.collectionType 'assessment-external'))}}
+                                    {{#if (eq collection.performance.scoreInPercentage null)}}
+                                      --
+                                    {{else}}
+                                      {{concat collection.performance.scoreInPercentage '%'}}
+                                    {{/if}}
+                                  {{else}}
+                                    {{format-time collection.performance.timeSpent}}
+                                  {{/if}}
+                                {{else}}
+                                  --
+                                {{/if}}
+                              </div>
+                            {{else}}
+                              <div class="collection-img-container">
+                                <img src="{{collection.thumbnailUrl}}" alt="collection thumbnail"/>
+                              </div>
+                            {{/if}}
+                          </div>
+                        </div>
+                      {{/each}}
+                    {{else}}
+                      <div class="no-collection">
+                        <span>{{t 'common.no-collection-info-message'}}</span>
+                      </div>
+                    {{/if}}
+                  {{else}}
+                    <div class="collection-load-spinner">
+                      {{#if lesson.isActive}}
+                        {{three-bounce-spinner}}
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="no-lesson">
+              <span>{{t 'common.no-lesson-info-message'}}</span>
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="lesson-load-spinner">
+            {{#if milestone.isActive}}
+              {{three-bounce-spinner}}
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
+</div>
+{{#if isLoading}}
+  <div class="loading-spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+
+{{#if isShowRoute0MilestoneReport}}
+  {{#reports/pull-up/milestone/milestone-report showPullUp=isShowRoute0MilestoneReport title=( concat gradeSubject.title ' - ' selectedMilestone.grade_name) }}
+    {{reports/pull-up/milestone/student-milestone-summary-report
+      activeMilestone = selectedMilestone
+      class = class
+      milestones = milestones
+      activeMilestoneIndex = activeMilestoneIndex
+      userId = userId
+      isRoute0MileStone = true
+    }}
+  {{/reports/pull-up/milestone/milestone-report}}
+{{/if}}
+
+{{#if isShowRoute0CollectionReport}}
+  {{
+    class/gru-report-panel
+    showPullUp=isShowRoute0CollectionReport
+    reportData=studentCollectionReportContext
+    model=studentCollectionReportContext.lesson
+    isStudent=true
+  }}
+{{/if}}
+
+{{#if isShowRoute0ExternalAssessmentReport}}
+  {{
+    reports/pull-up/student-external-assessment-report
+    showPullUp=isShowRoute0ExternalAssessmentReport
+    reportData=studentCollectionReportContext
+    showPullUp=isShowStudentExternalAssessmentReport
+    isStudent=true
+  }}
+{{/if}}
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

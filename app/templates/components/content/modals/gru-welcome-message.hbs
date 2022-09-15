@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <a {{action 'close'}} data-dismiss="modal" class="material-icons">clear</a>
+</div>
+<div class="modal-body">
+  <p class="title">{{t 'gru-welcome-message.title'}}</p>
+  <div class="text">
+    {{t 'gru-welcome-message.text-temporary-one'}}
+    <button class="take-tour-icon">
+      {{gru-icon name='directions'}}
+    </button>
+    {{t 'gru-welcome-message.text-temporary-two'}}
+  </div>
+  <div class="actions">
+    <input id="dontShowAgain" type="checkbox" aria-checked="false"/>
+    <label for="dontShowAgain">{{t 'gru-welcome-message.dont-show-again'}}</label>
+    <button {{action 'close'}} class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+      <span aria-hidden="true">{{t 'common.close'}}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{{player/gru-study-header
+  classId=classId
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  collectionUrl=collectionUrl
+  class=class
+  isStudyPlayer=true
+  isIframeMode = isIframeMode
+}}
+<div class="player-container">
+    <div class="player {{if isIframeMode 'iframe-player' }}">
+      <div class="qz-main" role="main">
+        {{#if isDone}}
+          {{player/gru-player-done classId=classId}}
+        {{else}}
+          {{partial 'partials/qz-resource-player'}}
+        {{/if}}
+      </div>
+    </div>
+</div>

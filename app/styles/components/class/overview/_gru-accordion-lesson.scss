@@ -1,0 +1,1449 @@
+.controller {
+  .content {
+    .courses {
+      .accordion-course {
+        .panel-heading {
+          &.edit-input-box {
+            h3 {
+              position: relative;
+              bottom: 24px;
+            }
+
+            .title {
+              width: 85%;
+              padding-left: 14px;
+            }
+          }
+        }
+
+        .gru-accordion-lesson.view {
+          .expanded {
+            .panel-body {
+              &.edit-panel-body {
+                margin-top: 66px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.gru-accordion-lesson {
+  $on-air-icon: 25px;
+  $collection-icon-size: 48px;
+  height: auto;
+
+  &:first-child {
+    .panel-heading {
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+
+      &.attempt-head {
+        height: auto;
+      }
+
+      .attempt-content {
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &:last-child {
+    .panel-heading {
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+  }
+
+  .img-rounded {
+    display: inline-block;
+    width: 47px;
+    height: 36px;
+    border-radius: 5px;
+  }
+
+  .cursor-default {
+    cursor: default !important;
+  }
+
+  .panel-heading {
+    box-shadow: 0 2px 5px 0 $disabled-bg-color;
+    display: inline-block;
+    width: 100%;
+    height: 67px;
+    border-radius: 0;
+    padding: 0;
+
+    &.etl-view {
+      margin-bottom: 20px;
+      box-shadow: none;
+    }
+
+    .controls {
+      padding: 15px 0;
+      margin: 0 20px 0 10px !important;
+      display: inline-block;
+
+      &.disble-controls {
+        pointer-events: none;
+      }
+    }
+
+    .panel-title {
+      width: 67%;
+      float: $tab-float-dir;
+      font-size: $font-size-large;
+      color: $gray;
+      padding: 12px 8px;
+
+      .title {
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
+        display: flex;
+
+        div {
+          white-space: initial;
+          max-height: fit-content !important;
+
+          @include ellipsis(
+            $font-size: 13px,
+            $line-height: 1.4,
+            $lines-to-show: 2
+          );
+
+          &.lesson-title-section {
+            align-items: center;
+            display: flex;
+          }
+          &.tooltip-inner {
+            background-color: $light-500;
+          }
+        }
+
+        .lesson-prefix {
+          border-right: solid 1px $light-300;
+          margin: 0 20px 0 0;
+          padding: 5px 20px 0 0;
+          color: $gray-base;
+          font-weight: bold;
+          height: fit-content;
+          display: inline-block;
+          position: relative;
+          width: fit-content;
+
+          &.lesson-status {
+            &::before {
+              content: "";
+              position: absolute;
+              right: -15px;
+              width: 8px;
+              top: 0;
+              @media screen and (max-width: 768px) {
+                top: 10px;
+              }
+              height: 8px;
+              border-radius: 50%;
+            }
+
+            &.status-0::before {
+              background-color: $not-started;
+            }
+
+            &.status-1::before {
+              background-color: $blue-in-progress;
+            }
+
+            &.status-2::before,
+            &.status-3::before,
+            &.status-4::before,
+            &.status-5::before {
+              background-color: $blue-mastery;
+            }
+          }
+        }
+
+        .lessonPlan {
+          font-size: 14px;
+          color: $black-bold;
+
+          .guiding-lable {
+            margin-top: 10px;
+          }
+        }
+
+        &.suggestion {
+          color: $orange-50;
+        }
+
+        .unavailable-content {
+          font-size: 13px;
+          margin-bottom: 7px;
+          margin-top: 3px;
+          padding: 0;
+        }
+        .impersonate-title {
+          pointer-events: none;
+        }
+      }
+
+      span {
+        font-size: 16px;
+        color: $font-inherit-black-bold;
+      }
+    }
+
+    .info {
+      float: $menu-float-dir;
+      height: inherit;
+      display: flex;
+
+      .content-count {
+        font-size: $font-navigator;
+        margin: 0 10px 0 0;
+        color: $font-light-400-dark-500;
+        display: flex;
+        align-items: center;
+
+        span {
+          vertical-align: middle;
+
+          i {
+            display: inline-block;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+            color: $light-200;
+            font-size: $font-unBookmark;
+            cursor: default;
+          }
+
+          &.question-count {
+            i.icon {
+              background: url("gooru/question-icon.png");
+              -webkit-background-size: 25px 25px;
+              background-size: 25px 25px;
+              height: 25px;
+              width: 25px;
+            }
+          }
+
+          &.assessment-count {
+            margin: 0 0 0 15px;
+
+            i.icon {
+              background: url("gooru/images/navigation_assessment.svg");
+              -webkit-background-size: 25px 25px;
+              background-size: 25px 25px;
+              height: 25px;
+              width: 25px;
+            }
+          }
+
+          &.collection-count {
+            i.icon {
+              background: url("gooru/images/navigation_collection.svg");
+              -webkit-background-size: 25px 25px;
+              background-size: 25px 25px;
+              height: 25px;
+              width: 25px;
+            }
+          }
+        }
+      }
+
+      .play-btn {
+        border-left: 1px solid $light-100;
+        display: inline-block;
+        height: 67px;
+        width: 60px;
+
+        .btn.study-now {
+          background-color: $white;
+          font-size: $font-size-h6;
+          height: 45px;
+          margin: 10px 0;
+          vertical-align: middle;
+
+          i {
+            font-size: $font-size-h4;
+            color: $bg-dark-300-dark-400;
+          }
+        }
+        .impersonate-study-now {
+          pointer-events: none;
+        }
+      }
+
+      .performance-container {
+        cursor: pointer;
+        width: 76px;
+        display: flex;
+        height: 67px;
+        vertical-align: middle;
+        justify-content: center;
+
+        .in-progress {
+          padding: 27px;
+          display: grid;
+        }
+
+        &.not-started-text {
+          background: $light-200;
+        }
+
+        &.not-started {
+          pointer-events: none;
+
+          .gru-performance-chart {
+            color: $font-white-dark-400;
+          }
+        }
+
+        .container-box {
+          height: 67px;
+          border-bottom: 1px solid $white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          .percentage {
+            cursor: pointer;
+          }
+        }
+
+        .charts.gru-students-performance-chart {
+          .percentage {
+            cursor: pointer;
+          }
+        }
+
+        .not-started {
+          font-size: 10px;
+          color: $black-bold;
+          height: 100%;
+          font-weight: 600;
+          display: grid;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .timespend {
+        border-left: 1px solid $light-100;
+        display: inline-block;
+        height: 67px;
+        width: 88px;
+        margin: 0;
+        vertical-align: middle;
+        padding: 10px 5px 0;
+        text-align: center;
+        font-weight: 900;
+        float: $menu-float-dir;
+        line-height: normal;
+        font-size: larger;
+
+        .total-time-spent {
+          font-size: 10px;
+        }
+      }
+      .visiblity-switch {
+        margin-top: 15px;
+        width: auto;
+        margin-right: 3px;
+      }
+    }
+
+    .class-info {
+      margin: auto auto auto 10px;
+      position: relative;
+      margin-top: 21px;
+      right: 21px;
+
+      &.disable-tag {
+        pointer-events: none;
+        opacity: $opacity-light;
+
+        a {
+          color: $font-light-400-gray-base;
+          opacity: $opacity-light;
+        }
+      }
+
+      &.disable-event {
+        opacity: 0.65;
+      }
+
+      .close {
+        font-size: 24px;
+      }
+    }
+    &.disable {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  .panel-collapse.collapse.in {
+    .collections {
+      > .panel {
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid $light-100;
+        height: 67px;
+
+        button.on-air {
+          display: inline-block;
+          width: $on-air-icon;
+          height: $on-air-icon;
+          vertical-align: middle;
+          background-image: url("gooru/on-air-icon.png");
+          background-size: $on-air-icon $on-air-icon;
+          background-color: $white;
+          cursor: pointer;
+          @include text-hide();
+        }
+
+        &:last-child {
+          border-bottom: 0 none;
+
+          .panel-heading {
+            border-bottom: 0 none;
+            border-radius: 0 0 5px 5px;
+
+            &.attempt-head {
+              border-radius: 0;
+            }
+          }
+        }
+
+        &:first-child {
+          .panel-heading {
+            -webkit-box-shadow: inset 0 2px 5px 0 $disabled-bg-color;
+            -moz-box-shadow: inset 0 2px 5px 0 $disabled-bg-color;
+            box-shadow: inset 0 2px 5px 0 $disabled-bg-color;
+          }
+        }
+
+        &.resource {
+          .panel-heading {
+            background-color: $sky-50;
+            height: 67px;
+
+            .panel-title {
+              display: flex;
+              width: 80%;
+
+              .resource-icon-type {
+                padding-left: 32px;
+              }
+
+              .icon {
+                line-height: 67px;
+
+                i {
+                  width: 36px;
+                  height: 30px;
+                  background-size: 30px;
+                  background: no-repeat;
+                  display: inline-block;
+                  vertical-align: middle;
+                }
+              }
+
+              .icon {
+                .website_resource {
+                  background-image: url("gooru/images/website-resource-green.svg");
+                }
+              }
+
+              .icon {
+                .video_resource {
+                  background-image: url("gooru/images/video-resource-green.svg");
+                }
+              }
+
+              .icon {
+                .interactive_resource {
+                  background-image: url("gooru/images/interactive-resource-green.svg");
+                }
+              }
+
+              .icon {
+                .image_resource {
+                  background-image: url("gooru/images/image-resource-green.svg");
+                }
+              }
+
+              .icon {
+                .text_resource {
+                  background: url("gooru/images/text-resource-green.svg")
+                    no-repeat;
+                  width: 30px;
+                  height: 30px;
+                  background-size: 30px;
+                  display: inline-block;
+                  vertical-align: middle;
+                }
+              }
+
+              .icon {
+                .audio-resource {
+                  background-image: url("gooru/images/audio-resource-green.svg");
+                }
+              }
+
+              .title {
+                padding-left: 10px;
+                line-height: 67px;
+
+                i {
+                  font-size: 28px;
+                  margin: 20px 0 0 5px;
+
+                  &.teacher_suggestions {
+                    background-image: url("gooru/images/account-cirlce-orange.svg");
+                    width: 28px;
+                    height: 28px;
+                    background-size: 28px;
+                  }
+                }
+
+                &.system_suggestions,
+                &.teacher_suggestions {
+                  color: $orange-400;
+                }
+              }
+            }
+          }
+        }
+        &.disable {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+      }
+
+      .panel-heading {
+        width: 100%;
+        height: 67px;
+        display: inline-block;
+        border-radius: 0;
+
+        &.expandPanel {
+          height: auto;
+        }
+
+        i.assessment-count {
+          background: url("gooru/images/navigation_assessment.svg");
+          -webkit-background-size: 25px 25px;
+          background-size: 25px 25px;
+          height: 25px;
+          width: 25px;
+          margin-left: 5px;
+        }
+
+        i.collection-count {
+          background: url("gooru/images/navigation_collection.svg");
+          -webkit-background-size: 25px 25px;
+          background-size: 25px 25px;
+          height: 25px;
+          width: 25px;
+          margin-left: 5px;
+        }
+
+        &.attempt-head {
+          height: auto;
+
+          .attempt-content {
+            border-radius: 0;
+            box-shadow: none;
+            height: 50px;
+            display: flex;
+          }
+
+          .info {
+            background-color: $info-icon-bg;
+
+            .performance {
+              padding: 0;
+              justify-content: center;
+              display: grid;
+              align-items: center;
+              height: 50px;
+              border-bottom: 1px solid $white;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .controls {
+          padding: 15px 0;
+          margin: 0 10px 0 5px !important;
+          display: flex;
+          align-items: center;
+
+          .switch {
+            width: 40px;
+            display: inline-block;
+          }
+
+          .disabled {
+            opacity: 0.5 !important;
+            pointer-events: none;
+          }
+
+          .google-classroom-icon {
+            width: 25px;
+            margin: 0 5px 0 0;
+            display: inline-block;
+            cursor: pointer;
+
+            i.classroom-icon {
+              width: 24px;
+              height: 24px;
+              background-repeat: no-repeat;
+              background-size: 100%;
+              background-position: center;
+              vertical-align: middle;
+              display: inline-block;
+              background-image: url("/assets/gooru/classroom-icon.svg");
+            }
+          }
+
+          .go-live-cnt {
+            width: 25px;
+            margin: 0 5px 0 0;
+            display: inline-block;
+          }
+
+          &.disble-controls {
+            pointer-events: none;
+          }
+        }
+
+        .icon-container {
+          height: inherit;
+
+          i {
+            font-size: $collection-icon-size;
+            vertical-align: bottom;
+          }
+
+          .score {
+            cursor: pointer;
+            margin: 5px 0 10px;
+
+            + i {
+              display: none;
+              width: $on-air-icon;
+              height: $on-air-icon;
+              vertical-align: middle;
+              margin-left: 15px;
+              background-image: url("gooru/images/on-air-icon.svg");
+              background-size: $on-air-icon $on-air-icon;
+              @include text-hide();
+            }
+          }
+
+          a.score {
+            cursor: pointer;
+            padding: 0;
+          }
+        }
+
+        .panel-title {
+          float: $tab-float-dir;
+          height: inherit;
+          color: $gray;
+          text-overflow: ellipsis;
+          padding: 0;
+          font-size: $font-size-large;
+          display: flex;
+
+          &.attempt {
+            display: grid;
+            padding: 10px 0 10px 15px;
+            width: 92%;
+            border-bottom: 1px solid $info-icon-bg;
+
+            .attempt-title {
+              font-family: lato;
+              font-size: 11px;
+              font-weight: 700;
+              font-weight: bold;
+            }
+
+            .attempt-date {
+              font-family: lato;
+              font-size: 14px;
+              font-weight: 500;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: 1.14;
+              letter-spacing: normal;
+            }
+          }
+
+          .collection-controls {
+            height: 100%;
+            text-align: center;
+
+            .row {
+              display: table-cell;
+              height: 100%;
+
+              & > [class*="col-"] {
+                display: table-cell;
+                height: 100%;
+                padding: 0;
+
+                .gru-switch {
+                  position: relative;
+                  top: 50%;
+                  -webkit-transform: translateY(-50%);
+                  -ms-transform: translateY(-50%);
+                  transform: translateY(-50%);
+                }
+              }
+            }
+          }
+
+          .icon-container {
+            padding: 0;
+            width: 95px;
+            height: 67px;
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+
+            img {
+              width: 75%;
+              height: 100%;
+            }
+
+            &.lesson-status {
+              &::before {
+                content: "";
+                position: absolute;
+                right: -11px;
+                width: 8px;
+                top: 5px;
+                height: 8px;
+                border-radius: 50%;
+              }
+
+              &.status-0::before {
+                background-color: $not-started;
+              }
+
+              &.status-1::before {
+                background-color: $blue-in-progress;
+              }
+
+              &.status-2::before,
+              &.status-3::before,
+              &.status-4::before,
+              &.status-5::before {
+                background-color: $blue-mastery;
+              }
+            }
+
+            &.disable-events {
+              pointer-events: none;
+            }
+
+            .thumbnail {
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              width: 95px;
+              height: 67px;
+              @media only screen and (max-width: $screen-md) {
+                width: 60px;
+              }
+            }
+          }
+
+          .title {
+            vertical-align: middle;
+            margin: 0;
+            padding: 0 0 0 10px;
+            max-width: 65%;
+            height: 67px;
+            align-items: center;
+            color: $font-dark-100-gray-base;
+            @media only screen and (min-width: $screen-md) and (max-width: $screen-in-1024) {
+              max-width: 55%;
+            }
+            @media only screen and (max-width: $screen-600) {
+              div.ellipsis {
+                line-height: 1 !important;
+              }
+            }
+
+            .type {
+              color: $light-500;
+              font-size: $font-navigator;
+              padding: 5px 0 0;
+            }
+
+            i {
+              font-size: 28px;
+              margin-left: 5px;
+
+              &.teacher_suggestions {
+                background-image: url("gooru/images/account-cirlce-orange.svg");
+                width: 28px;
+                height: 28px;
+                background-size: 28px;
+              }
+            }
+
+            &.system_suggestions,
+            &.teacher_suggestions {
+              display: inline-flex;
+              color: $orange-400;
+            }
+          }
+
+          .typeCollection {
+            margin-top: -15px;
+          }
+
+          .trophy {
+            vertical-align: bottom;
+            margin: 0 0 0 15px;
+
+            i {
+              background: url("gooru/trophy.png");
+              background-size: 22px 25px;
+              height: 25px;
+              width: 22px;
+              display: inline-block;
+              vertical-align: middle;
+            }
+          }
+          &.impersonate-title {
+            pointer-events: none;
+          }
+        }
+
+        .check {
+          color: $green-400;
+        }
+
+        .disabled {
+          opacity: $opacity-light !important;
+          pointer-events: none;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: row-reverse;
+          float: $menu-float-dir;
+          height: inherit;
+          max-width: 38% !important;
+
+          .assessment-external-icons,
+          .collection-external-icons {
+            width: 20px;
+            height: 20px;
+            background-size: 20px 20px;
+            opacity: 0.8;
+            justify-self: center;
+            background-image: url("gooru/share.png");
+            background-repeat: no-repeat;
+            margin: auto 10px auto auto;
+          }
+
+          .share {
+            width: 18px;
+            height: 15px;
+            object-fit: contain;
+          }
+
+          .onshareenabled {
+            padding-right: 32px;
+          }
+
+          .onshareenabledadddca {
+            padding-left: 65px;
+          }
+
+          .content-count {
+            font-size: $font-navigator;
+            margin: 0 10px 0 0;
+            color: $light-400;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            span {
+              vertical-align: middle;
+              margin: 0 5px 0 0;
+
+              i {
+                display: inline-block;
+                vertical-align: middle;
+                color: $light-200;
+                font-size: $font-unBookmark;
+                cursor: default;
+                margin: 0 10px 0 0;
+              }
+
+              &.question-count {
+                i.icon {
+                  background: url("gooru/images/navigation_question.svg");
+                  -webkit-background-size: 25px 25px;
+                  background-size: 25px 25px;
+                  height: 25px;
+                  width: 25px;
+                }
+              }
+
+              &.assessment-count {
+                i.icon {
+                  background: url("gooru/images/navigation_assessment.svg");
+                  -webkit-background-size: 25px 25px;
+                  background-size: 25px 25px;
+                  height: 25px;
+                  width: 25px;
+                }
+              }
+
+              &.collection-count {
+                margin: 0 0 0 15px;
+
+                i.icon {
+                  background: url("gooru/images/navigation_collection.svg");
+                  -webkit-background-size: 25px 25px;
+                  background-size: 25px 25px;
+                  height: 25px;
+                  width: 25px;
+                }
+              }
+            }
+          }
+
+          .play-btn {
+            border-left: 1px solid $light-100;
+            display: inline-block;
+            height: 67px;
+            width: 60px;
+
+            .btn.study-now {
+              background-color: $white;
+              font-size: $font-size-h6;
+              height: 45px;
+              margin: 10px 0;
+              vertical-align: middle;
+
+              i {
+                font-size: $font-size-h4;
+                color: $dark-300;
+              }
+            }
+          }
+
+          .performance {
+            border-left: 1px solid $light-100;
+            display: inline-block;
+            height: 67px;
+            width: 88px;
+            margin: 0;
+            vertical-align: middle;
+            padding: 20px 5px 0;
+            text-align: center;
+            font-weight: 900;
+            float: $menu-float-dir;
+
+            .grading-icon {
+              background-image: url("../assets/gooru/images/grade-pending.png");
+              width: 22px;
+              height: 22px;
+              background-size: 22px;
+              background-position: center;
+              background-repeat: no-repeat;
+              display: block;
+              align-self: center;
+              margin: auto;
+              cursor: pointer;
+            }
+
+            &.not-started {
+              pointer-events: none;
+            }
+
+            span {
+              vertical-align: middle;
+            }
+
+            .score {
+              cursor: pointer;
+              font-size: $font-size-large;
+              line-height: $font-size-large;
+            }
+
+            .state {
+              color: $dark-300;
+              font-size: $font-size-xxxsmall;
+              display: block;
+            }
+
+            .time-spent {
+              font-size: $font-size-base;
+              color: $light-450;
+              cursor: pointer;
+            }
+
+            .not-started {
+              font-size: 12px;
+            }
+
+            .not-started-external {
+              font-size: 18px;
+            }
+
+            .total-time-spent {
+              font-size: 10px;
+            }
+
+            &.chart {
+              float: $menu-float-dir;
+              padding: 0;
+
+              .time-spent {
+                line-height: 67px;
+              }
+            }
+
+            &.non-clickable {
+              pointer-events: none;
+            }
+          }
+
+          .flu-btn {
+            margin: 21px 10px 0 0;
+            display: inline-block;
+            border: 1px solid $gray-light;
+            padding: 0 3px 2px;
+            border-radius: 4px;
+            background-color: $dark-gray;
+            vertical-align: top;
+            overflow: hidden;
+            max-width: 100px;
+            text-overflow: ellipsis;
+            height: 27px;
+            color: $gray-base;
+
+            span {
+              color: $white;
+            }
+          }
+        }
+      }
+
+      .content-details-view {
+        box-shadow: 0 0 11px 3px $green-400;
+        z-index: 9;
+
+        .attempt-head {
+          &.no-attempt {
+            padding-bottom: 5px;
+          }
+        }
+
+        .item-details {
+          display: flex;
+
+          .count-details {
+            display: flex;
+
+            .content-count {
+              display: none;
+              @media screen and (max-width: $screen-sm) {
+                font-size: $font-navigator;
+                margin: 10px 10px 0 0;
+                color: $light-400;
+                display: flex;
+                align-items: center;
+              }
+
+              span {
+                vertical-align: middle;
+                color: $gray-dove;
+
+                i {
+                  display: inline-block;
+                  margin: 0 10px 0 0;
+                  vertical-align: middle;
+                  color: $gray-dove;
+                  font-size: $font-unBookmark;
+                  cursor: default;
+                }
+
+                &.question-count {
+                  i.icon {
+                    background: url("gooru/question-icon.png");
+                    -webkit-background-size: 25px 25px;
+                    background-size: 25px 25px;
+                    height: 25px;
+                    width: 25px;
+                  }
+                }
+
+                &.assessment-count {
+                  margin: 0 0 0 15px;
+
+                  i.icon {
+                    background: url("gooru/images/navigation_assessment.svg");
+                    -webkit-background-size: 25px 25px;
+                    background-size: 25px 25px;
+                    height: 25px;
+                    width: 25px;
+                  }
+                }
+
+                &.collection-count {
+                  i.icon {
+                    background: url("gooru/images/navigation_collection.svg");
+                    -webkit-background-size: 25px 25px;
+                    background-size: 25px 25px;
+                    height: 25px;
+                    width: 25px;
+                  }
+                }
+              }
+            }
+          }
+
+          .taxonomy-container {
+            display: none;
+
+            .gru-taxonomy-tag {
+              min-width: 90px;
+              max-width: 100px;
+              height: 23px;
+              border-radius: 12px;
+              background-color: $dark-400;
+              display: inline-block;
+              border: 1px solid $gray-light;
+              padding: 0 3px 2px;
+
+              .standard-tag {
+                text-align: center;
+                padding: 0;
+
+                .tag-label {
+                  font-size: 12px;
+                  color: $white;
+                  line-height: 21px;
+                  justify-content: center;
+                  align-items: center;
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+
+        .description {
+          p {
+            font-size: 14px;
+            font-family: lato;
+            font-weight: normal;
+            line-height: 1.33;
+            letter-spacing: normal;
+            margin: 20px 15px 5px;
+            color: $dark-400;
+          }
+        }
+      }
+
+      .no-content {
+        margin: 5px 10px 10px;
+      }
+      &.disable {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.expanded {
+    height: auto;
+
+    .panel-collapse.collapse.in {
+      margin: -6px 0;
+
+      .collections {
+        .selected,
+        .study-active {
+          .panel-heading {
+            -webkit-box-shadow: 0 0 11px 3px $green-light;
+            -moz-box-shadow: 0 0 11px 3px $green-light;
+            box-shadow: 0 0 11px 3px $green-light;
+            z-index: 9;
+
+            &.attempt-head {
+              height: auto;
+            }
+
+            .attempt-content {
+              box-shadow: none;
+              border-radius: 0;
+              display: flex;
+              border-bottom: 1px solid $white;
+              cursor: pointer;
+
+              .info {
+                background-color: $info-icon-bg;
+
+                .performance {
+                  padding: 0;
+                  justify-content: center;
+                  display: grid;
+                  align-items: center;
+                  color: $font-gray-500-black-bold;
+                }
+              }
+
+              .info-assessment {
+                text-align: center;
+                display: grid;
+                align-items: center;
+                width: 70px;
+              }
+            }
+
+            .info {
+              .btn.study-now {
+                i {
+                  font-size: $font-size-anonymous;
+                  color: $green-400;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &:last-child .panel-heading {
+      border-radius: 0;
+
+      &.attempt-head {
+        height: auto;
+      }
+
+      .attempt-content {
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .panel {
+    .edit-actions-btn {
+      margin: 0 0 12px;
+      position: relative;
+      float: right;
+
+      .cancel {
+        width: 100px;
+        margin-right: 18px;
+      }
+
+      .save {
+        width: 100px;
+      }
+    }
+  }
+}
+
+.item-disabled {
+  .info {
+    .play-btn {
+      opacity: $opacity-medium;
+
+      .btn-info {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.panel-inner-body {
+  background-color: $white;
+  height: inherit;
+  display: inline-block;
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 17px;
+  padding: 20px;
+
+  .panel-input {
+    display: flex;
+
+    .description-input {
+      margin-right: 70px;
+    }
+
+    .description-input,
+    .question-input {
+      width: 50%;
+
+      .in-active {
+        display: none;
+      }
+
+      .validation {
+        margin-left: 14px;
+      }
+    }
+  }
+
+  .lesson-label {
+    padding: 0;
+    margin-top: 10px;
+
+    .gru-etl-second {
+      .etl-seconds {
+        &.computed-etl {
+          padding-left: 25px;
+        }
+      }
+    }
+  }
+}
+
+.actions-btn {
+  padding: 3px 0 0;
+  text-align: right;
+
+  .cancel {
+    width: 100px;
+    margin-right: 18px;
+  }
+
+  .save {
+    width: 100px;
+  }
+}
+
+.description.gru-rich-text-editor,
+.guiding-question.gru-rich-text-editor {
+  .rich-editor {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    min-height: 41px;
+    margin-left: 14px;
+    max-height: 180px;
+  }
+
+  .btn-toolbar {
+    opacity: 0;
+
+    button.btn-math {
+      color: $gray-base;
+      background: $white;
+      border-right: 1px solid $gray-base;
+    }
+  }
+
+  .validation {
+    display: none;
+  }
+}
+
+.back-drop {
+  z-index: 10 !important;
+}
+
+.lesson-pullup-container {
+  position: absolute;
+  width: 75%;
+  height: auto;
+  top: 0;
+
+  .section-container {
+    width: 360px;
+    height: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 -2px 4px 2px $box-shadow-bg-color;
+    background-color: $white-bold;
+    z-index: 11;
+    position: fixed;
+    margin: 5rem auto 5rem 40rem;
+    @media screen and (max-width: $screen-sm - 1) {
+      margin: auto auto auto 2rem;
+    }
+    @media only screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+      margin: auto auto auto 16rem;
+    }
+    @media only screen and (min-width: $screen-md + 1) and (max-width: $screen-1024) {
+      margin: auto auto auto 12rem;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 200;
+      text-align: center;
+      color: $dark-400;
+    }
+
+    .description {
+      font-size: 18px;
+      font-weight: 200;
+      text-align: center;
+      color: $dark-400;
+    }
+
+    .close-btn {
+      text-align: center;
+
+      button {
+        width: 119px;
+        height: 40px;
+        margin: 28px 89px 0 87px;
+        border: solid 1px $nobel-gray;
+        background-color: $white-bold;
+        outline: none;
+      }
+    }
+  }
+}
+
+.lesson-suggestions {
+  &.dashboardView {
+    ol .panel .panel-heading {
+      padding: 0 !important;
+      margin: 0 !important;
+
+      .panel-title {
+        .icon-container {
+          display: none !important;
+        }
+        .title {
+          max-width: 100% !important;
+        }
+      }
+      .info {
+        float: none !important;
+        .performance {
+          padding: 10px 5px !important;
+          display: flex !important;
+          align-items: center !important;
+        }
+      }
+    }
+  }
+
+  .panel-body {
+    padding: 0 !important;
+  }
+}

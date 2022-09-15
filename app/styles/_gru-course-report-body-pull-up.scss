@@ -1,0 +1,116 @@
+.gru-course-report-body-pull-up {
+  /***********************************/
+  table {
+    position: relative;
+    width: 768px;
+    background-color: $white;
+    overflow: hidden;
+    border-collapse: collapse;
+
+    tr {
+      border: 1px solid $gray-80;
+    }
+    /*thead*/
+    thead {
+      position: relative;
+      display: block;
+      /*seperates the header from the body allowing it to be positioned*/
+      width: 768px;
+      overflow: visible;
+    }
+
+    thead th {
+      background-color: $white;
+      //min-width: 270px;
+      height: 32px;
+      font-weight: normal;
+      font-size: 12px;
+      padding: 10px;
+      // border-right: 1px dashed #ccc;
+
+      .student-sort {
+        cursor: pointer;
+      }
+      .lesson-sequence-header {
+        width: 30px;
+        height: 30px;
+        border-radius: 100px;
+        color: $white;
+        display: block;
+        cursor: pointer;
+        p {
+          padding: 4px;
+          text-align: center;
+        }
+      }
+    }
+
+    th.m-width {
+      width: 270px;
+      border-right: 1px dashed $gray-80;
+    }
+
+    thead th:nth-child(1) {
+      /*first cell in the header*/
+      position: relative;
+      display: block;
+      background-color: $white;
+      color: $breadcrumb-color;
+      min-width: 241px;
+      height: 45px;
+      text-align: center;
+      vertical-align: middle;
+      padding-top: 13px;
+      border-right: 1px dashed $gray-80;
+    }
+    /*tbody*/
+    tbody {
+      position: relative;
+      display: block;
+      width: 768px;
+      max-height: calc(68vh - 130px);
+      overflow: scroll;
+      height: 68vh;
+    }
+
+    tbody td {
+      background-color: $white;
+      height: 47px;
+      padding: 8px;
+      .performance-section {
+        width: 34px;
+        text-align: center;
+      }
+    }
+
+    tbody tr td:nth-child(1) {
+      /*the first cell in each tr*/
+      position: relative;
+      display: block;
+      height: 47px;
+      background-color: $white;
+      min-width: 241px;
+      padding: 10px;
+      border-right: 1px dashed $gray-80;
+
+      .student-name {
+        margin-left: 5px;
+      }
+    }
+  }
+  /***********************************/
+  .collapse-text {
+    height: 60px;
+    line-height: 2.9em;
+    width: 614px;
+
+    .scatter-text {
+      font-size: 13px;
+      background-color: $dark-400;
+      border-radius: 3px;
+      color: $white;
+      padding: 1px 4px;
+      margin: 10px;
+    }
+  }
+}

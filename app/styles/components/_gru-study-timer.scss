@@ -1,0 +1,225 @@
+.gru-study-timer {
+  position: fixed;
+  top: 110px;
+  right: -145px;
+  z-index: 999;
+  width: 190px;
+  height: 150px;
+  transition: 1.5s;
+
+  &.expanded {
+    right: 0;
+  }
+
+  .timer-container {
+    display: grid;
+    grid-template-columns: 45px 1fr;
+    border: 2px solid $breadcrumb-color;
+    height: 100%;
+    background-color: $white;
+
+    .title {
+      display: grid;
+      grid-template-rows: 30px auto 30px;
+      border-right: 2px solid $breadcrumb-color;
+      cursor: pointer;
+
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .text {
+        writing-mode: tb-rl;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .active-icon {
+        width: 10px;
+        height: 10px;
+        background-color: $timer-active-icon;
+        border-radius: 50%;
+        margin: auto;
+
+        &.blink {
+          animation: blink 1s ease-in infinite;
+        }
+      }
+
+      .close-icon {
+        display: none;
+      }
+    }
+
+    .timespent-info {
+      ul {
+        padding: 0;
+        margin: 0;
+        display: grid;
+        height: 100%;
+
+        li {
+          display: grid;
+          grid-template-columns: 35px auto;
+          list-style: none;
+          align-items: center;
+          border-bottom: 1px solid $breadcrumb-color;
+          text-align: center;
+          font-weight: bold;
+
+          &.assessment-timespent {
+            border-bottom: 0;
+          }
+
+          .time {
+            width: 100%;
+            text-align: center;
+          }
+
+          .time-titel {
+            display: none;
+          }
+
+          .icon {
+            height: 22px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: inline-block;
+            width: 100%;
+
+            &.collection {
+              background-image: url("gooru/images/add_collection.svg");
+            }
+            &.assessment {
+              background-image: url("gooru/images/add_assessment.svg");
+            }
+            &.offline-activity {
+              background-image: url("gooru/images/offline.svg");
+            }
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
+}
+
+.show-timer-popup {
+  position: relative;
+  width: 360px;
+  border-radius: 10px;
+  display: inline-block;
+  max-height: 320px;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0);
+
+  @media screen and (max-width: 375px) {
+    max-width: 300px;
+  }
+  &.isPlayer {
+    max-height: 320px;
+    overflow: hidden;
+    @media screen and (max-width: 320px) {
+      max-width: 300px;
+      margin: auto;
+    }
+  }
+
+  .timer-container {
+    display: grid;
+    grid-template-rows: 32px auto;
+    grid-template-columns: unset;
+    border: 0;
+
+    .title {
+      grid-template-rows: unset;
+      grid-template-columns: auto 40px;
+      border-right: 0;
+      box-shadow: 0 2px 4px 0 $box-shadow-bg-color;
+      padding: 0px 0px 0px 16px;
+
+      .icon,
+      .active-icon {
+        display: none;
+      }
+
+      .text {
+        writing-mode: horizontal-tb;
+        color: $dark-400;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        opacity: 0.5;
+        font-family: "Montserrat";
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      .close-icon {
+        padding: 0;
+        font-size: 12px;
+        width: 40px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .timespent-info {
+      ul {
+        display: grid;
+        grid-template-columns: auto auto auto;
+
+        li {
+          display: flex;
+          border-bottom: 0;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+
+          .icon {
+            display: none;
+          }
+
+          .time-titel {
+            display: block;
+          }
+
+          &:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 30px;
+            background-color: #ccc;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,105 @@
+.study-player-external {
+  .player-container {
+    @media screen and (min-width: $screen-sm) and (min-height: $screen-1024) {
+      height: 100% !important;
+    }
+    @media screen and (min-width: $screen-568) {
+      overflow: auto;
+      .player {
+        height: 100%;
+        .gru-external-assessment-page {
+          .external-assessment-landing-page {
+            .external-assessment-card {
+              .body {
+                padding-top: 0px;
+              }
+              .footer {
+                padding-top: 6px;
+              }
+            }
+          }
+          .header {
+            .title {
+              font-size: 19px;
+            }
+          }
+        }
+      }
+    }
+    .gru-external-assessment-page {
+      .external-assessment-landing-page {
+        @media screen and (max-width: $sm-width-max) {
+          .external-assessment-card {
+            .header {
+              .title {
+                font-size: 17px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-568) {
+  .player-external {
+    .app-container {
+      .external-player-container {
+        .player-container {
+          .gru-external-assessment-page {
+            .external-assessment-landing-page {
+              .external-assessment-card {
+                .header {
+                  .title {
+                    font-size: 22px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: $screen-568) {
+  .player-external {
+    .app-container {
+      .external-player-container {
+        .player-container {
+          .gru-external-assessment-page {
+            .external-assessment-landing-page {
+              .external-assessment-card {
+                .body {
+                  padding-top: 0px;
+                }
+                .footer {
+                  padding-top: 0px;
+                }
+                .header {
+                  .title {
+                    font-size: 22px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.gru-external-assessment-page {
+  .external-assessment-landing-page {
+    .external-assessment-card {
+      .body {
+        .score-entered {
+          .score {
+            font-size: 39px;
+          }
+        }
+      }
+    }
+  }
+}

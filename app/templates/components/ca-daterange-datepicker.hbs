@@ -1,0 +1,99 @@
+{{#unless isShowBackDrop}}
+  <div class="backdrop" {{action 'close'}}></div>
+{{/unless}}
+<div class="ca-datepicker-body" tabindex={{tabindex}} aria-label="add activity">
+  <div class="card-top-header taxonomy-container">
+    <div class="taxonomy-section" tabindex={{tabindex}}>
+      <div class="taxonomy-container">
+        {{#if taxonomyTags.length}}
+        {{taxonomy/gru-taxonomy-tag-list tags=taxonomyTags tagsVisible=1 isInCard=true}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="content-thumbnail {{if hasVideoConference 'enable-video-conference-thumbnail'}}" style="background-image: url({{cardThumbnail}})" tabindex={{tabindex}}>
+    <div class="card-top-header">
+      <span class="content-icon"> <i class="{{contentType}}-icon"></i> </span>
+    </div>
+    <div class="icon">
+      <i class="{{contentType}}-icon" />
+    </div>
+    <div class="content-title">
+      <span>{{selectedClassActivity.title}}</span>
+      {{#if (or (eq contentType 'assessment-external') (eq contentType 'collection-external'))}}
+        <i class="{{contentType}}-icons"></i>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="header-section">
+    <span class="back" onclick={{action 'close'}} onkeypress={{action 'close'}} tabindex={{tabindex}}> {{gru-icon name="keyboard_backspace"}}</span>
+    <div class="title">Select Activity Dates</div>
+  </div>
+  <div class="date-info {{unless allowTwoDateRangePicker 'hidden'}}">
+    <div class="start-date-info {{if (eq selectedTabIndex 0) 'active'}}" {{action 'onSelectTab' 0}}>
+      <span>{{t 'goals.manage.start-date-label'}}</span>
+      <div class="date-container">
+        <span class="date">{{format-date startDate 'DD'}}</span>
+        <span class="month-year">{{format-date startDate 'MMM'}} {{format-date startDate 'YYYY'}}</span>
+        <span class="day">{{format-date startDate 'dddd'}}</span>
+      </div>
+    </div>
+    <div class="end-date-info {{unless allowTwoDateRangePicker 'hidden'}} {{if (eq selectedTabIndex 1) 'active'}}" {{action 'onSelectTab' 1}}>
+      <span>{{t 'goals.manage.end-date-label'}}</span>
+      <div class="date-container">
+        {{#if endDate}}
+          <span class="date">{{format-date endDate 'DD'}}</span>
+          <span class="month-year">{{format-date endDate 'MMM'}} {{format-date endDate 'YYYY'}}</span>
+          <span class="day">{{format-date endDate 'dddd'}}</span>
+        {{else}}
+          <span class="not-selected">--</span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="calendar {{if enableVideoConference 'enabled-conference'}}">
+    <div class="start-date-picker {{if (eq selectedTabIndex 0) 'selected'}}">
+      {{ca-date-picker
+     userStartDateAsToday=userStartDateAsToday
+     onSelectDate='onScheduleStartDate'
+     courseStartDate=courseStartDate
+     showMonths=(if allowTwoDateRangePicker  false true)
+     onSelectMonth='onScheduleForMonth'
+     forChangeStartDateNavMonth=forChangeStartDateNavMonth
+     disableFutureDate=disableFutureDate
+     forFirstDateOfMonth=forFirstDateOfMonth
+     tabindex=tabindex
+     isActivity=true
+   }}
+    </div>
+    <div class="end-date-picker {{unless allowTwoDateRangePicker 'hidden'}} {{if (eq selectedTabIndex 1) 'selected'}}">
+      {{ca-date-picker
+      userStartDateAsToday=userStartDateAsToday
+      onSelectDate='onScheduleEndDate'
+      startDate=startDate
+      courseStartDate=courseStartDate
+      showMonths=false
+      disableFutureDate=disableFutureDate
+      validateEndDate=true
+      tabindex=tabindex
+      isActivity=true
+    }}
+    </div>
+  </div>
+  {{#if enableVideoConference}}
+  <div class="video-time-card">
+    {{cards/gru-video-conference-card isScheduled=true hasVideoConference=hasVideoConference tabindex=tabindex onToggleCheckbox="onToggleCheckbox" onAddActivity="onAddSheduledActivity" activitiesList=activitiesList activityId =activityId activityStartDate=startDate activityEndDate=endDate primaryClass = primaryClass}}
+  </div>
+  {{else}}
+  <div class="submit-btn {{unless allowTwoDateRangePicker 'hidden'}} {{unless isValid 'disable'}}" onclick={{action 'submitDate'}} onkeypress={{action 'submitDate'}} tabindex={{tabindex}}>
+    <span>{{t 'oa.add_activity'}}</span>
+  </div>
+  {{/if}}
+
+</div>
+
+
+{{#if isConferenceAllow}}
+    {{cards/gru-video-authorize-card onDeny="onDeny" onAllow="onAllow"}}
+{{/if}}

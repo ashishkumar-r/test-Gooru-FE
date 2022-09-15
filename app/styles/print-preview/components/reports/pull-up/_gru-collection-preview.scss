@@ -1,0 +1,536 @@
+.gru-class-navbar,
+.gru-header {
+  display: none !important;
+}
+
+// .panel-header {
+//   display: none;
+// }
+.student-proficiency-container {
+  grid-template-columns: none !important;
+
+  .panel-container {
+    // display: none !important;
+  }
+
+  .pull-up-container {
+    .domain-list {
+      display: none !important;
+
+      .domain-info-pull-up {
+        display: none !important;
+      }
+    }
+
+    .competency-info-pull-up {
+      position: unset !important;
+
+      .signature-content-container {
+        .signature-content {
+          display: none !important;
+        }
+      }
+
+      .competency-info-content {
+        .header-tab-panel {
+          display: none !important;
+        }
+
+        .panel-content {
+          .student-journey {
+            .heading {
+              display: none !important;
+            }
+
+            .collections-accordion {
+              .collection-panel {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.teacher.class-activities {
+  display: none !important;
+
+  .ca-unschedule-items-list-container {
+    display: none !important;
+  }
+
+  .teacher-class-search-content-pull-up {
+    display: none !important;
+  }
+}
+
+.controller.search .collection-results,
+.teacher.course-map {
+  display: none !important;
+}
+
+.partner-library {
+  .side-panel {
+    display: none !important;
+  }
+  .content {
+    .partner-library-content,
+    .dropdown.nav_dropdown,
+    .content_outlet .controller.content-collections,
+    .controller.content-assessments {
+      display: none !important;
+    }
+  }
+}
+
+.controller.profile {
+  .content {
+    .user-profile-container,
+    .profile.gru-navigation-tabs,
+    .profile-content.content-navigation,
+    .filters,
+    .controller.content-assessments,
+    .controller.content-collections {
+      display: none !important;
+    }
+  }
+}
+
+.preview.gru-collection-preview {
+  top: 0 !important;
+  width: 100% !important;
+  position: absolute !important;
+
+  .preview-container {
+    background-color: $white !important;
+
+    .header-container {
+      display: none;
+    }
+
+    .body-container {
+      .content-info-container {
+        box-shadow: 0 0 4px 0 $container-box-shadow !important;
+
+        .title-info-container {
+          .thumbnail-container {
+            display: block !important;
+            background-repeat: no-repeat !important;
+            width: 80px !important;
+            height: 48px !important;
+            background-size: 80px 48px !important;
+          }
+
+          .content-title {
+            color: #545e66 !important;
+          }
+
+          .content-icon {
+            background-repeat: no-repeat !important;
+            display: block !important;
+
+            &.assessment,
+            &.assessment-external {
+              background-image: url("gooru/images/add_assessment.svg") !important;
+            }
+
+            &.collection,
+            &.collection-external {
+              background-image: url("gooru/images/add_collection.svg") !important;
+            }
+          }
+        }
+
+        .taxonomy-container {
+          .gru-taxonomy-tag-list {
+            .gru-taxonomy-tag {
+              background-color: $dark-gray !important;
+
+              .standard-tag {
+                .tag-label {
+                  color: $white !important;
+                }
+
+                .tag-caption {
+                  display: none !important;
+                }
+              }
+            }
+
+            .non-visible-tags {
+              background-color: $dark-gray !important;
+
+              span {
+                color: $white !important;
+              }
+            }
+          }
+        }
+      }
+
+      .content-items-container {
+        height: max-content;
+        overflow-y: auto;
+
+        .external-content {
+          *,
+          .content-description {
+            color: $gray-dove !important;
+            -webkit-line-clamp: unset !important;
+            max-height: unset !important;
+            text-overflow: unset !important;
+            overflow: visible !important;
+          }
+
+          .content-url {
+            .url-content,
+            .url-label {
+              color: $placeholder-color !important;
+
+              a[href]::after {
+                display: none !important;
+                visibility: none !important;
+              }
+            }
+          }
+        }
+
+        .question-preview-card,
+        .resource-preview-card {
+          .question-preview-container,
+          .resource-preview-container {
+            .question-title-container,
+            .resource-title-container {
+              .question-order,
+              .resource-order,
+              .title {
+                color: $placeholder-color !important;
+              }
+
+              .question-icon,
+              .resource-type {
+                background-repeat: no-repeat !important;
+                background-size: 16px 16px !important;
+              }
+            }
+
+            .resource-taxonomies-container,
+            .taxonomies-conatiner {
+              .gru-taxonomy-tag-list {
+                .gru-taxonomy-tag {
+                  background-color: $dark-gray !important;
+
+                  .standard-tag {
+                    .tag-label {
+                      color: $white !important;
+                    }
+                  }
+                }
+
+                .non-visible-tags {
+                  background-color: $dark-gray !important;
+
+                  span {
+                    color: $white !important;
+                  }
+                }
+              }
+            }
+
+            .question-description,
+            .resource-description-container {
+              -webkit-line-clamp: unset !important;
+              max-height: unset !important;
+              text-overflow: unset !important;
+              overflow: visible !important;
+            }
+
+            .resource-url-container {
+              .url-label {
+                color: $placeholder-color !important;
+              }
+
+              .url-content {
+                font-style: italic;
+
+                a {
+                  color: $placeholder-color !important;
+
+                  &[href]::after {
+                    display: none !important;
+                    visibility: none !important;
+                  }
+                }
+              }
+            }
+
+            .answer-container {
+              //FIB answer
+              .gru-fib {
+                .answer-panel {
+                  .fib-answers {
+                    *,
+                    .gru-math-text {
+                      p {
+                        color: $gray-dove !important;
+                      }
+                    }
+                  }
+                }
+
+                .sentence {
+                  *,
+                  .gru-math-text {
+                    p {
+                      color: $gray-dove !important;
+                    }
+                  }
+                }
+
+                .answer.correct {
+                  border-bottom: 1px solid #4f95f6 !important;
+
+                  *,
+                  .gru-math-text {
+                    color: #4f95f6 !important;
+                  }
+                }
+              }
+              //Hot-text highlight answer
+              .gru-hot-text-highlight {
+                p {
+                  span {
+                    color: $gray-dove !important;
+
+                    &.correct {
+                      background-color: #4f95f6 !important;
+                      color: $white !important;
+                    }
+                  }
+                }
+              }
+              //Multiple choice answer
+              .gru-multiple-choice {
+                .answer-choices {
+                  .radio {
+                    label {
+                      border: 1px solid $label-border-color !important;
+
+                      .text {
+                        *,
+                        .gru-math-text p {
+                          color: $placeholder-color !important;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                .multiple-choices {
+                  li {
+                    border: 1px solid $label-border-color !important;
+
+                    *,
+                    .gru-math-text {
+                      p {
+                        color: $placeholder-color !important;
+                      }
+                    }
+
+                    &.correct-answer {
+                      .answer-text {
+                        *,
+                        .gru-math-text {
+                          color: #3c99f7 !important;
+
+                          p {
+                            color: #3c99f7 !important;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              //Multiple Answer
+              .gru-multiple-answer {
+                .answer-choices {
+                  .table {
+                    thead {
+                      tr {
+                        th {
+                          border: none !important;
+                        }
+                      }
+                    }
+
+                    tbody {
+                      tr {
+                        border: 1px solid $label-border-color !important;
+
+                        td {
+                          &.answer-text {
+                            *,
+                            .gru-math-text {
+                              p {
+                                color: $placeholder-color !important;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+
+                ul.multiple-answers {
+                  li {
+                    border-right: 1px solid $label-border-color !important;
+                    border-top: 1px solid $label-border-color !important;
+
+                    &:last-child {
+                      border-bottom: 1px solid $label-border-color !important;
+                    }
+
+                    &.header {
+                      border: none !important;
+
+                      .column {
+                        color: $placeholder-color !important;
+                      }
+                    }
+
+                    .answer-text {
+                      *,
+                      .gru-math-text {
+                        p {
+                          color: #4f95f6 !important;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              //True or False
+              .gru-true-false {
+                .answer-choices {
+                  .radio {
+                    border: 1px solid $label-border-color !important;
+
+                    label {
+                      color: $placeholder-color !important;
+                    }
+                  }
+                }
+
+                ul {
+                  li {
+                    border: 1px solid $label-border-color !important;
+
+                    .answer-text {
+                      color: $placeholder-color !important;
+
+                      &.correct-answer-text {
+                        color: #4f95f6 !important;
+                      }
+                    }
+                  }
+                }
+              }
+              //Hotspot text
+              .gru-hs-text {
+                .answer-choices.hs-text {
+                  ul {
+                    li.answer {
+                      border: 1px solid $label-border-color !important;
+
+                      *,
+                      .gru-math-text {
+                        p {
+                          color: $placeholder-color !important;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                ul.hs-texts {
+                  li {
+                    border: 1px solid $label-border-color !important;
+
+                    .text {
+                      *,
+                      .gru-math-text {
+                        p {
+                          color: $placeholder-color !important;
+                        }
+                      }
+                    }
+
+                    &.selected.correct {
+                      border: 1px solid #3c99f7 !important;
+
+                      .text {
+                        *,
+                        .gru-math-text {
+                          p {
+                            color: #3c99f7 !important;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              //Re-Order question
+              .gru-reorder {
+                .answer-choices {
+                  ul.sortable {
+                    li.ui-sortable-handle {
+                      border: 1px solid $label-border-color !important;
+
+                      div {
+                        *,
+                        .gru-math-text {
+                          p {
+                            color: $placeholder-color !important;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+
+                ul {
+                  li {
+                    .correct {
+                      &::before {
+                        content: "\F0C9" !important;
+                        color: #4f95f6 !important;
+                      }
+                    }
+
+                    .answer-text {
+                      *,
+                      .gru-math-text {
+                        p {
+                          color: #4f95f6 !important;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer-container {
+      display: none;
+    }
+  }
+}

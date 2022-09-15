@@ -1,0 +1,86 @@
+<div class="proficiency-pull-up">
+  <div class="header">
+    <div class="left-panel">
+      <div class="avatar" style="background-image: url({{student.avatarUrl}});"></div>
+    </div>
+    <div class="right-panel">
+      <div class="student-info ellipsis">
+        {{studentFullName}}
+      </div>
+      {{#if selectedCategory}}
+        <div class="taxonomy-info">
+          <div class="dropdown categories">
+            <div class="active-item active-category">
+              <div class="label ellipsis">{{selectedCategory.title}}</div>
+            </div>
+          </div>
+
+          <div class="dropdown subjects">
+            <div class="active-item active-subject">
+              <div class="label ellipsis">{{activeSubject.title}}</div>
+              <div class="icon">{{gru-icon name="arrow_drop_down"}}</div>
+            </div>
+            <div class="dropdown-content subject-list">
+              {{#each taxonomySubjects as |subject|}}
+                <div class="list-item subject {{if (eq activeSubject.id subject.id) 'active'}}" {{action "onSelectSubject" subject}}>{{subject.title}}</div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="body">
+    {{#if isShowMatrixChart}}
+      <div class="proficiency-chart">
+        {{proficiency/learner-proficiency-domain-matrix
+          subjectBucket=subjectBucket
+          timeLine=timeLine
+          userId=student.id
+          subject=activeSubject
+          class=class
+          onShownBaseLine="onShownBaseLine"
+          onSelectCompetency="onSelectCompetency"
+          isShowLoaderSet="isShowLoaderSet"
+        }}
+      </div>
+      <div class="proficiency-tags">
+        <div class="proficiency-legends">
+          <div class="mastered legend">
+            <span class="box"></span>
+            <span class="title">{{t 'profile.proficiency.mastered'}}</span>
+          </div>
+          <div class="in-progress legend">
+            <span class="box"></span>
+            <span class="title">{{t 'profile.proficiency.in-progress'}}</span>
+          </div>
+          <div class="not-started legend">
+            <span class="box"></span>
+            <span class="title">{{t 'profile.proficiency.not-started'}}</span>
+          </div>
+          <div class="skyline legend">
+            <span class="box-skyline"></span>
+            <span class="title">{{t 'profile.proficiency.skyline'}}</span>
+          </div>
+          <div class="baseline legend">
+            <span class="box-baseline"></span>
+            <span class="title">{{t 'profile.proficiency.baseline'}}</span>
+          </div>
+          <div class="grade-line legend">
+            <span class="box-grade-line"></span>
+            <span class="title">{{t 'profile.proficiency.grade-line'}}</span>
+          </div>
+        </div>
+      </div>
+      {{#if isShowTimeSeries}}
+        <div class="time-series-container">
+          {{charts/monthly-time-series-chart onSelectMonth="onSelectMonth" startDate=timeSeriesStartDate}}
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="not-tagged">
+        {{t 'profile.proficiency.not-tagged'}}
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="add-learner-card-container" role="link" aria-label={{content.title}}>
+  <div class="content-info-container {{if isShowTaxonomyTag 'has-competency-code'}}">
+    <div class="content-thumbnail" style="background-image: url({{content.thumbnailUrl}})" onclick={{action "onShowContentPreview"}}  onkeypress={{action "onShowContentPreview"}} tabindex={{tabindex}}></div>
+    <div class="content-title">
+      <div class="title-text" onkeypress={{action "onShowContentPreview"}}  onclick={{action "onShowContentPreview"}} tabindex={{tabindex}}>{{content.title}}</div>
+      <div class="content-counts">
+        {{#if isOfflineActivity}}
+          <div class="task-count content-count">
+            <span class="content-value">{{content.taskCount}}</span>
+            <span class="content-icon">{{t 'common.tasks'}}</span>
+          </div>
+        {{else}}
+          {{#if (eq contentType 'collection-external')}}
+            {{t 'common.external-collection'}}
+          {{else if (eq contentType 'assessment-external')}}
+            {{t 'common.external-assessment'}}
+          {{else}}
+            <div class="resource-count content-count {{if isAssessment 'hidden'}}">
+              <span class="content-value">{{content.resourceCount}}</span>
+              <span class="content-icon">{{t 'common.resources'}}</span>
+            </div>
+            <div class="question-count content-count">
+              <span class="content-value">{{content.questionCount}}</span>
+              <span class="content-icon">{{t 'common.questions'}}</span>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+    {{#if (or (eq contentType 'assessment-external') (eq contentType 'collection-external'))}}
+      <i class="{{contentType}}-icons"></i>
+    {{/if}}
+  </div>
+</div>

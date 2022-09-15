@@ -1,0 +1,10 @@
+
+<div id="likert-bar-chart" class="likert-bar-chart"></div>
+{{#if isEmptyContent}}
+<div class="student-not-answered">{{t 'student-not-answered-question'}}</div>
+{{/if}}
+
+
+{{#if isUserReport}}
+  {{reports/pull-up/likert-user-report onClosePullUp="onClosePullUp" showPullUp=isUserReport context= userContext scalePoint = isUserQuestionData tabindex=tabindex}}
+{{/if}}

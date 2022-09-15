@@ -1,0 +1,85 @@
+<div class="confirm-profile-merge">
+{{#if isShowLinkAccount}}
+  <div class="back-drop"></div>
+  <div class="gardian-request">
+    <div class="title">{{t 'link-your-account'}}</div>
+    <div class="list-accounts">
+      <div class="profile">
+        <img class="img-responsive" src="{{consolidateUserProfiles.originatorThumbnail}}" alt="originator Thumbnail">
+      </div>
+      <div class="details">
+        <div class="name">{{consolidateUserProfiles.originatorFullName}}</div>
+        <div class="email">
+          {{if consolidateUserProfiles.originatorEmail consolidateUserProfiles.originatorEmail (if consolidateUserProfiles.originatorUsername consolidateUserProfiles.originatorUsername consolidateUserProfiles.originatorFirstName)}}
+        </div>
+      </div>
+    </div>
+    <div class="list-accounts">
+      <div class="profile">
+        <img class="img-responsive" src="{{consolidateUserProfiles.thumbnail}}" alt="User Profiles Thumbnail">
+      </div>
+      <div class="details">
+        <div class="name">{{consolidateUserProfiles.fullName}}</div>
+        <div class="email">
+          {{if consolidateUserProfiles.email consolidateUserProfiles.email (if consolidateUserProfiles.username consolidateUserProfiles.username consolidateUserProfiles.firstName)}}
+        </div>
+      </div>
+    </div>
+    <div class="para-one">{{t 'profiles-really-you'}}</div>
+    <div class="next-btn">
+      <button type="button" name="button" class="maybe-later" {{action 'onReject' consolidateUserProfiles.id}}>{{t 'not-me'}}</button>
+      <button type="button" name="button" class="link-accounts" {{action 'onConfirm'}}>{{t 'yes-link-account'}}</button>
+    </div>
+  </div>
+{{/if}}
+
+{{#if isConfirm}}
+  <div class="back-drop"></div>
+  <div class="confirm-request">
+    <div class="title">{{t 'id-linked'}}</div>
+    <div class="profile">
+      <img class="img-responsive" src="/assets/gooru/profile.png" alt="profileImage">
+      <i class="gru-icon done_all material-icons img-1">done_all</i>
+      <i class="gru-icon done_all material-icons img-2">done_all</i>
+      <span class="material-icons link">link</span>
+      <div class="no-image">
+        <img class="img-responsive default-img" src="{{consolidateUserProfiles.thumbnail}}" alt="User Profiles Thumbnail">
+      </div>
+    </div>
+    <div class="para-one">{{t 'gooru-better'}}</div>
+    <div class="next-btn">
+      <button type="button" name="button" class="dismiss" {{action 'onClosePullup'}}>{{t 'common.dismiss'}}</button>
+    </div>
+  </div>
+{{/if}}
+{{#if isReject}}
+  <div class="back-drop"></div>
+  <div class="reject-request">
+    <div class="title">{{t 'letting-us-know'}}</div>
+    <div class="profile">
+      <div class="no-image image">
+        <img class="img-responsive default-img" src="{{consolidateUserProfiles.originatorThumbnail}}" alt="originator Thumbnail">
+      </div>
+      <span class="material-icons clear">clear</span>
+      <div class="no-image">
+        <img class="img-responsive default-img" src="{{consolidateUserProfiles.thumbnail}}" alt="User Profiles Thumbnail">
+      </div>
+    </div>
+    <div class="next-btn">
+      <button type="button" name="button" class="maybe-later" {{action 'onClosePullup'}}>{{t 'common.dismiss'}}</button>
+    </div>
+  </div>
+{{/if}}
+{{#if isLinkExpired}}
+  <div class="back-drop"></div>
+  <div class="link-expired">
+    <div class="title">{{t 'link-expired'}}</div>
+    <div class="para-one">{{t 'link-expired-para-one'}}</div>
+    <div class="para-two">{{t 'link-expired-para-two'}}</div>
+    <div class="next-btn">
+      <button type="button" name="button" class="maybe-later" {{action 'onClosePullup'}}>{{t 'common.dismiss'}}</button>
+      <button type="button" name="button" class="link-accounts" {{action 'linkAccount'}}>{{t 'link-account'}}</button>
+    </div>
+  </div>
+{{/if}}
+</div>

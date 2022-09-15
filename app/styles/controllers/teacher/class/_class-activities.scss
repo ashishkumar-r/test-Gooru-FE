@@ -1,0 +1,112 @@
+.teacher_class_class-activities {
+  overflow: hidden;
+  .teacher.class {
+    .content {
+      .class-activities-ctrl-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .ca-datepicker-schedule-container {
+          position: absolute;
+          z-index: 1000;
+        }
+        @media screen and (max-width: $screen-sm) {
+          width: 100vw;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto;
+        }
+        @media screen and (max-width: $screen-xs) {
+          .left-panel {
+            width: 100vw;
+            background-color: $table-bg;
+          }
+        }
+
+        .go-live-panel {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          z-index: 20;
+        }
+
+        &.archived-class {
+          .right-panel {
+            .gru-class-activities-adding-layout {
+              .panel-layout-section {
+                .gru-class-activities-adding-layout-container {
+                  .gru-class-activities-content-section {
+                    .gru-class-activities-default-adding-view {
+                      .default-adding-view-container {
+                        .new-cards {
+                          .add-content-card-container {
+                            .content-info-container {
+                              .schedule-activity {
+                                opacity: 0.5;
+                                cursor: not-allowed;
+                                pointer-events: none;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.back-drop {
+  z-index: 10 !important;
+}
+
+.ca-pullup-container {
+  position: absolute;
+  width: 100%;
+  height: auto;
+
+  .section-container {
+    width: 360px;
+    height: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 -2px 4px 2px $box-shadow-bg-color;
+    background-color: $white-bold;
+    z-index: 11;
+    position: relative;
+    margin: 15rem auto;
+    @media screen and (max-width: $screen-sm) {
+      margin: 5rem auto;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 200;
+      text-align: center;
+      color: $dark-400;
+    }
+
+    .description {
+      font-size: 18px;
+      font-weight: 200;
+      text-align: center;
+      color: $dark-400;
+    }
+
+    .close-btn {
+      button {
+        width: 119px;
+        height: 40px;
+        margin: 28px 89px 0 87px;
+        border: solid 1px $nobel-gray;
+        background-color: $white-bold;
+        outline: none;
+      }
+    }
+  }
+}

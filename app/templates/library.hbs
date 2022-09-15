@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card-container">
+    {{#if (and (not session.isAnonymous)  (eq session.role 'teacher'))}}
+      {{#link-to "library-search" (query-params type="my-content" profileId=session.userId isDeepLink=isDeepLink) title="my-content-search" tabindex=51}}
+        <div class="card-panel">
+          <div class="title">{{t 'my-content'}}</div>
+          <i class="image my-content"></i>
+        </div>
+      {{/link-to}}
+    {{/if}}
+    {{#if showGooruCatalog}}
+      {{#link-to "library-search" (query-params type="gooru-catalog" isDeepLink=isDeepLink)  title="gooru-catalog-search" tabindex=51}}
+        <div class="card-panel">
+          <div class="title">{{t 'common.gooru-catalog'}}</div>
+          <i class="image catalog"></i>
+        </div>
+      {{/link-to}}
+    {{/if}}
+  </div>
+  <div class="partner-libraries">
+    <div class="heading"><span>{{t 'featured-libraries'}}</span></div>
+    <div class="libraries-container">
+      {{#each libraries as |library index|}}
+        {{library/gru-partner-library-card content=library tabindex=(plus-any index 52)}}
+      {{/each}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+.teacher_class_class-management {
+  @media print {
+    @page {
+      size: landscape;
+    }
+  }
+
+  .class {
+    padding: 0;
+
+    .content {
+      .class-settings {
+        padding: 0;
+
+        .sec-col-layout {
+          .left-panel {
+            margin: 0;
+
+            .class-layout,
+            .class-layout-btn,
+            .view-mulitple-class-layout {
+              display: none;
+            }
+
+            .assessment-template-layout {
+              .template-sec-cont {
+                .assessment-template-label {
+                  display: none;
+                }
+
+                .assessment-template-sec {
+                  .info-msg,
+                  .sec-title {
+                    display: none;
+                  }
+
+                  .gru-i2d-template {
+                    .i2d-template-container {
+                      button {
+                        display: none;
+                      }
+
+                      .i2d-table-template {
+                        display: table;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .right-panel {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

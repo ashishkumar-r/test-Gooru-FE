@@ -1,0 +1,51 @@
+<div role="timer" class="timer-container" aria-label="timer">
+  <div class="title" onmouseup={{action "timerExpanded" isExpanded}} onkeypress={{action "timerExpanded" isExpanded}} tabindex={{tabindex}}>
+    <div class="icon">
+      {{gru-icon name='access_time'}}
+    </div>
+    <div class="text">
+      {{t "timer.study-timer"}}
+    </div>
+    <div class="active-icon {{if isPlayer 'blink'}}"></div>
+    <div class="close-icon" {{action "closeStudyTimer"}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+  <div class="timespent-info">
+    <ul>
+      <li class="totalStudyTime">
+        <span class="icon"></span>
+        <span class="time">
+          {{#if totalStudyTime}}
+            {{format-time totalStudyTime}}
+          {{else}}
+            --
+          {{/if}}
+        </span>
+        <span class="time-titel">{{t 'study-timer.studied-today'}}</span>
+      </li>
+      <li class="collection-timespent">
+        <span class="collection icon"></span>
+        <span class="time">
+          {{#if totalCollectionTimespent}}
+            {{format-time totalCollectionTimespent}}
+          {{else}}
+            --
+          {{/if}}
+        </span>
+        <span class="time-titel">{{t 'common.collection'}}</span>
+      </li>
+      <li class="assessment-timespent">
+        <span class="assessment icon"></span>
+        <span class="time">
+          {{#if totalAssessmentTimespent}}
+            {{format-time totalAssessmentTimespent}}
+          {{else}}
+            --
+          {{/if}}
+        </span>
+        <span class="time-titel">{{t 'study-timer.assessment'}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="controller analytics collection student">
+  <div class="row">
+    {{#if showBackLink}}
+      <div class="col-sm-12 navigation">
+        <button {{action 'goBack'}} class="btn btn-info back">
+          <span>
+            {{gru-icon name='keyboard_arrow_left'}}
+            {{#if lesson}}
+              {{#if isStudent}}
+                {{t 'common.back-to-data'}}
+              {{else}}
+                {{t (if backUrl 'common.back-to-data' 'common.back-to-course-map')}}
+              {{/if}}
+            {{else}}
+              {{t 'common.back'}}
+            {{/if}}
+          </span>
+        </button>
+      </div>
+    {{/if}}
+    <div class="col-sm-12">
+      {{#if assessmentResult}}
+        {{reports/gru-assessment-report
+          areAnswersHidden=areAnswersHidden
+          isAnswerKeyHidden=isAnswerKeyHidden
+          assessmentResult=assessmentResult
+          onSelectAttempt='selectAttempt'
+          onViewOEReport='viewOEReport'
+          profile=profile
+          isTeacher=isTeacher
+          onUpdateQuestionScore='onUpdateQuestionScore'
+          isChangeScoreEnabled=isChangeScoreEnabled
+          showChangeScore=showChangeScore
+          isAssessment=isAssessment
+          isShowExemplarText=showExemplarText
+        }}
+      {{else}}
+        {{t 'common.no-available-results'}}
+      {{/if}}
+    </div>
+  </div>
+</div>

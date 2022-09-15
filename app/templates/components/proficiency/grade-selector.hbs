@@ -1,0 +1,57 @@
+<div class="grade-selector-container">
+  <div class="dropdown grade {{if disableHeader 'disable-event'}}">
+    <button class="dropbtn btn-dropdown" type="button" data-toggle="dropdown">
+      <span>{{t 'grade-selector.placeholder'}}</span>
+      {{#if (not disableHeader)}}
+      <span class="caret"></span>
+      {{/if}}
+    </button>
+    <ul class="dropdown-menu gradeData">
+      {{#each taxonomyGrades as |taxonomyGrade|}}
+      <li>
+        <label class="{{if (eq activeGrade.id taxonomyGrade.id) 'active'}}" {{action 'selectGrade' taxonomyGrade}}>
+          <span>
+            {{taxonomyGrade.grade}}
+          </span>
+          <span>
+            {{#if taxonomyGrade.isClassGrade}}
+            ({{t 'profile.proficiency.class-grade-line'}})
+            {{/if}}
+          </span>
+        </label>
+      </li>
+      {{/each}}
+      <!---Currently not supporting baseline support-->
+      <li class="hidden"><label>{{input type="checkbox" aria-checked="false" checked=isSelectBaseLine click=(action
+          'onToggleBaseline')}}<span class="baseline-label" {{action 'onToggleBaseline' }}>{{t
+            'profile.proficiency.baseline'}}</span></label></li>
+    </ul>
+  </div>
+  {{#if activeGrade}}
+  <div class="active-grade-list {{if disableHeader 'disable-event'}}">
+    <div role="button" class="active-grade">
+      <span class="ellipsis" data-toggle="tooltip" title={{activeGrade.grade}} aria-label="{{activeGrade.grade}}">
+        {{if studentGradeLevel studentGradeLevel activeGrade.grade}}
+        {{#if activeGrade.isClassGrade}}
+        ({{t 'common.destination'}})
+        {{/if}}
+      </span>
+      {{#if (not disableHeader)}}
+      <span aria-label="close" {{action 'onCloseGrade' activeGrade}}>{{gru-icon name="close"}}</span>
+      {{/if}}
+    </div>
+    {{#if isSelectBaseLine}}
+    <div class="active-grade"><span class="ellipsis" data-toggle="tooltip" title={{t 'profile.proficiency.baseline'
+        }}>{{t
+        'profile.proficiency.baseline'}}</span><span {{action 'onToggleBaseline' }}>{{gru-icon name="close"}}</span>
+    </div>
+    {{/if}}
+  </div>
+  {{/if}}
+  <div class="grade-selector-download-button-container">
+    <a class="print-preview" href="javascript:void(0)" tabindex="{{tabindex}}" title="{{t 'common.download'}}"
+      data-toggle="tooltip" {{action "onDownloadCSV" }}>
+      {{gru-icon name="download_for_offline"}}
+    </a>
+  </div>
+</div>

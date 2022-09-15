@@ -1,0 +1,619 @@
+.inspect.student-domain-competency-performance {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-gap: 10px;
+  height: calc(100vh - 120px);
+
+  .inspect-competency {
+    .competency-info-pull-up {
+      &.open {
+        height: 385px;
+      }
+
+      &.expand {
+        height: calc(100% - 100px);
+      }
+    }
+  }
+
+  .domain-right-panel {
+    position: relative;
+    height: inherit;
+
+    .domain-info-pull-up {
+      .domain-panel-header {
+        display: none;
+      }
+    }
+
+    .competency-info-pull-up {
+      .body {
+        .learning-map-content {
+          .activity-list-pull-up {
+            height: 100%;
+
+            .activity-list {
+              .activity-list-body {
+                height: 70vh;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .domain-competency-performance-container {
+    padding-left: 15px;
+    height: inherit;
+    background-color: $white;
+
+    .performance-header-container {
+      border-bottom: 1px solid;
+
+      .domain-details {
+        display: grid;
+        border-bottom: 1px dashed $white;
+
+        .domain-info {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          justify-self: left;
+          width: 100%;
+
+          .back-arrow {
+            cursor: pointer;
+
+            i {
+              color: $dark-400;
+              font-size: 20px;
+              font-weight: bold;
+            }
+          }
+
+          .domain-name {
+            color: $dark-400;
+            font-size: 20px;
+            font-weight: bold;
+          }
+        }
+
+        .center-content {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          justify-content: center;
+          @media screen and (max-width: $screen-xs) {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+          }
+
+          .move-left,
+          .move-right {
+            display: flex;
+
+            &.disabled {
+              opacity: 0.3;
+              pointer-events: none;
+            }
+
+            i {
+              font-size: 45px;
+              color: $dark-400;
+              cursor: pointer;
+              @media screen and (max-width: $screen-sm - 1) {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .performance-body-container {
+      background-color: $white;
+      display: grid;
+      overflow-x: auto;
+      grid-template-columns: auto auto;
+      justify-content: left;
+      height: calc(100% - 46px);
+      grid-template-rows: 70px auto;
+
+      @media screen and (max-width: 680px) {
+        height: calc(100% - 80px);
+      }
+      .table-relative-column {
+        position: sticky;
+        z-index: 1;
+        background-color: $white;
+        left: 0;
+      }
+
+      .table-fixed-column {
+        position: absolute;
+      }
+
+      .table-scroll-column {
+        margin-left: 10px;
+        @media screen and (max-width: 768px) {
+          margin-left: 50px;
+        }
+      }
+
+      .table-scroll-column-moving {
+        margin-left: 0;
+      }
+
+      .topic-label {
+        color: $dark-400;
+        font-size: 13px;
+        font-weight: bold;
+        height: 30px;
+        line-height: 30px;
+        width: 200px;
+        grid-column-start: 1;
+        grid-row: 1;
+        background: $white;
+        height: 70px;
+        padding-right: 15px;
+        left: 0;
+        position: sticky;
+        &.fixed-container {
+          position: absolute;
+          z-index: 99;
+        }
+      }
+
+      .competencies-info {
+        display: flex;
+        grid-column: 2;
+        grid-row: 1;
+
+        .topic-coverage {
+          display: grid;
+
+          .topic-seq {
+            text-align: center;
+            color: $dark-400;
+            font-size: 13px;
+            font-weight: bold;
+            border-bottom: 1px solid $dark-400;
+            width: 95%;
+            height: 30px;
+            line-height: 30px;
+          }
+
+          .topic-competencies {
+            display: flex;
+          }
+        }
+
+        .competency-info {
+          height: 40px;
+          width: 40px;
+          display: grid;
+
+          .info-icon {
+            width: 40px;
+            height: 40px;
+            background-size: 20px 20px;
+            background-image: url("gooru/info-outline-light-gray.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &.show-competency {
+        .competencies-info {
+          .competency-info {
+            .info-icon {
+              opacity: 0.3;
+            }
+
+            &.active .info-icon {
+              opacity: 1;
+            }
+          }
+        }
+
+        .students-competencies-performance-container {
+          .student-competencies-perf-container {
+            .competencies-performance-container {
+              .competency-performance {
+                opacity: 0.3;
+
+                &.active {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .students-competencies-performance-container {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row: 2;
+
+        .student-competencies-perf-container {
+          display: grid;
+          grid-template-columns: 200px auto;
+
+          &.fixed-container {
+            position: relative;
+
+            .students-list {
+              position: absolute;
+              z-index: 99;
+              background-color: $white;
+
+              .student-container {
+                width: 200px;
+              }
+            }
+
+            .competencies-list {
+              margin-left: 10px;
+            }
+          }
+
+          .student-container {
+            display: grid;
+            grid-template-columns: 35px auto;
+            align-items: center;
+            border-bottom: 1px solid $student-container;
+            height: 40px;
+
+            &:first-child {
+              border-top: 1px solid $student-container;
+            }
+
+            .user-profile-img {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .selected-user-for-suggestion {
+                width: 29px;
+                background: $tan-hide;
+                border-radius: 50%;
+                line-height: 19px;
+                box-shadow: 0 0 7px 0 $box-shadow-bg-color;
+                color: $white;
+                height: 29px;
+
+                .done_all {
+                  position: relative;
+                  top: 3px;
+                  left: 3px;
+                }
+
+                .de-select-user {
+                  position: relative;
+                  top: -29px;
+                  width: 29px;
+                  height: 29px;
+                  background: $box-shadow-bg-color;
+                  border-radius: 50%;
+                  line-height: 19px;
+                  visibility: hidden;
+                  opacity: 0;
+                  transition: opacity 0.3s, visibility 0.3s;
+
+                  .close {
+                    font-size: 16px;
+                    margin-right: 6px;
+                    margin-top: 3px;
+                  }
+                }
+
+                &:hover {
+                  .de-select-user {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: opacity 0.3s, visibility 0.3s;
+                  }
+                }
+              }
+
+              img {
+                width: 29px;
+                border-radius: 50%;
+                border-color: $table-bg;
+                height: 29px;
+
+                &.selected {
+                  visibility: hidden;
+                }
+              }
+            }
+
+            .student-name {
+              color: $dark-400;
+              $font-size: 14px;
+              $line-height: 1.3;
+              text-transform: capitalize;
+              $lines-to-show: 2;
+              @include ellipsis(
+                $font-size: $font-size,
+                $line-height: $line-height,
+                $lines-to-show: $lines-to-show
+              );
+            }
+          }
+
+          .competencies-list {
+            &.disable-student-performance {
+              .competencies-performance-container {
+                .competency-performance {
+                  .check-circle {
+                    &.status-0,
+                    &.status-1,
+                    &.status-2,
+                    &.status-3,
+                    &.status-4,
+                    &.status-5 {
+                      background-color: $gray-no-started;
+                      background-image: unset;
+                    }
+                  }
+                }
+              }
+            }
+
+            .competencies-performance-container {
+              display: flex;
+              width: max-content;
+
+              .competency-performance {
+                min-height: 40px;
+                width: 40px;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                .check-circle {
+                  height: 39px;
+                  width: 39px;
+                  background-size: 20px 20px;
+                  background-position: center;
+                  background-repeat: no-repeat;
+
+                  &.status-0 {
+                    background-color: $gray-no-started;
+                    // background-image: url('gooru/images/check-circle-0.svg');
+                  }
+
+                  &.status-1 {
+                    background-color: $blue-in-progress;
+                    background-image: url("gooru/images/check-circle-mastered.svg");
+                  }
+
+                  &.status-2,
+                  &.status-3,
+                  &.status-4,
+                  &.status-5 {
+                    background-color: $blue-mastery;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-image: url("gooru/images/check-circle-mastered.svg");
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &::-webkit-scrollbar {
+          height: 6px;
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $gray-light;
+          border: 1px solid $gray-light;
+          border-radius: 5px;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $gray-light;
+        border: 1px solid $gray-light;
+        border-radius: 5px;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      .performance-header-container {
+        .competency-performance-chartlist {
+          .domain-scroll-controller {
+            .move-left,
+            .move-right {
+              &:focus,
+              &:hover {
+                background-color: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 481px) {
+      .performance-header-container {
+        padding: 5px;
+      }
+
+      .performance-body-container {
+        padding: 5px;
+      }
+    }
+
+    @media screen and (max-width: $screen-568) {
+      .performance-body-container {
+        .students-container {
+          .student-container {
+            .student-name {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+      .performance-header-container {
+        min-height: unset;
+
+        .domain-details {
+          border-bottom: none;
+
+          .competency-count {
+            margin-top: 7px;
+          }
+
+          .domain-info {
+            .back-arrow {
+              margin-top: 8px;
+            }
+          }
+        }
+
+        .competency-performance-chartlist {
+          display: none;
+        }
+      }
+    }
+
+    @media screen and (max-width: $screen-xs) {
+      .performance-header-container {
+        .domain-details {
+          .domain-info {
+            .domain-name {
+              margin: auto;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $screen-sm - 1) {
+      .performance-header-container {
+        .domain-details {
+          .domain-info {
+            .domain-name {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      .performance-body-container {
+        grid-template-columns: 150px auto;
+        padding: 0;
+      }
+    }
+  }
+
+  .gru-pull-out {
+    .pull-out-less-content-container {
+      .pull-out-content {
+        padding: 0 5px 5px;
+        width: inherit;
+
+        .learning-map-content {
+          width: inherit;
+
+          .activity-list-pull-up {
+            width: inherit;
+            right: unset;
+            height: calc(100% - 100px);
+
+            .activity-list {
+              .activity-list-body {
+                height: calc(90vh - 10px);
+
+                .activity-contents {
+                  grid-template-columns: unset;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-767) {
+  .inspect.student-domain-competency-performance {
+    grid-template-columns: 100%;
+
+    .domain-competency-performance-container {
+      padding: 0;
+    }
+
+    .domain-right-panel {
+      display: none;
+    }
+  }
+}
+
+.class-container-report {
+  display: flex;
+  margin-bottom: 5px;
+
+  .search-input-container {
+    display: flex;
+    position: relative;
+    border: none;
+
+    @media screen and (max-width: $screen-xs) {
+      width: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    #studentDomainLocal {
+      -webkit-appearance: none;
+      outline: none;
+      border-radius: 5px;
+      width: 219px;
+      height: 38px;
+      text-indent: 10px;
+      margin-top: 4px;
+      margin-bottom: 3px;
+      margin-left: 5px;
+      cursor: text;
+      font-size: inherit;
+
+      @media screen and (max-width: $screen-xs) {
+        width: 100%;
+      }
+    }
+
+    .custom-search-icon {
+      width: 16px;
+      height: 17px;
+      color: $gray;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      margin-top: -6px;
+      margin-right: 15px;
+
+      .search {
+        font-size: 24px;
+        margin-top: 16px;
+      }
+    }
+  }
+}

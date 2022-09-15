@@ -1,0 +1,110 @@
+<div class="header">
+  <h2>{{t "common.settings"}}</h2>
+  {{#if model.isAssessment}}
+    {{gru-tour steps=assessmentSettingSteps containerClass='assessment-settings-tour'}}
+  {{/if}}
+</div>
+{{#if model.isAssessment}}
+  <div class="panel panel-default disable-setting out-of-scope">
+    <div class="panel-heading">
+      <h3>{{t "gru-settings-edit.disable-heading"}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="setting">
+        {{gru-icon name="lock_open"}}
+        <span>{{t "gru-settings-edit.disable-legend"}}</span>
+        {{gru-switch switchOptions=switchOptions onOptionSwitch='onClassroomPlayEnabledChange' isChecked=model.classroom_play_enabled tabindex=tabindex}}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default nav-score-settings">
+    <div class="panel-heading">
+      <h3><span>{{t "gru-settings-edit.navigation-scoring"}}</span></h3>
+    </div>
+    <div class="panel-body">
+      <div class="setting bidirectional">
+        {{gru-icon name="swap_horizontal"}}
+        <span>{{t "gru-settings-edit.backwards"}}</span>
+        {{gru-switch switchOptions=switchOptions onOptionSwitch='onBackwardsChange' isChecked=model.bidirectional tabindex=tabindex}}
+      </div>
+      <div class="setting feedback">
+        {{gru-icon name="check_circle"}}
+        <span>{{t "gru-settings-edit.feedback"}}</span>
+        <div class="feedback-options">
+          {{#each-in feedbackItems as |key value|}}
+            {{validation/gru-radio
+                    model=model
+                    groupValue=model.showFeedback
+                    valuePath=value
+                    name='showFeedback'
+                    translationPath=(concat 'gru-settings-edit.feedback-' value)
+                    onChange='onGenericChange'
+                    tabindex=tabindex
+                  }}
+          {{/each-in}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default key-attempts-settings">
+    <div class="panel-heading">
+      <h3><span>{{t "gru-settings-edit.answerkey-attempts"}}</span></h3>
+    </div>
+    <div class="panel-body">
+      <div class="setting answer-key">
+        {{gru-icon name="spellcheck"}}
+        <span>{{t "gru-settings-edit.answer-key"}}</span>
+        {{gru-switch switchOptions=switchOptions onOptionSwitch='onAnswerKeyChange' isChecked=model.showKey tabindex=tabindex}}
+      </div>
+      <div class="setting attempts">
+        {{gru-icon name="history"}}
+        <span>{{t "gru-settings-edit.attempts"}}</span>
+        {{validation/gru-select options=attemptsOptions optionSelected=model.attempts title=(t "common.select") search="true" onOptionSelect="onAttemptsChange" tabindex=tabindex}}
+      </div>
+    </div>
+  </div>
+{{/if}}
+<div class="panel panel-default visibility-settings">
+  <div class="panel-heading">
+    <h3><span>{{t "common.profile-publishing"}}</span>{{gru-icon-popover name="live_help" key= "settings-visibility"}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="setting publish-to">
+      {{gru-icon name="visibility"}}
+      <span>{{t "common.publish-to"}}</span>
+      {{gru-switch switchOptions=switchOptions onOptionSwitch='onGenericChange' isChecked=model.isVisibleOnProfile tabindex=tabindex}}
+    </div>
+    <div class="setting request-to out-of-scope">
+      {{gru-icon name="public"}}
+      <span>{{t "common.request-to"}}</span>
+      {{#if wasRequestSent}}
+        <button class="request btn {{if isRequestApproved 'btn-success btn-approved' 'btn-primary btn-pending'}}">{{if isRequestApproved (t "common.approved") (t "common.pending")}}</button>
+      {{else}}
+        <button class="request btn btn-primary btn-send-request" {{action 'sendRequest'}}>{{t "common.send-request"}}</button>
+      {{/if}}
+    </div>
+
+    <div class="language-section">
+      <label for="primary-language" class="primary-language">{{t 'select-primary-language'}}</label>
+      <div class="dropdown language-dropdown pull-left">
+        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span class="button-text">
+            {{#if selectedLanguage}}
+              {{selectedLanguage.display_name}}
+            {{else}}
+              {{t 'profile.preference.choose-language'}}
+            {{/if}}
+          </span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          {{#each languageList as |language|}}
+            <li> <a data-item={{language}} {{ action 'updateLanguage' language}}>{{language.display_name}} </a> </li>
+          {{else}}
+            <li> {{t 'profile.preference.no-data'}} </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

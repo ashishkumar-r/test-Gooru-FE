@@ -1,0 +1,373 @@
+.student-suggestion-container {
+  position: absolute;
+  width: 500px;
+  right: -1px;
+  background-color: $white;
+  top: 0;
+  height: auto;
+  @media only screen and (max-width: $screen-xs) {
+    width: 100%;
+  }
+
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .panel {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+
+    .header {
+      display: grid;
+      grid-template-columns: auto 160px;
+
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        text-align: center;
+        height: 50px;
+
+        .tab-item {
+          background-color: $white;
+          padding: 10px;
+          border-bottom: 5px solid $breadcrumb-color;
+          cursor: pointer;
+
+          .title {
+            opacity: 0.5;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: $gray-icon;
+            text-transform: capitalize;
+          }
+
+          &.active {
+            border-bottom: 5px solid $blue-400;
+
+            .title {
+              color: $blue-400;
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      .scope-filter-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        color: $scope-filter-container-color;
+        font-weight: bold;
+        position: relative;
+        margin: auto;
+        justify-content: center;
+
+        span {
+          height: 24px;
+          cursor: pointer;
+        }
+
+        .arrow_drop_down {
+          padding-top: 3px;
+          padding-left: 2px;
+          cursor: pointer;
+        }
+
+        .scope-filter-container-list {
+          position: absolute;
+          background: $white;
+          top: -3px;
+          z-index: 100;
+          box-shadow: 0 2px 7px 2px $disabled-bg-color;
+          visibility: hidden;
+          opacity: 0;
+          transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
+            z-index 0s linear 0.01s;
+
+          p {
+            padding: 0;
+            margin: 0;
+            font-weight: normal;
+            font-size: 15px;
+            padding: 5px 20px;
+
+            &.selected {
+              background-color: $dark-50;
+              font-weight: bold;
+            }
+
+            &:hover {
+              background-color: $dark-50;
+              cursor: pointer;
+            }
+          }
+
+          &.active {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s, 0s, 0.3s;
+          }
+        }
+      }
+    }
+
+    .suggested-contents {
+      width: 100%;
+      height: 100%;
+      box-shadow: rgb(248, 140, 73) 0 0;
+      margin-top: 8px;
+      max-height: calc(100vh - 125px);
+      overflow: auto;
+      min-height: 49px;
+
+      .show-more-results {
+        margin-top: 20px;
+        padding: 10px;
+      }
+
+      .message {
+        padding: 10px;
+        text-align: center;
+        font-size: 18px;
+        font-style: italic;
+      }
+
+      .three-bounce-spinner {
+        visibility: visible;
+      }
+
+      > .suggestion-panel:first-child {
+        border-top: 1px solid $breadcrumb-color;
+      }
+
+      .suggestion-panel {
+        display: inline-grid;
+        width: 100%;
+        grid-template-columns: 65px auto 100px 20px 45px 50px 49px;
+        height: 48px;
+        color: $bg-orange-400-dark;
+        border-bottom: 1px solid $breadcrumb-color;
+
+        &.hide {
+          display: none;
+        }
+
+        .icon {
+          display: inline-flex;
+
+          %icon-container {
+            width: 20px;
+            height: 20px;
+            min-height: 20px;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            opacity: 0.8;
+            justify-self: center;
+            margin: auto;
+            display: block;
+          }
+
+          i {
+            &.offlineactivity {
+              @extend %icon-container;
+              background-image: url("../assets/gooru/images/offline-orange.svg");
+            }
+
+            &.assessment {
+              @extend %icon-container;
+              background-image: url("../assets/gooru/images/assessment-orange.svg");
+            }
+
+            &.collection {
+              @extend %icon-container;
+              background-image: url("../assets/gooru/images/collection-orange.svg");
+            }
+          }
+        }
+
+        .title-info {
+          display: flex;
+          align-items: center;
+
+          p {
+            margin: 0;
+            font-family: "Open Sans";
+            color: $gray-29;
+            padding: 0 20px 0 0;
+            @include ellipsis(
+              $font-size: 15px,
+              $line-height: 1.5,
+              $lines-to-show: 1
+            );
+          }
+        }
+
+        %bg-container {
+          height: 25px;
+          width: 25px;
+          display: flex;
+          mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+          mask-position: center;
+          justify-self: center;
+          -webkit-mask-size: contain;
+          mask-size: contain;
+          -webkit-mask-repeat: no-repeat;
+        }
+
+        .assessment-external-icons,
+        .collection-external-icons {
+          width: 17px;
+          height: 17px;
+          background-size: 17px 17px;
+          opacity: 0.8;
+          justify-self: center;
+          background-image: url("../assets/gooru/share.png");
+          background-repeat: no-repeat;
+          margin: auto 0 15px auto;
+        }
+
+        .source {
+          .class-activity {
+            -webkit-mask-image: url("gooru/pin-white.png");
+            background-color: $orange-400;
+            margin: auto;
+            @extend %bg-container;
+          }
+
+          .course-map,
+          .proficiency {
+            color: $bg-orange-400-dark;
+            display: flex;
+            justify-content: center;
+            height: max-content;
+            align-items: center;
+          }
+        }
+
+        .content-counts {
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-evenly;
+          justify-self: center;
+
+          .resource-count {
+            width: 40px;
+            display: inline-grid;
+            align-items: center;
+            grid-template-columns: 50% 50%;
+            justify-items: center;
+            height: 20px;
+
+            .resource-icon {
+              width: 20px;
+              height: 20px;
+              background-repeat: no-repeat;
+              background-size: 20px 20px;
+              background-image: url("../assets/gooru/images/add_resource_icon.svg");
+              opacity: 0.8;
+            }
+
+            span {
+              height: 20px;
+            }
+          }
+
+          .question-count {
+            width: 40px;
+            display: inline-grid;
+            align-items: center;
+            grid-template-columns: 50% 50%;
+            justify-items: center;
+            height: 20px;
+
+            .question-icon {
+              width: 20px;
+              height: 20px;
+              background-repeat: no-repeat;
+              background-size: 20px 20px;
+              background-image: url("../assets/gooru/images/add_question.svg");
+              opacity: 0.8;
+            }
+
+            span {
+              height: 20px;
+            }
+          }
+        }
+
+        .play-container {
+          pointer-events: all;
+          cursor: pointer;
+          display: flex;
+          height: 100%;
+
+          .ca-play-btn {
+            width: max-content;
+            height: max-content;
+            margin: auto;
+
+            a {
+              color: $orange-49;
+            }
+          }
+        }
+
+        .suggestion-panel-actions-performance {
+          width: 100%;
+          height: 100%;
+
+          .thumbnail-img {
+            width: 100%;
+            height: 100%;
+
+            img {
+              width: 100%;
+              height: 48px;
+            }
+          }
+
+          .suggestion-panel-performance {
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+
+            &.collection {
+              background-color: $gray-e68;
+              font-size: 12px;
+              text-overflow: ellipsis;
+            }
+
+            &.not-started {
+              pointer-events: none;
+            }
+
+            .no-performance {
+              color: $dark-400;
+            }
+          }
+        }
+      }
+    }
+  }
+}

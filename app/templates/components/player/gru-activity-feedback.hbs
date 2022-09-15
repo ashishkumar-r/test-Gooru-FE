@@ -1,0 +1,27 @@
+  <div class="feedback-header ">
+    <div class="text">
+      {{t 'common.give-feedback'}}
+    </div>
+    <div class="close-icon" {{action "onCloseFeedback"}}>
+      {{gru-icon name="close"}}
+    </div>
+  </div>
+
+<!-- {{#if isShowBackdrop }}
+  <div class="backdrop-close" {{action 'onCloseFeedback'}}></div>
+{{/if}} -->
+<!-- <div class="feedback-content-tab {{unless isStudyPlayer 'show' 'hide'}} {{if isFeedbackModified 'modified'}}" onclick={{action 'onToggleFeedbackContent'}} onkeypress={{action 'onToggleFeedbackContent'}} tabindex={{tabindex}}>
+  <div class="tab-info">
+    <span>{{t (if isFeedbackModified 'common.submit-feedback' 'common.feedback')}}</span>
+  </div>
+  <div class="feedback-content-tab-box"></div>
+</div> -->
+<div class="feedback-content-body">
+  <!-- <div class="feedback-content-tab on-close {{unless isStudyPlayer 'show' 'hide'}} {{if isFeedbackModified 'modified'}}" onclick={{action 'onToggleFeedbackContent'}} onkeypress={{action 'onToggleFeedbackContent'}} tabindex={{tabindex}}>
+    <div class="tab-info">
+      <span>{{t (if isFeedbackModified 'common.submit-feedback' 'common.feedback')}}</span>
+    </div>
+    <div class="feedback-content-tab-box pull-up"></div>
+  </div> -->
+  {{gru-feedback-form feedbackContent=feedbackContent feedbackCategoryLists=feedbackCategoryLists categoryLists=categoryLists format=format isFeedbackModified=isFeedbackModified isStudyPlayer=isStudyPlayer tabindex=tabindex}}
+</div>

@@ -1,0 +1,30 @@
+<div class="form-group {{if showClearButton 'has-feedback' ''}}">
+  <label for="{{inputId}}" class="visibility-hidden">{{t 'serp.excercise.add'}}</label>
+  {{input type=type
+    value=rawInputValue
+    disabled=disabled
+    placeholder=placeholder
+    class="form-control" name=valuePath
+    key-press="inputTyping"
+    enter="enterPressed"
+    focus-out="focusOut"
+    autofocus=autofocus
+    maxlength=maxLength
+    id=inputId
+    title="code"
+    tabindex = tabindex
+    aria-label=ariaLabel
+  }}
+  {{#if showClearButton}}
+  <span class="clear form-control-feedback" {{action 'clearContent'}}>
+    {{gru-icon name="cancel"}}
+  </span>
+  {{/if}}
+  <div class="error-messages">
+    {{#if showMessage}}
+      <span class="error">
+        {{{v-get model valuePath 'message'}}}
+      </span>
+    {{/if}}
+  </div>
+</div>

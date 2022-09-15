@@ -1,0 +1,133 @@
+.ca-taxonomy-picker {
+  .gru-taxonomy-picker-container {
+    .taxonomy.gru-taxonomy-picker {
+      .browse-selector {
+        position: relative;
+        .taxonomy.gru-browse-selector {
+          .breadcrumb-levels {
+            display: flex;
+            .breadcrumb-level {
+              background-color: $gray-67;
+              color: $white;
+              margin-right: 5px;
+              padding: 5px;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+            .separator-symbol {
+              color: $gray-67;
+              font-size: 15px;
+            }
+          }
+          .gru-browser-selector-container {
+            padding: 0;
+            display: flex;
+            li {
+              list-style: none;
+              width: 100%;
+            }
+            .hierarchy-1-container,
+            .hierarchy-2-container {
+              .browse-panel {
+                padding: 0;
+                width: 100%;
+                border: 1px solid $gray-67;
+                overflow-y: auto;
+                max-height: 200px;
+                li {
+                  padding-left: 5px;
+                  min-height: 25px;
+                  line-height: 25px;
+                  cursor: pointer;
+                  > strong {
+                    padding-left: 5px;
+                  }
+                  a {
+                    color: $gray-67;
+                    width: 100%;
+                    display: block;
+                  }
+                  &:hover {
+                    background-color: $gray-67;
+                    a {
+                      color: $white;
+                    }
+                  }
+                }
+              }
+            }
+
+            .hierarchy-3-container {
+              .level-3 {
+                overflow-y: auto;
+                max-height: 200px;
+                padding: 5px;
+                border: 1px solid $gray-67;
+                .standard {
+                  position: relative;
+                  label {
+                    width: max-content;
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    div {
+                      display: grid;
+                      width: 87%;
+                      span {
+                        line-height: 15px;
+                      }
+                      &:hover {
+                        color: $white;
+                        background-color: $gray-67;
+                        cursor: pointer;
+                      }
+                    }
+                  }
+                  button[data-toggle] {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    background-color: $white;
+                    border: none;
+                    i.keyboard_arrow_up {
+                      display: inline-block;
+                    }
+                    i.keyboard_arrow_down {
+                      display: none;
+                    }
+                    &.collapsed {
+                      i.keyboard_arrow_up {
+                        display: none;
+                      }
+                      i.keyboard_arrow_down {
+                        display: inline-block;
+                      }
+                    }
+                    &:focus {
+                      border: none;
+                      outline: none;
+                    }
+                  }
+                  .level-panel.sublevel-1 {
+                    padding-left: 15px;
+                    .level-panel.sublevel-2 {
+                      padding-left: 15;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .close-picker {
+          position: absolute;
+          right: 0;
+          top: 30px;
+          cursor: pointer;
+          i.clear {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,596 @@
+{
+  "executionTime": 22,
+  "query": {
+    "rewrittenQueryString": "water",
+    "userQueryString": "water"
+  },
+  "resultCount": 20,
+  "searchCount": 0,
+  "searchResults": [
+    {
+      "addDate": 1445849121000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Chlorination of water refers to",
+      "gooruOid": "7b9ca736-b8c2-4e08-b82a-e448d6872091",
+      "lastModified": 1445868921000,
+      "lastModifiedString": "2015-10-26T14:15:21Z",
+      "questionText": "Chlorination of water refers to",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "ebfe1b6f-27cc-4cda-b6f1-bee3248662b1",
+      "shortTitle": "",
+      "thumbnail": "f000/2626/1717/4608.jpg",
+      "title": "Chlorination of water refers to",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1444647390000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Pure water is a:",
+      "gooruOid": "f41b2719-c173-427d-bb57-214829b23ffc",
+      "lastModified": 1444667190000,
+      "lastModifiedString": "2015-10-12T16:26:30Z",
+      "questionText": "Pure water is a:",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "fbd013db-c3ab-412f-8c7b-fa3400bbd973",
+      "shortTitle": "",
+      "thumbnail": "f000/2624/7589/5116.JPG",
+      "title": "Pure water is a:",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1446444466000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Clouds form when water",
+      "gooruOid": "5d5d0bfc-4eba-4910-892b-55cdb5ef818c",
+      "lastModified": 1446464266000,
+      "lastModifiedString": "2015-11-02T11:37:46Z",
+      "questionText": "Clouds form when water",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "3f92be3c-c109-478f-b757-830b91b201d2",
+      "shortTitle": "",
+      "thumbnail": "f000/2626/8882/8022.jpg",
+      "title": "Clouds form when water",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Chris",
+        "gooruUId": "69842a0f-3d41-4761-8491-c4fa177c81e5",
+        "lastName": "Hara",
+        "partyUid": "69842a0f-3d41-4761-8491-c4fa177c81e5"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1446721662000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Pure water is a:",
+      "gooruOid": "36ceadac-8558-4da1-af99-c3c7f0c180ec",
+      "lastModified": 1446741462000,
+      "lastModifiedString": "2015-11-05T16:37:42Z",
+      "questionText": "Pure water is a:",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "f9193f17-7cf8-4090-bbbc-1a5c473f43c0",
+      "shortTitle": "",
+      "thumbnail": "f000/2627/3479/5116.JPG",
+      "title": "Pure water is a:",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1446444375000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Clouds form when water",
+      "gooruOid": "5ae2fefa-1ea4-4619-95ba-6a3231c2d7c7",
+      "lastModified": 1446464175000,
+      "lastModifiedString": "2015-11-02T11:36:15Z",
+      "questionText": "Clouds form when water",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "f845b65c-5309-4b6a-aba3-6b165da9226a",
+      "shortTitle": "",
+      "thumbnail": "f000/2626/8871/8022.jpg",
+      "title": "Clouds form when water",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Chris",
+        "gooruUId": "69842a0f-3d41-4761-8491-c4fa177c81e5",
+        "lastName": "Hara",
+        "partyUid": "69842a0f-3d41-4761-8491-c4fa177c81e5"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1444393185000,
+      "category": "question",
+      "contentId": 0,
+      "description": "We need water to:",
+      "gooruOid": "734f4a11-b817-498c-b1c8-8e51c499fc83",
+      "lastModified": 1444412985000,
+      "lastModifiedString": "2015-10-09T17:49:45Z",
+      "questionText": "We need water to:",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "87426adb-d14b-400e-8f63-805cd828356f",
+      "shortTitle": "",
+      "thumbnail": "f000/2624/5679/8756.jpg",
+      "title": "We need water to:",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1446444804000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Clouds form when water",
+      "gooruOid": "2e0990b0-dc29-4b15-b18b-2db06c87d024",
+      "lastModified": 1446464604000,
+      "lastModifiedString": "2015-11-02T11:43:24Z",
+      "questionText": "Clouds form when water",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "cba0a4b7-d1db-4209-ad16-176f36bba9dc",
+      "shortTitle": "",
+      "thumbnail": "f000/2626/8939/8022.jpg",
+      "title": "Clouds form when water",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Chris",
+        "gooruUId": "69842a0f-3d41-4761-8491-c4fa177c81e5",
+        "lastName": "Hara",
+        "partyUid": "69842a0f-3d41-4761-8491-c4fa177c81e5"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1447056420000,
+      "category": "question",
+      "contentId": 0,
+      "description": "We need water to:",
+      "gooruOid": "4a14ed1c-0956-466b-856c-1ef7c4e4cb41",
+      "lastModified": 1447076220000,
+      "lastModifiedString": "2015-11-09T13:37:00Z",
+      "questionText": "We need water to:",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "adf03f4c-63c1-42ef-b3f0-252ab875fe4d",
+      "shortTitle": "",
+      "thumbnail": "f000/2628/0187/8756.jpg",
+      "title": "We need water to:",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1444647747000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Pure water is a:",
+      "gooruOid": "7f61be06-69e8-406c-bb4c-d3f65eb04fe5",
+      "lastModified": 1444667547000,
+      "lastModifiedString": "2015-10-12T16:32:27Z",
+      "questionText": "Pure water is a:",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "03394361-2933-49fe-b3fc-018bc4176999",
+      "shortTitle": "",
+      "thumbnail": "f000/2624/7675/5116.JPG",
+      "title": "Pure water is a:",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1443684088000,
+      "category": "question",
+      "contentId": 0,
+      "description": "We need water to:",
+      "gooruOid": "dd40da34-2a13-42c0-a8a8-3daf04c03b9a",
+      "lastModified": 1443703888000,
+      "lastModifiedString": "2015-10-01T12:51:28Z",
+      "questionText": "We need water to:",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "c23c6017-d9fe-45f5-9941-8192a619db5c",
+      "shortTitle": "",
+      "thumbnail": "f000/2623/5445/8756.jpg",
+      "title": "We need water to:",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1447056420000,
+      "category": "question",
+      "contentId": 0,
+      "description": "What percentage of Earth's water is drinkable?",
+      "gooruOid": "26a21e5d-a0fa-4a00-b81c-f85dba5c660b",
+      "lastModified": 1447076220000,
+      "lastModifiedString": "2015-11-09T13:37:00Z",
+      "questionText": "What percentage of Earth's water is drinkable?",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "76c4389c-a542-4bc3-b4ec-6387c625d4a6",
+      "shortTitle": "",
+      "thumbnail": "f000/2628/0188/8757.png",
+      "title": "What percentage of Earth's water is drinkable?",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1447056410000,
+      "category": "question",
+      "contentId": 0,
+      "description": "<p>If more water evaporates from the ocean,</p>",
+      "gooruOid": "377adc87-b3c1-45e1-998d-ca6dfdfc59d2",
+      "lastModified": 1447076210000,
+      "lastModifiedString": "2015-11-09T13:36:50Z",
+      "questionText": "If more water evaporates from the ocean,",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "221bda8b-d040-4943-81ed-56417b631d0f",
+      "shortTitle": "",
+      "thumbnail": "f000/2628/0167/4655.png",
+      "title": "If more water evaporates from the ocean,",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1446444093000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Chlorination of water refers to",
+      "gooruOid": "e2839097-5d93-4037-ad81-14d760038bec",
+      "lastModified": 1446463893000,
+      "lastModifiedString": "2015-11-02T11:31:33Z",
+      "questionText": "Chlorination of water refers to",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "29de329d-5627-4164-b6ba-a2790d1e1ef6",
+      "shortTitle": "",
+      "thumbnail": "f000/2626/8836/4608.jpg",
+      "title": "Chlorination of water refers to",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1444393185000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Which of these provides unlimited water?",
+      "gooruOid": "9210353f-a612-4430-9892-ce48a0037c90",
+      "lastModified": 1444412985000,
+      "lastModifiedString": "2015-10-09T17:49:45Z",
+      "questionText": "Which of these provides unlimited water?",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "41c0e25d-b812-4e7f-8621-e5a40364177e",
+      "shortTitle": "",
+      "thumbnail": "f000/2624/5682/8759.jpeg",
+      "title": "Which of these provides unlimited water?",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1444393184000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Which of the following do not conserve water?",
+      "gooruOid": "16009bbb-f9e5-4873-b2e3-0b20cf2e886a",
+      "lastModified": 1444412985000,
+      "lastModifiedString": "2015-10-09T17:49:45Z",
+      "questionText": "Which of the following do not conserve water?",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "228bb3b2-d80d-4a20-91a3-712d88afd3c8",
+      "shortTitle": "",
+      "thumbnail": "f000/2624/5678/8762.jpeg",
+      "title": "Which of the following do not conserve water?",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1446707925000,
+      "category": "question",
+      "contentId": 0,
+      "description": "<p>If more water evaporates from the ocean,</p>",
+      "gooruOid": "96343dcb-5145-48aa-9859-cdb9171bcdbd",
+      "lastModified": 1446727725000,
+      "lastModifiedString": "2015-11-05T12:48:45Z",
+      "questionText": "If more water evaporates from the ocean,",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "971b8203-4c51-426a-8dd7-4adf99e0a64b",
+      "shortTitle": "",
+      "thumbnail": "f000/2627/3340/4655.png",
+      "title": "If more water evaporates from the ocean,",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1444393185000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Which of these best justifies water conservation?",
+      "gooruOid": "b0e11452-c37e-4ea1-8949-d55e48053c92",
+      "lastModified": 1444412985000,
+      "lastModifiedString": "2015-10-09T17:49:45Z",
+      "questionText": "Which of these best justifies water conservation?",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "26752b19-4cef-4fd8-81eb-215278a2c7bb",
+      "shortTitle": "",
+      "thumbnail": "f000/2624/5683/8758.jpeg",
+      "title": "Which of these best justifies water conservation?",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1444647273000,
+      "category": "question",
+      "contentId": 0,
+      "description": "<p>If more water evaporates from the ocean,</p>",
+      "gooruOid": "e51668e1-f475-4e42-8c5b-034f7d184176",
+      "lastModified": 1444667073000,
+      "lastModifiedString": "2015-10-12T16:24:33Z",
+      "questionText": "If more water evaporates from the ocean,",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "fa6522b2-9ec2-4adf-bf5d-c5299bdde123",
+      "shortTitle": "",
+      "thumbnail": "f000/2624/7574/4655.png",
+      "title": "If more water evaporates from the ocean,",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1447056420000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Which of these best justifies water conservation?",
+      "gooruOid": "a755ab09-3d4b-4da0-8dc8-dd001b9dbe4b",
+      "lastModified": 1447076220000,
+      "lastModifiedString": "2015-11-09T13:37:00Z",
+      "questionText": "Which of these best justifies water conservation?",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "25a18111-ab59-408f-a66b-3307f3663686",
+      "shortTitle": "",
+      "thumbnail": "f000/2628/0189/8758.jpeg",
+      "title": "Which of these best justifies water conservation?",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    },
+    {
+      "addDate": 1447056421000,
+      "category": "question",
+      "contentId": 0,
+      "description": "Which of these provides unlimited water?",
+      "gooruOid": "0efe7320-462a-453b-91a6-f1f1c560f516",
+      "lastModified": 1447076221000,
+      "lastModifiedString": "2015-11-09T13:37:01Z",
+      "questionText": "Which of these provides unlimited water?",
+      "resourceFormat": {
+        "value": "question"
+      },
+      "resourceType": {
+        "name": "question"
+      },
+      "resultUId": "3948bc84-08ee-426d-a211-074f1d0d227d",
+      "shortTitle": "",
+      "thumbnail": "f000/2628/0192/8759.jpeg",
+      "title": "Which of these provides unlimited water?",
+      "typeName": "multiple_choice_question",
+      "user": {
+        "emailId": "",
+        "firstName": "Rocky",
+        "gooruUId": "ee410cef-2a44-46ef-878d-172511e54e07",
+        "lastName": "Shore",
+        "partyUid": "ee410cef-2a44-46ef-878d-172511e54e07"
+      },
+      "views": 0
+    }
+  ],
+  "stats": {
+    "pageSize": 20,
+    "totalHitCount": 185
+  },
+  "totalHitCount": 185
+}

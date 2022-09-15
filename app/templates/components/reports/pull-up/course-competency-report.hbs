@@ -1,0 +1,45 @@
+{{#if isLoading}}
+  {{three-bounce-spinner}}
+{{else}}
+  <div class="domain-list">
+    {{#if (or isThrowError (eq domainDataSet.length 0))}}
+      No data available
+    {{else}}
+      {{#each domainDataSet as |dataSet|}}
+        <div class="domain domain-{{dataSet.domainData.domainSeq}}">
+          <div class="domain-header">
+            <div class="title ellipsis" {{action "onSelectDomain" dataSet}}>
+              {{concat dataSet.domainData.domainSeq '. ' (locale-translation (t (concat 'domain-code.' dataSet.domainData.domainCode)) dataSet.domainData.domainName)}}
+            </div>
+            <div class="info">
+              {{dataSet.domainData.competencyLength}} Competencies
+            </div>
+          </div>
+          <div class="domain-body">
+            {{#if (gt dataSet.studentCompetencies.length 13)}}
+              <div class="arrow previous disabled" {{action "onClickArrow" 'previous' dataSet.domainData.domainSeq}}>
+                {{gru-icon name="keyboard_arrow_left"}}
+              </div>
+            {{/if}}
+            <div class="student-competencies domain-{{dataSet.domainData.domainSeq}}">
+                {{#each dataSet.studentCompetencies as |studentCompetency index|}}
+                  <div class="student-competency">
+                    <div class="competency-chart">
+                      {{charts/domain-competency-chart domainSeq=dataSet.domainData.domainSeq studentSeq=index competencies=studentCompetency.competencies}}
+                    </div>
+                    <div class="student-thumbnail" title="{{studentCompetency.fullName}}" data-toggle="tooltip" style="background-image: url({{studentCompetency.thumbnail}})">
+                    </div>
+                  </div>
+                {{/each}}
+            </div>
+            {{#if (gt dataSet.studentCompetencies.length 13)}}
+              <div class="arrow next" {{action "onClickArrow" 'next' dataSet.domainData.domainSeq}}>
+                {{gru-icon name="keyboard_arrow_right"}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+{{/if}}

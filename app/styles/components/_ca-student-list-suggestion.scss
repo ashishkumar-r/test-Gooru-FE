@@ -1,0 +1,166 @@
+.ca-student-list-suggestion {
+  position: fixed;
+  top: 100%;
+  z-index: 1031;
+  width: 768px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+  height: 100%;
+
+  .backdrop {
+    background-color: $backdrop-color;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: $gray-base;
+  }
+
+  .panel {
+    background: $white;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 56px 1fr;
+
+    .report-header {
+      display: grid;
+      grid-template-columns: auto 56px;
+
+      .close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 24px;
+        }
+      }
+
+      .header-title {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        height: 100%;
+
+        .icon {
+          width: 20px;
+          height: 20px;
+          background-size: 20px 20px;
+          opacity: 0.8;
+          justify-self: center;
+          align-self: center;
+          background-repeat: no-repeat;
+
+          &.assessment {
+            background-image: url("gooru/images/add_assessment.svg");
+          }
+
+          &.assessment-external {
+            background-image: url("gooru/images/add_assessment.svg");
+          }
+
+          &.collection-external {
+            background-image: url("gooru/images/add_collection.svg");
+          }
+
+          &.collection {
+            background-image: url("gooru/images/add_collection.svg");
+          }
+        }
+
+        .title {
+          align-items: center;
+          display: flex;
+        }
+      }
+    }
+
+    .students-report-container {
+      overflow-y: auto;
+      padding-bottom: 10px;
+
+      .student-row-container {
+        height: 56px;
+        box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+        background-color: $white-bold;
+        display: grid;
+        grid-template-columns: 1fr 56px;
+
+        &.not-started {
+          pointer-events: none;
+        }
+
+        .student-info {
+          display: grid;
+          grid-template-columns: 56px 1fr;
+
+          .username {
+            text-transform: capitalize;
+            align-items: center;
+            display: flex;
+          }
+
+          .user-profile-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+              width: 29px;
+              border-radius: 50%;
+              border-color: $table-bg;
+              height: 29px;
+
+              &.selected {
+                visibility: hidden;
+              }
+            }
+          }
+        }
+
+        .not-started {
+          display: flex;
+          align-items: center;
+          background-color: $suggestion-panel-color;
+          justify-content: center;
+          font-size: 10px;
+          height: 54px;
+          font-weight: 700;
+        }
+
+        .timespent {
+          display: flex;
+          align-items: center;
+          background-color: $suggestion-panel-color;
+          justify-content: center;
+          font-size: 12px;
+          height: 54px;
+          font-weight: 700;
+        }
+
+        .score {
+          font-size: 20px;
+          font-weight: bold;
+          color: $white-bold;
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          cursor: pointer;
+          height: 54px;
+        }
+      }
+
+      .external-collection-link {
+        text-align: center;
+        font-size: 14px;
+      }
+    }
+  }
+}

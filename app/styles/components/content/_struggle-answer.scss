@@ -1,0 +1,376 @@
+.struggle-headers {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  align-items: center;
+  z-index: 9999;
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: $gray-base;
+    z-index: -1;
+    opacity: 0.7;
+  }
+  .struggle-content {
+    background-color: $white;
+    max-width: 900px;
+    min-width: 700px;
+    margin: 0 auto;
+    border-radius: 6px;
+    padding: 10px;
+    min-height: 300px;
+    cursor: pointer;
+    box-shadow: 0 0 10px $light-100;
+    &.struggle-main {
+      box-shadow: none;
+      background-color: $table-bg;
+    }
+    .struggle-text {
+      font-size: 13px;
+      color: $gray-base;
+      font-weight: bold;
+      margin-left: 23px;
+    }
+    .struggle-panel-head {
+      display: grid;
+      grid-template-columns: 1fr 25px;
+      align-items: center;
+      padding-bottom: 10px;
+      color: $gray-base;
+    }
+  }
+  .close-btn {
+    width: 25px;
+    height: 25px;
+    grid-column-start: 2;
+  }
+  .search-header {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    .search-text {
+      display: grid;
+      align-items: center;
+      padding: 10px;
+      grid-template-columns: 50px 1fr repeat(2, 40px);
+      column-gap: 10px;
+      border: 1px solid $light-200;
+      border-radius: 3px;
+      box-shadow: 0 0 10px $light-200;
+      input {
+        width: 100%;
+        border: none;
+        font-size: 14px;
+        box-shadow: none;
+        outline: none;
+        &::placeholder {
+          color: $light-300;
+        }
+      }
+      i {
+        font-size: 25px;
+      }
+    }
+  }
+  .select-all-struggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $gray-base;
+    input {
+      margin-bottom: 0px;
+    }
+  }
+  .browse-btn {
+    margin: 15px;
+    text-align: right;
+    .browse-txt {
+      background: $gray-ab;
+      padding: 10px;
+      color: $btn-default-bg;
+      border-radius: 3px;
+    }
+  }
+  .struggle-contains {
+    .struggle-panel-head {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    .struggle-panel-body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 10px;
+      .struggle-panel-card {
+        opacity: 0.5;
+        padding: 10px;
+        height: 150px;
+        .card-title {
+          display: grid;
+          grid-template-columns: 1fr 30px;
+          align-items: center;
+        }
+        .struggle-code {
+          color: $blue-400;
+        }
+        .card-body {
+          display: flex;
+          align-items: end;
+          .card-text {
+            display: block;
+            font-size: 14px;
+            line-height: 1.14;
+            letter-spacing: normal;
+            color: $dark-400;
+            margin-top: 10px;
+          }
+        }
+        &.content-struggles-pannel {
+          opacity: 1;
+          background-color: $light-200;
+        }
+      }
+    }
+  }
+  .more-btn {
+    background-color: $light-300;
+    width: 90px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    float: right;
+    margin-top: 10px;
+  }
+  .struggle-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 10px;
+  }
+  .add-btn-cancel {
+    background-color: $white;
+    width: 90px;
+    cursor: pointer;
+    color: $gray-base;
+    border-radius: 2px;
+    text-align: center;
+    padding: 9px;
+    border: solid 1px $nobel-gray;
+    margin-left: 10px;
+  }
+  .add-btn {
+    background-color: $green-700;
+    width: 272px;
+    cursor: pointer;
+    color: $white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 9px;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  table tbody {
+    display: block;
+    max-height: 95px;
+    overflow-y: scroll;
+    min-height: 100px;
+  }
+  table thead,
+  table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    .comp-dropdown {
+      display: flex;
+    }
+  }
+  table thead {
+    width: 98%;
+    tr th:last-child {
+      border-right: none;
+    }
+  }
+  table {
+    .tab-radio {
+      width: 40px;
+    }
+  }
+  .result-txt {
+    color: $gray-base;
+    margin-left: 13px;
+    margin-top: calc(150px / 2);
+  }
+  .empty-data {
+    padding: 45px;
+  }
+  .close-war-btn {
+    width: 25px;
+    height: 25px;
+    float: right;
+    padding: 5px;
+  }
+  .war-text {
+    color: $gray-base;
+  }
+  .confirm-btn {
+    background-color: $confirm-button-bg;
+    width: 90px;
+    cursor: pointer;
+    color: $white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto;
+  }
+  .warning-popups {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 50px;
+    left: 0;
+    text-align: center;
+    .warning-contents {
+      background-color: $white;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 6px;
+    }
+    .warning-contains {
+      padding: 25px 40px 37px 50px;
+      color: $gray-base;
+      font-size: 15px;
+      height: 195px;
+    }
+    .warning-btn {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      border-top: 1px solid $gray-96;
+    }
+  }
+}
+
+.struggle-title {
+  background: $blue-f3;
+  padding: 4px;
+  font-size: 20px;
+  color: $white;
+  border-radius: 3px;
+}
+.ok-question-button {
+  background-color: $blue-f3;
+  width: 100px;
+  cursor: pointer;
+  color: $white;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
+  float: right;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 18px 15px 15px 15px;
+}
+.ok-button {
+  background-color: $blue-f3;
+  width: 100px;
+  cursor: pointer;
+  color: $white;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
+  float: right;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 63px 15px 15px 15px;
+}
+.header-text {
+  text-align: left;
+  display: block;
+  margin-left: 10px;
+}
+.warning-panel {
+  padding: 25px 40px 37px 50px;
+  color: $gray-base;
+  font-size: 15px;
+  height: 150px;
+}
+.ok-buttons {
+  background-color: $blue-f3;
+  width: 100px;
+  cursor: pointer;
+  color: $white;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
+  float: right;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 58px -10px 15px 15px;
+}
+.struggle-comps {
+  font-weight: 600;
+  margin-left: 12px;
+}
+
+.struggle-panel-body1 {
+  display: grid;
+  padding: 10px;
+  max-height: calc(100vh - 51vh);
+  overflow-y: auto;
+  margin-bottom: 10px;
+  .struggle-section1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .struggle-panel-card1 {
+    padding: 10px;
+    height: 150px;
+    border: 1px solid $default-gray;
+    .card-title1 {
+      display: grid;
+      grid-template-columns: 1fr 30px;
+      align-items: center;
+    }
+    .struggle-code1 {
+      color: $blue-400;
+      display: grid;
+    }
+    .struggle-check-icons {
+      background: url("/assets/gooru/images/check-circle-1.svg") no-repeat
+        center;
+      background-size: contain;
+      border: none;
+      display: block;
+      height: 18px;
+    }
+    .struggle-display {
+      @include ellipsis($font-size: 15px, $line-height: 1.2, $lines-to-show: 1);
+    }
+    .card-body1 {
+      display: flex;
+      align-items: end;
+      .card-text1 {
+        display: block;
+        font-size: 14px;
+        line-height: 1.14;
+        letter-spacing: normal;
+        color: $dark-400;
+        margin: 12px 0px;
+        @include ellipsis(
+          $font-size: 15px,
+          $line-height: 1.2,
+          $lines-to-show: 1
+        );
+      }
+    }
+  }
+}

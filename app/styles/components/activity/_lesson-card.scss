@@ -1,0 +1,212 @@
+.activity-lesson-card {
+  .card-panel-container {
+    width: 220px;
+    height: 348px;
+    object-fit: contain;
+    border-radius: 4px;
+    background-color: $white;
+    box-shadow: 0 0 6px 1px $table-box-shadow-07;
+
+    .card-panel-header {
+      width: 220px;
+      height: 130px;
+      object-fit: contain;
+      background-color: $table-bg;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0;
+      position: relative;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      background-size: 50px 50px;
+      background-position-x: 86px;
+      background-position-y: 15px;
+      background-image: url("../assets/gooru/images/lesson-green.svg");
+
+      .info {
+        color: $blue-400;
+        position: absolute;
+        z-index: 10;
+
+        .title {
+          padding-left: 10px;
+          padding-right: 10px;
+          width: 100%;
+          height: 42px;
+          margin-top: 88px;
+          $line-height: 1.5;
+          $lines-to-show: 2;
+          @include ellipsis(
+            $font-size: 13px,
+            $line-height: $line-height,
+            $lines-to-show: $lines-to-show
+          );
+        }
+      }
+    }
+
+    .lesson-format-container {
+      height: 25px;
+      width: 100%;
+      border-bottom: 1px solid $light-600;
+      border-top: 1px solid $light-600;
+
+      .icon {
+        background-size: 15px 15px;
+        width: 15px;
+        height: 15px;
+        display: block;
+        float: left;
+        margin-right: 6px;
+        margin-top: 5px;
+        margin-left: 10px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+
+      .assessment {
+        .icon {
+          background-image: url("../assets/gooru/images/assessment-gray.svg");
+        }
+      }
+
+      .collection {
+        .icon {
+          background-image: url("../assets/gooru/images/collection_gray.svg");
+        }
+      }
+
+      .visibility {
+        i {
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .lesson-info-container {
+      height: 150px;
+      border-bottom: 1px solid $gray-ultra-light;
+      padding: 15px;
+
+      .lesson-user-info {
+        height: 30px;
+        cursor: default;
+        @include flexbox;
+
+        .created-by {
+          font-style: italic;
+          margin-right: 10px;
+        }
+
+        .img-container {
+          width: 20px;
+          height: 20px;
+          overflow: hidden;
+          border-radius: 50px;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .username {
+          margin-left: 10px;
+          max-width: 170px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
+          color: $blue-400;
+        }
+      }
+
+      .lesson-description {
+        $line-height: 1.5;
+        $lines-to-show: 3;
+        @include ellipsis(
+          $font-size: 13px,
+          $line-height: $line-height,
+          $lines-to-show: $lines-to-show
+        );
+      }
+
+      .lesson-standards {
+        margin-top: 10px;
+
+        .taxonomy-tag {
+          width: 70%;
+
+          .content {
+            font-size: 12px;
+            width: 130px;
+            height: 32px;
+          }
+        }
+
+        .non-visible-tags {
+          padding: 2px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .card-panel-footer {
+      .lesson-prefs-container {
+        .left-arc {
+          display: block;
+          height: 15px;
+          width: 9px;
+          position: relative;
+          background: $gray-f7;
+          border-top-right-radius: 12.5px;
+          border-bottom-right-radius: 12.5px;
+          z-index: 1;
+          top: -8px;
+        }
+
+        .right-arc {
+          display: block;
+          height: 15px;
+          width: 9px;
+          position: relative;
+          background: $gray-f7;
+          border-top-left-radius: 12.5px;
+          border-bottom-left-radius: 12.5px;
+          margin-left: 211px;
+          z-index: 1;
+          top: -22px;
+        }
+
+        .lesson-prefs {
+          width: 73.3px;
+          height: 43px;
+          float: left;
+          background-color: $blue-400;
+          position: relative;
+          top: -30px;
+
+          .count {
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            color: $white;
+            line-height: 1;
+            margin-top: 9px;
+          }
+
+          .title {
+            font-size: 10px;
+            text-align: center;
+            color: $white;
+            line-height: 1;
+          }
+        }
+      }
+      &.disable-footer {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+  }
+}

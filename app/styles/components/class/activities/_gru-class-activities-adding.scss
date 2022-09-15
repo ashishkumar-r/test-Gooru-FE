@@ -1,0 +1,317 @@
+.class-activities.gru-clas-activities-adding {
+  width: 95%;
+  margin: 8px auto;
+  &.open {
+    // Increasing z-index to show backdrop mask
+    z-index: 9999;
+    .class-activities-source-container.mobile-view {
+      .header-container {
+        .class-activities.gru-content-search {
+          .content-search-container {
+            .content-source-container {
+              .dropdown .source-list {
+                transform: translate(-50%, 0);
+              }
+            }
+            .content-selector-container {
+              display: grid;
+            }
+          }
+        }
+      }
+      .body-container {
+        display: block;
+        height: calc(100vh - 210px);
+        &.course-map-view {
+          height: calc(100vh - 153px);
+        }
+        &.grid-view {
+          height: calc(100vh - 150px);
+        }
+        &.tenant-view {
+          height: calc(100vh - 255px);
+        }
+      }
+    }
+
+    .backdrop {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      cursor: pointer;
+      opacity: 0.8;
+      background-color: $gray-base;
+    }
+  }
+
+  &.cm-view {
+    .class-activities-source-container.mobile-view {
+      .body-container {
+        &.course-map-view {
+          height: calc(100vh - 186px);
+        }
+      }
+    }
+  }
+
+  .class-activities-source-container {
+    display: grid;
+
+    &.mobile-view {
+      .header-container {
+        .class-activities.gru-content-search {
+          .content-search-container {
+            .content-selector-container {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .body-container {
+        display: none;
+      }
+    }
+
+    .header-container {
+      display: grid;
+      align-items: center;
+      background-color: $white;
+      box-shadow: 0 0 6px 1px $table-box-shadow-07;
+      border-radius: 4px;
+      position: relative;
+      .multi-class-course-map {
+        border-top: 1px solid $gray;
+        position: relative;
+        display: grid;
+        .active-class {
+          height: 35px;
+          display: grid;
+          grid-template-columns: auto auto;
+          justify-content: center;
+          align-items: center;
+          text-transform: capitalize;
+          cursor: pointer;
+        }
+        .multi-class-list {
+          display: none;
+          position: absolute;
+          top: 35px;
+          background-color: $white;
+          z-index: 99;
+          width: max-content;
+          box-shadow: 0 1px 3px 0 $navbar-box-shadow;
+          justify-self: center;
+          .class-info {
+            text-align: left;
+            height: 35px;
+            line-height: 35px;
+            text-transform: capitalize;
+            cursor: pointer;
+            border-bottom: 1px solid $light-100;
+            padding: 0 8px;
+            &.active,
+            &:hover {
+              background-color: $light-200;
+            }
+          }
+        }
+      }
+    }
+
+    .body-container {
+      max-height: calc(100vh - 150px);
+      overflow-y: auto;
+      display: grid;
+      background-color: $white;
+      .plan-activities-msg {
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+      &.grid-view {
+        grid-template-columns: repeat(2, auto);
+        max-height: calc(100vh - 125px);
+      }
+
+      .course-map-container {
+        .teacher-class-ca-course-map {
+          .dca-course-map-unit-container {
+            padding: 0;
+            overflow: unset;
+            height: auto;
+
+            .dca-course-map-unit-panel {
+              .dca-course-map-lesson-container {
+                padding: 8px;
+              }
+            }
+          }
+        }
+        .no-course-map {
+          text-align: center;
+          padding: 15px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-md) {
+    .class-activities-source-container {
+      &.mobile-view {
+        .header-container {
+          .class-activities.gru-content-search {
+            .content-search-container {
+              .content-selector-container {
+                display: grid;
+              }
+              &.disable-content-selector {
+                .content-selector-container {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+        .body-container {
+          display: grid;
+        }
+      }
+    }
+    .class-activities.gru-content-search {
+      .content-search-container {
+        .content-source-container {
+          grid-template-columns: repeat(4, auto);
+          .toggle-panel {
+            display: none;
+          }
+        }
+        .content-selector-container {
+          grid-template-rows: auto auto;
+          grid-template-columns: 1fr 50px;
+          display: grid;
+          height: 100%;
+          .content-types-container {
+            grid-column-start: 1;
+            grid-row-start: 1;
+            grid-column-end: 2;
+            .content-type {
+              padding: 5px;
+            }
+          }
+          .search-content-container {
+            grid-row-start: 2;
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-template-columns: auto 115px 10px 25px;
+            input#search-content {
+              box-shadow: none;
+              border-bottom: 1px solid $table-border-color;
+            }
+            .search-icon {
+              i.search {
+                font-size: 22px;
+                justify-content: center;
+                display: grid;
+              }
+            }
+          }
+          .filter-container {
+            grid-row-start: 1;
+            grid-column-start: 2;
+            grid-column-end: 2;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    margin: auto;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    &.cm-view {
+      bottom: -36px;
+    }
+    &.open {
+      .class-activities-source-container {
+        .header-container {
+          .class-activities.gru-content-search {
+            .content-search-container {
+              .content-source-container {
+                .content-source {
+                  pointer-events: unset;
+                }
+                &.show-dropdown {
+                  .dropdown {
+                    pointer-events: unset;
+                  }
+                }
+                .toggle-panel {
+                  position: relative;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .class-activities-source-container {
+      .header-container {
+        .class-activities.gru-content-search {
+          .content-search-container {
+            .content-source-container {
+              grid-template-columns: repeat(4, auto) 70px;
+              &.show-dropdown {
+                grid-template-columns: 1fr 50px;
+                .dropdown {
+                  pointer-events: none;
+                }
+              }
+              .content-source {
+                pointer-events: none;
+              }
+              .toggle-panel {
+                width: 100%;
+                height: 100%;
+                justify-content: flex-end;
+                display: grid;
+                align-items: center;
+                position: absolute;
+                padding-right: 20px;
+              }
+              column-gap: 0;
+              padding: 0;
+              height: 50px;
+            }
+          }
+        }
+      }
+      &.mobile-view {
+        .header-container {
+          border-top: 1px solid gray;
+          box-shadow: 0 0 6px 1px $navbar-box-shadow;
+          .class-activities.gru-content-search {
+            .content-search-container {
+              .content-selector-container {
+                display: none;
+              }
+            }
+          }
+        }
+        .body-container {
+          display: none;
+        }
+      }
+    }
+  }
+}

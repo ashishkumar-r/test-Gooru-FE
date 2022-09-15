@@ -1,0 +1,41 @@
+<div class="actions">
+  <button class="btn btn-default btn-icon delete" title="{{t 'common.delete'}}" {{action 'deleteItem' collection}}>{{gru-icon name="delete"}}</button>
+  <button class="btn btn-default btn-icon out-of-scope" title="{{t 'common.add-collaborator'}}">{{gru-icon name="person_add"}}</button>
+  {{#if (and (and tempCollection  tempCollection.format ) (eq tempCollection.format "offline-activity")) }}
+    {{!-- {{#gru-share-pop-over tagName="button" type="OA"}}
+      {{gru-icon name="insert_link"}}
+    {{/gru-share-pop-over}} --}}
+  {{else}}
+    {{#if isAssessment}}
+      {{#gru-share-pop-over tagName="button" type="assessment"}}
+        {{gru-icon name="insert_link"}}
+      {{/gru-share-pop-over}}
+    {{else if isCollection}}
+      {{#gru-share-pop-over tagName="button" type="collection"}}
+        {{gru-icon name="insert_link"}}
+      {{/gru-share-pop-over}}
+    {{/if}}
+  {{/if}}
+  <button class="btn btn-default hidden">{{t "content.collections.edit.assign-to-course"}}</button>
+  {{#if (and isShowOfflineActivityPreview tempCollection.id)}}
+    <button class="btn btn-default preview" {{action 'showOAReportPopup'}}>{{t "common.preview"}}</button>
+    {{#if (and tempCollection.id isShowOfflineActivityPreviewPopup)}}
+      {{reports/pull-up/oa-preview
+      showPullUp=isShowOfflineActivityPreviewPopup
+      oaId=tempCollection.id
+      isReportView=false
+    }}
+    {{/if}}
+  {{else}}
+    {{#if collection.children}}
+      {{#link-to 'player' collection.id (query-params type=collection.collectionType isPreviewReferrer=true) class="btn btn-default preview" tagName="button"
+  }}{{t "common.preview"}}{{/link-to}}
+    {{else if (or (eq collectionType 'collection-external') (eq collectionType 'assessment-external'))}}
+
+      {{#link-to 'player-external' (query-params collectionId=collection.id isIframeMode=true role='teacher' type=collectionType source='ILActivity' isPreviewReferrer=true) class="btn btn-default preview" tagName="button"
+}}{{t "common.preview"}}{{/link-to}}
+    {{else}}
+      <button disabled class="btn btn-default disable-button preview">{{t "common.preview"}}</button>
+    {{/if}}
+  {{/if}}
+</div>

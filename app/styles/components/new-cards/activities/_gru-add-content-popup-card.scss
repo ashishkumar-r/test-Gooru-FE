@@ -1,0 +1,131 @@
+.gru-add-content-popup-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  z-index: 1000;
+
+  .backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: $navbar-default-toggle-icon-bar-bg;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .gru-add-content-popup-card-container {
+    width: 400px;
+    margin: 0 auto;
+    z-index: 2;
+    min-height: 200px;
+    background-color: $white;
+    margin-top: 100px;
+    position: relative;
+
+    @media screen and (max-width: 400px) {
+      width: 100%;
+      margin-top: 0px;
+    }
+
+    .content-popup-body-section {
+      .content-popup-header {
+        padding: 10px;
+        .content-popup-title {
+          display: grid;
+          grid-template-columns: 1fr 20px;
+          align-items: center;
+          font-size: 15px;
+          font-weight: bold;
+          padding-bottom: 5px;
+          color: $placeholder-color;
+          span {
+            display: grid;
+            align-items: center;
+            cursor: pointer;
+            i {
+              color: $dark-300;
+              font-size: 20px;
+            }
+          }
+        }
+        .description {
+          line-height: 1.4;
+        }
+      }
+      .content-popup-images-section {
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-color: $blue-600;
+        position: relative;
+
+        &::after {
+          position: absolute;
+          content: "";
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(
+            $bg-box-shadow,
+            $content-popup-box-shadow
+          );
+          bottom: 0;
+          z-index: 2;
+        }
+
+        .image-title {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+
+          .icon {
+            margin-top: 10px;
+            margin-left: 10px;
+            background-color: $dark-500;
+            border-radius: 5px;
+            padding: 11px;
+            width: 16px;
+            height: 16px;
+            background-repeat: no-repeat;
+            background-size: 15px 15px;
+            background-position: center;
+
+            &.collection {
+              background-image: url("../assets/gooru/images/collection-white.svg");
+            }
+          }
+
+          .collection-code {
+            padding: 0 5px;
+            background-color: $dark-500;
+            border-radius: 20px;
+            margin: 0 auto;
+            margin-right: 10px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: $light-100;
+          }
+        }
+        .content-title {
+          position: absolute;
+          bottom: 0;
+          padding: 10px;
+          width: 100%;
+          display: block;
+          color: $white;
+          z-index: 3;
+          font-weight: bold;
+          text-transform: capitalize;
+        }
+      }
+      .video-time-card {
+        position: static;
+      }
+    }
+  }
+}

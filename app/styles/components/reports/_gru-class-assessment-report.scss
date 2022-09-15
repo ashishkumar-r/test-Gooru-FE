@@ -1,0 +1,43 @@
+.reports.gru-class-assessment-report {
+  $space-top: 30px;
+
+  > .view-container {
+    position: relative;
+    padding-top: $space-top;
+    border-top: 1px solid $light-300;
+
+    > .gru-view-layout-picker {
+      position: absolute;
+      top: $space-top - 3;
+      left: 318px;
+    }
+
+    &.table-view {
+      .gru-student-view {
+        display: none;
+      }
+    }
+
+    &.student-view {
+      .gru-table-view {
+        display: none;
+      }
+    }
+  }
+}
+
+.gru-modal {
+  &.gru-questions-detail-modal {
+    .modal-dialog {
+      width: 80%;
+      height: 100%;
+      display: table;
+    }
+  }
+  &.gru-assessment-report-modal {
+    .modal-dialog {
+      width: 80%;
+      height: 100%;
+    }
+  }
+}

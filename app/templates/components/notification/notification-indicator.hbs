@@ -1,0 +1,46 @@
+{{#if hasActiveNotifications }}
+  {{#if showNotificationIcon}}
+    <span class="{{if showNotificationIcon 'responsive-notification'}}" {{action "showNotificationList" bubbles=false}} tabindex={{tabindex}}>{{t 'notifications.menu'}}</span>
+  {{/if}}
+  <span class="{{model.notificationlocation}} {{if showNotificationIcon 'notification-responsive'}}" {{action "showNotificationList" bubbles=false}} tabindex={{tabindex}}>
+    {{gru-icon name='notifications'}}
+    {{#if (eq notifcationCount 0)}}
+      {{log notifcationCount}}
+    {{/if}}
+    <span class="badge notification-indicator {{model.notificationlocation}}"> {{notifcationCountIndicator}}</span>
+  </span>
+{{else}}
+  {{#if showNotificationIcon}}
+    <span class="inactive-common {{if showNotificationIcon 'responsive-notification'}}" tabIndex={{tabindex}}>{{t 'notifications.menu'}}</span>
+  {{/if}}
+  <span class="inactive-common {{if showNotificationIcon 'notification-responsive'}}" tabIndex={{tabindex}} title="{{t 'no-notifications'}}" data-toggle="tooltip" data-placement="auto" data-trigger="hover">
+    {{gru-icon name='notifications'}}
+  </span>
+{{/if}}
+{{!-- set actual props from init should not be passsed as params --}}
+{{#gru-pull-up-ex showPullUpEx=displayNotificationList isShowMore=isShowMore title='' description='' showMore=false isLoading=false onClosePullUp=(action "closeNotificationList") tabindex=tabindex}}
+  <div>
+    {{notification/notification-list
+      notificationModel=notificationModel
+      notificationAddressAction=notificationAddressAction
+      showNotificationList=(action "showNotificationList")
+      moreItemsRemaining=moreItemsRemaining
+      closeNotificationList = (action "closeNotificationList")
+      inClass=inClass
+      dismissNotification=(action "dismissNotification")
+      showMore=(action "showMore")
+      playerContent = "playerContent"
+      tabindex=tabindex
+    }}
+  </div>
+{{/gru-pull-up-ex}}
+
+{{#if isOpenPlayer}}
+  {{reports/pull-up/player-pull-up
+    showPullUp=isOpenPlayer
+    playerUrl=playerUrl
+    playerContent=playerContent
+    onclosePullUp="closePullUp"
+    tenantSettingBg = tenantSettingBg
+  }}
+{{/if}}

@@ -1,0 +1,179 @@
+<div class="modal-header">
+  {{#if showBackBtn}}
+    <span class="back-icon" {{action 'goBack'}}>{{gru-icon name='arrow_back'}}</span>
+  {{/if}}
+  <h4 class="modal-title">{{t "common.add-new-resource"}}</h4>
+</div>
+{{#if isH5PContent}}
+  <div class="modal-body">
+    {{#if contentURL}}
+      {{#if isLoading}}
+        <div class="loading-spinner">
+          {{three-bounce-spinner}}
+        </div>
+      {{/if}}
+      <iframe src="{{contentURL}}" width="100%" frameborder="0" allowfullscreen></iframe>
+    {{else}}
+      <form>
+        <div class="resource-types text-center">
+          {{#each h5pContentTypes as |type|}}
+            <div
+                class="panel panel-default {{unless type.isShow 'hideResourceCard'}}" {{action "generateContentURL" type.id type.format}}>
+              <div class="panel-body">
+                <i class="resource-type-icon"></i>
+              </div>
+              <div class="panel-footer">
+                {{t (concat 'common.resource-format.' type.id) }}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </form>
+    {{/if}}
+  </div>
+{{else}}
+  <div class="modal-body">
+    <form>
+      {{#if isResourceUpload}}
+        <div class="header">
+          <span class="title"> <span class="icon">{{gru-icon name="link"}}</span> {{t 'common.upload-file'}}</span>
+          <button {{action 'switchView'}}>{{t 'common.add-url'}}</button>
+        </div>
+        <label class="filename-label">
+          <span class="required">{{t 'common.file-name'}}</span>
+          <small>{{t 'common.valid-extensions' extensions=allValidExtensions}}</small>
+          {{content/gru-file-picker validMimeType=resource.mimeType onSelectFile=(action 'selectFile')}}
+          {{#if emptyFileError}}
+            <div class="validation">
+              <span class="error">{{emptyFileError}}</span>
+            </div>
+          {{/if}}
+        </label>
+        <label class="title-label">
+          <span class="required">{{t 'common.resource-title'}}</span>
+          {{validation/gru-input model=resource valuePath='title' maxLength=50 didValidate=didValidate}}
+        </label>
+        <label class="type">
+          <span class="required">{{t 'common.add-type-resource'}}</span>
+        </label>
+        <div class="resource-types text-center">
+          {{#each uploadableTypes as |uploadableType|}}
+            <div
+                class="panel panel-default {{if uploadableType.disabled 'disabled'}} {{unless uploadableType.isShow 'hideResourceCard'}} {{concat 'resource-type-' uploadableType.value}} {{set-if-equal 'active' uploadableType.value selectedType}}" {{action 'selectUploadType' uploadableType}}>
+              <div class="panel-body">
+                <i class="resource-type-icon"></i>
+              </div>
+              <div class="panel-footer">
+                {{t (concat 'common.resource-format.' uploadableType.value) }}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        {{else if isHtmlResource}}
+        <label class="title-label-html">
+          <span class="required">{{t 'common.resource-title'}}</span>
+          {{validation/gru-input model=resource valuePath='title' maxLength=50 didValidate=didValidate}}
+        </label>
+        <label class="description-label">
+          <span>{{t 'common.description'}}</span>
+          {{gru-rich-text-editor disableButtons=true content=resource.description model=resource valuePath='description' didValidate=didValidate}}
+        </label>
+      {{else}}
+        <div class="header desktop-view {{if isShowH5PCreation 'h5p-content'}}">
+          <span class="title">  <span class="icon">{{gru-icon name="link"}}</span> {{t 'common.add-from-url'}}</span>
+          <button {{action 'switchView'}}>{{t 'common.upload-file'}}</button>
+          {{#if isShowH5PCreation}}
+            <button {{action 'h5pContent'}}>{{t 'resource.interactive'}}</button>
+          {{/if}}
+          <button {{action 'switchHtmlContent'}}>{{t 'common.html-resource'}}</button>
+        </div>
+  <div class="mobile-view">
+        <div class="{{if isShow 'dropup'}} btn-group col-sm-12" tabindex={{tabindex}}>
+          <a href="#" title="create" aria-label="add-url" class="btn btn-primary create-dropdown" data-toggle="dropdown">{{t 'common.add-from-url'}}</a>
+          <a href="#" title="dropdown" aria-label="dropdown-toggle" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li role="menuitem" aria-label="upload-file"><a class="upload-file" href="#" tabindex={{tabindex}} onclick={{action 'switchView'}} onkeypress={{action 'switchView'}}  title="upload-file"><i></i>{{t 'common.upload-file'}}</a></li>
+            <li role="menuitem" aria-label="interactive"><a class="interactive" href="#" tabindex={{tabindex}} onclick={{action 'h5pContent'}} onkeypress={{action 'h5pContent'}} title="interactive"><i></i>{{t 'resource.interactive'}}</a></li>
+            <li role="menuitem" aria-label="create-content"><a class="create-content" href="#" title="create-content" tabindex={{tabindex}} onclick={{action 'switchHtmlContent'}} onkeypress={{action 'switchHtmlContent'}}><i></i>{{t 'common.html-resource'}}</a></li>
+          </ul>
+        </div>
+  </div>
+        <label class="url-label">
+          <span class="required">{{t 'common.enter-url'}}</span>
+          {{validation/gru-input model=resource valuePath='url' didValidate=didValidate onChange="onURLChange"}}
+          {{#if existingResource}}
+            <span class="validation error warning-error">{{t 'gru-resource-new.resource-already-exist'}}</span>
+            {{#if model}}
+              <div class="lead">
+                <span>{{t 'gru-resource-add'}}</span>
+              </div>
+            {{/if}}
+            <div class="existing-resource-message">
+              {{new-cards/gru-resource-card isExistingResource=true resource=existingResource addEnabled=false}}
+            </div>
+          {{/if}}
+        </label>
+        {{#unless existingResource}}
+          <label class="title-label">
+            <span class="required">{{t 'common.resource-title'}}</span>
+            {{validation/gru-input model=resource valuePath='title' maxLength=50 didValidate=didValidate}}
+          </label>
+          <div class="col-sm-12 form-field">
+            {{content/etl/gru-etl-second isEditing=true tempData=resource isComputedEtl=false valueHours='resourceHours' valueMins='resourceMinutes' labelText=(t 'common-estimate-time-learn-title')}}
+          </div>
+          <label class="type">
+            <span class="required">{{t 'common.add-type-resource'}}</span>
+          </label>
+          <div class="resource-types text-center">
+            {{#each resourceTypes as |resourceType|}}
+              <div
+                  class="panel panel-default {{concat 'resource-type-' resourceType.name}} {{if resourceType.active 'active'}} {{if resourceType.disabled 'disabled'}} {{unless resourceType.isShow 'hideResourceCard'}}" {{action 'selectType' resourceType.name}}>
+                <div class="panel-body">
+                  <i class="resource-type-icon"></i>
+                </div>
+                <div class="panel-footer">
+                  {{t (concat 'common.resource-format.' resourceType.name) }}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{/unless}}
+      {{/if}}
+
+      <div class="actions resource-new">
+        {{#unless existingResource}}
+          <button type="button" class="btn btn-default cancel-btn" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+            <span aria-hidden="true">{{t 'common.cancel' }}</span>
+          </button>
+          {{#gru-spinner-button classes='btn btn-default' text=(t 'common.loading') isLoading=isLoadingMoreDetails}}
+              <button type="button" class="btn btn-default more-btn" {{action "createResource" "edit"}}
+                      aria-label="{{t 'common.more-details'}}">
+                  <span aria-hidden="true">{{t 'common.more-details' }}</span>
+              </button>
+          {{/gru-spinner-button}}
+
+          {{#gru-spinner-button classes='btn btn-primary add-btn' text=(t 'common.loading') isLoading=isLoadingCreate}}
+              <button type='button' class="btn btn-primary add-btn create" {{action "createResource" "add"}}
+                      aria-label="{{t 'common.close'}}">{{t 'common.create'}}</button>
+          {{/gru-spinner-button}}
+        {{else}}
+          {{#if model}}
+            <button type="button" class="btn btn-default cancel-btn" data-dismiss="modal"
+                    aria-label="{{t 'common.close'}}">
+              <span aria-hidden="true">{{t 'common.cancel' }}</span>
+            </button>
+            {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoadingAddTo}}
+                <button type='button' class="btn btn-primary add-btn" {{action "addTo"}}
+                        aria-label="{{t 'common.close'}}">{{t 'common.add'}}</button>
+            {{/gru-spinner-button}}
+          {{else}}
+            <button type="button" class="btn btn-primary close-btn" data-dismiss="modal"
+                    aria-label="{{t 'common.close'}}">
+              <span aria-hidden="true">{{t 'common.close' }}</span>
+            </button>
+          {{/if}}
+        {{/unless}}
+      </div>
+    </form>
+  </div>
+{{/if}}

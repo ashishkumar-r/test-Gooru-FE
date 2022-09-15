@@ -1,0 +1,11 @@
+  <div id="step-progress-bar">
+    <div class="progress">
+      <span class="fill-area {{rangeColor}}" style="width: {{fillPercentage}}">
+      </span>
+      <div class="connector-container">
+        {{#each connectors as |connector index|}}
+            <span class="connector span-item-{{index}}" {{action 'onSelectSlider' connector index}}></span>
+        {{/each}}
+      </div>
+    </div>
+  </div>

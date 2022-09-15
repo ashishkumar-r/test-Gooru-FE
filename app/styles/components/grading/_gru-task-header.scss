@@ -1,0 +1,34 @@
+.gru-task-header {
+  .prompt {
+    .panel-body {
+      @include flexbox();
+      padding: 0;
+    }
+    .icon {
+      border-right: 1px solid $light-300;
+      padding: 10px;
+      i {
+        display: block;
+        vertical-align: top;
+        margin: 5px 0 0;
+        background: url("gooru/images/question-resource-green.svg");
+        -webkit-background-size: 30px 30px;
+        background-size: 30px 30px;
+        height: 30px;
+        width: 30px;
+      }
+    }
+    .question-text {
+      padding: 10px;
+      margin-bottom: 0;
+      .title {
+        font-size: $font-size-large;
+      }
+      img.prompt-thumbnail {
+        max-width: 125px;
+        max-height: 150px;
+        margin: 10px 0 0;
+      }
+    }
+  }
+}

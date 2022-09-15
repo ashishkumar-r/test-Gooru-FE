@@ -1,0 +1,14 @@
+{{#each answers as |answer index|}}
+
+  {{#if editMode}}
+    <div class="text-area-container">
+      {{validation/gru-textarea  model=answer valuePath='text' rows=5 maxLength=5000}}
+    </div>
+
+  {{else}}
+    <span class="answer-text">
+      {{textarea value=answer.text rows=5 readonly=true }}
+    </span>
+  {{/if}}
+
+{{/each}}

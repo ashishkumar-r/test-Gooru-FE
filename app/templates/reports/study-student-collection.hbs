@@ -1,0 +1,147 @@
+
+{{player/gru-study-header
+  classId=classId
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  showConfirmation=false
+  fromReport=true
+  class=class
+  sourceType=source
+  isStudyPlayer=true
+  isIframeMode=isIframeMode
+}}
+
+  <div class="report-container" style={{bgUrl}}>
+    <div class="summary-reset">
+      {{#if enableConfetti }}
+        {{gru-confetti}}
+      {{/if}}
+
+        <div class="resources-info">
+          {{reports/qz-student-report sourceType=source currentClass=currentClass attemptData=attemptData profile=profile isIframeMode=isIframeMode isAnswerKeyHidden=isAnswerKeyHidden isSuggestedContent=isSuggestedContent role=role isGraded=isGraded isDefaultGrade=isDefaultGrade isGradedScore=isGradedScore}}
+        </div>
+        <div class="resource-content {{if (or isShowStudyTimer isShowFeedbackContainer) 'resource-back-drop'}}">
+          {{#if (and isShowStudyTimer (not isPublicClass) isShowStudyTimerWidget)}}
+            {{gru-study-timer
+              studentTimespentData = studentTimespentData
+              showTimer = "showTimer"
+              isShowPullup = true
+            }}
+          {{/if}}
+          {{#if (and isShowFeedbackContainer isShowActivityFeedback)}}
+            {{player/gru-activity-feedback
+               feedbackContent=collection
+               feedbackCategoryLists=feedbackCategory
+               categoryLists = userCategoryFeedback
+               isShowFeedback = isShowFeedback
+               isStudyPlayer=true
+               format = format
+               showFeedbackContainer = "showFeedbackContainer"
+            }}
+          {{/if}}
+        </div>
+      </div>
+
+    {{player/gru-player-summary-footer
+      isShowStudyTimer = isShowStudyTimer
+      isShowFeedbackContainer = isShowFeedbackContainer
+      isShowFeedback = isShowFeedback
+      isDone=isDone
+      classId=classId
+      parents="onFeedbackCapture"
+      courseId=courseId
+      collection=collection
+      isFullScreen=isFullScreen
+      onToggleScreen="onToggleScreen"
+      isIframeMode=isIframeMode
+      onExit="onExit"
+      isShowActivityFeedback=isShowActivityFeedback
+      isPublicClass=isPublicClass
+      isShowStudyTimerWidget=isShowStudyTimerWidget
+      showTimer="showTimer"
+      showFeedbackContainer="showFeedbackContainer"
+      isCollection = isCollection
+    }}
+  </div>
+  {{#if (and isDependentLessonSuggestion (not isShowMasteryGreeting) (not isLoading))}}
+    {{content/modals/gru-lesson-suggestion
+      milestoneId=mapLocation.context.milestoneId
+      classId=classId
+      lessonId=mapLocation.context.lessonId
+      onContinueLessonSuggestion="onContinueLessonSuggestion"}}
+  {{/if}}
+  {{#if isShowSuggestion}}
+    {{content/modals/gru-content-suggestion mapLocation=mapLocation onAcceptSuggestion="onAcceptSuggestion" onIgnoreSuggestion="onCloseSuggestion"}}
+  {{/if}}
+
+  {{#if isShowMasteryGreeting}}
+    <div class="mastery-confirmation-popup">
+      <div class="mastery-greeting-container">
+        <div class="mastery-header">
+          <span class="mastery-title">
+            {{t 'report-page.mastery-title'}}
+          </span>
+        </div>
+        <div class="mastery-info-container">
+          <div class="greeting-images">
+            <div class="congratulations-img">
+            </div>
+          </div>
+          <div class="greeting-message">
+            {{t 'mastery-greeting-msg'}}
+          </div>
+        </div>
+        <div class="mastery-action-container">
+          <div class="no-thanks" {{action "onCloseMastery"}}>
+            {{t 'gru-suggest-test.no'}}
+          </div>
+          <div class="show-me" {{action "onRedirectToProfiencyProgress"}}>
+            {{t 'show-me'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if (and nextContentDetails (not isLoading) (not isShowMasteryGreeting) (not isShowSuggestion) (not isDependentLessonSuggestion))}}
+    <div class="next-content-container">
+      <div class="header-panel">
+        {{#unless isStartNewLesson}}
+          <div class="milestone-head">
+            <span class="milestone-title">{{t 'report-page.next-message-card-head' milestone=milestoneTitle lesson=lesson.title}}</span>
+          </div>
+        {{/unless}}
+        <div class="title">{{t 'report-page.coming-up-next'}} <span class="content-icon {{unless isStartNewLesson nextContentType 'lesson'}}"></span> </div>
+        <div class="message">
+          {{#unless isStartNewLesson}}
+            {{#if isSuggestionReport}}
+              {{t 'report-page.suggestion-report-to-play-assessment'}}
+            {{else}}
+              {{t (if (eq nextContentType 'assessment') 'report-page.next-content-desc' 'report-page.next-collection-desc')}}
+            {{/if}}
+          {{else}}
+            {{t 'report-page.next-message-new-lesson'}}
+          {{/unless}}
+          {{taxonomy/gru-taxonomy-tag-list tagPopoverDefaultPosition='top' tags=taxonomyTags tagsVisible=1 isInCard=true showDescription=true tabindex=tabindex}}
+        </div>
+      </div>
+      {{#unless isStartNewLesson}}
+        <div class="collection-panel">
+          <div class="icon"  style="background-image:url({{nextContentDetails.thumbnail}})"></div>
+          <div class="collection-info">
+            <div class="collection-title">{{nextContentDetails.title}}</div>
+          </div>
+        </div>
+      {{else}}
+        {{student/class/dashboard/learner-path
+          currentClass=currentClass
+          userLocation=userLocation
+          course=course
+          units=course.children
+          contentVisibility=contentVisibility
+          isStudyPlayer = true
+        }}
+      {{/unless}}
+    </div>
+  {{/if}}

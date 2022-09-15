@@ -1,0 +1,77 @@
+<div class="header-panel" {{action 'closeNotificationList'}}>
+  <div class="nav-body nav-menu-{{if selectedMenuItem selectedMenuItem 'default'}} {{if isPremiumClass 'premium-class'}} {{if isILActivity  'independent-learning'}}  {{unless hasClassInfo 'no-class-info'}} {{if isPublicClass 'public-class'}}">
+    <div tabIndex="1" class="app-close" onclick={{action "onCloseStudyClassPlayer"}} onkeypress={{action "onCloseStudyClassPlayer"}} aria-label="Close">
+      <a class="back-or-close-menu">
+        {{gru-icon name=(if isStudyPlayer 'arrow_back' 'close')}}
+      </a>
+    </div>
+    <div role="tab" class="tab dashboard ">
+      <a onclick={{action 'selectItem' 'dashboard'}} onkeypress={{action 'selectItem' 'dashboard'}} class="tab-menu" role="link" data-toggle="tooltip" title="{{t 'student-landing.class.dashboard'}}" aria-label="Dashboard" tabindex="1">
+        {{gru-icon name='push_pin'}}
+        <span class="add-info">{{t 'student-landing.class.dashboard'}}</span>
+      </a>
+    </div>
+    {{#unless (or isPublicClass isILActivity)}}
+      <div role="tab" class="class-activities tab grade-range-{{grade-range caPerformanceSummary.scoreInPercentage}} {{if (eq selectedMenuItem 'class-activities') 'vactive'}}">
+        <a class="tab-menu" title="{{t 'teacher-landing.class.class-activities'}}" role="link" data-toggle="tooltip" aria-label="class-activities">
+          <span tabIndex="2" class="class-activity-tab" onclick={{action 'selectItem' 'class-activities'}} onkeypress={{action 'selectItem' 'class-activities'}}>
+            <i class="dca-pin"></i>
+            <span class="add-info dca-text">{{t 'teacher-landing.class.class-activities'}}</span>
+          </span>
+          <span class="performance-score {{if (not hasCAStarted) 'not-started'}}" onclick={{action 'onOpenCAReport'}} onkeypress={{action 'onOpenCAReport'}} tabIndex="2">{{if hasCAStarted (concat caPerformanceSummary.scoreInPercentage '%') '--' }}</span>
+        </a>
+      </div>
+    {{/unless}}
+    <div  role="tab"  class="course-map study-player tab grade-range-{{grade-range cmPerformanceSummary.score}} {{destination}} {{if isPremiumCourse 'premium-course'}} {{if (or (eq selectedMenuItem 'course-map') (eq selectedMenuItem 'study-player')) 'vactive'}}">
+      <a class="tab-menu" role="link" data-toggle="tooltip" title="{{t 'teacher-landing.class.learning-journey'}}" aria-label="learning journey">
+        <span class="course-map-tab" onclick={{action 'selectItem' 'course-map'}} onkeypress={{action 'selectItem' 'course-map'}} tabIndex="3">
+          {{gru-icon name='sort'}}
+          <span class="add-info">{{t 'teacher-landing.class.learning-journey'}}</span>
+        </span>
+        <span class="performance-score {{if (not hasCMStarted) 'not-started'}}" onclick={{action 'openCourseReport'}} onkeypress={{action 'openCourseReport'}} tabIndex="3">{{if hasCMStarted (concat cmPerformanceSummary.score '%') '--' }}</span>
+      </a>
+    </div>
+    {{#unless isILActivity }}
+      <div role="tab" class="tab profile-prof ">
+        <a onclick={{action 'selectItem' 'profile-prof'}} onkeypress={{action 'selectItem' 'profile-prof'}} class="tab-menu" role="link" data-toggle="tooltip" title="{{t 'student-landing.class.my-proficiency'}}" aria-label="My Proficiency" tabIndex="4">
+          {{gru-icon name='school'}}
+          <span class="add-info">{{t 'student-landing.class.my-proficiency'}}</span>
+        </a>
+      </div>
+    {{/unless}}
+    <div class="studyplayer-title" aria-label="class title">
+      <span>{{navTitle}}</span>
+    </div>
+    {{#if class}}
+      <div role="tab" class="suggestion-tab">
+        <div class="suggestion-explore" tabIndex="5" onclick={{action 'toogleSuggestionContainer'}} onkeypress={{action 'toogleSuggestionContainer'}} aria-label="suggestion-explore">
+          {{gru-icon name="explore"}}
+        </div>
+        {{#if showSuggestionContainer}}
+          {{student-suggestion-container classId=classId isPublicClass=isPublicClass courseId=courseId onCloseContainer='toogleSuggestionContainer' tabindex="5"}}
+        {{/if}}
+      </div>
+    {{/if}}
+    <div role="tab" class="notification-tab">
+      {{notification/notification-indicator displayNotificationList=displayNotificationList accessorClass='class' classId=classId isTeacher=false tabindex=6}}
+    </div>
+
+    {{#if isPremiumClass}}
+      <div role="tab" aria-label="performance-summary" class="performance-summary {{if competencyCompletionStats 'has-competency-stats'}}" onclick={{action 'selectItem' 'profile-prof'}} onkeypress={{action 'selectItem' 'profile-prof'}} tabIndex="7">
+        {{#if competencyCompletionStats}}
+          <span class="numerator">{{plus-any competencyCompletionStats.completedCompetencies competencyCompletionStats.masteredCompetencies}}</span>
+          <span class="denominator">{{competencyCompletionStats.totalCompetencies}}</span>
+        {{else}}
+          <span class="no-completion-score">--</span>
+        {{/if}}
+      </div>
+    {{/if}}
+    {{#if hasClassInfo}}
+      <div role="tab" class="class-info">
+        <a tabIndex="8" onclick={{action 'selectItem' 'class-info'}} onkeypress={{action 'selectItem' 'class-info'}} data-toggle="tooltip" title="{{t 'teacher-landing.class.class-management-tab.class-information'}}" aria-label="class information">
+          {{gru-icon name="info" style='material-icons-outlined'}}
+        </a>
+      </div>
+    {{/if}}
+  </div>
+</div>

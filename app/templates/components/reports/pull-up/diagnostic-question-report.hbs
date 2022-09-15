@@ -1,0 +1,109 @@
+<div class="backdrop" {{action 'onPullUpClose' true}}></div>
+<div class="question-report-container">
+  <div class="report-header {{if isShowMilestoneReport 'milestone-question-report'}}">
+      <div class="report-breadcrumb hidden-xs">
+        <div class="unit-title">
+          <i class="unit-icon"></i>
+          <p>{{t 'common.question'}} : {{selectedQuestion.question_title}}</p>
+        </div>
+      </div>
+    <div class="report-close-pullup" onclick={{action 'onPullUpClose'}} onkeypress={{action 'onPullUpClose'}} tabindex={{tabindex}}>
+      {{gru-icon name="close" }}
+    </div>
+  </div>
+  <div class="report-content">
+    <div class="report-info-chart-container {{if evidenceDatas 'download-info'}}">
+      <div class="report-info-container">
+        <i class="quesion-icon"></i>
+        <span>
+            {{t 'common.question'}}
+            #{{selectedQuestion.questionNumber}}
+          </span>
+      </div>
+      <div class="report-chart-container">
+          <div style="width:{{context.correctPercentage}}%" class="correct"></div>
+          <div style="width:{{context.wrongPercentage}}%; {{if (eq context.wrongPercentage 0) 'border-width: 0px;'}}" class="wrong"></div>
+      </div>
+      {{#if evidenceDatas}}
+        <div class="download">
+          <a class="download-icon">{{gru-icon name='file_download'}}</a>
+          <span>{{t 'common.download-submission'}}</span>
+        </div>
+      {{/if}}
+    </div>
+    <div class="report-carousel">
+      <div id="report-carousel-wrapper" class="carousel slide" data-ride="carousel" data-interval="false">
+        {{gru-math-text text=selectedQuestion.question_description}}
+      </div>
+    </div>
+      {{#unless (eq selectedQuestion.type 'SERP_WPM')}}
+        <div class="answer-report-group">
+
+        {{#if studentCorrectAns.length}}
+          <div class="correct-answer-list-container">
+            <div class="correct-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".correct-answer-list-container"}} onkeypress={{action "onToggleAnswerSection" ".correct-answer-list-container"}} tabindex={{tabindex}}>
+              <span>{{t 'common.correct-answers'}}</span> {{gru-icon name="keyboard_arrow_up"}}
+            </div>
+            <div class="user-answer-list">
+              {{#each studentCorrectAns as |correct|}}
+                <div class="correct-answer-list">
+                  <div class="correct-answers">
+                      {{{component (question-type-config  selectedQuestionReport.question.type 'component.answer')
+                        question=selectedQuestionReport.question
+                        userAnswer=correct.children.response.userAnswer
+                        }}}
+                  </div>
+                  <div class="answer-users">
+                      <div class="user-profile-details">
+                        <div class="user-profile-img">
+                          {{#if correct.children.thumbnail}}
+                            <img src="{{ correct.children.thumbnail}}" alt="student avatar">
+                          {{else}}
+                              <div class='student-icon'></div>
+                          {{/if}}
+                        </div>
+                        <span>{{ correct.children.last_name}},</span>
+                        <span>{{ correct.children.first_name}}</span>
+                      </div>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+        {{#if studentWrongAns.length}}
+          <div class="wrong-answer-list-container">
+            <div class="wrong-answer-section answer-section" onclick={{action "onToggleAnswerSection" ".wrong-answer-list-container"}} onkeypress={{action "onToggleAnswerSection" ".wrong-answer-list-container"}} tabindex={{tabindex}}>
+              <span>{{t 'common.incorrect-answers'}}</span> {{gru-icon name="keyboard_arrow_up"}}
+            </div>
+            <div class="user-answer-list">
+              {{#each studentWrongAns as |wrong|}}
+                <div class="wrong-answer-list">
+                  <div class="wrong-answers">
+                    {{{component (question-type-config  selectedQuestionReport.question.type 'component.answer')
+                    question=selectedQuestionReport.question
+                    userAnswer=wrong.children.response.userAnswer
+                    }}}
+                  </div>
+                  <div class="answer-users">
+                      <div class="user-profile-details">
+                        <div class="user-profile-img">
+                          {{#if wrong.children.thumbnail}}
+                            <img src="{{ wrong.children.thumbnail}}" alt="student avatar">
+                          {{else}}
+                              <div class='student-icon'></div>
+                          {{/if}}
+                        </div>
+                        <span>{{wrong.children.last_name}},</span>
+                        <span>{{wrong.children.first_name}}</span>
+                      </div>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+    </div>
+    {{/unless}}
+  </div>
+</div>

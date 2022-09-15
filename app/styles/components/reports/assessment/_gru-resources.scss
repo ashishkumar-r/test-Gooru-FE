@@ -1,0 +1,169 @@
+.reports.assessment.gru-resources {
+  .resource-container {
+    padding: 8px 24px 8px 24px;
+    border-bottom: 1px solid $border-bottom-shadow;
+    .resource-header-container {
+      display: grid;
+      grid-template-columns: 85% auto;
+      .resource-title-container {
+        display: grid;
+        grid-template-columns: 16px 20px 1fr;
+        align-items: center;
+        column-gap: 8px;
+        padding-bottom: 8px;
+        .resource-order {
+          font-weight: bold;
+          color: $placeholder-color;
+          font-size: 15px;
+        }
+        .resource-type {
+          width: 16px;
+          height: 16px;
+          background-size: 16px 16px;
+          background-repeat: no-repeat;
+          display: block;
+          &.video {
+            background-image: url("gooru/images/video-resource-dark.svg");
+          }
+          &.html {
+            background-image: url("gooru/images/html-icon.png");
+          }
+          &.webpage {
+            background-image: url("gooru/images/website-resource-dark.svg");
+          }
+          &.interactive {
+            background-image: url("gooru/images/interactive-resource-dark.svg");
+          }
+          &.question {
+            background-image: url("gooru/images/question-resource-dark.svg");
+          }
+          &.rubric {
+            background-image: url("gooru/images/rubric-dark.svg");
+          }
+          &.image {
+            background-image: url("gooru/images/image-resource-dark.svg");
+          }
+          &.text {
+            background-image: url("gooru/images/text-resource-dark.svg");
+          }
+          &.audio {
+            background-image: url("gooru/images/audio-resource-dark.svg");
+          }
+        }
+        .title {
+          font-weight: bold;
+          color: $placeholder-color;
+          font-size: 15px;
+        }
+      }
+      .resource-performance-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        .resource-reaction {
+          .emotion {
+            width: 25px;
+            height: 25px;
+            cursor: auto;
+          }
+        }
+        .resource-timespent {
+          font-size: 13px;
+          color: $placeholder-color;
+        }
+
+        &.skipped-resource {
+          grid-template-columns: auto auto;
+        }
+      }
+    }
+    .resource-taxonomies-container {
+      padding-bottom: 8px;
+      .gru-taxonomy-tag-list {
+        .gru-taxonomy-tag {
+          min-width: 90px;
+          max-width: 100px;
+          height: 23px;
+          border-radius: 12px;
+          background-color: $dark-gray;
+          .standard-tag {
+            .tag-label {
+              font-size: 14px;
+              font-weight: bold;
+              color: $white;
+              text-align: center;
+            }
+            .tag-caption {
+              display: none;
+            }
+          }
+        }
+        .non-visible-tags {
+          width: 81px;
+          height: 23px;
+          border-radius: 12px;
+          background-color: $dark-gray;
+          color: $white;
+          padding: 0;
+          span {
+            font-weight: bold;
+            font-size: 14px;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+    .resource-description-container {
+      $font-size: 14px;
+      $line-height: 1.5;
+      $lines-to-show: 4;
+      @include ellipsis(
+        $font-size: $font-size,
+        $line-height: $line-height,
+        $lines-to-show: $lines-to-show
+      );
+      max-height: 92px;
+      color: $gray-dove;
+    }
+    .resource-url-container {
+      .url-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: $placeholder-color;
+      }
+      .url-content {
+        font-size: 14px;
+        font-style: italic;
+        color: $placeholder-color;
+      }
+    }
+  }
+
+  .resource-cards {
+    width: 100%;
+    background: $white;
+    box-shadow: 0px 2px 5px 0px $disabled-bg-color;
+    border-radius: 5px;
+    padding: 20px;
+    display: block;
+    .header {
+      color: $gray-base;
+      font-size: $font-size-h6;
+      padding: 0 0 15px 0;
+      border-bottom: 1px solid $gray-lighter;
+    }
+    .resource-number {
+      width: 15%;
+      display: inline-block;
+      padding: 0 0 0 5px;
+    }
+    .resource-text {
+      width: 82%;
+      display: inline-block;
+      padding: 0 5px 0 0;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+  }
+}

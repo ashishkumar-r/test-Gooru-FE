@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+    <a data-toggle="collapse" data-parent="#accordion" {{action 'expandTitle' }} title="{{elementId}} accordion" id="head-{{elementId}}" href="#m-{{elementId}}" aria-expanded="true" aria-controls="m-{{elementId}}">
+        <div class="associated-rubric">
+            <div class="image">
+                <i class="rubric-icon"></i>
+            </div>
+            <div class="info">
+                {{#if model.title}}
+                <h3>{{model.title}} </h3>
+                {{/if}}
+                <span class="submissionCount">
+                    {{#if model.id}}
+                        {{t 'oa.task.submissions.frs-label'}}
+                    {{/if}}
+                    {{#if (gt model.oaTaskSubmissions.length 0)}}
+                        , {{t 'oa.task.submissions.label'}} : {{model.oaTaskSubmissions.length}}
+                    {{/if}}
+                </span>
+            </div>
+            {{#if model.id}}
+                <div class="actions">
+                    <button class="btn no-bgd remove-item" {{action 'removeLineItem' preventDefault=false bubbles=false}}>
+                        {{gru-icon name="remove_circle"}}
+                    </button>
+                </div>
+            {{/if}}
+        </div>
+    </a>
+    <div id="m-{{elementId}}" class="panel-collapse collapse" role="tabpanel">
+        <div class="panel-body">
+            <div class='expandedTitle'>
+                <div class='actions'>
+                    <button class="cancel btn btn-info" {{action 'cancelChanges'}}>{{t "common.cancel"}}</button>
+                    <button class="save btn btn-success" {{action 'updateContent' model}}>{{t "common.save"}}</button>
+                </div>
+                <span>{{t 'common.title'}} </span>
+                {{validation/gru-input title="title" model=model valuePath='title' maxLength=50 didValidate=didValidate}}
+            </div>
+            <span>{{t 'common.description' }}</span>
+            {{gru-rich-text-editor content=model.description model=model  }}
+            {{#if model.id}}
+                {{content/activity/task/gru-submissions submissions=model.oaTaskSubmissions oaId=oaId oaTaskId=model.id }}
+            {{/if}}
+            <div class="evidence-required">
+              {{gru-switch switchOptions=switchOptions onOptionSwitch='updateEvidence'
+                  isChecked=model.isEvidenceRequired }}
+                  <span class="evidence-text">{{t 'oa.task-evidence-required'}}</span>
+            </div>
+        </div>
+    </div>
+</div>

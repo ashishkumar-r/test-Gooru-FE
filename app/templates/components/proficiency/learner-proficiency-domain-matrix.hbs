@@ -1,0 +1,107 @@
+{{#if isLoading}}
+  <div class="spinner">
+    {{three-bounce-spinner}}
+  </div>
+{{/if}}
+{{#if isClassActivity}}
+  {{proficiency/grade-selector tabindex=tabindex studentDestination=studentDestination classGrade=classGrade taxonomyGrades=taxonomyGrades onToggleBaseline="onToggleBaseline" onSelectGrade="onSelectGrade" activeGrade=activeGrade studentProfile=studentProfile isPublic=isPublic}}
+{{/if}}
+<div class="actions">
+  {{#if (and (gt taxonomyGrades.length 0) isShowMatrixChart)}}
+    {{proficiency/grade-selector tabindex=tabindex studentDestination=studentDestination classGrade=classGrade taxonomyGrades=taxonomyGrades onToggleBaseline="onToggleBaseline" onSelectGrade="onSelectGrade" activeGrade=activeGrade disableHeader=disableHeader studentProfile=studentProfile isPublic=isPublic}}
+  {{/if}}
+
+  <div class="toggle-chart" onclick={{action "onToggleAllDomains"}} onkeypress={{action "onToggleAllDomains"}} tabindex={{tabindex}}>
+    {{gru-icon name=(if isExpandChartEnabled 'unfold_less' 'unfold_more')}}<span class="hidden-xs">{{if isExpandChartEnabled 'Collapse' 'Expand'}} all domains</span>
+  </div>
+
+  {{!-- TODO we should enable this toggling chart size feature --}}
+  {{!-- {{#unless isExpandChartEnabled}}
+    <div class="toggle-chart" {{action "onToggleChartSize"}}>
+      {{#if isExpandChartEnabled}}
+        {{gru-icon name="unfold_less"}}<span class="hidden-xs">Expand Chart</span>
+      {{else}}
+        {{gru-icon name="unfold_more"}}<span class="hidden-xs">{{t 'profile.proficiency.show-expanded-chart'}}</span>
+      {{/if}}
+    </div>
+  {{/unless}} --}}
+</div>
+<div class="chart-area {{unless isExpandChartEnabled 'compressed-view'}}">
+  <div class="matrix-chart">
+    <div class="chart-container {{if (lte taxonomyGrades.length 0) 'no-grade'}}">
+      <div class="domain-chart-container {{if chartLoading 'chart-data-render'}}">
+
+        {{#if loading}}
+        {{three-bounce-spinner}}
+        {{/if}}
+
+        <div class="domains-info-list">
+          {{#each proficiencyChartData as |domain|}}
+            <div class="domain-info domain-seq-{{domain.domainSeq}}  {{unless domain.isExpanded 'collapsed'}} {{if domain.isActive 'active'}}" style="width: {{multiply (if domain.isExpanded domain.topics.length 1) cellWidth}}px;"
+              onclick={{action "onDomainSelect" domain}} onkeypress={{action "onDomainSelect" domain}} tabindex={{tabindex}}>
+              <span class="domain-name" title="{{if domain.fwDomainName domain.fwDomainName domain.domainName}}" data-toggle="tooltip">{{if domain.fwDomainName domain.fwDomainName domain.domainName}}</span>
+              <span class="close-domain">{{gru-icon name="clear"}}</span>
+            </div>
+          {{/each}}
+        </div>
+
+        <div class="scrollable-chart {{if (not showGutCompetency) 'show-gut'}} {{type}}" tabindex={{tabindex}}>
+          <div id="render-proficiency-matrix">
+            <div class="selected-competency background{{blockAttribute.competencyStatus}} {{if (and (not showGutCompetency) (not blockAttribute.isMappedWithFramework)) 'dark-backfill'}}"
+              style="width:{{blockAttribute.width}}px; height:{{blockAttribute.height}}px; top:{{blockAttribute.top}}px; left:{{blockAttribute.left}}px" tabindex={{tabindex}}>
+            </div>
+            {{#if isInitialSkyline}}
+              <div id="popover" class="{{unless isShowSkyLinePopup 'hidden'}}">
+                <div class="custom-transform">
+                  <span class="title">{{t "student-first-experience.competency.popover.title" title=title}}</span>
+                  <span class="content">{{t "student-first-experience.competency.popover.content"}} </span>
+                </div>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="domains-seq-list">
+          {{#each proficiencyChartData as |taxonomyDomain index |}}
+            <div class="domain-seq domain-seq-{{taxonomyDomain.domainSeq}} {{if taxonomyDomain.isExpanded 'expanded'}}">
+              <span class="domain-value"
+                title="{{locale-translation (t (concat 'domain-code.' taxonomyDomain.domainCode)) (if (and (not showGutCompetency)  taxonomyDomain.isMappedWithFramework) taxonomyDomain.fwDomainName  (if taxonomyDomain.fwDomainName taxonomyDomain.fwDomainName taxonomyDomain.domainName))}}"
+                data-placement="auto right" tabindex={{tabindex}} {{action "onDomainSelect" taxonomyDomain}} onmouseover={{action "domainFocusIn" taxonomyDomain}} onmouseout={{action 'domainFocusOut'}} data-toggle="tooltip" style="width:{{cellWidth}}px">
+                {{taxonomyDomain.domainSeq}}
+              </span>
+              <div class="topics-seq-list">
+                {{#each taxonomyDomain.topics as |topic|}}
+                  <span class="topic-seq {{if topic.isActive 'active'}}" style="width:{{cellWidth}}px" data-toggle="tooltip" data-placement="auto right" title="{{if topic.fwTopicName topic.fwTopicName topic.topicName}}" tabindex={{tabindex}} onclick={{action "onSelectTopic" topic}} onkeypress={{action "onSelectTopic" topic}}>
+                    {{taxonomyDomain.domainSeq}}.{{topic.topicSeq}}
+                  </span>
+                {{/each}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- tooltip -->
+{{#if competencyTooltipData}}
+  <div class="competency-tooltip-content">
+    <span class="competency-code">
+      {{competency-gut-to-fw-transform
+       fwCompetencies
+       competencyTooltipData.competencyCode
+       competencyTooltipData.competencyDisplayCode
+       'frameworkCompetencyDisplayCode'
+       showGutCompetency
+       true
+    }}
+      {{competency-lo-transform
+      fwCompetencies
+      competencyTooltipData.competencyCode
+      'loCode'
+      false
+      '|'
+    }}</span>
+    <span class="competency-status">{{competencyTooltipData.competencyName}}</span>
+  </div>
+{{/if}}

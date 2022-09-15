@@ -1,0 +1,28 @@
+.reports_collection {
+  .container-fluid {
+    min-width: 100%;
+
+    .controller.reports {
+      .header {
+        margin-top: 10px;
+
+        .title {
+          @media only screen and (max-width: $screen-xs) {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+
+            span {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      @media only screen and (max-width: $screen-xs) {
+        .anon-title {
+          max-width: 100px;
+        }
+      }
+    }
+  }
+}

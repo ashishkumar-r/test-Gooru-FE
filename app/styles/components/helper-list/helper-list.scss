@@ -1,0 +1,138 @@
+.gruPullUp {
+  .overlay {
+    opacity: 0.8;
+    top: 49px;
+  }
+}
+
+.helper-icon {
+  color: $dogger-blue;
+  font-size: 21px;
+
+  .fa-question-circle {
+    font-weight: bolder;
+  }
+}
+
+.not-modal-header {
+  margin-left: 15px;
+}
+
+.has-document {
+  width: 1000px !important;
+
+  .panel.panel-default {
+    .info {
+      .panel-body {
+        .description {
+          width: auto !important;
+          height: 100%;
+
+          iframe {
+            width: 100%;
+            height: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.helper-list {
+  width: 500px;
+  @media screen and (max-width: $screen-568) {
+    width: 100%;
+  }
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  $container-height: 35vh;
+  $showmorepanel: calc($container-height +15px);
+
+  .panel.panel-default {
+    background-color: $white;
+    margin-bottom: 0;
+    height: 100vh;
+
+    .info {
+      padding: 2px 0 8px 8px;
+
+      .panel-body {
+        padding: 0;
+        color: $gray;
+        word-break: break-all;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-top: 2px;
+        height: calc(100vh - 115px);
+
+        .description {
+          width: 479px;
+          @media screen and (max-width: $screen-568) {
+            width: 100%;
+          }
+          white-space: pre-wrap;
+          word-break: keep-all;
+        }
+      }
+    }
+
+    .helper-panel-heading {
+      border-bottom: 1px solid $dogger-blue;
+    }
+  }
+}
+
+.pull-out-ex {
+  top: 48px;
+  left: 50px;
+  position: absolute;
+  color: $font-gray-a9-dark-500;
+
+  .pull-close {
+    padding-top: 11px;
+    background: $pre-bg;
+  }
+}
+
+.gru-pull-out,
+.gru-pull-up {
+  height: auto;
+}
+
+.gruHelpSupportPopup {
+  .help-overlay {
+    z-index: 1031;
+    margin: auto;
+    top: 0;
+  }
+}
+
+.descriptionAnchorLink {
+  position: fixed;
+  bottom: 0;
+  z-index: 1031;
+  width: 83%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: $suggestion-panel-color;
+  background-color: $white-bold;
+
+  .modal-header {
+    background: $breadcrumb-bg;
+    padding: 27px;
+  }
+}
+@media (max-width: 567px) {
+  .pull-out-ex {
+    .pull-close {
+      position: absolute;
+      right: 2%;
+      background: $table-bg;
+      text-align: end;
+      cursor: pointer;
+    }
+  }
+}
