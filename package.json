@@ -72,7 +72,7 @@
     "grunt": "^0.4.5",
     "grunt-eslint": "^20.0.0",
     "grunt-stubby": "0.2.1",
-    "grunt-svgstore": "^1.0.0",
+    "grunt-svgstore": "^2.0.0",
     "http-proxy": "^1.18.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.1",
@@ -97,8 +97,9 @@
     "firebase": "^3.6.2",
     "grunt-exec": "^1.0.0",
     "loader.js": "^4.2.3",
-    "quizzes-addon": "6.1.4",
-    "url-search-params": "^0.10.0"
+    "quizzes-addon": "/usr/local/lib/node_modules/quizzes-addon",
+    "url-search-params": "^0.10.0",
+    "sass": "^1.54.9"
   },
   "ember-addon": {
     "paths": [
