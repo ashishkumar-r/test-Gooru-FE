@@ -31,7 +31,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.6",
+    "broccoli-asset-rev": "^3.0.0",
     "broccoli-merge-trees": "^1.1.4",
     "detect-indent": "5.0.0",
     "ember-ajax": "^2.5.2",
@@ -69,7 +69,7 @@
     "ember-truth-helpers": "1.2.0",
     "emberfire": "2.0.5",
     "glob": "^4.5.3",
-    "grunt": "^0.4.5",
+    "grunt": "^1.3.0",
     "grunt-eslint": "^20.0.0",
     "grunt-stubby": "0.2.1",
     "grunt-svgstore": "^2.0.0",
@@ -100,6 +100,14 @@
     "quizzes-addon": "/usr/local/lib/node_modules/quizzes-addon",
     "url-search-params": "^0.10.0",
     "sass": "^1.54.9"
+  },
+  "overrides": {
+    "handlebars": "4.7.7",
+    "nth-check": "2.0.1",
+    "ejs": "3.1.7",
+    "scss-tokenizer": "0.4.3",
+    "glob-parent": "5.1.2",
+    "js-yaml": "3.13.1"
   },
   "ember-addon": {
     "paths": [
