@@ -1,7 +1,7 @@
 /* eslint-env node */
 var targetObj = {
-  target: 'https://stage.gooru.org',
-  headers: { Host: 'stage.gooru.org' },
+  target: 'https://beta.gooru.org',
+  headers: { Host: 'beta.gooru.org' },
   secure: false
 };
 var proxyPathList = [
